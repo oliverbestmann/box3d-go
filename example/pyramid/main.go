@@ -1,209 +1,298 @@
+// A pyramid of cubes, rendered with ebiten's DrawTriangles and a simple perspective camera.
 package main
 
 import (
+	"cmp"
 	"fmt"
+	"image"
+	"image/color"
 	"math"
-	"strings"
+	"slices"
 	"time"
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
+	b3 "github.com/oliverbestmann/box3d-go"
 )
 
-// sizes multiplies the number of squares in the scene, cycled with the s key.
-var sizes = []float64{1, 5, 10, 20, 50}
+const help = `arrows: rotate camera
+enter: shoot a cube
+r: reset
+space: pause`
 
 func main() {
 	ebiten.SetWindowResizingMode(ebiten.WindowResizingModeEnabled)
 	ebiten.SetWindowSize(1200, 800)
-	ops := ebiten.RunGameOptions{}
-	ops.SingleThread = true
+	ebiten.SetWindowTitle("box3d-go pyramid")
 
-	err := ebiten.RunGameWithOptions(&viz{}, &ops)
-	if err != nil {
+	game := &game{yaw: 0.6, pitch: 0.35}
+	game.reset()
+
+	if err := ebiten.RunGame(game); err != nil {
 		fmt.Printf("Error: %s\n", err)
 	}
 }
 
-type viz struct {
-	makePhysics func(gravity float64, concurrent bool) Physics
-	physics     Physics
-	physicsTime float64
-	paused      bool
-	slowmo      bool
-	timeAcc     float64
-	size        int
-	layers      int
-	concurrent  bool
+type object struct {
+	body  b3.Body
+	hull  *b3.HullData
+	color b3.Vec3
 }
 
-func (v *viz) Update() error {
-	if inpututil.IsKeyJustPressed(ebiten.KeyB) {
-		v.makePhysics = b2New
-		v.initialize()
+type game struct {
+	world   b3.World
+	objects []object
+	ground  object
+
+	paused      bool
+	physicsTime time.Duration
+
+	yaw, pitch float64
+
+	vertices []ebiten.Vertex
+	indices  []uint16
+	faces    []face
+}
+
+func (g *game) reset() {
+	if g.world.Id != (b3.WorldId{}) {
+		g.world.DestroyWorld()
 	}
 
-	if inpututil.IsKeyJustPressed(ebiten.KeyC) {
-		v.makePhysics = cpNew
-		v.initialize()
+	def := b3.DefaultWorldDef()
+	def.Gravity = b3.Vec3{Y: -10}
+	g.world = b3.CreateWorld(def)
+	g.objects = nil
+
+	groundHull := b3.MakeOffsetBoxHull(20, 1, 20, b3.Vec3{Y: -1})
+	g.ground = g.addBody(b3.StaticBody, b3.Pos{}, &groundHull.Base, b3.Vec3{X: 0.4, Y: 0.45, Z: 0.4})
+
+	// a square pyramid, layer l has (layers-l)^2 cubes
+	const layers = 8
+	cube := b3.MakeCubeHull(0.5)
+	for l := range layers {
+		n := layers - l
+		for i := range n {
+			for k := range n {
+				p := b3.Pos{
+					X: float32(i) - float32(n-1)/2,
+					Y: 0.5 + float32(l),
+					Z: float32(k) - float32(n-1)/2,
+				}
+
+				c := b3.Vec3{X: 0.9, Y: 0.5 + 0.4*float32(l)/layers, Z: 0.2}
+				g.objects = append(g.objects, g.addBody(b3.DynamicBody, p, &cube.Base, c))
+			}
+		}
+	}
+}
+
+func (g *game) addBody(bodyType b3.BodyType, position b3.Pos, hull *b3.HullData, color b3.Vec3) object {
+	bodyDef := b3.DefaultBodyDef()
+	bodyDef.Type1 = bodyType
+	bodyDef.Position = position
+	body := g.world.CreateBody(bodyDef)
+
+	shape := body.CreateHullShape(b3.DefaultShapeDef(), hull)
+
+	// box3d copies the hull, render the copy, it outlives the hull passed in
+	return object{body: body, hull: shape.GetHull(), color: color}
+}
+
+func (g *game) Update() error {
+	if ebiten.IsKeyPressed(ebiten.KeyLeft) {
+		g.yaw -= 0.02
 	}
 
-	if inpututil.IsKeyJustPressed(ebiten.KeyS) {
-		v.size = (v.size + 1) % len(sizes)
-		v.initialize()
+	if ebiten.IsKeyPressed(ebiten.KeyRight) {
+		g.yaw += 0.02
 	}
 
-	if inpututil.IsKeyJustPressed(ebiten.KeyP) {
-		v.concurrent = !v.concurrent
-		v.initialize()
+	if ebiten.IsKeyPressed(ebiten.KeyUp) {
+		g.pitch = min(g.pitch+0.01, 1.4)
+	}
+
+	if ebiten.IsKeyPressed(ebiten.KeyDown) {
+		g.pitch = max(g.pitch-0.01, 0.05)
+	}
+
+	if inpututil.IsKeyJustPressed(ebiten.KeyR) {
+		g.reset()
 	}
 
 	if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
-		v.paused = !v.paused
+		g.paused = !g.paused
 	}
 
-	if inpututil.IsKeyJustPressed(ebiten.KeyM) {
-		v.slowmo = !v.slowmo
+	if inpututil.IsKeyJustPressed(ebiten.KeyEnter) {
+		cam := g.camera(1, 1)
+		cube := b3.MakeCubeHull(0.75)
+		obj := g.addBody(b3.DynamicBody, cam.eye, &cube.Base, b3.Vec3{X: 0.2, Y: 0.5, Z: 0.9})
+		obj.body.SetLinearVelocity(b3.MulSV(40, b3.Normalize(b3.Sub(cam.target, cam.eye))))
+		g.objects = append(g.objects, obj)
 	}
 
-	if v.physics != nil && !v.paused {
-		step := 1 / 60.0
-
-		if v.slowmo {
-			step *= 0.1
-		}
-
-		v.timeAcc += step
-
-		for v.timeAcc > 1/60.0 {
-			v.timeAcc -= 1 / 60.0
-
-			startTime := time.Now()
-			v.physics.Step(1/60.0, 4)
-
-			if v.physicsTime == 0 {
-				v.physicsTime = time.Since(startTime).Seconds()
-			} else {
-				v.physicsTime = 0.95*v.physicsTime + 0.05*time.Since(startTime).Seconds()
-			}
-		}
+	if !g.paused {
+		start := time.Now()
+		g.world.Step(1.0/60.0, 4)
+		g.physicsTime = (g.physicsTime*19 + time.Since(start)) / 20
 	}
 
 	return nil
 }
 
-const keyHelp = `b: box2d
-c: jakecoffman/cp
-s: scene size
-p: concurrency
-space: pause
-m: slow motion`
+type camera struct {
+	eye, target    b3.Vec3
+	right, up, fwd b3.Vec3
+	focal, cx, cy  float32
+}
 
-func (v *viz) Draw(screen *ebiten.Image) {
-	// the debug font is 6 pixels wide
-	width := 0
-	for line := range strings.Lines(keyHelp) {
-		width = max(width, 6*len(strings.TrimSpace(line)))
+func (g *game) camera(w, h float32) camera {
+	const distance = 22
+
+	target := b3.Vec3{Y: 3}
+	eye := b3.Add(target, b3.Vec3{
+		X: float32(distance * math.Cos(g.pitch) * math.Sin(g.yaw)),
+		Y: float32(distance * math.Sin(g.pitch)),
+		Z: float32(distance * math.Cos(g.pitch) * math.Cos(g.yaw)),
+	})
+
+	fwd := b3.Normalize(b3.Sub(target, eye))
+	right := b3.Normalize(b3.Cross(fwd, b3.Vec3{Y: 1}))
+	up := b3.Cross(right, fwd)
+
+	return camera{eye: eye, target: target, right: right, up: up, fwd: fwd, focal: h, cx: w / 2, cy: h / 2}
+}
+
+// project returns the screen position and the depth of p. The depth is negative behind the camera.
+func (c camera) project(p b3.Vec3) (x, y, depth float32) {
+	d := b3.Sub(p, c.eye)
+	depth = b3.Dot(d, c.fwd)
+	x = c.cx + c.focal*b3.Dot(d, c.right)/depth
+	y = c.cy - c.focal*b3.Dot(d, c.up)/depth
+	return x, y, depth
+}
+
+// face is a visible hull face, sorted by depth to draw back to front.
+type face struct {
+	depth  float32
+	points []b3.Vec3
+	color  b3.Vec3
+}
+
+var lightDir = b3.Normalize(b3.Vec3{X: 0.3, Y: 1, Z: 0.5})
+
+// collectFaces adds the faces of obj that point towards the camera.
+func (g *game) collectFaces(cam camera, obj object) {
+	tr := obj.body.GetTransform()
+	if obj.body.IsAwake() == 0 {
+		obj.color = b3.MulSV(0.6, obj.color)
 	}
 
-	// deferred so it is drawn on top of the scene
-	defer ebitenutil.DebugPrintAt(screen, keyHelp, screen.Bounds().Dx()-16-width, 16)
+	points := obj.hull.Points()
+	edges := obj.hull.Edges()
+	planes := obj.hull.Planes()
 
-	if v.physics == nil {
-		ebitenutil.DebugPrintAt(screen, "press b for box2d, c for jakecoffman/cp", 16, 16)
-		return
-	}
+	for i, hullFace := range obj.hull.Faces() {
+		normal := b3.RotateVector(tr.Q, planes[i].Normal)
 
-	w, h := float64(screen.Bounds().Dx()), float64(screen.Bounds().Dy())
+		var corners []b3.Vec3
+		var center b3.Vec3
 
-	var toScreen ebiten.GeoM
+		edge := hullFace.Edge
+		for {
+			p := b3.TransformPoint(tr, points[edges[edge].Origin])
+			corners = append(corners, p)
+			center = b3.Add(center, p)
 
-	scale := w / (5 * float64(v.layers))
+			edge = edges[edge].Next
+			if edge == hullFace.Edge {
+				break
+			}
+		}
 
-	toScreen.Scale(scale, -scale)
-	toScreen.Translate(w/2, h-50)
+		center = b3.MulSV(1/float32(len(corners)), center)
+		if b3.Dot(normal, b3.Sub(cam.eye, center)) <= 0 {
+			continue
+		}
 
-	v.physics.Draw(screen, toScreen)
-
-	text := fmt.Sprintf("physics %T: %1.2fms\nsquares: %dx, concurrency: %v",
-		v.physics, v.physicsTime*1000.0, int(sizes[v.size]), v.concurrent)
-	ebitenutil.DebugPrintAt(screen, text, 16, 16)
-
-	if v.paused {
-		ebitenutil.DebugPrintAt(screen, "paused", 16, 48)
+		light := 0.35 + 0.65*max(0, b3.Dot(normal, lightDir))
+		g.faces = append(g.faces, face{
+			depth:  b3.Dot(b3.Sub(center, cam.eye), cam.fwd),
+			points: corners,
+			color:  b3.MulSV(light, obj.color),
+		})
 	}
 }
 
-func (v *viz) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return outsideWidth, outsideHeight
-}
+func (g *game) Draw(screen *ebiten.Image) {
+	screen.Fill(color.RGBA{R: 0x20, G: 0x24, B: 0x30, A: 0xff})
 
-// initialize (re)creates the scene with the current engine, size and concurrency.
-func (v *viz) initialize() {
-	if v.makePhysics == nil {
-		return
+	w, h := float32(screen.Bounds().Dx()), float32(screen.Bounds().Dy())
+	cam := g.camera(w, h)
+
+	// the ground is below everything else, draw it first instead of sorting its large faces
+	g.faces = g.faces[:0]
+	g.collectFaces(cam, g.ground)
+	groundFaces := len(g.faces)
+
+	for _, obj := range g.objects {
+		g.collectFaces(cam, obj)
 	}
 
-	if v.physics != nil {
-		v.physics.Destroy()
-	}
+	slices.SortFunc(g.faces[groundFaces:], func(a, b face) int { return cmp.Compare(b.depth, a.depth) })
 
-	ph := v.makePhysics(-10, v.concurrent)
+	g.vertices, g.indices = g.vertices[:0], g.indices[:0]
+	for _, f := range g.faces {
+		// DrawTriangles takes uint16 indices
+		if len(g.vertices)+len(f.points) > math.MaxUint16 {
+			g.flush(screen)
+		}
 
-	// a pyramid with l layers has l*(l-1)/2 squares, 190 at the base size
-	layers := int(math.Round(20 * math.Sqrt(sizes[v.size])))
-	L := float64(layers)
+		base := uint16(len(g.vertices))
+		for _, p := range f.points {
+			x, y, depth := cam.project(p)
+			if depth <= 0.1 {
+				// shortcut: faces crossing the near plane are dropped, not clipped
+				g.vertices = g.vertices[:base]
+				break
+			}
 
-	floor := BodyDef{Elasticity: 0.1, Friction: 0.9, Density: 1}
-	box := BodyDef{Elasticity: 0.25, Friction: 0.5, Density: 1}
-	big := BodyDef{Density: 10, Elasticity: 0.1, Friction: 0.9}
+			g.vertices = append(g.vertices, ebiten.Vertex{
+				DstX: x, DstY: y, SrcX: 1, SrcY: 1,
+				ColorR: f.color.X, ColorG: f.color.Y, ColorB: f.color.Z, ColorA: 1,
+			})
+		}
 
-	ph.CreateStaticLine(-2*L, 0, 2*L, 0, floor)
-	ph.CreateStaticLine(-2*L, 0, -2*L, 5*L, floor)
-	ph.CreateStaticLine(2*L, 0, 2*L, 5*L, floor)
-
-	// create layers of boxes
-	for l := range layers {
-		for i := range l {
-			centerX := float64(i) + 0.5 - float64(l)/2
-			centerY := L - float64(l) - 0.5
-
-			ph.CreateSquare(0.5, centerX, centerY, box)
+		for i := base + 2; i < uint16(len(g.vertices)); i++ {
+			g.indices = append(g.indices, base, i-1, i)
 		}
 	}
 
-	// create a fast moving box
-	b := ph.CreateSquare(2, -1.8*L, 2.6*L, big)
-	b.SetVelocity(75, -100)
+	g.flush(screen)
 
-	v.physics = ph
-	v.layers = layers
-	v.physicsTime = 0
-	v.paused = false
+	text := fmt.Sprintf("step: %1.2fms\nbodies: %d", float64(g.physicsTime.Microseconds())/1000, len(g.objects))
+	if g.paused {
+		text += "\npaused"
+	}
+
+	ebitenutil.DebugPrintAt(screen, text, 16, 16)
+	ebitenutil.DebugPrintAt(screen, help, 16, int(h)-16*5)
 }
 
-// screenLength converts a length in world units to pixels.
-func screenLength(toScreen ebiten.GeoM, length float64) float64 {
-	x0, y0 := toScreen.Apply(0, 0)
-	x1, y1 := toScreen.Apply(length, 0)
-	return math.Hypot(x1-x0, y1-y0)
+func (g *game) flush(screen *ebiten.Image) {
+	screen.DrawTriangles(g.vertices, g.indices, whiteImage, &ebiten.DrawTrianglesOptions{AntiAlias: true})
+	g.vertices, g.indices = g.vertices[:0], g.indices[:0]
 }
 
-type Body interface {
-	SetVelocity(x, y float64)
-}
+// whiteImage is the texture for DrawTriangles, the vertex colors tint it.
+var whiteImage = func() *ebiten.Image {
+	img := ebiten.NewImage(3, 3)
+	img.Fill(color.White)
+	return img.SubImage(image.Rect(1, 1, 2, 2)).(*ebiten.Image)
+}()
 
-type BodyDef struct {
-	Density    float64
-	Friction   float64
-	Elasticity float64
-}
-
-type Physics interface {
-	Draw(screen *ebiten.Image, toScreen ebiten.GeoM)
-	Step(dt float64, subSteps int)
-	Destroy()
-	CreateSquare(halfSize, centerX, centerY float64, def BodyDef) Body
-	CreateStaticLine(x0, y0, x1, y1 float64, def BodyDef)
+func (g *game) Layout(outsideWidth, outsideHeight int) (int, int) {
+	return outsideWidth, outsideHeight
 }

@@ -1,11 +1,10 @@
-module github.com/oliverbestmann/box2d-go/example
+module github.com/oliverbestmann/box3d-go/example
 
 go 1.26.0
 
 require (
 	github.com/hajimehoshi/ebiten/v2 v2.10.5
-	github.com/jakecoffman/cp/v2 v2.4.0
-	github.com/oliverbestmann/box2d-go/v3 v3.2.2
+	github.com/oliverbestmann/box3d-go v0.0.0
 )
 
 require (
@@ -16,4 +15,4 @@ require (
 	golang.org/x/sys v0.49.0 // indirect
 )
 
-replace github.com/oliverbestmann/box2d-go/v3 => ../
+replace github.com/oliverbestmann/box3d-go => ../
