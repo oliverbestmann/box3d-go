@@ -1203,12 +1203,13 @@ func (b Body) CreateHeightFieldShape(def ShapeDef, heightField *HeightFieldData)
 	r.Id = b3CreateHeightFieldShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(heightField)))
 	return
 }
-func (b Body) CreateBakedCompoundShape(def *ShapeDef, compound *CompoundData) (r Shape) {
+func (b Body) CreateBakedCompoundShape(def ShapeDef, compound *CompoundData) (r Shape) {
 	defer runtime.KeepAlive(compound)
 	defer runtime.KeepAlive(def)
-	escapes(def)
+	defStack := copyToStack(theStack, def)
+	defer defStack.Free()
 	escapes(compound)
-	r.Id = b3CreateBakedCompoundShape(theStack, b.Id, uintptr(unsafe.Pointer(def)), uintptr(unsafe.Pointer(compound)))
+	r.Id = b3CreateBakedCompoundShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(compound)))
 	return
 }
 func (b Shape) DestroyShape(updateBodyMass uint8) { b3DestroyShape(theStack, b.Id, updateBodyMass) }

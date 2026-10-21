@@ -1,3 +1,16 @@
+diff --git a/include/box3d/box3d.h b/include/box3d/box3d.h
+index 54d0baf..501d308 100644
+--- a/include/box3d/box3d.h
++++ b/include/box3d/box3d.h
+@@ -882,7 +882,7 @@ B3_API b3ShapeId b3CreateHeightFieldShape( b3BodyId bodyId, const b3ShapeDef* de
+ /// Baked compound shapes are only allowed on static bodies.
+ /// Note: runtime compounds are achieved by adding multiple shapes to a body.
+ /// Runtime compounds can be dynamic and/or kinematic.
+-B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, b3ShapeDef* def, const b3CompoundData* compound );
++B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, const b3ShapeDef* def, const b3CompoundData* compound );
+ 
+ /// Destroy a shape. You may defer the body mass update which can improve performance if several shapes on a
+ ///	body are destroyed at once.
 diff --git a/include/box3d/id.h b/include/box3d/id.h
 index 9f05e12..32b1468 100644
 --- a/include/box3d/id.h
@@ -129,6 +142,19 @@ index 88de4bc..4c35a71 100644
     __uint128_t r=*A; r*=*B;
     #ifdef RAPIDHASH_PROTECTED
     *A^=(uint64_t)r; *B^=(uint64_t)(r>>64);
+diff --git a/src/shape.c b/src/shape.c
+index 7b21700..5cdc2ae 100644
+--- a/src/shape.c
++++ b/src/shape.c
+@@ -451,7 +451,7 @@ b3ShapeId b3CreateHeightFieldShape( b3BodyId bodyId, const b3ShapeDef* def, cons
+ 	return shapeId;
+ }
+ 
+-b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, b3ShapeDef* def, const b3CompoundData* compound )
++b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, const b3ShapeDef* def, const b3CompoundData* compound )
+ {
+ 	B3_ASSERT( compound->version == B3_COMPOUND_VERSION );
+ 
 diff --git a/src/simd.h b/src/simd.h
 index e10b9ed..aae25b5 100644
 --- a/src/simd.h

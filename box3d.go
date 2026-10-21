@@ -513,6 +513,77 @@ func (c *CompoundData) Materials() []SurfaceMaterial {
 	return unsafe.Slice((*SurfaceMaterial)(unsafe.Pointer(b3GetCompoundMaterials(theStack, uintptr(unsafe.Pointer(c))))), c.MaterialCount)
 }
 
+// dataSlice returns count items at offset bytes behind base, or nil if offset is 0.
+// The slice points into box3d memory and is only valid as long as base is.
+func dataSlice[T any, B any](base *B, offset, count int32) []T {
+	if offset == 0 || count <= 0 {
+		return nil
+	}
+
+	return unsafe.Slice((*T)(unsafe.Add(unsafe.Pointer(base), offset)), count)
+}
+
+func (h *HullData) Vertices() []HullVertex {
+	return dataSlice[HullVertex](h, h.VertexOffset, h.VertexCount)
+}
+
+func (h *HullData) Points() []Vec3 { return dataSlice[Vec3](h, h.PointOffset, h.VertexCount) }
+
+func (h *HullData) Edges() []HullHalfEdge {
+	return dataSlice[HullHalfEdge](h, h.EdgeOffset, h.EdgeCount)
+}
+
+func (h *HullData) Faces() []HullFace { return dataSlice[HullFace](h, h.FaceOffset, h.FaceCount) }
+
+func (h *HullData) Planes() []Plane { return dataSlice[Plane](h, h.PlaneOffset, h.FaceCount) }
+
+func (m *MeshData) Vertices() []Vec3 { return dataSlice[Vec3](m, m.VertexOffset, m.VertexCount) }
+
+func (m *MeshData) Triangles() []MeshTriangle {
+	return dataSlice[MeshTriangle](m, m.TriangleOffset, m.TriangleCount)
+}
+
+// MaterialIndices returns one material index per triangle, or nil.
+func (m *MeshData) MaterialIndices() []uint8 {
+	return dataSlice[uint8](m, m.MaterialOffset, m.TriangleCount)
+}
+
+// Flags returns the MeshEdgeFlags of each triangle, or nil.
+func (m *MeshData) Flags() []uint8 { return dataSlice[uint8](m, m.FlagsOffset, m.TriangleCount) }
+
+// Hull returns the hull of a HullShape child. The child shape geometry is a C union.
+func (c *ChildShape) Hull() *HullData {
+	if c.Type1 != HullShape {
+		panic("ChildShape.Hull: not a hull")
+	}
+
+	return *(**HullData)(unsafe.Pointer(c))
+}
+
+func (c *ChildShape) Mesh() Mesh {
+	if c.Type1 != MeshShape {
+		panic("ChildShape.Mesh: not a mesh")
+	}
+
+	return *(*Mesh)(unsafe.Pointer(c))
+}
+
+func (c *ChildShape) Sphere() Sphere {
+	if c.Type1 != SphereShape {
+		panic("ChildShape.Sphere: not a sphere")
+	}
+
+	return *(*Sphere)(unsafe.Pointer(c))
+}
+
+func (c *ChildShape) Capsule() Capsule {
+	if c.Type1 != CapsuleShape {
+		panic("ChildShape.Capsule: not a capsule")
+	}
+
+	return *(*Capsule)(unsafe.Pointer(c))
+}
+
 // MeshQuery is called for every triangle of a mesh query. Return false to stop the query.
 type MeshQuery func(a, b, c Vec3, triangleIndex int32) bool
 
