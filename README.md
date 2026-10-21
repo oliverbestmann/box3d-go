@@ -1,159 +1,131 @@
-[![Go Reference](https://pkg.go.dev/badge/github.com/oliverbestmann/box2d-go/v3?utm_source=godoc.svg)](https://pkg.go.dev/github.com/oliverbestmann/box2d-go/v3?utm_source=godoc)
+[![Go Reference](https://pkg.go.dev/badge/github.com/oliverbestmann/box3d-go?utm_source=godoc.svg)](https://pkg.go.dev/github.com/oliverbestmann/box3d-go?utm_source=godoc)
 
-# box2d go
+# box3d go
 
-This is a Go port of Box2D v3.2. Most of it is generated: [ccgo](https://gitlab.com/cznic/ccgo) translates the C code
-to Go, and a generator in `transpile/` adds a Go API on top that hides the translated C code.
+This is a Go port of [Box3D](https://github.com/erincatto/box3d). Most of it is generated:
+[ccgo](https://gitlab.com/cznic/ccgo) translates the C code to Go, and a generator in `transpile/` adds a Go API on
+top that hides the translated C code. It is pure Go and needs no cgo.
 
 ```sh
-go get github.com/oliverbestmann/box2d-go/v3
+go get github.com/oliverbestmann/box3d-go
 ```
 
 ## Versions
 
-The major and minor version follow Box2D: `v3.2.x` is a port of Box2D v3.2. The patch version counts releases of this
-port and does not match the Box2D patch version. The table shows which Box2D version each release is built from.
+Box3D has no release yet, so this port is built from a commit of its main branch:
 
-| box2d-go | Box2D  |
-|----------|--------|
-| v3.2.0   | v3.2.0 |
-| v3.2.1   | v3.2.0 |
+| box3d-go | Box3D               |
+|----------|---------------------|
+| main     | `f36d061` (2026-10-20) |
 
 ## API
 
-The API follows the C API. The `b2` prefix becomes the package name, so `b2CreateWorld` is `b2.CreateWorld`.
+The API follows the C API. The `b3` prefix becomes the package name, so `b3CreateWorld` is `b3.CreateWorld`.
 
-C functions that take an id as the first argument are methods on a wrapper type. For example, `b2.World` wraps
-`b2.WorldId`, so `b2World_Draw(worldId, ...)` becomes `world.Draw(...)`. `Body`, `Shape`, `Joint`, `Chain`, and
-`Contact` work the same way.
+C functions that take an id as the first argument are methods on a wrapper type. For example, `b3.World` wraps
+`b3.WorldId`, so `b3World_Draw(worldId, ...)` becomes `world.Draw(...)`. `Body`, `Shape`, `Joint` and `Contact`
+work the same way.
 
-To call the methods of a specific joint type, convert the `Joint` first, for example with `AsMotorJoint()` or
+To call the methods of a specific joint type, convert the `Joint` first, for example with `AsRevoluteJoint()` or
 `AsPrismaticJoint()`.
 
-The API has no `uintptr`, so Go memory can't reach Box2D by accident. User data is an opaque `uint64`, for example
+The API has no `uintptr`, so Go memory can't reach Box3D by accident. User data is an opaque `uint64`, for example
 an index into your own slice. The C pointer fields of the definitions are not exported. Use these instead:
 
-- Chain points and materials: pass slices to `Body.CreateChain`.
-- Body name: call `Body.SetName` after creating the body.
-- Friction and restitution callbacks: call `World.SetFrictionCallback` and `World.SetRestitutionCallback` after
+- Meshes, height fields and compounds: pass slices to `CreateMesh`, `CreateHeightField` and `CreateCompound`.
+- Body and shape names: call `SetName` after creating the body or shape.
+- Friction, restitution, custom filter and pre-solve callbacks: call the `World.Set...Callback` methods after
   creating the world.
 - Custom task system: not supported, the built-in scheduler runs the workers, see below.
 
+Hulls, meshes, height fields and compounds that Box3D creates are returned as Go pointers into Box3D's heap, for
+example `*b3.HullData`. Read their arrays with methods like `HullData.Points()` or `MeshData.Triangles()`, and free
+them with `DestroyHull`, `DestroyMesh` and so on. `MakeBoxHull` returns a `BoxHull` by value, pass `&box.Base` to
+the functions that take a hull. Shapes copy hulls, but keep a reference to meshes, height fields and compounds, so
+destroy those only after the last shape that uses them.
+
 ## Example
 
-This is the hello world example from the [Box2D documentation](https://box2d.org/documentation/hello.html), with the
-original C code in comments.
+This is the hello world test from Box3D's `test/test_world.c`, with the original C code in comments.
 
 ```go
-// b2WorldDef worldDef = b2DefaultWorldDef();
-// worldDef.gravity = (b2Vec2){0.0f, -10.0f};
-// b2WorldId worldId = b2CreateWorld(&worldDef);
-worldDef := b2.DefaultWorldDef()
-worldDef.Gravity = b2.Vec2{X: 0, Y: -10}
-world := b2.CreateWorld(worldDef)
+// b3WorldDef worldDef = b3DefaultWorldDef();
+// worldDef.gravity = (b3Vec3){ 0.0f, -10.0f, 0.0f };
+// b3WorldId worldId = b3CreateWorld( &worldDef );
+worldDef := b3.DefaultWorldDef()
+worldDef.Gravity = b3.Vec3{Y: -10}
+world := b3.CreateWorld(worldDef)
 
-// b2BodyDef groundBodyDef = b2DefaultBodyDef();
-// groundBodyDef.position = (b2Vec2){0.0f, -10.0f};
-// b2BodyId groundId = b2CreateBody(worldId, &groundBodyDef);
-groundBodyDef := b2.DefaultBodyDef()
-groundBodyDef.Position = b2.Vec2{X: 0, Y: -10}
+// b3BodyDef groundBodyDef = b3DefaultBodyDef();
+// groundBodyDef.position = (b3Vec3){ 0.0f, -10.0f, 0.0f };
+// b3BodyId groundId = b3CreateBody( worldId, &groundBodyDef );
+groundBodyDef := b3.DefaultBodyDef()
+groundBodyDef.Position = b3.Pos{Y: -10}
 ground := world.CreateBody(groundBodyDef)
 
-// b2Polygon groundBox = b2MakeBox(50.0f, 10.0f);
-groundBox := b2.MakeBox(50, 10)
+// b3BoxHull groundBox = b3MakeBoxHull( 50.0f, 10.0f, 50.0f );
+// b3ShapeDef groundShapeDef = b3DefaultShapeDef();
+// b3CreateHullShape( groundId, &groundShapeDef, &groundBox.base );
+groundBox := b3.MakeBoxHull(50, 10, 50)
+ground.CreateHullShape(b3.DefaultShapeDef(), &groundBox.Base)
 
-// b2ShapeDef groundShapeDef = b2DefaultShapeDef();
-// b2CreatePolygonShape(groundId, &groundShapeDef, &groundBox);
-groundShapeDef := b2.DefaultShapeDef()
-ground.CreatePolygonShape(groundShapeDef, groundBox)
-
-// b2BodyDef bodyDef = b2DefaultBodyDef();
-// bodyDef.type = b2_dynamicBody;
-// bodyDef.position = (b2Vec2){0.0f, 4.0f};
-// b2BodyId bodyId = b2CreateBody(worldId, &bodyDef);
-bodyDef := b2.DefaultBodyDef()
-bodyDef.Type1 = b2.DynamicBody
-bodyDef.Position = b2.Vec2{Y: 4}
+// b3BodyDef bodyDef = b3DefaultBodyDef();
+// bodyDef.type = b3_dynamicBody;
+// bodyDef.position = (b3Vec3){ 0.0f, 4.0f, 0.0f };
+// b3BodyId bodyId = b3CreateBody( worldId, &bodyDef );
+bodyDef := b3.DefaultBodyDef()
+bodyDef.Type1 = b3.DynamicBody
+bodyDef.Position = b3.Pos{Y: 4}
 body := world.CreateBody(bodyDef)
 
-// b2Polygon dynamicBox = b2MakeBox(1.0f, 1.0f);
-dynamicBox := b2.MakeBox(1, 1)
-
-// b2ShapeDef shapeDef = b2DefaultShapeDef();
+// b3BoxHull dynamicBox = b3MakeCubeHull( 1.0f );
+// b3ShapeDef shapeDef = b3DefaultShapeDef();
 // shapeDef.density = 1.0f;
-// shapeDef.material.friction = 0.3f;
-shapeDef := b2.DefaultShapeDef()
+// shapeDef.baseMaterial.friction = 0.3f;
+// b3CreateHullShape( bodyId, &shapeDef, &dynamicBox.base );
+dynamicBox := b3.MakeCubeHull(1)
+shapeDef := b3.DefaultShapeDef()
 shapeDef.Density = 1
-shapeDef.Material.Friction = 0.3
+shapeDef.BaseMaterial.Friction = 0.3
+body.CreateHullShape(shapeDef, &dynamicBox.Base)
 
-// b2CreatePolygonShape(bodyId, &shapeDef, &dynamicBox);
-body.CreatePolygonShape(shapeDef, dynamicBox)
-
-// float timeStep = 1.0f / 60.0f;
-// int subStepCount = 4;
-timeStep := float32(1 / 60.0)
-subStepCount := int32(4)
-
-// for (int i = 0; i < 90; ++i) {
-//     b2World_Step(worldId, timeStep, subStepCount);
-//     b2Vec2 position = b2Body_GetPosition(bodyId);
-//     b2Rot rotation = b2Body_GetRotation(bodyId);
-//     printf("%4.2f %4.2f %4.2f\n", position.x, position.y, b2Rot_GetAngle(rotation));
+// for ( int i = 0; i < 90; ++i ) {
+//     b3World_Step( worldId, 1.0f / 60.0f, 4 );
 // }
 for range 90 {
-    world.Step(timeStep, subStepCount)
-    position := body.GetPosition()
-    rotation := body.GetRotation()
-    fmt.Printf("%4.2f %4.2f %4.2f\n", position.X, position.Y, rotation.Angle())
+    world.Step(1.0/60.0, 4)
 }
 
-// b2DestroyWorld(worldId);
+// b3Vec3 position = b3Body_GetPosition( bodyId );
+position := body.GetPosition()
+fmt.Printf("%4.2f %4.2f %4.2f\n", position.X, position.Y, position.Z)
+
+// b3DestroyWorld( worldId );
 world.DestroyWorld()
 ```
 
-## Demos
+## Demo
 
-The [`example`](example) directory has two [ebitengine](https://ebitengine.org) programs. They run in the browser
-as wasm with SIMD:
-
-| [Pyramid](https://oliverbestmann.github.io/box2d-go/pyramid/) | [Jump and run](https://oliverbestmann.github.io/box2d-go/jump-n-run/) |
-|---|---|
-| [![Pyramid](docs/pyramid.png)](https://oliverbestmann.github.io/box2d-go/pyramid/) | [![Jump and run](docs/jump-n-run.png)](https://oliverbestmann.github.io/box2d-go/jump-n-run/) |
-
-The pyramid compares box2d-go with [jakecoffman/cp](https://github.com/jakecoffman/cp), press `b` to start it. The
-jump and run is a character controller sandbox, see its [README](example/jump-n-run/README.md).
+The [`example`](example) directory has a pyramid of cubes as an [ebitengine](https://ebitengine.org) program. It
+draws the hull faces with `DrawTriangles` and a simple perspective camera, and
+[runs in the browser](https://oliverbestmann.github.io/box3d-go/pyramid/) as wasm.
 
 ## Multithreading
 
-Box2D splits each step across `WorldDef.WorkerCount` threads. This port runs them as goroutines.
-`b2.EnableConcurrency(&worldDef)` sets the worker count from the number of CPUs, up to 8. You can also set
-`WorkerCount` yourself. With a few hundred bodies, workers can make a step slower, mostly when steps run at a fixed
-frame rate with idle time in between. Measure your scene before you enable them.
+Box3D splits each step across `WorldDef.WorkerCount` threads. This port runs them as goroutines. With a few hundred
+bodies, workers can make a step slower, mostly when steps run at a fixed frame rate with idle time in between.
+Measure your scene before you enable them.
 
-The rest of the API is not thread safe. Don't call into the `b2` package from more than one goroutine at a time, not
+The rest of the API is not thread safe. Don't call into the `b3` package from more than one goroutine at a time, not
 even for reads.
 
 With workers, the friction, restitution, custom filter and pre-solve callbacks run on several goroutines at once.
-Don't call into the `b2` package from these callbacks.
-
-## SIMD
-
-The contact solver can use SIMD through Go's experimental `simd/archsimd` package. This needs Go 1.27 and
-`GOEXPERIMENT=simd`, and works on arm64, wasm, and amd64 with `GOAMD64=v3` (AVX2):
-
-```sh
-GOEXPERIMENT=simd go build .
-GOEXPERIMENT=simd GOAMD64=v3 go build .
-```
-
-Other builds use the scalar version. Both give the same results. The SIMD build is about 2x faster on arm64
-and 3x faster on wasm when many bodies touch. The wasm build then needs a runtime with wasm SIMD support, which all
-current browsers have.
-
-ccgo can't translate C vector types, so the port uses Box2D's scalar code and the generator moves the scalar wide
-float math into `box2d_c-floatw.go`. `simd.go` and `simd_<arch>.go` implement the same functions with `archsimd`.
+Don't call into the `b3` package from these callbacks.
 
 ## Development
+
+`./fetch.sh` clones Box3D into `box3d-c` and applies `box3d.patch`. `./transpile.sh` translates it and writes the
+`box3d_*.go` files.
 
 Run `go vet` with the `unsafeptr` check disabled:
 
@@ -170,16 +142,13 @@ For the same reason, run the race tests with checkptr disabled:
 go test -race -gcflags=all=-d=checkptr=0 ./...
 ```
 
-### Updating Box2D
+### Updating Box3D
 
 - **Public API:** `TestPublicAPIHasNoUintptr` fails if a new C pointer shows up in the Go API. Unexport or
-  retype the field in `apiFields` in `transpile/publicapi.go`, and wrap the function by hand if needed.
-
-- **Callbacks:** Box2D sees Go callbacks only as a `uintptr`, so a changed signature corrupts memory at runtime.
+  retype the field in `apiFields` in `transpile/publicapi.go`, and wrap the function by hand in `box3d.go` if needed.
+- **Callbacks:** Box3D sees Go callbacks only as a `uintptr`, so a changed signature corrupts memory at runtime.
   `transpile/csrc/callbacks.c` repeats every callback signature the Go code implements, and `./transpile.sh`
-  checks it against the Box2D headers with the host C compiler. `callbacks.go` checks the Go closures against
+  checks it against the Box3D headers with the host C compiler. `callbacks.go` checks the Go closures against
   the transpiled code. If the build fails there, update both files.
-- **Determinism:** Copy the expected hash and sleep step from Box2D's `shared/determinism.h` into
-  `determinism_test.go`.
-- **SIMD:** If Box2D changes the scalar wide float math in `src/contact_solver_wide.inl`, update `simd.go`.
-  `./transpile.sh` fails if a function listed in `floatWDecls` in `transpile/main.go` no longer exists.
+- **Determinism:** The scenes in Box3D's `shared/` directory are translated into `box3d_c-scenes_test.go`. Copy
+  the expected hashes and sleep steps from Box3D's `test/test_determinism.c` into `determinism_test.go`.
