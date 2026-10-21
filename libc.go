@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"reflect"
@@ -103,6 +103,10 @@ func float32FromInt32(n int32) float32     { return float32(n) }
 func float32FromFloat32(n float32) float32 { return n }
 func float64FromFloat64(n float64) float64 { return n }
 func uintptrFromInt32(n int32) uintptr     { return uintptr(n) }
+func uintptrFromInt64(n int64) uintptr     { return uintptr(n) }
+func int64FromUint8(n uint8) int64         { return int64(n) }
+func int64FromUint16(n uint16) int64       { return int64(n) }
+func int64FromUint32(n uint32) int64       { return int64(n) }
 
 func boolInt32(b bool) int32 {
 	if b {
@@ -123,4 +127,23 @@ func boolUint32(b bool) uint32 {
 		return 1
 	}
 	return 0
+}
+
+func boolInt64(b bool) int64 {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+func boolUint64(b bool) uint64 {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+func setBitFieldPtr32Uint32(p uintptr, v uint32, off int, mask uint32) {
+	ptr := (*uint32)(unsafe.Pointer(p))
+	*ptr = *ptr&^mask | v<<off&mask
 }

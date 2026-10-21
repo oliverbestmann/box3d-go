@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"testing"
@@ -8,124 +8,209 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Ported from box2d test/test_determinism.c and shared/determinism.c.
-// The expected values are the same as in the C test, so this checks that the
-// transpiled solver produces bit-identical results.
-const (
-	expectedSleepStep = 299
-	expectedHash      = 0x465f3df4
-)
+// The scenes of box3d's test/test_determinism.c, translated from shared/ into box3d_c-scenes_test.go.
+// The expected values are the goldens of the C test, so this checks that the translated solver
+// produces bit-identical results.
 
-func TestDeterminismCrossPlatform(t *testing.T) {
-	sleepStep, hash := runFallingHinges(t, DefaultWorldDef())
-	assert.Equal(t, expectedSleepStep, sleepStep)
-	assert.Equal(t, uint32(expectedHash), hash, "got %#x", hash)
+type sceneResult struct {
+	SleepStep     int32
+	Hash          uint32
+	QueryHitCount int32
+	QueryHash     uint32
 }
 
-func TestDeterminismMultithreaded(t *testing.T) {
+// runScene steps a world with the scene until update reports that it is done, at most maxSteps times.
+func runScene[T any](t *testing.T, workerCount uint32, maxSteps int,
+	create func(*_Stack, WorldId) T,
+	update func(*_Stack, WorldId, uintptr) uint8,
+	destroy func(*_Stack, uintptr),
+	result func(*T) sceneResult,
+) sceneResult {
 	def := DefaultWorldDef()
-	EnableConcurrency(&def)
+	def.WorkerCount = workerCount
+	world := CreateWorld(def)
 
-	sleepStep, hash := runFallingHinges(t, def)
-	assert.Equal(t, expectedSleepStep, sleepStep)
-	assert.Equal(t, uint32(expectedHash), hash, "got %#x", hash)
+	// the scene code holds the data as a uintptr
+	data := new(T)
+	escapes(data)
+	*data = create(theStack, world.Id)
+
+	done := false
+	for range maxSteps {
+		world.Step(1.0/60.0, 4)
+
+		if update(theStack, world.Id, uintptr(unsafe.Pointer(data))) != 0 {
+			done = true
+			break
+		}
+	}
+
+	world.DestroyWorld()
+
+	require.True(t, done, "scene did not finish within %d steps", maxSteps)
+
+	r := result(data)
+	destroy(theStack, uintptr(unsafe.Pointer(data)))
+	return r
 }
 
-func runFallingHinges(t *testing.T, def WorldDef) (sleepStep int, hash uint32) {
+func TestDeterminismFallingRagdolls(t *testing.T) {
+	for workers := uint32(1); workers < 6; workers++ {
+		r := runScene(t, workers, 500, _CreateFallingRagdolls, _UpdateFallingRagdolls, _DestroyFallingRagdolls,
+			func(d *_FallingRagdollData) sceneResult { return sceneResult{SleepStep: d.SleepStep, Hash: d.Hash} })
+
+		assert.Equal(t, sceneResult{SleepStep: 291, Hash: 0xFF4C605B}, r, "workers=%d hash=%#x", workers, r.Hash)
+	}
+}
+
+func TestDeterminismWavePile(t *testing.T) {
+	for workers := uint32(1); workers <= 4; workers++ {
+		r := runScene(t, workers, 500, _CreateWavePile, _UpdateWavePile, _DestroyWavePile,
+			func(d *_WavePileData) sceneResult { return sceneResult{SleepStep: d.SleepStep, Hash: d.Hash} })
+
+		assert.Equal(t, sceneResult{SleepStep: 272, Hash: 0x266F83B0}, r, "workers=%d hash=%#x", workers, r.Hash)
+	}
+}
+
+func TestDeterminismQuerySpawn(t *testing.T) {
+	for workers := uint32(1); workers <= 4; workers++ {
+		var spawnCount int32
+		r := runScene(t, workers, 1000, _CreateQuerySpawn, _UpdateQuerySpawn, _DestroyQuerySpawn,
+			func(d *_QuerySpawnData) sceneResult {
+				spawnCount = d.SpawnCount
+				return sceneResult{SleepStep: d.SleepStep, Hash: d.Hash, QueryHitCount: d.QueryHitCount, QueryHash: d.QueryHash}
+			})
+
+		assert.EqualValues(t, _QUERY_SPAWN_COUNT, spawnCount)
+
+		expected := sceneResult{SleepStep: 242, Hash: 0xF3AD9BA6, QueryHitCount: 59, QueryHash: 0xE3271F3D}
+		assert.Equal(t, expected, r, "workers=%d hash=%#x queryHash=%#x", workers, r.Hash, r.QueryHash)
+	}
+}
+
+func TestDeterminismMeshDrop(t *testing.T) {
+	createMeshDrop := func(tls *_Stack, worldId WorldId) _MeshDropData {
+		return _CreateMeshDrop(tls, worldId, Pos{})
+	}
+
+	for _, workers := range []uint32{1, 4} {
+		r := runScene(t, workers, 400, createMeshDrop, _UpdateMeshDrop, _DestroyMeshDrop,
+			func(d *_MeshDropData) sceneResult { return sceneResult{SleepStep: d.SleepStep, Hash: d.Hash} })
+
+		assert.Equal(t, sceneResult{SleepStep: 226, Hash: 0xD2FF069D}, r, "workers=%d hash=%#x", workers, r.Hash)
+	}
+}
+
+// Ported from SingleRollingMixTest in test/test_determinism.c, using the Go API. The C test has no
+// golden hash, every worker count must give the same result.
+func TestDeterminismRollingMix(t *testing.T) {
+	var reference uint32
+	for workers := uint32(1); workers <= 4; workers++ {
+		hash := runRollingMix(workers)
+		if workers == 1 {
+			reference = hash
+		}
+
+		assert.Equal(t, reference, hash, "workers=%d", workers)
+	}
+}
+
+func runRollingMix(workerCount uint32) uint32 {
+	def := DefaultWorldDef()
+	def.WorkerCount = workerCount
 	world := CreateWorld(def)
 	defer world.DestroyWorld()
 
-	groundDef := DefaultBodyDef()
-	groundDef.Position = Pos{X: 0, Y: -1}
-	ground := world.CreateBody(groundDef)
-	ground.CreatePolygonShape(DefaultShapeDef(), MakeBox(40, 1))
+	ground := world.CreateBody(DefaultBodyDef())
+	groundBox := MakeBoxHull(40, 1, 40)
+	ground.CreateHullShape(DefaultShapeDef(), &groundBox.Base)
 
-	const columnCount = 4
-	const rowCount = 20
+	const rowCount = 8
+	const columnCount = 8
+	const bodyCount = rowCount * columnCount
 
-	h := float32(0.25)
-	box := MakeSquare(h)
-
-	shapeDef := DefaultShapeDef()
-
-	jointDef := DefaultRevoluteJointDef()
-	jointDef.EnableLimit = 1
-	jointDef.LowerAngle = -0.1 * _B2_PI
-	jointDef.UpperAngle = 0.2 * _B2_PI
-	jointDef.EnableSpring = 1
-	jointDef.Hertz = 1
-	jointDef.DampingRatio = 1
-	jointDef.EnableMotor = 1
-	jointDef.MaxMotorTorque = 0.25
-	jointDef.Base.LocalFrameA.P = Vec2{X: -h, Y: h}
-	jointDef.Base.LocalFrameB.P = Vec2{X: -h, Y: -h}
-	jointDef.Base.ConstraintHertz = 60
-	jointDef.Base.ConstraintDampingRatio = 0
-	jointDef.Base.DrawScale = 0.5
-
-	offset := 0.4 * h
-	dx := 10.0 * h
-	xBase := -0.5 * dx * (columnCount - 1.0)
+	box := MakeBoxHull(0.4, 0.4, 0.4)
+	sphere := Sphere{Radius: 0.4}
+	capsule := Capsule{Center1: Vec3{X: -0.3}, Center2: Vec3{X: 0.3}, Radius: 0.25}
 
 	var bodies []Body
 
-	for j := range columnCount {
-		// explicit float32 conversions prevent fused multiply-add, which C does not use
-		x := xBase + float32(float32(j)*dx)
+	seed := uint32(271828)
+	for i := range bodyCount {
+		row := i / columnCount
+		column := i % columnCount
 
-		var prevBody BodyId
+		bodyDef := DefaultBodyDef()
+		bodyDef.Type1 = DynamicBody
+		bodyDef.Position = Pos{X: 2*float32(column) - 7, Y: 1.45, Z: 2*float32(row) - 7}
+		body := world.CreateBody(bodyDef)
+		bodies = append(bodies, body)
 
-		for i := range rowCount {
-			bodyDef := DefaultBodyDef()
-			bodyDef.Type1 = DynamicBody
-			bodyDef.Position.X = x + float32(offset*float32(i))
-			bodyDef.Position.Y = h + float32(2.0*h*float32(i))
-
-			// this tests the deterministic cosine and sine functions
-			angle := float32(-0.1)
-			if i&1 == 1 {
-				angle = 0.1
-			}
-
-			cs := ComputeCosSin(angle)
-			bodyDef.Rotation = Rot{C: cs.Cosine, S: cs.Sine}
-
-			body := world.CreateBody(bodyDef)
-
-			if i&1 == 0 {
-				prevBody = body.Id
-			} else {
-				jointDef.Base.BodyIdA = prevBody
-				jointDef.Base.BodyIdB = body.Id
-				world.CreateRevoluteJoint(jointDef)
-				prevBody = BodyId{}
-			}
-
-			body.CreatePolygonShape(shapeDef, box)
-			bodies = append(bodies, body)
+		seed = seed*1664525 + 1013904223
+		shapeDef := DefaultShapeDef()
+		shapeDef.Density = 1
+		if seed>>28 < 5 {
+			shapeDef.BaseMaterial.RollingResistance = 0.2
 		}
+
+		switch i % 3 {
+		case 0:
+			body.CreateSphereShape(shapeDef, sphere)
+		case 1:
+			body.CreateCapsuleShape(shapeDef, capsule)
+		default:
+			body.CreateHullShape(shapeDef, &box.Base)
+		}
+
+		sign := float32(1)
+		if i&1 == 1 {
+			sign = -1
+		}
+
+		negZero := float32(-0.0)
+		body.SetLinearVelocity(Vec3{X: negZero, Y: -0.5, Z: sign * 0.5})
+		body.SetAngularVelocity(Vec3{X: sign * 3, Y: negZero, Z: -2 * sign})
 	}
 
-	for step := 0; ; step++ {
-		require.Less(t, step, 500, "world never fell asleep")
+	hash := uint32(_B3_HASH_INIT)
+	hashOf := func(value any, size uintptr) {
+		buf := theStack.Alloc(int(size))
+		defer theStack.Free(int(size))
 
+		switch value := value.(type) {
+		case WorldTransform:
+			*(*WorldTransform)(unsafe.Pointer(buf)) = value
+		case Vec3:
+			*(*Vec3)(unsafe.Pointer(buf)) = value
+		case float32:
+			*(*float32)(unsafe.Pointer(buf)) = value
+		}
+
+		hash = b3Hash(theStack, hash, buf, int32(size))
+	}
+
+	var contacts []ContactData
+	for range 120 {
 		world.Step(1.0/60.0, 4)
 
-		if len(world.GetBodyEvents().MoveEvents) != 0 {
-			continue
-		}
-
-		require.EqualValues(t, 0, world.GetAwakeBodyCount())
-
-		// djb2 over all body transforms, like b2Hash
-		hash = 5381
 		for _, body := range bodies {
-			xf := body.GetTransform()
-			for _, b := range unsafe.Slice((*byte)(unsafe.Pointer(&xf)), unsafe.Sizeof(xf)) {
-				hash = hash<<5 + hash + uint32(b)
+			hashOf(body.GetTransform(), unsafe.Sizeof(WorldTransform{}))
+
+			contacts = body.GetContactData(contacts)
+			for _, contact := range contacts[:min(len(contacts), 4)] {
+				for _, manifold := range contact.GetManifolds() {
+					hashOf(manifold.RollingImpulse, 12)
+					hashOf(manifold.FrictionImpulse, 12)
+					hashOf(manifold.TwistImpulse, 4)
+
+					for _, point := range manifold.Points[:manifold.PointCount] {
+						hashOf(point.NormalImpulse, 4)
+						hashOf(point.TotalNormalImpulse, 4)
+					}
+				}
 			}
 		}
-
-		return step, hash
 	}
+
+	return hash
 }

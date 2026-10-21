@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"sync"
@@ -6,10 +6,10 @@ import (
 	"unsafe"
 )
 
-// Threading primitives of box2d (src/core.h), used by its built-in task scheduler and the
-// recorder. A thread is a goroutine with its own stack. box2d only passes the handles around.
+// Threading primitives of box3d (src/core.h), used by its built-in task scheduler and the
+// recorder. A thread is a goroutine with its own stack. box3d only passes the handles around.
 
-// handles keeps the Go objects behind the handles that box2d holds, for threads and for
+// handles keeps the Go objects behind the handles that box3d holds, for threads and for
 // callback contexts like the DebugDraw in World.Draw.
 var handles sync.Map
 
@@ -30,19 +30,19 @@ func handleOf[T any](h uintptr) T {
 	return obj.(T)
 }
 
-func __builtin_b2CreateMutex(_ *_Stack) uintptr {
+func __builtin_b3CreateMutex(_ *_Stack) uintptr {
 	return newHandle(&sync.Mutex{})
 }
 
-func __builtin_b2DestroyMutex(_ *_Stack, m uintptr) {
+func __builtin_b3DestroyMutex(_ *_Stack, m uintptr) {
 	handles.Delete(m)
 }
 
-func __builtin_b2LockMutex(_ *_Stack, m uintptr) {
+func __builtin_b3LockMutex(_ *_Stack, m uintptr) {
 	handleOf[*sync.Mutex](m).Lock()
 }
 
-func __builtin_b2UnlockMutex(_ *_Stack, m uintptr) {
+func __builtin_b3UnlockMutex(_ *_Stack, m uintptr) {
 	handleOf[*sync.Mutex](m).Unlock()
 }
 
@@ -52,17 +52,17 @@ type semaphore struct {
 	count int32
 }
 
-func __builtin_b2CreateSemaphore(_ *_Stack, initCount int32) uintptr {
+func __builtin_b3CreateSemaphore(_ *_Stack, initCount int32) uintptr {
 	s := &semaphore{count: initCount}
 	s.cond.L = &s.mu
 	return newHandle(s)
 }
 
-func __builtin_b2DestroySemaphore(_ *_Stack, s uintptr) {
+func __builtin_b3DestroySemaphore(_ *_Stack, s uintptr) {
 	handles.Delete(s)
 }
 
-func __builtin_b2WaitSemaphore(_ *_Stack, h uintptr) {
+func __builtin_b3WaitSemaphore(_ *_Stack, h uintptr) {
 	s := handleOf[*semaphore](h)
 
 	s.mu.Lock()
@@ -75,7 +75,7 @@ func __builtin_b2WaitSemaphore(_ *_Stack, h uintptr) {
 	s.count--
 }
 
-func __builtin_b2SignalSemaphore(_ *_Stack, h uintptr) {
+func __builtin_b3SignalSemaphore(_ *_Stack, h uintptr) {
 	s := handleOf[*semaphore](h)
 
 	s.mu.Lock()
@@ -85,7 +85,7 @@ func __builtin_b2SignalSemaphore(_ *_Stack, h uintptr) {
 	s.cond.Signal()
 }
 
-func __builtin_b2CreateThread(_ *_Stack, function, context, _ uintptr) uintptr {
+func __builtin_b3CreateThread(_ *_Stack, function, context, _ uintptr) uintptr {
 	type functionPtr struct{ uintptr }
 	fn := *(*threadFunction)(unsafe.Pointer(&functionPtr{function}))
 
@@ -102,7 +102,7 @@ func __builtin_b2CreateThread(_ *_Stack, function, context, _ uintptr) uintptr {
 	return newHandle(done)
 }
 
-func __builtin_b2JoinThread(_ *_Stack, t uintptr) {
+func __builtin_b3JoinThread(_ *_Stack, t uintptr) {
 	<-handleOf[chan struct{}](t)
 	handles.Delete(t)
 }

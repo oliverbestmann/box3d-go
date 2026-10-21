@@ -1,0 +1,271 @@
+diff --git a/include/box3d/id.h b/include/box3d/id.h
+index 9f05e12..32b1468 100644
+--- a/include/box3d/id.h
++++ b/include/box3d/id.h
+@@ -89,11 +89,11 @@ typedef struct b3ContactId
+ 
+ /// Use these to make your identifiers null.
+ /// You may also use zero initialization to get null.
+-static const b3WorldId b3_nullWorldId = B3_NULL_ID;
+-static const b3BodyId b3_nullBodyId = B3_NULL_ID;
+-static const b3ShapeId b3_nullShapeId = B3_NULL_ID;
+-static const b3JointId b3_nullJointId = B3_NULL_ID;
+-static const b3ContactId b3_nullContactId = B3_NULL_ID;
++extern b3WorldId b3_nullWorldId;
++extern b3BodyId b3_nullBodyId;
++extern b3ShapeId b3_nullShapeId;
++extern b3JointId b3_nullJointId;
++extern b3ContactId b3_nullContactId;
+ 
+ /// Macro to determine if any id is null.
+ #define B3_IS_NULL( id ) ( ( id ).index1 == 0 )
+diff --git a/include/box3d/math_functions.h b/include/box3d/math_functions.h
+index a12f250..5fd6d89 100644
+--- a/include/box3d/math_functions.h
++++ b/include/box3d/math_functions.h
+@@ -115,27 +115,19 @@ typedef struct b3Plane
+ 	float offset;
+ } b3Plane;
+ 
+-static const b3Vec3 b3Vec3_zero = { 0.0f, 0.0f, 0.0f };
+-static const b3Vec3 b3Vec3_one = { 1.0f, 1.0f, 1.0f };
+-static const b3Vec3 b3Vec3_axisX = { 1.0f, 0.0f, 0.0f };
+-static const b3Vec3 b3Vec3_axisY = { 0.0f, 1.0f, 0.0f };
+-static const b3Vec3 b3Vec3_axisZ = { 0.0f, 0.0f, 1.0f };
+-static const b3Quat b3Quat_identity = { { 0.0f, 0.0f, 0.0f }, 1.0f };
+-static const b3Transform b3Transform_identity = { { 0.0f, 0.0f, 0.0f }, { { 0.0f, 0.0f, 0.0f }, 1.0f } };
+-static const b3Matrix3 b3Mat3_zero = {
+-	{ 0.0f, 0.0f, 0.0f },
+-	{ 0.0f, 0.0f, 0.0f },
+-	{ 0.0f, 0.0f, 0.0f },
+-};
+-static const b3Matrix3 b3Mat3_identity = {
+-	{ 1.0f, 0.0f, 0.0f },
+-	{ 0.0f, 1.0f, 0.0f },
+-	{ 0.0f, 0.0f, 1.0f },
+-};
++extern b3Vec3 b3Vec3_zero;
++extern b3Vec3 b3Vec3_one;
++extern b3Vec3 b3Vec3_axisX;
++extern b3Vec3 b3Vec3_axisY;
++extern b3Vec3 b3Vec3_axisZ;
++extern b3Quat b3Quat_identity;
++extern b3Transform b3Transform_identity;
++extern b3Matrix3 b3Mat3_zero;
++extern b3Matrix3 b3Mat3_identity;
+ 
+ // Valid in both modes: 0.0f promotes to double, the identity rotation stays float
+-static const b3Pos b3Pos_zero = { 0.0f, 0.0f, 0.0f };
+-static const b3WorldTransform b3WorldTransform_identity = { { 0.0f, 0.0f, 0.0f }, { { 0.0f, 0.0f, 0.0f }, 1.0f } };
++extern b3Pos b3Pos_zero;
++extern b3WorldTransform b3WorldTransform_identity;
+ 
+ /// @return the minimum of two integers.
+ B3_INLINE int b3MinInt( int a, int b )
+diff --git a/include/box3d/types.h b/include/box3d/types.h
+index 2cbbbeb..bc4c7e5 100644
+--- a/include/box3d/types.h
++++ b/include/box3d/types.h
+@@ -1552,7 +1552,7 @@ typedef struct b3SimplexCache
+ 
+ } b3SimplexCache;
+ 
+-static const b3SimplexCache b3_emptyDistanceCache = B3_ZERO_INIT;
++extern b3SimplexCache b3_emptyDistanceCache;
+ 
+ /// Input parameters for b3ShapeCast
+ typedef struct b3ShapeCastPairInput
+diff --git a/src/body.h b/src/body.h
+index b03063d..2038b9d 100644
+--- a/src/body.h
++++ b/src/body.h
+@@ -180,9 +180,7 @@ typedef struct b3BodyState
+ } b3BodyState;
+ 
+ // Identity body state, notice the deltaRotation is identity
+-static const b3BodyState b3_identityBodyState = {
+-	{ 0.0f, 0.0f, 0.0f }, 0.0f, { 0.0f, 0.0f, 0.0f }, 0.0f, { 0.0f, 0.0f, 0.0f }, 0, { { 0.0f, 0.0f, 0.0f }, 1.0f },
+-};
++extern b3BodyState b3_identityBodyState;
+ 
+ // Body simulation data used for integration of position and velocity
+ // Transform data used for collision and solver preparation.
+diff --git a/src/manifold.h b/src/manifold.h
+index 577c5d0..828ea5e 100644
+--- a/src/manifold.h
++++ b/src/manifold.h
+@@ -59,7 +59,7 @@ bool b3ValidatePolygon( b3ClipVertex* polygon, int count );
+ #endif
+ 
+ // For single point contact, such as sphere-sphere, sphere-capsule, sphere-triangle
+-static const b3FeaturePair b3FeaturePair_single = { 0 };
++extern b3FeaturePair b3FeaturePair_single;
+ 
+ static inline uint32_t b3MakeFeatureId( b3FeaturePair pair )
+ {
+diff --git a/src/math_internal.h b/src/math_internal.h
+index b272bdc..36b8a69 100644
+--- a/src/math_internal.h
++++ b/src/math_internal.h
+@@ -17,7 +17,7 @@ struct b3Plane;
+ #define B3_SQRT3 1.732050808f
+ 
+ // todo eliminate this
+-static const b3AABB B3_BOUNDS3_EMPTY = { { FLT_MAX, FLT_MAX, FLT_MAX }, { -FLT_MAX, -FLT_MAX, -FLT_MAX } };
++extern b3AABB B3_BOUNDS3_EMPTY;
+ 
+ typedef struct b3Matrix2
+ {
+diff --git a/src/rapidhash.h b/src/rapidhash.h
+index 88de4bc..4c35a71 100644
+--- a/src/rapidhash.h
++++ b/src/rapidhash.h
+@@ -154,7 +154,7 @@
+   *  Xors and overwrites B contents with C's high 64 bits.
+   */
+  RAPIDHASH_INLINE_CONSTEXPR void rapid_mum(uint64_t *A, uint64_t *B) RAPIDHASH_NOEXCEPT {
+- #if defined(__SIZEOF_INT128__)
++ #if defined(__SIZEOF_INT128__) && !defined(__CCGO__)
+    __uint128_t r=*A; r*=*B;
+    #ifdef RAPIDHASH_PROTECTED
+    *A^=(uint64_t)r; *B^=(uint64_t)(r>>64);
+diff --git a/src/simd.h b/src/simd.h
+index e10b9ed..aae25b5 100644
+--- a/src/simd.h
++++ b/src/simd.h
+@@ -48,9 +48,9 @@ typedef union b3128
+ 	float f[3];
+ } b3128;
+ 
+-static const b3V32 b3_zeroV = { 0.0f, 0.0f, 0.0f };
+-static const b3V32 b3_halfV = { 0.5f, 0.5f, 0.5f };
+-static const b3V32 b3_oneV = { 1.0f, 1.0f, 1.0f };
++extern b3V32 b3_zeroV;
++extern b3V32 b3_halfV;
++extern b3V32 b3_oneV;
+ 
+ static inline b3V32 b3AddV( b3V32 a, b3V32 b )
+ {
+diff --git a/src/simd_wide.h b/src/simd_wide.h
+index fe0bb9c..6536256 100644
+--- a/src/simd_wide.h
++++ b/src/simd_wide.h
+@@ -21,7 +21,12 @@
+ #error "B3_SIMD_WIDTH must be 4 or 8"
+ #endif
+ 
++#if defined( __CCGO__ )
++// ccgo supports at most 8 byte alignment, the scalar math does not need more
++#define B3_WIDE_ALIGNMENT 8
++#else
+ #define B3_WIDE_ALIGNMENT ( 4 * B3_SIMD_WIDTH )
++#endif
+ 
+ typedef B3_WIDE( b3Float ) b3FloatW;
+ typedef B3_WIDE( b3Vec3 ) b3Vec3W;
+diff --git a/src/solver.c b/src/solver.c
+index 236c848..de2fbbb 100644
+--- a/src/solver.c
++++ b/src/solver.c
+@@ -29,7 +29,14 @@
+ #define ITERATIONS 1
+ #define RELAX_ITERATIONS 1
+ 
+-#if ( defined( __GNUC__ ) || defined( __clang__ ) ) && ( defined( __i386__ ) || defined( __x86_64__ ) )
++#if defined( __CCGO__ )
++void __builtin_b3Pause( void );
++
++static void b3Pause( void )
++{
++	__builtin_b3Pause();
++}
++#elif ( defined( __GNUC__ ) || defined( __clang__ ) ) && ( defined( __i386__ ) || defined( __x86_64__ ) )
+ static void b3Pause( void )
+ {
+ 	__asm__ __volatile__( "pause\n" );
+diff --git a/src/statics.c b/src/statics.c
+new file mode 100644
+index 0000000..83de021
+--- /dev/null
++++ b/src/statics.c
+@@ -0,0 +1,43 @@
++// Header constants, defined once for ccgo
++#include "box3d/id.h"
++#include "box3d/math_functions.h"
++#include "box3d/types.h"
++#include "math_internal.h"
++#include "simd.h"
++#include "body.h"
++#include "manifold.h"
++#include <float.h>
++
++b3WorldId b3_nullWorldId = B3_NULL_ID;
++b3BodyId b3_nullBodyId = B3_NULL_ID;
++b3ShapeId b3_nullShapeId = B3_NULL_ID;
++b3JointId b3_nullJointId = B3_NULL_ID;
++b3ContactId b3_nullContactId = B3_NULL_ID;
++b3Vec3 b3Vec3_zero = { 0.0f, 0.0f, 0.0f };
++b3Vec3 b3Vec3_one = { 1.0f, 1.0f, 1.0f };
++b3Vec3 b3Vec3_axisX = { 1.0f, 0.0f, 0.0f };
++b3Vec3 b3Vec3_axisY = { 0.0f, 1.0f, 0.0f };
++b3Vec3 b3Vec3_axisZ = { 0.0f, 0.0f, 1.0f };
++b3Quat b3Quat_identity = { { 0.0f, 0.0f, 0.0f }, 1.0f };
++b3Transform b3Transform_identity = { { 0.0f, 0.0f, 0.0f }, { { 0.0f, 0.0f, 0.0f }, 1.0f } };
++b3Matrix3 b3Mat3_zero = {
++	{ 0.0f, 0.0f, 0.0f },
++	{ 0.0f, 0.0f, 0.0f },
++	{ 0.0f, 0.0f, 0.0f },
++};
++b3Matrix3 b3Mat3_identity = {
++	{ 1.0f, 0.0f, 0.0f },
++	{ 0.0f, 1.0f, 0.0f },
++	{ 0.0f, 0.0f, 1.0f },
++};
++b3Pos b3Pos_zero = { 0.0f, 0.0f, 0.0f };
++b3WorldTransform b3WorldTransform_identity = { { 0.0f, 0.0f, 0.0f }, { { 0.0f, 0.0f, 0.0f }, 1.0f } };
++b3SimplexCache b3_emptyDistanceCache = B3_ZERO_INIT;
++b3AABB B3_BOUNDS3_EMPTY = { { FLT_MAX, FLT_MAX, FLT_MAX }, { -FLT_MAX, -FLT_MAX, -FLT_MAX } };
++b3V32 b3_zeroV = { 0.0f, 0.0f, 0.0f };
++b3V32 b3_halfV = { 0.5f, 0.5f, 0.5f };
++b3V32 b3_oneV = { 1.0f, 1.0f, 1.0f };
++b3BodyState b3_identityBodyState = {
++	{ 0.0f, 0.0f, 0.0f }, 0.0f, { 0.0f, 0.0f, 0.0f }, 0.0f, { 0.0f, 0.0f, 0.0f }, 0, { { 0.0f, 0.0f, 0.0f }, 1.0f },
++};
++b3FeaturePair b3FeaturePair_single = { 0 };
+diff --git a/src/timer.c b/src/timer.c
+index 3fb46f7..36d857c 100644
+--- a/src/timer.c
++++ b/src/timer.c
+@@ -279,6 +279,10 @@ void b3Sleep( int milliseconds )
+ 	nanosleep( &ts, NULL );
+ }
+ 
++#if defined( __CCGO__ )
++// Mutex, semaphore and thread are implemented in Go
++#else
++
+ #include <pthread.h>
+ typedef struct b3Mutex
+ {
+@@ -397,6 +401,8 @@ void b3JoinThread( b3Thread* t )
+ 	b3Free( t, sizeof( b3Thread ) );
+ }
+ 
++#endif
++
+ #elif defined( __APPLE__ )
+ 
+ #include <mach/mach_time.h>
+diff --git a/src/verstable.h b/src/verstable.h
+index c8601e6..0bfb724 100644
+--- a/src/verstable.h
++++ b/src/verstable.h
+@@ -563,7 +563,7 @@ static inline uint64_t vt_hash_integer( uint64_t key )
+ 
+ static inline void vt_wymum( uint64_t *a, uint64_t *b )
+ {
+-#if defined( __SIZEOF_INT128__ )
++#if defined( __SIZEOF_INT128__ ) && !defined( __CCGO__ )
+   __uint128_t r = *a;
+   r *= *b; 
+   *a = (uint64_t)r;

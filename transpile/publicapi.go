@@ -16,16 +16,16 @@ import (
 	"github.com/dave/dst/dstutil"
 )
 
-// The public Go API must not contain a uintptr, it is too easy to pass Go memory to box2d that
+// The public Go API must not contain a uintptr, it is too easy to pass Go memory to box3d that
 // way. TestPublicAPIHasNoUintptr in the package root checks the result.
 
-// hideInternals unexports the names that ccgo exports for C declarations without the b2
+// hideInternals unexports the names that ccgo exports for C declarations without the b3
 // prefix, like static helper functions and context structs.
 func hideInternals(root *dst.File, api API) {
 	hidden := map[string]bool{}
 	hide := func(name string) {
-		_, isFunc := api.Exposed["b2"+name]
-		_, isType := api.ExposedTypes["b2"+name]
+		_, isFunc := api.Exposed["b3"+name]
+		_, isType := api.ExposedTypes["b3"+name]
 		if token.IsExported(name) && !isFunc && !isType {
 			hidden[name] = true
 		}
@@ -39,9 +39,17 @@ func hideInternals(root *dst.File, api API) {
 			}
 
 		case *dst.GenDecl:
-			if decl.Tok == token.TYPE {
-				for _, spec := range decl.Specs {
-					hide(spec.(*dst.TypeSpec).Name.Name)
+			for _, spec := range decl.Specs {
+				switch spec := spec.(type) {
+				case *dst.TypeSpec:
+					hide(spec.Name.Name)
+				case *dst.ValueSpec:
+					// like B3_BOUNDS3_EMPTY
+					if decl.Tok == token.VAR {
+						for _, name := range spec.Names {
+							hide(name.Name)
+						}
+					}
 				}
 			}
 		}
@@ -81,19 +89,51 @@ const (
 	// unexport fields that the Go API sets, like the points in Body.CreateChain
 	unexport fieldChange = iota + 1
 
-	// toUint64 turns a void* that box2d never reads into an opaque number
+	// toUint64 turns a void* that box3d never reads into an opaque number
 	toUint64
+
+	// toPointer turns a uintptr into a Go pointer, see pointerFields
+	toPointer
 )
 
 // apiFields are the C pointer fields of public structs, by Go type and field name.
 var apiFields = map[string]map[string]fieldChange{
-	"BodyDef":       {"Name": unexport, "UserData": toUint64},
-	"ShapeDef":      {"UserData": toUint64},
-	"ChainDef":      {"Points": unexport, "PointCount": unexport, "Materials": unexport, "MaterialCount": unexport, "UserData": toUint64},
-	"JointDef":      {"UserData": toUint64},
-	"WorldDef":      {"FrictionCallback": unexport, "RestitutionCallback": unexport, "EnqueueTask": unexport, "FinishTask": unexport, "UserTaskContext": unexport, "UserData": toUint64},
-	"BodyMoveEvent": {"UserData": toUint64},
-	"JointEvent":    {"UserData": toUint64},
+	"WorldDef": {
+		"FrictionCallback": unexport, "RestitutionCallback": unexport,
+		"EnqueueTask": unexport, "FinishTask": unexport, "UserTaskContext": unexport,
+		"CreateDebugShape": unexport, "DestroyDebugShape": unexport, "UserDebugShapeContext": unexport,
+		"UserData": toUint64,
+	},
+	"BodyDef":         {"Name": unexport, "UserData": toUint64},
+	"ShapeDef":        {"Name": unexport, "UserData": toUint64, "Materials": toPointer},
+	"JointDef":        {"UserData": toUint64},
+	"BodyMoveEvent":   {"UserData": toUint64},
+	"JointEvent":      {"UserData": toUint64},
+	"QueryFilter":     {"Name": unexport},
+	"ShapeProxy":      {"Points": toPointer},
+	"MeshDef":         {"Vertices": unexport, "Stride": unexport, "Indices": unexport, "MaterialIndices": unexport, "VertexCount": unexport, "TriangleCount": unexport},
+	"Mesh":            {"Data": toPointer},
+	"HeightFieldDef":  {"Heights": unexport, "MaterialIndices": unexport},
+	"CompoundDef":     {"Capsules": unexport, "CapsuleCount": unexport, "Hulls": unexport, "HullCount": unexport, "Meshes": unexport, "MeshCount": unexport, "Spheres": unexport, "SphereCount": unexport},
+	"CompoundHullDef": {"Hull": toPointer},
+	"CompoundMeshDef": {"MeshData": toPointer, "Materials": toPointer},
+	"CompoundHull":    {"Hull": toPointer},
+	"CompoundMesh":    {"MeshData": toPointer, "MaterialIndices": toPointer},
+	"ChildShape":      {"MaterialIndices": toPointer},
+	"LocalManifold":   {"Points": unexport},
+	"ContactData":     {"Manifolds": unexport, "ManifoldCount": unexport},
+}
+
+// pointerFields are the Go types of the toPointer fields. The C code still sees a uintptr.
+var pointerFields = map[string]map[string]string{
+	"ShapeDef":        {"Materials": "SurfaceMaterial"},
+	"ShapeProxy":      {"Points": "Vec3"},
+	"Mesh":            {"Data": "MeshData"},
+	"CompoundHullDef": {"Hull": "HullData"},
+	"CompoundMeshDef": {"MeshData": "MeshData", "Materials": "SurfaceMaterial"},
+	"CompoundHull":    {"Hull": "HullData"},
+	"CompoundMesh":    {"MeshData": "MeshData", "MaterialIndices": "uint16"},
+	"ChildShape":      {"MaterialIndices": "uint16"},
 }
 
 // fixApiFields applies apiFields. A field can have the same name in many structs, so this
@@ -117,6 +157,7 @@ func fixApiFields(root *dst.File) {
 	pkg, _ := conf.Check(PKGNAME, restorer.Fset, files, info)
 
 	fields := map[*types.Var]fieldChange{}
+	pointees := map[*types.Var]string{}
 	for typeName, changes := range apiFields {
 		obj := pkg.Scope().Lookup(typeName)
 		if obj == nil {
@@ -135,6 +176,15 @@ func fixApiFields(root *dst.File) {
 			}
 
 			fields[st.Field(idx)] = change
+
+			if change == toPointer {
+				pointee := pointerFields[typeName][name]
+				if pointee == "" {
+					panic(fmt.Sprintf("no pointer type for %s.%s", typeName, name))
+				}
+
+				pointees[st.Field(idx)] = pointee
+			}
 		}
 	}
 
@@ -145,6 +195,7 @@ func fixApiFields(root *dst.File) {
 
 	// the declarations and all uses of the fields
 	changes := map[*dst.Ident]fieldChange{}
+	pointeeOf := map[*dst.Ident]string{}
 	for _, objects := range []map[*ast.Ident]types.Object{info.Defs, info.Uses} {
 		for ident, obj := range objects {
 			field, ok := obj.(*types.Var)
@@ -152,17 +203,44 @@ func fixApiFields(root *dst.File) {
 				continue
 			}
 
-			changes[dstNodes[ident].(*dst.Ident)] = fields[field]
+			// idents of the hand-written files are not part of root
+			node, ok := dstNodes[ident].(*dst.Ident)
+			if !ok {
+				continue
+			}
+
+			changes[node] = fields[field]
+			pointeeOf[node] = pointees[field]
 		}
 	}
 
-	isUint64 := func(expr dst.Expr) bool {
+	// isRetyped reports whether expr selects a field with a new Go type
+	isRetyped := func(expr dst.Expr) bool {
 		sel, ok := expr.(*dst.SelectorExpr)
-		return ok && changes[sel.Sel] == toUint64
+		return ok && (changes[sel.Sel] == toUint64 || changes[sel.Sel] == toPointer)
 	}
 
-	toType := func(ty string, expr dst.Expr) dst.Expr {
-		return &dst.CallExpr{Fun: dst.NewIdent(ty), Args: []dst.Expr{expr}}
+	unsafePointer := func(expr dst.Expr) dst.Expr {
+		return &dst.CallExpr{Fun: &dst.SelectorExpr{X: dst.NewIdent("unsafe"), Sel: dst.NewIdent("Pointer")}, Args: []dst.Expr{expr}}
+	}
+
+	// toGo converts a uintptr of the C code to the Go type of field
+	toGo := func(field *dst.Ident, expr dst.Expr) dst.Expr {
+		if changes[field] == toUint64 {
+			return &dst.CallExpr{Fun: dst.NewIdent("uint64"), Args: []dst.Expr{expr}}
+		}
+
+		ty := &dst.ParenExpr{X: &dst.StarExpr{X: dst.NewIdent(pointeeOf[field])}}
+		return &dst.CallExpr{Fun: ty, Args: []dst.Expr{unsafePointer(expr)}}
+	}
+
+	// toC converts the field back to the uintptr of the C code
+	toC := func(sel *dst.SelectorExpr) dst.Expr {
+		if changes[sel.Sel] == toUint64 {
+			return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{sel}}
+		}
+
+		return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{unsafePointer(sel)}}
 	}
 
 	// selectors that are written to, all other uses read the field
@@ -172,31 +250,32 @@ func fixApiFields(root *dst.File) {
 		switch node := c.Node().(type) {
 		case *dst.AssignStmt:
 			for idx, lhs := range node.Lhs {
-				if !isUint64(lhs) {
+				if !isRetyped(lhs) {
 					continue
 				}
 
 				if node.Tok != token.ASSIGN || len(node.Lhs) != len(node.Rhs) {
-					panic("unexpected assignment to a uint64 field")
+					panic("unexpected assignment to a retyped field")
 				}
 
-				written[lhs.(*dst.SelectorExpr)] = true
-				node.Rhs[idx] = toType("uint64", node.Rhs[idx])
+				sel := lhs.(*dst.SelectorExpr)
+				written[sel] = true
+				node.Rhs[idx] = toGo(sel.Sel, node.Rhs[idx])
 			}
 
 		case *dst.KeyValueExpr:
-			if key, ok := node.Key.(*dst.Ident); ok && changes[key] == toUint64 {
-				node.Value = toType("uint64", node.Value)
+			if key, ok := node.Key.(*dst.Ident); ok && (changes[key] == toUint64 || changes[key] == toPointer) {
+				node.Value = toGo(key, node.Value)
 			}
 
 		case *dst.UnaryExpr:
-			if node.Op == token.AND && isUint64(node.X) {
-				panic("address of a uint64 field")
+			if node.Op == token.AND && isRetyped(node.X) {
+				panic("address of a retyped field")
 			}
 
 		case *dst.IncDecStmt:
-			if isUint64(node.X) {
-				panic("increment of a uint64 field")
+			if isRetyped(node.X) {
+				panic("increment of a retyped field")
 			}
 		}
 
@@ -204,13 +283,20 @@ func fixApiFields(root *dst.File) {
 	}, func(c *dstutil.Cursor) bool {
 		switch node := c.Node().(type) {
 		case *dst.SelectorExpr:
-			if isUint64(node) && !written[node] {
-				c.Replace(toType("uintptr", node))
+			if isRetyped(node) && !written[node] {
+				c.Replace(toC(node))
 			}
 
 		case *dst.Field:
-			if len(node.Names) > 0 && changes[node.Names[0]] == toUint64 {
+			if len(node.Names) == 0 {
+				break
+			}
+
+			switch changes[node.Names[0]] {
+			case toUint64:
 				node.Type = dst.NewIdent("uint64")
+			case toPointer:
+				node.Type = &dst.StarExpr{X: dst.NewIdent(pointeeOf[node.Names[0]])}
 			}
 		}
 
@@ -233,7 +319,7 @@ func handWrittenFiles() []string {
 	var files []string
 	for _, name := range names {
 		base := filepath.Base(name)
-		if strings.HasPrefix(base, "box2d_c") || base == "box2d_api.go" || strings.HasSuffix(base, "_test.go") {
+		if strings.HasPrefix(base, "box3d_c") || base == "box3d_api.go" || strings.HasSuffix(base, "_test.go") {
 			continue
 		}
 

@@ -24,4 +24,4 @@ require (
 	modernc.org/token v1.1.0 // indirect
 )
 
-replace modernc.org/ccgo/v4 => gitlab.com/oliver.bestmann/ccgo/v4 v4.28.1-0.20261020051524-cd98e718db98
+replace modernc.org/ccgo/v4 => gitlab.com/oliver.bestmann/ccgo/v4 v4.28.1-0.20261021200639-b99f337a08c0

@@ -1,10 +1,10 @@
 //go:build !race
 
-package b2
+package b3
 
 import "runtime"
 
-// sched_yield is b2Yield, which box2d calls in spin loops while it waits for another worker.
+// sched_yield is b3Yield, which box3d calls in spin loops while it waits for another worker.
 // Like the syscall it must not sleep. runtime.Gosched costs far more than the syscall when
 // there are idle Ps, so it keeps spinning and only yields every yieldEvery calls. The yield
 // matters when there are more workers than GOMAXPROCS. wasm has a single thread, where

@@ -1,5 +1,5 @@
 .idea/
-/box2d-c
+/box3d-c
 /transpile/ccgo
 /transpile/_build
 /go.work

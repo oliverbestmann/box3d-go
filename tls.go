@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"unsafe"
@@ -11,7 +11,7 @@ type _Stack struct {
 	allocs []int
 	pos    int
 
-	// yields counts the calls to sched_yield, each goroutine of box2d has its own stack
+	// yields counts the calls to sched_yield, each goroutine of box3d has its own stack
 	yields uint32
 }
 

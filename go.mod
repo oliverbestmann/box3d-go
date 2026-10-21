@@ -1,6 +1,6 @@
 go 1.22
 
-module github.com/oliverbestmann/box2d-go/v3
+module github.com/oliverbestmann/box3d-go
 
 require github.com/stretchr/testify v1.12.1
 

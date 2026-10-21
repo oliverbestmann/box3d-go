@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"testing"
@@ -7,29 +7,32 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Ported from box2d test/test_world.c
+// Ported from box3d test/test_world.c
 
 func TestHelloWorld(t *testing.T) {
 	worldDef := DefaultWorldDef()
-	worldDef.Gravity = Vec2{X: 0, Y: -10}
+	worldDef.Gravity = Vec3{Y: -10}
 	world := CreateWorld(worldDef)
 	require.EqualValues(t, 1, world.IsValid())
 
 	groundDef := DefaultBodyDef()
-	groundDef.Position = Vec2{X: 0, Y: -10}
+	groundDef.Position = Pos{Y: -10}
 	ground := world.CreateBody(groundDef)
 	require.EqualValues(t, 1, ground.IsValid())
-	ground.CreatePolygonShape(DefaultShapeDef(), MakeBox(50, 10))
+
+	groundBox := MakeBoxHull(50, 10, 50)
+	ground.CreateHullShape(DefaultShapeDef(), &groundBox.Base)
 
 	bodyDef := DefaultBodyDef()
 	bodyDef.Type1 = DynamicBody
-	bodyDef.Position = Vec2{X: 0, Y: 4}
+	bodyDef.Position = Pos{Y: 4}
 	body := world.CreateBody(bodyDef)
 
+	dynamicBox := MakeCubeHull(1)
 	shapeDef := DefaultShapeDef()
 	shapeDef.Density = 1
-	shapeDef.Material.Friction = 0.3
-	body.CreatePolygonShape(shapeDef, MakeBox(1, 1))
+	shapeDef.BaseMaterial.Friction = 0.3
+	body.CreateHullShape(shapeDef, &dynamicBox.Base)
 
 	for range 90 {
 		world.Step(1.0/60.0, 4)
@@ -39,22 +42,11 @@ func TestHelloWorld(t *testing.T) {
 	rotation := body.GetRotation()
 
 	world.DestroyWorld()
-
-	assert.InDelta(t, 0, position.X, 0.01)
-	assert.InDelta(t, 1, position.Y, 0.01)
-	assert.InDelta(t, 0, rotation.Angle(), 0.01)
-}
-
-func TestEmptyWorld(t *testing.T) {
-	world := CreateWorld(DefaultWorldDef())
-	require.EqualValues(t, 1, world.IsValid())
-
-	for range 60 {
-		world.Step(1.0/60.0, 1)
-	}
-
-	world.DestroyWorld()
 	assert.EqualValues(t, 0, world.IsValid())
+
+	assert.InDelta(t, 1, position.Y, 0.01)
+	assert.InDelta(t, 0, rotation.V.X, 0.01)
+	assert.InDelta(t, 0, rotation.V.Z, 0.01)
 }
 
 func TestDestroyAllBodiesWorld(t *testing.T) {
@@ -65,7 +57,7 @@ func TestDestroyAllBodiesWorld(t *testing.T) {
 
 	bodyDef := DefaultBodyDef()
 	bodyDef.Type1 = DynamicBody
-	square := MakeSquare(0.5)
+	cube := MakeCubeHull(0.5)
 
 	var bodies []Body
 	creating := true
@@ -74,7 +66,7 @@ func TestDestroyAllBodiesWorld(t *testing.T) {
 		switch {
 		case creating && len(bodies) < bodyCount:
 			body := world.CreateBody(bodyDef)
-			body.CreatePolygonShape(DefaultShapeDef(), square)
+			body.CreateHullShape(DefaultShapeDef(), &cube.Base)
 			bodies = append(bodies, body)
 
 		case creating:
@@ -91,120 +83,34 @@ func TestDestroyAllBodiesWorld(t *testing.T) {
 	assert.EqualValues(t, 0, world.GetCounters().BodyCount)
 }
 
-func TestIsValid(t *testing.T) {
-	world := CreateWorld(DefaultWorldDef())
-	require.EqualValues(t, 1, world.IsValid())
-
-	body1 := world.CreateBody(DefaultBodyDef())
-	body2 := world.CreateBody(DefaultBodyDef())
-	assert.EqualValues(t, 1, body1.IsValid())
-	assert.EqualValues(t, 1, body2.IsValid())
-
-	body1.DestroyBody()
-	assert.EqualValues(t, 0, body1.IsValid())
-	assert.EqualValues(t, 1, body2.IsValid())
-
-	body2.DestroyBody()
-	assert.EqualValues(t, 0, body2.IsValid())
-
-	world.DestroyWorld()
-	assert.EqualValues(t, 0, world.IsValid())
-	assert.EqualValues(t, 0, body1.IsValid())
-	assert.EqualValues(t, 0, body2.IsValid())
-}
-
-func TestWorldRecycle(t *testing.T) {
-	worlds := make([]World, _B2_MAX_WORLDS/2)
-
-	for range 20 {
-		for idx := range worlds {
-			worlds[idx] = CreateWorld(DefaultWorldDef())
-			require.EqualValues(t, 1, worlds[idx].IsValid())
-			worlds[idx].CreateBody(DefaultBodyDef())
-		}
-
-		for _, world := range worlds {
-			for range 10 {
-				world.Step(1.0/60.0, 1)
-			}
-		}
-
-		for idx := len(worlds) - 1; idx >= 0; idx-- {
-			worlds[idx].DestroyWorld()
-			require.EqualValues(t, 0, worlds[idx].IsValid())
-		}
-	}
-}
-
-func TestWorldCoverage(t *testing.T) {
-	world := CreateWorld(DefaultWorldDef())
-	defer world.DestroyWorld()
-
-	world.EnableSleeping(1)
-	world.EnableSleeping(0)
-	assert.EqualValues(t, 0, world.IsSleepingEnabled())
-
-	world.EnableContinuous(0)
-	world.EnableContinuous(1)
-	assert.EqualValues(t, 1, world.IsContinuousEnabled())
-
-	world.SetRestitutionThreshold(0)
-	world.SetRestitutionThreshold(2)
-	assert.Equal(t, float32(2), world.GetRestitutionThreshold())
-
-	world.SetHitEventThreshold(0)
-	world.SetHitEventThreshold(100)
-	assert.Equal(t, float32(100), world.GetHitEventThreshold())
-
-	world.SetGravity(Vec2{X: 1, Y: 2})
-	assert.Equal(t, Vec2{X: 1, Y: 2}, world.GetGravity())
-
-	world.Explode(DefaultExplosionDef())
-	world.SetContactTuning(10, 2, 4)
-
-	world.SetMaxLinearSpeed(10)
-	assert.Equal(t, float32(10), world.GetMaxLinearSpeed())
-
-	world.EnableWarmStarting(1)
-	assert.EqualValues(t, 1, world.IsWarmStartingEnabled())
-
-	assert.EqualValues(t, 0, world.GetAwakeBodyCount())
-
-	world.SetUserData(42)
-	assert.EqualValues(t, 42, world.GetUserData())
-
-	world.Step(1, 1)
-}
-
 func TestSensorEvents(t *testing.T) {
 	world := CreateWorld(DefaultWorldDef())
 	defer world.DestroyWorld()
 
 	// wall from x = 1 to x = 2
-	wallDef := DefaultBodyDef()
-	wallDef.Position = Vec2{X: 1.5, Y: 11}
-	wall := world.CreateBody(wallDef)
-
-	wallShape := DefaultShapeDef()
-	wallShape.EnableSensorEvents = 1
-	wall.CreatePolygonShape(wallShape, MakeBox(0.5, 10))
+	bodyDef := DefaultBodyDef()
+	bodyDef.Position = Pos{X: 1.5, Y: 11}
+	wall := world.CreateBody(bodyDef)
+	box := MakeBoxHull(0.5, 10, 1)
+	shapeDef := DefaultShapeDef()
+	shapeDef.EnableSensorEvents = 1
+	wall.CreateHullShape(shapeDef, &box.Base)
 
 	// bullet fired towards the wall
-	bulletDef := DefaultBodyDef()
-	bulletDef.Type1 = DynamicBody
-	bulletDef.IsBullet = 1
-	bulletDef.GravityScale = 0
-	bulletDef.Position = Vec2{X: 7.39814, Y: 4}
-	bulletDef.LinearVelocity = Vec2{X: -20}
-	bullet := world.CreateBody(bulletDef)
+	bodyDef = DefaultBodyDef()
+	bodyDef.Type1 = DynamicBody
+	bodyDef.IsBullet = 1
+	bodyDef.GravityScale = 0
+	bodyDef.Position = Pos{X: 7.39814, Y: 4}
+	bodyDef.LinearVelocity = Vec3{X: -20}
+	bullet := world.CreateBody(bodyDef)
 
-	bulletShape := DefaultShapeDef()
-	bulletShape.IsSensor = 1
-	bulletShape.EnableSensorEvents = 1
-	bullet.CreateCircleShape(bulletShape, Circle{Radius: 0.1})
+	shapeDef = DefaultShapeDef()
+	shapeDef.IsSensor = 1
+	shapeDef.EnableSensorEvents = 1
+	bullet.CreateSphereShape(shapeDef, Sphere{Radius: 0.1})
 
 	var beginCount, endCount int
-
 	for bullet.GetPosition().X >= -1 {
 		world.Step(1.0/60.0, 4)
 
@@ -222,58 +128,80 @@ func TestSensorEvents(t *testing.T) {
 	assert.Equal(t, 1, endCount)
 }
 
-func TestBounce(t *testing.T) {
-	world := CreateWorld(DefaultWorldDef())
+func TestContactAndHitEvents(t *testing.T) {
+	worldDef := DefaultWorldDef()
+	worldDef.HitEventThreshold = 1
+	world := CreateWorld(worldDef)
 	defer world.DestroyWorld()
 
-	world.SetGravity(Vec2{Y: -10})
+	groundDef := DefaultBodyDef()
+	groundDef.Position = Pos{Y: -0.5}
+	ground := world.CreateBody(groundDef)
+	groundBox := MakeBoxHull(10, 0.5, 10)
+	groundShape := ground.CreateHullShape(DefaultShapeDef(), &groundBox.Base)
 
-	ballDef := DefaultBodyDef()
-	ballDef.Type1 = DynamicBody
-	ballDef.Position.Y = 5
-	ball := world.CreateBody(ballDef)
+	bodyDef := DefaultBodyDef()
+	bodyDef.Type1 = DynamicBody
+	bodyDef.Position = Pos{Y: 2}
+	bodyDef.LinearVelocity = Vec3{Y: -30}
+	body := world.CreateBody(bodyDef)
 
-	ballShape := DefaultShapeDef()
-	ballShape.Material.Restitution = 0.2
-	ballShape.EnableContactEvents = 1
-	ballShape.EnableHitEvents = 1
-	ballShapeId := ball.CreateCircleShape(ballShape, Circle{Radius: 1})
+	shapeDef := DefaultShapeDef()
+	shapeDef.Density = 1
+	shapeDef.EnableContactEvents = 1
+	shapeDef.EnableHitEvents = 1
+	shapeDef.BaseMaterial.UserMaterialId = 7
+	shapeDef.BaseMaterial.Restitution = 0.6
+	sphere := body.CreateSphereShape(shapeDef, Sphere{Radius: 0.5})
 
-	ground := world.CreateBody(DefaultBodyDef())
-	ground.CreateSegmentShape(DefaultShapeDef(), Segment{
-		Point1: Vec2{X: -20},
-		Point2: Vec2{X: 20},
-	})
+	var begin []ContactBeginTouchEvent
+	var hits []ContactHitEvent
+	endCount := 0
 
-	var moveEvents, beginEvents, hitEvents int
-	var bounced bool
+	for range 120 {
+		world.Step(1.0/60.0, 4)
 
-	for range 100 {
-		world.Step(1.0/60.0, 1)
-
-		for _, ev := range world.GetBodyEvents().MoveEvents {
-			assert.Equal(t, ball.Id, ev.BodyId)
-			moveEvents++
-		}
-
-		contacts := world.GetContactEvents()
-		for _, ev := range contacts.BeginEvents {
-			assert.Contains(t, []ShapeId{ev.ShapeIdA, ev.ShapeIdB}, ballShapeId.Id)
-			beginEvents++
-		}
-
-		hitEvents += len(contacts.HitEvents)
-
-		if ball.GetLinearVelocity().Y > 0 {
-			bounced = true
-		}
+		events := world.GetContactEvents()
+		begin = append(begin, events.BeginEvents...)
+		hits = append(hits, events.HitEvents...)
+		endCount += len(events.EndEvents)
 	}
 
-	assert.Positive(t, moveEvents)
-	assert.Positive(t, beginEvents)
-	assert.Positive(t, hitEvents)
-	assert.True(t, bounced, "ball should bounce back up")
+	require.NotEmpty(t, begin)
+	assert.ElementsMatch(t, []ShapeId{groundShape.Id, sphere.Id}, []ShapeId{begin[0].ShapeIdA, begin[0].ShapeIdB})
+	assert.GreaterOrEqual(t, endCount, 1)
 
-	// the ball rests on the ground
-	assert.InDelta(t, 1, ball.GetPosition().Y, 0.05)
+	require.NotEmpty(t, hits)
+	assert.Greater(t, hits[0].ApproachSpeed, float32(1))
+	assert.InDelta(t, 0, hits[0].Normal.X, 0.01)
+	assert.InDelta(t, 0, hits[0].Normal.Z, 0.01)
+	assert.Contains(t, []uint64{hits[0].UserMaterialIdA, hits[0].UserMaterialIdB}, uint64(7))
+}
+
+func TestSetWorkerCount(t *testing.T) {
+	def := DefaultWorldDef()
+	def.WorkerCount = 1
+	world := CreateWorld(def)
+	defer world.DestroyWorld()
+
+	ground := world.CreateBody(DefaultBodyDef())
+	groundBox := MakeBoxHull(20, 1, 20)
+	ground.CreateHullShape(DefaultShapeDef(), &groundBox.Base)
+
+	cube := MakeCubeHull(0.5)
+	for idx := range 50 {
+		bodyDef := DefaultBodyDef()
+		bodyDef.Type1 = DynamicBody
+		bodyDef.Position = Pos{X: float32(idx%10) - 5, Y: 2 + float32(idx/10)}
+		world.CreateBody(bodyDef).CreateHullShape(DefaultShapeDef(), &cube.Base)
+	}
+
+	for _, workers := range []int32{4, 4, 0, -5, _B3_MAX_WORKERS + 10, 2} {
+		world.SetWorkerCount(workers)
+		assert.EqualValues(t, min(max(workers, 1), _B3_MAX_WORKERS), world.GetWorkerCount())
+
+		for range 30 {
+			world.Step(1.0/60.0, 4)
+		}
+	}
 }

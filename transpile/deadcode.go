@@ -208,3 +208,21 @@ func hasBreak(stmts []dst.Stmt, label string) bool {
 
 	return found
 }
+
+// removeSelfAssignments drops statements like `q_l = q_l`, which the qsort macros of box3d
+// expand to. go vet reports them.
+func removeSelfAssignments(root dst.Node) {
+	dstutil.Apply(root, nil, func(c *dstutil.Cursor) bool {
+		assign, ok := c.Node().(*dst.AssignStmt)
+		if !ok || assign.Tok != token.ASSIGN || len(assign.Lhs) != 1 || len(assign.Rhs) != 1 || c.Index() < 0 {
+			return true
+		}
+
+		lhs, rhs := identOf(assign.Lhs[0]), identOf(assign.Rhs[0])
+		if lhs != "" && lhs == rhs {
+			c.Delete()
+		}
+
+		return true
+	})
+}

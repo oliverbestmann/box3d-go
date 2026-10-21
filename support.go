@@ -1,11 +1,13 @@
-package b2
+package b3
 
 import (
+	"bytes"
 	"fmt"
 	"math"
 	"math/bits"
 	"regexp"
 	"sort"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -78,7 +80,7 @@ func __builtin_aligned_alloc(tls *_Stack, align, size uint64) uintptr {
 	return addr
 }
 
-// heap keeps allocations alive. It is shared by all stacks, as box2d may allocate
+// heap keeps allocations alive. It is shared by all stacks, as box3d may allocate
 // on a worker goroutine and free on another one.
 var heap sync.Map
 
@@ -180,12 +182,12 @@ func clock_gettime(tls *_Stack, clk clockid_t, ts uintptr) (r int32) {
 	return 0
 }
 
-// __builtin_b2Pause is b2Pause, the CPU hint in box2d's spin loops.
-func __builtin_b2Pause(_ *_Stack) {
+// __builtin_b3Pause is b3Pause, the CPU hint in box3d's spin loops.
+func __builtin_b3Pause(_ *_Stack) {
 	pause()
 }
 
-// printf is only reached by the recording code of box2d, which is not exposed.
+// printf is only reached by the recording code of box3d, which is not exposed.
 func printf(_ *_Stack, format uintptr, va uintptr) int32 {
 	n, _ := fmt.Print(cFormat(format, va))
 	return int32(n)
@@ -193,7 +195,7 @@ func printf(_ *_Stack, format uintptr, va uintptr) int32 {
 
 var reFormatStr = regexp.MustCompile("%[^a-zA-Z]*([dfgs])")
 
-// cFormat formats like C printf, for the patterns that box2d uses.
+// cFormat formats like C printf, for the patterns that box3d uses.
 // Like the varargs of ccgo, every argument takes 8 bytes at args.
 func cFormat(format, args uintptr) string {
 	formatStr := toString(format)
@@ -231,6 +233,40 @@ func __builtin_vsnprintf(_ *_Stack, str uintptr, size size_t, format, args uintp
 	return int32(len(result))
 }
 
+func floorf(_ *_Stack, f float32) float32 { return float32(math.Floor(float64(f))) }
+func fabsf(_ *_Stack, f float32) float32  { return float32(math.Abs(float64(f))) }
+
+func remainderf(_ *_Stack, x, y float32) float32 {
+	return float32(math.Remainder(float64(x), float64(y)))
+}
+
+func __builtin_prefetch(_ *_Stack, _ uintptr, _ uintptr) {}
+
+func __builtin_clzll(_ *_Stack, n uint64) int32 { return int32(bits.LeadingZeros64(n)) }
+
+func memcmp(_ *_Stack, a, b uintptr, n size_t) int32 {
+	return int32(bytes.Compare(sliceOf(a, n), sliceOf(b, n)))
+}
+
+func memmove(_ *_Stack, dest, src uintptr, n size_t) uintptr {
+	copy(sliceOf(dest, n), sliceOf(src, n))
+	return dest
+}
+
+func strlen(_ *_Stack, s uintptr) size_t {
+	return size_t(len(toString(s)))
+}
+
+func strcmp(_ *_Stack, a, b uintptr) int32 {
+	return int32(strings.Compare(toString(a), toString(b)))
+}
+
+func nanosleep(_ *_Stack, req, _ uintptr) int32 {
+	ts := (*timespec)(unsafe.Pointer(req))
+	time.Sleep(time.Duration(ts.Tv_sec)*time.Second + time.Duration(ts.Tv_nsec))
+	return 0
+}
+
 func __builtin_inff(_ *_Stack) float32 {
 	return float32(math.Inf(1))
 }
@@ -245,6 +281,10 @@ func __builtin_popcountll(_ *_Stack, value uint64) int32 {
 
 func fprintf(tls *_Stack, f uintptr, fmt uintptr, va uintptr) (r int32) {
 	panic("fprintf: not implemented")
+}
+
+func fscanf(tls *_Stack, f uintptr, format uintptr, va uintptr) int32 {
+	panic("fscanf: not implemented")
 }
 
 func fopen(tls *_Stack, filename uintptr, mode uintptr) (r uintptr) {
@@ -271,8 +311,8 @@ func fclose(tls *_Stack, f uintptr) (r1 int32) {
 	panic("fclose: not implemented")
 }
 
-// escapes forces x onto the heap. box2d only sees memory as a uintptr, which the compiler does
-// not track, so memory handed to box2d must not live on a goroutine stack that can move.
+// escapes forces x onto the heap. box3d only sees memory as a uintptr, which the compiler does
+// not track, so memory handed to box3d must not live on a goroutine stack that can move.
 func escapes(x any) {
 	if dummy.b {
 		dummy.x = x
@@ -284,8 +324,12 @@ var dummy struct {
 	x any
 }
 
-// toString copies the null terminated C string at base.
+// toString copies the null terminated C string at base, or returns "" for NULL.
 func toString(base uintptr) string {
+	if base == 0 {
+		return ""
+	}
+
 	n := 0
 	for *(*byte)(unsafe.Pointer(base + uintptr(n))) != 0 {
 		n++

@@ -7,13 +7,11 @@ import (
 	"go/parser"
 	"go/token"
 	"log/slog"
-	"maps"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"regexp"
 	"runtime"
-	"slices"
 	"strconv"
 	"strings"
 
@@ -23,7 +21,7 @@ import (
 	ccgo "modernc.org/ccgo/v4/lib"
 )
 
-// PrefixField is a unicode F symbol that is not part of the box2d code.
+// PrefixField is a unicode F symbol that is not part of the box3d code.
 // We use this to easily identify & capitalize field names
 const PrefixField = "ｆ"
 
@@ -39,26 +37,26 @@ var PREDEF_ALLOC = `
 extern void* __builtin_aligned_alloc(size_t align, size_t size);
 `
 
-// box2d's threading primitives are implemented in Go, see threads.go.
+// box3d's threading primitives are implemented in Go, see threads.go.
 // ccgo only leaves calls to undefined functions unresolved for __builtin_ names.
 var PREDEF_THREADS = `
-#define b2CreateMutex __builtin_b2CreateMutex
-#define b2DestroyMutex __builtin_b2DestroyMutex
-#define b2LockMutex __builtin_b2LockMutex
-#define b2UnlockMutex __builtin_b2UnlockMutex
-#define b2CreateSemaphore __builtin_b2CreateSemaphore
-#define b2DestroySemaphore __builtin_b2DestroySemaphore
-#define b2WaitSemaphore __builtin_b2WaitSemaphore
-#define b2SignalSemaphore __builtin_b2SignalSemaphore
-#define b2CreateThread __builtin_b2CreateThread
-#define b2JoinThread __builtin_b2JoinThread
+#define b3CreateMutex __builtin_b3CreateMutex
+#define b3DestroyMutex __builtin_b3DestroyMutex
+#define b3LockMutex __builtin_b3LockMutex
+#define b3UnlockMutex __builtin_b3UnlockMutex
+#define b3CreateSemaphore __builtin_b3CreateSemaphore
+#define b3DestroySemaphore __builtin_b3DestroySemaphore
+#define b3WaitSemaphore __builtin_b3WaitSemaphore
+#define b3SignalSemaphore __builtin_b3SignalSemaphore
+#define b3CreateThread __builtin_b3CreateThread
+#define b3JoinThread __builtin_b3JoinThread
 `
 
-const PKGNAME = "b2"
+const PKGNAME = "b3"
 
 // rawOutput keeps the unprocessed ccgo output for -no-transpile.
 // The go tool ignores directories starting with an underscore.
-const rawOutput = "_build/box2d_c.go"
+const rawOutput = "_build/box3d_c.go"
 
 func main() {
 	var noTranspile bool
@@ -69,23 +67,28 @@ func main() {
 	goos := runtime.GOOS
 	goarch := runtime.GOARCH
 
-	files, err := filepath.Glob("../box2d-c/src/*.c")
+	files, err := filepath.Glob("../box3d-c/src/*.c")
 	must(err)
 
 	// signatures of the callbacks implemented in Go, see callbacks.go
-	files = append(files, "csrc/callbacks.c")
+	files = append(files, "csrc/callbacks.c", inlineSource)
+	files = append(files, sceneSources...)
 
 	args := []string{
 		"ccgo",
 		"-verify-types",
 		"--package-name", PKGNAME,
-		"-D", "BOX2D_DISABLE_SIMD",
+		"-D", "BOX3D_DISABLE_SIMD",
+		// NDEBUG skips the expensive debug validation, the asserts stay enabled
+		"-D", "NDEBUG",
+		"-D", "B3_ENABLE_ASSERT",
 		"--predef", PREDEF_ATOMIC,
 		"--predef", PREDEF_ALLOC,
 		"--predef", PREDEF_THREADS,
 		"--prefix-field", PrefixField,
 		"-o", rawOutput,
-		"-I", "../box2d-c/include/",
+		"-I", "../box3d-c/include/",
+		"-I", "../box3d-c/shared/",
 	}
 
 	args = append(args, files...)
@@ -93,17 +96,18 @@ func main() {
 	if !noTranspile {
 		// ccgo does not reject incompatible function pointers, the host compiler does
 		slog.Info("Check callback signatures")
-		check := exec.Command("cc", "-fsyntax-only", "-Werror=incompatible-pointer-types", "-I", "../box2d-c/include/", "csrc/callbacks.c")
+		check := exec.Command("cc", "-fsyntax-only", "-Werror=incompatible-pointer-types", "-I", "../box3d-c/include/", "csrc/callbacks.c")
 		check.Stdout, check.Stderr = os.Stdout, os.Stderr
 		must(check.Run())
 
 		slog.Info("Transpile c to go")
 		must(os.MkdirAll(filepath.Dir(rawOutput), 0o755))
+		writeInlineWrappers()
 		must(ccgo.NewTask(goos, goarch, args, os.Stdout, os.Stderr, nil).Main())
 	}
 
 	// remove previous files
-	gofs, err := filepath.Glob("../box2d_c*.go")
+	gofs, err := filepath.Glob("../box3d_c*.go")
 	must(err)
 	for _, gof := range gofs {
 		must(os.Remove(gof))
@@ -130,7 +134,7 @@ func main() {
 	slog.Info("Parse generated go source")
 	fset := token.NewFileSet()
 	var root dst.Node
-	root, err = decorator.ParseFile(fset, "box2d_c.go", source, parser.ParseComments|parser.SkipObjectResolution)
+	root, err = decorator.ParseFile(fset, "box3d_c.go", source, parser.ParseComments|parser.SkipObjectResolution)
 	must(err)
 
 	slog.Info("Apply code migrations")
@@ -145,36 +149,33 @@ func main() {
 	hideConsts(root)
 	hideInternals(root.(*dst.File), api)
 	removeDeadCode(root)
+	removeSelfAssignments(root)
 	fixApiFields(root.(*dst.File))
 
 	var decls []dst.Decl
 
 	createClassTypes(&decls)
 
-	slog.Info("Generate go source for box2d api")
+	slog.Info("Generate go source for box3d api")
 	dst.Inspect(root, createWrappers(&decls, api))
-	dst.Inspect(root, exportVars(&decls, api.Exposed))
+	dst.Inspect(root, exportVars(&decls, api))
 
-	writeSource("../box2d_api.go", &dst.File{
+	writeSource("../box3d_api.go", &dst.File{
 		Name:  dst.NewIdent(PKGNAME),
 		Decls: withImport(decls, "unsafe", "runtime"),
+	})
+
+	scenes := extractScenes(root.(*dst.File))
+	writeSource("../"+sceneFile, &dst.File{
+		Name:  dst.NewIdent(PKGNAME),
+		Decls: withImport(scenes, "unsafe"),
 	})
 
 	for idx := range extracted {
 		root = dstutil.Apply(root, nil, extractInit(&extracted[idx].Decls, extracted[idx].Pattern))
 	}
 
-	// the scalar wide float math of the contact solver, simd*.go replaces it with archsimd
-	floatW := extractDecls(root, floatWDecls)
-	writeSource("../box2d_c-floatw.go", &dst.File{
-		Name:  dst.NewIdent(PKGNAME),
-		Decls: withImport(floatW, "unsafe"),
-		Decs: dst.FileDecorations{NodeDecs: dst.NodeDecs{
-			Start: dst.Decorations{"//go:build !(" + simdBuildTag + ")", "\n"},
-		}},
-	})
-
-	writeSource("../box2d_c.go", root.(*dst.File))
+	writeSource("../box3d_c.go", root.(*dst.File))
 
 	for _, ex := range extracted {
 		writeSource("../"+ex.Name, &dst.File{
@@ -223,102 +224,72 @@ type extract struct {
 var extracted = []extract{
 	{
 		Pattern: regexp.MustCompile("^init$"),
-		Name:    "box2d_c-init.go",
+		Name:    "box3d_c-init.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*BroadPhase"),
-		Name:    "box2d_c-broad.go",
+		Pattern: regexp.MustCompile("^b3[^_]*BroadPhase"),
+		Name:    "box3d_c-broad.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*World"),
-		Name:    "box2d_c-world.go",
+		Pattern: regexp.MustCompile("^b3[^_]*World"),
+		Name:    "box3d_c-world.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Body"),
-		Name:    "box2d_c-body.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Body"),
+		Name:    "box3d_c-body.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Shape"),
-		Name:    "box2d_c-shape.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Shape"),
+		Name:    "box3d_c-shape.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Joint"),
-		Name:    "box2d_c-joint.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Joint"),
+		Name:    "box3d_c-joint.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Solve"),
-		Name:    "box2d_c-solve.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Solve"),
+		Name:    "box3d_c-solve.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Sensor"),
-		Name:    "box2d_c-sensor.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Sensor"),
+		Name:    "box3d_c-sensor.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2Collide"),
-		Name:    "box2d_c-collide.go",
+		Pattern: regexp.MustCompile("^b3Collide"),
+		Name:    "box3d_c-collide.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*DynamicTree"),
-		Name:    "box2d_c-tree.go",
+		Pattern: regexp.MustCompile("^b3[^_]*DynamicTree"),
+		Name:    "box3d_c-tree.go",
 	},
 	{
-		Pattern: regexp.MustCompile("^b2[^_]*Compute"),
-		Name:    "box2d_c-compute.go",
+		Pattern: regexp.MustCompile("^b3[^_]*Compute"),
+		Name:    "box3d_c-compute.go",
 	},
-}
-
-// simdBuildTag must match the build constraint in simd.go
-const simdBuildTag = "goexperiment.simd && go1.27 && (arm64 || (amd64 && amd64.v3) || wasm)"
-
-// floatWDecls are implemented in simd.go when building with simdBuildTag
-var floatWDecls = []string{
-	"b2FloatW4",
-	"b2ZeroW", "b2SplatW", "b2SetW", "b2NegW", "b2AddW", "b2SubW", "b2MulW", "b2DivW",
-	"b2MulAddW", "b2MulSubW", "b2MinW", "b2MaxW", "b2SymClampW", "b2AndW",
-	"b2GreaterThanW", "b2LessThanW", "b2AnyTrueW", "b2AllZeroW", "b2LoadU", "b2StoreW",
-	"b2BlendW", "b2UnpackLoW", "b2UnpackHiW", "b2SoftMaskW",
-	"b2GatherBodies", "b2ScatterBodies",
-}
-
-// extractDecls removes the top level functions and types with the given names from root.
-func extractDecls(root dst.Node, names []string) []dst.Decl {
-	pending := map[string]bool{}
-	for _, name := range names {
-		pending[name] = true
-	}
-
-	var decls []dst.Decl
-
-	file := root.(*dst.File)
-	file.Decls = slices.DeleteFunc(file.Decls, func(decl dst.Decl) bool {
-		var name string
-
-		switch decl := decl.(type) {
-		case *dst.FuncDecl:
-			name = decl.Name.Name
-
-		case *dst.GenDecl:
-			if decl.Tok == token.TYPE && len(decl.Specs) == 1 {
-				name = decl.Specs[0].(*dst.TypeSpec).Name.Name
-			}
-		}
-
-		if !pending[name] {
-			return false
-		}
-
-		delete(pending, name)
-		decls = append(decls, decl)
-
-		return true
-	})
-
-	// a box2d update renamed or removed something, simd.go needs an update too
-	if len(pending) > 0 {
-		panic(fmt.Sprintf("declarations not found: %v", slices.Sorted(maps.Keys(pending))))
-	}
-
-	return decls
+	{
+		Pattern: regexp.MustCompile("^b3[^_]*Hull"),
+		Name:    "box3d_c-hull.go",
+	},
+	{
+		Pattern: regexp.MustCompile("^b3[^_]*Mesh"),
+		Name:    "box3d_c-mesh.go",
+	},
+	{
+		Pattern: regexp.MustCompile("^b3[^_]*HeightField"),
+		Name:    "box3d_c-heightfield.go",
+	},
+	{
+		Pattern: regexp.MustCompile("^b3[^_]*Compound"),
+		Name:    "box3d_c-compound.go",
+	},
+	{
+		Pattern: regexp.MustCompile("^b3[^_]*Manifold"),
+		Name:    "box3d_c-manifold.go",
+	},
+	{
+		Pattern: regexp.MustCompile("^b3(Rec|Replay|Snap|World_Snap)"),
+		Name:    "box3d_c-recording.go",
+	},
 }
 
 func withImport(decls []dst.Decl, imports ...string) []dst.Decl {
@@ -433,13 +404,13 @@ func renameApiTypes(api map[string]bool) Visitor {
 	}
 }
 
-// readTypedefAliases finds typedefs of other box2d types, like typedef b2Vec2 b2Pos.
+// readTypedefAliases finds typedefs of other box3d types, like typedef b3Vec2 b3Pos.
 // ccgo emits them as separate struct types, but they must stay assignable to each other.
 func readTypedefAliases(api API) map[string]string {
-	files, err := filepath.Glob("../box2d-c/src/*.h")
+	files, err := filepath.Glob("../box3d-c/src/*.h")
 	must(err)
 
-	headers, err := filepath.Glob("../box2d-c/include/box2d/*.h")
+	headers, err := filepath.Glob("../box3d-c/include/box3d/*.h")
 	must(err)
 
 	goName := func(name string) string {
@@ -450,7 +421,8 @@ func readTypedefAliases(api API) map[string]string {
 		return name
 	}
 
-	reTypedef := regexp.MustCompile(`(?m)^typedef (b2[A-Za-z0-9_]+) (b2[A-Za-z0-9_]+);`)
+	reTypedef := regexp.MustCompile(`(?m)^typedef (b3[A-Za-z0-9_]+) (b3[A-Za-z0-9_]+);`)
+	reWideTypedef := regexp.MustCompile(`(?m)^typedef B3_WIDE\( (b3[A-Za-z0-9_]+) \) (b3[A-Za-z0-9_]+);`)
 
 	aliases := map[string]string{}
 	for _, file := range append(files, headers...) {
@@ -459,6 +431,11 @@ func readTypedefAliases(api API) map[string]string {
 
 		for _, match := range reTypedef.FindAllStringSubmatch(string(src), -1) {
 			aliases[goName(match[2])] = goName(match[1])
+		}
+
+		// the scalar build has a SIMD width of 4
+		for _, match := range reWideTypedef.FindAllStringSubmatch(string(src), -1) {
+			aliases[goName(match[2])] = goName(match[1] + "W4")
 		}
 	}
 
@@ -498,16 +475,16 @@ func renameTLSType() Visitor {
 	}
 }
 
-func exportVars(decls *[]dst.Decl, api map[string]bool) Visitor {
+func exportVars(decls *[]dst.Decl, api API) Visitor {
 	return func(node dst.Node) bool {
 		if co, ok := node.(*dst.GenDecl); ok && (co.Tok == token.CONST || co.Tok == token.VAR) {
 			for _, spec := range co.Specs {
 				if dec, ok := spec.(*dst.ValueSpec); ok {
 					ident := dec.Names[0]
 
-					if api[ident.Name] {
-						if !strings.HasPrefix(ident.Name, "b2_") {
-							panic("expected ident to have b2_ prefix, got " + ident.Name)
+					if api.Exposed[ident.Name] {
+						if !strings.HasPrefix(ident.Name, "b3_") {
+							panic("expected ident to have b3_ prefix, got " + ident.Name)
 						}
 
 						name := ident.Name[3:]
@@ -517,27 +494,13 @@ func exportVars(decls *[]dst.Decl, api map[string]bool) Visitor {
 							continue
 						}
 
-						var ty dst.Expr
+						enum, ok := api.EnumTypes[ident.Name]
+						if !ok {
+							panic("unknown enum type for " + ident.Name)
+						}
 
-						switch {
-						case strings.HasPrefix(name, "Color"):
-							ty = dst.NewIdent("HexColor")
-
-						case strings.HasSuffix(name, "Joint"):
-							ty = dst.NewIdent("JointType")
+						if enum == "b3JointType" {
 							name = "JointType" + strings.TrimSuffix(name, "Joint")
-
-						case strings.HasSuffix(name, "Body"):
-							ty = dst.NewIdent("BodyType")
-
-						case strings.HasSuffix(name, "Shape"):
-							ty = dst.NewIdent("ShapeType")
-
-						case strings.HasPrefix(name, "ToiState"):
-							ty = dst.NewIdent("TOIState")
-
-						default:
-							panic("unknown enum type for " + name)
 						}
 
 						*decls = append(*decls, &dst.GenDecl{
@@ -546,7 +509,7 @@ func exportVars(decls *[]dst.Decl, api map[string]bool) Visitor {
 								&dst.ValueSpec{
 									Names:  []*dst.Ident{dst.NewIdent(name)},
 									Values: []dst.Expr{dst.NewIdent(ident.Name)},
-									Type:   ty,
+									Type:   dst.NewIdent(strings.TrimPrefix(enum, "b3")),
 								},
 							},
 						})
@@ -600,7 +563,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 		}
 
 		// a function taking an id becomes a method, preferably of the type with the matching
-		// prefix: b2RevoluteJoint_GetAngle(jointId) is RevoluteJoint.GetAngle, not Joint.RevoluteJoint_GetAngle
+		// prefix: b3RevoluteJoint_GetAngle(jointId) is RevoluteJoint.GetAngle, not Joint.RevoluteJoint_GetAngle
 		var classType *ClassTypes
 
 		if decl.Type.Params != nil && len(decl.Type.Params.List) >= 2 {
@@ -630,18 +593,24 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 		var body []dst.Stmt
 
 		var paramTypes []*dst.Field
+		paramIdx := -1
 		for _, param := range decl.Type.Params.List[1:] {
 			for _, name := range param.Names {
+				paramIdx++
+
 				var arg dst.Expr = dst.NewIdent(name.Name)
 				name = dst.NewIdent(name.Name)
 
 				paramType := renameApiIdent(param, api.ExposedTypes)
 
-				if isUintptr(param.Type) && api.PointerTypes[decl.Name.Name][name.Name].IsValid() {
-					actualType := api.PointerTypes[decl.Name.Name][name.Name]
+				if isUintptr(param.Type) && api.PointerTypes[decl.Name.Name][paramIdx].IsValid() {
+					actualType := api.PointerTypes[decl.Name.Name][paramIdx]
 
-					if actualType.Const {
+					if actualType.Const && !byReference[actualType.CType] {
 						paramType = dst.NewIdent(actualType.GoType(&api))
+
+						// the copy on the stack is invisible to the GC, keep the Go pointers of the value alive
+						body = append([]dst.Stmt{keepAlive(name.Name)}, body...)
 
 						stackName := name.Name + "Stack"
 						body = append(body,
@@ -685,17 +654,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 						})
 
 						// prepend defer
-						body = append([]dst.Stmt{
-							&dst.DeferStmt{
-								Call: &dst.CallExpr{
-									Fun: &dst.SelectorExpr{
-										X:   dst.NewIdent("runtime"),
-										Sel: dst.NewIdent("KeepAlive"),
-									},
-									Args: []dst.Expr{dst.NewIdent(name.Name)},
-								},
-							},
-						}, body...)
+						body = append([]dst.Stmt{keepAlive(name.Name)}, body...)
 
 						arg = &dst.CallExpr{
 							Fun: dst.NewIdent("uintptr"),
@@ -711,9 +670,29 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 							},
 						}
 					}
+				} else if ty := api.PointerTypes[decl.Name.Name][paramIdx]; isUintptr(param.Type) && ty.CType == "char" && ty.Const {
+					// box3d copies strings
+					paramType = dst.NewIdent("string")
+
+					stackName := name.Name + "Stack"
+					body = append(body,
+						&dst.AssignStmt{
+							Tok: token.DEFINE,
+							Lhs: []dst.Expr{dst.NewIdent(stackName)},
+							Rhs: []dst.Expr{&dst.CallExpr{
+								Fun:  &dst.SelectorExpr{X: dst.NewIdent("theStack"), Sel: dst.NewIdent("toCString")},
+								Args: []dst.Expr{dst.NewIdent(name.Name)},
+							}},
+						},
+						&dst.DeferStmt{Call: &dst.CallExpr{
+							Fun: &dst.SelectorExpr{X: dst.NewIdent(stackName), Sel: dst.NewIdent("Free")},
+						}},
+					)
+
+					arg = &dst.SelectorExpr{X: dst.NewIdent(stackName), Sel: dst.NewIdent("Addr")}
 				} else if isUintptr(param.Type) {
-					// box2d never reads user data, it is an opaque number in Go
-					if api.PointerTypes[decl.Name.Name][name.Name].CType != "void" || name.Name != "userData" {
+					// box3d never reads user data, it is an opaque number in Go
+					if api.PointerTypes[decl.Name.Name][paramIdx].CType != "void" || name.Name != "userData" {
 						panic(fmt.Sprintf("%s: parameter %s must not be a uintptr in the Go API", decl.Name.Name, name.Name))
 					}
 
@@ -751,7 +730,21 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 			for _, param := range decl.Type.Results.List {
 				ty := renameApiIdent(param, api.ExposedTypes)
 
-				if isUintptr(ty) {
+				if resultType := api.ResultTypes[decl.Name.Name]; isUintptr(ty) && byReference[resultType] {
+					// box3d owns the memory, it stays valid until it is destroyed
+					goType := strings.TrimPrefix(resultType, "b3")
+					ty = &dst.StarExpr{X: dst.NewIdent(goType)}
+					result = &dst.CallExpr{
+						Fun: &dst.ParenExpr{X: &dst.StarExpr{X: dst.NewIdent(goType)}},
+						Args: []dst.Expr{&dst.CallExpr{
+							Fun:  &dst.SelectorExpr{X: dst.NewIdent("unsafe"), Sel: dst.NewIdent("Pointer")},
+							Args: []dst.Expr{call},
+						}},
+					}
+				} else if isUintptr(ty) && resultType == "char" {
+					ty = dst.NewIdent("string")
+					result = &dst.CallExpr{Fun: dst.NewIdent("toString"), Args: []dst.Expr{call}}
+				} else if isUintptr(ty) {
 					if !strings.HasSuffix(decl.Name.Name, "_GetUserData") {
 						panic(fmt.Sprintf("%s: result must not be a uintptr in the Go API", decl.Name.Name))
 					}
@@ -765,8 +758,8 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 					ty = dst.NewIdent(wrapTy.Name)
 				}
 
-				if identOf(ty) == "Joint" && strings.HasPrefix(decl.Name.Name, "b2Create") {
-					jointType := strings.TrimPrefix(decl.Name.Name, "b2Create")
+				if identOf(ty) == "Joint" && strings.HasPrefix(decl.Name.Name, "b3Create") {
+					jointType := strings.TrimPrefix(decl.Name.Name, "b3Create")
 					ty = dst.NewIdent(jointType)
 				}
 
@@ -816,7 +809,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 			}
 
 			name := strings.TrimPrefix(decl.Name.Name, classType.FnPrefix)
-			name = strings.TrimPrefix(name, "b2")
+			name = strings.TrimPrefix(name, "b3")
 
 			fdecl = &dst.FuncDecl{
 				Name: dst.NewIdent(name),
@@ -840,7 +833,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 
 			// normal method
 			fdecl = &dst.FuncDecl{
-				Name: dst.NewIdent(strings.ReplaceAll(decl.Name.Name[2:], "_", "")),
+				Name: dst.NewIdent(strings.ReplaceAll(strings.TrimPrefix(decl.Name.Name, inlinePrefix)[2:], "_", "")),
 				Type: &dst.FuncType{
 					TypeParams: decl.Type.TypeParams,
 					Params:     &dst.FieldList{List: paramTypes},
@@ -853,6 +846,24 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 		*decls = append(*decls, fdecl)
 
 		return true
+	}
+}
+
+// byReference are the types of data that box3d allocates. They have a header that is followed by
+// arrays, so the Go API passes them by pointer instead of copying them.
+var byReference = map[string]bool{
+	"b3HullData":        true,
+	"b3MeshData":        true,
+	"b3HeightFieldData": true,
+	"b3CompoundData":    true,
+}
+
+func keepAlive(name string) dst.Stmt {
+	return &dst.DeferStmt{
+		Call: &dst.CallExpr{
+			Fun:  &dst.SelectorExpr{X: dst.NewIdent("runtime"), Sel: dst.NewIdent("KeepAlive")},
+			Args: []dst.Expr{dst.NewIdent(name)},
+		},
 	}
 }
 
@@ -949,7 +960,7 @@ func (p ParamType) GoType(api *API) string {
 }
 
 func (p ParamType) IsValid() bool {
-	return strings.HasPrefix(p.CType, "b2")
+	return strings.HasPrefix(p.CType, "b3")
 }
 
 type API struct {
@@ -957,14 +968,20 @@ type API struct {
 	ExposedTypes map[string]bool
 
 	// function to param name to type
-	PointerTypes map[string]map[string]ParamType
+	PointerTypes map[string]map[int]ParamType
+
+	// enum value to the C name of its type
+	EnumTypes map[string]string
+
+	// function to the C type of its pointer result
+	ResultTypes map[string]string
 }
 
-func (a *API) addPointerType(fn, param string, ty ParamType) {
+func (a *API) addPointerType(fn string, param int, ty ParamType) {
 	fnt := a.PointerTypes[fn]
 
 	if fnt == nil {
-		fnt = map[string]ParamType{}
+		fnt = map[int]ParamType{}
 		a.PointerTypes[fn] = fnt
 	}
 
@@ -976,14 +993,18 @@ func readAPI() API {
 
 	api.Exposed = map[string]bool{}
 	api.ExposedTypes = map[string]bool{}
-	api.PointerTypes = map[string]map[string]ParamType{}
+	api.PointerTypes = map[string]map[int]ParamType{}
+	api.EnumTypes = map[string]string{}
+	api.ResultTypes = map[string]string{}
 
-	headers, err := filepath.Glob("../box2d-c/include/box2d/*.h")
+	headers, err := filepath.Glob("../box3d-c/include/box3d/*.h")
 	must(err)
 
-	reType := regexp.MustCompile(`typedef (?:struct|enum) (b2[A-Za-z0-9_]+)`)
-	reFunc := regexp.MustCompile(`B2_API \S+ (b2[A-Za-z0-9_]+)`)
-	reEnumValues := regexp.MustCompile(`(?m)^\s*(b2_[A-Za-z0-9_]+)`)
+	reType := regexp.MustCompile(`typedef (?:struct|enum) (b3[A-Za-z0-9_]+)`)
+	reFunc := regexp.MustCompile(`B3_API (?:const )?\S+ (b3[A-Za-z0-9_]+)\(`)
+	reResult := regexp.MustCompile(`B3_API (?:const )?([A-Za-z0-9_]+)\* (b3[A-Za-z0-9_]+)`)
+	reEnumValues := regexp.MustCompile(`(?m)^\s*(b3_[A-Za-z0-9_]+)`)
+	reEnum := regexp.MustCompile(`(?s)typedef enum(?: b3[A-Za-z0-9_]+)?\s*\{(.*?)\}\s*(b3[A-Za-z0-9_]+);`)
 	rePointerTypes := regexp.MustCompile(`(const )?([A-Za-z0-9]+)\* ([A-Za-z0-9]+)`)
 
 	for _, header := range headers {
@@ -999,8 +1020,22 @@ func readAPI() API {
 			api.Exposed[match[1]] = true
 		}
 
+		for _, match := range reResult.FindAllStringSubmatch(string(src), -1) {
+			api.ResultTypes[match[2]] = match[1]
+		}
+
 		for _, match := range reEnumValues.FindAllStringSubmatch(string(src), -1) {
 			api.Exposed[match[1]] = true
+		}
+
+		for _, match := range reEnum.FindAllStringSubmatch(string(src), -1) {
+			// also exposes the types of anonymous enums, like typedef enum { ... } b3SeparatingFeature
+			api.ExposedTypes[match[2]] = true
+			api.Exposed[match[2]] = true
+
+			for _, value := range reEnumValues.FindAllStringSubmatch(match[1], -1) {
+				api.EnumTypes[value[1]] = match[2]
+			}
 		}
 
 		// a declaration may span multiple lines, up to the semicolon
@@ -1010,81 +1045,112 @@ func readAPI() API {
 			decl := string(src[loc[0]:])
 			decl = decl[:strings.IndexByte(decl, ';')]
 
-			for _, match := range rePointerTypes.FindAllStringSubmatch(decl, -1) {
-				co, ty, param := match[1], match[2], match[3]
-				api.addPointerType(fn, param, ParamType{
-					CType: ty,
-					Const: co != "",
+			// by position, the C sources may name the parameters differently
+			params := decl[strings.IndexByte(decl, '(')+1 : strings.LastIndexByte(decl, ')')]
+			for idx, param := range strings.Split(params, ",") {
+				match := rePointerTypes.FindStringSubmatch(param)
+				if match == nil {
+					continue
+				}
+
+				api.addPointerType(fn, idx, ParamType{
+					CType: match[2],
+					Const: match[1] != "",
 				})
 			}
 		}
 	}
 
-	api.Exposed["b2InternalAssert"] = false
+	for _, fn := range readInlineFuncs() {
+		api.Exposed[inlinePrefix+fn.Name] = !fn.HasPointer
+	}
 
-	api.Exposed["b2SetAssertCallback"] = false
-	api.Exposed["b2SetLogCallback"] = false
-	api.Exposed["b2SetAllocator"] = false
+	for _, name := range []string{
+		"b3InternalAssert",
+		"b3SetAssertFcn",
+		"b3SetLogFcn",
+		"b3SetAllocator",
 
-	api.Exposed["b2Body_SetName"] = false
-	api.Exposed["b2Body_GetName"] = false
+		// these take pointers to arrays or write through pointers, wrapped by hand in box3d.go
+		"b3Body_GetJoints",
+		"b3Body_GetShapes",
+		"b3Body_GetContactData",
+		"b3Body_GetClosestPoint",
+		"b3Body_CollideMover",
+		"b3Shape_GetSensorData",
+		"b3Shape_GetContactData",
+		"b3SolvePlanes",
+		"b3ClipVector",
+		"b3ShapeDistance",
+		"b3ScaleBox",
+		"b3Hull2D",
+		"b3SimplifyHull2D",
+		"b3CreateHull",
+		"b3CreateMesh",
+		"b3CreateHeightField",
+		"b3CreateCompound",
+		"b3ValidateCompound",
+		"b3GetCompoundMaterials",
+		"b3QueryCompound",
+		"b3QueryMesh",
+		"b3QueryHeightField",
+		"b3Joint_GetConstraintTuning",
+		"b3DistanceJoint_GetSpringForceRange",
 
-	api.Exposed["b2Body_GetJoints"] = false
-	api.Exposed["b2Body_GetShapes"] = false
-	api.Exposed["b2Chain_GetSegments"] = false
-	api.Exposed["b2Shape_GetSensorData"] = false
-	api.Exposed["b2Body_GetContactData"] = false
-	api.Exposed["b2Shape_GetContactData"] = false
-	api.Exposed["b2SolvePlanes"] = false
-	api.Exposed["b2ComputeShapeDistance"] = false
+		// the collision functions write a manifold of capacity points
+		"b3CollideSpheres",
+		"b3CollideCapsuleAndSphere",
+		"b3CollideHullAndSphere",
+		"b3CollideCapsules",
+		"b3CollideHullAndCapsule",
+		"b3CollideHulls",
+		"b3CollideTriangleAndCapsule",
+		"b3CollideTriangleAndHull",
+		"b3CollideTriangleAndSphere",
 
-	api.Exposed["b2World_CollideMover"] = false
-	api.Exposed["b2World_SetRestitutionCallback"] = false
-	api.Exposed["b2World_SetFrictionCallback"] = false
-	api.Exposed["b2World_OverlapAABB"] = false
-	api.Exposed["b2World_OverlapShape"] = false
-	api.Exposed["b2World_CastRay"] = false
-	api.Exposed["b2World_CastShape"] = false
-	api.Exposed["b2World_SetCustomFilterCallback"] = false
-	api.Exposed["b2World_SetPreSolveCallback"] = false
-	api.Exposed["b2World_DumpMemoryStats"] = false
+		// callbacks, wrapped by hand in box3d.go
+		"b3World_CollideMover",
+		"b3World_CastMover",
+		"b3World_SetRestitutionCallback",
+		"b3World_SetFrictionCallback",
+		"b3World_OverlapAABB",
+		"b3World_OverlapShape",
+		"b3World_CastRay",
+		"b3World_CastShape",
+		"b3World_SetCustomFilterCallback",
+		"b3World_SetPreSolveCallback",
+		"b3World_DumpMemoryStats",
 
-	// releases the callbacks of the world in box2d.go
-	api.Exposed["b2DestroyWorld"] = false
+		// sets the debug shape callbacks and releases the callbacks of the world in box3d.go
+		"b3CreateWorld",
+		"b3DestroyWorld",
 
-	api.ExposedTypes["b2DebugDraw"] = false
-	api.Exposed["b2World_Draw"] = false
-	api.Exposed["b2DefaultDebugDraw"] = false
+		"b3World_Draw",
+		"b3DefaultDebugDraw",
+		"b3World_GetBodyEvents",
+		"b3World_GetSensorEvents",
+		"b3World_GetContactEvents",
+		"b3World_GetJointEvents",
 
-	api.ExposedTypes["b2BodyEvents"] = false
-	api.Exposed["b2World_GetBodyEvents"] = false
+		// file access and debugging helpers
+		"b3GetMillisecondsAndReset",
+		"b3Hash",
+		"b3DumpHeightData",
+		"b3LoadHeightField",
+	} {
+		if _, ok := api.Exposed[name]; !ok {
+			panic("excluded function not found: " + name)
+		}
 
-	api.ExposedTypes["b2SensorEvents"] = false
-	api.Exposed["b2World_GetSensorEvents"] = false
+		api.Exposed[name] = false
+	}
 
-	api.ExposedTypes["b2ContactEvents"] = false
-	api.Exposed["b2World_GetContactEvents"] = false
+	for _, name := range []string{"b3DebugDraw", "b3DebugShape", "b3BodyEvents", "b3SensorEvents", "b3ContactEvents", "b3JointEvents"} {
+		api.ExposedTypes[name] = false
+	}
 
-	api.ExposedTypes["b2JointEvents"] = false
-	api.Exposed["b2World_GetJointEvents"] = false
-
-	api.Exposed["b2Joint_GetConstraintTuning"] = false
-	api.Exposed["b2DistanceJoint_GetSpringForceRange"] = false
-	api.Exposed["b2World_GetContactTuning"] = false
-
-	// we do not really need those, do we?
-	api.Exposed["b2GetMillisecondsAndReset"] = false
-	api.Exposed["b2Hash"] = false
-
-	// these take a pointer to an array, wrapped by hand to accept a slice
-	api.Exposed["b2ComputeHull"] = false
-	api.Exposed["b2CreateChain"] = false
-	api.Exposed["b2MakeProxy"] = false
-	api.Exposed["b2MakeOffsetProxy"] = false
-	api.Exposed["b2ClipVector"] = false
-
-	// recording, replay and snapshots are experimental and work on raw memory and files
-	reExcluded := regexp.MustCompile(`DynamicTree|TreeProxy|Recording|Replay|replay|Snapshot`)
+	// recording, replay, snapshots and the dynamic tree work on raw memory and files
+	reExcluded := regexp.MustCompile(`DynamicTree|TreeProxy|TreeNode|Recording|Replay|replay|Snapshot|Player|RecQuery|b3_recQuery`)
 	for key := range api.Exposed {
 		if reExcluded.MatchString(key) {
 			api.Exposed[key] = false
@@ -1118,12 +1184,12 @@ func forwardDefaultAssertFcnToGo() dstutil.ApplyFunc {
 			return true
 		}
 
-		if fn.Name.Name == "b2DefaultAssertFcn" {
+		if fn.Name.Name == "b3DefaultAssertFcn" {
 			fn.Body.List = []dst.Stmt{
 				&dst.ReturnStmt{
 					Results: []dst.Expr{
 						&dst.CallExpr{
-							Fun: dst.NewIdent("b2DefaultAssertFcnGo"),
+							Fun: dst.NewIdent("b3DefaultAssertFcnGo"),
 							Args: []dst.Expr{
 								dst.NewIdent("tls"),
 								dst.NewIdent("condition"),
@@ -1158,90 +1224,20 @@ type ClassTypes struct {
 }
 
 var classTypes = []ClassTypes{
-	{
-		Name:     "Body",
-		IdType:   "BodyId",
-		FnPrefix: "b2Body_",
-	},
-	{
-		Name:     "Shape",
-		IdType:   "ShapeId",
-		FnPrefix: "b2Shape_",
-	},
-	{
-		Name:     "World",
-		IdType:   "WorldId",
-		FnPrefix: "b2World_",
-	},
-	{
-		Name:     "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2Joint_",
-	},
-	{
-		Name:     "Chain",
-		IdType:   "ChainId",
-		FnPrefix: "b2Chain_",
-	},
-	{
-		Name:     "Contact",
-		IdType:   "ContactId",
-		FnPrefix: "b2Contact_",
-	},
-	{
-		Name:     "PrismaticJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2PrismaticJoint_",
-	},
-	{
-		Name:     "MotorJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2MotorJoint_",
-	},
-	{
-		Name:     "RevoluteJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2RevoluteJoint_",
-	},
-	{
-		Name:     "DistanceJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2DistanceJoint_",
-	},
-	{
-		Name:     "WheelJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2WheelJoint_",
-	},
-	{
-		Name:     "WeldJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2WeldJoint_",
-	},
-	{
-		Name:     "MoverJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2MoverJoint_",
-	},
-	{
-		Name:     "PogoJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2PogoJoint_",
-	},
-	{
-		Name:     "FilterJoint",
-		Extends:  "Joint",
-		IdType:   "JointId",
-		FnPrefix: "b2FilterJoint_",
-	},
+	{Name: "Body", IdType: "BodyId", FnPrefix: "b3Body_"},
+	{Name: "Shape", IdType: "ShapeId", FnPrefix: "b3Shape_"},
+	{Name: "World", IdType: "WorldId", FnPrefix: "b3World_"},
+	{Name: "Joint", IdType: "JointId", FnPrefix: "b3Joint_"},
+	{Name: "Contact", IdType: "ContactId", FnPrefix: "b3Contact_"},
+	{Name: "ParallelJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3ParallelJoint_"},
+	{Name: "DistanceJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3DistanceJoint_"},
+	{Name: "FilterJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3FilterJoint_"},
+	{Name: "MotorJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3MotorJoint_"},
+	{Name: "PrismaticJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3PrismaticJoint_"},
+	{Name: "RevoluteJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3RevoluteJoint_"},
+	{Name: "SphericalJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3SphericalJoint_"},
+	{Name: "WeldJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3WeldJoint_"},
+	{Name: "WheelJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3WheelJoint_"},
 }
 
 func getClassTypeById(idType string) *ClassTypes {

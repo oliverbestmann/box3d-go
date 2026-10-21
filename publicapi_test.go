@@ -1,4 +1,4 @@
-package b2
+package b3
 
 import (
 	"go/ast"
@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// A uintptr in the public API lets users hand Go memory to box2d, which is easy to get wrong.
+// A uintptr in the public API lets users hand Go memory to box3d, which is easy to get wrong.
 // The generator unexports or retypes such fields, see transpile/publicapi.go.
 func TestPublicAPIHasNoUintptr(t *testing.T) {
 	names, err := filepath.Glob("*.go")

@@ -2,7 +2,8 @@
 
 set -e -u -o pipefail
 
-rm -rf box2d-c
-git clone --rev v3.2.0 https://github.com/erincatto/box2d.git box2d-c
+rm -rf box3d-c
+git clone https://github.com/erincatto/box3d.git box3d-c
+git -C box3d-c checkout -q f36d061
 
-git -C box2d-c apply < box2d-3.2.0.patch
+git -C box3d-c apply < box3d.patch
