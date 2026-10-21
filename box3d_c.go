@@ -59173,6 +59173,28 @@ _4:
 	return v3
 }
 
+func b3go_inline_b3Normalize(tls *_Stack, a1 Vec3) (r Vec3) {
+	var lengthSquared, s float32
+	var u, v1, v2 Vec3
+	_, _, _, _, _ = lengthSquared, s, u, v1, v2
+	v1 = a1
+	lengthSquared = float32(v1.X*v1.X) + float32(v1.Y*v1.Y) + float32(v1.Z*v1.Z)
+	if lengthSquared > float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)) {
+		s = float32FromFloat32(1) / sqrtf(tls, lengthSquared)
+		u = Vec3{
+			X: float32(s * v1.X),
+			Y: float32(s * v1.Y),
+			Z: float32(s * v1.Z),
+		}
+		v2 = u
+		goto _3
+	}
+	v2 = Vec3{}
+	goto _3
+_3:
+	return v2
+}
+
 func b3go_inline_b3GetLengthAndNormalize(tls *_Stack, length1 uintptr, a1 Vec3) (r Vec3) {
 	var lengthSquared, s float32
 	var u, v2, v3 Vec3
@@ -60127,6 +60149,25 @@ _5:
 	return v4
 }
 
+func b3go_inline_b3GetSwingAngle(tls *_Stack, q1 Quat) (r float32) {
+	var swing, x, y, v3 float32
+	var v1 Quat
+	var v2 bool
+	_, _, _, _, _, _ = swing, x, y, v1, v2, v3
+	v1 = q1
+	x = sqrtf(tls, float32(v1.V.Z*v1.V.Z)+float32(v1.S*v1.S))
+	y = sqrtf(tls, float32(v1.V.X*v1.V.X)+float32(v1.V.Y*v1.V.Y))
+	swing = float32(float32FromFloat32(2) * b3Atan2(tls, y, x))
+	if v2 = !!(float32FromFloat32(0) <= swing && swing <= float32FromFloat32(3.14159265359)); !v2 {
+		b3InternalAssert(tls, __ccgo_ts+20740, __ccgo_ts+6355, int32FromInt32(572))
+	}
+	_ = v2 || bool(int32FromInt32(0) != 0)
+	v3 = swing
+	goto _4
+_4:
+	return v3
+}
+
 func b3go_inline_b3NLerp(tls *_Stack, q12 Quat, q21 Quat, alpha2 float32) (r Quat) {
 	var c, v12, v8, v9 Vec3
 	var lengthSq, s, v10, v19, v3, v6 float32
@@ -60311,6 +60352,120 @@ _52:
 	return v51
 }
 
+func b3go_inline_b3InvMulTransforms(tls *_Stack, a6 Transform, b6 Transform) (r Transform) {
+	var c, t1, t11, t2, t21, t3, t31, v10, v11, v13, v15, v16, v18, v19, v20, v22, v24, v26, v27, v3, v31, v32, v33, v35, v37, v38, v4, v40, v42, v43, v45, v46, v5, v8, v9 Vec3
+	var out, v1, v2, v51 Transform
+	var q1, v29, v30, v49, v7 Quat
+	var v14, v25, v36, v41, v47 float32
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, out, q1, t1, t11, t2, t21, t3, t31, v1, v10, v11, v13, v14, v15, v16, v18, v19, v2, v20, v22, v24, v25, v26, v27, v29, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v49, v5, v51, v7, v8, v9
+	v1 = a6
+	v2 = b6
+	v3 = v2.P
+	v4 = v1.P
+	v5 = Vec3{
+		X: v3.X - v4.X,
+		Y: v3.Y - v4.Y,
+		Z: v3.Z - v4.Z,
+	}
+	goto _6
+_6:
+	v7 = v1.Q
+	v8 = v5
+	v9 = v7.V
+	v10 = v8
+	c.X = float32(v9.Y*v10.Z) - float32(v9.Z*v10.Y)
+	c.Y = float32(v9.Z*v10.X) - float32(v9.X*v10.Z)
+	c.Z = float32(v9.X*v10.Y) - float32(v9.Y*v10.X)
+	v11 = c
+	goto _12
+_12:
+	t1 = v11
+	v13 = t1
+	v14 = v7.S
+	v15 = v8
+	v16 = Vec3{
+		X: v13.X - float32(v14*v15.X),
+		Y: v13.Y - float32(v14*v15.Y),
+		Z: v13.Z - float32(v14*v15.Z),
+	}
+	goto _17
+_17:
+	t2 = v16
+	v18 = v7.V
+	v19 = t2
+	c.X = float32(v18.Y*v19.Z) - float32(v18.Z*v19.Y)
+	c.Y = float32(v18.Z*v19.X) - float32(v18.X*v19.Z)
+	c.Z = float32(v18.X*v19.Y) - float32(v18.Y*v19.X)
+	v20 = c
+	goto _21
+_21:
+	t3 = v20
+	v24 = v8
+	v25 = float32FromFloat32(2)
+	v26 = t3
+	v27 = Vec3{
+		X: v24.X + float32(v25*v26.X),
+		Y: v24.Y + float32(v25*v26.Y),
+		Z: v24.Z + float32(v25*v26.Z),
+	}
+	goto _28
+_28:
+	v22 = v27
+	goto _23
+_23:
+	out.P = v22
+	v29 = v1.Q
+	v30 = v2.Q
+	v31 = v30.V
+	v32 = v29.V
+	c.X = float32(v31.Y*v32.Z) - float32(v31.Z*v32.Y)
+	c.Y = float32(v31.Z*v32.X) - float32(v31.X*v32.Z)
+	c.Z = float32(v31.X*v32.Y) - float32(v31.Y*v32.X)
+	v33 = c
+	goto _34
+_34:
+	t11 = v33
+	v35 = t11
+	v36 = v29.S
+	v37 = v30.V
+	v38 = Vec3{
+		X: v35.X + float32(v36*v37.X),
+		Y: v35.Y + float32(v36*v37.Y),
+		Z: v35.Z + float32(v36*v37.Z),
+	}
+	goto _39
+_39:
+	t21 = v38
+	v40 = t21
+	v41 = v30.S
+	v42 = v29.V
+	v43 = Vec3{
+		X: v40.X - float32(v41*v42.X),
+		Y: v40.Y - float32(v41*v42.Y),
+		Z: v40.Z - float32(v41*v42.Z),
+	}
+	goto _44
+_44:
+	t31 = v43
+	v45 = v29.V
+	v46 = v30.V
+	v47 = float32(v45.X*v46.X) + float32(v45.Y*v46.Y) + float32(v45.Z*v46.Z)
+	goto _48
+_48:
+	q1 = Quat{
+		V: t31,
+		S: float32(v29.S*v30.S) + v47,
+	}
+	v49 = q1
+	goto _50
+_50:
+	out.Q = v49
+	v51 = out
+	goto _52
+_52:
+	return v51
+}
+
 func b3go_inline_b3InvertTransform(tls *_Stack, t1 Transform) (r Transform) {
 	var c, t11, t2, t3, v11, v13, v14, v16, v17, v18, v2, v20, v22, v24, v25, v3, v6, v7, v8, v9 Vec3
 	var out, v1, v30 Transform
@@ -60387,6 +60542,73 @@ _29:
 	goto _31
 _31:
 	return v30
+}
+
+func b3go_inline_b3TransformPoint(tls *_Stack, t1 Transform, v2 Vec3) (r Vec3) {
+	var c, rv, t11, t2, t3, v10, v11, v13, v14, v15, v17, v19, v211, v22, v24, v26, v27, v28, v3, v4, v5, v6, v8 Vec3
+	var v1 Transform
+	var v21 Quat
+	var v20, v9 float32
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, rv, t11, t2, t3, v1, v10, v11, v13, v14, v15, v17, v19, v21, v20, v211, v22, v24, v26, v27, v28, v3, v4, v5, v6, v8, v9
+	v1 = t1
+	v21 = v1.Q
+	v3 = v2
+	v4 = v21.V
+	v5 = v3
+	c.X = float32(v4.Y*v5.Z) - float32(v4.Z*v5.Y)
+	c.Y = float32(v4.Z*v5.X) - float32(v4.X*v5.Z)
+	c.Z = float32(v4.X*v5.Y) - float32(v4.Y*v5.X)
+	v6 = c
+	goto _7
+_7:
+	t11 = v6
+	v8 = t11
+	v9 = v21.S
+	v10 = v3
+	v11 = Vec3{
+		X: v8.X + float32(v9*v10.X),
+		Y: v8.Y + float32(v9*v10.Y),
+		Z: v8.Z + float32(v9*v10.Z),
+	}
+	goto _12
+_12:
+	t2 = v11
+	v13 = v21.V
+	v14 = t2
+	c.X = float32(v13.Y*v14.Z) - float32(v13.Z*v14.Y)
+	c.Y = float32(v13.Z*v14.X) - float32(v13.X*v14.Z)
+	c.Z = float32(v13.X*v14.Y) - float32(v13.Y*v14.X)
+	v15 = c
+	goto _16
+_16:
+	t3 = v15
+	v19 = v3
+	v20 = float32FromFloat32(2)
+	v211 = t3
+	v22 = Vec3{
+		X: v19.X + float32(v20*v211.X),
+		Y: v19.Y + float32(v20*v211.Y),
+		Z: v19.Z + float32(v20*v211.Z),
+	}
+	goto _23
+_23:
+	v17 = v22
+	goto _18
+_18:
+	rv = v17
+	v26 = rv
+	v27 = v1.P
+	v28 = Vec3{
+		X: v26.X + v27.X,
+		Y: v26.Y + v27.Y,
+		Z: v26.Z + v27.Z,
+	}
+	goto _29
+_29:
+	v24 = v28
+	goto _25
+_25:
+	return v24
 }
 
 func b3go_inline_b3InvTransformPoint(tls *_Stack, t1 Transform, v2 Vec3) (r Vec3) {
@@ -60677,6 +60899,228 @@ _21:
 	goto _4
 _4:
 	return v3
+}
+
+func b3go_inline_b3MulWorldTransforms(tls *_Stack, A1 WorldTransform, B1 Transform) (r1 WorldTransform) {
+	var C, v1, v47 WorldTransform
+	var c, r, t1, t11, t2, t21, t3, t31, v11, v12, v14, v16, v17, v19, v20, v26, v27, v28, v29, v31, v33, v34, v36, v37, v38, v40, v42, v44, v45, v5, v6, v7, v9 Vec3
+	var q1, v23, v25, v3, v4 Quat
+	var v10, v15, v21, v32, v43 float32
+	var v2 Transform
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, c, q1, r, t1, t11, t2, t21, t3, t31, v1, v10, v11, v12, v14, v15, v16, v17, v19, v2, v20, v21, v23, v25, v26, v27, v28, v29, v3, v31, v32, v33, v34, v36, v37, v38, v4, v40, v42, v43, v44, v45, v47, v5, v6, v7, v9
+	v1 = A1
+	v2 = B1
+	v3 = v1.Q
+	v4 = v2.Q
+	v5 = v3.V
+	v6 = v4.V
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _8
+_8:
+	t11 = v7
+	v9 = t11
+	v10 = v3.S
+	v11 = v4.V
+	v12 = Vec3{
+		X: v9.X + float32(v10*v11.X),
+		Y: v9.Y + float32(v10*v11.Y),
+		Z: v9.Z + float32(v10*v11.Z),
+	}
+	goto _13
+_13:
+	t21 = v12
+	v14 = t21
+	v15 = v4.S
+	v16 = v3.V
+	v17 = Vec3{
+		X: v14.X + float32(v15*v16.X),
+		Y: v14.Y + float32(v15*v16.Y),
+		Z: v14.Z + float32(v15*v16.Z),
+	}
+	goto _18
+_18:
+	t31 = v17
+	v19 = v3.V
+	v20 = v4.V
+	v21 = float32(v19.X*v20.X) + float32(v19.Y*v20.Y) + float32(v19.Z*v20.Z)
+	goto _22
+_22:
+	q1 = Quat{
+		V: t31,
+		S: float32(v3.S*v4.S) - v21,
+	}
+	v23 = q1
+	goto _24
+_24:
+	C.Q = v23
+	v25 = v1.Q
+	v26 = v2.P
+	v27 = v25.V
+	v28 = v26
+	c.X = float32(v27.Y*v28.Z) - float32(v27.Z*v28.Y)
+	c.Y = float32(v27.Z*v28.X) - float32(v27.X*v28.Z)
+	c.Z = float32(v27.X*v28.Y) - float32(v27.Y*v28.X)
+	v29 = c
+	goto _30
+_30:
+	t1 = v29
+	v31 = t1
+	v32 = v25.S
+	v33 = v26
+	v34 = Vec3{
+		X: v31.X + float32(v32*v33.X),
+		Y: v31.Y + float32(v32*v33.Y),
+		Z: v31.Z + float32(v32*v33.Z),
+	}
+	goto _35
+_35:
+	t2 = v34
+	v36 = v25.V
+	v37 = t2
+	c.X = float32(v36.Y*v37.Z) - float32(v36.Z*v37.Y)
+	c.Y = float32(v36.Z*v37.X) - float32(v36.X*v37.Z)
+	c.Z = float32(v36.X*v37.Y) - float32(v36.Y*v37.X)
+	v38 = c
+	goto _39
+_39:
+	t3 = v38
+	v42 = v26
+	v43 = float32FromFloat32(2)
+	v44 = t3
+	v45 = Vec3{
+		X: v42.X + float32(v43*v44.X),
+		Y: v42.Y + float32(v43*v44.Y),
+		Z: v42.Z + float32(v43*v44.Z),
+	}
+	goto _46
+_46:
+	v40 = v45
+	goto _41
+_41:
+	r = v40
+	C.P = Pos{
+		X: v1.P.X + r.X,
+		Y: v1.P.Y + r.Y,
+		Z: v1.P.Z + r.Z,
+	}
+	v47 = C
+	goto _48
+_48:
+	return v47
+}
+
+func b3go_inline_b3InvMulWorldTransforms(tls *_Stack, A1 WorldTransform, B1 WorldTransform) (r Transform) {
+	var C, v47 Transform
+	var c, d, t1, t11, t2, t21, t3, t31, v11, v12, v14, v16, v17, v19, v20, v26, v27, v28, v29, v31, v33, v34, v36, v37, v38, v40, v42, v44, v45, v5, v6, v7, v9 Vec3
+	var q1, v23, v25, v3, v4 Quat
+	var v1, v2 WorldTransform
+	var v10, v15, v21, v32, v43 float32
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, c, d, q1, t1, t11, t2, t21, t3, t31, v1, v10, v11, v12, v14, v15, v16, v17, v19, v2, v20, v21, v23, v25, v26, v27, v28, v29, v3, v31, v32, v33, v34, v36, v37, v38, v4, v40, v42, v43, v44, v45, v47, v5, v6, v7, v9
+	v1 = A1
+	v2 = B1
+	v3 = v1.Q
+	v4 = v2.Q
+	v5 = v4.V
+	v6 = v3.V
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _8
+_8:
+	t11 = v7
+	v9 = t11
+	v10 = v3.S
+	v11 = v4.V
+	v12 = Vec3{
+		X: v9.X + float32(v10*v11.X),
+		Y: v9.Y + float32(v10*v11.Y),
+		Z: v9.Z + float32(v10*v11.Z),
+	}
+	goto _13
+_13:
+	t21 = v12
+	v14 = t21
+	v15 = v4.S
+	v16 = v3.V
+	v17 = Vec3{
+		X: v14.X - float32(v15*v16.X),
+		Y: v14.Y - float32(v15*v16.Y),
+		Z: v14.Z - float32(v15*v16.Z),
+	}
+	goto _18
+_18:
+	t31 = v17
+	v19 = v3.V
+	v20 = v4.V
+	v21 = float32(v19.X*v20.X) + float32(v19.Y*v20.Y) + float32(v19.Z*v20.Z)
+	goto _22
+_22:
+	q1 = Quat{
+		V: t31,
+		S: float32(v3.S*v4.S) + v21,
+	}
+	v23 = q1
+	goto _24
+_24:
+	C.Q = v23
+	d = Vec3{
+		X: v2.P.X - v1.P.X,
+		Y: v2.P.Y - v1.P.Y,
+		Z: v2.P.Z - v1.P.Z,
+	}
+	v25 = v1.Q
+	v26 = d
+	v27 = v25.V
+	v28 = v26
+	c.X = float32(v27.Y*v28.Z) - float32(v27.Z*v28.Y)
+	c.Y = float32(v27.Z*v28.X) - float32(v27.X*v28.Z)
+	c.Z = float32(v27.X*v28.Y) - float32(v27.Y*v28.X)
+	v29 = c
+	goto _30
+_30:
+	t1 = v29
+	v31 = t1
+	v32 = v25.S
+	v33 = v26
+	v34 = Vec3{
+		X: v31.X - float32(v32*v33.X),
+		Y: v31.Y - float32(v32*v33.Y),
+		Z: v31.Z - float32(v32*v33.Z),
+	}
+	goto _35
+_35:
+	t2 = v34
+	v36 = v25.V
+	v37 = t2
+	c.X = float32(v36.Y*v37.Z) - float32(v36.Z*v37.Y)
+	c.Y = float32(v36.Z*v37.X) - float32(v36.X*v37.Z)
+	c.Z = float32(v36.X*v37.Y) - float32(v36.Y*v37.X)
+	v38 = c
+	goto _39
+_39:
+	t3 = v38
+	v42 = v26
+	v43 = float32FromFloat32(2)
+	v44 = t3
+	v45 = Vec3{
+		X: v42.X + float32(v43*v44.X),
+		Y: v42.Y + float32(v43*v44.Y),
+		Z: v42.Z + float32(v43*v44.Z),
+	}
+	goto _46
+_46:
+	v40 = v45
+	goto _41
+_41:
+	C.P = v40
+	v47 = C
+	goto _48
+_48:
+	return v47
 }
 
 func b3go_inline_b3ToRelativeTransform(tls *_Stack, t1 WorldTransform, base1 Pos) (r1 Transform) {
@@ -61095,6 +61539,98 @@ _42:
 	return v41
 }
 
+func b3go_inline_b3Solve3(tls *_Stack, m2 Matrix3, a4 Vec3) (r Vec3) {
+	var b2, c, v10, v11, v18, v19, v2, v20, v22, v23, v24, v26, v27, v28, v30, v31, v34, v35, v38, v39, v42, v6, v7, v8 Vec3
+	var det, invDet, v12, v14, v15, v17, v32, v36, v4, v40 float32
+	var s, v1, v3 Matrix3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b2, c, det, invDet, s, v1, v10, v11, v12, v14, v15, v17, v18, v19, v2, v20, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v6, v7, v8
+	v1 = m2
+	v2 = a4
+	v3 = v1
+	v6 = v3.Cy
+	v7 = v3.Cz
+	c.X = float32(v6.Y*v7.Z) - float32(v6.Z*v7.Y)
+	c.Y = float32(v6.Z*v7.X) - float32(v6.X*v7.Z)
+	c.Z = float32(v6.X*v7.Y) - float32(v6.Y*v7.X)
+	v8 = c
+	goto _9
+_9:
+	v10 = v3.Cx
+	v11 = v8
+	v12 = float32(v10.X*v11.X) + float32(v10.Y*v11.Y) + float32(v10.Z*v11.Z)
+	goto _13
+_13:
+	v4 = v12
+	goto _5
+_5:
+	det = v4
+	v14 = det
+	if v14 < float32FromInt32(0) {
+		v17 = -v14
+	} else {
+		v17 = v14
+	}
+	v15 = v17
+	goto _16
+_16:
+	if v15 > float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)) {
+		invDet = float32FromFloat32(1) / det
+		v18 = v1.Cy
+		v19 = v1.Cz
+		c.X = float32(v18.Y*v19.Z) - float32(v18.Z*v19.Y)
+		c.Y = float32(v18.Z*v19.X) - float32(v18.X*v19.Z)
+		c.Z = float32(v18.X*v19.Y) - float32(v18.Y*v19.X)
+		v20 = c
+		goto _21
+	_21:
+		s.Cx = v20
+		v22 = v1.Cz
+		v23 = v1.Cx
+		c.X = float32(v22.Y*v23.Z) - float32(v22.Z*v23.Y)
+		c.Y = float32(v22.Z*v23.X) - float32(v22.X*v23.Z)
+		c.Z = float32(v22.X*v23.Y) - float32(v22.Y*v23.X)
+		v24 = c
+		goto _25
+	_25:
+		s.Cy = v24
+		v26 = v1.Cx
+		v27 = v1.Cy
+		c.X = float32(v26.Y*v27.Z) - float32(v26.Z*v27.Y)
+		c.Y = float32(v26.Z*v27.X) - float32(v26.X*v27.Z)
+		c.Z = float32(v26.X*v27.Y) - float32(v26.Y*v27.X)
+		v28 = c
+		goto _29
+	_29:
+		s.Cz = v28
+		v30 = s.Cx
+		v31 = v2
+		v32 = float32(v30.X*v31.X) + float32(v30.Y*v31.Y) + float32(v30.Z*v31.Z)
+		goto _33
+	_33:
+		v34 = s.Cy
+		v35 = v2
+		v36 = float32(v34.X*v35.X) + float32(v34.Y*v35.Y) + float32(v34.Z*v35.Z)
+		goto _37
+	_37:
+		v38 = s.Cz
+		v39 = v2
+		v40 = float32(v38.X*v39.X) + float32(v38.Y*v39.Y) + float32(v38.Z*v39.Z)
+		goto _41
+	_41:
+		b2 = Vec3{
+			X: float32(invDet * v32),
+			Y: float32(invDet * v36),
+			Z: float32(invDet * v40),
+		}
+		v42 = b2
+		goto _43
+	}
+	v42 = b3Vec3_zero
+	goto _43
+_43:
+	return v42
+}
+
 func b3go_inline_b3InvertT(tls *_Stack, m2 Matrix3) (r Matrix3) {
 	var c, v10, v17, v18, v19, v22, v23, v25, v26, v27, v30, v31, v33, v34, v35, v38, v39, v5, v6, v7, v9 Vec3
 	var det, invDet, v11, v13, v14, v16, v21, v29, v3, v37 float32
@@ -61311,6 +61847,43 @@ _34:
 	goto _48
 _48:
 	return v47
+}
+
+func b3go_inline_b3MakeMatrixFromQuat(tls *_Stack, q1 Quat) (r Matrix3) {
+	var xw, xx, xy, xz, yw, yy, yz, zw, zz float32
+	var v1 Quat
+	var v2 Matrix3
+	_, _, _, _, _, _, _, _, _, _, _ = xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v2
+	v1 = q1
+	xx = float32(v1.V.X * v1.V.X)
+	yy = float32(v1.V.Y * v1.V.Y)
+	zz = float32(v1.V.Z * v1.V.Z)
+	xy = float32(v1.V.X * v1.V.Y)
+	xz = float32(v1.V.X * v1.V.Z)
+	xw = float32(v1.V.X * v1.S)
+	yz = float32(v1.V.Y * v1.V.Z)
+	yw = float32(v1.V.Y * v1.S)
+	zw = float32(v1.V.Z * v1.S)
+	v2 = Matrix3{
+		Cx: Vec3{
+			X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+			Y: float32(float32FromFloat32(2) * (xy + zw)),
+			Z: float32(float32FromFloat32(2) * (xz - yw)),
+		},
+		Cy: Vec3{
+			X: float32(float32FromFloat32(2) * (xy - zw)),
+			Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+			Z: float32(float32FromFloat32(2) * (yz + xw)),
+		},
+		Cz: Vec3{
+			X: float32(float32FromFloat32(2) * (xz + yw)),
+			Y: float32(float32FromFloat32(2) * (yz - xw)),
+			Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+		},
+	}
+	goto _3
+_3:
+	return v2
 }
 
 func b3go_inline_b3MakeAABB(tls *_Stack, points1 uintptr, count1 int32, radius1 float32) (r1 AABB) {
@@ -61712,6 +62285,300 @@ func b3go_inline_b3AABB_Overlaps(tls *_Stack, a1 AABB, b1 AABB) (r uint8) {
 	goto _4
 _4:
 	return v3
+}
+
+func b3go_inline_b3AABB_Transform(tls *_Stack, transform1 Transform, a11 AABB) (r AABB) {
+	var b4, c, center, extent, rv, t1, t2, t3, v102, v103, v106, v107, v109, v11, v110, v111, v113, v114, v115, v12, v16, v17, v18, v19, v21, v23, v24, v26, v27, v28, v30, v32, v34, v35, v37, v39, v4, v40, v41, v47, v48, v6, v62, v63, v7, v77, v78, v8, v95, v97, v98, v99 Vec3
+	var m2, out, v105, v44, v46, v92 Matrix3
+	var out1, v117, v2, v3, v94 AABB
+	var xw, xx, xy, xz, yw, yy, yz, zw, zz, v10, v101, v22, v33, v50, v51, v53, v54, v55, v57, v58, v59, v61, v65, v66, v68, v69, v70, v72, v73, v74, v76, v80, v81, v83, v84, v85, v87, v88, v89, v91 float32
+	var v1, v14 Transform
+	var v15, v43 Quat
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b4, c, center, extent, m2, out, out1, rv, t1, t2, t3, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v101, v102, v103, v105, v106, v107, v109, v11, v110, v111, v113, v114, v115, v117, v12, v14, v15, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v32, v33, v34, v35, v37, v39, v4, v40, v41, v43, v44, v46, v47, v48, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v68, v69, v7, v70, v72, v73, v74, v76, v77, v78, v8, v80, v81, v83, v84, v85, v87, v88, v89, v91, v92, v94, v95, v97, v98, v99
+	v1 = transform1
+	v2 = a11
+	v3 = v2
+	v6 = v3.UpperBound
+	v7 = v3.LowerBound
+	v8 = Vec3{
+		X: v6.X + v7.X,
+		Y: v6.Y + v7.Y,
+		Z: v6.Z + v7.Z,
+	}
+	goto _9
+_9:
+	v10 = float32FromFloat32(0.5)
+	v11 = v8
+	v12 = Vec3{
+		X: float32(v10 * v11.X),
+		Y: float32(v10 * v11.Y),
+		Z: float32(v10 * v11.Z),
+	}
+	goto _13
+_13:
+	v4 = v12
+	goto _5
+_5:
+	v14 = v1
+	v15 = v14.Q
+	v16 = v4
+	v17 = v15.V
+	v18 = v16
+	c.X = float32(v17.Y*v18.Z) - float32(v17.Z*v18.Y)
+	c.Y = float32(v17.Z*v18.X) - float32(v17.X*v18.Z)
+	c.Z = float32(v17.X*v18.Y) - float32(v17.Y*v18.X)
+	v19 = c
+	goto _20
+_20:
+	t1 = v19
+	v21 = t1
+	v22 = v15.S
+	v23 = v16
+	v24 = Vec3{
+		X: v21.X + float32(v22*v23.X),
+		Y: v21.Y + float32(v22*v23.Y),
+		Z: v21.Z + float32(v22*v23.Z),
+	}
+	goto _25
+_25:
+	t2 = v24
+	v26 = v15.V
+	v27 = t2
+	c.X = float32(v26.Y*v27.Z) - float32(v26.Z*v27.Y)
+	c.Y = float32(v26.Z*v27.X) - float32(v26.X*v27.Z)
+	c.Z = float32(v26.X*v27.Y) - float32(v26.Y*v27.X)
+	v28 = c
+	goto _29
+_29:
+	t3 = v28
+	v32 = v16
+	v33 = float32FromFloat32(2)
+	v34 = t3
+	v35 = Vec3{
+		X: v32.X + float32(v33*v34.X),
+		Y: v32.Y + float32(v33*v34.Y),
+		Z: v32.Z + float32(v33*v34.Z),
+	}
+	goto _36
+_36:
+	v30 = v35
+	goto _31
+_31:
+	rv = v30
+	v39 = rv
+	v40 = v14.P
+	v41 = Vec3{
+		X: v39.X + v40.X,
+		Y: v39.Y + v40.Y,
+		Z: v39.Z + v40.Z,
+	}
+	goto _42
+_42:
+	v37 = v41
+	goto _38
+_38:
+	center = v37
+	v43 = v1.Q
+	xx = float32(v43.V.X * v43.V.X)
+	yy = float32(v43.V.Y * v43.V.Y)
+	zz = float32(v43.V.Z * v43.V.Z)
+	xy = float32(v43.V.X * v43.V.Y)
+	xz = float32(v43.V.X * v43.V.Z)
+	xw = float32(v43.V.X * v43.S)
+	yz = float32(v43.V.Y * v43.V.Z)
+	yw = float32(v43.V.Y * v43.S)
+	zw = float32(v43.V.Z * v43.S)
+	v44 = Matrix3{
+		Cx: Vec3{
+			X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+			Y: float32(float32FromFloat32(2) * (xy + zw)),
+			Z: float32(float32FromFloat32(2) * (xz - yw)),
+		},
+		Cy: Vec3{
+			X: float32(float32FromFloat32(2) * (xy - zw)),
+			Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+			Z: float32(float32FromFloat32(2) * (yz + xw)),
+		},
+		Cz: Vec3{
+			X: float32(float32FromFloat32(2) * (xz + yw)),
+			Y: float32(float32FromFloat32(2) * (yz - xw)),
+			Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+		},
+	}
+	goto _45
+_45:
+	m2 = v44
+	v46 = m2
+	v47 = v46.Cx
+	v50 = v47.X
+	if v50 < float32FromInt32(0) {
+		v53 = -v50
+	} else {
+		v53 = v50
+	}
+	v51 = v53
+	goto _52
+_52:
+	v54 = v47.Y
+	if v54 < float32FromInt32(0) {
+		v57 = -v54
+	} else {
+		v57 = v54
+	}
+	v55 = v57
+	goto _56
+_56:
+	v58 = v47.Z
+	if v58 < float32FromInt32(0) {
+		v61 = -v58
+	} else {
+		v61 = v58
+	}
+	v59 = v61
+	goto _60
+_60:
+	v48 = Vec3{
+		X: v51,
+		Y: v55,
+		Z: v59,
+	}
+	goto _49
+_49:
+	out.Cx = v48
+	v62 = v46.Cy
+	v65 = v62.X
+	if v65 < float32FromInt32(0) {
+		v68 = -v65
+	} else {
+		v68 = v65
+	}
+	v66 = v68
+	goto _67
+_67:
+	v69 = v62.Y
+	if v69 < float32FromInt32(0) {
+		v72 = -v69
+	} else {
+		v72 = v69
+	}
+	v70 = v72
+	goto _71
+_71:
+	v73 = v62.Z
+	if v73 < float32FromInt32(0) {
+		v76 = -v73
+	} else {
+		v76 = v73
+	}
+	v74 = v76
+	goto _75
+_75:
+	v63 = Vec3{
+		X: v66,
+		Y: v70,
+		Z: v74,
+	}
+	goto _64
+_64:
+	out.Cy = v63
+	v77 = v46.Cz
+	v80 = v77.X
+	if v80 < float32FromInt32(0) {
+		v83 = -v80
+	} else {
+		v83 = v80
+	}
+	v81 = v83
+	goto _82
+_82:
+	v84 = v77.Y
+	if v84 < float32FromInt32(0) {
+		v87 = -v84
+	} else {
+		v87 = v84
+	}
+	v85 = v87
+	goto _86
+_86:
+	v88 = v77.Z
+	if v88 < float32FromInt32(0) {
+		v91 = -v88
+	} else {
+		v91 = v88
+	}
+	v89 = v91
+	goto _90
+_90:
+	v78 = Vec3{
+		X: v81,
+		Y: v85,
+		Z: v89,
+	}
+	goto _79
+_79:
+	out.Cz = v78
+	v92 = out
+	goto _93
+_93:
+	v94 = v2
+	v97 = v94.UpperBound
+	v98 = v94.LowerBound
+	v99 = Vec3{
+		X: v97.X - v98.X,
+		Y: v97.Y - v98.Y,
+		Z: v97.Z - v98.Z,
+	}
+	goto _100
+_100:
+	v101 = float32FromFloat32(0.5)
+	v102 = v99
+	v103 = Vec3{
+		X: float32(v101 * v102.X),
+		Y: float32(v101 * v102.Y),
+		Z: float32(v101 * v102.Z),
+	}
+	goto _104
+_104:
+	v95 = v103
+	goto _96
+_96:
+	v105 = v92
+	v106 = v95
+	b4 = Vec3{
+		X: float32(v105.Cx.X*v106.X) + float32(v105.Cy.X*v106.Y) + float32(v105.Cz.X*v106.Z),
+		Y: float32(v105.Cx.Y*v106.X) + float32(v105.Cy.Y*v106.Y) + float32(v105.Cz.Y*v106.Z),
+		Z: float32(v105.Cx.Z*v106.X) + float32(v105.Cy.Z*v106.Y) + float32(v105.Cz.Z*v106.Z),
+	}
+	v107 = b4
+	goto _108
+_108:
+	extent = v107
+	v109 = center
+	v110 = extent
+	v111 = Vec3{
+		X: v109.X - v110.X,
+		Y: v109.Y - v110.Y,
+		Z: v109.Z - v110.Z,
+	}
+	goto _112
+_112:
+	v113 = center
+	v114 = extent
+	v115 = Vec3{
+		X: v113.X + v114.X,
+		Y: v113.Y + v114.Y,
+		Z: v113.Z + v114.Z,
+	}
+	goto _116
+_116:
+	out1 = AABB{
+		LowerBound: v111,
+		UpperBound: v115,
+	}
+	v117 = out1
+	goto _118
+_118:
+	return v117
 }
 
 func b3go_inline_b3ClosestPointToAABB(tls *_Stack, point1 Vec3, a3 AABB) (r Vec3) {

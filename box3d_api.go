@@ -1676,6 +1676,7 @@ func DistanceSquared(a1 Vec3, b1 Vec3) (r float32) {
 	r = b3go_inline_b3DistanceSquared(theStack, a1, b1)
 	return
 }
+func Normalize(a1 Vec3) (r Vec3)     { r = b3go_inline_b3Normalize(theStack, a1); return }
 func Perp(a2 Vec3) (r Vec3)          { r = b3go_inline_b3Perp(theStack, a2); return }
 func IsNormalized(a3 Vec3) (r uint8) { r = b3go_inline_b3IsNormalized(theStack, a3); return }
 func MulAdd(a1 Vec3, s1 float32, b1 Vec3) (r Vec3) {
@@ -1729,6 +1730,7 @@ func MakeQuatFromAxisAngle(axis1 Vec3, radians1 float32) (r Quat) {
 }
 func GetQuatAngle(q1 Quat) (r float32)  { r = b3go_inline_b3GetQuatAngle(theStack, q1); return }
 func GetTwistAngle(q1 Quat) (r float32) { r = b3go_inline_b3GetTwistAngle(theStack, q1); return }
+func GetSwingAngle(q1 Quat) (r float32) { r = b3go_inline_b3GetSwingAngle(theStack, q1); return }
 func NLerp(q12 Quat, q21 Quat, alpha2 float32) (r Quat) {
 	r = b3go_inline_b3NLerp(theStack, q12, q21, alpha2)
 	return
@@ -1737,8 +1739,16 @@ func MulTransforms(a5 Transform, b5 Transform) (r Transform) {
 	r = b3go_inline_b3MulTransforms(theStack, a5, b5)
 	return
 }
+func InvMulTransforms(a6 Transform, b6 Transform) (r Transform) {
+	r = b3go_inline_b3InvMulTransforms(theStack, a6, b6)
+	return
+}
 func InvertTransform(t1 Transform) (r Transform) {
 	r = b3go_inline_b3InvertTransform(theStack, t1)
+	return
+}
+func TransformPoint(t1 Transform, v2 Vec3) (r Vec3) {
+	r = b3go_inline_b3TransformPoint(theStack, t1, v2)
 	return
 }
 func InvTransformPoint(t1 Transform, v2 Vec3) (r Vec3) {
@@ -1763,6 +1773,14 @@ func InvTransformWorldPoint(t1 WorldTransform, p1 Pos) (r Vec3) {
 	r = b3go_inline_b3InvTransformWorldPoint(theStack, t1, p1)
 	return
 }
+func MulWorldTransforms(A1 WorldTransform, B1 Transform) (r1 WorldTransform) {
+	r1 = b3go_inline_b3MulWorldTransforms(theStack, A1, B1)
+	return
+}
+func InvMulWorldTransforms(A1 WorldTransform, B1 WorldTransform) (r Transform) {
+	r = b3go_inline_b3InvMulWorldTransforms(theStack, A1, B1)
+	return
+}
 func ToRelativeTransform(t1 WorldTransform, base1 Pos) (r1 Transform) {
 	r1 = b3go_inline_b3ToRelativeTransform(theStack, t1, base1)
 	return
@@ -1784,8 +1802,13 @@ func MulSM(s1 float32, a1 Matrix3) (r Matrix3) { r = b3go_inline_b3MulSM(theStac
 func MulMM(a2 Matrix3, b2 Matrix3) (r Matrix3) { r = b3go_inline_b3MulMM(theStack, a2, b2); return }
 func Transpose(m1 Matrix3) (r Matrix3)         { r = b3go_inline_b3Transpose(theStack, m1); return }
 func InvertMatrix(m3 Matrix3) (r Matrix3)      { r = b3go_inline_b3InvertMatrix(theStack, m3); return }
+func Solve3(m2 Matrix3, a4 Vec3) (r Vec3)      { r = b3go_inline_b3Solve3(theStack, m2, a4); return }
 func InvertT(m2 Matrix3) (r Matrix3)           { r = b3go_inline_b3InvertT(theStack, m2); return }
 func AbsMatrix3(m1 Matrix3) (r Matrix3)        { r = b3go_inline_b3AbsMatrix3(theStack, m1); return }
+func MakeMatrixFromQuat(q1 Quat) (r Matrix3) {
+	r = b3go_inline_b3MakeMatrixFromQuat(theStack, q1)
+	return
+}
 func AABBContains(a1 AABB, b1 AABB) (r uint8) {
 	r = b3go_inline_b3AABB_Contains(theStack, a1, b1)
 	return
@@ -1800,6 +1823,10 @@ func AABBInflate(a3 AABB, extension1 float32) (r AABB) {
 }
 func AABBOverlaps(a1 AABB, b1 AABB) (r uint8) {
 	r = b3go_inline_b3AABB_Overlaps(theStack, a1, b1)
+	return
+}
+func AABBTransform(transform1 Transform, a11 AABB) (r AABB) {
+	r = b3go_inline_b3AABB_Transform(theStack, transform1, a11)
 	return
 }
 func ClosestPointToAABB(point1 Vec3, a3 AABB) (r Vec3) {

@@ -16,7 +16,7 @@ const inlineSource = "_build/inline.c"
 // inlinePrefix is the prefix of the plain functions, followed by the original name.
 const inlinePrefix = "b3go_inline_"
 
-var reInline = regexp.MustCompile(`(?m)^B3_INLINE ([A-Za-z0-9_ ]+?) (b3[A-Za-z0-9_]+)\( ?([^)]*?) ?\)$`)
+var reInline = regexp.MustCompile(`(?m)^B3_(?:FORCE_)?INLINE ([A-Za-z0-9_ ]+?) (b3[A-Za-z0-9_]+)\( ?([^)]*?) ?\)$`)
 
 type inlineFunc struct {
 	Result string
