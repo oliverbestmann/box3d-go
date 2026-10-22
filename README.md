@@ -150,6 +150,27 @@ milliseconds in `box3d-c/benchmark/<machine>/<name>.csv`. Some take seconds per 
 GOEXPERIMENT=simd go test -run XXX -bench 'Upstream/large_pyramid' -benchtime 1x
 ```
 
+Milliseconds for one run, measured once with Go 1.27 on Linux arm64 (Apple Silicon). The C column is upstream's
+`m2air_neon` CSV, from a different machine and maybe an older Box3D, so only use it as a rough reference:
+
+| Benchmark | Scalar, 1 worker | SIMD, 1 worker | Scalar, 4 workers | SIMD, 4 workers | C NEON, 1 / 4 threads |
+|---|---:|---:|---:|---:|---:|
+| convex_pile | 16,640 | 9,987 | 5,888 | 3,744 | 15,033 / 4,297 |
+| joint_grid | 1,264 | 1,275 | 648 | 441 | 1,090 / 309 |
+| junkyard | 36,688 | 23,832 | 12,655 | 9,201 | 13,501 / 4,254 |
+| large_pyramid | 6,374 | 2,221 | 1,918 | 841 | 1,811 / 564 |
+| large_world | 24.3 | 10.8 | 169 | 72.0 | 9.0 / 15.0 |
+| many_pyramids | 5,992 | 2,192 | 1,703 | 829 | 1,917 / 621 |
+| mesh_drop | 4,074 | 2,235 | 1,612 | 1,197 | - |
+| rain | 3,066 | 2,623 | 1,709 | 1,536 | 1,955 / 626 |
+| sleep | 3,550 | 1,121 | 1,363 | 798 | - |
+| spinner | 8,596 | 4,544 | 4,117 | 2,962 | - |
+| trees100 | 322 | 297 | 589 | 386 | 186 / 91.2 |
+| trees50 | 549 | 402 | 659 | 536 | 288 / 157 |
+| trees25 | 1,013 | 731 | 1,083 | 774 | 610 / 236 |
+| village | 7,522 | 3,732 | 4,625 | 3,841 | - |
+| washer | 51,059 | 29,212 | 18,401 | 11,370 | 21,065 / 7,675 |
+
 ## Development
 
 `./fetch.sh` clones Box3D into `box3d-c` and applies `box3d.patch`. `./transpile.sh` translates it and writes the

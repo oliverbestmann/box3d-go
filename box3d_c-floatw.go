@@ -6,11 +6,6 @@ import "unsafe"
 
 var _ unsafe.Pointer
 
-/**@}*/ // debug_draw
-
-// ccgo inlines the static inline functions of headers. Pretend this is not a header, so they
-// stay functions and the Go SIMD build can replace them. #line breaks pragma once, so guard.
-
 // C documentation
 //
 //	// scalar math
