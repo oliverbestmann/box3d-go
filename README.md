@@ -29,7 +29,7 @@ work the same way.
 To call the methods of a specific joint type, convert the `Joint` first, for example with `AsRevoluteJoint()` or
 `AsPrismaticJoint()`.
 
-The API has no `uintptr`, so Go memory can't reach Box3D by accident. User data is an opaque `uint64`, for example
+The API has no `uintptr`, so you can't hand Go memory to Box3D by accident. User data is an opaque `uint64`, for example
 an index into your own slice. The C pointer fields of the definitions are not exported. Use these instead:
 
 - Meshes, height fields and compounds: pass slices to `CreateMesh`, `CreateHeightField` and `CreateCompound`.
@@ -38,8 +38,8 @@ an index into your own slice. The C pointer fields of the definitions are not ex
   creating the world.
 - Custom task system: not supported, the built-in scheduler runs the workers, see below.
 
-Hulls, meshes, height fields and compounds that Box3D creates live in Box3D's heap, which the Go GC does not
-free. The `Create...` and `Clone...` functions return them as `OwnedHull`, `OwnedMesh`, `OwnedHeightField` and
+Hulls, meshes, height fields and compounds that Box3D creates live in Box3D's heap, which the Go garbage
+collector does not free. The `Create...` and `Clone...` functions return them as `OwnedHull`, `OwnedMesh`, `OwnedHeightField` and
 `OwnedCompound`. Call `Destroy` on these when you are done, otherwise the memory leaks. They embed the data
 pointer, so `hull.Points()` or `mesh.Triangles()` work directly, and functions that read the data take the
 embedded pointer:
@@ -138,21 +138,24 @@ Don't call into the `b3` package from these callbacks.
 
 ## SIMD
 
-The contact solver can use SIMD through Go's experimental `simd/archsimd` package. This needs Go 1.27 and
-`GOEXPERIMENT=simd`, and works on arm64, wasm, and amd64 with `GOAMD64=v3` (AVX2):
+The contact solver can use SIMD (CPU instructions that compute 4 floats at once) through Go's experimental
+`simd/archsimd` package. This needs Go 1.27 and `GOEXPERIMENT=simd`. It works on arm64, on wasm, and on amd64 with
+`GOAMD64=v3` (CPUs with AVX2, Intel since 2013 and AMD since 2015):
 
 ```sh
 GOEXPERIMENT=simd go build .
 GOEXPERIMENT=simd GOAMD64=v3 go build .
 ```
 
-Other builds use the scalar version. Both give the same results. The wasm build then needs a runtime with wasm SIMD
-support, which all current browsers have.
+Other builds use the scalar version (plain float math, one value at a time). The determinism tests check that both
+versions produce the same simulation, bit for bit. The SIMD wasm build needs a browser or runtime with wasm SIMD:
+Chrome 91, Firefox 89, Safari 16.4, Node.js 16.4 or newer (from the webassembly.org feature table, as of
+2026-10-22).
 
-ccgo can't translate C vector types, so the port uses Box3D's scalar code (`BOX3D_DISABLE_SIMD`) and the generator
-moves the scalar wide float math into `box3d_c-floatw.go`. `simd.go` and `simd_<arch>.go` implement the same
-functions with `archsimd`, following Box3D's NEON version. Only the 4-wide path exists, there is no AVX2 8-wide
-version.
+ccgo can't translate C vector types, so the port uses Box3D's scalar code (`BOX3D_DISABLE_SIMD`). The generator
+moves the scalar functions that work on 4 floats at once into `box3d_c-floatw.go`. `simd.go` and `simd_<arch>.go`
+implement the same functions with `archsimd`, following Box3D's NEON version (the SIMD code for arm64). Box3D also
+has an AVX2 version that works on 8 floats at once. The port does not have it.
 
 ## Benchmarks
 
@@ -167,7 +170,8 @@ GOEXPERIMENT=simd go test -run XXX -bench 'Upstream/large_pyramid' -benchtime 1x
 Milliseconds for a single run of each benchmark, all on the same Linux arm64 machine (Apple Silicon). Go uses Go
 1.27. C is upstream's `benchmark/main.c` at the same commit, built with GCC 16 and `-O3 -DNDEBUG -ffp-contract=off`
 and run with `-t=4 -w=<workers> -r=1`. The C scalar column adds `-DBOX3D_DISABLE_SIMD`. The C build has no asserts,
-the Go port keeps them. Go is about 2 to 2.5 times slower than C:
+while the Go port keeps them. With 1 worker, Go takes 1.4 to 2.8 times as long as C. With 4 workers it takes 1.5 to
+3.5 times as long, and up to 6 times as long for the two shortest benchmarks, `large_world` and `trees100`:
 
 1 worker:
 
@@ -241,5 +245,5 @@ go test -race -gcflags=all=-d=checkptr=0 ./...
   the expected hashes and sleep steps from Box3D's `test/test_determinism.c` into `determinism_test.go`.
 - **SIMD:** If Box3D changes `src/simd_scalar.h` or the `B3_SIMD_NONE` parts of `src/contact_solver_wide.inl`,
   update `simd.go`. `./transpile.sh` fails if a function listed in `floatWDecls` in `transpile/floatw.go` no
-  longer exists. The SIMD build checks the struct layouts at startup: `archsimd.Float32x4` is 8 byte aligned,
+  longer exists. The SIMD build checks the struct layouts at startup. `archsimd.Float32x4` is 8 byte aligned and
   the scalar `b3FloatW4` only 4, so `box3d.patch` pads the structs where the two differ.
