@@ -51,6 +51,9 @@ defer hull.Destroy()
 body.CreateHullShape(b3.DefaultShapeDef(), hull.HullData)
 ```
 
+`CreateHull` fails if the points don't form a valid hull, for example when there are too many vertices. It then
+returns an `OwnedHull` with a nil `HullData`, so check `hull.HullData == nil`. `Destroy` on it does nothing.
+
 Shapes copy hulls, so you can destroy a hull right after creating its shapes. Shapes keep using meshes, height
 fields and compounds, so destroy those only after the last shape that uses them. Data that you only borrow, like
 `Shape.GetHull()` or a `BoxHull` from `MakeBoxHull` (pass `&box.Base`), is a plain pointer and has no `Destroy`.
