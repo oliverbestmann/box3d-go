@@ -124,6 +124,8 @@ The [`example`](example) directory has a pyramid of cubes as an [ebitengine](htt
 draws the hull faces with `DrawTriangles` and a simple perspective camera, and
 [runs in the browser](https://oliverbestmann.github.io/box3d-go/pyramid/) as wasm.
 
+[![The pyramid example after shooting cubes into it](docs/pyramid.png)](https://oliverbestmann.github.io/box3d-go/pyramid/)
+
 ## Multithreading
 
 Box3D splits each step across `WorldDef.WorkerCount` threads. This port runs them as goroutines. With a few hundred
