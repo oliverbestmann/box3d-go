@@ -245,20 +245,14 @@ func (g *game) Draw(screen *ebiten.Image) {
 
 	g.vertices, g.indices = g.vertices[:0], g.indices[:0]
 	for _, f := range g.faces {
-		// DrawTriangles takes uint16 indices
-		if len(g.vertices)+len(f.points) > math.MaxUint16 {
+		// DrawTriangles takes uint16 indices, clipping adds at most one point
+		if len(g.vertices)+len(f.points)+1 > math.MaxUint16 {
 			g.flush(screen)
 		}
 
 		base := uint16(len(g.vertices))
-		for _, p := range f.points {
-			x, y, depth := cam.project(p)
-			if depth <= 0.1 {
-				// shortcut: faces crossing the near plane are dropped, not clipped
-				g.vertices = g.vertices[:base]
-				break
-			}
-
+		for _, p := range clipNear(cam, f.points) {
+			x, y, _ := cam.project(p)
 			g.vertices = append(g.vertices, ebiten.Vertex{
 				DstX: x, DstY: y, SrcX: 1, SrcY: 1,
 				ColorR: f.color.X, ColorG: f.color.Y, ColorB: f.color.Z, ColorA: 1,
@@ -279,6 +273,29 @@ func (g *game) Draw(screen *ebiten.Image) {
 
 	ebitenutil.DebugPrintAt(screen, text, 16, 16)
 	ebitenutil.DebugPrintAt(screen, help, 16, int(h)-16*5)
+}
+
+const near = 0.1
+
+// clipNear cuts off the part of a convex polygon that is closer than near to the camera.
+// The ground is large enough to reach behind the camera.
+func clipNear(cam camera, points []b3.Vec3) []b3.Vec3 {
+	var clipped []b3.Vec3
+	for i, a := range points {
+		b := points[(i+1)%len(points)]
+		da := b3.Dot(b3.Sub(a, cam.eye), cam.fwd) - near
+		db := b3.Dot(b3.Sub(b, cam.eye), cam.fwd) - near
+
+		if da > 0 {
+			clipped = append(clipped, a)
+		}
+
+		if (da > 0) != (db > 0) {
+			clipped = append(clipped, b3.Add(a, b3.MulSV(da/(da-db), b3.Sub(b, a))))
+		}
+	}
+
+	return clipped
 }
 
 func (g *game) flush(screen *ebiten.Image) {
