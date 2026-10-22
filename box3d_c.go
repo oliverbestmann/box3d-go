@@ -1,4 +1,4 @@
-// Code generated for linux/arm64 by 'ccgo -verify-types --package-name b3 -D BOX3D_DISABLE_SIMD -D NDEBUG -D B3_ENABLE_ASSERT --predef \n#include <stdbool.h>\n#include <stdint.h>\nbool __builtin___atomic_compare_exchange_n(int32_t *ptr, int32_t *expected, int32_t desired, bool weak, int32_t success_memorder, int32_t failure_memorder);\n --predef \n#include <stddef.h>\n#define aligned_alloc __builtin_aligned_alloc\nextern void* __builtin_aligned_alloc(size_t align, size_t size);\n --predef \n#define b3CreateMutex __builtin_b3CreateMutex\n#define b3DestroyMutex __builtin_b3DestroyMutex\n#define b3LockMutex __builtin_b3LockMutex\n#define b3UnlockMutex __builtin_b3UnlockMutex\n#define b3CreateSemaphore __builtin_b3CreateSemaphore\n#define b3DestroySemaphore __builtin_b3DestroySemaphore\n#define b3WaitSemaphore __builtin_b3WaitSemaphore\n#define b3SignalSemaphore __builtin_b3SignalSemaphore\n#define b3CreateThread __builtin_b3CreateThread\n#define b3JoinThread __builtin_b3JoinThread\n --prefix-field ｆ -o _build/box3d_c.go -I ../box3d-c/include/ -I ../box3d-c/shared/ ../box3d-c/src/aabb.c ../box3d-c/src/arena_allocator.c ../box3d-c/src/bitset.c ../box3d-c/src/block_allocator.c ../box3d-c/src/body.c ../box3d-c/src/broad_phase.c ../box3d-c/src/capsule.c ../box3d-c/src/compound.c ../box3d-c/src/constraint_graph.c ../box3d-c/src/contact.c ../box3d-c/src/contact_solver.c ../box3d-c/src/convex_manifold.c ../box3d-c/src/core.c ../box3d-c/src/distance.c ../box3d-c/src/distance_joint.c ../box3d-c/src/dynamic_tree.c ../box3d-c/src/height_field.c ../box3d-c/src/hull.c ../box3d-c/src/id_pool.c ../box3d-c/src/island.c ../box3d-c/src/joint.c ../box3d-c/src/manifold.c ../box3d-c/src/math_functions.c ../box3d-c/src/mesh.c ../box3d-c/src/mesh_contact.c ../box3d-c/src/motor_joint.c ../box3d-c/src/mover.c ../box3d-c/src/name_cache.c ../box3d-c/src/parallel_for.c ../box3d-c/src/parallel_joint.c ../box3d-c/src/physics_world.c ../box3d-c/src/prismatic_joint.c ../box3d-c/src/recording.c ../box3d-c/src/replay.c ../box3d-c/src/revolute_joint.c ../box3d-c/src/scheduler.c ../box3d-c/src/sensor.c ../box3d-c/src/shape.c ../box3d-c/src/simd.c ../box3d-c/src/solver.c ../box3d-c/src/solver_set.c ../box3d-c/src/sphere.c ../box3d-c/src/spherical_joint.c ../box3d-c/src/statics.c ../box3d-c/src/table.c ../box3d-c/src/timer.c ../box3d-c/src/triangle_manifold.c ../box3d-c/src/types.c ../box3d-c/src/weld_joint.c ../box3d-c/src/wheel_joint.c ../box3d-c/src/wide4.c ../box3d-c/src/wide8.c ../box3d-c/src/world_snapshot.c csrc/callbacks.c _build/inline.c ../box3d-c/shared/determinism.c ../box3d-c/shared/human.c ../box3d-c/shared/stability.c csrc/scenes.c', DO NOT EDIT.
+// Code generated for linux/arm64 by 'ccgo -verify-types --package-name b3 -D BOX3D_DISABLE_SIMD -D NDEBUG -D B3_ENABLE_ASSERT --predef \n#include <stdbool.h>\n#include <stdint.h>\nbool __builtin___atomic_compare_exchange_n(int32_t *ptr, int32_t *expected, int32_t desired, bool weak, int32_t success_memorder, int32_t failure_memorder);\n --predef \n#include <stddef.h>\n#define aligned_alloc __builtin_aligned_alloc\nextern void* __builtin_aligned_alloc(size_t align, size_t size);\n --predef \n#define b3CreateMutex __builtin_b3CreateMutex\n#define b3DestroyMutex __builtin_b3DestroyMutex\n#define b3LockMutex __builtin_b3LockMutex\n#define b3UnlockMutex __builtin_b3UnlockMutex\n#define b3CreateSemaphore __builtin_b3CreateSemaphore\n#define b3DestroySemaphore __builtin_b3DestroySemaphore\n#define b3WaitSemaphore __builtin_b3WaitSemaphore\n#define b3SignalSemaphore __builtin_b3SignalSemaphore\n#define b3CreateThread __builtin_b3CreateThread\n#define b3JoinThread __builtin_b3JoinThread\n --prefix-field ｆ -o _build/box3d_c.go -I ../box3d-c/include/ -I ../box3d-c/shared/ ../box3d-c/src/aabb.c ../box3d-c/src/arena_allocator.c ../box3d-c/src/bitset.c ../box3d-c/src/block_allocator.c ../box3d-c/src/body.c ../box3d-c/src/broad_phase.c ../box3d-c/src/capsule.c ../box3d-c/src/compound.c ../box3d-c/src/constraint_graph.c ../box3d-c/src/contact.c ../box3d-c/src/contact_solver.c ../box3d-c/src/convex_manifold.c ../box3d-c/src/core.c ../box3d-c/src/distance.c ../box3d-c/src/distance_joint.c ../box3d-c/src/dynamic_tree.c ../box3d-c/src/height_field.c ../box3d-c/src/hull.c ../box3d-c/src/id_pool.c ../box3d-c/src/island.c ../box3d-c/src/joint.c ../box3d-c/src/manifold.c ../box3d-c/src/math_functions.c ../box3d-c/src/mesh.c ../box3d-c/src/mesh_contact.c ../box3d-c/src/motor_joint.c ../box3d-c/src/mover.c ../box3d-c/src/name_cache.c ../box3d-c/src/parallel_for.c ../box3d-c/src/parallel_joint.c ../box3d-c/src/physics_world.c ../box3d-c/src/prismatic_joint.c ../box3d-c/src/recording.c ../box3d-c/src/replay.c ../box3d-c/src/revolute_joint.c ../box3d-c/src/scheduler.c ../box3d-c/src/sensor.c ../box3d-c/src/shape.c ../box3d-c/src/simd.c ../box3d-c/src/solver.c ../box3d-c/src/solver_set.c ../box3d-c/src/sphere.c ../box3d-c/src/spherical_joint.c ../box3d-c/src/statics.c ../box3d-c/src/table.c ../box3d-c/src/timer.c ../box3d-c/src/triangle_manifold.c ../box3d-c/src/types.c ../box3d-c/src/weld_joint.c ../box3d-c/src/wheel_joint.c ../box3d-c/src/wide4.c ../box3d-c/src/wide8.c ../box3d-c/src/world_snapshot.c csrc/callbacks.c _build/inline.c ../box3d-c/shared/determinism.c ../box3d-c/shared/human.c ../box3d-c/shared/stability.c ../box3d-c/shared/benchmarks.c csrc/scenes.c', DO NOT EDIT.
 
 package b3
 
@@ -5287,14 +5287,215 @@ const _FLT_MAX2 = 3.40282346638528859812e+38
 const _Q_THRESH = 16
 const _UINT64_MAX1 = 18446744073709551615
 
-type b3FloatW4 struct {
-	X float32
-	Y float32
-	Z float32
-	W float32
+type b3AABBV = AABB
+
+func b3LoadAABBV(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
 }
 
-type b3AABBV = AABB
+func b3OverlapAABBV(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 type b3V32 struct {
 	X float32
@@ -5650,22 +5851,11 @@ _9:
 // C documentation
 //
 //	// Did either move and if so do they overlap?
-func b3TestPair(tls *_Stack, a2 uintptr, b2 uintptr) (r uint8) {
-	var v1, v5 uint8
-	var v3, v4 b3AABBV
-	_, _, _, _ = v1, v3, v4, v5
-	if ((*b3TreeNode)(unsafe.Pointer(a2)).FlagIndex|(*b3TreeNode)(unsafe.Pointer(b2)).FlagIndex)&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32(0) {
+func b3TestPair(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	if ((*b3TreeNode)(unsafe.Pointer(a)).FlagIndex|(*b3TreeNode)(unsafe.Pointer(b)).FlagIndex)&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32(0) {
 		return boolUint8(false1 != 0)
 	}
-	v3 = *(*AABB)(unsafe.Add(nil, a2))
-	v4 = *(*AABB)(unsafe.Add(nil, b2))
-	v5 = boolUint8(v3.LowerBound.X <= v4.UpperBound.X && v3.LowerBound.Y <= v4.UpperBound.Y && v3.LowerBound.Z <= v4.UpperBound.Z && v4.LowerBound.X <= v3.UpperBound.X && v4.LowerBound.Y <= v3.UpperBound.Y && v4.LowerBound.Z <= v3.UpperBound.Z)
-	goto _6
-_6:
-	v1 = v5
-	goto _2
-_2:
-	return v1
+	return b3OverlapV(tls, a, b)
 }
 
 // C documentation
@@ -9197,6 +9387,214 @@ type b3ManifoldConstraintPoint struct {
 	LeverArm           float32
 }
 
+func b3LoadAABBV1(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV1(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode1(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV1(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV1(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV1(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV1(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV1(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV1(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
+
 // todo clean this file up because it is only used for overflow now
 
 // contact separation for sub-stepping
@@ -11540,6 +11938,214 @@ func b3StoreImpulses_MeshWide(tls *_Stack, block b3SolverBlock, context uintptr,
 
 const _FLT_MAX3 = 3.4028234663852886e+38
 const _UINT16_MAX4 = 0xffff
+
+func b3LoadAABBV2(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV2(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode2(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV2(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV2(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV2(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV2(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV2(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV2(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 // Used to detect bad values. In float mode positions greater than about 16km have precision
 // problems, so 100km is a safe limit. Large world mode keeps coordinates accurate much farther
@@ -18260,6 +18866,214 @@ const _B3_DYNAMIC_TREE_VERSION1 = 2120997694728572561
 const _B3_TREE_HEURISTIC = 0
 const _FLT_MAX7 = 3.4028234663852886e+38
 
+func b3LoadAABBV3(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV3(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode3(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV3(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV3(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV3(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV3(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV3(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV3(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
+
 // C documentation
 //
 //	// The free sibling pair list is chained through the parent index of their first node. A pair comes from the
@@ -18433,125 +19247,30 @@ _3:
 // C documentation
 //
 //	// The internal node above a children pair
-func b3MakeInternalNode(tls *_Stack, nodes uintptr, pair1 int32) (r b3TreeNode) {
+func b3MakeInternalNode(tls *_Stack, nodes uintptr, pair int32) (r b3TreeNode) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
-	var c1, c2, v1 uintptr
-	var out, v4, v44, v5 AABB
-	var v10, v11, v12, v14, v15, v16, v17, v19, v20, v21, v22, v24, v29, v30, v31, v33, v34, v35, v36, v38, v39, v40, v41, v43 float32
-	var v2 b3AABBV
-	var v25, v26, v27, v6, v7, v8 Vec3
-	var v46, v47, v48, v50 int32
+	var c1, c2 uintptr
+	var v1, v2, v3, v5 int32
 	var _ /* node at bp+0 */ b3TreeNode
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c1, c2, out, v1, v10, v11, v12, v14, v15, v16, v17, v19, v2, v20, v21, v22, v24, v25, v26, v27, v29, v30, v31, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v46, v47, v48, v5, v50, v6, v7, v8
-	c1 = nodes + uintptr(pair1)*32
-	c2 = nodes + uintptr(pair1)*32 + uintptr(1)*32
+	_, _, _, _, _, _ = c1, c2, v1, v2, v3, v5
+	c1 = nodes + uintptr(pair)*32
+	c2 = nodes + uintptr(pair)*32 + uintptr(1)*32
 	*(*b3TreeNode)(unsafe.Pointer(bp)) = b3TreeNode{}
 	*(*float32)(unsafe.Pointer(bp)) = float32FromInt32(0)
-	v1 = nodes + uintptr(pair1)*32
-	v4 = (*(*b3TreeNode)(unsafe.Add(nil, v1))).Aabb
-	v5 = (*(*b3TreeNode)(unsafe.Add(nil, v1+1*32))).Aabb
-	v6 = v4.LowerBound
-	v7 = v5.LowerBound
-	v10 = v6.X
-	v11 = v7.X
-	if v10 < v11 {
-		v14 = v10
+	b3StoreAABBV3(tls, bp, b3UnionPairV3(tls, nodes+uintptr(pair)*32), boolUint8(true1 != 0))
+	(*(*b3TreeNode)(unsafe.Add(nil, bp))).FlagIndex = uint32FromInt32(pair) | ((*b3TreeNode)(unsafe.Pointer(c1)).FlagIndex|(*b3TreeNode)(unsafe.Pointer(c2)).FlagIndex)&(uint32FromUint32(1)<<int32FromInt32(30))
+	v1 = b3GetNodeHeight(tls, c1)
+	v2 = b3GetNodeHeight(tls, c2)
+	if v1 > v2 {
+		v5 = v1
 	} else {
-		v14 = v11
+		v5 = v2
 	}
-	v12 = v14
-	goto _13
-_13:
-	v15 = v6.Y
-	v16 = v7.Y
-	if v15 < v16 {
-		v19 = v15
-	} else {
-		v19 = v16
-	}
-	v17 = v19
-	goto _18
-_18:
-	v20 = v6.Z
-	v21 = v7.Z
-	if v20 < v21 {
-		v24 = v20
-	} else {
-		v24 = v21
-	}
-	v22 = v24
-	goto _23
-_23:
-	v8 = Vec3{
-		X: v12,
-		Y: v17,
-		Z: v22,
-	}
-	goto _9
-_9:
-	out.LowerBound = v8
-	v25 = v4.UpperBound
-	v26 = v5.UpperBound
-	v29 = v25.X
-	v30 = v26.X
-	if v29 > v30 {
-		v33 = v29
-	} else {
-		v33 = v30
-	}
-	v31 = v33
-	goto _32
-_32:
-	v34 = v25.Y
-	v35 = v26.Y
-	if v34 > v35 {
-		v38 = v34
-	} else {
-		v38 = v35
-	}
-	v36 = v38
-	goto _37
-_37:
-	v39 = v25.Z
-	v40 = v26.Z
-	if v39 > v40 {
-		v43 = v39
-	} else {
-		v43 = v40
-	}
-	v41 = v43
-	goto _42
-_42:
-	v27 = Vec3{
-		X: v31,
-		Y: v36,
-		Z: v41,
-	}
-	goto _28
-_28:
-	out.UpperBound = v27
-	v44 = out
-	goto _45
-_45:
-	v2 = v44
-	goto _3
-_3:
-	if boolUint8(true1 != 0) != 0 {
-		*(*AABB)(unsafe.Add(nil, bp)) = v2
-	}
-	(*(*b3TreeNode)(unsafe.Add(nil, bp))).FlagIndex = uint32FromInt32(pair1) | ((*b3TreeNode)(unsafe.Pointer(c1)).FlagIndex|(*b3TreeNode)(unsafe.Pointer(c2)).FlagIndex)&(uint32FromUint32(1)<<int32FromInt32(30))
-	v46 = b3GetNodeHeight(tls, c1)
-	v47 = b3GetNodeHeight(tls, c2)
-	if v46 > v47 {
-		v50 = v46
-	} else {
-		v50 = v47
-	}
-	v48 = v50
-	goto _49
-_49:
-	(*(*b3TreeNode)(unsafe.Add(nil, bp))).ｆ__ccgo2_28.Height = int32(1) + v48
+	v3 = v5
+	goto _4
+_4:
+	(*(*b3TreeNode)(unsafe.Add(nil, bp))).ｆ__ccgo2_28.Height = int32(1) + v3
 	return *(*b3TreeNode)(unsafe.Add(nil, bp))
 }
 
@@ -19221,15 +19940,13 @@ func b3RotateNodes(tls *_Stack, tree uintptr, iA int32) {
 	bp := tls.Alloc(80)
 	defer tls.Free(80)
 	var A, B, C, nodes uintptr
-	var areaB, areaC, bestDelta, deltaBF, deltaBG, deltaCD, deltaCE, wx, wy, wz, v13, v29, v30, v31, v33, v34, v35, v36, v38, v39, v40, v41, v43, v48, v49, v50, v52, v53, v54, v55, v57, v58, v59, v60, v62, v68 float32
+	var areaB, areaC, bestDelta, deltaBF, deltaBG, deltaCD, deltaCE, wx, wy, wz, v13, v20 float32
 	var bestDown, bestUp, iB, iC, iD, iE, iF, iG, v4 int32
 	var leafB, leafC, v1, v6 uint8
-	var out, v12, v15, v16, v23, v24, v63, v65, v67 AABB
-	var v25, v26, v27, v44, v45, v46 Vec3
-	var v17, v19, v21 b3AABBV
+	var v12, v15, v16, v17, v19 AABB
 	var v3 bool
 	var _ /* result at bp+48 */ AABB
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = A, B, C, areaB, areaC, bestDelta, bestDown, bestUp, deltaBF, deltaBG, deltaCD, deltaCE, iB, iC, iD, iE, iF, iG, leafB, leafC, nodes, out, wx, wy, wz, v1, v12, v13, v15, v16, v17, v19, v21, v23, v24, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v45, v46, v48, v49, v50, v52, v53, v54, v55, v57, v58, v59, v6, v60, v62, v63, v65, v67, v68
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = A, B, C, areaB, areaC, bestDelta, bestDown, bestUp, deltaBF, deltaBG, deltaCD, deltaCE, iB, iC, iD, iE, iF, iG, leafB, leafC, nodes, wx, wy, wz, v1, v12, v13, v15, v16, v17, v19, v20, v3, v4, v6
 	nodes = (*b3DynamicTree)(unsafe.Pointer(tree)).Nodes
 	A = nodes + uintptr(iA)*32
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(A)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
@@ -19281,115 +19998,19 @@ _9:
 		*(*AABB)(unsafe.Pointer(bp)) = v15
 		*(*AABB)(unsafe.Pointer(bp + 24)) = v16
 		*(*AABB)(unsafe.Add(nil, bp+48)) = AABB{}
-		v17 = *(*AABB)(unsafe.Add(nil, bp))
+		b3StoreAABBV3(tls, bp+48, b3UnionAABBV3(tls, b3LoadAABBV3(tls, bp), b3LoadAABBV3(tls, bp+24)), boolUint8(true1 != 0))
+		v17 = *(*AABB)(unsafe.Add(nil, bp+48))
 		goto _18
 	_18:
-		v19 = *(*AABB)(unsafe.Add(nil, bp+24))
-		goto _20
-	_20:
-		v23 = v17
-		v24 = v19
-		v25 = v23.LowerBound
-		v26 = v24.LowerBound
-		v29 = v25.X
-		v30 = v26.X
-		if v29 < v30 {
-			v33 = v29
-		} else {
-			v33 = v30
-		}
-		v31 = v33
-		goto _32
-	_32:
-		v34 = v25.Y
-		v35 = v26.Y
-		if v34 < v35 {
-			v38 = v34
-		} else {
-			v38 = v35
-		}
-		v36 = v38
-		goto _37
-	_37:
-		v39 = v25.Z
-		v40 = v26.Z
-		if v39 < v40 {
-			v43 = v39
-		} else {
-			v43 = v40
-		}
-		v41 = v43
-		goto _42
-	_42:
-		v27 = Vec3{
-			X: v31,
-			Y: v36,
-			Z: v41,
-		}
-		goto _28
-	_28:
-		out.LowerBound = v27
-		v44 = v23.UpperBound
-		v45 = v24.UpperBound
-		v48 = v44.X
-		v49 = v45.X
-		if v48 > v49 {
-			v52 = v48
-		} else {
-			v52 = v49
-		}
-		v50 = v52
-		goto _51
-	_51:
-		v53 = v44.Y
-		v54 = v45.Y
-		if v53 > v54 {
-			v57 = v53
-		} else {
-			v57 = v54
-		}
-		v55 = v57
-		goto _56
-	_56:
-		v58 = v44.Z
-		v59 = v45.Z
-		if v58 > v59 {
-			v62 = v58
-		} else {
-			v62 = v59
-		}
-		v60 = v62
-		goto _61
-	_61:
-		v46 = Vec3{
-			X: v50,
-			Y: v55,
-			Z: v60,
-		}
-		goto _47
-	_47:
-		out.UpperBound = v46
-		v63 = out
-		goto _64
-	_64:
-		v21 = v63
-		goto _22
-	_22:
-		if boolUint8(true1 != 0) != 0 {
-			*(*AABB)(unsafe.Add(nil, bp+48)) = v21
-		}
-		v65 = *(*AABB)(unsafe.Add(nil, bp+48))
-		goto _66
-	_66:
-		v67 = v65
-		wx = v67.UpperBound.X - v67.LowerBound.X
-		wy = v67.UpperBound.Y - v67.LowerBound.Y
-		wz = v67.UpperBound.Z - v67.LowerBound.Z
-		v68 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
-		goto _69
-	_69:
+		v19 = v17
+		wx = v19.UpperBound.X - v19.LowerBound.X
+		wy = v19.UpperBound.Y - v19.LowerBound.Y
+		wz = v19.UpperBound.Z - v19.LowerBound.Z
+		v20 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
+		goto _21
+	_21:
 		// B <-> F then C (B G)
-		deltaBF = v68 - areaC
+		deltaBF = v20 - areaC
 		if deltaBF < bestDelta {
 			bestDown = iB
 			bestUp = iF
@@ -19400,115 +20021,19 @@ _9:
 		*(*AABB)(unsafe.Pointer(bp)) = v12
 		*(*AABB)(unsafe.Pointer(bp + 24)) = v15
 		*(*AABB)(unsafe.Add(nil, bp+48)) = AABB{}
-		v17 = *(*AABB)(unsafe.Add(nil, bp))
-		goto _73
-	_73:
-		v19 = *(*AABB)(unsafe.Add(nil, bp+24))
-		goto _75
-	_75:
-		v16 = v17
-		v23 = v19
-		v25 = v16.LowerBound
-		v26 = v23.LowerBound
-		v13 = v25.X
-		v29 = v26.X
-		if v13 < v29 {
-			v31 = v13
-		} else {
-			v31 = v29
-		}
-		v30 = v31
-		goto _87
-	_87:
-		v33 = v25.Y
-		v34 = v26.Y
-		if v33 < v34 {
-			v36 = v33
-		} else {
-			v36 = v34
-		}
-		v35 = v36
-		goto _92
-	_92:
-		v38 = v25.Z
-		v39 = v26.Z
-		if v38 < v39 {
-			v41 = v38
-		} else {
-			v41 = v39
-		}
-		v40 = v41
-		goto _97
-	_97:
-		v27 = Vec3{
-			X: v30,
-			Y: v35,
-			Z: v40,
-		}
-		goto _83
-	_83:
-		out.LowerBound = v27
-		v44 = v16.UpperBound
-		v45 = v23.UpperBound
-		v43 = v44.X
-		v48 = v45.X
-		if v43 > v48 {
-			v50 = v43
-		} else {
-			v50 = v48
-		}
-		v49 = v50
-		goto _106
-	_106:
-		v52 = v44.Y
-		v53 = v45.Y
-		if v52 > v53 {
-			v55 = v52
-		} else {
-			v55 = v53
-		}
-		v54 = v55
-		goto _111
-	_111:
-		v57 = v44.Z
-		v58 = v45.Z
-		if v57 > v58 {
-			v60 = v57
-		} else {
-			v60 = v58
-		}
-		v59 = v60
-		goto _116
-	_116:
-		v46 = Vec3{
-			X: v49,
-			Y: v54,
-			Z: v59,
-		}
-		goto _102
-	_102:
-		out.UpperBound = v46
-		v24 = out
-		goto _119
-	_119:
-		v21 = v24
-		goto _77
-	_77:
-		if boolUint8(true1 != 0) != 0 {
-			*(*AABB)(unsafe.Add(nil, bp+48)) = v21
-		}
-		v63 = *(*AABB)(unsafe.Add(nil, bp+48))
-		goto _121
-	_121:
-		v65 = v63
-		wx = v65.UpperBound.X - v65.LowerBound.X
-		wy = v65.UpperBound.Y - v65.LowerBound.Y
-		wz = v65.UpperBound.Z - v65.LowerBound.Z
-		v62 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
-		goto _124
-	_124:
+		b3StoreAABBV3(tls, bp+48, b3UnionAABBV3(tls, b3LoadAABBV3(tls, bp), b3LoadAABBV3(tls, bp+24)), boolUint8(true1 != 0))
+		v16 = *(*AABB)(unsafe.Add(nil, bp+48))
+		goto _25
+	_25:
+		v17 = v16
+		wx = v17.UpperBound.X - v17.LowerBound.X
+		wy = v17.UpperBound.Y - v17.LowerBound.Y
+		wz = v17.UpperBound.Z - v17.LowerBound.Z
+		v13 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
+		goto _28
+	_28:
 		// B <-> G then C (F B)
-		deltaBG = v62 - areaC
+		deltaBG = v13 - areaC
 		if deltaBG < bestDelta {
 			bestDown = iB
 			bestUp = iG
@@ -19517,8 +20042,8 @@ _9:
 	}
 	if int32FromUint8(leafB) == false1 {
 		v4 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(B)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-		goto _126
-	_126:
+		goto _30
+	_30:
 		// Swap C with D or E
 		iD = v4
 		iE = iD + int32(1)
@@ -19527,123 +20052,27 @@ _9:
 		wy = v12.UpperBound.Y - v12.LowerBound.Y
 		wz = v12.UpperBound.Z - v12.LowerBound.Z
 		v13 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
-		goto _129
-	_129:
+		goto _33
+	_33:
 		areaB = v13
 		v15 = (*b3TreeNode)(unsafe.Pointer(C)).Aabb
 		v16 = (*(*b3TreeNode)(unsafe.Add(nil, nodes+uintptr(iE)*32))).Aabb
 		*(*AABB)(unsafe.Pointer(bp)) = v15
 		*(*AABB)(unsafe.Pointer(bp + 24)) = v16
 		*(*AABB)(unsafe.Add(nil, bp+48)) = AABB{}
-		v17 = *(*AABB)(unsafe.Add(nil, bp))
-		goto _133
-	_133:
-		v19 = *(*AABB)(unsafe.Add(nil, bp+24))
-		goto _135
-	_135:
-		v23 = v17
-		v24 = v19
-		v25 = v23.LowerBound
-		v26 = v24.LowerBound
-		v29 = v25.X
-		v30 = v26.X
-		if v29 < v30 {
-			v33 = v29
-		} else {
-			v33 = v30
-		}
-		v31 = v33
-		goto _147
-	_147:
-		v34 = v25.Y
-		v35 = v26.Y
-		if v34 < v35 {
-			v38 = v34
-		} else {
-			v38 = v35
-		}
-		v36 = v38
-		goto _152
-	_152:
-		v39 = v25.Z
-		v40 = v26.Z
-		if v39 < v40 {
-			v43 = v39
-		} else {
-			v43 = v40
-		}
-		v41 = v43
-		goto _157
-	_157:
-		v27 = Vec3{
-			X: v31,
-			Y: v36,
-			Z: v41,
-		}
-		goto _143
-	_143:
-		out.LowerBound = v27
-		v44 = v23.UpperBound
-		v45 = v24.UpperBound
-		v48 = v44.X
-		v49 = v45.X
-		if v48 > v49 {
-			v52 = v48
-		} else {
-			v52 = v49
-		}
-		v50 = v52
-		goto _166
-	_166:
-		v53 = v44.Y
-		v54 = v45.Y
-		if v53 > v54 {
-			v57 = v53
-		} else {
-			v57 = v54
-		}
-		v55 = v57
-		goto _171
-	_171:
-		v58 = v44.Z
-		v59 = v45.Z
-		if v58 > v59 {
-			v62 = v58
-		} else {
-			v62 = v59
-		}
-		v60 = v62
-		goto _176
-	_176:
-		v46 = Vec3{
-			X: v50,
-			Y: v55,
-			Z: v60,
-		}
-		goto _162
-	_162:
-		out.UpperBound = v46
-		v63 = out
-		goto _179
-	_179:
-		v21 = v63
-		goto _137
-	_137:
-		if boolUint8(true1 != 0) != 0 {
-			*(*AABB)(unsafe.Add(nil, bp+48)) = v21
-		}
-		v65 = *(*AABB)(unsafe.Add(nil, bp+48))
-		goto _181
-	_181:
-		v67 = v65
-		wx = v67.UpperBound.X - v67.LowerBound.X
-		wy = v67.UpperBound.Y - v67.LowerBound.Y
-		wz = v67.UpperBound.Z - v67.LowerBound.Z
-		v68 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
-		goto _184
-	_184:
+		b3StoreAABBV3(tls, bp+48, b3UnionAABBV3(tls, b3LoadAABBV3(tls, bp), b3LoadAABBV3(tls, bp+24)), boolUint8(true1 != 0))
+		v17 = *(*AABB)(unsafe.Add(nil, bp+48))
+		goto _37
+	_37:
+		v19 = v17
+		wx = v19.UpperBound.X - v19.LowerBound.X
+		wy = v19.UpperBound.Y - v19.LowerBound.Y
+		wz = v19.UpperBound.Z - v19.LowerBound.Z
+		v20 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
+		goto _40
+	_40:
 		// C <-> D then B (C E)
-		deltaCD = v68 - areaB
+		deltaCD = v20 - areaB
 		if deltaCD < bestDelta {
 			bestDown = iC
 			bestUp = iD
@@ -19654,115 +20083,19 @@ _9:
 		*(*AABB)(unsafe.Pointer(bp)) = v12
 		*(*AABB)(unsafe.Pointer(bp + 24)) = v15
 		*(*AABB)(unsafe.Add(nil, bp+48)) = AABB{}
-		v17 = *(*AABB)(unsafe.Add(nil, bp))
-		goto _188
-	_188:
-		v19 = *(*AABB)(unsafe.Add(nil, bp+24))
-		goto _190
-	_190:
-		v16 = v17
-		v23 = v19
-		v25 = v16.LowerBound
-		v26 = v23.LowerBound
-		v13 = v25.X
-		v29 = v26.X
-		if v13 < v29 {
-			v31 = v13
-		} else {
-			v31 = v29
-		}
-		v30 = v31
-		goto _202
-	_202:
-		v33 = v25.Y
-		v34 = v26.Y
-		if v33 < v34 {
-			v36 = v33
-		} else {
-			v36 = v34
-		}
-		v35 = v36
-		goto _207
-	_207:
-		v38 = v25.Z
-		v39 = v26.Z
-		if v38 < v39 {
-			v41 = v38
-		} else {
-			v41 = v39
-		}
-		v40 = v41
-		goto _212
-	_212:
-		v27 = Vec3{
-			X: v30,
-			Y: v35,
-			Z: v40,
-		}
-		goto _198
-	_198:
-		out.LowerBound = v27
-		v44 = v16.UpperBound
-		v45 = v23.UpperBound
-		v43 = v44.X
-		v48 = v45.X
-		if v43 > v48 {
-			v50 = v43
-		} else {
-			v50 = v48
-		}
-		v49 = v50
-		goto _221
-	_221:
-		v52 = v44.Y
-		v53 = v45.Y
-		if v52 > v53 {
-			v55 = v52
-		} else {
-			v55 = v53
-		}
-		v54 = v55
-		goto _226
-	_226:
-		v57 = v44.Z
-		v58 = v45.Z
-		if v57 > v58 {
-			v60 = v57
-		} else {
-			v60 = v58
-		}
-		v59 = v60
-		goto _231
-	_231:
-		v46 = Vec3{
-			X: v49,
-			Y: v54,
-			Z: v59,
-		}
-		goto _217
-	_217:
-		out.UpperBound = v46
-		v24 = out
-		goto _234
-	_234:
-		v21 = v24
-		goto _192
-	_192:
-		if boolUint8(true1 != 0) != 0 {
-			*(*AABB)(unsafe.Add(nil, bp+48)) = v21
-		}
-		v63 = *(*AABB)(unsafe.Add(nil, bp+48))
-		goto _236
-	_236:
-		v65 = v63
-		wx = v65.UpperBound.X - v65.LowerBound.X
-		wy = v65.UpperBound.Y - v65.LowerBound.Y
-		wz = v65.UpperBound.Z - v65.LowerBound.Z
-		v62 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
-		goto _239
-	_239:
+		b3StoreAABBV3(tls, bp+48, b3UnionAABBV3(tls, b3LoadAABBV3(tls, bp), b3LoadAABBV3(tls, bp+24)), boolUint8(true1 != 0))
+		v16 = *(*AABB)(unsafe.Add(nil, bp+48))
+		goto _44
+	_44:
+		v17 = v16
+		wx = v17.UpperBound.X - v17.LowerBound.X
+		wy = v17.UpperBound.Y - v17.LowerBound.Y
+		wz = v17.UpperBound.Z - v17.LowerBound.Z
+		v13 = float32(float32FromFloat32(2) * (float32(wx*wz) + float32(wy*wx) + float32(wz*wy)))
+		goto _47
+	_47:
 		// C <-> E then B (D C)
-		deltaCE = v62 - areaB
+		deltaCE = v13 - areaB
 		if deltaCE < bestDelta {
 			bestDown = iC
 			bestUp = iE
@@ -19918,15 +20251,15 @@ func b3QueryTreeView(tls *_Stack, view uintptr, _aabb AABB, maskBits uint64, req
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
 	*(*AABB)(unsafe.Pointer(bp)) = _aabb
-	var boxv, v11, v17 b3AABBV
+	var boxv b3AABBV
 	var i, pair, proxyId, stackCount, v3, v4, v6, v9 int32
-	var node5, nodes1, proxy, root uintptr
-	var proceed, v1, v7 uint8
+	var node4, nodes1, proxy, root uintptr
+	var proceed, v1 uint8
 	var result TreeStats
 	var stack [512]int32
 	var userData uint64_t
-	var v28 bool
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, i, node5, nodes1, pair, proceed, proxy, proxyId, result, root, stack, stackCount, userData, v1, v11, v17, v28, v3, v4, v6, v7, v9
+	var v20 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, i, node4, nodes1, pair, proceed, proxy, proxyId, result, root, stack, stackCount, userData, v1, v20, v3, v4, v6, v9
 	result = TreeStats{}
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer((*b3TreeView)(unsafe.Pointer(view)).Nodes+uintptr(_B3_ROOT_NODE)*32)).FlagIndex == uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30)|uint32FromUint32(1)<<int32FromInt32(31)) | uint32FromUint32(1)<<int32FromInt32(31))
 	goto _2
@@ -19954,10 +20287,7 @@ _8:
 	goto _5
 _5:
 	stack[v3] = v4
-	v11 = *(*AABB)(unsafe.Add(nil, bp))
-	goto _12
-_12:
-	boxv = v11
+	boxv = b3LoadAABBV3(tls, bp)
 	for stackCount > 0 {
 		stackCount = stackCount - 1
 		v3 = stackCount
@@ -19968,31 +20298,23 @@ _12:
 			if !(i < int32(2)) {
 				break
 			}
-			node5 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
-			v11 = boxv
-			v17 = (*b3TreeNode)(unsafe.Pointer(node5)).Aabb
-			v7 = boolUint8(v11.LowerBound.X <= v17.UpperBound.X && v11.LowerBound.Y <= v17.UpperBound.Y && v11.LowerBound.Z <= v17.UpperBound.Z && v17.LowerBound.X <= v11.UpperBound.X && v17.LowerBound.Y <= v11.UpperBound.Y && v17.LowerBound.Z <= v11.UpperBound.Z)
-			goto _20
-		_20:
-			v1 = v7
-			goto _16
-		_16:
-			if int32FromUint8(v1) == false1 {
-				goto _14
+			node4 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
+			if int32FromUint8(b3OverlapNode3(tls, boxv, node4)) == false1 {
+				goto _12
 			}
-			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node5)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-			goto _22
-		_22:
+			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
+			goto _14
+		_14:
 			if v1 != 0 {
-				v3 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node5)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-				goto _24
-			_24:
+				v3 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+				goto _16
+			_16:
 				proxyId = v3
-				userData = uint64(uint32FromInt32(*(*int32_t)(unsafe.Add(unsafe.Pointer(node5), 28))))
+				userData = uint64(uint32FromInt32(*(*int32_t)(unsafe.Add(unsafe.Pointer(node4), 28))))
 				if hasProxies != 0 {
 					proxy = (*b3TreeView)(unsafe.Pointer(view)).Proxies + uintptr(proxyId)*24
 					if int32FromUint8(b3TestCategory(tls, (*b3TreeProxy)(unsafe.Pointer(proxy)).CategoryBits, maskBits, requireAllBits)) == false1 {
-						goto _14
+						goto _12
 					}
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
@@ -20005,19 +20327,19 @@ _12:
 				if stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1) {
 					v3 = stackCount
 					stackCount = stackCount + 1
-					v4 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node5)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-					goto _27
-				_27:
+					v4 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+					goto _19
+				_19:
 					stack[v3] = v4
 				} else {
-					if v28 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v28 {
+					if v20 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v20 {
 						b3InternalAssert(tls, __ccgo_ts+12401, __ccgo_ts+12080, int32FromInt32(931))
 					}
-					_ = v28 || bool(int32FromInt32(0) != 0)
+					_ = v20 || bool(int32FromInt32(0) != 0)
 				}
 			}
-			goto _14
-		_14:
+			goto _12
+		_12:
 			;
 			i = i + 1
 		}
@@ -20257,19 +20579,19 @@ _4:
 func b3RayCastTreeView(tls *_Stack, view uintptr, input uintptr, maskBits uint64, requireAllBits uint8, __ccgo_fp_callback uintptr, context uintptr, hasProxies uint8) (r TreeStats) {
 	bp := tls.Alloc(128)
 	defer tls.Free(128)
-	var boxv, v52, v66 b3AABBV
-	var c, c1, dv1, edgeSeparation, lower, nodeCenter, nodeExtent, pv1, upper, v100, v105, v106, v111, v112, v113, v115, v116, v117, v4, v7, v71, v74, v76, v77, v78, v79, v80, v81, v83, v84, v85, v87, v88, v89, v91, v92, v93, v95, v96, v97, v99 b3V32
-	var center1, center2, dv, p2, v11, v12, v128, v130, v131, v132, v135, v136, v139, v14, v15, v16, v33, v34, v35, v9 Vec3
+	var boxv b3AABBV
+	var c, c1, dv1, edgeSeparation, lower, nodeCenter, nodeExtent, pv1, upper, v103, v104, v105, v107, v108, v109, v4, v63, v66, v68, v69, v7, v70, v71, v72, v73, v75, v76, v77, v79, v80, v81, v83, v84, v85, v87, v88, v89, v91, v92, v97, v98 b3V32
+	var center1, center2, dv, p2, v11, v12, v120, v122, v123, v124, v127, v128, v131, v14, v15, v16, v33, v34, v35, v9 Vec3
 	var d1, d2, maxFraction, value, v10, v18, v19, v20, v22, v23, v24, v25, v27, v28, v29, v30, v32, v37, v38, v39, v41, v42, v43, v44, v46, v47, v48, v49, v51 float32
-	var hitCount, i, i1, pair, proxyId, stackCount, v54, v55, v57, v60 int32
+	var hitCount, i, i1, pair, proxyId, stackCount, v52, v53, v55, v58 int32
 	var isLeaf [2]uint8
-	var node5, nodes1, proxy, root, v3, v6 uintptr
+	var node4, nodes1, proxy, root, v3, v6 uintptr
 	var result TreeStats
 	var stack [512]int32
 	var userData uint64_t
-	var v1, v58 uint8
-	var v127, v138 AABB
-	var v208 bool
+	var v1, v56 uint8
+	var v119, v130 AABB
+	var v198 bool
 	var _ /* B3_SWAP_TEMP at bp+120 */ [8]uint8
 	var _ /* d at bp+12 */ Vec3
 	var _ /* hit at bp+80 */ [2]uintptr
@@ -20277,7 +20599,7 @@ func b3RayCastTreeView(tls *_Stack, view uintptr, input uintptr, maskBits uint64
 	var _ /* p1 at bp+0 */ Vec3
 	var _ /* segmentAABB at bp+24 */ AABB
 	var _ /* subInput at bp+48 */ RayCastInput
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, c, c1, center1, center2, d1, d2, dv, dv1, edgeSeparation, hitCount, i, i1, isLeaf, lower, maxFraction, node5, nodeCenter, nodeExtent, nodes1, p2, pair, proxy, proxyId, pv1, result, root, stack, stackCount, upper, userData, value, v1, v10, v100, v105, v106, v11, v111, v112, v113, v115, v116, v117, v12, v127, v128, v130, v131, v132, v135, v136, v138, v139, v14, v15, v16, v18, v19, v20, v208, v22, v23, v24, v25, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v42, v43, v44, v46, v47, v48, v49, v51, v52, v54, v55, v57, v58, v6, v60, v66, v7, v71, v74, v76, v77, v78, v79, v80, v81, v83, v84, v85, v87, v88, v89, v9, v91, v92, v93, v95, v96, v97, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, c, c1, center1, center2, d1, d2, dv, dv1, edgeSeparation, hitCount, i, i1, isLeaf, lower, maxFraction, node4, nodeCenter, nodeExtent, nodes1, p2, pair, proxy, proxyId, pv1, result, root, stack, stackCount, upper, userData, value, v1, v10, v103, v104, v105, v107, v108, v109, v11, v119, v12, v120, v122, v123, v124, v127, v128, v130, v131, v14, v15, v16, v18, v19, v198, v20, v22, v23, v24, v25, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v42, v43, v44, v46, v47, v48, v49, v51, v52, v53, v55, v56, v58, v6, v63, v66, v68, v69, v7, v70, v71, v72, v73, v75, v76, v77, v79, v80, v81, v83, v84, v85, v87, v88, v89, v9, v91, v92, v97, v98
 	result = TreeStats{}
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer((*b3TreeView)(unsafe.Pointer(view)).Nodes+uintptr(_B3_ROOT_NODE)*32)).FlagIndex == uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30)|uint32FromUint32(1)<<int32FromInt32(31)) | uint32FromUint32(1)<<int32FromInt32(31))
 	goto _2
@@ -20400,35 +20722,32 @@ _36:
 		LowerBound: v16,
 		UpperBound: v35,
 	}
-	v52 = *(*AABB)(unsafe.Add(nil, bp+24))
-	goto _53
-_53:
-	boxv = v52
+	boxv = b3LoadAABBV3(tls, bp+24)
 	nodes1 = (*b3TreeView)(unsafe.Pointer(view)).Nodes
 	stackCount = 0
-	v54 = stackCount
+	v52 = stackCount
 	stackCount = stackCount + 1
 	root = nodes1 + uintptr(_B3_ROOT_NODE)*32
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-	goto _59
-_59:
+	goto _57
+_57:
 	if v1 != 0 {
-		v57 = _B3_ROOT_NODE
+		v55 = _B3_ROOT_NODE
 	} else {
-		v60 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-		goto _61
-	_61:
-		v57 = v60
+		v58 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+		goto _59
+	_59:
+		v55 = v58
 	}
-	v55 = v57
-	goto _56
-_56:
-	stack[v54] = v55
+	v53 = v55
+	goto _54
+_54:
+	stack[v52] = v53
 	*(*RayCastInput)(unsafe.Add(nil, bp+48)) = *(*RayCastInput)(unsafe.Add(nil, input))
 	for stackCount > 0 {
 		stackCount = stackCount - 1
-		v54 = stackCount
-		pair = stack[v54]
+		v52 = stackCount
+		pair = stack[v52]
 		result.NodeVisits += int32(1)
 		hitCount = 0
 		i = 0
@@ -20436,27 +20755,19 @@ _56:
 			if !(i < int32(2)) {
 				break
 			}
-			node5 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
-			v52 = boxv
-			v66 = (*b3TreeNode)(unsafe.Pointer(node5)).Aabb
-			v58 = boolUint8(v52.LowerBound.X <= v66.UpperBound.X && v52.LowerBound.Y <= v66.UpperBound.Y && v52.LowerBound.Z <= v66.UpperBound.Z && v66.LowerBound.X <= v52.UpperBound.X && v66.LowerBound.Y <= v52.UpperBound.Y && v66.LowerBound.Z <= v52.UpperBound.Z)
-			goto _69
-		_69:
-			v1 = v58
-			goto _65
-		_65:
-			if int32FromUint8(v1) == false1 {
-				goto _63
+			node4 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
+			if int32FromUint8(b3OverlapNode3(tls, boxv, node4)) == false1 {
+				goto _61
 			}
-			*(*AABB)(unsafe.Add(nil, bp+96)) = (*b3TreeNode)(unsafe.Pointer(node5)).Aabb
+			*(*AABB)(unsafe.Add(nil, bp+96)) = (*b3TreeNode)(unsafe.Pointer(node4)).Aabb
 			v3 = bp + 96
 			v4 = b3V32{
 				X: *(*float32)(unsafe.Add(nil, v3)),
 				Y: *(*float32)(unsafe.Add(nil, v3+1*4)),
 				Z: *(*float32)(unsafe.Add(nil, v3+2*4)),
 			}
-			goto _72
-		_72:
+			goto _64
+		_64:
 			lower = v4
 			v6 = bp + 96 + 12
 			v7 = b3V32{
@@ -20464,156 +20775,156 @@ _56:
 				Y: *(*float32)(unsafe.Add(nil, v6+1*4)),
 				Z: *(*float32)(unsafe.Add(nil, v6+2*4)),
 			}
-			goto _75
-		_75:
+			goto _67
+		_67:
 			upper = v7
-			v71 = upper
-			v74 = pv1
-			v76 = dv1
-			v77 = lower
-			v78 = v71
+			v63 = upper
+			v66 = pv1
+			v68 = dv1
+			v69 = lower
+			v70 = v63
+			v71 = b3V32{
+				X: v69.X + v70.X,
+				Y: v69.Y + v70.Y,
+				Z: v69.Z + v70.Z,
+			}
+			goto _74
+		_74:
+			v72 = b3_halfV
+			v73 = v71
+			v75 = b3V32{
+				X: float32(v72.X * v73.X),
+				Y: float32(v72.Y * v73.Y),
+				Z: float32(v72.Z * v73.Z),
+			}
+			goto _78
+		_78:
+			nodeCenter = v75
+			v76 = v63
+			v77 = nodeCenter
 			v79 = b3V32{
-				X: v77.X + v78.X,
-				Y: v77.Y + v78.Y,
-				Z: v77.Z + v78.Z,
+				X: v76.X - v77.X,
+				Y: v76.Y - v77.Y,
+				Z: v76.Z - v77.Z,
 			}
 			goto _82
 		_82:
-			v80 = b3_halfV
-			v81 = v79
+			nodeExtent = v79
+			v80 = v66
+			v81 = nodeCenter
 			v83 = b3V32{
-				X: float32(v80.X * v81.X),
-				Y: float32(v80.Y * v81.Y),
-				Z: float32(v80.Z * v81.Z),
+				X: v80.X - v81.X,
+				Y: v80.Y - v81.Y,
+				Z: v80.Z - v81.Z,
 			}
 			goto _86
 		_86:
-			nodeCenter = v83
-			v84 = v71
-			v85 = nodeCenter
-			v87 = b3V32{
-				X: v84.X - v85.X,
-				Y: v84.Y - v85.Y,
-				Z: v84.Z - v85.Z,
-			}
+			v66 = v83
+			v84 = v68
+			v85 = v66
+			c.X = float32(v84.Y*v85.Z) - float32(v84.Z*v85.Y)
+			c.Y = float32(v84.Z*v85.X) - float32(v84.X*v85.Z)
+			c.Z = float32(v84.X*v85.Y) - float32(v84.Y*v85.X)
+			v87 = c
 			goto _90
 		_90:
-			nodeExtent = v87
-			v88 = v74
-			v89 = nodeCenter
-			v91 = b3V32{
-				X: v88.X - v89.X,
-				Y: v88.Y - v89.Y,
-				Z: v88.Z - v89.Z,
-			}
-			goto _94
-		_94:
-			v74 = v91
-			v92 = v76
-			v93 = v74
-			c.X = float32(v92.Y*v93.Z) - float32(v92.Z*v93.Y)
-			c.Y = float32(v92.Z*v93.X) - float32(v92.X*v93.Z)
-			c.Z = float32(v92.X*v93.Y) - float32(v92.Y*v93.X)
-			v95 = c
-			goto _98
-		_98:
-			v96 = v95
-			if v96.X < float32FromFloat32(0) {
-				v10 = -v96.X
+			v88 = v87
+			if v88.X < float32FromFloat32(0) {
+				v10 = -v88.X
 			} else {
-				v10 = v96.X
+				v10 = v88.X
 			}
-			if v96.Y < float32FromFloat32(0) {
-				v18 = -v96.Y
+			if v88.Y < float32FromFloat32(0) {
+				v18 = -v88.Y
 			} else {
-				v18 = v96.Y
+				v18 = v88.Y
 			}
-			if v96.Z < float32FromFloat32(0) {
-				v19 = -v96.Z
+			if v88.Z < float32FromFloat32(0) {
+				v19 = -v88.Z
 			} else {
-				v19 = v96.Z
+				v19 = v88.Z
 			}
-			v97 = b3V32{
+			v89 = b3V32{
 				X: v10,
 				Y: v18,
 				Z: v19,
 			}
-			goto _101
-		_101:
-			v99 = v76
-			if v99.X < float32FromFloat32(0) {
-				v20 = -v99.X
+			goto _93
+		_93:
+			v91 = v68
+			if v91.X < float32FromFloat32(0) {
+				v20 = -v91.X
 			} else {
-				v20 = v99.X
+				v20 = v91.X
 			}
-			if v99.Y < float32FromFloat32(0) {
-				v22 = -v99.Y
+			if v91.Y < float32FromFloat32(0) {
+				v22 = -v91.Y
 			} else {
-				v22 = v99.Y
+				v22 = v91.Y
 			}
-			if v99.Z < float32FromFloat32(0) {
-				v23 = -v99.Z
+			if v91.Z < float32FromFloat32(0) {
+				v23 = -v91.Z
 			} else {
-				v23 = v99.Z
+				v23 = v91.Z
 			}
-			v100 = b3V32{
+			v92 = b3V32{
 				X: v20,
 				Y: v22,
 				Z: v23,
 			}
-			goto _107
-		_107:
-			v105 = v100
-			v106 = nodeExtent
-			c1.X = float32(v105.Y*v106.Z) + float32(v105.Z*v106.Y)
-			c1.Y = float32(v105.Z*v106.X) + float32(v105.X*v106.Z)
-			c1.Z = float32(v105.X*v106.Y) + float32(v105.Y*v106.X)
-			v111 = c1
-			goto _114
-		_114:
-			v112 = v97
-			v113 = v111
-			v115 = b3V32{
-				X: v112.X - v113.X,
-				Y: v112.Y - v113.Y,
-				Z: v112.Z - v113.Z,
+			goto _99
+		_99:
+			v97 = v92
+			v98 = nodeExtent
+			c1.X = float32(v97.Y*v98.Z) + float32(v97.Z*v98.Y)
+			c1.Y = float32(v97.Z*v98.X) + float32(v97.X*v98.Z)
+			c1.Z = float32(v97.X*v98.Y) + float32(v97.Y*v98.X)
+			v103 = c1
+			goto _106
+		_106:
+			v104 = v89
+			v105 = v103
+			v107 = b3V32{
+				X: v104.X - v105.X,
+				Y: v104.Y - v105.Y,
+				Z: v104.Z - v105.Z,
 			}
+			goto _110
+		_110:
+			edgeSeparation = v107
+			v108 = edgeSeparation
+			v109 = b3_zeroV
+			v56 = boolUint8(v108.X <= v109.X && v108.Y <= v109.Y && v108.Z <= v109.Z)
+			goto _116
+		_116:
+			v1 = v56
+			goto _112
+		_112:
+			if int32FromUint8(v1) == false1 {
+				goto _61
+			}
+			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
 			goto _118
 		_118:
-			edgeSeparation = v115
-			v116 = edgeSeparation
-			v117 = b3_zeroV
-			v58 = boolUint8(v116.X <= v117.X && v116.Y <= v117.Y && v116.Z <= v117.Z)
-			goto _124
-		_124:
-			v1 = v58
-			goto _120
-		_120:
-			if int32FromUint8(v1) == false1 {
-				goto _63
-			}
-			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node5)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-			goto _126
-		_126:
 			isLeaf[hitCount] = v1
-			(*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[hitCount] = node5
+			(*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[hitCount] = node4
 			hitCount = hitCount + int32(1)
-			goto _63
-		_63:
+			goto _61
+		_61:
 			;
 			i = i + 1
 		}
 		if hitCount == int32(2) && int32FromUint8(isLeaf[0]) == false1 && int32FromUint8(isLeaf[int32(1)]) == false1 {
-			v127 = (*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[0])).Aabb
-			v11 = v127.UpperBound
-			v12 = v127.LowerBound
+			v119 = (*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[0])).Aabb
+			v11 = v119.UpperBound
+			v12 = v119.LowerBound
 			v14 = Vec3{
 				X: v11.X + v12.X,
 				Y: v11.Y + v12.Y,
 				Z: v11.Z + v12.Z,
 			}
-			goto _133
-		_133:
+			goto _125
+		_125:
 			v10 = float32FromFloat32(0.5)
 			v15 = v14
 			v16 = Vec3{
@@ -20621,56 +20932,56 @@ _56:
 				Y: float32(v10 * v15.Y),
 				Z: float32(v10 * v15.Z),
 			}
-			goto _137
-		_137:
-			v9 = v16
 			goto _129
 		_129:
+			v9 = v16
+			goto _121
+		_121:
 			center1 = v9
-			v138 = (*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[int32(1)])).Aabb
-			v34 = v138.UpperBound
-			v35 = v138.LowerBound
-			v128 = Vec3{
+			v130 = (*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[int32(1)])).Aabb
+			v34 = v130.UpperBound
+			v35 = v130.LowerBound
+			v120 = Vec3{
 				X: v34.X + v35.X,
 				Y: v34.Y + v35.Y,
 				Z: v34.Z + v35.Z,
 			}
-			goto _144
-		_144:
+			goto _136
+		_136:
 			v18 = float32FromFloat32(0.5)
-			v130 = v128
-			v131 = Vec3{
-				X: float32(v18 * v130.X),
-				Y: float32(v18 * v130.Y),
-				Z: float32(v18 * v130.Z),
+			v122 = v120
+			v123 = Vec3{
+				X: float32(v18 * v122.X),
+				Y: float32(v18 * v122.Y),
+				Z: float32(v18 * v122.Z),
 			}
-			goto _148
-		_148:
-			v33 = v131
 			goto _140
 		_140:
+			v33 = v123
+			goto _132
+		_132:
 			center2 = v33
-			v132 = center1
-			v135 = *(*Vec3)(unsafe.Add(nil, bp))
+			v124 = center1
+			v127 = *(*Vec3)(unsafe.Add(nil, bp))
 			dv = Vec3{
-				X: v135.X - v132.X,
-				Y: v135.Y - v132.Y,
-				Z: v135.Z - v132.Z,
+				X: v127.X - v124.X,
+				Y: v127.Y - v124.Y,
+				Z: v127.Z - v124.Z,
 			}
 			v19 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
-			goto _152
-		_152:
+			goto _144
+		_144:
 			d1 = v19
-			v136 = center2
-			v139 = *(*Vec3)(unsafe.Add(nil, bp))
+			v128 = center2
+			v131 = *(*Vec3)(unsafe.Add(nil, bp))
 			dv = Vec3{
-				X: v139.X - v136.X,
-				Y: v139.Y - v136.Y,
-				Z: v139.Z - v136.Z,
+				X: v131.X - v128.X,
+				Y: v131.Y - v128.Y,
+				Z: v131.Z - v128.Z,
 			}
 			v20 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
-			goto _156
-		_156:
+			goto _148
+		_148:
 			d2 = v20
 			// Want to push the closest one last. Both have the same isLeaf, so they don't swap.
 			if d1 < d2 {
@@ -20685,15 +20996,15 @@ _56:
 				break
 			}
 			if isLeaf[i1] != 0 {
-				v54 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-				goto _159
-			_159:
-				proxyId = v54
+				v52 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+				goto _151
+			_151:
+				proxyId = v52
 				userData = uint64(uint32FromInt32(*(*int32_t)(unsafe.Add(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[i1]), 28))))
 				if hasProxies != 0 {
 					proxy = (*b3TreeView)(unsafe.Pointer(view)).Proxies + uintptr(proxyId)*24
 					if int32FromUint8(b3TestCategory(tls, (*b3TreeProxy)(unsafe.Pointer(proxy)).CategoryBits, maskBits, requireAllBits)) == false1 {
-						goto _157
+						goto _149
 					}
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
@@ -20716,8 +21027,8 @@ _56:
 						Y: v9.Y + float32(v10*v11.Y),
 						Z: v9.Z + float32(v10*v11.Z),
 					}
-					goto _164
-				_164:
+					goto _156
+				_156:
 					p2 = v12
 					v9 = *(*Vec3)(unsafe.Add(nil, bp))
 					v11 = p2
@@ -20729,8 +21040,8 @@ _56:
 						v20 = v18
 					}
 					v19 = v20
-					goto _172
-				_172:
+					goto _164
+				_164:
 					v22 = v9.Y
 					v23 = v11.Y
 					if v22 < v23 {
@@ -20739,8 +21050,8 @@ _56:
 						v25 = v23
 					}
 					v24 = v25
-					goto _177
-				_177:
+					goto _169
+				_169:
 					v27 = v9.Z
 					v28 = v11.Z
 					if v27 < v28 {
@@ -20749,15 +21060,15 @@ _56:
 						v30 = v28
 					}
 					v29 = v30
-					goto _182
-				_182:
+					goto _174
+				_174:
 					v12 = Vec3{
 						X: v19,
 						Y: v24,
 						Z: v29,
 					}
-					goto _168
-				_168:
+					goto _160
+				_160:
 					(*(*AABB)(unsafe.Add(nil, bp+24))).LowerBound = v12
 					v9 = *(*Vec3)(unsafe.Add(nil, bp))
 					v11 = p2
@@ -20769,8 +21080,8 @@ _56:
 						v20 = v18
 					}
 					v19 = v20
-					goto _191
-				_191:
+					goto _183
+				_183:
 					v22 = v9.Y
 					v23 = v11.Y
 					if v22 > v23 {
@@ -20779,8 +21090,8 @@ _56:
 						v25 = v23
 					}
 					v24 = v25
-					goto _196
-				_196:
+					goto _188
+				_188:
 					v27 = v9.Z
 					v28 = v11.Z
 					if v27 > v28 {
@@ -20789,38 +21100,35 @@ _56:
 						v30 = v28
 					}
 					v29 = v30
-					goto _201
-				_201:
+					goto _193
+				_193:
 					v12 = Vec3{
 						X: v19,
 						Y: v24,
 						Z: v29,
 					}
-					goto _187
-				_187:
+					goto _179
+				_179:
 					(*(*AABB)(unsafe.Add(nil, bp+24))).UpperBound = v12
-					v52 = *(*AABB)(unsafe.Add(nil, bp+24))
-					goto _204
-				_204:
-					boxv = v52
+					boxv = b3LoadAABBV3(tls, bp+24)
 				}
 			} else {
 				if stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1) {
-					v54 = stackCount
+					v52 = stackCount
 					stackCount = stackCount + 1
-					v55 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-					goto _207
-				_207:
-					stack[v54] = v55
+					v53 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+80)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+					goto _197
+				_197:
+					stack[v52] = v53
 				} else {
-					if v208 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v208 {
+					if v198 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v198 {
 						b3InternalAssert(tls, __ccgo_ts+12401, __ccgo_ts+12080, int32FromInt32(1199))
 					}
-					_ = v208 || bool(int32FromInt32(0) != 0)
+					_ = v198 || bool(int32FromInt32(0) != 0)
 				}
 			}
-			goto _157
-		_157:
+			goto _149
+		_149:
 			;
 			i1 = i1 + 1
 		}
@@ -20834,19 +21142,19 @@ _56:
 func b3BoxCastTreeView(tls *_Stack, view uintptr, input uintptr, maskBits uint64, requireAllBits uint8, __ccgo_fp_callback uintptr, context uintptr, hasProxies uint8) (r TreeStats) {
 	bp := tls.Alloc(160)
 	defer tls.Free(160)
-	var boxv, v84, v98 b3AABBV
-	var c, c1, dv1, edgeSeparation, ev, lower, nodeCenter, nodeExtent, pv1, upper, v103, v105, v106, v107, v110, v112, v113, v114, v116, v117, v118, v119, v120, v121, v123, v124, v125, v127, v128, v129, v131, v132, v133, v135, v136, v137, v139, v140, v145, v146, v151, v152, v153, v155, v156, v26, v29, v32 b3V32
+	var boxv b3AABBV
+	var c, c1, dv1, edgeSeparation, ev, lower, nodeCenter, nodeExtent, pv1, upper, v102, v104, v105, v106, v108, v109, v110, v111, v112, v113, v115, v116, v117, v119, v120, v121, v123, v124, v125, v127, v128, v129, v131, v132, v137, v138, v143, v144, v145, v147, v148, v26, v29, v32, v95, v97, v98, v99 b3V32
 	var center1, center2, dv, t, v11, v12, v15, v17, v18, v19, v22, v23, v35, v36, v38, v39, v4, v40, v42, v43, v44, v6, v61, v62, v63, v65, v66, v67, v7, v8 Vec3
 	var d1, d2, maxFraction, value, v10, v21, v34, v46, v47, v48, v50, v51, v52, v53, v55, v56, v57, v58, v60, v69, v70, v71, v73, v74, v75, v76, v78, v79, v80, v81, v83 float32
-	var hitCount, i, i1, pair, proxyId, stackCount, v86, v87, v89, v92 int32
+	var hitCount, i, i1, pair, proxyId, stackCount, v84, v85, v87, v90 int32
 	var isLeaf [2]uint8
-	var node5, nodes1, proxy, root, v25, v28, v31 uintptr
+	var node4, nodes1, proxy, root, v25, v28, v31 uintptr
 	var originAABB, v14, v3 AABB
 	var result TreeStats
 	var stack [512]int32
 	var userData uint64_t
-	var v1, v90 uint8
-	var v255 bool
+	var v1, v88 uint8
+	var v245 bool
 	var _ /* B3_SWAP_TEMP at bp+144 */ [8]uint8
 	var _ /* d at bp+24 */ Vec3
 	var _ /* extension at bp+12 */ Vec3
@@ -20855,7 +21163,7 @@ func b3BoxCastTreeView(tls *_Stack, view uintptr, input uintptr, maskBits uint64
 	var _ /* p1 at bp+0 */ Vec3
 	var _ /* subInput at bp+60 */ BoxCastInput
 	var _ /* totalAABB at bp+36 */ AABB
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, c, c1, center1, center2, d1, d2, dv, dv1, edgeSeparation, ev, hitCount, i, i1, isLeaf, lower, maxFraction, node5, nodeCenter, nodeExtent, nodes1, originAABB, pair, proxy, proxyId, pv1, result, root, stack, stackCount, t, upper, userData, value, v1, v10, v103, v105, v106, v107, v11, v110, v112, v113, v114, v116, v117, v118, v119, v12, v120, v121, v123, v124, v125, v127, v128, v129, v131, v132, v133, v135, v136, v137, v139, v14, v140, v145, v146, v15, v151, v152, v153, v155, v156, v17, v18, v19, v21, v22, v23, v25, v255, v26, v28, v29, v3, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v46, v47, v48, v50, v51, v52, v53, v55, v56, v57, v58, v6, v60, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v76, v78, v79, v8, v80, v81, v83, v84, v86, v87, v89, v90, v92, v98
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, c, c1, center1, center2, d1, d2, dv, dv1, edgeSeparation, ev, hitCount, i, i1, isLeaf, lower, maxFraction, node4, nodeCenter, nodeExtent, nodes1, originAABB, pair, proxy, proxyId, pv1, result, root, stack, stackCount, t, upper, userData, value, v1, v10, v102, v104, v105, v106, v108, v109, v11, v110, v111, v112, v113, v115, v116, v117, v119, v12, v120, v121, v123, v124, v125, v127, v128, v129, v131, v132, v137, v138, v14, v143, v144, v145, v147, v148, v15, v17, v18, v19, v21, v22, v23, v245, v25, v26, v28, v29, v3, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v46, v47, v48, v50, v51, v52, v53, v55, v56, v57, v58, v6, v60, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v76, v78, v79, v8, v80, v81, v83, v84, v85, v87, v88, v90, v95, v97, v98, v99
 	result = TreeStats{}
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer((*b3TreeView)(unsafe.Pointer(view)).Nodes+uintptr(_B3_ROOT_NODE)*32)).FlagIndex == uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30)|uint32FromUint32(1)<<int32FromInt32(31)) | uint32FromUint32(1)<<int32FromInt32(31))
 	goto _2
@@ -21051,35 +21359,32 @@ _68:
 		LowerBound: v44,
 		UpperBound: v67,
 	}
-	v84 = *(*AABB)(unsafe.Add(nil, bp+36))
-	goto _85
-_85:
-	boxv = v84
+	boxv = b3LoadAABBV3(tls, bp+36)
 	nodes1 = (*b3TreeView)(unsafe.Pointer(view)).Nodes
 	stackCount = 0
-	v86 = stackCount
+	v84 = stackCount
 	stackCount = stackCount + 1
 	root = nodes1 + uintptr(_B3_ROOT_NODE)*32
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-	goto _91
-_91:
+	goto _89
+_89:
 	if v1 != 0 {
-		v89 = _B3_ROOT_NODE
+		v87 = _B3_ROOT_NODE
 	} else {
-		v92 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-		goto _93
-	_93:
-		v89 = v92
+		v90 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+		goto _91
+	_91:
+		v87 = v90
 	}
-	v87 = v89
-	goto _88
-_88:
-	stack[v86] = v87
+	v85 = v87
+	goto _86
+_86:
+	stack[v84] = v85
 	*(*BoxCastInput)(unsafe.Add(nil, bp+60)) = *(*BoxCastInput)(unsafe.Add(nil, input))
 	for stackCount > 0 {
 		stackCount = stackCount - 1
-		v86 = stackCount
-		pair = stack[v86]
+		v84 = stackCount
+		pair = stack[v84]
 		result.NodeVisits += int32(1)
 		hitCount = 0
 		i = 0
@@ -21087,189 +21392,181 @@ _88:
 			if !(i < int32(2)) {
 				break
 			}
-			node5 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
-			v84 = boxv
-			v98 = (*b3TreeNode)(unsafe.Pointer(node5)).Aabb
-			v90 = boolUint8(v84.LowerBound.X <= v98.UpperBound.X && v84.LowerBound.Y <= v98.UpperBound.Y && v84.LowerBound.Z <= v98.UpperBound.Z && v98.LowerBound.X <= v84.UpperBound.X && v98.LowerBound.Y <= v84.UpperBound.Y && v98.LowerBound.Z <= v84.UpperBound.Z)
-			goto _101
-		_101:
-			v1 = v90
-			goto _97
-		_97:
-			if int32FromUint8(v1) == false1 {
-				goto _95
+			node4 = nodes1 + uintptr(pair)*32 + uintptr(i)*32
+			if int32FromUint8(b3OverlapNode3(tls, boxv, node4)) == false1 {
+				goto _93
 			}
 			// radius extension is added to the node in this case
-			*(*AABB)(unsafe.Add(nil, bp+120)) = (*b3TreeNode)(unsafe.Pointer(node5)).Aabb
+			*(*AABB)(unsafe.Add(nil, bp+120)) = (*b3TreeNode)(unsafe.Pointer(node4)).Aabb
 			v25 = bp + 120
 			v26 = b3V32{
 				X: *(*float32)(unsafe.Add(nil, v25)),
 				Y: *(*float32)(unsafe.Add(nil, v25+1*4)),
 				Z: *(*float32)(unsafe.Add(nil, v25+2*4)),
 			}
-			goto _104
-		_104:
+			goto _96
+		_96:
 			v29 = v26
 			v32 = ev
-			v103 = b3V32{
+			v95 = b3V32{
 				X: v29.X - v32.X,
 				Y: v29.Y - v32.Y,
 				Z: v29.Z - v32.Z,
 			}
-			goto _108
-		_108:
-			lower = v103
+			goto _100
+		_100:
+			lower = v95
 			v28 = bp + 120 + 12
-			v105 = b3V32{
+			v97 = b3V32{
 				X: *(*float32)(unsafe.Add(nil, v28)),
 				Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
 				Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
 			}
-			goto _111
-		_111:
-			v106 = v105
-			v107 = ev
-			v110 = b3V32{
-				X: v106.X + v107.X,
-				Y: v106.Y + v107.Y,
-				Z: v106.Z + v107.Z,
+			goto _103
+		_103:
+			v98 = v97
+			v99 = ev
+			v102 = b3V32{
+				X: v98.X + v99.X,
+				Y: v98.Y + v99.Y,
+				Z: v98.Z + v99.Z,
 			}
-			goto _115
-		_115:
-			upper = v110
-			v112 = upper
-			v113 = pv1
-			v114 = dv1
-			v116 = lower
-			v117 = v112
-			v118 = b3V32{
-				X: v116.X + v117.X,
-				Y: v116.Y + v117.Y,
-				Z: v116.Z + v117.Z,
+			goto _107
+		_107:
+			upper = v102
+			v104 = upper
+			v105 = pv1
+			v106 = dv1
+			v108 = lower
+			v109 = v104
+			v110 = b3V32{
+				X: v108.X + v109.X,
+				Y: v108.Y + v109.Y,
+				Z: v108.Z + v109.Z,
+			}
+			goto _114
+		_114:
+			v111 = b3_halfV
+			v112 = v110
+			v113 = b3V32{
+				X: float32(v111.X * v112.X),
+				Y: float32(v111.Y * v112.Y),
+				Z: float32(v111.Z * v112.Z),
+			}
+			goto _118
+		_118:
+			nodeCenter = v113
+			v115 = v104
+			v116 = nodeCenter
+			v117 = b3V32{
+				X: v115.X - v116.X,
+				Y: v115.Y - v116.Y,
+				Z: v115.Z - v116.Z,
 			}
 			goto _122
 		_122:
-			v119 = b3_halfV
-			v120 = v118
+			nodeExtent = v117
+			v119 = v105
+			v120 = nodeCenter
 			v121 = b3V32{
-				X: float32(v119.X * v120.X),
-				Y: float32(v119.Y * v120.Y),
-				Z: float32(v119.Z * v120.Z),
+				X: v119.X - v120.X,
+				Y: v119.Y - v120.Y,
+				Z: v119.Z - v120.Z,
 			}
 			goto _126
 		_126:
-			nodeCenter = v121
-			v123 = v112
-			v124 = nodeCenter
-			v125 = b3V32{
-				X: v123.X - v124.X,
-				Y: v123.Y - v124.Y,
-				Z: v123.Z - v124.Z,
-			}
+			v105 = v121
+			v123 = v106
+			v124 = v105
+			c.X = float32(v123.Y*v124.Z) - float32(v123.Z*v124.Y)
+			c.Y = float32(v123.Z*v124.X) - float32(v123.X*v124.Z)
+			c.Z = float32(v123.X*v124.Y) - float32(v123.Y*v124.X)
+			v125 = c
 			goto _130
 		_130:
-			nodeExtent = v125
-			v127 = v113
-			v128 = nodeCenter
-			v129 = b3V32{
-				X: v127.X - v128.X,
-				Y: v127.Y - v128.Y,
-				Z: v127.Z - v128.Z,
-			}
-			goto _134
-		_134:
-			v113 = v129
-			v131 = v114
-			v132 = v113
-			c.X = float32(v131.Y*v132.Z) - float32(v131.Z*v132.Y)
-			c.Y = float32(v131.Z*v132.X) - float32(v131.X*v132.Z)
-			c.Z = float32(v131.X*v132.Y) - float32(v131.Y*v132.X)
-			v133 = c
-			goto _138
-		_138:
-			v135 = v133
-			if v135.X < float32FromFloat32(0) {
-				v10 = -v135.X
+			v127 = v125
+			if v127.X < float32FromFloat32(0) {
+				v10 = -v127.X
 			} else {
-				v10 = v135.X
+				v10 = v127.X
 			}
-			if v135.Y < float32FromFloat32(0) {
-				v21 = -v135.Y
+			if v127.Y < float32FromFloat32(0) {
+				v21 = -v127.Y
 			} else {
-				v21 = v135.Y
+				v21 = v127.Y
 			}
-			if v135.Z < float32FromFloat32(0) {
-				v34 = -v135.Z
+			if v127.Z < float32FromFloat32(0) {
+				v34 = -v127.Z
 			} else {
-				v34 = v135.Z
+				v34 = v127.Z
 			}
-			v136 = b3V32{
+			v128 = b3V32{
 				X: v10,
 				Y: v21,
 				Z: v34,
 			}
-			goto _141
-		_141:
-			v137 = v114
-			if v137.X < float32FromFloat32(0) {
-				v46 = -v137.X
+			goto _133
+		_133:
+			v129 = v106
+			if v129.X < float32FromFloat32(0) {
+				v46 = -v129.X
 			} else {
-				v46 = v137.X
+				v46 = v129.X
 			}
-			if v137.Y < float32FromFloat32(0) {
-				v47 = -v137.Y
+			if v129.Y < float32FromFloat32(0) {
+				v47 = -v129.Y
 			} else {
-				v47 = v137.Y
+				v47 = v129.Y
 			}
-			if v137.Z < float32FromFloat32(0) {
-				v48 = -v137.Z
+			if v129.Z < float32FromFloat32(0) {
+				v48 = -v129.Z
 			} else {
-				v48 = v137.Z
+				v48 = v129.Z
 			}
-			v139 = b3V32{
+			v131 = b3V32{
 				X: v46,
 				Y: v47,
 				Z: v48,
 			}
-			goto _147
-		_147:
-			v140 = v139
-			v145 = nodeExtent
-			c1.X = float32(v140.Y*v145.Z) + float32(v140.Z*v145.Y)
-			c1.Y = float32(v140.Z*v145.X) + float32(v140.X*v145.Z)
-			c1.Z = float32(v140.X*v145.Y) + float32(v140.Y*v145.X)
-			v146 = c1
-			goto _154
-		_154:
-			v151 = v136
-			v152 = v146
-			v153 = b3V32{
-				X: v151.X - v152.X,
-				Y: v151.Y - v152.Y,
-				Z: v151.Z - v152.Z,
+			goto _139
+		_139:
+			v132 = v131
+			v137 = nodeExtent
+			c1.X = float32(v132.Y*v137.Z) + float32(v132.Z*v137.Y)
+			c1.Y = float32(v132.Z*v137.X) + float32(v132.X*v137.Z)
+			c1.Z = float32(v132.X*v137.Y) + float32(v132.Y*v137.X)
+			v138 = c1
+			goto _146
+		_146:
+			v143 = v128
+			v144 = v138
+			v145 = b3V32{
+				X: v143.X - v144.X,
+				Y: v143.Y - v144.Y,
+				Z: v143.Z - v144.Z,
 			}
+			goto _150
+		_150:
+			edgeSeparation = v145
+			v147 = edgeSeparation
+			v148 = b3_zeroV
+			v88 = boolUint8(v147.X <= v148.X && v147.Y <= v148.Y && v147.Z <= v148.Z)
+			goto _156
+		_156:
+			v1 = v88
+			goto _152
+		_152:
+			if int32FromUint8(v1) == false1 {
+				goto _93
+			}
+			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
 			goto _158
 		_158:
-			edgeSeparation = v153
-			v155 = edgeSeparation
-			v156 = b3_zeroV
-			v90 = boolUint8(v155.X <= v156.X && v155.Y <= v156.Y && v155.Z <= v156.Z)
-			goto _164
-		_164:
-			v1 = v90
-			goto _160
-		_160:
-			if int32FromUint8(v1) == false1 {
-				goto _95
-			}
-			v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node5)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-			goto _166
-		_166:
 			isLeaf[hitCount] = v1
-			(*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[hitCount] = node5
+			(*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[hitCount] = node4
 			hitCount = hitCount + int32(1)
-			goto _95
-		_95:
+			goto _93
+		_93:
 			;
 			i = i + 1
 		}
@@ -21282,8 +21579,8 @@ _88:
 				Y: v6.Y + v7.Y,
 				Z: v6.Z + v7.Z,
 			}
-			goto _173
-		_173:
+			goto _165
+		_165:
 			v10 = float32FromFloat32(0.5)
 			v11 = v8
 			v12 = Vec3{
@@ -21291,11 +21588,11 @@ _88:
 				Y: float32(v10 * v11.Y),
 				Z: float32(v10 * v11.Z),
 			}
-			goto _177
-		_177:
-			v4 = v12
 			goto _169
 		_169:
+			v4 = v12
+			goto _161
+		_161:
 			center1 = v4
 			v14 = (*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[int32(1)])).Aabb
 			v17 = v14.UpperBound
@@ -21305,8 +21602,8 @@ _88:
 				Y: v17.Y + v18.Y,
 				Z: v17.Z + v18.Z,
 			}
-			goto _184
-		_184:
+			goto _176
+		_176:
 			v21 = float32FromFloat32(0.5)
 			v22 = v19
 			v23 = Vec3{
@@ -21314,11 +21611,11 @@ _88:
 				Y: float32(v21 * v22.Y),
 				Z: float32(v21 * v22.Z),
 			}
-			goto _188
-		_188:
-			v15 = v23
 			goto _180
 		_180:
+			v15 = v23
+			goto _172
+		_172:
 			center2 = v15
 			v35 = center1
 			v36 = *(*Vec3)(unsafe.Add(nil, bp))
@@ -21328,8 +21625,8 @@ _88:
 				Z: v36.Z - v35.Z,
 			}
 			v34 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
-			goto _192
-		_192:
+			goto _184
+		_184:
 			d1 = v34
 			v38 = center2
 			v39 = *(*Vec3)(unsafe.Add(nil, bp))
@@ -21339,8 +21636,8 @@ _88:
 				Z: v39.Z - v38.Z,
 			}
 			v46 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
-			goto _196
-		_196:
+			goto _188
+		_188:
 			d2 = v46
 			// Want to push the closest one last. Both have the same isLeaf, so they don't swap.
 			if d1 < d2 {
@@ -21355,15 +21652,15 @@ _88:
 				break
 			}
 			if isLeaf[i1] != 0 {
-				v86 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-				goto _199
-			_199:
-				proxyId = v86
+				v84 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+				goto _191
+			_191:
+				proxyId = v84
 				userData = uint64(uint32FromInt32(*(*int32_t)(unsafe.Add(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[i1]), 28))))
 				if hasProxies != 0 {
 					proxy = (*b3TreeView)(unsafe.Pointer(view)).Proxies + uintptr(proxyId)*24
 					if int32FromUint8(b3TestCategory(tls, (*b3TreeProxy)(unsafe.Pointer(proxy)).CategoryBits, maskBits, requireAllBits)) == false1 {
-						goto _197
+						goto _189
 					}
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
@@ -21383,8 +21680,8 @@ _88:
 						Y: float32(v10 * v4.Y),
 						Z: float32(v10 * v4.Z),
 					}
-					goto _203
-				_203:
+					goto _195
+				_195:
 					t = v6
 					v4 = originAABB.LowerBound
 					v6 = t
@@ -21393,8 +21690,8 @@ _88:
 						Y: v4.Y + v6.Y,
 						Z: v4.Z + v6.Z,
 					}
-					goto _207
-				_207:
+					goto _199
+				_199:
 					v8 = originAABB.LowerBound
 					v11 = v7
 					v10 = v8.X
@@ -21405,8 +21702,8 @@ _88:
 						v46 = v21
 					}
 					v34 = v46
-					goto _215
-				_215:
+					goto _207
+				_207:
 					v47 = v8.Y
 					v48 = v11.Y
 					if v47 < v48 {
@@ -21415,8 +21712,8 @@ _88:
 						v51 = v48
 					}
 					v50 = v51
-					goto _220
-				_220:
+					goto _212
+				_212:
 					v52 = v8.Z
 					v53 = v11.Z
 					if v52 < v53 {
@@ -21425,15 +21722,15 @@ _88:
 						v56 = v53
 					}
 					v55 = v56
-					goto _225
-				_225:
+					goto _217
+				_217:
 					v12 = Vec3{
 						X: v34,
 						Y: v50,
 						Z: v55,
 					}
-					goto _211
-				_211:
+					goto _203
+				_203:
 					(*(*AABB)(unsafe.Add(nil, bp+36))).LowerBound = v12
 					v4 = originAABB.UpperBound
 					v6 = t
@@ -21442,8 +21739,8 @@ _88:
 						Y: v4.Y + v6.Y,
 						Z: v4.Z + v6.Z,
 					}
-					goto _230
-				_230:
+					goto _222
+				_222:
 					v8 = originAABB.UpperBound
 					v11 = v7
 					v10 = v8.X
@@ -21454,8 +21751,8 @@ _88:
 						v46 = v21
 					}
 					v34 = v46
-					goto _238
-				_238:
+					goto _230
+				_230:
 					v47 = v8.Y
 					v48 = v11.Y
 					if v47 > v48 {
@@ -21464,8 +21761,8 @@ _88:
 						v51 = v48
 					}
 					v50 = v51
-					goto _243
-				_243:
+					goto _235
+				_235:
 					v52 = v8.Z
 					v53 = v11.Z
 					if v52 > v53 {
@@ -21474,38 +21771,35 @@ _88:
 						v56 = v53
 					}
 					v55 = v56
-					goto _248
-				_248:
+					goto _240
+				_240:
 					v12 = Vec3{
 						X: v34,
 						Y: v50,
 						Z: v55,
 					}
-					goto _234
-				_234:
+					goto _226
+				_226:
 					(*(*AABB)(unsafe.Add(nil, bp+36))).UpperBound = v12
-					v84 = *(*AABB)(unsafe.Add(nil, bp+36))
-					goto _251
-				_251:
-					boxv = v84
+					boxv = b3LoadAABBV3(tls, bp+36)
 				}
 			} else {
 				if stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1) {
-					v86 = stackCount
+					v84 = stackCount
 					stackCount = stackCount + 1
-					v87 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-					goto _254
-				_254:
-					stack[v86] = v87
+					v85 = int32FromUint32((*b3TreeNode)(unsafe.Pointer((*(*[2]uintptr)(unsafe.Add(nil, bp+104)))[i1])).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+					goto _244
+				_244:
+					stack[v84] = v85
 				} else {
-					if v255 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v255 {
+					if v245 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)-int32FromInt32(1)); !v245 {
 						b3InternalAssert(tls, __ccgo_ts+12401, __ccgo_ts+12080, int32FromInt32(1339))
 					}
-					_ = v255 || bool(int32FromInt32(0) != 0)
+					_ = v245 || bool(int32FromInt32(0) != 0)
 				}
 			}
-			goto _197
-		_197:
+			goto _189
+		_189:
 			;
 			i1 = i1 + 1
 		}
@@ -22051,15 +22345,12 @@ func b3RefitSubtree(tls *_Stack, nodes uintptr, rootIndex int32) {
 	defer tls.Free(80)
 	var item, pair, pair1, stackCount, v6, v7 int32
 	var node3, node4, root uintptr
-	var out, v16, v17, v24, v25, v64, v66 AABB
 	var stack [512]int32
 	var v1, v3 uint8
-	var v18, v20, v22 b3AABBV
-	var v26, v27, v28, v45, v46, v47 Vec3
-	var v30, v31, v32, v34, v35, v36, v37, v39, v40, v41, v42, v44, v49, v50, v51, v53, v54, v55, v56, v58, v59, v60, v61, v63 float32
+	var v16, v17, v18 AABB
 	var v5 bool
 	var _ /* result at bp+48 */ AABB
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = item, node3, node4, out, pair, pair1, root, stack, stackCount, v1, v16, v17, v18, v20, v22, v24, v25, v26, v27, v28, v3, v30, v31, v32, v34, v35, v36, v37, v39, v40, v41, v42, v44, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v56, v58, v59, v6, v60, v61, v63, v64, v66, v7
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = item, node3, node4, pair, pair1, root, stack, stackCount, v1, v16, v17, v18, v3, v5, v6, v7
 	root = nodes + uintptr(rootIndex)*32
 	v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(root)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
 	goto _2
@@ -22105,126 +22396,30 @@ _12:
 			*(*AABB)(unsafe.Pointer(bp)) = v16
 			*(*AABB)(unsafe.Pointer(bp + 24)) = v17
 			*(*AABB)(unsafe.Add(nil, bp+48)) = AABB{}
-			v18 = *(*AABB)(unsafe.Add(nil, bp))
+			b3StoreAABBV3(tls, bp+48, b3UnionAABBV3(tls, b3LoadAABBV3(tls, bp), b3LoadAABBV3(tls, bp+24)), boolUint8(true1 != 0))
+			v18 = *(*AABB)(unsafe.Add(nil, bp+48))
 			goto _19
 		_19:
-			v20 = *(*AABB)(unsafe.Add(nil, bp+24))
-			goto _21
-		_21:
-			v24 = v18
-			v25 = v20
-			v26 = v24.LowerBound
-			v27 = v25.LowerBound
-			v30 = v26.X
-			v31 = v27.X
-			if v30 < v31 {
-				v34 = v30
-			} else {
-				v34 = v31
-			}
-			v32 = v34
-			goto _33
-		_33:
-			v35 = v26.Y
-			v36 = v27.Y
-			if v35 < v36 {
-				v39 = v35
-			} else {
-				v39 = v36
-			}
-			v37 = v39
-			goto _38
-		_38:
-			v40 = v26.Z
-			v41 = v27.Z
-			if v40 < v41 {
-				v44 = v40
-			} else {
-				v44 = v41
-			}
-			v42 = v44
-			goto _43
-		_43:
-			v28 = Vec3{
-				X: v32,
-				Y: v37,
-				Z: v42,
-			}
-			goto _29
-		_29:
-			out.LowerBound = v28
-			v45 = v24.UpperBound
-			v46 = v25.UpperBound
-			v49 = v45.X
-			v50 = v46.X
-			if v49 > v50 {
-				v53 = v49
-			} else {
-				v53 = v50
-			}
-			v51 = v53
-			goto _52
-		_52:
-			v54 = v45.Y
-			v55 = v46.Y
-			if v54 > v55 {
-				v58 = v54
-			} else {
-				v58 = v55
-			}
-			v56 = v58
-			goto _57
-		_57:
-			v59 = v45.Z
-			v60 = v46.Z
-			if v59 > v60 {
-				v63 = v59
-			} else {
-				v63 = v60
-			}
-			v61 = v63
-			goto _62
-		_62:
-			v47 = Vec3{
-				X: v51,
-				Y: v56,
-				Z: v61,
-			}
-			goto _48
-		_48:
-			out.UpperBound = v47
-			v64 = out
-			goto _65
-		_65:
-			v22 = v64
-			goto _23
-		_23:
-			if boolUint8(true1 != 0) != 0 {
-				*(*AABB)(unsafe.Add(nil, bp+48)) = v22
-			}
-			v66 = *(*AABB)(unsafe.Add(nil, bp+48))
-			goto _67
-		_67:
-			(*b3TreeNode)(unsafe.Pointer(node3)).Aabb = v66
+			(*b3TreeNode)(unsafe.Pointer(node3)).Aabb = v18
 			continue
 		}
 		node4 = nodes + uintptr(item)*32
 		v1 = boolUint8((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-		goto _69
-	_69:
+		goto _21
+	_21:
 		;
 		if v5 = v1 != 0; !v5 {
 			v3 = boolUint8((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32FromUint32(1)<<int32FromInt32(30))
-			goto _71
-		_71:
+			goto _23
+		_23:
 		}
 		if v5 || int32FromUint8(v3) == false1 {
 			continue
 		}
 		if stackCount+int32(3) <= int32(_B3_TREE_STACK_SIZE) {
 			v6 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node4)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-			goto _74
-		_74:
+			goto _26
+		_26:
 			pair1 = v6
 			v7 = stackCount
 			stackCount = stackCount + 1
@@ -22261,6 +22456,214 @@ const _B3_HEIGHT_FIELD_HOLE1 = 255
 const _B3_HEIGHT_FIELD_VERSION1 = 10250727093210466552
 const _UINT16_MAX5 = 65535
 const _UINT8_MAX1 = 255
+
+func b3LoadAABBV4(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV4(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode4(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV4(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV4(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV4(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV4(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV4(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV4(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 type __ccgo_fp__Xb3QueryHeightField_2 = func(*_Stack, struct {
 	X float32
@@ -22487,6 +22890,214 @@ const _UINT16_MAX6 = 0xffff
 const _UINT64_MAX5 = 18446744073709551615
 
 var vt_empty_placeholder_metadatum1 = uint16(_VT_EMPTY)
+
+func b3LoadAABBV5(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV5(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode5(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV5(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV5(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV5(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV5(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV5(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV5(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 /**@}*/ // math
 
@@ -26939,6 +27550,214 @@ const _B3_MESH_VERSION3 = 12298092536310311671
 const _FLT_MAX11 = 3.4028234663852886e+38
 const _UINT64_MAX9 = 18446744073709551615
 const _UINT8_MAX5 = 255
+
+func b3LoadAABBV6(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV6(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode6(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV6(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV6(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV6(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV6(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV6(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV6(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 // Used to detect bad values. In float mode positions greater than about 16km have precision
 // problems, so 100km is a safe limit. Large world mode keeps coordinates accurate much farther
@@ -32235,6 +33054,214 @@ const _B3_MESH_VERSION4 = "0xAAAB9A00F1A8AAF7ull"
 const _UINT64_MAX10 = "0xffffffffffffffffu"
 const _UINT8_MAX6 = 0xff
 
+func b3LoadAABBV7(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV7(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode7(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV7(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV7(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV7(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV7(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV7(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV7(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
+
 type b3TriangleQueryContext struct {
 	Indices  uintptr
 	Capacity int32
@@ -35348,6 +36375,214 @@ const __PRI64 = "l"
 const __PRIPTR = "l"
 
 var vt_empty_placeholder_metadatum4 = uint16(_VT_EMPTY)
+
+func b3LoadAABBV8(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV8(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode8(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV8(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV8(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV8(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV8(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV8(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV8(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 type imaxdiv_t struct {
 	Quot intmax_t
@@ -38756,6 +39991,214 @@ type b3CompoundImpactContext struct {
 const _B3_HEIGHT_FIELD_VERSION4 = "0x8E41E5FB084848F8ull"
 const _B3_HULL_VERSION6 = "0x6B1E39D4A87C25F3ull"
 const _B3_MESH_VERSION6 = "0xAAAB9A00F1A8AAF7ull"
+
+func b3LoadAABBV9(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV9(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode9(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV9(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV9(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV9(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV9(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV9(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV9(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
 
 var b3_simdWidth b3AtomicInt
 
@@ -42916,6 +44359,214 @@ _33:
 
 const _FLT_MAX17 = 3.4028234663852886e+38
 
+func b3LoadAABBV10(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV10(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode10(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV10(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV10(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV10(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV10(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV10(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV10(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
+
 func b3CreateSet(tls *_Stack, capacity int32) (r b3HashSet) {
 	var set b3HashSet
 	var v1, v2 int32
@@ -44317,6 +45968,214 @@ const _UINT_MAX2 = 0xffffffff
 const _VT_DISPLACEMENT_MASK3 = 0x07FF
 const _VT_IN_HOME_BUCKET_MASK3 = 0x0800
 
+func b3LoadAABBV11(tls *_Stack, aabb uintptr) (r b3AABBV) {
+	return *(*AABB)(unsafe.Add(nil, aabb))
+}
+
+func b3OverlapAABBV11(tls *_Stack, a b3AABBV, b b3AABBV) (r uint8) {
+	return boolUint8(a.LowerBound.X <= b.UpperBound.X && a.LowerBound.Y <= b.UpperBound.Y && a.LowerBound.Z <= b.UpperBound.Z && b.LowerBound.X <= a.UpperBound.X && b.LowerBound.Y <= a.UpperBound.Y && b.LowerBound.Z <= a.UpperBound.Z)
+}
+
+func b3OverlapNode11(tls *_Stack, av b3AABBV, node uintptr) (r uint8) {
+	return b3OverlapAABBV11(tls, av, (*b3TreeNode)(unsafe.Pointer(node)).Aabb)
+}
+
+func b3OverlapV11(tls *_Stack, a uintptr, b uintptr) (r uint8) {
+	return b3OverlapAABBV11(tls, *(*AABB)(unsafe.Add(nil, a)), *(*AABB)(unsafe.Add(nil, b)))
+}
+
+func b3UnionAABBV11(tls *_Stack, a5 b3AABBV, b5 b3AABBV) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = a5
+	v2 = b5
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3UnionPairV11(tls *_Stack, pair uintptr) (r b3AABBV) {
+	var out, v1, v2, v41 AABB
+	var v11, v12, v13, v14, v16, v17, v18, v19, v21, v26, v27, v28, v30, v31, v32, v33, v35, v36, v37, v38, v40, v7, v8, v9 float32
+	var v22, v23, v24, v3, v4, v5 Vec3
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = out, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v5, v7, v8, v9
+	v1 = (*(*b3TreeNode)(unsafe.Add(nil, pair))).Aabb
+	v2 = (*(*b3TreeNode)(unsafe.Add(nil, pair+1*32))).Aabb
+	v3 = v1.LowerBound
+	v4 = v2.LowerBound
+	v7 = v3.X
+	v8 = v4.X
+	if v7 < v8 {
+		v11 = v7
+	} else {
+		v11 = v8
+	}
+	v9 = v11
+	goto _10
+_10:
+	v12 = v3.Y
+	v13 = v4.Y
+	if v12 < v13 {
+		v16 = v12
+	} else {
+		v16 = v13
+	}
+	v14 = v16
+	goto _15
+_15:
+	v17 = v3.Z
+	v18 = v4.Z
+	if v17 < v18 {
+		v21 = v17
+	} else {
+		v21 = v18
+	}
+	v19 = v21
+	goto _20
+_20:
+	v5 = Vec3{
+		X: v9,
+		Y: v14,
+		Z: v19,
+	}
+	goto _6
+_6:
+	out.LowerBound = v5
+	v22 = v1.UpperBound
+	v23 = v2.UpperBound
+	v26 = v22.X
+	v27 = v23.X
+	if v26 > v27 {
+		v30 = v26
+	} else {
+		v30 = v27
+	}
+	v28 = v30
+	goto _29
+_29:
+	v31 = v22.Y
+	v32 = v23.Y
+	if v31 > v32 {
+		v35 = v31
+	} else {
+		v35 = v32
+	}
+	v33 = v35
+	goto _34
+_34:
+	v36 = v22.Z
+	v37 = v23.Z
+	if v36 > v37 {
+		v40 = v36
+	} else {
+		v40 = v37
+	}
+	v38 = v40
+	goto _39
+_39:
+	v24 = Vec3{
+		X: v28,
+		Y: v33,
+		Z: v38,
+	}
+	goto _25
+_25:
+	out.UpperBound = v24
+	v41 = out
+	goto _42
+_42:
+	return v41
+}
+
+func b3StoreAABBV11(tls *_Stack, aabb uintptr, value b3AABBV, condition uint8) {
+	if condition != 0 {
+		*(*AABB)(unsafe.Add(nil, aabb)) = value
+	}
+}
+
 type b3FloatW = b3FloatW4
 
 type b3Vec3W = b3Vec3W4
@@ -44389,1166 +46248,118 @@ type b3Matrix3W4 = b3Matrix3W
 // C documentation
 //
 //	// a + b
-func b3AddV2W(tls *_Stack, a1 b3Vec2W, b1 b3Vec2W) (r b3Vec2W) {
-	var v1, v2, v3, v5, v6, v7 b3FloatW4
-	_, _, _, _, _, _ = v1, v2, v3, v5, v6, v7
-	v1 = a1.X
-	v2 = b1.X
-	v3 = b3FloatW4{
-		X: v1.X + v2.X,
-		Y: v1.Y + v2.Y,
-		Z: v1.Z + v2.Z,
-		W: v1.W + v2.W,
-	}
-	goto _4
-_4:
-	v5 = a1.Y
-	v6 = b1.Y
-	v7 = b3FloatW4{
-		X: v5.X + v6.X,
-		Y: v5.Y + v6.Y,
-		Z: v5.Z + v6.Z,
-		W: v5.W + v6.W,
-	}
-	goto _8
-_8:
+func b3AddV2W(tls *_Stack, a b3Vec2W, b b3Vec2W) (r b3Vec2W) {
 	return b3Vec2W{
-		X: v3,
-		Y: v7,
+		X: b3AddW4(tls, a.X, b.X),
+		Y: b3AddW4(tls, a.Y, b.Y),
 	}
 }
 
 // C documentation
 //
 //	// m * a
-func b3MulMV2W(tls *_Stack, m b3SymMatrix2W, a2 b3Vec2W) (r b3Vec2W) {
-	var b2 b3Vec2W
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v3, v5, v6, v7, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b2, v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v3, v5, v6, v7, v9
-	v1 = m.Cxx
-	v2 = a2.X
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
+func b3MulMV2W(tls *_Stack, m b3SymMatrix2W, a b3Vec2W) (r b3Vec2W) {
+	var b b3Vec2W
+	_ = b
+	b = b3Vec2W{
+		X: b3AddW4(tls, b3MulW4(tls, m.Cxx, a.X), b3MulW4(tls, m.Cxy, a.Y)),
+		Y: b3AddW4(tls, b3MulW4(tls, m.Cxy, a.X), b3MulW4(tls, m.Cyy, a.Y)),
 	}
-	goto _4
-_4:
-	v5 = m.Cxy
-	v6 = a2.Y
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = v3
-	v10 = v7
-	v11 = b3FloatW4{
-		X: v9.X + v10.X,
-		Y: v9.Y + v10.Y,
-		Z: v9.Z + v10.Z,
-		W: v9.W + v10.W,
-	}
-	goto _12
-_12:
-	v13 = m.Cxy
-	v14 = a2.X
-	v15 = b3FloatW4{
-		X: float32(v13.X * v14.X),
-		Y: float32(v13.Y * v14.Y),
-		Z: float32(v13.Z * v14.Z),
-		W: float32(v13.W * v14.W),
-	}
-	goto _16
-_16:
-	v17 = m.Cyy
-	v18 = a2.Y
-	v19 = b3FloatW4{
-		X: float32(v17.X * v18.X),
-		Y: float32(v17.Y * v18.Y),
-		Z: float32(v17.Z * v18.Z),
-		W: float32(v17.W * v18.W),
-	}
-	goto _20
-_20:
-	v21 = v15
-	v22 = v19
-	v23 = b3FloatW4{
-		X: v21.X + v22.X,
-		Y: v21.Y + v22.Y,
-		Z: v21.Z + v22.Z,
-		W: v21.W + v22.W,
-	}
-	goto _24
-_24:
-	b2 = b3Vec2W{
-		X: v11,
-		Y: v23,
-	}
-	return b2
+	return b
 }
 
 // C documentation
 //
 //	// m * a
-func b3MulMVW(tls *_Stack, m b3SymMatrix3W, a2 b3Vec3W) (r b3Vec3W) {
-	var b2 b3Vec3W
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v7, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b2, v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v7, v9
-	v1 = m.Cxx
-	v2 = a2.X
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
+func b3MulMVW(tls *_Stack, m b3SymMatrix3W, a b3Vec3W) (r b3Vec3W) {
+	var b b3Vec3W
+	_ = b
+	b = b3Vec3W{
+		X: b3AddW4(tls, b3MulW4(tls, m.Cxx, a.X), b3AddW4(tls, b3MulW4(tls, m.Cxy, a.Y), b3MulW4(tls, m.Cxz, a.Z))),
+		Y: b3AddW4(tls, b3MulW4(tls, m.Cxy, a.X), b3AddW4(tls, b3MulW4(tls, m.Cyy, a.Y), b3MulW4(tls, m.Cyz, a.Z))),
+		Z: b3AddW4(tls, b3MulW4(tls, m.Cxz, a.X), b3AddW4(tls, b3MulW4(tls, m.Cyz, a.Y), b3MulW4(tls, m.Czz, a.Z))),
 	}
-	goto _4
-_4:
-	v5 = m.Cxy
-	v6 = a2.Y
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = m.Cxz
-	v10 = a2.Z
-	v11 = b3FloatW4{
-		X: float32(v9.X * v10.X),
-		Y: float32(v9.Y * v10.Y),
-		Z: float32(v9.Z * v10.Z),
-		W: float32(v9.W * v10.W),
-	}
-	goto _12
-_12:
-	v13 = v7
-	v14 = v11
-	v15 = b3FloatW4{
-		X: v13.X + v14.X,
-		Y: v13.Y + v14.Y,
-		Z: v13.Z + v14.Z,
-		W: v13.W + v14.W,
-	}
-	goto _16
-_16:
-	v17 = v3
-	v18 = v15
-	v19 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _20
-_20:
-	v21 = m.Cxy
-	v22 = a2.X
-	v23 = b3FloatW4{
-		X: float32(v21.X * v22.X),
-		Y: float32(v21.Y * v22.Y),
-		Z: float32(v21.Z * v22.Z),
-		W: float32(v21.W * v22.W),
-	}
-	goto _24
-_24:
-	v25 = m.Cyy
-	v26 = a2.Y
-	v27 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _28
-_28:
-	v29 = m.Cyz
-	v30 = a2.Z
-	v31 = b3FloatW4{
-		X: float32(v29.X * v30.X),
-		Y: float32(v29.Y * v30.Y),
-		Z: float32(v29.Z * v30.Z),
-		W: float32(v29.W * v30.W),
-	}
-	goto _32
-_32:
-	v33 = v27
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X + v34.X,
-		Y: v33.Y + v34.Y,
-		Z: v33.Z + v34.Z,
-		W: v33.W + v34.W,
-	}
-	goto _36
-_36:
-	v37 = v23
-	v38 = v35
-	v39 = b3FloatW4{
-		X: v37.X + v38.X,
-		Y: v37.Y + v38.Y,
-		Z: v37.Z + v38.Z,
-		W: v37.W + v38.W,
-	}
-	goto _40
-_40:
-	v41 = m.Cxz
-	v42 = a2.X
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _44
-_44:
-	v45 = m.Cyz
-	v46 = a2.Y
-	v47 = b3FloatW4{
-		X: float32(v45.X * v46.X),
-		Y: float32(v45.Y * v46.Y),
-		Z: float32(v45.Z * v46.Z),
-		W: float32(v45.W * v46.W),
-	}
-	goto _48
-_48:
-	v49 = m.Czz
-	v50 = a2.Z
-	v51 = b3FloatW4{
-		X: float32(v49.X * v50.X),
-		Y: float32(v49.Y * v50.Y),
-		Z: float32(v49.Z * v50.Z),
-		W: float32(v49.W * v50.W),
-	}
-	goto _52
-_52:
-	v53 = v47
-	v54 = v51
-	v55 = b3FloatW4{
-		X: v53.X + v54.X,
-		Y: v53.Y + v54.Y,
-		Z: v53.Z + v54.Z,
-		W: v53.W + v54.W,
-	}
-	goto _56
-_56:
-	v57 = v43
-	v58 = v55
-	v59 = b3FloatW4{
-		X: v57.X + v58.X,
-		Y: v57.Y + v58.Y,
-		Z: v57.Z + v58.Z,
-		W: v57.W + v58.W,
-	}
-	goto _60
-_60:
-	b2 = b3Vec3W{
-		X: v19,
-		Y: v39,
-		Z: v59,
-	}
-	return b2
+	return b
 }
 
 // C documentation
 //
 //	// a - m * b
-func b3MulSubMVW(tls *_Stack, a3 b3Vec3W, m b3SymMatrix3W, b3 b3Vec3W) (r b3Vec3W) {
+func b3MulSubMVW(tls *_Stack, a b3Vec3W, m b3SymMatrix3W, b b3Vec3W) (r b3Vec3W) {
 	var c b3Vec3W
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v9
-	v1 = m.Cxx
-	v2 = b3.X
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
-	}
-	goto _4
-_4:
-	v5 = m.Cxy
-	v6 = b3.Y
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = m.Cxz
-	v10 = b3.Z
-	v11 = b3FloatW4{
-		X: float32(v9.X * v10.X),
-		Y: float32(v9.Y * v10.Y),
-		Z: float32(v9.Z * v10.Z),
-		W: float32(v9.W * v10.W),
-	}
-	goto _12
-_12:
-	v13 = v7
-	v14 = v11
-	v15 = b3FloatW4{
-		X: v13.X + v14.X,
-		Y: v13.Y + v14.Y,
-		Z: v13.Z + v14.Z,
-		W: v13.W + v14.W,
-	}
-	goto _16
-_16:
-	v17 = v3
-	v18 = v15
-	v19 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _20
-_20:
-	v21 = m.Cxy
-	v22 = b3.X
-	v23 = b3FloatW4{
-		X: float32(v21.X * v22.X),
-		Y: float32(v21.Y * v22.Y),
-		Z: float32(v21.Z * v22.Z),
-		W: float32(v21.W * v22.W),
-	}
-	goto _24
-_24:
-	v25 = m.Cyy
-	v26 = b3.Y
-	v27 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _28
-_28:
-	v29 = m.Cyz
-	v30 = b3.Z
-	v31 = b3FloatW4{
-		X: float32(v29.X * v30.X),
-		Y: float32(v29.Y * v30.Y),
-		Z: float32(v29.Z * v30.Z),
-		W: float32(v29.W * v30.W),
-	}
-	goto _32
-_32:
-	v33 = v27
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X + v34.X,
-		Y: v33.Y + v34.Y,
-		Z: v33.Z + v34.Z,
-		W: v33.W + v34.W,
-	}
-	goto _36
-_36:
-	v37 = v23
-	v38 = v35
-	v39 = b3FloatW4{
-		X: v37.X + v38.X,
-		Y: v37.Y + v38.Y,
-		Z: v37.Z + v38.Z,
-		W: v37.W + v38.W,
-	}
-	goto _40
-_40:
-	v41 = m.Cxz
-	v42 = b3.X
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _44
-_44:
-	v45 = m.Cyz
-	v46 = b3.Y
-	v47 = b3FloatW4{
-		X: float32(v45.X * v46.X),
-		Y: float32(v45.Y * v46.Y),
-		Z: float32(v45.Z * v46.Z),
-		W: float32(v45.W * v46.W),
-	}
-	goto _48
-_48:
-	v49 = m.Czz
-	v50 = b3.Z
-	v51 = b3FloatW4{
-		X: float32(v49.X * v50.X),
-		Y: float32(v49.Y * v50.Y),
-		Z: float32(v49.Z * v50.Z),
-		W: float32(v49.W * v50.W),
-	}
-	goto _52
-_52:
-	v53 = v47
-	v54 = v51
-	v55 = b3FloatW4{
-		X: v53.X + v54.X,
-		Y: v53.Y + v54.Y,
-		Z: v53.Z + v54.Z,
-		W: v53.W + v54.W,
-	}
-	goto _56
-_56:
-	v57 = v43
-	v58 = v55
-	v59 = b3FloatW4{
-		X: v57.X + v58.X,
-		Y: v57.Y + v58.Y,
-		Z: v57.Z + v58.Z,
-		W: v57.W + v58.W,
-	}
-	goto _60
-_60:
+	_ = c
 	c = b3Vec3W{
-		X: v19,
-		Y: v39,
-		Z: v59,
+		X: b3AddW4(tls, b3MulW4(tls, m.Cxx, b.X), b3AddW4(tls, b3MulW4(tls, m.Cxy, b.Y), b3MulW4(tls, m.Cxz, b.Z))),
+		Y: b3AddW4(tls, b3MulW4(tls, m.Cxy, b.X), b3AddW4(tls, b3MulW4(tls, m.Cyy, b.Y), b3MulW4(tls, m.Cyz, b.Z))),
+		Z: b3AddW4(tls, b3MulW4(tls, m.Cxz, b.X), b3AddW4(tls, b3MulW4(tls, m.Cyz, b.Y), b3MulW4(tls, m.Czz, b.Z))),
 	}
-	v61 = a3.X
-	v62 = c.X
-	v63 = b3FloatW4{
-		X: v61.X - v62.X,
-		Y: v61.Y - v62.Y,
-		Z: v61.Z - v62.Z,
-		W: v61.W - v62.W,
-	}
-	goto _64
-_64:
-	v65 = a3.Y
-	v66 = c.Y
-	v67 = b3FloatW4{
-		X: v65.X - v66.X,
-		Y: v65.Y - v66.Y,
-		Z: v65.Z - v66.Z,
-		W: v65.W - v66.W,
-	}
-	goto _68
-_68:
-	v69 = a3.Z
-	v70 = c.Z
-	v71 = b3FloatW4{
-		X: v69.X - v70.X,
-		Y: v69.Y - v70.Y,
-		Z: v69.Z - v70.Z,
-		W: v69.W - v70.W,
-	}
-	goto _72
-_72:
 	return b3Vec3W{
-		X: v63,
-		Y: v67,
-		Z: v71,
+		X: b3SubW4(tls, a.X, c.X),
+		Y: b3SubW4(tls, a.Y, c.Y),
+		Z: b3SubW4(tls, a.Z, c.Z),
 	}
 }
 
 // C documentation
 //
 //	// a + m * b
-func b3MulAddMVW(tls *_Stack, a2 b3Vec3W, m b3SymMatrix3W, b2 b3Vec3W) (r b3Vec3W) {
+func b3MulAddMVW(tls *_Stack, a b3Vec3W, m b3SymMatrix3W, b b3Vec3W) (r b3Vec3W) {
 	var c b3Vec3W
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v9
-	v1 = m.Cxx
-	v2 = b2.X
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
-	}
-	goto _4
-_4:
-	v5 = m.Cxy
-	v6 = b2.Y
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = m.Cxz
-	v10 = b2.Z
-	v11 = b3FloatW4{
-		X: float32(v9.X * v10.X),
-		Y: float32(v9.Y * v10.Y),
-		Z: float32(v9.Z * v10.Z),
-		W: float32(v9.W * v10.W),
-	}
-	goto _12
-_12:
-	v13 = v7
-	v14 = v11
-	v15 = b3FloatW4{
-		X: v13.X + v14.X,
-		Y: v13.Y + v14.Y,
-		Z: v13.Z + v14.Z,
-		W: v13.W + v14.W,
-	}
-	goto _16
-_16:
-	v17 = v3
-	v18 = v15
-	v19 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _20
-_20:
-	v21 = m.Cxy
-	v22 = b2.X
-	v23 = b3FloatW4{
-		X: float32(v21.X * v22.X),
-		Y: float32(v21.Y * v22.Y),
-		Z: float32(v21.Z * v22.Z),
-		W: float32(v21.W * v22.W),
-	}
-	goto _24
-_24:
-	v25 = m.Cyy
-	v26 = b2.Y
-	v27 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _28
-_28:
-	v29 = m.Cyz
-	v30 = b2.Z
-	v31 = b3FloatW4{
-		X: float32(v29.X * v30.X),
-		Y: float32(v29.Y * v30.Y),
-		Z: float32(v29.Z * v30.Z),
-		W: float32(v29.W * v30.W),
-	}
-	goto _32
-_32:
-	v33 = v27
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X + v34.X,
-		Y: v33.Y + v34.Y,
-		Z: v33.Z + v34.Z,
-		W: v33.W + v34.W,
-	}
-	goto _36
-_36:
-	v37 = v23
-	v38 = v35
-	v39 = b3FloatW4{
-		X: v37.X + v38.X,
-		Y: v37.Y + v38.Y,
-		Z: v37.Z + v38.Z,
-		W: v37.W + v38.W,
-	}
-	goto _40
-_40:
-	v41 = m.Cxz
-	v42 = b2.X
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _44
-_44:
-	v45 = m.Cyz
-	v46 = b2.Y
-	v47 = b3FloatW4{
-		X: float32(v45.X * v46.X),
-		Y: float32(v45.Y * v46.Y),
-		Z: float32(v45.Z * v46.Z),
-		W: float32(v45.W * v46.W),
-	}
-	goto _48
-_48:
-	v49 = m.Czz
-	v50 = b2.Z
-	v51 = b3FloatW4{
-		X: float32(v49.X * v50.X),
-		Y: float32(v49.Y * v50.Y),
-		Z: float32(v49.Z * v50.Z),
-		W: float32(v49.W * v50.W),
-	}
-	goto _52
-_52:
-	v53 = v47
-	v54 = v51
-	v55 = b3FloatW4{
-		X: v53.X + v54.X,
-		Y: v53.Y + v54.Y,
-		Z: v53.Z + v54.Z,
-		W: v53.W + v54.W,
-	}
-	goto _56
-_56:
-	v57 = v43
-	v58 = v55
-	v59 = b3FloatW4{
-		X: v57.X + v58.X,
-		Y: v57.Y + v58.Y,
-		Z: v57.Z + v58.Z,
-		W: v57.W + v58.W,
-	}
-	goto _60
-_60:
+	_ = c
 	c = b3Vec3W{
-		X: v19,
-		Y: v39,
-		Z: v59,
+		X: b3AddW4(tls, b3MulW4(tls, m.Cxx, b.X), b3AddW4(tls, b3MulW4(tls, m.Cxy, b.Y), b3MulW4(tls, m.Cxz, b.Z))),
+		Y: b3AddW4(tls, b3MulW4(tls, m.Cxy, b.X), b3AddW4(tls, b3MulW4(tls, m.Cyy, b.Y), b3MulW4(tls, m.Cyz, b.Z))),
+		Z: b3AddW4(tls, b3MulW4(tls, m.Cxz, b.X), b3AddW4(tls, b3MulW4(tls, m.Cyz, b.Y), b3MulW4(tls, m.Czz, b.Z))),
 	}
-	v61 = a2.X
-	v62 = c.X
-	v63 = b3FloatW4{
-		X: v61.X + v62.X,
-		Y: v61.Y + v62.Y,
-		Z: v61.Z + v62.Z,
-		W: v61.W + v62.W,
-	}
-	goto _64
-_64:
-	v65 = a2.Y
-	v66 = c.Y
-	v67 = b3FloatW4{
-		X: v65.X + v66.X,
-		Y: v65.Y + v66.Y,
-		Z: v65.Z + v66.Z,
-		W: v65.W + v66.W,
-	}
-	goto _68
-_68:
-	v69 = a2.Z
-	v70 = c.Z
-	v71 = b3FloatW4{
-		X: v69.X + v70.X,
-		Y: v69.Y + v70.Y,
-		Z: v69.Z + v70.Z,
-		W: v69.W + v70.W,
-	}
-	goto _72
-_72:
 	return b3Vec3W{
-		X: v63,
-		Y: v67,
-		Z: v71,
+		X: b3AddW4(tls, a.X, c.X),
+		Y: b3AddW4(tls, a.Y, c.Y),
+		Z: b3AddW4(tls, a.Z, c.Z),
 	}
 }
 
-func b3MulM3VW(tls *_Stack, m b3Matrix3W, a2 b3Vec3W) (r b3Vec3W) {
-	var b2 b3Vec3W
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v7, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b2, v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v7, v9
-	v1 = m.Cx.X
-	v2 = a2.X
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
+func b3MulM3VW(tls *_Stack, m b3Matrix3W, a b3Vec3W) (r b3Vec3W) {
+	var b b3Vec3W
+	_ = b
+	b = b3Vec3W{
+		X: b3AddW4(tls, b3MulW4(tls, m.Cx.X, a.X), b3AddW4(tls, b3MulW4(tls, m.Cy.X, a.Y), b3MulW4(tls, m.Cz.X, a.Z))),
+		Y: b3AddW4(tls, b3MulW4(tls, m.Cx.Y, a.X), b3AddW4(tls, b3MulW4(tls, m.Cy.Y, a.Y), b3MulW4(tls, m.Cz.Y, a.Z))),
+		Z: b3AddW4(tls, b3MulW4(tls, m.Cx.Z, a.X), b3AddW4(tls, b3MulW4(tls, m.Cy.Z, a.Y), b3MulW4(tls, m.Cz.Z, a.Z))),
 	}
+	return b
+}
+
+func b3InvRotateVectorW(tls *_Stack, q b3QuatW, a1 b3Vec3W) (r b3Vec3W) {
+	var c, v1, v2, v3 b3Vec3W4
+	var t, u b3Vec3W
+	_, _, _, _, _, _ = c, t, u, v1, v2, v3
+	v1 = q.V
+	v2 = a1
+	c.X = b3SubW4(tls, b3MulW4(tls, v1.Y, v2.Z), b3MulW4(tls, v1.Z, v2.Y))
+	c.Y = b3SubW4(tls, b3MulW4(tls, v1.Z, v2.X), b3MulW4(tls, v1.X, v2.Z))
+	c.Z = b3SubW4(tls, b3MulW4(tls, v1.X, v2.Y), b3MulW4(tls, v1.Y, v2.X))
+	v3 = c
 	goto _4
 _4:
-	v5 = m.Cy.X
-	v6 = a2.Y
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = m.Cz.X
-	v10 = a2.Z
-	v11 = b3FloatW4{
-		X: float32(v9.X * v10.X),
-		Y: float32(v9.Y * v10.Y),
-		Z: float32(v9.Z * v10.Z),
-		W: float32(v9.W * v10.W),
-	}
-	goto _12
-_12:
-	v13 = v7
-	v14 = v11
-	v15 = b3FloatW4{
-		X: v13.X + v14.X,
-		Y: v13.Y + v14.Y,
-		Z: v13.Z + v14.Z,
-		W: v13.W + v14.W,
-	}
-	goto _16
-_16:
-	v17 = v3
-	v18 = v15
-	v19 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _20
-_20:
-	v21 = m.Cx.Y
-	v22 = a2.X
-	v23 = b3FloatW4{
-		X: float32(v21.X * v22.X),
-		Y: float32(v21.Y * v22.Y),
-		Z: float32(v21.Z * v22.Z),
-		W: float32(v21.W * v22.W),
-	}
-	goto _24
-_24:
-	v25 = m.Cy.Y
-	v26 = a2.Y
-	v27 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _28
-_28:
-	v29 = m.Cz.Y
-	v30 = a2.Z
-	v31 = b3FloatW4{
-		X: float32(v29.X * v30.X),
-		Y: float32(v29.Y * v30.Y),
-		Z: float32(v29.Z * v30.Z),
-		W: float32(v29.W * v30.W),
-	}
-	goto _32
-_32:
-	v33 = v27
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X + v34.X,
-		Y: v33.Y + v34.Y,
-		Z: v33.Z + v34.Z,
-		W: v33.W + v34.W,
-	}
-	goto _36
-_36:
-	v37 = v23
-	v38 = v35
-	v39 = b3FloatW4{
-		X: v37.X + v38.X,
-		Y: v37.Y + v38.Y,
-		Z: v37.Z + v38.Z,
-		W: v37.W + v38.W,
-	}
-	goto _40
-_40:
-	v41 = m.Cx.Z
-	v42 = a2.X
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _44
-_44:
-	v45 = m.Cy.Z
-	v46 = a2.Y
-	v47 = b3FloatW4{
-		X: float32(v45.X * v46.X),
-		Y: float32(v45.Y * v46.Y),
-		Z: float32(v45.Z * v46.Z),
-		W: float32(v45.W * v46.W),
-	}
-	goto _48
-_48:
-	v49 = m.Cz.Z
-	v50 = a2.Z
-	v51 = b3FloatW4{
-		X: float32(v49.X * v50.X),
-		Y: float32(v49.Y * v50.Y),
-		Z: float32(v49.Z * v50.Z),
-		W: float32(v49.W * v50.W),
-	}
-	goto _52
-_52:
-	v53 = v47
-	v54 = v51
-	v55 = b3FloatW4{
-		X: v53.X + v54.X,
-		Y: v53.Y + v54.Y,
-		Z: v53.Z + v54.Z,
-		W: v53.W + v54.W,
-	}
-	goto _56
-_56:
-	v57 = v43
-	v58 = v55
-	v59 = b3FloatW4{
-		X: v57.X + v58.X,
-		Y: v57.Y + v58.Y,
-		Z: v57.Z + v58.Z,
-		W: v57.W + v58.W,
-	}
-	goto _60
-_60:
-	b2 = b3Vec3W{
-		X: v19,
-		Y: v39,
-		Z: v59,
-	}
-	return b2
-}
-
-func b3InvRotateVectorW(tls *_Stack, q b3QuatW, a4 b3Vec3W) (r b3Vec3W) {
-	var c, v1, v2, v39 b3Vec3W4
-	var t, u b3Vec3W
-	var v11, v12, v13, v15, v16, v17, v19, v20, v21, v23, v24, v25, v27, v28, v29, v3, v31, v32, v33, v35, v36, v37, v4, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v55, v56, v57, v59, v60, v61, v63, v64, v65, v67, v68, v69, v7, v71, v72, v73, v75, v76, v77, v8, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, t, u, v1, v11, v12, v13, v15, v16, v17, v19, v2, v20, v21, v23, v24, v25, v27, v28, v29, v3, v31, v32, v33, v35, v36, v37, v39, v4, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v55, v56, v57, v59, v60, v61, v63, v64, v65, v67, v68, v69, v7, v71, v72, v73, v75, v76, v77, v8, v9
-	v1 = q.V
-	v2 = a4
-	v3 = v1.Y
-	v4 = v2.Z
-	v5 = b3FloatW4{
-		X: float32(v3.X * v4.X),
-		Y: float32(v3.Y * v4.Y),
-		Z: float32(v3.Z * v4.Z),
-		W: float32(v3.W * v4.W),
-	}
-	goto _6
-_6:
-	v7 = v1.Z
-	v8 = v2.Y
-	v9 = b3FloatW4{
-		X: float32(v7.X * v8.X),
-		Y: float32(v7.Y * v8.Y),
-		Z: float32(v7.Z * v8.Z),
-		W: float32(v7.W * v8.W),
-	}
-	goto _10
-_10:
-	v11 = v5
-	v12 = v9
-	v13 = b3FloatW4{
-		X: v11.X - v12.X,
-		Y: v11.Y - v12.Y,
-		Z: v11.Z - v12.Z,
-		W: v11.W - v12.W,
-	}
-	goto _14
-_14:
-	c.X = v13
-	v15 = v1.Z
-	v16 = v2.X
-	v17 = b3FloatW4{
-		X: float32(v15.X * v16.X),
-		Y: float32(v15.Y * v16.Y),
-		Z: float32(v15.Z * v16.Z),
-		W: float32(v15.W * v16.W),
-	}
-	goto _18
-_18:
-	v19 = v1.X
-	v20 = v2.Z
-	v21 = b3FloatW4{
-		X: float32(v19.X * v20.X),
-		Y: float32(v19.Y * v20.Y),
-		Z: float32(v19.Z * v20.Z),
-		W: float32(v19.W * v20.W),
-	}
-	goto _22
-_22:
-	v23 = v17
-	v24 = v21
-	v25 = b3FloatW4{
-		X: v23.X - v24.X,
-		Y: v23.Y - v24.Y,
-		Z: v23.Z - v24.Z,
-		W: v23.W - v24.W,
-	}
-	goto _26
-_26:
-	c.Y = v25
-	v27 = v1.X
-	v28 = v2.Y
-	v29 = b3FloatW4{
-		X: float32(v27.X * v28.X),
-		Y: float32(v27.Y * v28.Y),
-		Z: float32(v27.Z * v28.Z),
-		W: float32(v27.W * v28.W),
-	}
-	goto _30
-_30:
-	v31 = v1.Y
-	v32 = v2.X
-	v33 = b3FloatW4{
-		X: float32(v31.X * v32.X),
-		Y: float32(v31.Y * v32.Y),
-		Z: float32(v31.Z * v32.Z),
-		W: float32(v31.W * v32.W),
-	}
-	goto _34
-_34:
-	v35 = v29
-	v36 = v33
-	v37 = b3FloatW4{
-		X: v35.X - v36.X,
-		Y: v35.Y - v36.Y,
-		Z: v35.Z - v36.Z,
-		W: v35.W - v36.W,
-	}
-	goto _38
-_38:
-	c.Z = v37
-	v39 = c
-	goto _40
-_40:
-	t = v39
-	v41 = t.X
-	v42 = t.X
-	v43 = b3FloatW4{
-		X: v41.X + v42.X,
-		Y: v41.Y + v42.Y,
-		Z: v41.Z + v42.Z,
-		W: v41.W + v42.W,
-	}
-	goto _44
-_44:
-	v45 = t.Y
-	v46 = t.Y
-	v47 = b3FloatW4{
-		X: v45.X + v46.X,
-		Y: v45.Y + v46.Y,
-		Z: v45.Z + v46.Z,
-		W: v45.W + v46.W,
-	}
-	goto _48
-_48:
-	v49 = t.Z
-	v50 = t.Z
-	v51 = b3FloatW4{
-		X: v49.X + v50.X,
-		Y: v49.Y + v50.Y,
-		Z: v49.Z + v50.Z,
-		W: v49.W + v50.W,
-	}
-	goto _52
-_52:
+	t = v3
 	t = b3Vec3W{
-		X: v43,
-		Y: v47,
-		Z: v51,
+		X: b3AddW4(tls, t.X, t.X),
+		Y: b3AddW4(tls, t.Y, t.Y),
+		Z: b3AddW4(tls, t.Z, t.Z),
 	}
 	v1 = q.V
 	v2 = t
-	v3 = v1.Y
-	v4 = v2.Z
-	v5 = b3FloatW4{
-		X: float32(v3.X * v4.X),
-		Y: float32(v3.Y * v4.Y),
-		Z: float32(v3.Z * v4.Z),
-		W: float32(v3.W * v4.W),
-	}
-	goto _58
-_58:
-	v7 = v1.Z
-	v8 = v2.Y
-	v9 = b3FloatW4{
-		X: float32(v7.X * v8.X),
-		Y: float32(v7.Y * v8.Y),
-		Z: float32(v7.Z * v8.Z),
-		W: float32(v7.W * v8.W),
-	}
-	goto _62
-_62:
-	v11 = v5
-	v12 = v9
-	v13 = b3FloatW4{
-		X: v11.X - v12.X,
-		Y: v11.Y - v12.Y,
-		Z: v11.Z - v12.Z,
-		W: v11.W - v12.W,
-	}
-	goto _66
-_66:
-	c.X = v13
-	v15 = v1.Z
-	v16 = v2.X
-	v17 = b3FloatW4{
-		X: float32(v15.X * v16.X),
-		Y: float32(v15.Y * v16.Y),
-		Z: float32(v15.Z * v16.Z),
-		W: float32(v15.W * v16.W),
-	}
-	goto _70
-_70:
-	v19 = v1.X
-	v20 = v2.Z
-	v21 = b3FloatW4{
-		X: float32(v19.X * v20.X),
-		Y: float32(v19.Y * v20.Y),
-		Z: float32(v19.Z * v20.Z),
-		W: float32(v19.W * v20.W),
-	}
-	goto _74
-_74:
-	v23 = v17
-	v24 = v21
-	v25 = b3FloatW4{
-		X: v23.X - v24.X,
-		Y: v23.Y - v24.Y,
-		Z: v23.Z - v24.Z,
-		W: v23.W - v24.W,
-	}
-	goto _78
-_78:
-	c.Y = v25
-	v27 = v1.X
-	v28 = v2.Y
-	v29 = b3FloatW4{
-		X: float32(v27.X * v28.X),
-		Y: float32(v27.Y * v28.Y),
-		Z: float32(v27.Z * v28.Z),
-		W: float32(v27.W * v28.W),
-	}
-	goto _82
-_82:
-	v31 = v1.Y
-	v32 = v2.X
-	v33 = b3FloatW4{
-		X: float32(v31.X * v32.X),
-		Y: float32(v31.Y * v32.Y),
-		Z: float32(v31.Z * v32.Z),
-		W: float32(v31.W * v32.W),
-	}
-	goto _86
-_86:
-	v35 = v29
-	v36 = v33
-	v37 = b3FloatW4{
-		X: v35.X - v36.X,
-		Y: v35.Y - v36.Y,
-		Z: v35.Z - v36.Z,
-		W: v35.W - v36.W,
-	}
-	goto _90
-_90:
-	c.Z = v37
-	v39 = c
-	goto _92
-_92:
-	u = v39
-	v41 = q.S
-	v42 = t.X
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _96
-_96:
-	v45 = a4.X
-	v46 = v43
-	v47 = b3FloatW4{
-		X: v45.X - v46.X,
-		Y: v45.Y - v46.Y,
-		Z: v45.Z - v46.Z,
-		W: v45.W - v46.W,
-	}
-	goto _100
-_100:
-	v49 = v47
-	v50 = u.X
-	v51 = b3FloatW4{
-		X: v49.X + v50.X,
-		Y: v49.Y + v50.Y,
-		Z: v49.Z + v50.Z,
-		W: v49.W + v50.W,
-	}
-	goto _104
-_104:
-	v55 = q.S
-	v56 = t.Y
-	v57 = b3FloatW4{
-		X: float32(v55.X * v56.X),
-		Y: float32(v55.Y * v56.Y),
-		Z: float32(v55.Z * v56.Z),
-		W: float32(v55.W * v56.W),
-	}
-	goto _108
-_108:
-	v59 = a4.Y
-	v60 = v57
-	v61 = b3FloatW4{
-		X: v59.X - v60.X,
-		Y: v59.Y - v60.Y,
-		Z: v59.Z - v60.Z,
-		W: v59.W - v60.W,
-	}
-	goto _112
-_112:
-	v63 = v61
-	v64 = u.Y
-	v65 = b3FloatW4{
-		X: v63.X + v64.X,
-		Y: v63.Y + v64.Y,
-		Z: v63.Z + v64.Z,
-		W: v63.W + v64.W,
-	}
-	goto _116
-_116:
-	v67 = q.S
-	v68 = t.Z
-	v69 = b3FloatW4{
-		X: float32(v67.X * v68.X),
-		Y: float32(v67.Y * v68.Y),
-		Z: float32(v67.Z * v68.Z),
-		W: float32(v67.W * v68.W),
-	}
-	goto _120
-_120:
-	v71 = a4.Z
-	v72 = v69
-	v73 = b3FloatW4{
-		X: v71.X - v72.X,
-		Y: v71.Y - v72.Y,
-		Z: v71.Z - v72.Z,
-		W: v71.W - v72.W,
-	}
-	goto _124
-_124:
-	v75 = v73
-	v76 = u.Z
-	v77 = b3FloatW4{
-		X: v75.X + v76.X,
-		Y: v75.Y + v76.Y,
-		Z: v75.Z + v76.Z,
-		W: v75.W + v76.W,
-	}
-	goto _128
-_128:
+	c.X = b3SubW4(tls, b3MulW4(tls, v1.Y, v2.Z), b3MulW4(tls, v1.Z, v2.Y))
+	c.Y = b3SubW4(tls, b3MulW4(tls, v1.Z, v2.X), b3MulW4(tls, v1.X, v2.Z))
+	c.Z = b3SubW4(tls, b3MulW4(tls, v1.X, v2.Y), b3MulW4(tls, v1.Y, v2.X))
+	v3 = c
+	goto _8
+_8:
+	u = v3
 	return b3Vec3W{
-		X: v51,
-		Y: v65,
-		Z: v77,
+		X: b3AddW4(tls, b3SubW4(tls, a1.X, b3MulW4(tls, q.S, t.X)), u.X),
+		Y: b3AddW4(tls, b3SubW4(tls, a1.Y, b3MulW4(tls, q.S, t.Y)), u.Y),
+		Z: b3AddW4(tls, b3SubW4(tls, a1.Z, b3MulW4(tls, q.S, t.Z)), u.Z),
 	}
 }
 
@@ -45592,6 +46403,7 @@ type b3ContactManifoldWide struct {
 	TangentVelocity1 b3FloatW
 	TangentVelocity2 b3FloatW
 	PointCount       int32
+	Padding          int32
 	Points           [4]b3ContactConstraintPointWide
 }
 
@@ -45646,165 +46458,6 @@ type b3BodyStateW struct {
 //	// wide version of b3BodyState
 type b3BodyStateW4 = b3BodyStateW
 
-func b3GatherBodies(tls *_Stack, states uintptr, indices uintptr) (r b3BodyStateW) {
-	var identity, s1, s2, s3, s4, v1, v2, v3, v4 b3BodyState
-	var simdBody b3BodyStateW
-	_, _, _, _, _, _, _, _, _, _ = identity, s1, s2, s3, s4, simdBody, v1, v2, v3, v4
-	identity = b3_identityBodyState
-	if *(*int32)(unsafe.Add(nil, indices)) == 0 {
-		v1 = identity
-	} else {
-		v1 = *(*b3BodyState)(unsafe.Add(nil, states+uintptr(*(*int32)(unsafe.Add(nil, indices))-int32(1))*64))
-	}
-	s1 = v1
-	if *(*int32)(unsafe.Add(nil, indices+1*4)) == 0 {
-		v2 = identity
-	} else {
-		v2 = *(*b3BodyState)(unsafe.Add(nil, states+uintptr(*(*int32)(unsafe.Add(nil, indices+1*4))-int32(1))*64))
-	}
-	s2 = v2
-	if *(*int32)(unsafe.Add(nil, indices+2*4)) == 0 {
-		v3 = identity
-	} else {
-		v3 = *(*b3BodyState)(unsafe.Add(nil, states+uintptr(*(*int32)(unsafe.Add(nil, indices+2*4))-int32(1))*64))
-	}
-	s3 = v3
-	if *(*int32)(unsafe.Add(nil, indices+3*4)) == 0 {
-		v4 = identity
-	} else {
-		v4 = *(*b3BodyState)(unsafe.Add(nil, states+uintptr(*(*int32)(unsafe.Add(nil, indices+3*4))-int32(1))*64))
-	}
-	s4 = v4
-	simdBody.V.X = b3FloatW{
-		X: s1.LinearVelocity.X,
-		Y: s2.LinearVelocity.X,
-		Z: s3.LinearVelocity.X,
-		W: s4.LinearVelocity.X,
-	}
-	simdBody.V.Y = b3FloatW{
-		X: s1.LinearVelocity.Y,
-		Y: s2.LinearVelocity.Y,
-		Z: s3.LinearVelocity.Y,
-		W: s4.LinearVelocity.Y,
-	}
-	simdBody.V.Z = b3FloatW{
-		X: s1.LinearVelocity.Z,
-		Y: s2.LinearVelocity.Z,
-		Z: s3.LinearVelocity.Z,
-		W: s4.LinearVelocity.Z,
-	}
-	simdBody.W.X = b3FloatW{
-		X: s1.AngularVelocity.X,
-		Y: s2.AngularVelocity.X,
-		Z: s3.AngularVelocity.X,
-		W: s4.AngularVelocity.X,
-	}
-	simdBody.W.Y = b3FloatW{
-		X: s1.AngularVelocity.Y,
-		Y: s2.AngularVelocity.Y,
-		Z: s3.AngularVelocity.Y,
-		W: s4.AngularVelocity.Y,
-	}
-	simdBody.W.Z = b3FloatW{
-		X: s1.AngularVelocity.Z,
-		Y: s2.AngularVelocity.Z,
-		Z: s3.AngularVelocity.Z,
-		W: s4.AngularVelocity.Z,
-	}
-	simdBody.Dp.X = b3FloatW{
-		X: s1.DeltaPosition.X,
-		Y: s2.DeltaPosition.X,
-		Z: s3.DeltaPosition.X,
-		W: s4.DeltaPosition.X,
-	}
-	simdBody.Dp.Y = b3FloatW{
-		X: s1.DeltaPosition.Y,
-		Y: s2.DeltaPosition.Y,
-		Z: s3.DeltaPosition.Y,
-		W: s4.DeltaPosition.Y,
-	}
-	simdBody.Dp.Z = b3FloatW{
-		X: s1.DeltaPosition.Z,
-		Y: s2.DeltaPosition.Z,
-		Z: s3.DeltaPosition.Z,
-		W: s4.DeltaPosition.Z,
-	}
-	simdBody.Dq.V.X = b3FloatW{
-		X: s1.DeltaRotation.V.X,
-		Y: s2.DeltaRotation.V.X,
-		Z: s3.DeltaRotation.V.X,
-		W: s4.DeltaRotation.V.X,
-	}
-	simdBody.Dq.V.Y = b3FloatW{
-		X: s1.DeltaRotation.V.Y,
-		Y: s2.DeltaRotation.V.Y,
-		Z: s3.DeltaRotation.V.Y,
-		W: s4.DeltaRotation.V.Y,
-	}
-	simdBody.Dq.V.Z = b3FloatW{
-		X: s1.DeltaRotation.V.Z,
-		Y: s2.DeltaRotation.V.Z,
-		Z: s3.DeltaRotation.V.Z,
-		W: s4.DeltaRotation.V.Z,
-	}
-	simdBody.Dq.S = b3FloatW{
-		X: s1.DeltaRotation.S,
-		Y: s2.DeltaRotation.S,
-		Z: s3.DeltaRotation.S,
-		W: s4.DeltaRotation.S,
-	}
-	return simdBody
-}
-
-// C documentation
-//
-//	// This writes only the velocities back to the solver bodies
-func b3ScatterBodies(tls *_Stack, states uintptr, indices uintptr, simdBody uintptr) {
-	var index1, index2, index3, index4 int32
-	var state, state1, state2, state3 uintptr
-	_, _, _, _, _, _, _, _ = index1, index2, index3, index4, state, state1, state2, state3
-	index1 = *(*int32)(unsafe.Add(nil, indices)) - int32(1)
-	if index1 != -int32(1) && (*(*b3BodyState)(unsafe.Add(nil, states+uintptr(index1)*64))).Flags&uint32(b3_dynamicFlag) != uint32(0) {
-		state = states + uintptr(index1)*64
-		(*b3BodyState)(unsafe.Pointer(state)).LinearVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.X.X
-		(*b3BodyState)(unsafe.Pointer(state)).LinearVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Y.X
-		(*b3BodyState)(unsafe.Pointer(state)).LinearVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Z.X
-		(*b3BodyState)(unsafe.Pointer(state)).AngularVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.X.X
-		(*b3BodyState)(unsafe.Pointer(state)).AngularVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Y.X
-		(*b3BodyState)(unsafe.Pointer(state)).AngularVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Z.X
-	}
-	index2 = *(*int32)(unsafe.Add(nil, indices+1*4)) - int32(1)
-	if index2 != -int32(1) && (*(*b3BodyState)(unsafe.Add(nil, states+uintptr(index2)*64))).Flags&uint32(b3_dynamicFlag) != uint32(0) {
-		state1 = states + uintptr(index2)*64
-		(*b3BodyState)(unsafe.Pointer(state1)).LinearVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.X.Y
-		(*b3BodyState)(unsafe.Pointer(state1)).LinearVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Y.Y
-		(*b3BodyState)(unsafe.Pointer(state1)).LinearVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Z.Y
-		(*b3BodyState)(unsafe.Pointer(state1)).AngularVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.X.Y
-		(*b3BodyState)(unsafe.Pointer(state1)).AngularVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Y.Y
-		(*b3BodyState)(unsafe.Pointer(state1)).AngularVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Z.Y
-	}
-	index3 = *(*int32)(unsafe.Add(nil, indices+2*4)) - int32(1)
-	if index3 != -int32(1) && (*(*b3BodyState)(unsafe.Add(nil, states+uintptr(index3)*64))).Flags&uint32(b3_dynamicFlag) != uint32(0) {
-		state2 = states + uintptr(index3)*64
-		(*b3BodyState)(unsafe.Pointer(state2)).LinearVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.X.Z
-		(*b3BodyState)(unsafe.Pointer(state2)).LinearVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Y.Z
-		(*b3BodyState)(unsafe.Pointer(state2)).LinearVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Z.Z
-		(*b3BodyState)(unsafe.Pointer(state2)).AngularVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.X.Z
-		(*b3BodyState)(unsafe.Pointer(state2)).AngularVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Y.Z
-		(*b3BodyState)(unsafe.Pointer(state2)).AngularVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Z.Z
-	}
-	index4 = *(*int32)(unsafe.Add(nil, indices+3*4)) - int32(1)
-	if index4 != -int32(1) && (*(*b3BodyState)(unsafe.Add(nil, states+uintptr(index4)*64))).Flags&uint32(b3_dynamicFlag) != uint32(0) {
-		state3 = states + uintptr(index4)*64
-		(*b3BodyState)(unsafe.Pointer(state3)).LinearVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.X.W
-		(*b3BodyState)(unsafe.Pointer(state3)).LinearVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Y.W
-		(*b3BodyState)(unsafe.Pointer(state3)).LinearVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).V.Z.W
-		(*b3BodyState)(unsafe.Pointer(state3)).AngularVelocity.X = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.X.W
-		(*b3BodyState)(unsafe.Pointer(state3)).AngularVelocity.Y = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Y.W
-		(*b3BodyState)(unsafe.Pointer(state3)).AngularVelocity.Z = (*b3BodyStateW)(unsafe.Pointer(simdBody)).W.Z.W
-	}
-}
-
 var b3_zeroContact = b3Contact{}
 var b3_zeroManifold = Manifold{}
 var b3_zeroBodySim = b3BodySim{}
@@ -45812,1146 +46465,87 @@ var b3_zeroBodySim = b3BodySim{}
 func b3GatherInvInertiaW(tls *_Stack, simLanes uintptr) (r b3SymMatrix3W) {
 	bp := tls.Alloc(112)
 	defer tls.Free(112)
-	var i0, i1, i2, i3, v1, v10, v4, v7 uintptr
-	var t0, t1, t2, t3, v11, v13, v14, v15, v16, v2, v5, v8 b3FloatW4
+	var i0, i1, i2, i3 uintptr
 	var _ /* m at bp+0 */ b3SymMatrix3W
 	var _ /* unused at bp+96 */ b3FloatW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = i0, i1, i2, i3, t0, t1, t2, t3, v1, v10, v11, v13, v14, v15, v16, v2, v4, v5, v7, v8
+	_, _, _, _ = i0, i1, i2, i3
 	i0 = *(*uintptr)(unsafe.Add(nil, simLanes)) + 200
 	i1 = *(*uintptr)(unsafe.Add(nil, simLanes+1*8)) + 200
 	i2 = *(*uintptr)(unsafe.Add(nil, simLanes+2*8)) + 200
 	i3 = *(*uintptr)(unsafe.Add(nil, simLanes+3*8)) + 200
-	v1 = i0
-	v2 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v1)),
-		Y: *(*float32)(unsafe.Add(nil, v1+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v1+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v1+3*4)),
-	}
-	goto _3
-_3:
-	v4 = i1
-	v5 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v4)),
-		Y: *(*float32)(unsafe.Add(nil, v4+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v4+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v4+3*4)),
-	}
-	goto _6
-_6:
-	v7 = i2
-	v8 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v7)),
-		Y: *(*float32)(unsafe.Add(nil, v7+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v7+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v7+3*4)),
-	}
-	goto _9
-_9:
-	v10 = i3
-	v11 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v10)),
-		Y: *(*float32)(unsafe.Add(nil, v10+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v10+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v10+3*4)),
-	}
-	goto _12
-_12:
-	v13 = v2
-	v14 = v5
-	v15 = v8
-	v16 = v11
-	t0 = b3FloatW4{
-		X: v13.X,
-		Y: v15.X,
-		Z: v13.Y,
-		W: v15.Y,
-	}
-	t1 = b3FloatW4{
-		X: v14.X,
-		Y: v16.X,
-		Z: v14.Y,
-		W: v16.Y,
-	}
-	t2 = b3FloatW4{
-		X: v13.Z,
-		Y: v15.Z,
-		Z: v13.W,
-		W: v15.W,
-	}
-	t3 = b3FloatW4{
-		X: v14.Z,
-		Y: v16.Z,
-		Z: v14.W,
-		W: v16.W,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp)) = b3FloatW4{
-		X: t0.X,
-		Y: t1.X,
-		Z: t0.Y,
-		W: t1.Y,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+16)) = b3FloatW4{
-		X: t0.Z,
-		Y: t1.Z,
-		Z: t0.W,
-		W: t1.W,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+32)) = b3FloatW4{
-		X: t2.X,
-		Y: t3.X,
-		Z: t2.Y,
-		W: t3.Y,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+96)) = b3FloatW4{
-		X: t2.Z,
-		Y: t3.Z,
-		Z: t2.W,
-		W: t3.W,
-	}
-	v1 = i0 + uintptr(4)*4
-	v2 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v1)),
-		Y: *(*float32)(unsafe.Add(nil, v1+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v1+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v1+3*4)),
-	}
-	goto _19
-_19:
-	v4 = i1 + uintptr(4)*4
-	v5 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v4)),
-		Y: *(*float32)(unsafe.Add(nil, v4+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v4+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v4+3*4)),
-	}
-	goto _22
-_22:
-	v7 = i2 + uintptr(4)*4
-	v8 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v7)),
-		Y: *(*float32)(unsafe.Add(nil, v7+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v7+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v7+3*4)),
-	}
-	goto _25
-_25:
-	v10 = i3 + uintptr(4)*4
-	v11 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, v10)),
-		Y: *(*float32)(unsafe.Add(nil, v10+1*4)),
-		Z: *(*float32)(unsafe.Add(nil, v10+2*4)),
-		W: *(*float32)(unsafe.Add(nil, v10+3*4)),
-	}
-	goto _28
-_28:
-	v13 = v2
-	v14 = v5
-	v15 = v8
-	v16 = v11
-	t0 = b3FloatW4{
-		X: v13.X,
-		Y: v15.X,
-		Z: v13.Y,
-		W: v15.Y,
-	}
-	t1 = b3FloatW4{
-		X: v14.X,
-		Y: v16.X,
-		Z: v14.Y,
-		W: v16.Y,
-	}
-	t2 = b3FloatW4{
-		X: v13.Z,
-		Y: v15.Z,
-		Z: v13.W,
-		W: v15.W,
-	}
-	t3 = b3FloatW4{
-		X: v14.Z,
-		Y: v16.Z,
-		Z: v14.W,
-		W: v16.W,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+48)) = b3FloatW4{
-		X: t0.X,
-		Y: t1.X,
-		Z: t0.Y,
-		W: t1.Y,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+64)) = b3FloatW4{
-		X: t0.Z,
-		Y: t1.Z,
-		Z: t0.W,
-		W: t1.W,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+96)) = b3FloatW4{
-		X: t2.X,
-		Y: t3.X,
-		Z: t2.Y,
-		W: t3.Y,
-	}
-	*(*b3FloatW4)(unsafe.Add(nil, bp+96)) = b3FloatW4{
-		X: t2.Z,
-		Y: t3.Z,
-		Z: t2.W,
-		W: t3.W,
-	}
-	v2 = b3FloatW4{
-		X: *(*float32)(unsafe.Add(nil, i0+8*4)),
-		Y: *(*float32)(unsafe.Add(nil, i1+8*4)),
-		Z: *(*float32)(unsafe.Add(nil, i2+8*4)),
-		W: *(*float32)(unsafe.Add(nil, i3+8*4)),
-	}
-	goto _34
-_34:
-	(*(*b3SymMatrix3W)(unsafe.Add(nil, bp))).Czz = v2
+	b3TransposeW4(tls, b3LoadW4(tls, i0), b3LoadW4(tls, i1), b3LoadW4(tls, i2), b3LoadW4(tls, i3), bp, bp+16, bp+32, bp+96)
+	b3TransposeW4(tls, b3LoadW4(tls, i0+uintptr(4)*4), b3LoadW4(tls, i1+uintptr(4)*4), b3LoadW4(tls, i2+uintptr(4)*4), b3LoadW4(tls, i3+uintptr(4)*4), bp+48, bp+64, bp+96, bp+96)
+	(*(*b3SymMatrix3W)(unsafe.Add(nil, bp))).Czz = b3SetW4(tls, *(*float32)(unsafe.Add(nil, i0+8*4)), *(*float32)(unsafe.Add(nil, i1+8*4)), *(*float32)(unsafe.Add(nil, i2+8*4)), *(*float32)(unsafe.Add(nil, i3+8*4)))
 	return *(*b3SymMatrix3W)(unsafe.Add(nil, bp))
 }
 
-func b3AddSymW(tls *_Stack, a1 b3SymMatrix3W, b1 b3SymMatrix3W) (r b3SymMatrix3W) {
-	var v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v3, v5, v6, v7, v9 b3FloatW4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = v1, v10, v11, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v3, v5, v6, v7, v9
-	v1 = a1.Cxx
-	v2 = b1.Cxx
-	v3 = b3FloatW4{
-		X: v1.X + v2.X,
-		Y: v1.Y + v2.Y,
-		Z: v1.Z + v2.Z,
-		W: v1.W + v2.W,
-	}
-	goto _4
-_4:
-	v5 = a1.Cxy
-	v6 = b1.Cxy
-	v7 = b3FloatW4{
-		X: v5.X + v6.X,
-		Y: v5.Y + v6.Y,
-		Z: v5.Z + v6.Z,
-		W: v5.W + v6.W,
-	}
-	goto _8
-_8:
-	v9 = a1.Cxz
-	v10 = b1.Cxz
-	v11 = b3FloatW4{
-		X: v9.X + v10.X,
-		Y: v9.Y + v10.Y,
-		Z: v9.Z + v10.Z,
-		W: v9.W + v10.W,
-	}
-	goto _12
-_12:
-	v13 = a1.Cyy
-	v14 = b1.Cyy
-	v15 = b3FloatW4{
-		X: v13.X + v14.X,
-		Y: v13.Y + v14.Y,
-		Z: v13.Z + v14.Z,
-		W: v13.W + v14.W,
-	}
-	goto _16
-_16:
-	v17 = a1.Cyz
-	v18 = b1.Cyz
-	v19 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _20
-_20:
-	v21 = a1.Czz
-	v22 = b1.Czz
-	v23 = b3FloatW4{
-		X: v21.X + v22.X,
-		Y: v21.Y + v22.Y,
-		Z: v21.Z + v22.Z,
-		W: v21.W + v22.W,
-	}
-	goto _24
-_24:
+func b3AddSymW(tls *_Stack, a b3SymMatrix3W, b b3SymMatrix3W) (r b3SymMatrix3W) {
 	return b3SymMatrix3W{
-		Cxx: v3,
-		Cxy: v7,
-		Cxz: v11,
-		Cyy: v15,
-		Cyz: v19,
-		Czz: v23,
+		Cxx: b3AddW4(tls, a.Cxx, b.Cxx),
+		Cxy: b3AddW4(tls, a.Cxy, b.Cxy),
+		Cxz: b3AddW4(tls, a.Cxz, b.Cxz),
+		Cyy: b3AddW4(tls, a.Cyy, b.Cyy),
+		Cyz: b3AddW4(tls, a.Cyz, b.Cyz),
+		Czz: b3AddW4(tls, a.Czz, b.Czz),
 	}
 }
 
-func b3InvertSymW(tls *_Stack, m b3SymMatrix3W) (r2 b3SymMatrix3W) {
+func b3InvertSymW(tls *_Stack, m b3SymMatrix3W) (r b3SymMatrix3W) {
 	var cxx, cxy, cxz, cyy, cyz, czz, det, invDet, valid b3FloatW
-	var r, r1, v1, v10, v101, v103, v104, v109, v11, v111, v114, v116, v117, v118, v120, v121, v122, v127, v129, v13, v130, v131, v133, v134, v135, v137, v138, v139, v14, v141, v142, v143, v145, v146, v147, v149, v15, v150, v151, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v77, v78, v79, v81, v82, v83, v85, v86, v87, v89, v9, v90, v91, v93, v94 b3FloatW4
-	var v100, v105, v106, v107, v108, v113, v123, v124, v125, v126, v96, v97, v98, v99 float32
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = cxx, cxy, cxz, cyy, cyz, czz, det, invDet, r, r1, valid, v1, v10, v100, v101, v103, v104, v105, v106, v107, v108, v109, v11, v111, v113, v114, v116, v117, v118, v120, v121, v122, v123, v124, v125, v126, v127, v129, v13, v130, v131, v133, v134, v135, v137, v138, v139, v14, v141, v142, v143, v145, v146, v147, v149, v15, v150, v151, v17, v18, v19, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v54, v55, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v77, v78, v79, v81, v82, v83, v85, v86, v87, v89, v9, v90, v91, v93, v94, v96, v97, v98, v99
-	v1 = m.Cyy
-	v2 = m.Czz
-	v3 = b3FloatW4{
-		X: float32(v1.X * v2.X),
-		Y: float32(v1.Y * v2.Y),
-		Z: float32(v1.Z * v2.Z),
-		W: float32(v1.W * v2.W),
-	}
-	goto _4
-_4:
-	v5 = m.Cyz
-	v6 = m.Cyz
-	v7 = b3FloatW4{
-		X: float32(v5.X * v6.X),
-		Y: float32(v5.Y * v6.Y),
-		Z: float32(v5.Z * v6.Z),
-		W: float32(v5.W * v6.W),
-	}
-	goto _8
-_8:
-	v9 = v3
-	v10 = v7
-	v11 = b3FloatW4{
-		X: v9.X - v10.X,
-		Y: v9.Y - v10.Y,
-		Z: v9.Z - v10.Z,
-		W: v9.W - v10.W,
-	}
-	goto _12
-_12:
-	cxx = v11
-	v13 = m.Cxz
-	v14 = m.Cyz
-	v15 = b3FloatW4{
-		X: float32(v13.X * v14.X),
-		Y: float32(v13.Y * v14.Y),
-		Z: float32(v13.Z * v14.Z),
-		W: float32(v13.W * v14.W),
-	}
-	goto _16
-_16:
-	v17 = m.Cxy
-	v18 = m.Czz
-	v19 = b3FloatW4{
-		X: float32(v17.X * v18.X),
-		Y: float32(v17.Y * v18.Y),
-		Z: float32(v17.Z * v18.Z),
-		W: float32(v17.W * v18.W),
-	}
-	goto _20
-_20:
-	v21 = v15
-	v22 = v19
-	v23 = b3FloatW4{
-		X: v21.X - v22.X,
-		Y: v21.Y - v22.Y,
-		Z: v21.Z - v22.Z,
-		W: v21.W - v22.W,
-	}
-	goto _24
-_24:
-	cxy = v23
-	v25 = m.Cxy
-	v26 = m.Cyz
-	v27 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _28
-_28:
-	v29 = m.Cxz
-	v30 = m.Cyy
-	v31 = b3FloatW4{
-		X: float32(v29.X * v30.X),
-		Y: float32(v29.Y * v30.Y),
-		Z: float32(v29.Z * v30.Z),
-		W: float32(v29.W * v30.W),
-	}
-	goto _32
-_32:
-	v33 = v27
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X - v34.X,
-		Y: v33.Y - v34.Y,
-		Z: v33.Z - v34.Z,
-		W: v33.W - v34.W,
-	}
-	goto _36
-_36:
-	cxz = v35
-	v37 = m.Cxx
-	v38 = m.Czz
-	v39 = b3FloatW4{
-		X: float32(v37.X * v38.X),
-		Y: float32(v37.Y * v38.Y),
-		Z: float32(v37.Z * v38.Z),
-		W: float32(v37.W * v38.W),
-	}
-	goto _40
-_40:
-	v41 = m.Cxz
-	v42 = m.Cxz
-	v43 = b3FloatW4{
-		X: float32(v41.X * v42.X),
-		Y: float32(v41.Y * v42.Y),
-		Z: float32(v41.Z * v42.Z),
-		W: float32(v41.W * v42.W),
-	}
-	goto _44
-_44:
-	v45 = v39
-	v46 = v43
-	v47 = b3FloatW4{
-		X: v45.X - v46.X,
-		Y: v45.Y - v46.Y,
-		Z: v45.Z - v46.Z,
-		W: v45.W - v46.W,
-	}
-	goto _48
-_48:
-	cyy = v47
-	v49 = m.Cxy
-	v50 = m.Cxz
-	v51 = b3FloatW4{
-		X: float32(v49.X * v50.X),
-		Y: float32(v49.Y * v50.Y),
-		Z: float32(v49.Z * v50.Z),
-		W: float32(v49.W * v50.W),
-	}
-	goto _52
-_52:
-	v53 = m.Cxx
-	v54 = m.Cyz
-	v55 = b3FloatW4{
-		X: float32(v53.X * v54.X),
-		Y: float32(v53.Y * v54.Y),
-		Z: float32(v53.Z * v54.Z),
-		W: float32(v53.W * v54.W),
-	}
-	goto _56
-_56:
-	v57 = v51
-	v58 = v55
-	v59 = b3FloatW4{
-		X: v57.X - v58.X,
-		Y: v57.Y - v58.Y,
-		Z: v57.Z - v58.Z,
-		W: v57.W - v58.W,
-	}
-	goto _60
-_60:
-	cyz = v59
-	v61 = m.Cxx
-	v62 = m.Cyy
-	v63 = b3FloatW4{
-		X: float32(v61.X * v62.X),
-		Y: float32(v61.Y * v62.Y),
-		Z: float32(v61.Z * v62.Z),
-		W: float32(v61.W * v62.W),
-	}
-	goto _64
-_64:
-	v65 = m.Cxy
-	v66 = m.Cxy
-	v67 = b3FloatW4{
-		X: float32(v65.X * v66.X),
-		Y: float32(v65.Y * v66.Y),
-		Z: float32(v65.Z * v66.Z),
-		W: float32(v65.W * v66.W),
-	}
-	goto _68
-_68:
-	v69 = v63
-	v70 = v67
-	v71 = b3FloatW4{
-		X: v69.X - v70.X,
-		Y: v69.Y - v70.Y,
-		Z: v69.Z - v70.Z,
-		W: v69.W - v70.W,
-	}
-	goto _72
-_72:
-	czz = v71
-	v73 = m.Cxx
-	v74 = cxx
-	v75 = b3FloatW4{
-		X: float32(v73.X * v74.X),
-		Y: float32(v73.Y * v74.Y),
-		Z: float32(v73.Z * v74.Z),
-		W: float32(v73.W * v74.W),
-	}
-	goto _76
-_76:
-	v77 = m.Cxy
-	v78 = cxy
-	v79 = b3FloatW4{
-		X: float32(v77.X * v78.X),
-		Y: float32(v77.Y * v78.Y),
-		Z: float32(v77.Z * v78.Z),
-		W: float32(v77.W * v78.W),
-	}
-	goto _80
-_80:
-	v81 = m.Cxz
-	v82 = cxz
-	v83 = b3FloatW4{
-		X: float32(v81.X * v82.X),
-		Y: float32(v81.Y * v82.Y),
-		Z: float32(v81.Z * v82.Z),
-		W: float32(v81.W * v82.W),
-	}
-	goto _84
-_84:
-	v85 = v79
-	v86 = v83
-	v87 = b3FloatW4{
-		X: v85.X + v86.X,
-		Y: v85.Y + v86.Y,
-		Z: v85.Z + v86.Z,
-		W: v85.W + v86.W,
-	}
-	goto _88
-_88:
-	v89 = v75
-	v90 = v87
-	v91 = b3FloatW4{
-		X: v89.X + v90.X,
-		Y: v89.Y + v90.Y,
-		Z: v89.Z + v90.Z,
-		W: v89.W + v90.W,
-	}
-	goto _92
-_92:
-	det = v91
-	v93 = det
-	if v93.X < float32FromFloat32(0) {
-		v96 = -v93.X
-	} else {
-		v96 = v93.X
-	}
-	if v93.Y < float32FromFloat32(0) {
-		v97 = -v93.Y
-	} else {
-		v97 = v93.Y
-	}
-	if v93.Z < float32FromFloat32(0) {
-		v98 = -v93.Z
-	} else {
-		v98 = v93.Z
-	}
-	if v93.W < float32FromFloat32(0) {
-		v99 = -v93.W
-	} else {
-		v99 = v93.W
-	}
-	v94 = b3FloatW4{
-		X: v96,
-		Y: v97,
-		Z: v98,
-		W: v99,
-	}
-	goto _95
-_95:
-	v100 = float32(float32FromFloat32(1000) * float32FromFloat32(1.1754943508222875e-38))
-	v101 = b3FloatW4{
-		X: v100,
-		Y: v100,
-		Z: v100,
-		W: v100,
-	}
-	goto _102
-_102:
-	v103 = v94
-	v104 = v101
-	if v103.X > v104.X {
-		v105 = float32FromFloat32(1)
-	} else {
-		v105 = float32FromFloat32(0)
-	}
-	r.X = v105
-	if v103.Y > v104.Y {
-		v106 = float32FromFloat32(1)
-	} else {
-		v106 = float32FromFloat32(0)
-	}
-	r.Y = v106
-	if v103.Z > v104.Z {
-		v107 = float32FromFloat32(1)
-	} else {
-		v107 = float32FromFloat32(0)
-	}
-	r.Z = v107
-	if v103.W > v104.W {
-		v108 = float32FromFloat32(1)
-	} else {
-		v108 = float32FromFloat32(0)
-	}
-	r.W = v108
-	v109 = r
-	goto _110
-_110:
-	valid = v109
-	v111 = b3FloatW4{}
-	goto _112
-_112:
-	v113 = float32FromFloat32(1)
-	v114 = b3FloatW4{
-		X: v113,
-		Y: v113,
-		Z: v113,
-		W: v113,
-	}
-	goto _115
-_115:
-	v116 = v114
-	v117 = det
-	v118 = b3FloatW4{
-		X: v116.X / v117.X,
-		Y: v116.Y / v117.Y,
-		Z: v116.Z / v117.Z,
-		W: v116.W / v117.W,
-	}
-	goto _119
-_119:
-	v120 = v111
-	v121 = v118
-	v122 = valid
-	if v122.X != float32FromFloat32(0) {
-		v123 = v121.X
-	} else {
-		v123 = v120.X
-	}
-	r1.X = v123
-	if v122.Y != float32FromFloat32(0) {
-		v124 = v121.Y
-	} else {
-		v124 = v120.Y
-	}
-	r1.Y = v124
-	if v122.Z != float32FromFloat32(0) {
-		v125 = v121.Z
-	} else {
-		v125 = v120.Z
-	}
-	r1.Z = v125
-	if v122.W != float32FromFloat32(0) {
-		v126 = v121.W
-	} else {
-		v126 = v120.W
-	}
-	r1.W = v126
-	v127 = r1
-	goto _128
-_128:
-	invDet = v127
-	v129 = invDet
-	v130 = cxx
-	v131 = b3FloatW4{
-		X: float32(v129.X * v130.X),
-		Y: float32(v129.Y * v130.Y),
-		Z: float32(v129.Z * v130.Z),
-		W: float32(v129.W * v130.W),
-	}
-	goto _132
-_132:
-	v133 = invDet
-	v134 = cxy
-	v135 = b3FloatW4{
-		X: float32(v133.X * v134.X),
-		Y: float32(v133.Y * v134.Y),
-		Z: float32(v133.Z * v134.Z),
-		W: float32(v133.W * v134.W),
-	}
-	goto _136
-_136:
-	v137 = invDet
-	v138 = cxz
-	v139 = b3FloatW4{
-		X: float32(v137.X * v138.X),
-		Y: float32(v137.Y * v138.Y),
-		Z: float32(v137.Z * v138.Z),
-		W: float32(v137.W * v138.W),
-	}
-	goto _140
-_140:
-	v141 = invDet
-	v142 = cyy
-	v143 = b3FloatW4{
-		X: float32(v141.X * v142.X),
-		Y: float32(v141.Y * v142.Y),
-		Z: float32(v141.Z * v142.Z),
-		W: float32(v141.W * v142.W),
-	}
-	goto _144
-_144:
-	v145 = invDet
-	v146 = cyz
-	v147 = b3FloatW4{
-		X: float32(v145.X * v146.X),
-		Y: float32(v145.Y * v146.Y),
-		Z: float32(v145.Z * v146.Z),
-		W: float32(v145.W * v146.W),
-	}
-	goto _148
-_148:
-	v149 = invDet
-	v150 = czz
-	v151 = b3FloatW4{
-		X: float32(v149.X * v150.X),
-		Y: float32(v149.Y * v150.Y),
-		Z: float32(v149.Z * v150.Z),
-		W: float32(v149.W * v150.W),
-	}
-	goto _152
-_152:
+	_, _, _, _, _, _, _, _, _ = cxx, cxy, cxz, cyy, cyz, czz, det, invDet, valid
+	cxx = b3SubW4(tls, b3MulW4(tls, m.Cyy, m.Czz), b3MulW4(tls, m.Cyz, m.Cyz))
+	cxy = b3SubW4(tls, b3MulW4(tls, m.Cxz, m.Cyz), b3MulW4(tls, m.Cxy, m.Czz))
+	cxz = b3SubW4(tls, b3MulW4(tls, m.Cxy, m.Cyz), b3MulW4(tls, m.Cxz, m.Cyy))
+	cyy = b3SubW4(tls, b3MulW4(tls, m.Cxx, m.Czz), b3MulW4(tls, m.Cxz, m.Cxz))
+	cyz = b3SubW4(tls, b3MulW4(tls, m.Cxy, m.Cxz), b3MulW4(tls, m.Cxx, m.Cyz))
+	czz = b3SubW4(tls, b3MulW4(tls, m.Cxx, m.Cyy), b3MulW4(tls, m.Cxy, m.Cxy))
+	det = b3AddW4(tls, b3MulW4(tls, m.Cxx, cxx), b3AddW4(tls, b3MulW4(tls, m.Cxy, cxy), b3MulW4(tls, m.Cxz, cxz)))
+	valid = b3GreaterThanW4(tls, b3AbsW4(tls, det), b3SplatW4(tls, float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38))))
+	invDet = b3BlendW4(tls, b3ZeroW4(tls), b3DivW4(tls, b3SplatW4(tls, float32FromFloat32(1)), det), valid)
 	return b3SymMatrix3W{
-		Cxx: v131,
-		Cxy: v135,
-		Cxz: v139,
-		Cyy: v143,
-		Cyz: v147,
-		Czz: v151,
+		Cxx: b3MulW4(tls, invDet, cxx),
+		Cxy: b3MulW4(tls, invDet, cxy),
+		Cxz: b3MulW4(tls, invDet, cxz),
+		Cyy: b3MulW4(tls, invDet, cyy),
+		Cyz: b3MulW4(tls, invDet, cyz),
+		Czz: b3MulW4(tls, invDet, czz),
 	}
 }
 
-func b3PerpW(tls *_Stack, a11 b3Vec3W) (r4 b3Vec3W) {
-	var half, lengthSquared, mask1, s1, valid, zero b3FloatW
+func b3PerpW(tls *_Stack, a2 b3Vec3W) (r b3Vec3W) {
+	var half, lengthSquared, mask, s1, valid, zero b3FloatW
 	var p b3Vec3W
-	var r, r1, r2, r3, v1, v10, v15, v17, v18, v23, v25, v26, v31, v33, v34, v35, v4, v40, v42, v43, v45, v46, v47, v52, v54, v55, v57, v58, v59, v6, v64, v68, v7, v70, v71, v72, v74, v75, v76, v78, v79, v80, v82, v9 b3FloatW4
-	var v11, v12, v13, v14, v19, v20, v21, v22, v27, v28, v29, v3, v30, v36, v37, v38, v39 float32
-	var v121, v122, v66, v67 b3Vec3W4
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = half, lengthSquared, mask1, p, r, r1, r2, r3, s1, valid, zero, v1, v10, v11, v12, v121, v122, v13, v14, v15, v17, v18, v19, v20, v21, v22, v23, v25, v26, v27, v28, v29, v3, v30, v31, v33, v34, v35, v36, v37, v38, v39, v4, v40, v42, v43, v45, v46, v47, v52, v54, v55, v57, v58, v59, v6, v64, v66, v67, v68, v7, v70, v71, v72, v74, v75, v76, v78, v79, v80, v82, v9
-	v1 = b3FloatW4{}
-	goto _2
-_2:
-	zero = v1
-	v3 = float32FromFloat32(0.5)
-	v4 = b3FloatW4{
-		X: v3,
-		Y: v3,
-		Z: v3,
-		W: v3,
-	}
-	goto _5
-_5:
-	half = v4
-	v6 = half
-	v7 = b3FloatW4{
-		X: -v6.X,
-		Y: -v6.Y,
-		Z: -v6.Z,
-		W: -v6.W,
+	var v1, v2, v6, v7 b3Vec3W4
+	var v3, v5 b3FloatW4
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = half, lengthSquared, mask, p, s1, valid, zero, v1, v2, v3, v5, v6, v7
+	zero = b3ZeroW4(tls)
+	half = b3SplatW4(tls, float32FromFloat32(0.5))
+	mask = b3OrW4(tls, b3LessThanW4(tls, a2.X, b3NegW4(tls, half)), b3GreaterThanW4(tls, a2.X, half))
+	p.X = b3BlendW4(tls, zero, a2.Y, mask)
+	p.Y = b3BlendW4(tls, a2.Z, b3NegW4(tls, a2.X), mask)
+	p.Z = b3BlendW4(tls, b3NegW4(tls, a2.Y), zero, mask)
+	v1 = p
+	v2 = p
+	v3 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v1.X, v2.X), b3MulW4(tls, v1.Y, v2.Y)), b3MulW4(tls, v1.Z, v2.Z))
+	goto _4
+_4:
+	lengthSquared = v3
+	valid = b3GreaterThanW4(tls, lengthSquared, b3SplatW4(tls, float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38))))
+	s1 = b3BlendW4(tls, zero, b3DivW4(tls, b3SplatW4(tls, float32FromFloat32(1)), b3SqrtW4(tls, lengthSquared)), valid)
+	v5 = s1
+	v6 = p
+	v7 = b3Vec3W4{
+		X: b3MulW4(tls, v5, v6.X),
+		Y: b3MulW4(tls, v5, v6.Y),
+		Z: b3MulW4(tls, v5, v6.Z),
 	}
 	goto _8
 _8:
-	v9 = a11.X
-	v10 = v7
-	if v9.X < v10.X {
-		v11 = float32FromFloat32(1)
-	} else {
-		v11 = float32FromFloat32(0)
-	}
-	r2.X = v11
-	if v9.Y < v10.Y {
-		v12 = float32FromFloat32(1)
-	} else {
-		v12 = float32FromFloat32(0)
-	}
-	r2.Y = v12
-	if v9.Z < v10.Z {
-		v13 = float32FromFloat32(1)
-	} else {
-		v13 = float32FromFloat32(0)
-	}
-	r2.Z = v13
-	if v9.W < v10.W {
-		v14 = float32FromFloat32(1)
-	} else {
-		v14 = float32FromFloat32(0)
-	}
-	r2.W = v14
-	v15 = r2
-	goto _16
-_16:
-	v17 = a11.X
-	v18 = half
-	if v17.X > v18.X {
-		v19 = float32FromFloat32(1)
-	} else {
-		v19 = float32FromFloat32(0)
-	}
-	r1.X = v19
-	if v17.Y > v18.Y {
-		v20 = float32FromFloat32(1)
-	} else {
-		v20 = float32FromFloat32(0)
-	}
-	r1.Y = v20
-	if v17.Z > v18.Z {
-		v21 = float32FromFloat32(1)
-	} else {
-		v21 = float32FromFloat32(0)
-	}
-	r1.Z = v21
-	if v17.W > v18.W {
-		v22 = float32FromFloat32(1)
-	} else {
-		v22 = float32FromFloat32(0)
-	}
-	r1.W = v22
-	v23 = r1
-	goto _24
-_24:
-	v25 = v15
-	v26 = v23
-	if v25.X != float32FromFloat32(0) || v26.X != float32FromFloat32(0) {
-		v27 = float32FromFloat32(1)
-	} else {
-		v27 = float32FromFloat32(0)
-	}
-	r.X = v27
-	if v25.Y != float32FromFloat32(0) || v26.Y != float32FromFloat32(0) {
-		v28 = float32FromFloat32(1)
-	} else {
-		v28 = float32FromFloat32(0)
-	}
-	r.Y = v28
-	if v25.Z != float32FromFloat32(0) || v26.Z != float32FromFloat32(0) {
-		v29 = float32FromFloat32(1)
-	} else {
-		v29 = float32FromFloat32(0)
-	}
-	r.Z = v29
-	if v25.W != float32FromFloat32(0) || v26.W != float32FromFloat32(0) {
-		v30 = float32FromFloat32(1)
-	} else {
-		v30 = float32FromFloat32(0)
-	}
-	r.W = v30
-	v31 = r
-	goto _32
-_32:
-	mask1 = v31
-	v33 = zero
-	v34 = a11.Y
-	v35 = mask1
-	if v35.X != float32FromFloat32(0) {
-		v36 = v34.X
-	} else {
-		v36 = v33.X
-	}
-	r3.X = v36
-	if v35.Y != float32FromFloat32(0) {
-		v37 = v34.Y
-	} else {
-		v37 = v33.Y
-	}
-	r3.Y = v37
-	if v35.Z != float32FromFloat32(0) {
-		v38 = v34.Z
-	} else {
-		v38 = v33.Z
-	}
-	r3.Z = v38
-	if v35.W != float32FromFloat32(0) {
-		v39 = v34.W
-	} else {
-		v39 = v33.W
-	}
-	r3.W = v39
-	v40 = r3
-	goto _41
-_41:
-	p.X = v40
-	v1 = a11.X
-	v4 = b3FloatW4{
-		X: -v1.X,
-		Y: -v1.Y,
-		Z: -v1.Z,
-		W: -v1.W,
-	}
-	goto _44
-_44:
-	v6 = a11.Z
-	v7 = v4
-	v9 = mask1
-	if v9.X != float32FromFloat32(0) {
-		v3 = v7.X
-	} else {
-		v3 = v6.X
-	}
-	r3.X = v3
-	if v9.Y != float32FromFloat32(0) {
-		v11 = v7.Y
-	} else {
-		v11 = v6.Y
-	}
-	r3.Y = v11
-	if v9.Z != float32FromFloat32(0) {
-		v12 = v7.Z
-	} else {
-		v12 = v6.Z
-	}
-	r3.Z = v12
-	if v9.W != float32FromFloat32(0) {
-		v13 = v7.W
-	} else {
-		v13 = v6.W
-	}
-	r3.W = v13
-	v10 = r3
-	goto _53
-_53:
-	p.Y = v10
-	v1 = a11.Y
-	v4 = b3FloatW4{
-		X: -v1.X,
-		Y: -v1.Y,
-		Z: -v1.Z,
-		W: -v1.W,
-	}
-	goto _56
-_56:
-	v6 = v4
-	v7 = zero
-	v9 = mask1
-	if v9.X != float32FromFloat32(0) {
-		v3 = v7.X
-	} else {
-		v3 = v6.X
-	}
-	r3.X = v3
-	if v9.Y != float32FromFloat32(0) {
-		v11 = v7.Y
-	} else {
-		v11 = v6.Y
-	}
-	r3.Y = v11
-	if v9.Z != float32FromFloat32(0) {
-		v12 = v7.Z
-	} else {
-		v12 = v6.Z
-	}
-	r3.Z = v12
-	if v9.W != float32FromFloat32(0) {
-		v13 = v7.W
-	} else {
-		v13 = v6.W
-	}
-	r3.W = v13
-	v10 = r3
-	goto _65
-_65:
-	p.Z = v10
-	v66 = p
-	v67 = p
-	v4 = v66.X
-	v6 = v67.X
-	v7 = b3FloatW4{
-		X: float32(v4.X * v6.X),
-		Y: float32(v4.Y * v6.Y),
-		Z: float32(v4.Z * v6.Z),
-		W: float32(v4.W * v6.W),
-	}
-	goto _73
-_73:
-	v9 = v66.Y
-	v10 = v67.Y
-	v15 = b3FloatW4{
-		X: float32(v9.X * v10.X),
-		Y: float32(v9.Y * v10.Y),
-		Z: float32(v9.Z * v10.Z),
-		W: float32(v9.W * v10.W),
-	}
-	goto _77
-_77:
-	v17 = v7
-	v18 = v15
-	v23 = b3FloatW4{
-		X: v17.X + v18.X,
-		Y: v17.Y + v18.Y,
-		Z: v17.Z + v18.Z,
-		W: v17.W + v18.W,
-	}
-	goto _81
-_81:
-	v25 = v66.Z
-	v26 = v67.Z
-	v31 = b3FloatW4{
-		X: float32(v25.X * v26.X),
-		Y: float32(v25.Y * v26.Y),
-		Z: float32(v25.Z * v26.Z),
-		W: float32(v25.W * v26.W),
-	}
-	goto _85
-_85:
-	v33 = v23
-	v34 = v31
-	v35 = b3FloatW4{
-		X: v33.X + v34.X,
-		Y: v33.Y + v34.Y,
-		Z: v33.Z + v34.Z,
-		W: v33.W + v34.W,
-	}
-	goto _89
-_89:
-	v1 = v35
-	goto _69
-_69:
-	lengthSquared = v1
-	v3 = float32(float32FromFloat32(1000) * float32FromFloat32(1.1754943508222875e-38))
-	v40 = b3FloatW4{
-		X: v3,
-		Y: v3,
-		Z: v3,
-		W: v3,
-	}
-	goto _92
-_92:
-	v42 = lengthSquared
-	v43 = v40
-	if v42.X > v43.X {
-		v11 = float32FromFloat32(1)
-	} else {
-		v11 = float32FromFloat32(0)
-	}
-	r1.X = v11
-	if v42.Y > v43.Y {
-		v12 = float32FromFloat32(1)
-	} else {
-		v12 = float32FromFloat32(0)
-	}
-	r1.Y = v12
-	if v42.Z > v43.Z {
-		v13 = float32FromFloat32(1)
-	} else {
-		v13 = float32FromFloat32(0)
-	}
-	r1.Z = v13
-	if v42.W > v43.W {
-		v14 = float32FromFloat32(1)
-	} else {
-		v14 = float32FromFloat32(0)
-	}
-	r1.W = v14
-	v45 = r1
-	goto _100
-_100:
-	valid = v45
-	v19 = float32FromFloat32(1)
-	v46 = b3FloatW4{
-		X: v19,
-		Y: v19,
-		Z: v19,
-		W: v19,
-	}
-	goto _103
-_103:
-	v47 = lengthSquared
-	v52 = b3FloatW4{
-		X: sqrtf(tls, v47.X),
-		Y: sqrtf(tls, v47.Y),
-		Z: sqrtf(tls, v47.Z),
-		W: sqrtf(tls, v47.W),
-	}
-	goto _106
-_106:
-	v54 = v46
-	v55 = v52
-	v57 = b3FloatW4{
-		X: v54.X / v55.X,
-		Y: v54.Y / v55.Y,
-		Z: v54.Z / v55.Z,
-		W: v54.W / v55.W,
-	}
-	goto _110
-_110:
-	v58 = zero
-	v59 = v57
-	v64 = valid
-	if v64.X != float32FromFloat32(0) {
-		v20 = v59.X
-	} else {
-		v20 = v58.X
-	}
-	r3.X = v20
-	if v64.Y != float32FromFloat32(0) {
-		v21 = v59.Y
-	} else {
-		v21 = v58.Y
-	}
-	r3.Y = v21
-	if v64.Z != float32FromFloat32(0) {
-		v22 = v59.Z
-	} else {
-		v22 = v58.Z
-	}
-	r3.Z = v22
-	if v64.W != float32FromFloat32(0) {
-		v27 = v59.W
-	} else {
-		v27 = v58.W
-	}
-	r3.W = v27
-	v68 = r3
-	goto _119
-_119:
-	s1 = v68
-	v70 = s1
-	v121 = p
-	v71 = v70
-	v72 = v121.X
-	v74 = b3FloatW4{
-		X: float32(v71.X * v72.X),
-		Y: float32(v71.Y * v72.Y),
-		Z: float32(v71.Z * v72.Z),
-		W: float32(v71.W * v72.W),
-	}
-	goto _127
-_127:
-	v75 = v70
-	v76 = v121.Y
-	v78 = b3FloatW4{
-		X: float32(v75.X * v76.X),
-		Y: float32(v75.Y * v76.Y),
-		Z: float32(v75.Z * v76.Z),
-		W: float32(v75.W * v76.W),
-	}
-	goto _131
-_131:
-	v79 = v70
-	v80 = v121.Z
-	v82 = b3FloatW4{
-		X: float32(v79.X * v80.X),
-		Y: float32(v79.Y * v80.Y),
-		Z: float32(v79.Z * v80.Z),
-		W: float32(v79.W * v80.W),
-	}
-	goto _135
-_135:
-	v122 = b3Vec3W4{
-		X: v74,
-		Y: v78,
-		Z: v82,
-	}
-	goto _123
-_123:
-	return v122
+	return v7
 }
 
 func b3IntsToFloatW(tls *_Stack, v uintptr) (r b3FloatW) {
-	var v1 b3FloatW4
-	_ = v1
-	v1 = b3FloatW4{
-		X: float32(*(*int32)(unsafe.Add(nil, v))),
-		Y: float32(*(*int32)(unsafe.Add(nil, v+1*4))),
-		Z: float32(*(*int32)(unsafe.Add(nil, v+2*4))),
-		W: float32(*(*int32)(unsafe.Add(nil, v+3*4))),
-	}
-	goto _2
-_2:
-	return v1
+	return b3SetW4(tls, float32(*(*int32)(unsafe.Add(nil, v))), float32(*(*int32)(unsafe.Add(nil, v+1*4))), float32(*(*int32)(unsafe.Add(nil, v+2*4))), float32(*(*int32)(unsafe.Add(nil, v+3*4))))
 }
 
 // C documentation
@@ -46976,21 +46570,20 @@ func b3NextConstraintW(tls *_Stack, c uintptr, manifoldCount int32) (r uintptr) 
 //
 //	// Contact constraint data is stored in a heterogious stream. Constraints followed by an array of constraint manifolds.
 //	// [c1 m11 m12 c2 m21 c3 m31 m32 m33 ... ]
-func b3PrepareConstraintW(tls *_Stack, c2 uintptr, contacts uintptr, manifoldCount int32, context uintptr, warmStartScale b3FloatW) (r5 uint8) {
+func b3PrepareConstraintW(tls *_Stack, c1 uintptr, contacts uintptr, manifoldCount int32, context uintptr, warmStartScale b3FloatW) (r uint8) {
 	bp := tls.Alloc(400)
 	defer tls.Free(400)
 	var bA, bB b3BodyStateW
-	var c1, v121, v122, v159, v161, v162, v185, v186, v252, v253, v280, v281, v457, v459, v460, v486, v488, v489, v519, v520, v521, v535, v536, v567, v568 b3Vec3W4
-	var centerA, centerB, d1, iArtA1, iArtA2, iBrtB1, iBrtB2, rnA, rnB, rtA1, rtA2, rtB1, rtB2, tangent1, tangent2, tangentVelocity, vrA, vrB b3Vec3W
-	var cm, cm1, contact, cp, cp1, cp2, m0, m1, m2, m3, manifold, manifold1, manifolds, p0, p1, p2, p3, sims, states, v27, v28, v85, v88 uintptr
+	var c, v25, v26, v27, v29, v30, v33, v34, v37, v38, v41, v42, v46, v48, v49, v51, v53, v54, v56, v57, v58, v60, v61, v64, v65 b3Vec3W4
+	var centerA, centerB, d, iArtA1, iArtA2, iBrtB1, iBrtB2, rnA, rnB, rtA1, rtA2, rtB1, rtB2, tangent1, tangent2, tangentVelocity, vrA, vrB b3Vec3W
+	var cm, cm1, contact, cp, cp1, cp2, m0, m1, m2, m3, manifold, manifold1, manifolds, p0, p1, p2, p3, sims, states, v10 uintptr
 	var contactLanes, manifoldLanes [4]uintptr
 	var det, frictionValid, invDet, invTau, invWeight, kNormal, kTwist, kxx, kxy, kyy, mA, mB, minDet, minFrictionWeight, oneW, pointCountW, pointMask, pointMask1, rollingResistanceMask, totalFrictionWeight, twoW, valid, valid1, vn, weight, zeroW b3FloatW
-	var haveRestitution, v52 uint8
-	var hitEventLanes, indexA, indexB, lane, lane1, lane2, manifoldIndex, manifoldIndex1, maxManifoldCount, pointCount, pointIndex, pointIndex1, pointIndex2, v19, v20, v22, v23, v24, v26 int32
+	var haveRestitution uint8
+	var hitEventLanes, indexA, indexB, lane, lane1, lane2, manifoldIndex, manifoldIndex1, maxManifoldCount, pointCount, pointIndex, pointIndex1, pointIndex2, v2, v3, v5, v6, v7, v9 int32
 	var iA, iB, invIAB b3SymMatrix3W
 	var manifoldCounts [4]int32
-	var r, r1, r2, r3, r4, t0, t1, t2, t3, v1, v10, v100, v102, v105, v108, v111, v113, v114, v115, v116, v117, v119, v123, v124, v125, v127, v128, v129, v13, v131, v132, v133, v135, v136, v137, v139, v140, v141, v143, v144, v145, v147, v148, v149, v151, v152, v153, v155, v156, v157, v16, v163, v165, v166, v167, v169, v170, v171, v173, v174, v175, v177, v178, v179, v181, v182, v183, v187, v189, v190, v191, v193, v194, v195, v197, v198, v199, v201, v202, v203, v205, v206, v207, v209, v210, v211, v213, v214, v215, v217, v218, v219, v224, v226, v227, v228, v230, v231, v232, v237, v239, v240, v241, v243, v244, v245, v250, v254, v256, v257, v258, v260, v261, v262, v264, v265, v266, v268, v269, v270, v272, v273, v274, v276, v277, v278, v282, v284, v285, v286, v288, v289, v290, v292, v293, v294, v296, v297, v298, v300, v301, v302, v304, v305, v306, v310, v312, v313, v318, v321, v324, v327, v330, v332, v333, v334, v335, v337, v340, v343, v346, v348, v349, v35, v350, v351, v352, v353, v354, v359, v361, v362, v363, v368, v37, v370, v371, v372, v377, v379, v380, v381, v386, v388, v389, v39, v390, v395, v397, v398, v399, v4, v404, v406, v407, v408, v41, v413, v415, v416, v417, v422, v424, v425, v426, v428, v429, v43, v430, v432, v433, v438, v440, v441, v446, v448, v449, v45, v450, v455, v458, v462, v463, v464, v466, v467, v468, v47, v470, v471, v472, v474, v475, v476, v478, v479, v480, v482, v483, v484, v487, v49, v491, v51, v54, v55, v60, v69, v7, v70, v75, v77, v78, v83, v86, v89, v92, v95, v97, v98, v99 b3FloatW4
-	var v12, v15, v3, v56, v57, v58, v59, v6, v71, v72, v73, v74, v79, v80, v81, v9 float32
+	var v31, v35, v39, v43, v47, v52 b3FloatW4
 	var _ /* activeLanes at bp+64 */ [4]int32
 	var _ /* frictionImpulse at bp+144 */ b3Vec3W
 	var _ /* normal at bp+96 */ b3Vec3W
@@ -47004,63 +46597,15 @@ func b3PrepareConstraintW(tls *_Stack, c2 uintptr, contacts uintptr, manifoldCou
 	var _ /* simLanesA at bp+0 */ [4]uintptr
 	var _ /* simLanesB at bp+32 */ [4]uintptr
 	var _ /* twistImpulse at bp+240 */ b3FloatW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bA, bB, c1, centerA, centerB, cm, cm1, contact, contactLanes, cp, cp1, cp2, d1, det, frictionValid, haveRestitution, hitEventLanes, iA, iArtA1, iArtA2, iB, iBrtB1, iBrtB2, indexA, indexB, invDet, invIAB, invTau, invWeight, kNormal, kTwist, kxx, kxy, kyy, lane, lane1, lane2, m0, m1, m2, m3, mA, mB, manifold, manifold1, manifoldCounts, manifoldIndex, manifoldIndex1, manifoldLanes, manifolds, maxManifoldCount, minDet, minFrictionWeight, oneW, p0, p1, p2, p3, pointCount, pointCountW, pointIndex, pointIndex1, pointIndex2, pointMask, pointMask1, r, r1, r2, r3, r4, rnA, rnB, rollingResistanceMask, rtA1, rtA2, rtB1, rtB2, sims, states, t0, t1, t2, t3, tangent1, tangent2, tangentVelocity, totalFrictionWeight, twoW, valid, valid1, vn, vrA, vrB, weight, zeroW, v1, v10, v100, v102, v105, v108, v111, v113, v114, v115, v116, v117, v119, v12, v121, v122, v123, v124, v125, v127, v128, v129, v13, v131, v132, v133, v135, v136, v137, v139, v140, v141, v143, v144, v145, v147, v148, v149, v15, v151, v152, v153, v155, v156, v157, v159, v16, v161, v162, v163, v165, v166, v167, v169, v170, v171, v173, v174, v175, v177, v178, v179, v181, v182, v183, v185, v186, v187, v189, v19, v190, v191, v193, v194, v195, v197, v198, v199, v20, v201, v202, v203, v205, v206, v207, v209, v210, v211, v213, v214, v215, v217, v218, v219, v22, v224, v226, v227, v228, v23, v230, v231, v232, v237, v239, v24, v240, v241, v243, v244, v245, v250, v252, v253, v254, v256, v257, v258, v26, v260, v261, v262, v264, v265, v266, v268, v269, v27, v270, v272, v273, v274, v276, v277, v278, v28, v280, v281, v282, v284, v285, v286, v288, v289, v290, v292, v293, v294, v296, v297, v298, v3, v300, v301, v302, v304, v305, v306, v310, v312, v313, v318, v321, v324, v327, v330, v332, v333, v334, v335, v337, v340, v343, v346, v348, v349, v35, v350, v351, v352, v353, v354, v359, v361, v362, v363, v368, v37, v370, v371, v372, v377, v379, v380, v381, v386, v388, v389, v39, v390, v395, v397, v398, v399, v4, v404, v406, v407, v408, v41, v413, v415, v416, v417, v422, v424, v425, v426, v428, v429, v43, v430, v432, v433, v438, v440, v441, v446, v448, v449, v45, v450, v455, v457, v458, v459, v460, v462, v463, v464, v466, v467, v468, v47, v470, v471, v472, v474, v475, v476, v478, v479, v480, v482, v483, v484, v486, v487, v488, v489, v49, v491, v51, v519, v52, v520, v521, v535, v536, v54, v55, v56, v567, v568, v57, v58, v59, v6, v60, v69, v7, v70, v71, v72, v73, v74, v75, v77, v78, v79, v80, v81, v83, v85, v86, v88, v89, v9, v92, v95, v97, v98, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bA, bB, c, centerA, centerB, cm, cm1, contact, contactLanes, cp, cp1, cp2, d, det, frictionValid, haveRestitution, hitEventLanes, iA, iArtA1, iArtA2, iB, iBrtB1, iBrtB2, indexA, indexB, invDet, invIAB, invTau, invWeight, kNormal, kTwist, kxx, kxy, kyy, lane, lane1, lane2, m0, m1, m2, m3, mA, mB, manifold, manifold1, manifoldCounts, manifoldIndex, manifoldIndex1, manifoldLanes, manifolds, maxManifoldCount, minDet, minFrictionWeight, oneW, p0, p1, p2, p3, pointCount, pointCountW, pointIndex, pointIndex1, pointIndex2, pointMask, pointMask1, rnA, rnB, rollingResistanceMask, rtA1, rtA2, rtB1, rtB2, sims, states, tangent1, tangent2, tangentVelocity, totalFrictionWeight, twoW, valid, valid1, vn, vrA, vrB, weight, zeroW, v10, v2, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v46, v47, v48, v49, v5, v51, v52, v53, v54, v56, v57, v58, v6, v60, v61, v64, v65, v7, v9
 	sims = (*b3StepContext)(unsafe.Pointer(context)).Sims
 	states = (*b3StepContext)(unsafe.Pointer(context)).States
-	v1 = b3FloatW4{}
-	goto _2
-_2:
-	zeroW = v1
-	v3 = float32FromFloat32(1)
-	v4 = b3FloatW4{
-		X: v3,
-		Y: v3,
-		Z: v3,
-		W: v3,
-	}
-	goto _5
-_5:
-	oneW = v4
-	v6 = float32FromFloat32(2)
-	v7 = b3FloatW4{
-		X: v6,
-		Y: v6,
-		Z: v6,
-		W: v6,
-	}
-	goto _8
-_8:
-	twoW = v7
-	v9 = float32FromFloat32(1) / float32(float32FromFloat32(4)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)))
-	v10 = b3FloatW4{
-		X: v9,
-		Y: v9,
-		Z: v9,
-		W: v9,
-	}
-	goto _11
-_11:
-	invTau = v10
-	v12 = float32FromFloat32(_B3_MIN_FRICTION_WEIGHT)
-	v13 = b3FloatW4{
-		X: v12,
-		Y: v12,
-		Z: v12,
-		W: v12,
-	}
-	goto _14
-_14:
-	minFrictionWeight = v13
-	v15 = float32(float32FromFloat32(1000) * float32FromFloat32(1.1754943508222875e-38))
-	v16 = b3FloatW4{
-		X: v15,
-		Y: v15,
-		Z: v15,
-		W: v15,
-	}
-	goto _17
-_17:
-	minDet = v16
+	zeroW = b3ZeroW4(tls)
+	oneW = b3SplatW4(tls, float32FromFloat32(1))
+	twoW = b3SplatW4(tls, float32FromFloat32(2))
+	invTau = b3SplatW4(tls, float32FromFloat32(1)/float32(float32FromFloat32(4)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls))))
+	minFrictionWeight = b3SplatW4(tls, float32FromFloat32(_B3_MIN_FRICTION_WEIGHT))
+	minDet = b3SplatW4(tls, float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)))
 	hitEventLanes = 0
 	maxManifoldCount = 0
 	lane = 0
@@ -47069,163 +46614,95 @@ _17:
 			break
 		}
 		contact = *(*uintptr)(unsafe.Add(nil, contacts+uintptr(lane)*8))
-		*(*uintptr)(unsafe.Add(nil, c2+32+uintptr(lane)*8)) = contact
+		*(*uintptr)(unsafe.Add(nil, c1+32+uintptr(lane)*8)) = contact
 		if contact != uintptrFromInt32(0) {
-			v19 = (*b3Contact)(unsafe.Pointer(contact)).EncodedBodySimA
-			if v19 >= 0 {
-				v22 = v19
+			v2 = (*b3Contact)(unsafe.Pointer(contact)).EncodedBodySimA
+			if v2 >= 0 {
+				v5 = v2
 			} else {
-				v22 = -int32(1)
+				v5 = -int32(1)
 			}
-			v20 = v22
-			goto _21
-		_21:
-			indexA = v20
-			v23 = (*b3Contact)(unsafe.Pointer(contact)).EncodedBodySimB
-			if v23 >= 0 {
-				v26 = v23
+			v3 = v5
+			goto _4
+		_4:
+			indexA = v3
+			v6 = (*b3Contact)(unsafe.Pointer(contact)).EncodedBodySimB
+			if v6 >= 0 {
+				v9 = v6
 			} else {
-				v26 = -int32(1)
+				v9 = -int32(1)
 			}
-			v24 = v26
-			goto _25
-		_25:
-			indexB = v24
-			*(*int32)(unsafe.Add(nil, c2+uintptr(lane)*4)) = indexA + int32(1)
-			*(*int32)(unsafe.Add(nil, c2+16+uintptr(lane)*4)) = indexB + int32(1)
+			v7 = v9
+			goto _8
+		_8:
+			indexB = v7
+			*(*int32)(unsafe.Add(nil, c1+uintptr(lane)*4)) = indexA + int32(1)
+			*(*int32)(unsafe.Add(nil, c1+16+uintptr(lane)*4)) = indexB + int32(1)
 			manifoldCounts[lane] = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
 			contactLanes[lane] = contact
 			if indexA == -int32(1) {
-				v27 = uintptr(unsafe.Pointer(&b3_zeroBodySim))
+				v10 = uintptr(unsafe.Pointer(&b3_zeroBodySim))
 			} else {
-				v27 = sims + uintptr(indexA)*252
+				v10 = sims + uintptr(indexA)*252
 			}
-			(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = v27
+			(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = v10
 			if indexB == -int32(1) {
-				v27 = uintptr(unsafe.Pointer(&b3_zeroBodySim))
+				v10 = uintptr(unsafe.Pointer(&b3_zeroBodySim))
 			} else {
-				v27 = sims + uintptr(indexB)*252
+				v10 = sims + uintptr(indexB)*252
 			}
-			(*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[lane] = v27
+			(*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[lane] = v10
 			if (*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_simEnableHitEvent) != uint32(0) {
-				v19 = int32(1) << lane
+				v2 = int32(1) << lane
 			} else {
-				v19 = 0
+				v2 = 0
 			}
-			hitEventLanes = hitEventLanes | v19
-			v19 = maxManifoldCount
-			v20 = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
-			if v19 > v20 {
-				v23 = v19
+			hitEventLanes = hitEventLanes | v2
+			v2 = maxManifoldCount
+			v3 = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
+			if v2 > v3 {
+				v6 = v2
 			} else {
-				v23 = v20
+				v6 = v3
 			}
-			v22 = v23
-			goto _33
-		_33:
-			maxManifoldCount = v22
+			v5 = v6
+			goto _16
+		_16:
+			maxManifoldCount = v5
 		} else {
-			*(*int32)(unsafe.Add(nil, c2+uintptr(lane)*4)) = 0
-			*(*int32)(unsafe.Add(nil, c2+16+uintptr(lane)*4)) = 0
+			*(*int32)(unsafe.Add(nil, c1+uintptr(lane)*4)) = 0
+			*(*int32)(unsafe.Add(nil, c1+16+uintptr(lane)*4)) = 0
 			manifoldCounts[lane] = 0
 			contactLanes[lane] = uintptr(unsafe.Pointer(&b3_zeroContact))
 			(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = uintptr(unsafe.Pointer(&b3_zeroBodySim))
 			(*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[lane] = uintptr(unsafe.Pointer(&b3_zeroBodySim))
 		}
-		goto _18
-	_18:
+		goto _1
+	_1:
 		;
 		lane = lane + 1
 	}
 	_ = uint64FromInt64(4)
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).ManifoldCount = manifoldCount
-	v1 = b3FloatW4{
-		X: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[0])).InvMass,
-		Y: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(1)])).InvMass,
-		Z: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(2)])).InvMass,
-		W: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(3)])).InvMass,
-	}
-	goto _36
-_36:
-	mA = v1
-	v1 = b3FloatW4{
-		X: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[0])).InvMass,
-		Y: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(1)])).InvMass,
-		Z: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(2)])).InvMass,
-		W: (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(3)])).InvMass,
-	}
-	goto _38
-_38:
-	mB = v1
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount = manifoldCount
+	mA = b3SetW4(tls, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[0])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(1)])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(2)])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[int32(3)])).InvMass)
+	mB = b3SetW4(tls, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[0])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(1)])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(2)])).InvMass, (*b3BodySim)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp+32)))[int32(3)])).InvMass)
 	iA = b3GatherInvInertiaW(tls, bp)
 	iB = b3GatherInvInertiaW(tls, bp+32)
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassA = mA
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassB = mB
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA = iA
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB = iB
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).Friction,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).Friction,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).Friction,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).Friction,
-	}
-	goto _40
-_40:
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).Friction = v1
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).RollingResistance,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).RollingResistance,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).RollingResistance,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).RollingResistance,
-	}
-	goto _42
-_42:
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingResistance = v1
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).Restitution,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).Restitution,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).Restitution,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).Restitution,
-	}
-	goto _44
-_44:
-	(*b3ContactConstraintWide)(unsafe.Pointer(c2)).Restitution = v1
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.X,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.X,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.X,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.X,
-	}
-	goto _46
-_46:
-	tangentVelocity.X = v1
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.Y,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.Y,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.Y,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.Y,
-	}
-	goto _48
-_48:
-	tangentVelocity.Y = v1
-	v1 = b3FloatW4{
-		X: (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.Z,
-		Y: (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.Z,
-		Z: (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.Z,
-		W: (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.Z,
-	}
-	goto _50
-_50:
-	tangentVelocity.Z = v1
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA = mA
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB = mB
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA = iA
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB = iB
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).Friction = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).Friction, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).Friction, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).Friction, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).Friction)
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).RollingResistance, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).RollingResistance, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).RollingResistance, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).RollingResistance)
+	(*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).Restitution, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).Restitution, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).Restitution, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).Restitution)
+	tangentVelocity.X = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.X, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.X, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.X, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.X)
+	tangentVelocity.Y = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.Y, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.Y, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.Y, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.Y)
+	tangentVelocity.Z = b3SetW4(tls, (*b3Contact)(unsafe.Pointer(contactLanes[0])).TangentVelocity.Z, (*b3Contact)(unsafe.Pointer(contactLanes[int32(1)])).TangentVelocity.Z, (*b3Contact)(unsafe.Pointer(contactLanes[int32(2)])).TangentVelocity.Z, (*b3Contact)(unsafe.Pointer(contactLanes[int32(3)])).TangentVelocity.Z)
 	invIAB = b3AddSymW(tls, iA, iB)
-	v1 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingResistance
-	v52 = boolUint8(v1.X == float32FromFloat32(0) && v1.Y == float32FromFloat32(0) && v1.Z == float32FromFloat32(0) && v1.W == float32FromFloat32(0))
-	goto _53
-_53:
-	if int32FromUint8(v52) == false1 {
-		(*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingMass = b3InvertSymW(tls, invIAB)
+	if int32FromUint8(b3AllZeroW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance)) == false1 {
+		(*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingMass = b3InvertSymW(tls, invIAB)
 	} else {
-		(*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingMass = b3SymMatrix3W{
+		(*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingMass = b3SymMatrix3W{
 			Cxx: zeroW,
 			Cxy: zeroW,
 			Cxz: zeroW,
@@ -47234,37 +46711,8 @@ _53:
 			Czz: zeroW,
 		}
 	}
-	v1 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingResistance
-	v4 = zeroW
-	if v1.X > v4.X {
-		v3 = float32FromFloat32(1)
-	} else {
-		v3 = float32FromFloat32(0)
-	}
-	r3.X = v3
-	if v1.Y > v4.Y {
-		v6 = float32FromFloat32(1)
-	} else {
-		v6 = float32FromFloat32(0)
-	}
-	r3.Y = v6
-	if v1.Z > v4.Z {
-		v9 = float32FromFloat32(1)
-	} else {
-		v9 = float32FromFloat32(0)
-	}
-	r3.Z = v9
-	if v1.W > v4.W {
-		v12 = float32FromFloat32(1)
-	} else {
-		v12 = float32FromFloat32(0)
-	}
-	r3.W = v12
-	v7 = r3
-	goto _61
-_61:
-	rollingResistanceMask = v7
-	manifolds = b3GetManifoldsW(tls, c2)
+	rollingResistanceMask = b3GreaterThanW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance, zeroW)
+	manifolds = b3GetManifoldsW(tls, c1)
 	manifoldIndex = 0
 	for {
 		if !(manifoldIndex < manifoldCount) {
@@ -47287,761 +46735,73 @@ _61:
 				(*(*[4]int32)(unsafe.Add(nil, bp+64)))[lane1] = 0
 				(*(*[4]int32)(unsafe.Add(nil, bp+80)))[lane1] = 0
 			}
-			v19 = pointCount
-			v20 = (*(*[4]int32)(unsafe.Add(nil, bp+80)))[lane1]
-			if v19 > v20 {
-				v23 = v19
+			v2 = pointCount
+			v3 = (*(*[4]int32)(unsafe.Add(nil, bp+80)))[lane1]
+			if v2 > v3 {
+				v6 = v2
 			} else {
-				v23 = v20
+				v6 = v3
 			}
-			v22 = v23
-			goto _67
-		_67:
-			pointCount = v22
-			goto _63
-		_63:
+			v5 = v6
+			goto _23
+		_23:
+			pointCount = v5
+			goto _19
+		_19:
 			;
 			lane1 = lane1 + 1
 		}
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount = pointCount
-		v1 = b3IntsToFloatW(tls, bp+64)
-		v4 = zeroW
-		if v1.X > v4.X {
-			v3 = float32FromFloat32(1)
-		} else {
-			v3 = float32FromFloat32(0)
-		}
-		r3.X = v3
-		if v1.Y > v4.Y {
-			v6 = float32FromFloat32(1)
-		} else {
-			v6 = float32FromFloat32(0)
-		}
-		r3.Y = v6
-		if v1.Z > v4.Z {
-			v9 = float32FromFloat32(1)
-		} else {
-			v9 = float32FromFloat32(0)
-		}
-		r3.Z = v9
-		if v1.W > v4.W {
-			v12 = float32FromFloat32(1)
-		} else {
-			v12 = float32FromFloat32(0)
-		}
-		r3.W = v12
-		v7 = r3
-		goto _76
-	_76:
-		v10 = rollingResistanceMask
-		v13 = v7
-		if v10.X != float32FromFloat32(0) && v13.X != float32FromFloat32(0) {
-			v15 = float32FromFloat32(1)
-		} else {
-			v15 = float32FromFloat32(0)
-		}
-		r2.X = v15
-		if v10.Y != float32FromFloat32(0) && v13.Y != float32FromFloat32(0) {
-			v56 = float32FromFloat32(1)
-		} else {
-			v56 = float32FromFloat32(0)
-		}
-		r2.Y = v56
-		if v10.Z != float32FromFloat32(0) && v13.Z != float32FromFloat32(0) {
-			v57 = float32FromFloat32(1)
-		} else {
-			v57 = float32FromFloat32(0)
-		}
-		r2.Z = v57
-		if v10.W != float32FromFloat32(0) && v13.W != float32FromFloat32(0) {
-			v58 = float32FromFloat32(1)
-		} else {
-			v58 = float32FromFloat32(0)
-		}
-		r2.W = v58
-		v16 = r2
-		goto _84
-	_84:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask = v16
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask = b3AndW4(tls, rollingResistanceMask, b3GreaterThanW4(tls, b3IntsToFloatW(tls, bp+64), zeroW))
 		m0 = manifoldLanes[0] + 224
 		m1 = manifoldLanes[int32(1)] + 224
 		m2 = manifoldLanes[int32(2)] + 224
 		m3 = manifoldLanes[int32(3)] + 224
-		v27 = m0
-		v1 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v27)),
-			Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-		}
-		goto _87
-	_87:
-		v28 = m1
-		v4 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v28)),
-			Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v28+3*4)),
-		}
-		goto _90
-	_90:
-		v85 = m2
-		v7 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v85)),
-			Y: *(*float32)(unsafe.Add(nil, v85+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v85+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v85+3*4)),
-		}
-		goto _93
-	_93:
-		v88 = m3
-		v10 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v88)),
-			Y: *(*float32)(unsafe.Add(nil, v88+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v88+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v88+3*4)),
-		}
-		goto _96
-	_96:
-		v13 = v1
-		v16 = v4
-		v35 = v7
-		v37 = v10
-		t0 = b3FloatW4{
-			X: v13.X,
-			Y: v35.X,
-			Z: v13.Y,
-			W: v35.Y,
-		}
-		t1 = b3FloatW4{
-			X: v16.X,
-			Y: v37.X,
-			Z: v16.Y,
-			W: v37.Y,
-		}
-		t2 = b3FloatW4{
-			X: v13.Z,
-			Y: v35.Z,
-			Z: v13.W,
-			W: v35.W,
-		}
-		t3 = b3FloatW4{
-			X: v16.Z,
-			Y: v37.Z,
-			Z: v16.W,
-			W: v37.W,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+96)) = b3FloatW4{
-			X: t0.X,
-			Y: t1.X,
-			Z: t0.Y,
-			W: t1.Y,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+96+16)) = b3FloatW4{
-			X: t0.Z,
-			Y: t1.Z,
-			Z: t0.W,
-			W: t1.W,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+96+32)) = b3FloatW4{
-			X: t2.X,
-			Y: t3.X,
-			Z: t2.Y,
-			W: t3.Y,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+240)) = b3FloatW4{
-			X: t2.Z,
-			Y: t3.Z,
-			Z: t2.W,
-			W: t3.W,
-		}
-		v27 = m0 + uintptr(4)*4
-		v1 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v27)),
-			Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-		}
-		goto _103
-	_103:
-		v28 = m1 + uintptr(4)*4
-		v4 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v28)),
-			Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v28+3*4)),
-		}
-		goto _106
-	_106:
-		v85 = m2 + uintptr(4)*4
-		v7 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v85)),
-			Y: *(*float32)(unsafe.Add(nil, v85+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v85+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v85+3*4)),
-		}
-		goto _109
-	_109:
-		v88 = m3 + uintptr(4)*4
-		v10 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v88)),
-			Y: *(*float32)(unsafe.Add(nil, v88+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v88+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v88+3*4)),
-		}
-		goto _112
-	_112:
-		v13 = v1
-		v16 = v4
-		v35 = v7
-		v37 = v10
-		t0 = b3FloatW4{
-			X: v13.X,
-			Y: v35.X,
-			Z: v13.Y,
-			W: v35.Y,
-		}
-		t1 = b3FloatW4{
-			X: v16.X,
-			Y: v37.X,
-			Z: v16.Y,
-			W: v37.Y,
-		}
-		t2 = b3FloatW4{
-			X: v13.Z,
-			Y: v35.Z,
-			Z: v13.W,
-			W: v35.W,
-		}
-		t3 = b3FloatW4{
-			X: v16.Z,
-			Y: v37.Z,
-			Z: v16.W,
-			W: v37.W,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+144)) = b3FloatW4{
-			X: t0.X,
-			Y: t1.X,
-			Z: t0.Y,
-			W: t1.Y,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+144+16)) = b3FloatW4{
-			X: t0.Z,
-			Y: t1.Z,
-			Z: t0.W,
-			W: t1.W,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+144+32)) = b3FloatW4{
-			X: t2.X,
-			Y: t3.X,
-			Z: t2.Y,
-			W: t3.Y,
-		}
-		*(*b3FloatW4)(unsafe.Add(nil, bp+192)) = b3FloatW4{
-			X: t2.Z,
-			Y: t3.Z,
-			Z: t2.W,
-			W: t3.W,
-		}
-		v1 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, m0+8*4)),
-			Y: *(*float32)(unsafe.Add(nil, m1+8*4)),
-			Z: *(*float32)(unsafe.Add(nil, m2+8*4)),
-			W: *(*float32)(unsafe.Add(nil, m3+8*4)),
-		}
-		goto _118
-	_118:
-		(*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Y = v1
-		v1 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, m0+9*4)),
-			Y: *(*float32)(unsafe.Add(nil, m1+9*4)),
-			Z: *(*float32)(unsafe.Add(nil, m2+9*4)),
-			W: *(*float32)(unsafe.Add(nil, m3+9*4)),
-		}
-		goto _120
-	_120:
-		(*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Z = v1
+		b3TransposeW4(tls, b3LoadW4(tls, m0), b3LoadW4(tls, m1), b3LoadW4(tls, m2), b3LoadW4(tls, m3), bp+96, bp+96+16, bp+96+32, bp+240)
+		b3TransposeW4(tls, b3LoadW4(tls, m0+uintptr(4)*4), b3LoadW4(tls, m1+uintptr(4)*4), b3LoadW4(tls, m2+uintptr(4)*4), b3LoadW4(tls, m3+uintptr(4)*4), bp+144, bp+144+16, bp+144+32, bp+192)
+		(*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Y = b3SetW4(tls, *(*float32)(unsafe.Add(nil, m0+8*4)), *(*float32)(unsafe.Add(nil, m1+8*4)), *(*float32)(unsafe.Add(nil, m2+8*4)), *(*float32)(unsafe.Add(nil, m3+8*4)))
+		(*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Z = b3SetW4(tls, *(*float32)(unsafe.Add(nil, m0+9*4)), *(*float32)(unsafe.Add(nil, m1+9*4)), *(*float32)(unsafe.Add(nil, m2+9*4)), *(*float32)(unsafe.Add(nil, m3+9*4)))
 		tangent1 = b3PerpW(tls, *(*b3Vec3W)(unsafe.Add(nil, bp+96)))
-		v121 = tangent1
-		v122 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
-		v1 = v121.Y
-		v4 = v122.Z
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _126
-	_126:
-		v10 = v121.Z
-		v13 = v122.Y
-		v16 = b3FloatW4{
-			X: float32(v10.X * v13.X),
-			Y: float32(v10.Y * v13.Y),
-			Z: float32(v10.Z * v13.Z),
-			W: float32(v10.W * v13.W),
-		}
-		goto _130
-	_130:
-		v35 = v7
-		v37 = v16
-		v39 = b3FloatW4{
-			X: v35.X - v37.X,
-			Y: v35.Y - v37.Y,
-			Z: v35.Z - v37.Z,
-			W: v35.W - v37.W,
-		}
-		goto _134
-	_134:
-		c1.X = v39
-		v41 = v121.Z
-		v43 = v122.X
-		v45 = b3FloatW4{
-			X: float32(v41.X * v43.X),
-			Y: float32(v41.Y * v43.Y),
-			Z: float32(v41.Z * v43.Z),
-			W: float32(v41.W * v43.W),
-		}
-		goto _138
-	_138:
-		v47 = v121.X
-		v49 = v122.Z
-		v51 = b3FloatW4{
-			X: float32(v47.X * v49.X),
-			Y: float32(v47.Y * v49.Y),
-			Z: float32(v47.Z * v49.Z),
-			W: float32(v47.W * v49.W),
-		}
-		goto _142
-	_142:
-		v54 = v45
-		v55 = v51
-		v60 = b3FloatW4{
-			X: v54.X - v55.X,
-			Y: v54.Y - v55.Y,
-			Z: v54.Z - v55.Z,
-			W: v54.W - v55.W,
-		}
-		goto _146
-	_146:
-		c1.Y = v60
-		v69 = v121.X
-		v70 = v122.Y
-		v75 = b3FloatW4{
-			X: float32(v69.X * v70.X),
-			Y: float32(v69.Y * v70.Y),
-			Z: float32(v69.Z * v70.Z),
-			W: float32(v69.W * v70.W),
-		}
-		goto _150
-	_150:
-		v77 = v121.Y
-		v78 = v122.X
-		v83 = b3FloatW4{
-			X: float32(v77.X * v78.X),
-			Y: float32(v77.Y * v78.Y),
-			Z: float32(v77.Z * v78.Z),
-			W: float32(v77.W * v78.W),
-		}
-		goto _154
-	_154:
-		v86 = v75
-		v89 = v83
-		v92 = b3FloatW4{
-			X: v86.X - v89.X,
-			Y: v86.Y - v89.Y,
-			Z: v86.Z - v89.Z,
-			W: v86.W - v89.W,
-		}
-		goto _158
-	_158:
-		c1.Z = v92
-		v159 = c1
-		goto _160
-	_160:
-		tangent2 = v159
+		v25 = tangent1
+		v26 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
+		c.X = b3SubW4(tls, b3MulW4(tls, v25.Y, v26.Z), b3MulW4(tls, v25.Z, v26.Y))
+		c.Y = b3SubW4(tls, b3MulW4(tls, v25.Z, v26.X), b3MulW4(tls, v25.X, v26.Z))
+		c.Z = b3SubW4(tls, b3MulW4(tls, v25.X, v26.Y), b3MulW4(tls, v25.Y, v26.X))
+		v27 = c
+		goto _28
+	_28:
+		tangent2 = v27
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1 = tangent1
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2 = tangent2
-		v121 = tangentVelocity
-		v122 = tangent1
-		v4 = v121.X
-		v7 = v122.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _168
-	_168:
-		v13 = v121.Y
-		v16 = v122.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _172
-	_172:
-		v37 = v10
-		v39 = v35
-		v41 = b3FloatW4{
-			X: v37.X + v39.X,
-			Y: v37.Y + v39.Y,
-			Z: v37.Z + v39.Z,
-			W: v37.W + v39.W,
-		}
-		goto _176
-	_176:
-		v43 = v121.Z
-		v45 = v122.Z
-		v47 = b3FloatW4{
-			X: float32(v43.X * v45.X),
-			Y: float32(v43.Y * v45.Y),
-			Z: float32(v43.Z * v45.Z),
-			W: float32(v43.W * v45.W),
-		}
-		goto _180
-	_180:
-		v49 = v41
-		v51 = v47
-		v54 = b3FloatW4{
-			X: v49.X + v51.X,
-			Y: v49.Y + v51.Y,
-			Z: v49.Z + v51.Z,
-			W: v49.W + v51.W,
-		}
-		goto _184
-	_184:
-		v1 = v54
-		goto _164
-	_164:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity1 = v1
-		v121 = tangentVelocity
-		v122 = tangent2
-		v4 = v121.X
-		v7 = v122.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _192
-	_192:
-		v13 = v121.Y
-		v16 = v122.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _196
-	_196:
-		v37 = v10
-		v39 = v35
-		v41 = b3FloatW4{
-			X: v37.X + v39.X,
-			Y: v37.Y + v39.Y,
-			Z: v37.Z + v39.Z,
-			W: v37.W + v39.W,
-		}
-		goto _200
-	_200:
-		v43 = v121.Z
-		v45 = v122.Z
-		v47 = b3FloatW4{
-			X: float32(v43.X * v45.X),
-			Y: float32(v43.Y * v45.Y),
-			Z: float32(v43.Z * v45.Z),
-			W: float32(v43.W * v45.W),
-		}
-		goto _204
-	_204:
-		v49 = v41
-		v51 = v47
-		v54 = b3FloatW4{
-			X: v49.X + v51.X,
-			Y: v49.Y + v51.Y,
-			Z: v49.Z + v51.Z,
-			W: v49.W + v51.W,
-		}
-		goto _208
-	_208:
-		v1 = v54
-		goto _188
-	_188:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity2 = v1
-		v1 = warmStartScale
-		v4 = *(*b3FloatW)(unsafe.Add(nil, bp+240))
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _212
-	_212:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse = v7
-		v1 = warmStartScale
-		v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).X
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _216
-	_216:
-		v10 = zeroW
-		v13 = v7
-		v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-		if v16.X != float32FromFloat32(0) {
-			v3 = v13.X
-		} else {
-			v3 = v10.X
-		}
-		r4.X = v3
-		if v16.Y != float32FromFloat32(0) {
-			v6 = v13.Y
-		} else {
-			v6 = v10.Y
-		}
-		r4.Y = v6
-		if v16.Z != float32FromFloat32(0) {
-			v9 = v13.Z
-		} else {
-			v9 = v10.Z
-		}
-		r4.Z = v9
-		if v16.W != float32FromFloat32(0) {
-			v12 = v13.W
-		} else {
-			v12 = v10.W
-		}
-		r4.W = v12
-		v35 = r4
-		goto _225
-	_225:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.X = v35
-		v1 = warmStartScale
-		v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Y
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _229
-	_229:
-		v10 = zeroW
-		v13 = v7
-		v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-		if v16.X != float32FromFloat32(0) {
-			v3 = v13.X
-		} else {
-			v3 = v10.X
-		}
-		r4.X = v3
-		if v16.Y != float32FromFloat32(0) {
-			v6 = v13.Y
-		} else {
-			v6 = v10.Y
-		}
-		r4.Y = v6
-		if v16.Z != float32FromFloat32(0) {
-			v9 = v13.Z
-		} else {
-			v9 = v10.Z
-		}
-		r4.Z = v9
-		if v16.W != float32FromFloat32(0) {
-			v12 = v13.W
-		} else {
-			v12 = v10.W
-		}
-		r4.W = v12
-		v35 = r4
-		goto _238
-	_238:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Y = v35
-		v1 = warmStartScale
-		v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Z
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _242
-	_242:
-		v10 = zeroW
-		v13 = v7
-		v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-		if v16.X != float32FromFloat32(0) {
-			v3 = v13.X
-		} else {
-			v3 = v10.X
-		}
-		r4.X = v3
-		if v16.Y != float32FromFloat32(0) {
-			v6 = v13.Y
-		} else {
-			v6 = v10.Y
-		}
-		r4.Y = v6
-		if v16.Z != float32FromFloat32(0) {
-			v9 = v13.Z
-		} else {
-			v9 = v10.Z
-		}
-		r4.Z = v9
-		if v16.W != float32FromFloat32(0) {
-			v12 = v13.W
-		} else {
-			v12 = v10.W
-		}
-		r4.W = v12
-		v35 = r4
-		goto _251
-	_251:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Z = v35
-		v121 = *(*b3Vec3W)(unsafe.Add(nil, bp+144))
-		v122 = tangent1
-		v4 = v121.X
-		v7 = v122.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _259
-	_259:
-		v13 = v121.Y
-		v16 = v122.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _263
-	_263:
-		v37 = v10
-		v39 = v35
-		v41 = b3FloatW4{
-			X: v37.X + v39.X,
-			Y: v37.Y + v39.Y,
-			Z: v37.Z + v39.Z,
-			W: v37.W + v39.W,
-		}
-		goto _267
-	_267:
-		v43 = v121.Z
-		v45 = v122.Z
-		v47 = b3FloatW4{
-			X: float32(v43.X * v45.X),
-			Y: float32(v43.Y * v45.Y),
-			Z: float32(v43.Z * v45.Z),
-			W: float32(v43.W * v45.W),
-		}
-		goto _271
-	_271:
-		v49 = v41
-		v51 = v47
-		v54 = b3FloatW4{
-			X: v49.X + v51.X,
-			Y: v49.Y + v51.Y,
-			Z: v49.Z + v51.Z,
-			W: v49.W + v51.W,
-		}
-		goto _275
-	_275:
-		v1 = v54
-		goto _255
-	_255:
-		v55 = warmStartScale
-		v60 = v1
-		v69 = b3FloatW4{
-			X: float32(v55.X * v60.X),
-			Y: float32(v55.Y * v60.Y),
-			Z: float32(v55.Z * v60.Z),
-			W: float32(v55.W * v60.W),
-		}
-		goto _279
-	_279:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X = v69
-		v121 = *(*b3Vec3W)(unsafe.Add(nil, bp+144))
-		v122 = tangent2
-		v4 = v121.X
-		v7 = v122.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _287
-	_287:
-		v13 = v121.Y
-		v16 = v122.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _291
-	_291:
-		v37 = v10
-		v39 = v35
-		v41 = b3FloatW4{
-			X: v37.X + v39.X,
-			Y: v37.Y + v39.Y,
-			Z: v37.Z + v39.Z,
-			W: v37.W + v39.W,
-		}
-		goto _295
-	_295:
-		v43 = v121.Z
-		v45 = v122.Z
-		v47 = b3FloatW4{
-			X: float32(v43.X * v45.X),
-			Y: float32(v43.Y * v45.Y),
-			Z: float32(v43.Z * v45.Z),
-			W: float32(v43.W * v45.W),
-		}
-		goto _299
-	_299:
-		v49 = v41
-		v51 = v47
-		v54 = b3FloatW4{
-			X: v49.X + v51.X,
-			Y: v49.Y + v51.Y,
-			Z: v49.Z + v51.Z,
-			W: v49.W + v51.W,
-		}
-		goto _303
-	_303:
-		v1 = v54
-		goto _283
-	_283:
-		v55 = warmStartScale
-		v60 = v1
-		v69 = b3FloatW4{
-			X: float32(v55.X * v60.X),
-			Y: float32(v55.Y * v60.Y),
-			Z: float32(v55.Z * v60.Z),
-			W: float32(v55.W * v60.W),
-		}
-		goto _307
-	_307:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y = v69
+		v25 = tangentVelocity
+		v26 = tangent1
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+		goto _32
+	_32:
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity1 = v31
+		v25 = tangentVelocity
+		v26 = tangent2
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+		goto _36
+	_36:
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity2 = v31
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse = b3MulW4(tls, warmStartScale, *(*b3FloatW)(unsafe.Add(nil, bp+240)))
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.X = b3BlendW4(tls, zeroW, b3MulW4(tls, warmStartScale, (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).X), (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Y = b3BlendW4(tls, zeroW, b3MulW4(tls, warmStartScale, (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Y), (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Z = b3BlendW4(tls, zeroW, b3MulW4(tls, warmStartScale, (*(*b3Vec3W)(unsafe.Add(nil, bp+192))).Z), (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+		v25 = *(*b3Vec3W)(unsafe.Add(nil, bp+144))
+		v26 = tangent1
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+		goto _40
+	_40:
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X = b3MulW4(tls, warmStartScale, v31)
+		v25 = *(*b3Vec3W)(unsafe.Add(nil, bp+144))
+		v26 = tangent2
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+		goto _44
+	_44:
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y = b3MulW4(tls, warmStartScale, v31)
 		pointCountW = b3IntsToFloatW(tls, bp+80)
 		centerA = b3Vec3W{
 			X: zeroW,
@@ -48059,1457 +46819,130 @@ _61:
 			if !(pointIndex < pointCount) {
 				break
 			}
-			cp = cm + 452 + uintptr(pointIndex)*208
-			v3 = float32(pointIndex)
-			v1 = b3FloatW4{
-				X: v3,
-				Y: v3,
-				Z: v3,
-				W: v3,
-			}
-			goto _311
-		_311:
-			v4 = pointCountW
-			v7 = v1
-			if v4.X > v7.X {
-				v6 = float32FromFloat32(1)
-			} else {
-				v6 = float32FromFloat32(0)
-			}
-			r3.X = v6
-			if v4.Y > v7.Y {
-				v9 = float32FromFloat32(1)
-			} else {
-				v9 = float32FromFloat32(0)
-			}
-			r3.Y = v9
-			if v4.Z > v7.Z {
-				v12 = float32FromFloat32(1)
-			} else {
-				v12 = float32FromFloat32(0)
-			}
-			r3.Z = v12
-			if v4.W > v7.W {
-				v15 = float32FromFloat32(1)
-			} else {
-				v15 = float32FromFloat32(0)
-			}
-			r3.W = v15
-			v10 = r3
-			goto _319
-		_319:
-			pointMask = v10
+			cp = cm + 456 + uintptr(pointIndex)*208
+			pointMask = b3GreaterThanW4(tls, pointCountW, b3SplatW4(tls, float32(pointIndex)))
 			p0 = manifoldLanes[0] + uintptr(pointIndex)*56
 			p1 = manifoldLanes[int32(1)] + uintptr(pointIndex)*56
 			p2 = manifoldLanes[int32(2)] + uintptr(pointIndex)*56
 			p3 = manifoldLanes[int32(3)] + uintptr(pointIndex)*56
-			v27 = p0
-			v13 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v27)),
-				Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-			}
-			goto _322
-		_322:
-			v28 = p1
-			v16 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v28)),
-				Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v28+3*4)),
-			}
-			goto _325
-		_325:
-			v85 = p2
-			v35 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v85)),
-				Y: *(*float32)(unsafe.Add(nil, v85+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v85+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v85+3*4)),
-			}
-			goto _328
-		_328:
-			v88 = p3
-			v37 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v88)),
-				Y: *(*float32)(unsafe.Add(nil, v88+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v88+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v88+3*4)),
-			}
-			goto _331
-		_331:
-			v39 = v13
-			v41 = v16
-			v43 = v35
-			v45 = v37
-			t0 = b3FloatW4{
-				X: v39.X,
-				Y: v43.X,
-				Z: v39.Y,
-				W: v43.Y,
-			}
-			t1 = b3FloatW4{
-				X: v41.X,
-				Y: v45.X,
-				Z: v41.Y,
-				W: v45.Y,
-			}
-			t2 = b3FloatW4{
-				X: v39.Z,
-				Y: v43.Z,
-				Z: v39.W,
-				W: v43.W,
-			}
-			t3 = b3FloatW4{
-				X: v41.Z,
-				Y: v45.Z,
-				Z: v41.W,
-				W: v45.W,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+256)) = b3FloatW4{
-				X: t0.X,
-				Y: t1.X,
-				Z: t0.Y,
-				W: t1.Y,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+256+16)) = b3FloatW4{
-				X: t0.Z,
-				Y: t1.Z,
-				Z: t0.W,
-				W: t1.W,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+256+32)) = b3FloatW4{
-				X: t2.X,
-				Y: t3.X,
-				Z: t2.Y,
-				W: t3.Y,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+304)) = b3FloatW4{
-				X: t2.Z,
-				Y: t3.Z,
-				Z: t2.W,
-				W: t3.W,
-			}
-			v27 = p0 + uintptr(4)*4
-			v1 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v27)),
-				Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-			}
-			goto _338
-		_338:
-			v28 = p1 + uintptr(4)*4
-			v4 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v28)),
-				Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v28+3*4)),
-			}
-			goto _341
-		_341:
-			v85 = p2 + uintptr(4)*4
-			v7 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v85)),
-				Y: *(*float32)(unsafe.Add(nil, v85+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v85+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v85+3*4)),
-			}
-			goto _344
-		_344:
-			v88 = p3 + uintptr(4)*4
-			v10 = b3FloatW4{
-				X: *(*float32)(unsafe.Add(nil, v88)),
-				Y: *(*float32)(unsafe.Add(nil, v88+1*4)),
-				Z: *(*float32)(unsafe.Add(nil, v88+2*4)),
-				W: *(*float32)(unsafe.Add(nil, v88+3*4)),
-			}
-			goto _347
-		_347:
-			v13 = v1
-			v16 = v4
-			v35 = v7
-			v37 = v10
-			t0 = b3FloatW4{
-				X: v13.X,
-				Y: v35.X,
-				Z: v13.Y,
-				W: v35.Y,
-			}
-			t1 = b3FloatW4{
-				X: v16.X,
-				Y: v37.X,
-				Z: v16.Y,
-				W: v37.Y,
-			}
-			t2 = b3FloatW4{
-				X: v13.Z,
-				Y: v35.Z,
-				Z: v13.W,
-				W: v35.W,
-			}
-			t3 = b3FloatW4{
-				X: v16.Z,
-				Y: v37.Z,
-				Z: v16.W,
-				W: v37.W,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+304+16)) = b3FloatW4{
-				X: t0.X,
-				Y: t1.X,
-				Z: t0.Y,
-				W: t1.Y,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+304+32)) = b3FloatW4{
-				X: t0.Z,
-				Y: t1.Z,
-				Z: t0.W,
-				W: t1.W,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+352)) = b3FloatW4{
-				X: t2.X,
-				Y: t3.X,
-				Z: t2.Y,
-				W: t3.Y,
-			}
-			*(*b3FloatW4)(unsafe.Add(nil, bp+368)) = b3FloatW4{
-				X: t2.Z,
-				Y: t3.Z,
-				Z: t2.W,
-				W: t3.W,
-			}
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).X
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _360
-		_360:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).X = v10
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Y
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _369
-		_369:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Y = v10
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Z
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _378
-		_378:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Z = v10
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).X
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _387
-		_387:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).X = v10
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Y
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _396
-		_396:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Y = v10
-			v1 = zeroW
-			v4 = (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Z
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _405
-		_405:
-			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Z = v10
-			v1 = zeroW
-			v4 = *(*b3FloatW)(unsafe.Add(nil, bp+352))
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _414
-		_414:
-			*(*b3FloatW)(unsafe.Add(nil, bp+352)) = v10
-			v1 = zeroW
-			v4 = *(*b3FloatW)(unsafe.Add(nil, bp+368))
-			v7 = pointMask
-			if v7.X != float32FromFloat32(0) {
-				v3 = v4.X
-			} else {
-				v3 = v1.X
-			}
-			r4.X = v3
-			if v7.Y != float32FromFloat32(0) {
-				v6 = v4.Y
-			} else {
-				v6 = v1.Y
-			}
-			r4.Y = v6
-			if v7.Z != float32FromFloat32(0) {
-				v9 = v4.Z
-			} else {
-				v9 = v1.Z
-			}
-			r4.Z = v9
-			if v7.W != float32FromFloat32(0) {
-				v12 = v4.W
-			} else {
-				v12 = v1.W
-			}
-			r4.W = v12
-			v10 = r4
-			goto _423
-		_423:
-			*(*b3FloatW)(unsafe.Add(nil, bp+368)) = v10
-			v1 = *(*b3FloatW)(unsafe.Add(nil, bp+352))
-			v4 = invTau
-			v7 = b3FloatW4{
-				X: float32(v1.X * v4.X),
-				Y: float32(v1.Y * v4.Y),
-				Z: float32(v1.Z * v4.Z),
-				W: float32(v1.W * v4.W),
-			}
-			goto _427
-		_427:
-			v10 = twoW
-			v13 = v7
-			v16 = b3FloatW4{
-				X: v10.X - v13.X,
-				Y: v10.Y - v13.Y,
-				Z: v10.Z - v13.Z,
-				W: v10.W - v13.W,
-			}
-			goto _431
-		_431:
-			v35 = v16
-			v37 = minFrictionWeight
-			if v35.X >= v37.X {
-				v3 = v35.X
-			} else {
-				v3 = v37.X
-			}
-			r1.X = v3
-			if v35.Y >= v37.Y {
-				v6 = v35.Y
-			} else {
-				v6 = v37.Y
-			}
-			r1.Y = v6
-			if v35.Z >= v37.Z {
-				v9 = v35.Z
-			} else {
-				v9 = v37.Z
-			}
-			r1.Z = v9
-			if v35.W >= v37.W {
-				v12 = v35.W
-			} else {
-				v12 = v37.W
-			}
-			r1.W = v12
-			v39 = r1
-			goto _439
-		_439:
-			v41 = v39
-			v43 = oneW
-			if v41.X <= v43.X {
-				v15 = v41.X
-			} else {
-				v15 = v43.X
-			}
-			r.X = v15
-			if v41.Y <= v43.Y {
-				v56 = v41.Y
-			} else {
-				v56 = v43.Y
-			}
-			r.Y = v56
-			if v41.Z <= v43.Z {
-				v57 = v41.Z
-			} else {
-				v57 = v43.Z
-			}
-			r.Z = v57
-			if v41.W <= v43.W {
-				v58 = v41.W
-			} else {
-				v58 = v43.W
-			}
-			r.W = v58
-			v45 = r
-			goto _447
-		_447:
+			b3TransposeW4(tls, b3LoadW4(tls, p0), b3LoadW4(tls, p1), b3LoadW4(tls, p2), b3LoadW4(tls, p3), bp+256, bp+256+16, bp+256+32, bp+304)
+			b3TransposeW4(tls, b3LoadW4(tls, p0+uintptr(4)*4), b3LoadW4(tls, p1+uintptr(4)*4), b3LoadW4(tls, p2+uintptr(4)*4), b3LoadW4(tls, p3+uintptr(4)*4), bp+304+16, bp+304+32, bp+352, bp+368)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).X = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).X, pointMask)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Y = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Y, pointMask)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Z = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+256))).Z, pointMask)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).X = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).X, pointMask)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Y = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Y, pointMask)
+			(*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Z = b3BlendW4(tls, zeroW, (*(*b3Vec3W)(unsafe.Add(nil, bp+304))).Z, pointMask)
+			*(*b3FloatW)(unsafe.Add(nil, bp+352)) = b3BlendW4(tls, zeroW, *(*b3FloatW)(unsafe.Add(nil, bp+352)), pointMask)
+			*(*b3FloatW)(unsafe.Add(nil, bp+368)) = b3BlendW4(tls, zeroW, *(*b3FloatW)(unsafe.Add(nil, bp+368)), pointMask)
 			// C0 friction center decay. Needed to prevent spinning top drift (GyroscopicPrecession sample).
 			// See details in b3PrepareContacts_Mesh. This code should stay in sync.
-			weight = v45
-			v47 = zeroW
-			v49 = weight
-			v51 = pointMask
-			if v51.X != float32FromFloat32(0) {
-				v59 = v49.X
-			} else {
-				v59 = v47.X
+			weight = b3MinW4(tls, b3MaxW4(tls, b3SubW4(tls, twoW, b3MulW4(tls, *(*b3FloatW)(unsafe.Add(nil, bp+352)), invTau)), minFrictionWeight), oneW)
+			weight = b3BlendW4(tls, zeroW, weight, pointMask)
+			v25 = centerA
+			v31 = weight
+			v26 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
+			v27 = b3Vec3W4{
+				X: b3AddW4(tls, v25.X, b3MulW4(tls, v31, v26.X)),
+				Y: b3AddW4(tls, v25.Y, b3MulW4(tls, v31, v26.Y)),
+				Z: b3AddW4(tls, v25.Z, b3MulW4(tls, v31, v26.Z)),
 			}
-			r4.X = v59
-			if v51.Y != float32FromFloat32(0) {
-				v71 = v49.Y
-			} else {
-				v71 = v47.Y
+			goto _50
+		_50:
+			centerA = v27
+			v25 = centerB
+			v31 = weight
+			v26 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
+			v27 = b3Vec3W4{
+				X: b3AddW4(tls, v25.X, b3MulW4(tls, v31, v26.X)),
+				Y: b3AddW4(tls, v25.Y, b3MulW4(tls, v31, v26.Y)),
+				Z: b3AddW4(tls, v25.Z, b3MulW4(tls, v31, v26.Z)),
 			}
-			r4.Y = v71
-			if v51.Z != float32FromFloat32(0) {
-				v72 = v49.Z
-			} else {
-				v72 = v47.Z
-			}
-			r4.Z = v72
-			if v51.W != float32FromFloat32(0) {
-				v73 = v49.W
-			} else {
-				v73 = v47.W
-			}
-			r4.W = v73
-			v54 = r4
-			goto _456
-		_456:
-			weight = v54
-			v121 = centerA
-			v1 = weight
-			v122 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
-			v4 = v1
-			v7 = v122.X
-			v10 = b3FloatW4{
-				X: float32(v4.X * v7.X),
-				Y: float32(v4.Y * v7.Y),
-				Z: float32(v4.Z * v7.Z),
-				W: float32(v4.W * v7.W),
-			}
-			goto _465
-		_465:
-			v13 = v121.X
-			v16 = v10
-			v35 = b3FloatW4{
-				X: v13.X + v16.X,
-				Y: v13.Y + v16.Y,
-				Z: v13.Z + v16.Z,
-				W: v13.W + v16.W,
-			}
-			goto _469
-		_469:
-			v37 = v1
-			v39 = v122.Y
-			v41 = b3FloatW4{
-				X: float32(v37.X * v39.X),
-				Y: float32(v37.Y * v39.Y),
-				Z: float32(v37.Z * v39.Z),
-				W: float32(v37.W * v39.W),
-			}
-			goto _473
-		_473:
-			v43 = v121.Y
-			v45 = v41
-			v47 = b3FloatW4{
-				X: v43.X + v45.X,
-				Y: v43.Y + v45.Y,
-				Z: v43.Z + v45.Z,
-				W: v43.W + v45.W,
-			}
-			goto _477
-		_477:
-			v49 = v1
-			v51 = v122.Z
-			v54 = b3FloatW4{
-				X: float32(v49.X * v51.X),
-				Y: float32(v49.Y * v51.Y),
-				Z: float32(v49.Z * v51.Z),
-				W: float32(v49.W * v51.W),
-			}
-			goto _481
-		_481:
-			v55 = v121.Z
-			v60 = v54
-			v69 = b3FloatW4{
-				X: v55.X + v60.X,
-				Y: v55.Y + v60.Y,
-				Z: v55.Z + v60.Z,
-				W: v55.W + v60.W,
-			}
-			goto _485
-		_485:
-			v159 = b3Vec3W4{
-				X: v35,
-				Y: v47,
-				Z: v69,
-			}
-			goto _461
-		_461:
-			centerA = v159
-			v121 = centerB
-			v1 = weight
-			v122 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
-			v4 = v1
-			v7 = v122.X
-			v10 = b3FloatW4{
-				X: float32(v4.X * v7.X),
-				Y: float32(v4.Y * v7.Y),
-				Z: float32(v4.Z * v7.Z),
-				W: float32(v4.W * v7.W),
-			}
-			goto _494
-		_494:
-			v13 = v121.X
-			v16 = v10
-			v35 = b3FloatW4{
-				X: v13.X + v16.X,
-				Y: v13.Y + v16.Y,
-				Z: v13.Z + v16.Z,
-				W: v13.W + v16.W,
-			}
-			goto _498
-		_498:
-			v37 = v1
-			v39 = v122.Y
-			v41 = b3FloatW4{
-				X: float32(v37.X * v39.X),
-				Y: float32(v37.Y * v39.Y),
-				Z: float32(v37.Z * v39.Z),
-				W: float32(v37.W * v39.W),
-			}
-			goto _502
-		_502:
-			v43 = v121.Y
-			v45 = v41
-			v47 = b3FloatW4{
-				X: v43.X + v45.X,
-				Y: v43.Y + v45.Y,
-				Z: v43.Z + v45.Z,
-				W: v43.W + v45.W,
-			}
-			goto _506
-		_506:
-			v49 = v1
-			v51 = v122.Z
-			v54 = b3FloatW4{
-				X: float32(v49.X * v51.X),
-				Y: float32(v49.Y * v51.Y),
-				Z: float32(v49.Z * v51.Z),
-				W: float32(v49.W * v51.W),
-			}
-			goto _510
-		_510:
-			v55 = v121.Z
-			v60 = v54
-			v69 = b3FloatW4{
-				X: v55.X + v60.X,
-				Y: v55.Y + v60.Y,
-				Z: v55.Z + v60.Z,
-				W: v55.W + v60.W,
-			}
-			goto _514
-		_514:
-			v159 = b3Vec3W4{
-				X: v35,
-				Y: v47,
-				Z: v69,
-			}
-			goto _490
-		_490:
-			centerB = v159
-			v1 = totalFrictionWeight
-			v4 = weight
-			v7 = b3FloatW4{
-				X: v1.X + v4.X,
-				Y: v1.Y + v4.Y,
-				Z: v1.Z + v4.Z,
-				W: v1.W + v4.W,
-			}
-			goto _518
-		_518:
-			totalFrictionWeight = v7
+			goto _55
+		_55:
+			centerB = v27
+			totalFrictionWeight = b3AddW4(tls, totalFrictionWeight, weight)
 			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
 			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
-			v121 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
-			v122 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
-			v1 = v121.X
-			v4 = v122.X
-			v7 = b3FloatW4{
-				X: v1.X - v4.X,
-				Y: v1.Y - v4.Y,
-				Z: v1.Z - v4.Z,
-				W: v1.W - v4.W,
+			v25 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
+			v26 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
+			v27 = b3Vec3W4{
+				X: b3SubW4(tls, v25.X, v26.X),
+				Y: b3SubW4(tls, v25.Y, v26.Y),
+				Z: b3SubW4(tls, v25.Z, v26.Z),
 			}
-			goto _526
-		_526:
-			v10 = v121.Y
-			v13 = v122.Y
-			v16 = b3FloatW4{
-				X: v10.X - v13.X,
-				Y: v10.Y - v13.Y,
-				Z: v10.Z - v13.Z,
-				W: v10.W - v13.W,
-			}
-			goto _530
-		_530:
-			v35 = v121.Z
-			v37 = v122.Z
-			v39 = b3FloatW4{
-				X: v35.X - v37.X,
-				Y: v35.Y - v37.Y,
-				Z: v35.Z - v37.Z,
-				W: v35.W - v37.W,
-			}
-			goto _534
-		_534:
-			v159 = b3Vec3W4{
-				X: v7,
-				Y: v16,
-				Z: v39,
-			}
-			goto _522
-		_522:
-			v161 = v159
-			v162 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
-			v43 = v161.X
-			v45 = v162.X
-			v47 = b3FloatW4{
-				X: float32(v43.X * v45.X),
-				Y: float32(v43.Y * v45.Y),
-				Z: float32(v43.Z * v45.Z),
-				W: float32(v43.W * v45.W),
-			}
-			goto _542
-		_542:
-			v49 = v161.Y
-			v51 = v162.Y
-			v54 = b3FloatW4{
-				X: float32(v49.X * v51.X),
-				Y: float32(v49.Y * v51.Y),
-				Z: float32(v49.Z * v51.Z),
-				W: float32(v49.W * v51.W),
-			}
-			goto _546
-		_546:
-			v55 = v47
-			v60 = v54
-			v69 = b3FloatW4{
-				X: v55.X + v60.X,
-				Y: v55.Y + v60.Y,
-				Z: v55.Z + v60.Z,
-				W: v55.W + v60.W,
-			}
-			goto _550
-		_550:
-			v70 = v161.Z
-			v75 = v162.Z
-			v77 = b3FloatW4{
-				X: float32(v70.X * v75.X),
-				Y: float32(v70.Y * v75.Y),
-				Z: float32(v70.Z * v75.Z),
-				W: float32(v70.W * v75.W),
-			}
-			goto _554
-		_554:
-			v78 = v69
-			v83 = v77
-			v86 = b3FloatW4{
-				X: v78.X + v83.X,
-				Y: v78.Y + v83.Y,
-				Z: v78.Z + v83.Z,
-				W: v78.W + v83.W,
-			}
-			goto _558
-		_558:
-			v41 = v86
-			goto _538
-		_538:
-			v89 = *(*b3FloatW)(unsafe.Add(nil, bp+352))
-			v92 = v41
-			v95 = b3FloatW4{
-				X: v89.X - v92.X,
-				Y: v89.Y - v92.Y,
-				Z: v89.Z - v92.Z,
-				W: v89.W - v92.W,
-			}
-			goto _562
-		_562:
-			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations = v95
-			v1 = warmStartScale
-			v4 = *(*b3FloatW)(unsafe.Add(nil, bp+368))
-			v7 = b3FloatW4{
-				X: float32(v1.X * v4.X),
-				Y: float32(v1.Y * v4.Y),
-				Z: float32(v1.Z * v4.Z),
-				W: float32(v1.W * v4.W),
-			}
-			goto _566
-		_566:
-			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = v7
+			goto _59
+		_59:
+			v29 = v27
+			v30 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
+			v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v29.X, v30.X), b3MulW4(tls, v29.Y, v30.Y)), b3MulW4(tls, v29.Z, v30.Z))
+			goto _63
+		_63:
+			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations = b3SubW4(tls, *(*b3FloatW)(unsafe.Add(nil, bp+352)), v31)
+			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = b3MulW4(tls, warmStartScale, *(*b3FloatW)(unsafe.Add(nil, bp+368)))
 			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses = zeroW
 			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RelativeVelocities = zeroW
 			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses = zeroW
-			v121 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
-			v122 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
-			v1 = v121.Y
-			v4 = v122.Z
-			v7 = b3FloatW4{
-				X: float32(v1.X * v4.X),
-				Y: float32(v1.Y * v4.Y),
-				Z: float32(v1.Z * v4.Z),
-				W: float32(v1.W * v4.W),
-			}
-			goto _572
-		_572:
-			v10 = v121.Z
-			v13 = v122.Y
-			v16 = b3FloatW4{
-				X: float32(v10.X * v13.X),
-				Y: float32(v10.Y * v13.Y),
-				Z: float32(v10.Z * v13.Z),
-				W: float32(v10.W * v13.W),
-			}
-			goto _576
-		_576:
-			v35 = v7
-			v37 = v16
-			v39 = b3FloatW4{
-				X: v35.X - v37.X,
-				Y: v35.Y - v37.Y,
-				Z: v35.Z - v37.Z,
-				W: v35.W - v37.W,
-			}
-			goto _580
-		_580:
-			c1.X = v39
-			v41 = v121.Z
-			v43 = v122.X
-			v45 = b3FloatW4{
-				X: float32(v41.X * v43.X),
-				Y: float32(v41.Y * v43.Y),
-				Z: float32(v41.Z * v43.Z),
-				W: float32(v41.W * v43.W),
-			}
-			goto _584
-		_584:
-			v47 = v121.X
-			v49 = v122.Z
-			v51 = b3FloatW4{
-				X: float32(v47.X * v49.X),
-				Y: float32(v47.Y * v49.Y),
-				Z: float32(v47.Z * v49.Z),
-				W: float32(v47.W * v49.W),
-			}
-			goto _588
-		_588:
-			v54 = v45
-			v55 = v51
-			v60 = b3FloatW4{
-				X: v54.X - v55.X,
-				Y: v54.Y - v55.Y,
-				Z: v54.Z - v55.Z,
-				W: v54.W - v55.W,
-			}
-			goto _592
-		_592:
-			c1.Y = v60
-			v69 = v121.X
-			v70 = v122.Y
-			v75 = b3FloatW4{
-				X: float32(v69.X * v70.X),
-				Y: float32(v69.Y * v70.Y),
-				Z: float32(v69.Z * v70.Z),
-				W: float32(v69.W * v70.W),
-			}
-			goto _596
-		_596:
-			v77 = v121.Y
-			v78 = v122.X
-			v83 = b3FloatW4{
-				X: float32(v77.X * v78.X),
-				Y: float32(v77.Y * v78.Y),
-				Z: float32(v77.Z * v78.Z),
-				W: float32(v77.W * v78.W),
-			}
-			goto _600
-		_600:
-			v86 = v75
-			v89 = v83
-			v92 = b3FloatW4{
-				X: v86.X - v89.X,
-				Y: v86.Y - v89.Y,
-				Z: v86.Z - v89.Z,
-				W: v86.W - v89.W,
-			}
-			goto _604
-		_604:
-			c1.Z = v92
-			v159 = c1
-			goto _606
-		_606:
-			rnA = v159
-			v161 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
-			v162 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
-			v95 = v161.Y
-			v97 = v162.Z
-			v98 = b3FloatW4{
-				X: float32(v95.X * v97.X),
-				Y: float32(v95.Y * v97.Y),
-				Z: float32(v95.Z * v97.Z),
-				W: float32(v95.W * v97.W),
-			}
-			goto _612
-		_612:
-			v99 = v161.Z
-			v100 = v162.Y
-			v102 = b3FloatW4{
-				X: float32(v99.X * v100.X),
-				Y: float32(v99.Y * v100.Y),
-				Z: float32(v99.Z * v100.Z),
-				W: float32(v99.W * v100.W),
-			}
-			goto _616
-		_616:
-			v105 = v98
-			v108 = v102
-			v111 = b3FloatW4{
-				X: v105.X - v108.X,
-				Y: v105.Y - v108.Y,
-				Z: v105.Z - v108.Z,
-				W: v105.W - v108.W,
-			}
-			goto _620
-		_620:
-			c1.X = v111
-			v113 = v161.Z
-			v114 = v162.X
-			v115 = b3FloatW4{
-				X: float32(v113.X * v114.X),
-				Y: float32(v113.Y * v114.Y),
-				Z: float32(v113.Z * v114.Z),
-				W: float32(v113.W * v114.W),
-			}
-			goto _624
-		_624:
-			v116 = v161.X
-			v117 = v162.Z
-			v119 = b3FloatW4{
-				X: float32(v116.X * v117.X),
-				Y: float32(v116.Y * v117.Y),
-				Z: float32(v116.Z * v117.Z),
-				W: float32(v116.W * v117.W),
-			}
-			goto _628
-		_628:
-			v123 = v115
-			v124 = v119
-			v125 = b3FloatW4{
-				X: v123.X - v124.X,
-				Y: v123.Y - v124.Y,
-				Z: v123.Z - v124.Z,
-				W: v123.W - v124.W,
-			}
-			goto _632
-		_632:
-			c1.Y = v125
-			v127 = v161.X
-			v128 = v162.Y
-			v129 = b3FloatW4{
-				X: float32(v127.X * v128.X),
-				Y: float32(v127.Y * v128.Y),
-				Z: float32(v127.Z * v128.Z),
-				W: float32(v127.W * v128.W),
-			}
-			goto _636
-		_636:
-			v131 = v161.Y
-			v132 = v162.X
-			v133 = b3FloatW4{
-				X: float32(v131.X * v132.X),
-				Y: float32(v131.Y * v132.Y),
-				Z: float32(v131.Z * v132.Z),
-				W: float32(v131.W * v132.W),
-			}
-			goto _640
-		_640:
-			v135 = v129
-			v136 = v133
-			v137 = b3FloatW4{
-				X: v135.X - v136.X,
-				Y: v135.Y - v136.Y,
-				Z: v135.Z - v136.Z,
-				W: v135.W - v136.W,
-			}
-			goto _644
-		_644:
-			c1.Z = v137
-			v185 = c1
-			goto _646
-		_646:
-			rnB = v185
-			v139 = mA
-			v140 = mB
-			v141 = b3FloatW4{
-				X: v139.X + v140.X,
-				Y: v139.Y + v140.Y,
-				Z: v139.Z + v140.Z,
-				W: v139.W + v140.W,
-			}
-			goto _650
-		_650:
-			kNormal = v141
-			v186 = rnA
-			v252 = b3MulMVW(tls, iA, rnA)
-			v144 = v186.X
-			v145 = v252.X
-			v147 = b3FloatW4{
-				X: float32(v144.X * v145.X),
-				Y: float32(v144.Y * v145.Y),
-				Z: float32(v144.Z * v145.Z),
-				W: float32(v144.W * v145.W),
-			}
-			goto _658
-		_658:
-			v148 = v186.Y
-			v149 = v252.Y
-			v151 = b3FloatW4{
-				X: float32(v148.X * v149.X),
-				Y: float32(v148.Y * v149.Y),
-				Z: float32(v148.Z * v149.Z),
-				W: float32(v148.W * v149.W),
-			}
-			goto _662
-		_662:
-			v152 = v147
-			v153 = v151
-			v155 = b3FloatW4{
-				X: v152.X + v153.X,
-				Y: v152.Y + v153.Y,
-				Z: v152.Z + v153.Z,
-				W: v152.W + v153.W,
-			}
-			goto _666
-		_666:
-			v156 = v186.Z
-			v157 = v252.Z
-			v163 = b3FloatW4{
-				X: float32(v156.X * v157.X),
-				Y: float32(v156.Y * v157.Y),
-				Z: float32(v156.Z * v157.Z),
-				W: float32(v156.W * v157.W),
-			}
-			goto _670
-		_670:
-			v165 = v155
-			v166 = v163
-			v167 = b3FloatW4{
-				X: v165.X + v166.X,
-				Y: v165.Y + v166.Y,
-				Z: v165.Z + v166.Z,
-				W: v165.W + v166.W,
-			}
-			goto _674
-		_674:
-			v143 = v167
-			goto _654
-		_654:
-			v169 = kNormal
-			v170 = v143
-			v171 = b3FloatW4{
-				X: v169.X + v170.X,
-				Y: v169.Y + v170.Y,
-				Z: v169.Z + v170.Z,
-				W: v169.W + v170.W,
-			}
-			goto _678
-		_678:
-			kNormal = v171
-			v121 = rnB
-			v122 = b3MulMVW(tls, iB, rnB)
-			v4 = v121.X
-			v7 = v122.X
-			v10 = b3FloatW4{
-				X: float32(v4.X * v7.X),
-				Y: float32(v4.Y * v7.Y),
-				Z: float32(v4.Z * v7.Z),
-				W: float32(v4.W * v7.W),
-			}
-			goto _686
-		_686:
-			v13 = v121.Y
-			v16 = v122.Y
-			v35 = b3FloatW4{
-				X: float32(v13.X * v16.X),
-				Y: float32(v13.Y * v16.Y),
-				Z: float32(v13.Z * v16.Z),
-				W: float32(v13.W * v16.W),
-			}
-			goto _690
-		_690:
-			v37 = v10
-			v39 = v35
-			v41 = b3FloatW4{
-				X: v37.X + v39.X,
-				Y: v37.Y + v39.Y,
-				Z: v37.Z + v39.Z,
-				W: v37.W + v39.W,
-			}
-			goto _694
-		_694:
-			v43 = v121.Z
-			v45 = v122.Z
-			v47 = b3FloatW4{
-				X: float32(v43.X * v45.X),
-				Y: float32(v43.Y * v45.Y),
-				Z: float32(v43.Z * v45.Z),
-				W: float32(v43.W * v45.W),
-			}
-			goto _698
-		_698:
-			v49 = v41
-			v51 = v47
-			v54 = b3FloatW4{
-				X: v49.X + v51.X,
-				Y: v49.Y + v51.Y,
-				Z: v49.Z + v51.Z,
-				W: v49.W + v51.W,
-			}
-			goto _702
-		_702:
-			v1 = v54
-			goto _682
-		_682:
-			v55 = kNormal
-			v60 = v1
-			v69 = b3FloatW4{
-				X: v55.X + v60.X,
-				Y: v55.Y + v60.Y,
-				Z: v55.Z + v60.Z,
-				W: v55.W + v60.W,
-			}
-			goto _706
-		_706:
-			kNormal = v69
-			v1 = kNormal
-			v4 = zeroW
-			if v1.X > v4.X {
-				v3 = float32FromFloat32(1)
-			} else {
-				v3 = float32FromFloat32(0)
-			}
-			r3.X = v3
-			if v1.Y > v4.Y {
-				v6 = float32FromFloat32(1)
-			} else {
-				v6 = float32FromFloat32(0)
-			}
-			r3.Y = v6
-			if v1.Z > v4.Z {
-				v9 = float32FromFloat32(1)
-			} else {
-				v9 = float32FromFloat32(0)
-			}
-			r3.Z = v9
-			if v1.W > v4.W {
-				v12 = float32FromFloat32(1)
-			} else {
-				v12 = float32FromFloat32(0)
-			}
-			r3.W = v12
-			v7 = r3
-			goto _714
-		_714:
-			v10 = v7
-			v13 = pointMask
-			if v10.X != float32FromFloat32(0) && v13.X != float32FromFloat32(0) {
-				v15 = float32FromFloat32(1)
-			} else {
-				v15 = float32FromFloat32(0)
-			}
-			r2.X = v15
-			if v10.Y != float32FromFloat32(0) && v13.Y != float32FromFloat32(0) {
-				v56 = float32FromFloat32(1)
-			} else {
-				v56 = float32FromFloat32(0)
-			}
-			r2.Y = v56
-			if v10.Z != float32FromFloat32(0) && v13.Z != float32FromFloat32(0) {
-				v57 = float32FromFloat32(1)
-			} else {
-				v57 = float32FromFloat32(0)
-			}
-			r2.Z = v57
-			if v10.W != float32FromFloat32(0) && v13.W != float32FromFloat32(0) {
-				v58 = float32FromFloat32(1)
-			} else {
-				v58 = float32FromFloat32(0)
-			}
-			r2.W = v58
-			v16 = r2
-			goto _722
-		_722:
-			valid = v16
-			v35 = oneW
-			v37 = kNormal
-			v39 = b3FloatW4{
-				X: v35.X / v37.X,
-				Y: v35.Y / v37.Y,
-				Z: v35.Z / v37.Z,
-				W: v35.W / v37.W,
-			}
-			goto _726
-		_726:
-			v41 = zeroW
-			v43 = v39
-			v45 = valid
-			if v45.X != float32FromFloat32(0) {
-				v59 = v43.X
-			} else {
-				v59 = v41.X
-			}
-			r4.X = v59
-			if v45.Y != float32FromFloat32(0) {
-				v71 = v43.Y
-			} else {
-				v71 = v41.Y
-			}
-			r4.Y = v71
-			if v45.Z != float32FromFloat32(0) {
-				v72 = v43.Z
-			} else {
-				v72 = v41.Z
-			}
-			r4.Z = v72
-			if v45.W != float32FromFloat32(0) {
-				v73 = v43.W
-			} else {
-				v73 = v41.W
-			}
-			r4.W = v73
-			v47 = r4
-			goto _735
-		_735:
-			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses = v47
-			goto _308
-		_308:
+			v25 = *(*b3Vec3W)(unsafe.Add(nil, bp+256))
+			v26 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
+			c.X = b3SubW4(tls, b3MulW4(tls, v25.Y, v26.Z), b3MulW4(tls, v25.Z, v26.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v25.Z, v26.X), b3MulW4(tls, v25.X, v26.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v25.X, v26.Y), b3MulW4(tls, v25.Y, v26.X))
+			v27 = c
+			goto _67
+		_67:
+			rnA = v27
+			v29 = *(*b3Vec3W)(unsafe.Add(nil, bp+304))
+			v30 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
+			c.X = b3SubW4(tls, b3MulW4(tls, v29.Y, v30.Z), b3MulW4(tls, v29.Z, v30.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v29.Z, v30.X), b3MulW4(tls, v29.X, v30.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v29.X, v30.Y), b3MulW4(tls, v29.Y, v30.X))
+			v33 = c
+			goto _71
+		_71:
+			rnB = v33
+			kNormal = b3AddW4(tls, mA, mB)
+			v34 = rnA
+			v37 = b3MulMVW(tls, iA, rnA)
+			v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v34.X, v37.X), b3MulW4(tls, v34.Y, v37.Y)), b3MulW4(tls, v34.Z, v37.Z))
+			goto _75
+		_75:
+			kNormal = b3AddW4(tls, kNormal, v31)
+			v25 = rnB
+			v26 = b3MulMVW(tls, iB, rnB)
+			v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+			goto _79
+		_79:
+			kNormal = b3AddW4(tls, kNormal, v31)
+			valid = b3AndW4(tls, b3GreaterThanW4(tls, kNormal, zeroW), pointMask)
+			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses = b3BlendW4(tls, zeroW, b3DivW4(tls, oneW, kNormal), valid)
+			goto _45
+		_45:
 			;
 			pointIndex = pointIndex + 1
 		}
-		v1 = totalFrictionWeight
-		v4 = zeroW
-		if v1.X > v4.X {
-			v3 = float32FromFloat32(1)
-		} else {
-			v3 = float32FromFloat32(0)
+		frictionValid = b3GreaterThanW4(tls, totalFrictionWeight, zeroW)
+		invWeight = b3BlendW4(tls, zeroW, b3DivW4(tls, oneW, totalFrictionWeight), frictionValid)
+		v31 = invWeight
+		v25 = centerA
+		v26 = b3Vec3W4{
+			X: b3MulW4(tls, v31, v25.X),
+			Y: b3MulW4(tls, v31, v25.Y),
+			Z: b3MulW4(tls, v31, v25.Z),
 		}
-		r3.X = v3
-		if v1.Y > v4.Y {
-			v6 = float32FromFloat32(1)
-		} else {
-			v6 = float32FromFloat32(0)
+		goto _83
+	_83:
+		centerA = v26
+		v31 = invWeight
+		v25 = centerB
+		v26 = b3Vec3W4{
+			X: b3MulW4(tls, v31, v25.X),
+			Y: b3MulW4(tls, v31, v25.Y),
+			Z: b3MulW4(tls, v31, v25.Z),
 		}
-		r3.Y = v6
-		if v1.Z > v4.Z {
-			v9 = float32FromFloat32(1)
-		} else {
-			v9 = float32FromFloat32(0)
-		}
-		r3.Z = v9
-		if v1.W > v4.W {
-			v12 = float32FromFloat32(1)
-		} else {
-			v12 = float32FromFloat32(0)
-		}
-		r3.W = v12
-		v7 = r3
-		goto _743
-	_743:
-		frictionValid = v7
-		v10 = oneW
-		v13 = totalFrictionWeight
-		v16 = b3FloatW4{
-			X: v10.X / v13.X,
-			Y: v10.Y / v13.Y,
-			Z: v10.Z / v13.Z,
-			W: v10.W / v13.W,
-		}
-		goto _747
-	_747:
-		v35 = zeroW
-		v37 = v16
-		v39 = frictionValid
-		if v39.X != float32FromFloat32(0) {
-			v15 = v37.X
-		} else {
-			v15 = v35.X
-		}
-		r4.X = v15
-		if v39.Y != float32FromFloat32(0) {
-			v56 = v37.Y
-		} else {
-			v56 = v35.Y
-		}
-		r4.Y = v56
-		if v39.Z != float32FromFloat32(0) {
-			v57 = v37.Z
-		} else {
-			v57 = v35.Z
-		}
-		r4.Z = v57
-		if v39.W != float32FromFloat32(0) {
-			v58 = v37.W
-		} else {
-			v58 = v35.W
-		}
-		r4.W = v58
-		v41 = r4
-		goto _756
-	_756:
-		invWeight = v41
-		v43 = invWeight
-		v121 = centerA
-		v45 = v43
-		v47 = v121.X
-		v49 = b3FloatW4{
-			X: float32(v45.X * v47.X),
-			Y: float32(v45.Y * v47.Y),
-			Z: float32(v45.Z * v47.Z),
-			W: float32(v45.W * v47.W),
-		}
-		goto _764
-	_764:
-		v51 = v43
-		v54 = v121.Y
-		v55 = b3FloatW4{
-			X: float32(v51.X * v54.X),
-			Y: float32(v51.Y * v54.Y),
-			Z: float32(v51.Z * v54.Z),
-			W: float32(v51.W * v54.W),
-		}
-		goto _768
-	_768:
-		v60 = v43
-		v69 = v121.Z
-		v70 = b3FloatW4{
-			X: float32(v60.X * v69.X),
-			Y: float32(v60.Y * v69.Y),
-			Z: float32(v60.Z * v69.Z),
-			W: float32(v60.W * v69.W),
-		}
-		goto _772
-	_772:
-		v122 = b3Vec3W4{
-			X: v49,
-			Y: v55,
-			Z: v70,
-		}
-		goto _760
-	_760:
-		centerA = v122
-		v1 = invWeight
-		v121 = centerB
-		v4 = v1
-		v7 = v121.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _780
-	_780:
-		v13 = v1
-		v16 = v121.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _784
-	_784:
-		v37 = v1
-		v39 = v121.Z
-		v41 = b3FloatW4{
-			X: float32(v37.X * v39.X),
-			Y: float32(v37.Y * v39.Y),
-			Z: float32(v37.Z * v39.Z),
-			W: float32(v37.W * v39.W),
-		}
-		goto _788
-	_788:
-		v122 = b3Vec3W4{
-			X: v10,
-			Y: v35,
-			Z: v41,
-		}
-		goto _776
-	_776:
-		centerB = v122
+		goto _87
+	_87:
+		centerB = v26
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterA = centerA
 		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterB = centerB
 		pointIndex1 = 0
@@ -49517,1360 +46950,125 @@ _61:
 			if !(pointIndex1 < pointCount) {
 				break
 			}
-			cp1 = cm + 452 + uintptr(pointIndex1)*208
-			v3 = float32(pointIndex1)
-			v1 = b3FloatW4{
-				X: v3,
-				Y: v3,
-				Z: v3,
-				W: v3,
+			cp1 = cm + 456 + uintptr(pointIndex1)*208
+			pointMask1 = b3GreaterThanW4(tls, pointCountW, b3SplatW4(tls, float32(pointIndex1)))
+			v25 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp1)).AnchorAs
+			v26 = centerA
+			v27 = b3Vec3W4{
+				X: b3SubW4(tls, v25.X, v26.X),
+				Y: b3SubW4(tls, v25.Y, v26.Y),
+				Z: b3SubW4(tls, v25.Z, v26.Z),
 			}
-			goto _792
-		_792:
-			v4 = pointCountW
-			v7 = v1
-			if v4.X > v7.X {
-				v6 = float32FromFloat32(1)
-			} else {
-				v6 = float32FromFloat32(0)
-			}
-			r3.X = v6
-			if v4.Y > v7.Y {
-				v9 = float32FromFloat32(1)
-			} else {
-				v9 = float32FromFloat32(0)
-			}
-			r3.Y = v9
-			if v4.Z > v7.Z {
-				v12 = float32FromFloat32(1)
-			} else {
-				v12 = float32FromFloat32(0)
-			}
-			r3.Z = v12
-			if v4.W > v7.W {
-				v15 = float32FromFloat32(1)
-			} else {
-				v15 = float32FromFloat32(0)
-			}
-			r3.W = v15
-			v10 = r3
-			goto _800
-		_800:
-			pointMask1 = v10
-			v121 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp1)).AnchorAs
-			v122 = centerA
-			v13 = v121.X
-			v16 = v122.X
-			v35 = b3FloatW4{
-				X: v13.X - v16.X,
-				Y: v13.Y - v16.Y,
-				Z: v13.Z - v16.Z,
-				W: v13.W - v16.W,
-			}
-			goto _808
-		_808:
-			v37 = v121.Y
-			v39 = v122.Y
-			v41 = b3FloatW4{
-				X: v37.X - v39.X,
-				Y: v37.Y - v39.Y,
-				Z: v37.Z - v39.Z,
-				W: v37.W - v39.W,
-			}
-			goto _812
-		_812:
-			v43 = v121.Z
-			v45 = v122.Z
-			v47 = b3FloatW4{
-				X: v43.X - v45.X,
-				Y: v43.Y - v45.Y,
-				Z: v43.Z - v45.Z,
-				W: v43.W - v45.W,
-			}
-			goto _816
-		_816:
-			v159 = b3Vec3W4{
-				X: v35,
-				Y: v41,
-				Z: v47,
-			}
-			goto _804
-		_804:
-			d1 = v159
-			v161 = d1
-			v162 = d1
-			v51 = v161.X
-			v54 = v162.X
-			v55 = b3FloatW4{
-				X: float32(v51.X * v54.X),
-				Y: float32(v51.Y * v54.Y),
-				Z: float32(v51.Z * v54.Z),
-				W: float32(v51.W * v54.W),
-			}
-			goto _824
-		_824:
-			v60 = v161.Y
-			v69 = v162.Y
-			v70 = b3FloatW4{
-				X: float32(v60.X * v69.X),
-				Y: float32(v60.Y * v69.Y),
-				Z: float32(v60.Z * v69.Z),
-				W: float32(v60.W * v69.W),
-			}
-			goto _828
-		_828:
-			v75 = v55
-			v77 = v70
-			v78 = b3FloatW4{
-				X: v75.X + v77.X,
-				Y: v75.Y + v77.Y,
-				Z: v75.Z + v77.Z,
-				W: v75.W + v77.W,
-			}
-			goto _832
-		_832:
-			v83 = v161.Z
-			v86 = v162.Z
-			v89 = b3FloatW4{
-				X: float32(v83.X * v86.X),
-				Y: float32(v83.Y * v86.Y),
-				Z: float32(v83.Z * v86.Z),
-				W: float32(v83.W * v86.W),
-			}
-			goto _836
-		_836:
-			v92 = v78
-			v95 = v89
-			v97 = b3FloatW4{
-				X: v92.X + v95.X,
-				Y: v92.Y + v95.Y,
-				Z: v92.Z + v95.Z,
-				W: v92.W + v95.W,
-			}
-			goto _840
-		_840:
-			v49 = v97
-			goto _820
-		_820:
-			v98 = v49
-			v99 = b3FloatW4{
-				X: sqrtf(tls, v98.X),
-				Y: sqrtf(tls, v98.Y),
-				Z: sqrtf(tls, v98.Z),
-				W: sqrtf(tls, v98.W),
-			}
-			goto _843
-		_843:
-			v100 = zeroW
-			v102 = v99
-			v105 = pointMask1
-			if v105.X != float32FromFloat32(0) {
-				v56 = v102.X
-			} else {
-				v56 = v100.X
-			}
-			r4.X = v56
-			if v105.Y != float32FromFloat32(0) {
-				v57 = v102.Y
-			} else {
-				v57 = v100.Y
-			}
-			r4.Y = v57
-			if v105.Z != float32FromFloat32(0) {
-				v58 = v102.Z
-			} else {
-				v58 = v100.Z
-			}
-			r4.Z = v58
-			if v105.W != float32FromFloat32(0) {
-				v59 = v102.W
-			} else {
-				v59 = v100.W
-			}
-			r4.W = v59
-			v108 = r4
-			goto _852
-		_852:
-			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp1)).LeverArms = v108
-			goto _789
-		_789:
+			goto _92
+		_92:
+			d = v27
+			v29 = d
+			v30 = d
+			v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v29.X, v30.X), b3MulW4(tls, v29.Y, v30.Y)), b3MulW4(tls, v29.Z, v30.Z))
+			goto _96
+		_96:
+			(*b3ContactConstraintPointWide)(unsafe.Pointer(cp1)).LeverArms = b3BlendW4(tls, zeroW, b3SqrtW4(tls, v31), pointMask1)
+			goto _88
+		_88:
 			;
 			pointIndex1 = pointIndex1 + 1
 		}
-		v121 = centerA
-		v122 = tangent1
-		v1 = v121.Y
-		v4 = v122.Z
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _858
-	_858:
-		v10 = v121.Z
-		v13 = v122.Y
-		v16 = b3FloatW4{
-			X: float32(v10.X * v13.X),
-			Y: float32(v10.Y * v13.Y),
-			Z: float32(v10.Z * v13.Z),
-			W: float32(v10.W * v13.W),
-		}
-		goto _862
-	_862:
-		v35 = v7
-		v37 = v16
-		v39 = b3FloatW4{
-			X: v35.X - v37.X,
-			Y: v35.Y - v37.Y,
-			Z: v35.Z - v37.Z,
-			W: v35.W - v37.W,
-		}
-		goto _866
-	_866:
-		c1.X = v39
-		v41 = v121.Z
-		v43 = v122.X
-		v45 = b3FloatW4{
-			X: float32(v41.X * v43.X),
-			Y: float32(v41.Y * v43.Y),
-			Z: float32(v41.Z * v43.Z),
-			W: float32(v41.W * v43.W),
-		}
-		goto _870
-	_870:
-		v47 = v121.X
-		v49 = v122.Z
-		v51 = b3FloatW4{
-			X: float32(v47.X * v49.X),
-			Y: float32(v47.Y * v49.Y),
-			Z: float32(v47.Z * v49.Z),
-			W: float32(v47.W * v49.W),
-		}
-		goto _874
-	_874:
-		v54 = v45
-		v55 = v51
-		v60 = b3FloatW4{
-			X: v54.X - v55.X,
-			Y: v54.Y - v55.Y,
-			Z: v54.Z - v55.Z,
-			W: v54.W - v55.W,
-		}
-		goto _878
-	_878:
-		c1.Y = v60
-		v69 = v121.X
-		v70 = v122.Y
-		v75 = b3FloatW4{
-			X: float32(v69.X * v70.X),
-			Y: float32(v69.Y * v70.Y),
-			Z: float32(v69.Z * v70.Z),
-			W: float32(v69.W * v70.W),
-		}
-		goto _882
-	_882:
-		v77 = v121.Y
-		v78 = v122.X
-		v83 = b3FloatW4{
-			X: float32(v77.X * v78.X),
-			Y: float32(v77.Y * v78.Y),
-			Z: float32(v77.Z * v78.Z),
-			W: float32(v77.W * v78.W),
-		}
-		goto _886
-	_886:
-		v86 = v75
-		v89 = v83
-		v92 = b3FloatW4{
-			X: v86.X - v89.X,
-			Y: v86.Y - v89.Y,
-			Z: v86.Z - v89.Z,
-			W: v86.W - v89.W,
-		}
-		goto _890
-	_890:
-		c1.Z = v92
-		v159 = c1
-		goto _892
-	_892:
-		rtA1 = v159
-		v161 = centerA
-		v162 = tangent2
-		v95 = v161.Y
-		v97 = v162.Z
-		v98 = b3FloatW4{
-			X: float32(v95.X * v97.X),
-			Y: float32(v95.Y * v97.Y),
-			Z: float32(v95.Z * v97.Z),
-			W: float32(v95.W * v97.W),
-		}
-		goto _898
-	_898:
-		v99 = v161.Z
-		v100 = v162.Y
-		v102 = b3FloatW4{
-			X: float32(v99.X * v100.X),
-			Y: float32(v99.Y * v100.Y),
-			Z: float32(v99.Z * v100.Z),
-			W: float32(v99.W * v100.W),
-		}
-		goto _902
-	_902:
-		v105 = v98
-		v108 = v102
-		v111 = b3FloatW4{
-			X: v105.X - v108.X,
-			Y: v105.Y - v108.Y,
-			Z: v105.Z - v108.Z,
-			W: v105.W - v108.W,
-		}
-		goto _906
-	_906:
-		c1.X = v111
-		v113 = v161.Z
-		v114 = v162.X
-		v115 = b3FloatW4{
-			X: float32(v113.X * v114.X),
-			Y: float32(v113.Y * v114.Y),
-			Z: float32(v113.Z * v114.Z),
-			W: float32(v113.W * v114.W),
-		}
-		goto _910
-	_910:
-		v116 = v161.X
-		v117 = v162.Z
-		v119 = b3FloatW4{
-			X: float32(v116.X * v117.X),
-			Y: float32(v116.Y * v117.Y),
-			Z: float32(v116.Z * v117.Z),
-			W: float32(v116.W * v117.W),
-		}
-		goto _914
-	_914:
-		v123 = v115
-		v124 = v119
-		v125 = b3FloatW4{
-			X: v123.X - v124.X,
-			Y: v123.Y - v124.Y,
-			Z: v123.Z - v124.Z,
-			W: v123.W - v124.W,
-		}
-		goto _918
-	_918:
-		c1.Y = v125
-		v127 = v161.X
-		v128 = v162.Y
-		v129 = b3FloatW4{
-			X: float32(v127.X * v128.X),
-			Y: float32(v127.Y * v128.Y),
-			Z: float32(v127.Z * v128.Z),
-			W: float32(v127.W * v128.W),
-		}
-		goto _922
-	_922:
-		v131 = v161.Y
-		v132 = v162.X
-		v133 = b3FloatW4{
-			X: float32(v131.X * v132.X),
-			Y: float32(v131.Y * v132.Y),
-			Z: float32(v131.Z * v132.Z),
-			W: float32(v131.W * v132.W),
-		}
-		goto _926
-	_926:
-		v135 = v129
-		v136 = v133
-		v137 = b3FloatW4{
-			X: v135.X - v136.X,
-			Y: v135.Y - v136.Y,
-			Z: v135.Z - v136.Z,
-			W: v135.W - v136.W,
-		}
-		goto _930
-	_930:
-		c1.Z = v137
-		v185 = c1
-		goto _932
-	_932:
-		rtA2 = v185
-		v186 = centerB
-		v252 = tangent1
-		v139 = v186.Y
-		v140 = v252.Z
-		v141 = b3FloatW4{
-			X: float32(v139.X * v140.X),
-			Y: float32(v139.Y * v140.Y),
-			Z: float32(v139.Z * v140.Z),
-			W: float32(v139.W * v140.W),
-		}
-		goto _938
-	_938:
-		v143 = v186.Z
-		v144 = v252.Y
-		v145 = b3FloatW4{
-			X: float32(v143.X * v144.X),
-			Y: float32(v143.Y * v144.Y),
-			Z: float32(v143.Z * v144.Z),
-			W: float32(v143.W * v144.W),
-		}
-		goto _942
-	_942:
-		v147 = v141
-		v148 = v145
-		v149 = b3FloatW4{
-			X: v147.X - v148.X,
-			Y: v147.Y - v148.Y,
-			Z: v147.Z - v148.Z,
-			W: v147.W - v148.W,
-		}
-		goto _946
-	_946:
-		c1.X = v149
-		v151 = v186.Z
-		v152 = v252.X
-		v153 = b3FloatW4{
-			X: float32(v151.X * v152.X),
-			Y: float32(v151.Y * v152.Y),
-			Z: float32(v151.Z * v152.Z),
-			W: float32(v151.W * v152.W),
-		}
-		goto _950
-	_950:
-		v155 = v186.X
-		v156 = v252.Z
-		v157 = b3FloatW4{
-			X: float32(v155.X * v156.X),
-			Y: float32(v155.Y * v156.Y),
-			Z: float32(v155.Z * v156.Z),
-			W: float32(v155.W * v156.W),
-		}
-		goto _954
-	_954:
-		v163 = v153
-		v165 = v157
-		v166 = b3FloatW4{
-			X: v163.X - v165.X,
-			Y: v163.Y - v165.Y,
-			Z: v163.Z - v165.Z,
-			W: v163.W - v165.W,
-		}
-		goto _958
-	_958:
-		c1.Y = v166
-		v167 = v186.X
-		v169 = v252.Y
-		v170 = b3FloatW4{
-			X: float32(v167.X * v169.X),
-			Y: float32(v167.Y * v169.Y),
-			Z: float32(v167.Z * v169.Z),
-			W: float32(v167.W * v169.W),
-		}
-		goto _962
-	_962:
-		v171 = v186.Y
-		v173 = v252.X
-		v174 = b3FloatW4{
-			X: float32(v171.X * v173.X),
-			Y: float32(v171.Y * v173.Y),
-			Z: float32(v171.Z * v173.Z),
-			W: float32(v171.W * v173.W),
-		}
-		goto _966
-	_966:
-		v175 = v170
-		v177 = v174
-		v178 = b3FloatW4{
-			X: v175.X - v177.X,
-			Y: v175.Y - v177.Y,
-			Z: v175.Z - v177.Z,
-			W: v175.W - v177.W,
-		}
-		goto _970
-	_970:
-		c1.Z = v178
-		v253 = c1
-		goto _972
-	_972:
-		rtB1 = v253
-		v280 = centerB
-		v281 = tangent2
-		v179 = v280.Y
-		v181 = v281.Z
-		v182 = b3FloatW4{
-			X: float32(v179.X * v181.X),
-			Y: float32(v179.Y * v181.Y),
-			Z: float32(v179.Z * v181.Z),
-			W: float32(v179.W * v181.W),
-		}
-		goto _978
-	_978:
-		v183 = v280.Z
-		v187 = v281.Y
-		v189 = b3FloatW4{
-			X: float32(v183.X * v187.X),
-			Y: float32(v183.Y * v187.Y),
-			Z: float32(v183.Z * v187.Z),
-			W: float32(v183.W * v187.W),
-		}
-		goto _982
-	_982:
-		v190 = v182
-		v191 = v189
-		v193 = b3FloatW4{
-			X: v190.X - v191.X,
-			Y: v190.Y - v191.Y,
-			Z: v190.Z - v191.Z,
-			W: v190.W - v191.W,
-		}
-		goto _986
-	_986:
-		c1.X = v193
-		v194 = v280.Z
-		v195 = v281.X
-		v197 = b3FloatW4{
-			X: float32(v194.X * v195.X),
-			Y: float32(v194.Y * v195.Y),
-			Z: float32(v194.Z * v195.Z),
-			W: float32(v194.W * v195.W),
-		}
-		goto _990
-	_990:
-		v198 = v280.X
-		v199 = v281.Z
-		v201 = b3FloatW4{
-			X: float32(v198.X * v199.X),
-			Y: float32(v198.Y * v199.Y),
-			Z: float32(v198.Z * v199.Z),
-			W: float32(v198.W * v199.W),
-		}
-		goto _994
-	_994:
-		v202 = v197
-		v203 = v201
-		v205 = b3FloatW4{
-			X: v202.X - v203.X,
-			Y: v202.Y - v203.Y,
-			Z: v202.Z - v203.Z,
-			W: v202.W - v203.W,
-		}
-		goto _998
-	_998:
-		c1.Y = v205
-		v206 = v280.X
-		v207 = v281.Y
-		v209 = b3FloatW4{
-			X: float32(v206.X * v207.X),
-			Y: float32(v206.Y * v207.Y),
-			Z: float32(v206.Z * v207.Z),
-			W: float32(v206.W * v207.W),
-		}
-		goto _1002
-	_1002:
-		v210 = v280.Y
-		v211 = v281.X
-		v213 = b3FloatW4{
-			X: float32(v210.X * v211.X),
-			Y: float32(v210.Y * v211.Y),
-			Z: float32(v210.Z * v211.Z),
-			W: float32(v210.W * v211.W),
-		}
-		goto _1006
-	_1006:
-		v214 = v209
-		v215 = v213
-		v217 = b3FloatW4{
-			X: v214.X - v215.X,
-			Y: v214.Y - v215.Y,
-			Z: v214.Z - v215.Z,
-			W: v214.W - v215.W,
-		}
-		goto _1010
-	_1010:
-		c1.Z = v217
-		v457 = c1
-		goto _1012
-	_1012:
-		rtB2 = v457
+		v25 = centerA
+		v26 = tangent1
+		c.X = b3SubW4(tls, b3MulW4(tls, v25.Y, v26.Z), b3MulW4(tls, v25.Z, v26.Y))
+		c.Y = b3SubW4(tls, b3MulW4(tls, v25.Z, v26.X), b3MulW4(tls, v25.X, v26.Z))
+		c.Z = b3SubW4(tls, b3MulW4(tls, v25.X, v26.Y), b3MulW4(tls, v25.Y, v26.X))
+		v27 = c
+		goto _100
+	_100:
+		rtA1 = v27
+		v29 = centerA
+		v30 = tangent2
+		c.X = b3SubW4(tls, b3MulW4(tls, v29.Y, v30.Z), b3MulW4(tls, v29.Z, v30.Y))
+		c.Y = b3SubW4(tls, b3MulW4(tls, v29.Z, v30.X), b3MulW4(tls, v29.X, v30.Z))
+		c.Z = b3SubW4(tls, b3MulW4(tls, v29.X, v30.Y), b3MulW4(tls, v29.Y, v30.X))
+		v33 = c
+		goto _104
+	_104:
+		rtA2 = v33
+		v34 = centerB
+		v37 = tangent1
+		c.X = b3SubW4(tls, b3MulW4(tls, v34.Y, v37.Z), b3MulW4(tls, v34.Z, v37.Y))
+		c.Y = b3SubW4(tls, b3MulW4(tls, v34.Z, v37.X), b3MulW4(tls, v34.X, v37.Z))
+		c.Z = b3SubW4(tls, b3MulW4(tls, v34.X, v37.Y), b3MulW4(tls, v34.Y, v37.X))
+		v38 = c
+		goto _108
+	_108:
+		rtB1 = v38
+		v41 = centerB
+		v42 = tangent2
+		c.X = b3SubW4(tls, b3MulW4(tls, v41.Y, v42.Z), b3MulW4(tls, v41.Z, v42.Y))
+		c.Y = b3SubW4(tls, b3MulW4(tls, v41.Z, v42.X), b3MulW4(tls, v41.X, v42.Z))
+		c.Z = b3SubW4(tls, b3MulW4(tls, v41.X, v42.Y), b3MulW4(tls, v41.Y, v42.X))
+		v46 = c
+		goto _112
+	_112:
+		rtB2 = v46
 		iArtA1 = b3MulMVW(tls, iA, rtA1)
 		iArtA2 = b3MulMVW(tls, iA, rtA2)
 		iBrtB1 = b3MulMVW(tls, iB, rtB1)
 		iBrtB2 = b3MulMVW(tls, iB, rtB2)
-		v218 = mA
-		v219 = mB
-		v224 = b3FloatW4{
-			X: v218.X + v219.X,
-			Y: v218.Y + v219.Y,
-			Z: v218.Z + v219.Z,
-			W: v218.W + v219.W,
-		}
-		goto _1016
-	_1016:
-		v459 = rtA1
-		v460 = iArtA1
-		v227 = v459.X
-		v228 = v460.X
-		v230 = b3FloatW4{
-			X: float32(v227.X * v228.X),
-			Y: float32(v227.Y * v228.Y),
-			Z: float32(v227.Z * v228.Z),
-			W: float32(v227.W * v228.W),
-		}
-		goto _1024
-	_1024:
-		v231 = v459.Y
-		v232 = v460.Y
-		v237 = b3FloatW4{
-			X: float32(v231.X * v232.X),
-			Y: float32(v231.Y * v232.Y),
-			Z: float32(v231.Z * v232.Z),
-			W: float32(v231.W * v232.W),
-		}
-		goto _1028
-	_1028:
-		v239 = v230
-		v240 = v237
-		v241 = b3FloatW4{
-			X: v239.X + v240.X,
-			Y: v239.Y + v240.Y,
-			Z: v239.Z + v240.Z,
-			W: v239.W + v240.W,
-		}
-		goto _1032
-	_1032:
-		v243 = v459.Z
-		v244 = v460.Z
-		v245 = b3FloatW4{
-			X: float32(v243.X * v244.X),
-			Y: float32(v243.Y * v244.Y),
-			Z: float32(v243.Z * v244.Z),
-			W: float32(v243.W * v244.W),
-		}
-		goto _1036
-	_1036:
-		v250 = v241
-		v254 = v245
-		v256 = b3FloatW4{
-			X: v250.X + v254.X,
-			Y: v250.Y + v254.Y,
-			Z: v250.Z + v254.Z,
-			W: v250.W + v254.W,
-		}
-		goto _1040
-	_1040:
-		v226 = v256
-		goto _1020
-	_1020:
-		v257 = v224
-		v258 = v226
-		v260 = b3FloatW4{
-			X: v257.X + v258.X,
-			Y: v257.Y + v258.Y,
-			Z: v257.Z + v258.Z,
-			W: v257.W + v258.W,
-		}
-		goto _1044
-	_1044:
-		v486 = rtB1
-		v488 = iBrtB1
-		v262 = v486.X
-		v264 = v488.X
-		v265 = b3FloatW4{
-			X: float32(v262.X * v264.X),
-			Y: float32(v262.Y * v264.Y),
-			Z: float32(v262.Z * v264.Z),
-			W: float32(v262.W * v264.W),
-		}
-		goto _1052
-	_1052:
-		v266 = v486.Y
-		v268 = v488.Y
-		v269 = b3FloatW4{
-			X: float32(v266.X * v268.X),
-			Y: float32(v266.Y * v268.Y),
-			Z: float32(v266.Z * v268.Z),
-			W: float32(v266.W * v268.W),
-		}
-		goto _1056
-	_1056:
-		v270 = v265
-		v272 = v269
-		v273 = b3FloatW4{
-			X: v270.X + v272.X,
-			Y: v270.Y + v272.Y,
-			Z: v270.Z + v272.Z,
-			W: v270.W + v272.W,
-		}
-		goto _1060
-	_1060:
-		v274 = v486.Z
-		v276 = v488.Z
-		v277 = b3FloatW4{
-			X: float32(v274.X * v276.X),
-			Y: float32(v274.Y * v276.Y),
-			Z: float32(v274.Z * v276.Z),
-			W: float32(v274.W * v276.W),
-		}
-		goto _1064
-	_1064:
-		v278 = v273
-		v282 = v277
-		v284 = b3FloatW4{
-			X: v278.X + v282.X,
-			Y: v278.Y + v282.Y,
-			Z: v278.Z + v282.Z,
-			W: v278.W + v282.W,
-		}
-		goto _1068
-	_1068:
-		v261 = v284
-		goto _1048
-	_1048:
-		v285 = v260
-		v286 = v261
-		v288 = b3FloatW4{
-			X: v285.X + v286.X,
-			Y: v285.Y + v286.Y,
-			Z: v285.Z + v286.Z,
-			W: v285.W + v286.W,
-		}
-		goto _1072
-	_1072:
-		kxx = v288
-		v289 = mA
-		v290 = mB
-		v292 = b3FloatW4{
-			X: v289.X + v290.X,
-			Y: v289.Y + v290.Y,
-			Z: v289.Z + v290.Z,
-			W: v289.W + v290.W,
-		}
-		goto _1076
-	_1076:
-		v489 = rtA2
-		v519 = iArtA2
-		v294 = v489.X
-		v296 = v519.X
-		v297 = b3FloatW4{
-			X: float32(v294.X * v296.X),
-			Y: float32(v294.Y * v296.Y),
-			Z: float32(v294.Z * v296.Z),
-			W: float32(v294.W * v296.W),
-		}
-		goto _1084
-	_1084:
-		v298 = v489.Y
-		v300 = v519.Y
-		v301 = b3FloatW4{
-			X: float32(v298.X * v300.X),
-			Y: float32(v298.Y * v300.Y),
-			Z: float32(v298.Z * v300.Z),
-			W: float32(v298.W * v300.W),
-		}
-		goto _1088
-	_1088:
-		v302 = v297
-		v304 = v301
-		v305 = b3FloatW4{
-			X: v302.X + v304.X,
-			Y: v302.Y + v304.Y,
-			Z: v302.Z + v304.Z,
-			W: v302.W + v304.W,
-		}
-		goto _1092
-	_1092:
-		v306 = v489.Z
-		v310 = v519.Z
-		v312 = b3FloatW4{
-			X: float32(v306.X * v310.X),
-			Y: float32(v306.Y * v310.Y),
-			Z: float32(v306.Z * v310.Z),
-			W: float32(v306.W * v310.W),
-		}
-		goto _1096
-	_1096:
-		v313 = v305
-		v318 = v312
-		v321 = b3FloatW4{
-			X: v313.X + v318.X,
-			Y: v313.Y + v318.Y,
-			Z: v313.Z + v318.Z,
-			W: v313.W + v318.W,
-		}
-		goto _1100
-	_1100:
-		v293 = v321
-		goto _1080
-	_1080:
-		v324 = v292
-		v327 = v293
-		v330 = b3FloatW4{
-			X: v324.X + v327.X,
-			Y: v324.Y + v327.Y,
-			Z: v324.Z + v327.Z,
-			W: v324.W + v327.W,
-		}
-		goto _1104
-	_1104:
-		v520 = rtB2
-		v521 = iBrtB2
-		v333 = v520.X
-		v334 = v521.X
-		v335 = b3FloatW4{
-			X: float32(v333.X * v334.X),
-			Y: float32(v333.Y * v334.Y),
-			Z: float32(v333.Z * v334.Z),
-			W: float32(v333.W * v334.W),
-		}
-		goto _1112
-	_1112:
-		v337 = v520.Y
-		v340 = v521.Y
-		v343 = b3FloatW4{
-			X: float32(v337.X * v340.X),
-			Y: float32(v337.Y * v340.Y),
-			Z: float32(v337.Z * v340.Z),
-			W: float32(v337.W * v340.W),
-		}
-		goto _1116
-	_1116:
-		v346 = v335
-		v348 = v343
-		v349 = b3FloatW4{
-			X: v346.X + v348.X,
-			Y: v346.Y + v348.Y,
-			Z: v346.Z + v348.Z,
-			W: v346.W + v348.W,
-		}
-		goto _1120
-	_1120:
-		v350 = v520.Z
-		v351 = v521.Z
-		v352 = b3FloatW4{
-			X: float32(v350.X * v351.X),
-			Y: float32(v350.Y * v351.Y),
-			Z: float32(v350.Z * v351.Z),
-			W: float32(v350.W * v351.W),
-		}
-		goto _1124
-	_1124:
-		v353 = v349
-		v354 = v352
-		v359 = b3FloatW4{
-			X: v353.X + v354.X,
-			Y: v353.Y + v354.Y,
-			Z: v353.Z + v354.Z,
-			W: v353.W + v354.W,
-		}
-		goto _1128
-	_1128:
-		v332 = v359
-		goto _1108
-	_1108:
-		v361 = v330
-		v362 = v332
-		v363 = b3FloatW4{
-			X: v361.X + v362.X,
-			Y: v361.Y + v362.Y,
-			Z: v361.Z + v362.Z,
-			W: v361.W + v362.W,
-		}
-		goto _1132
-	_1132:
-		kyy = v363
-		v535 = rtA1
-		v536 = iArtA2
-		v370 = v535.X
-		v371 = v536.X
-		v372 = b3FloatW4{
-			X: float32(v370.X * v371.X),
-			Y: float32(v370.Y * v371.Y),
-			Z: float32(v370.Z * v371.Z),
-			W: float32(v370.W * v371.W),
-		}
-		goto _1140
-	_1140:
-		v377 = v535.Y
-		v379 = v536.Y
-		v380 = b3FloatW4{
-			X: float32(v377.X * v379.X),
-			Y: float32(v377.Y * v379.Y),
-			Z: float32(v377.Z * v379.Z),
-			W: float32(v377.W * v379.W),
-		}
-		goto _1144
-	_1144:
-		v381 = v372
-		v386 = v380
-		v388 = b3FloatW4{
-			X: v381.X + v386.X,
-			Y: v381.Y + v386.Y,
-			Z: v381.Z + v386.Z,
-			W: v381.W + v386.W,
-		}
-		goto _1148
-	_1148:
-		v389 = v535.Z
-		v390 = v536.Z
-		v395 = b3FloatW4{
-			X: float32(v389.X * v390.X),
-			Y: float32(v389.Y * v390.Y),
-			Z: float32(v389.Z * v390.Z),
-			W: float32(v389.W * v390.W),
-		}
-		goto _1152
-	_1152:
-		v397 = v388
-		v398 = v395
-		v399 = b3FloatW4{
-			X: v397.X + v398.X,
-			Y: v397.Y + v398.Y,
-			Z: v397.Z + v398.Z,
-			W: v397.W + v398.W,
-		}
-		goto _1156
-	_1156:
-		v368 = v399
-		goto _1136
-	_1136:
-		v567 = rtB1
-		v568 = iBrtB2
-		v406 = v567.X
-		v407 = v568.X
-		v408 = b3FloatW4{
-			X: float32(v406.X * v407.X),
-			Y: float32(v406.Y * v407.Y),
-			Z: float32(v406.Z * v407.Z),
-			W: float32(v406.W * v407.W),
-		}
-		goto _1164
-	_1164:
-		v413 = v567.Y
-		v415 = v568.Y
-		v416 = b3FloatW4{
-			X: float32(v413.X * v415.X),
-			Y: float32(v413.Y * v415.Y),
-			Z: float32(v413.Z * v415.Z),
-			W: float32(v413.W * v415.W),
-		}
-		goto _1168
-	_1168:
-		v417 = v408
-		v422 = v416
-		v424 = b3FloatW4{
-			X: v417.X + v422.X,
-			Y: v417.Y + v422.Y,
-			Z: v417.Z + v422.Z,
-			W: v417.W + v422.W,
-		}
-		goto _1172
-	_1172:
-		v425 = v567.Z
-		v426 = v568.Z
-		v428 = b3FloatW4{
-			X: float32(v425.X * v426.X),
-			Y: float32(v425.Y * v426.Y),
-			Z: float32(v425.Z * v426.Z),
-			W: float32(v425.W * v426.W),
-		}
-		goto _1176
-	_1176:
-		v429 = v424
-		v430 = v428
-		v432 = b3FloatW4{
-			X: v429.X + v430.X,
-			Y: v429.Y + v430.Y,
-			Z: v429.Z + v430.Z,
-			W: v429.W + v430.W,
-		}
-		goto _1180
-	_1180:
-		v404 = v432
-		goto _1160
-	_1160:
-		v433 = v368
-		v438 = v404
-		v440 = b3FloatW4{
-			X: v433.X + v438.X,
-			Y: v433.Y + v438.Y,
-			Z: v433.Z + v438.Z,
-			W: v433.W + v438.W,
-		}
-		goto _1184
-	_1184:
-		kxy = v440
-		v441 = kxx
-		v446 = kyy
-		v448 = b3FloatW4{
-			X: float32(v441.X * v446.X),
-			Y: float32(v441.Y * v446.Y),
-			Z: float32(v441.Z * v446.Z),
-			W: float32(v441.W * v446.W),
-		}
-		goto _1188
-	_1188:
-		v449 = kxy
-		v450 = kxy
-		v455 = b3FloatW4{
-			X: float32(v449.X * v450.X),
-			Y: float32(v449.Y * v450.Y),
-			Z: float32(v449.Z * v450.Z),
-			W: float32(v449.W * v450.W),
-		}
-		goto _1192
-	_1192:
-		v458 = v448
-		v462 = v455
-		v463 = b3FloatW4{
-			X: v458.X - v462.X,
-			Y: v458.Y - v462.Y,
-			Z: v458.Z - v462.Z,
-			W: v458.W - v462.W,
-		}
-		goto _1196
-	_1196:
-		det = v463
-		v464 = det
-		if v464.X < float32FromFloat32(0) {
-			v3 = -v464.X
-		} else {
-			v3 = v464.X
-		}
-		if v464.Y < float32FromFloat32(0) {
-			v6 = -v464.Y
-		} else {
-			v6 = v464.Y
-		}
-		if v464.Z < float32FromFloat32(0) {
-			v9 = -v464.Z
-		} else {
-			v9 = v464.Z
-		}
-		if v464.W < float32FromFloat32(0) {
-			v12 = -v464.W
-		} else {
-			v12 = v464.W
-		}
-		v466 = b3FloatW4{
-			X: v3,
-			Y: v6,
-			Z: v9,
-			W: v12,
-		}
-		goto _1199
-	_1199:
-		v467 = v466
-		v468 = minDet
-		if v467.X > v468.X {
-			v15 = float32FromFloat32(1)
-		} else {
-			v15 = float32FromFloat32(0)
-		}
-		r3.X = v15
-		if v467.Y > v468.Y {
-			v56 = float32FromFloat32(1)
-		} else {
-			v56 = float32FromFloat32(0)
-		}
-		r3.Y = v56
-		if v467.Z > v468.Z {
-			v57 = float32FromFloat32(1)
-		} else {
-			v57 = float32FromFloat32(0)
-		}
-		r3.Z = v57
-		if v467.W > v468.W {
-			v58 = float32FromFloat32(1)
-		} else {
-			v58 = float32FromFloat32(0)
-		}
-		r3.W = v58
-		v470 = r3
-		goto _1211
-	_1211:
-		v471 = v470
-		v472 = frictionValid
-		if v471.X != float32FromFloat32(0) && v472.X != float32FromFloat32(0) {
-			v59 = float32FromFloat32(1)
-		} else {
-			v59 = float32FromFloat32(0)
-		}
-		r2.X = v59
-		if v471.Y != float32FromFloat32(0) && v472.Y != float32FromFloat32(0) {
-			v71 = float32FromFloat32(1)
-		} else {
-			v71 = float32FromFloat32(0)
-		}
-		r2.Y = v71
-		if v471.Z != float32FromFloat32(0) && v472.Z != float32FromFloat32(0) {
-			v72 = float32FromFloat32(1)
-		} else {
-			v72 = float32FromFloat32(0)
-		}
-		r2.Z = v72
-		if v471.W != float32FromFloat32(0) && v472.W != float32FromFloat32(0) {
-			v73 = float32FromFloat32(1)
-		} else {
-			v73 = float32FromFloat32(0)
-		}
-		r2.W = v73
-		v474 = r2
-		goto _1219
-	_1219:
-		valid1 = v474
-		v475 = oneW
-		v476 = det
-		v478 = b3FloatW4{
-			X: v475.X / v476.X,
-			Y: v475.Y / v476.Y,
-			Z: v475.Z / v476.Z,
-			W: v475.W / v476.W,
-		}
-		goto _1223
-	_1223:
-		v479 = zeroW
-		v480 = v478
-		v482 = valid1
-		if v482.X != float32FromFloat32(0) {
-			v74 = v480.X
-		} else {
-			v74 = v479.X
-		}
-		r4.X = v74
-		if v482.Y != float32FromFloat32(0) {
-			v79 = v480.Y
-		} else {
-			v79 = v479.Y
-		}
-		r4.Y = v79
-		if v482.Z != float32FromFloat32(0) {
-			v80 = v480.Z
-		} else {
-			v80 = v479.Z
-		}
-		r4.Z = v80
-		if v482.W != float32FromFloat32(0) {
-			v81 = v480.W
-		} else {
-			v81 = v479.W
-		}
-		r4.W = v81
-		v483 = r4
-		goto _1232
-	_1232:
-		invDet = v483
-		v484 = invDet
-		v487 = kyy
-		v491 = b3FloatW4{
-			X: float32(v484.X * v487.X),
-			Y: float32(v484.Y * v487.Y),
-			Z: float32(v484.Z * v487.Z),
-			W: float32(v484.W * v487.W),
-		}
-		goto _1236
-	_1236:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cxx = v491
-		v1 = invDet
-		v4 = kxy
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _1240
-	_1240:
-		v10 = v7
-		v13 = b3FloatW4{
-			X: -v10.X,
-			Y: -v10.Y,
-			Z: -v10.Z,
-			W: -v10.W,
-		}
-		goto _1243
-	_1243:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cxy = v13
-		v1 = invDet
-		v4 = kxx
-		v7 = b3FloatW4{
-			X: float32(v1.X * v4.X),
-			Y: float32(v1.Y * v4.Y),
-			Z: float32(v1.Z * v4.Z),
-			W: float32(v1.W * v4.W),
-		}
-		goto _1247
-	_1247:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cyy = v7
-		v121 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
-		v122 = b3MulMVW(tls, invIAB, *(*b3Vec3W)(unsafe.Add(nil, bp+96)))
-		v4 = v121.X
-		v7 = v122.X
-		v10 = b3FloatW4{
-			X: float32(v4.X * v7.X),
-			Y: float32(v4.Y * v7.Y),
-			Z: float32(v4.Z * v7.Z),
-			W: float32(v4.W * v7.W),
-		}
-		goto _1255
-	_1255:
-		v13 = v121.Y
-		v16 = v122.Y
-		v35 = b3FloatW4{
-			X: float32(v13.X * v16.X),
-			Y: float32(v13.Y * v16.Y),
-			Z: float32(v13.Z * v16.Z),
-			W: float32(v13.W * v16.W),
-		}
-		goto _1259
-	_1259:
-		v37 = v10
-		v39 = v35
-		v41 = b3FloatW4{
-			X: v37.X + v39.X,
-			Y: v37.Y + v39.Y,
-			Z: v37.Z + v39.Z,
-			W: v37.W + v39.W,
-		}
-		goto _1263
-	_1263:
-		v43 = v121.Z
-		v45 = v122.Z
-		v47 = b3FloatW4{
-			X: float32(v43.X * v45.X),
-			Y: float32(v43.Y * v45.Y),
-			Z: float32(v43.Z * v45.Z),
-			W: float32(v43.W * v45.W),
-		}
-		goto _1267
-	_1267:
-		v49 = v41
-		v51 = v47
-		v54 = b3FloatW4{
-			X: v49.X + v51.X,
-			Y: v49.Y + v51.Y,
-			Z: v49.Z + v51.Z,
-			W: v49.W + v51.W,
-		}
-		goto _1271
-	_1271:
-		v1 = v54
-		goto _1251
-	_1251:
-		kTwist = v1
-		v55 = oneW
-		v60 = kTwist
-		v69 = b3FloatW4{
-			X: v55.X / v60.X,
-			Y: v55.Y / v60.Y,
-			Z: v55.Z / v60.Z,
-			W: v55.W / v60.W,
-		}
-		goto _1275
-	_1275:
-		v70 = kTwist
-		v75 = zeroW
-		if v70.X > v75.X {
-			v3 = float32FromFloat32(1)
-		} else {
-			v3 = float32FromFloat32(0)
-		}
-		r3.X = v3
-		if v70.Y > v75.Y {
-			v6 = float32FromFloat32(1)
-		} else {
-			v6 = float32FromFloat32(0)
-		}
-		r3.Y = v6
-		if v70.Z > v75.Z {
-			v9 = float32FromFloat32(1)
-		} else {
-			v9 = float32FromFloat32(0)
-		}
-		r3.Z = v9
-		if v70.W > v75.W {
-			v12 = float32FromFloat32(1)
-		} else {
-			v12 = float32FromFloat32(0)
-		}
-		r3.W = v12
-		v77 = r3
-		goto _1283
-	_1283:
-		v78 = zeroW
-		v83 = v69
-		v86 = v77
-		if v86.X != float32FromFloat32(0) {
-			v15 = v83.X
-		} else {
-			v15 = v78.X
-		}
-		r4.X = v15
-		if v86.Y != float32FromFloat32(0) {
-			v56 = v83.Y
-		} else {
-			v56 = v78.Y
-		}
-		r4.Y = v56
-		if v86.Z != float32FromFloat32(0) {
-			v57 = v83.Z
-		} else {
-			v57 = v78.Z
-		}
-		r4.Z = v57
-		if v86.W != float32FromFloat32(0) {
-			v58 = v83.W
-		} else {
-			v58 = v78.W
-		}
-		r4.W = v58
-		v89 = r4
-		goto _1292
-	_1292:
-		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistMass = v89
-		goto _62
-	_62:
+		v48 = rtA1
+		v49 = iArtA1
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v48.X, v49.X), b3MulW4(tls, v48.Y, v49.Y)), b3MulW4(tls, v48.Z, v49.Z))
+		goto _116
+	_116:
+		v51 = rtB1
+		v53 = iBrtB1
+		v35 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v51.X, v53.X), b3MulW4(tls, v51.Y, v53.Y)), b3MulW4(tls, v51.Z, v53.Z))
+		goto _120
+	_120:
+		kxx = b3AddW4(tls, b3AddW4(tls, b3AddW4(tls, mA, mB), v31), v35)
+		v54 = rtA2
+		v56 = iArtA2
+		v39 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v54.X, v56.X), b3MulW4(tls, v54.Y, v56.Y)), b3MulW4(tls, v54.Z, v56.Z))
+		goto _124
+	_124:
+		v57 = rtB2
+		v58 = iBrtB2
+		v43 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v57.X, v58.X), b3MulW4(tls, v57.Y, v58.Y)), b3MulW4(tls, v57.Z, v58.Z))
+		goto _128
+	_128:
+		kyy = b3AddW4(tls, b3AddW4(tls, b3AddW4(tls, mA, mB), v39), v43)
+		v60 = rtA1
+		v61 = iArtA2
+		v47 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v60.X, v61.X), b3MulW4(tls, v60.Y, v61.Y)), b3MulW4(tls, v60.Z, v61.Z))
+		goto _132
+	_132:
+		v64 = rtB1
+		v65 = iBrtB2
+		v52 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v64.X, v65.X), b3MulW4(tls, v64.Y, v65.Y)), b3MulW4(tls, v64.Z, v65.Z))
+		goto _136
+	_136:
+		kxy = b3AddW4(tls, v47, v52)
+		det = b3SubW4(tls, b3MulW4(tls, kxx, kyy), b3MulW4(tls, kxy, kxy))
+		valid1 = b3AndW4(tls, b3GreaterThanW4(tls, b3AbsW4(tls, det), minDet), frictionValid)
+		invDet = b3BlendW4(tls, zeroW, b3DivW4(tls, oneW, det), valid1)
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cxx = b3MulW4(tls, invDet, kyy)
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cxy = b3NegW4(tls, b3MulW4(tls, invDet, kxy))
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass.Cyy = b3MulW4(tls, invDet, kxx)
+		v25 = *(*b3Vec3W)(unsafe.Add(nil, bp+96))
+		v26 = b3MulMVW(tls, invIAB, *(*b3Vec3W)(unsafe.Add(nil, bp+96)))
+		v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+		goto _140
+	_140:
+		kTwist = v31
+		(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistMass = b3BlendW4(tls, zeroW, b3DivW4(tls, oneW, kTwist), b3GreaterThanW4(tls, kTwist, zeroW))
+		goto _18
+	_18:
 		;
 		manifoldIndex = manifoldIndex + 1
 	}
-	v1 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).Restitution
-	v4 = zeroW
-	if v1.X > v4.X {
-		v3 = float32FromFloat32(1)
-	} else {
-		v3 = float32FromFloat32(0)
-	}
-	r3.X = v3
-	if v1.Y > v4.Y {
-		v6 = float32FromFloat32(1)
-	} else {
-		v6 = float32FromFloat32(0)
-	}
-	r3.Y = v6
-	if v1.Z > v4.Z {
-		v9 = float32FromFloat32(1)
-	} else {
-		v9 = float32FromFloat32(0)
-	}
-	r3.Z = v9
-	if v1.W > v4.W {
-		v12 = float32FromFloat32(1)
-	} else {
-		v12 = float32FromFloat32(0)
-	}
-	r3.W = v12
-	v7 = r3
-	goto _1300
-_1300:
-	v10 = v7
-	v52 = boolUint8(v10.X != float32FromFloat32(0) || v10.Y != float32FromFloat32(0) || v10.Z != float32FromFloat32(0) || v10.W != float32FromFloat32(0))
-	goto _1303
-_1303:
 	// Only sample contact point normal velocity if needed.
-	haveRestitution = v52
+	haveRestitution = b3AnyTrueW4(tls, b3GreaterThanW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution, zeroW))
 	if hitEventLanes != 0 || haveRestitution != 0 {
-		bA = b3GatherBodies(tls, states, c2)
-		bB = b3GatherBodies(tls, states, c2+16)
+		bA = b3GatherBodies(tls, states, c1)
+		bB = b3GatherBodies(tls, states, c1+16)
 		manifoldIndex1 = 0
 		for {
 			if !(manifoldIndex1 < manifoldCount) {
@@ -50882,411 +47080,86 @@ _1303:
 				if !(pointIndex2 < (*b3ContactManifoldWide)(unsafe.Pointer(cm1)).PointCount) {
 					break
 				}
-				cp2 = cm1 + 452 + uintptr(pointIndex2)*208
-				v121 = bA.W
-				v122 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp2)).AnchorAs
-				v13 = v121.Y
-				v16 = v122.Z
-				v35 = b3FloatW4{
-					X: float32(v13.X * v16.X),
-					Y: float32(v13.Y * v16.Y),
-					Z: float32(v13.Z * v16.Z),
-					W: float32(v13.W * v16.W),
+				cp2 = cm1 + 456 + uintptr(pointIndex2)*208
+				v25 = bA.W
+				v26 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp2)).AnchorAs
+				c.X = b3SubW4(tls, b3MulW4(tls, v25.Y, v26.Z), b3MulW4(tls, v25.Z, v26.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v25.Z, v26.X), b3MulW4(tls, v25.X, v26.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v25.X, v26.Y), b3MulW4(tls, v25.Y, v26.X))
+				v27 = c
+				goto _146
+			_146:
+				v29 = bA.V
+				v30 = v27
+				v33 = b3Vec3W4{
+					X: b3AddW4(tls, v29.X, v30.X),
+					Y: b3AddW4(tls, v29.Y, v30.Y),
+					Z: b3AddW4(tls, v29.Z, v30.Z),
 				}
-				goto _1311
-			_1311:
-				v37 = v121.Z
-				v39 = v122.Y
-				v41 = b3FloatW4{
-					X: float32(v37.X * v39.X),
-					Y: float32(v37.Y * v39.Y),
-					Z: float32(v37.Z * v39.Z),
-					W: float32(v37.W * v39.W),
+				goto _150
+			_150:
+				vrA = v33
+				v34 = bB.W
+				v37 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp2)).AnchorBs
+				c.X = b3SubW4(tls, b3MulW4(tls, v34.Y, v37.Z), b3MulW4(tls, v34.Z, v37.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v34.Z, v37.X), b3MulW4(tls, v34.X, v37.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v34.X, v37.Y), b3MulW4(tls, v34.Y, v37.X))
+				v38 = c
+				goto _154
+			_154:
+				v41 = bB.V
+				v42 = v38
+				v46 = b3Vec3W4{
+					X: b3AddW4(tls, v41.X, v42.X),
+					Y: b3AddW4(tls, v41.Y, v42.Y),
+					Z: b3AddW4(tls, v41.Z, v42.Z),
 				}
-				goto _1315
-			_1315:
-				v43 = v35
-				v45 = v41
-				v47 = b3FloatW4{
-					X: v43.X - v45.X,
-					Y: v43.Y - v45.Y,
-					Z: v43.Z - v45.Z,
-					W: v43.W - v45.W,
+				goto _158
+			_158:
+				vrB = v46
+				v48 = vrB
+				v49 = vrA
+				v51 = b3Vec3W4{
+					X: b3SubW4(tls, v48.X, v49.X),
+					Y: b3SubW4(tls, v48.Y, v49.Y),
+					Z: b3SubW4(tls, v48.Z, v49.Z),
 				}
-				goto _1319
-			_1319:
-				c1.X = v47
-				v49 = v121.Z
-				v51 = v122.X
-				v54 = b3FloatW4{
-					X: float32(v49.X * v51.X),
-					Y: float32(v49.Y * v51.Y),
-					Z: float32(v49.Z * v51.Z),
-					W: float32(v49.W * v51.W),
-				}
-				goto _1323
-			_1323:
-				v55 = v121.X
-				v60 = v122.Z
-				v69 = b3FloatW4{
-					X: float32(v55.X * v60.X),
-					Y: float32(v55.Y * v60.Y),
-					Z: float32(v55.Z * v60.Z),
-					W: float32(v55.W * v60.W),
-				}
-				goto _1327
-			_1327:
-				v70 = v54
-				v75 = v69
-				v77 = b3FloatW4{
-					X: v70.X - v75.X,
-					Y: v70.Y - v75.Y,
-					Z: v70.Z - v75.Z,
-					W: v70.W - v75.W,
-				}
-				goto _1331
-			_1331:
-				c1.Y = v77
-				v78 = v121.X
-				v83 = v122.Y
-				v86 = b3FloatW4{
-					X: float32(v78.X * v83.X),
-					Y: float32(v78.Y * v83.Y),
-					Z: float32(v78.Z * v83.Z),
-					W: float32(v78.W * v83.W),
-				}
-				goto _1335
-			_1335:
-				v89 = v121.Y
-				v92 = v122.X
-				v95 = b3FloatW4{
-					X: float32(v89.X * v92.X),
-					Y: float32(v89.Y * v92.Y),
-					Z: float32(v89.Z * v92.Z),
-					W: float32(v89.W * v92.W),
-				}
-				goto _1339
-			_1339:
-				v97 = v86
-				v98 = v95
-				v99 = b3FloatW4{
-					X: v97.X - v98.X,
-					Y: v97.Y - v98.Y,
-					Z: v97.Z - v98.Z,
-					W: v97.W - v98.W,
-				}
-				goto _1343
-			_1343:
-				c1.Z = v99
-				v159 = c1
-				goto _1345
-			_1345:
-				v161 = bA.V
-				v162 = v159
-				v100 = v161.X
-				v102 = v162.X
-				v105 = b3FloatW4{
-					X: v100.X + v102.X,
-					Y: v100.Y + v102.Y,
-					Z: v100.Z + v102.Z,
-					W: v100.W + v102.W,
-				}
-				goto _1353
-			_1353:
-				v108 = v161.Y
-				v111 = v162.Y
-				v113 = b3FloatW4{
-					X: v108.X + v111.X,
-					Y: v108.Y + v111.Y,
-					Z: v108.Z + v111.Z,
-					W: v108.W + v111.W,
-				}
-				goto _1357
-			_1357:
-				v114 = v161.Z
-				v115 = v162.Z
-				v116 = b3FloatW4{
-					X: v114.X + v115.X,
-					Y: v114.Y + v115.Y,
-					Z: v114.Z + v115.Z,
-					W: v114.W + v115.W,
-				}
-				goto _1361
-			_1361:
-				v185 = b3Vec3W4{
-					X: v105,
-					Y: v113,
-					Z: v116,
-				}
-				goto _1349
-			_1349:
-				vrA = v185
-				v186 = bB.W
-				v252 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp2)).AnchorBs
-				v117 = v186.Y
-				v119 = v252.Z
-				v123 = b3FloatW4{
-					X: float32(v117.X * v119.X),
-					Y: float32(v117.Y * v119.Y),
-					Z: float32(v117.Z * v119.Z),
-					W: float32(v117.W * v119.W),
-				}
-				goto _1367
-			_1367:
-				v124 = v186.Z
-				v125 = v252.Y
-				v127 = b3FloatW4{
-					X: float32(v124.X * v125.X),
-					Y: float32(v124.Y * v125.Y),
-					Z: float32(v124.Z * v125.Z),
-					W: float32(v124.W * v125.W),
-				}
-				goto _1371
-			_1371:
-				v128 = v123
-				v129 = v127
-				v131 = b3FloatW4{
-					X: v128.X - v129.X,
-					Y: v128.Y - v129.Y,
-					Z: v128.Z - v129.Z,
-					W: v128.W - v129.W,
-				}
-				goto _1375
-			_1375:
-				c1.X = v131
-				v132 = v186.Z
-				v133 = v252.X
-				v135 = b3FloatW4{
-					X: float32(v132.X * v133.X),
-					Y: float32(v132.Y * v133.Y),
-					Z: float32(v132.Z * v133.Z),
-					W: float32(v132.W * v133.W),
-				}
-				goto _1379
-			_1379:
-				v136 = v186.X
-				v137 = v252.Z
-				v139 = b3FloatW4{
-					X: float32(v136.X * v137.X),
-					Y: float32(v136.Y * v137.Y),
-					Z: float32(v136.Z * v137.Z),
-					W: float32(v136.W * v137.W),
-				}
-				goto _1383
-			_1383:
-				v140 = v135
-				v141 = v139
-				v143 = b3FloatW4{
-					X: v140.X - v141.X,
-					Y: v140.Y - v141.Y,
-					Z: v140.Z - v141.Z,
-					W: v140.W - v141.W,
-				}
-				goto _1387
-			_1387:
-				c1.Y = v143
-				v144 = v186.X
-				v145 = v252.Y
-				v147 = b3FloatW4{
-					X: float32(v144.X * v145.X),
-					Y: float32(v144.Y * v145.Y),
-					Z: float32(v144.Z * v145.Z),
-					W: float32(v144.W * v145.W),
-				}
-				goto _1391
-			_1391:
-				v148 = v186.Y
-				v149 = v252.X
-				v151 = b3FloatW4{
-					X: float32(v148.X * v149.X),
-					Y: float32(v148.Y * v149.Y),
-					Z: float32(v148.Z * v149.Z),
-					W: float32(v148.W * v149.W),
-				}
-				goto _1395
-			_1395:
-				v152 = v147
-				v153 = v151
-				v155 = b3FloatW4{
-					X: v152.X - v153.X,
-					Y: v152.Y - v153.Y,
-					Z: v152.Z - v153.Z,
-					W: v152.W - v153.W,
-				}
-				goto _1399
-			_1399:
-				c1.Z = v155
-				v253 = c1
-				goto _1401
-			_1401:
-				v280 = bB.V
-				v281 = v253
-				v156 = v280.X
-				v157 = v281.X
-				v163 = b3FloatW4{
-					X: v156.X + v157.X,
-					Y: v156.Y + v157.Y,
-					Z: v156.Z + v157.Z,
-					W: v156.W + v157.W,
-				}
-				goto _1409
-			_1409:
-				v165 = v280.Y
-				v166 = v281.Y
-				v167 = b3FloatW4{
-					X: v165.X + v166.X,
-					Y: v165.Y + v166.Y,
-					Z: v165.Z + v166.Z,
-					W: v165.W + v166.W,
-				}
-				goto _1413
-			_1413:
-				v169 = v280.Z
-				v170 = v281.Z
-				v171 = b3FloatW4{
-					X: v169.X + v170.X,
-					Y: v169.Y + v170.Y,
-					Z: v169.Z + v170.Z,
-					W: v169.W + v170.W,
-				}
-				goto _1417
-			_1417:
-				v457 = b3Vec3W4{
-					X: v163,
-					Y: v167,
-					Z: v171,
-				}
-				goto _1405
-			_1405:
-				vrB = v457
-				v459 = vrB
-				v460 = vrA
-				v173 = v459.X
-				v174 = v460.X
-				v175 = b3FloatW4{
-					X: v173.X - v174.X,
-					Y: v173.Y - v174.Y,
-					Z: v173.Z - v174.Z,
-					W: v173.W - v174.W,
-				}
-				goto _1425
-			_1425:
-				v177 = v459.Y
-				v178 = v460.Y
-				v179 = b3FloatW4{
-					X: v177.X - v178.X,
-					Y: v177.Y - v178.Y,
-					Z: v177.Z - v178.Z,
-					W: v177.W - v178.W,
-				}
-				goto _1429
-			_1429:
-				v181 = v459.Z
-				v182 = v460.Z
-				v183 = b3FloatW4{
-					X: v181.X - v182.X,
-					Y: v181.Y - v182.Y,
-					Z: v181.Z - v182.Z,
-					W: v181.W - v182.W,
-				}
-				goto _1433
-			_1433:
-				v486 = b3Vec3W4{
-					X: v175,
-					Y: v179,
-					Z: v183,
-				}
-				goto _1421
-			_1421:
-				v488 = (*b3ContactManifoldWide)(unsafe.Pointer(cm1)).Normal
-				v489 = v486
-				v189 = v488.X
-				v190 = v489.X
-				v191 = b3FloatW4{
-					X: float32(v189.X * v190.X),
-					Y: float32(v189.Y * v190.Y),
-					Z: float32(v189.Z * v190.Z),
-					W: float32(v189.W * v190.W),
-				}
-				goto _1441
-			_1441:
-				v193 = v488.Y
-				v194 = v489.Y
-				v195 = b3FloatW4{
-					X: float32(v193.X * v194.X),
-					Y: float32(v193.Y * v194.Y),
-					Z: float32(v193.Z * v194.Z),
-					W: float32(v193.W * v194.W),
-				}
-				goto _1445
-			_1445:
-				v197 = v191
-				v198 = v195
-				v199 = b3FloatW4{
-					X: v197.X + v198.X,
-					Y: v197.Y + v198.Y,
-					Z: v197.Z + v198.Z,
-					W: v197.W + v198.W,
-				}
-				goto _1449
-			_1449:
-				v201 = v488.Z
-				v202 = v489.Z
-				v203 = b3FloatW4{
-					X: float32(v201.X * v202.X),
-					Y: float32(v201.Y * v202.Y),
-					Z: float32(v201.Z * v202.Z),
-					W: float32(v201.W * v202.W),
-				}
-				goto _1453
-			_1453:
-				v205 = v199
-				v206 = v203
-				v207 = b3FloatW4{
-					X: v205.X + v206.X,
-					Y: v205.Y + v206.Y,
-					Z: v205.Z + v206.Z,
-					W: v205.W + v206.W,
-				}
-				goto _1457
-			_1457:
-				v187 = v207
-				goto _1437
-			_1437:
-				vn = v187
+				goto _162
+			_162:
+				v53 = (*b3ContactManifoldWide)(unsafe.Pointer(cm1)).Normal
+				v54 = v51
+				v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v53.X, v54.X), b3MulW4(tls, v53.Y, v54.Y)), b3MulW4(tls, v53.Z, v54.Z))
+				goto _166
+			_166:
+				vn = v31
 				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp2)).RelativeVelocities = vn
 				if hitEventLanes != 0 {
-					v27 = bp + 384
-					v1 = vn
-					*(*float32)(unsafe.Add(nil, v27)) = v1.X
-					*(*float32)(unsafe.Add(nil, v27+1*4)) = v1.Y
-					*(*float32)(unsafe.Add(nil, v27+2*4)) = v1.Z
-					*(*float32)(unsafe.Add(nil, v27+3*4)) = v1.W
+					b3StoreW4(tls, bp+384, vn)
 					lane2 = 0
 					for {
 						if !(lane2 < int32(_B3_SIMD_WIDTH)) {
 							break
 						}
 						if hitEventLanes&(int32(1)<<lane2) == 0 || manifoldIndex1 >= manifoldCounts[lane2] {
-							goto _1460
+							goto _167
 						}
-						manifold1 = (*b3Contact)(unsafe.Pointer(*(*uintptr)(unsafe.Add(nil, c2+32+uintptr(lane2)*8)))).Manifolds + uintptr(manifoldIndex1)*268
+						manifold1 = (*b3Contact)(unsafe.Pointer(*(*uintptr)(unsafe.Add(nil, c1+32+uintptr(lane2)*8)))).Manifolds + uintptr(manifoldIndex1)*268
 						if pointIndex2 < (*Manifold)(unsafe.Pointer(manifold1)).PointCount {
 							(*(*ManifoldPoint)(unsafe.Add(nil, manifold1+uintptr(pointIndex2)*56))).NormalVelocity = (*(*[4]float32)(unsafe.Add(nil, bp+384)))[lane2]
 						}
-						goto _1460
-					_1460:
+						goto _167
+					_167:
 						;
 						lane2 = lane2 + 1
 					}
 				}
-				goto _1305
-			_1305:
+				goto _142
+			_142:
 				;
 				pointIndex2 = pointIndex2 + 1
 			}
-			goto _1304
-		_1304:
+			goto _141
+		_141:
 			;
 			manifoldIndex1 = manifoldIndex1 + 1
 		}
@@ -51299,32 +47172,19 @@ func b3PrepareContacts_ConvexW4(tls *_Stack, block b3SolverBlock, context uintpt
 	defer tls.Free(32)
 	var anyRestitution, haveRestitution uint8
 	var c, contactIds, spans, wideBase, world uintptr
-	var colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIndex, endWideIndex, lane, localWideIndex, wideIndex, v11, v7, v8, v9 int32
+	var colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIndex, endWideIndex, lane, localWideIndex, wideIndex, v2, v3, v4, v6 int32
 	var warmStartScale b3FloatW
-	var v1, v3, v5 b3FloatW4
-	var v14 bool
-	var v2 float32
+	var v1 b3FloatW4
+	var v9 bool
 	var _ /* contacts at bp+0 */ [4]uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = anyRestitution, c, colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIds, contactIndex, endWideIndex, haveRestitution, lane, localWideIndex, spans, warmStartScale, wideBase, wideIndex, world, v1, v11, v14, v2, v3, v5, v7, v8, v9
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = anyRestitution, c, colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIds, contactIndex, endWideIndex, haveRestitution, lane, localWideIndex, spans, warmStartScale, wideBase, wideIndex, world, v1, v2, v3, v4, v6, v9
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	spans = (*b3StepContext)(unsafe.Pointer(context)).WidePrepareSpans
 	wideBase = (*b3StepContext)(unsafe.Pointer(context)).WideConstraints
 	if (*b3World)(unsafe.Pointer(world)).EnableWarmStarting != 0 {
-		v2 = float32FromFloat32(1)
-		v3 = b3FloatW4{
-			X: v2,
-			Y: v2,
-			Z: v2,
-			W: v2,
-		}
-		goto _4
-	_4:
-		v1 = v3
+		v1 = b3SplatW4(tls, float32FromFloat32(1))
 	} else {
-		v5 = b3FloatW4{}
-		goto _6
-	_6:
-		v1 = v5
+		v1 = b3ZeroW4(tls)
 	}
 	warmStartScale = v1
 	anyRestitution = boolUint8(false1 != 0)
@@ -51338,17 +47198,17 @@ func b3PrepareContacts_ConvexW4(tls *_Stack, block b3SolverBlock, context uintpt
 	// Loop over block
 	for wideIndex < endWideIndex {
 		colorWideStart = (*(*b3WidePrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*16))).Start
-		v7 = (*(*b3WidePrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex+int32(1))*16))).Start
-		v8 = endWideIndex
-		if v7 < v8 {
-			v11 = v7
+		v2 = (*(*b3WidePrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex+int32(1))*16))).Start
+		v3 = endWideIndex
+		if v2 < v3 {
+			v6 = v2
 		} else {
-			v11 = v8
+			v6 = v3
 		}
-		v9 = v11
-		goto _10
-	_10:
-		colorWideEndIndex = v9
+		v4 = v6
+		goto _5
+	_5:
+		colorWideEndIndex = v4
 		colorContactCount = (*(*b3WidePrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*16))).Count
 		contactIds = (*(*b3WidePrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*16))).Contacts
 		// Loop over color
@@ -51365,27 +47225,27 @@ func b3PrepareContacts_ConvexW4(tls *_Stack, block b3SolverBlock, context uintpt
 				}
 				contactIndex = int32(_B3_SIMD_WIDTH)*localWideIndex + lane
 				if contactIndex < colorContactCount {
-					if v14 = !!(0 <= *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) && *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v14 {
-						b3InternalAssert(tls, __ccgo_ts+36940, __ccgo_ts+37034, int32FromInt32(928))
+					if v9 = !!(0 <= *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) && *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v9 {
+						b3InternalAssert(tls, __ccgo_ts+36940, __ccgo_ts+37034, int32FromInt32(933))
 					}
-					_ = v14 || bool(int32FromInt32(0) != 0)
+					_ = v9 || bool(int32FromInt32(0) != 0)
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(*(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)))*216
-					if v14 = !!((*b3Contact)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane])).ManifoldCount == int32FromInt32(1)); !v14 {
-						b3InternalAssert(tls, __ccgo_ts+37073, __ccgo_ts+37034, int32FromInt32(929))
+					if v9 = !!((*b3Contact)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane])).ManifoldCount == int32FromInt32(1)); !v9 {
+						b3InternalAssert(tls, __ccgo_ts+37073, __ccgo_ts+37034, int32FromInt32(934))
 					}
-					_ = v14 || bool(int32FromInt32(0) != 0)
+					_ = v9 || bool(int32FromInt32(0) != 0)
 				} else {
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = uintptrFromInt32(0)
 				}
-				goto _13
-			_13:
+				goto _8
+			_8:
 				;
 				lane = lane + 1
 			}
 			haveRestitution = b3PrepareConstraintW(tls, c, bp, int32(1), context, warmStartScale)
 			anyRestitution = boolUint8(anyRestitution != 0 || haveRestitution != 0)
-			goto _12
-		_12:
+			goto _7
+		_7:
 			;
 			wideIndex = wideIndex + 1
 		}
@@ -51402,33 +47262,20 @@ func b3PrepareContacts_MeshWideW4(tls *_Stack, block b3SolverBlock, context uint
 	defer tls.Free(32)
 	var anyRestitution, haveRestitution uint8
 	var c, contact, manifoldStarts, order, spans, spec, specs, wideBase, world uintptr
-	var colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIndex, endWideIndex, lane, localWideIndex, manifoldCount, wideIndex, v11, v7, v8, v9 int32
+	var colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contactIndex, endWideIndex, lane, localWideIndex, manifoldCount, wideIndex, v2, v3, v4, v6 int32
 	var warmStartScale b3FloatW
-	var v1, v3, v5 b3FloatW4
-	var v14, v15 bool
-	var v2 float32
+	var v1 b3FloatW4
+	var v10, v9 bool
 	var _ /* contacts at bp+0 */ [4]uintptr
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = anyRestitution, c, colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contact, contactIndex, endWideIndex, haveRestitution, lane, localWideIndex, manifoldCount, manifoldStarts, order, spans, spec, specs, warmStartScale, wideBase, wideIndex, world, v1, v11, v14, v15, v2, v3, v5, v7, v8, v9
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = anyRestitution, c, colorContactCount, colorIndex, colorWideEndIndex, colorWideStart, contact, contactIndex, endWideIndex, haveRestitution, lane, localWideIndex, manifoldCount, manifoldStarts, order, spans, spec, specs, warmStartScale, wideBase, wideIndex, world, v1, v10, v2, v3, v4, v6, v9
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	spans = (*b3StepContext)(unsafe.Pointer(context)).MeshPrepareSpans
 	wideBase = (*b3StepContext)(unsafe.Pointer(context)).WideMeshConstraints
 	manifoldStarts = (*b3StepContext)(unsafe.Pointer(context)).WideMeshManifoldStarts
 	if (*b3World)(unsafe.Pointer(world)).EnableWarmStarting != 0 {
-		v2 = float32FromFloat32(1)
-		v3 = b3FloatW4{
-			X: v2,
-			Y: v2,
-			Z: v2,
-			W: v2,
-		}
-		goto _4
-	_4:
-		v1 = v3
+		v1 = b3SplatW4(tls, float32FromFloat32(1))
 	} else {
-		v5 = b3FloatW4{}
-		goto _6
-	_6:
-		v1 = v5
+		v1 = b3ZeroW4(tls)
 	}
 	warmStartScale = v1
 	anyRestitution = boolUint8(false1 != 0)
@@ -51440,17 +47287,17 @@ func b3PrepareContacts_MeshWideW4(tls *_Stack, block b3SolverBlock, context uint
 	}
 	for wideIndex < endWideIndex {
 		colorWideStart = (*(*b3MeshPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*24))).Start
-		v7 = (*(*b3MeshPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex+int32(1))*24))).Start
-		v8 = endWideIndex
-		if v7 < v8 {
-			v11 = v7
+		v2 = (*(*b3MeshPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex+int32(1))*24))).Start
+		v3 = endWideIndex
+		if v2 < v3 {
+			v6 = v2
 		} else {
-			v11 = v8
+			v6 = v3
 		}
-		v9 = v11
-		goto _10
-	_10:
-		colorWideEndIndex = v9
+		v4 = v6
+		goto _5
+	_5:
+		colorWideEndIndex = v4
 		colorContactCount = (*(*b3MeshPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*24))).Count
 		specs = (*(*b3MeshPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*24))).Contacts
 		// This order is used to group contacts with similar manifold counts to keep the lanes full.
@@ -51469,33 +47316,33 @@ func b3PrepareContacts_MeshWideW4(tls *_Stack, block b3SolverBlock, context uint
 				contactIndex = int32(_B3_SIMD_WIDTH)*localWideIndex + lane
 				if contactIndex < colorContactCount {
 					spec = specs + uintptr(*(*int32)(unsafe.Add(nil, order+uintptr(contactIndex)*4)))*12
-					if v14 = !!(0 <= (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId && (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v14 {
-						b3InternalAssert(tls, __ccgo_ts+37108, __ccgo_ts+37034, int32FromInt32(995))
+					if v9 = !!(0 <= (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId && (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v9 {
+						b3InternalAssert(tls, __ccgo_ts+37108, __ccgo_ts+37034, int32FromInt32(1000))
 					}
-					_ = v14 || bool(int32FromInt32(0) != 0)
+					_ = v9 || bool(int32FromInt32(0) != 0)
 					contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr((*b3ContactSpec)(unsafe.Pointer(spec)).ContactId)*216
-					if v15 = !!((*b3Contact)(unsafe.Pointer(contact)).ContactId == (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId); !v15 {
-						b3InternalAssert(tls, __ccgo_ts+37184, __ccgo_ts+37034, int32FromInt32(996))
+					if v10 = !!((*b3Contact)(unsafe.Pointer(contact)).ContactId == (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId); !v10 {
+						b3InternalAssert(tls, __ccgo_ts+37184, __ccgo_ts+37034, int32FromInt32(1001))
 					}
-					_ = v15 || bool(int32FromInt32(0) != 0)
-					if v14 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == int32FromUint16((*b3ContactSpec)(unsafe.Pointer(spec)).ManifoldCount)); !v14 {
-						b3InternalAssert(tls, __ccgo_ts+37222, __ccgo_ts+37034, int32FromInt32(997))
+					_ = v10 || bool(int32FromInt32(0) != 0)
+					if v9 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == int32FromUint16((*b3ContactSpec)(unsafe.Pointer(spec)).ManifoldCount)); !v9 {
+						b3InternalAssert(tls, __ccgo_ts+37222, __ccgo_ts+37034, int32FromInt32(1002))
 					}
-					_ = v14 || bool(int32FromInt32(0) != 0)
+					_ = v9 || bool(int32FromInt32(0) != 0)
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = contact
 				} else {
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = uintptrFromInt32(0)
 				}
-				goto _13
-			_13:
+				goto _8
+			_8:
 				;
 				lane = lane + 1
 			}
 			manifoldCount = *(*int32)(unsafe.Add(nil, manifoldStarts+uintptr(wideIndex+int32(1))*4)) - *(*int32)(unsafe.Add(nil, manifoldStarts+uintptr(wideIndex)*4))
 			haveRestitution = b3PrepareConstraintW(tls, c, bp, manifoldCount, context, warmStartScale)
 			anyRestitution = boolUint8(anyRestitution != 0 || haveRestitution != 0)
-			goto _12
-		_12:
+			goto _7
+		_7:
 			;
 			wideIndex = wideIndex + 1
 		}
@@ -51510,20 +47357,17 @@ func b3WarmStartContactsW(tls *_Stack, block b3SolverBlock, context uintptr, bas
 	bp := tls.Alloc(416)
 	defer tls.Free(416)
 	var angularA, angularB, angularImpulseA, angularImpulseB, frictionImpulse, linear, linearImpulse, momentA, momentB, normal, twistImpulse b3Vec3W
-	var anyRolling, v6 uint8
-	var c, v117, v119, v120, v14, v147, v148, v16, v162, v163, v17, v200, v202, v203, v240, v242, v243, v244, v258, v259, v260, v274, v275, v312, v314, v43, v45, v46, v73, v74, v88, v90, v91 b3Vec3W4
+	var anyRolling uint8
+	var c, v10, v12, v13, v16, v17, v19, v21, v22, v24, v26, v27, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v7, v8 b3Vec3W4
 	var c1, cm, cp, manifolds, states uintptr
-	var i, manifoldCount, manifoldIndex, pointIndex, v4 int32
+	var i, manifoldCount, manifoldIndex, pointIndex, v2 int32
 	var normalImpulse, totalNormalImpulse, zeroW b3FloatW
-	var v1, v10, v101, v102, v103, v105, v106, v107, v109, v11, v110, v111, v113, v114, v115, v118, v12, v122, v123, v124, v126, v127, v128, v130, v131, v132, v134, v135, v136, v138, v139, v140, v142, v143, v144, v146, v15, v150, v151, v152, v154, v155, v156, v158, v159, v160, v164, v165, v166, v168, v169, v170, v172, v173, v174, v176, v177, v178, v180, v181, v182, v184, v185, v186, v188, v189, v19, v190, v192, v193, v194, v196, v197, v198, v20, v204, v205, v206, v208, v209, v21, v210, v212, v213, v214, v216, v217, v218, v220, v221, v222, v224, v225, v226, v228, v229, v23, v230, v232, v233, v234, v236, v237, v238, v24, v246, v247, v248, v25, v250, v251, v252, v254, v255, v256, v262, v263, v264, v266, v267, v268, v27, v270, v271, v272, v276, v277, v278, v28, v280, v281, v282, v284, v285, v286, v29, v31, v32, v33, v35, v36, v37, v39, v40, v41, v44, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v60, v61, v62, v64, v65, v66, v68, v69, v70, v72, v76, v77, v78, v80, v81, v82, v84, v85, v86, v89, v93, v94, v95, v97, v98, v99 b3FloatW4
+	var v11, v6 b3FloatW4
 	var _ /* bA at bp+0 */ b3BodyStateW
 	var _ /* bB at bp+208 */ b3BodyStateW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularA, angularB, angularImpulseA, angularImpulseB, anyRolling, c, c1, cm, cp, frictionImpulse, i, linear, linearImpulse, manifoldCount, manifoldIndex, manifolds, momentA, momentB, normal, normalImpulse, pointIndex, states, totalNormalImpulse, twistImpulse, zeroW, v1, v10, v101, v102, v103, v105, v106, v107, v109, v11, v110, v111, v113, v114, v115, v117, v118, v119, v12, v120, v122, v123, v124, v126, v127, v128, v130, v131, v132, v134, v135, v136, v138, v139, v14, v140, v142, v143, v144, v146, v147, v148, v15, v150, v151, v152, v154, v155, v156, v158, v159, v16, v160, v162, v163, v164, v165, v166, v168, v169, v17, v170, v172, v173, v174, v176, v177, v178, v180, v181, v182, v184, v185, v186, v188, v189, v19, v190, v192, v193, v194, v196, v197, v198, v20, v200, v202, v203, v204, v205, v206, v208, v209, v21, v210, v212, v213, v214, v216, v217, v218, v220, v221, v222, v224, v225, v226, v228, v229, v23, v230, v232, v233, v234, v236, v237, v238, v24, v240, v242, v243, v244, v246, v247, v248, v25, v250, v251, v252, v254, v255, v256, v258, v259, v260, v262, v263, v264, v266, v267, v268, v27, v270, v271, v272, v274, v275, v276, v277, v278, v28, v280, v281, v282, v284, v285, v286, v29, v31, v312, v314, v32, v33, v35, v36, v37, v39, v4, v40, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v64, v65, v66, v68, v69, v70, v72, v73, v74, v76, v77, v78, v80, v81, v82, v84, v85, v86, v88, v89, v90, v91, v93, v94, v95, v97, v98, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularA, angularB, angularImpulseA, angularImpulseB, anyRolling, c, c1, cm, cp, frictionImpulse, i, linear, linearImpulse, manifoldCount, manifoldIndex, manifolds, momentA, momentB, normal, normalImpulse, pointIndex, states, totalNormalImpulse, twistImpulse, zeroW, v10, v11, v12, v13, v16, v17, v19, v2, v21, v22, v24, v26, v27, v30, v31, v33, v34, v35, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v53, v6, v7, v8
 	states = (*b3StepContext)(unsafe.Pointer(context)).States
-	v1 = b3FloatW4{}
-	goto _2
-_2:
-	zeroW = v1
+	zeroW = b3ZeroW4(tls)
 	c1 = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
 	i = 0
 	for {
@@ -51531,16 +47375,12 @@ _2:
 			break
 		}
 		if fixedManifoldCount > 0 {
-			v4 = fixedManifoldCount
+			v2 = fixedManifoldCount
 		} else {
-			v4 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
+			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
 		}
-		manifoldCount = v4
-		v5 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance
-		v6 = boolUint8(v5.X == float32FromFloat32(0) && v5.Y == float32FromFloat32(0) && v5.Z == float32FromFloat32(0) && v5.W == float32FromFloat32(0))
-		goto _7
-	_7:
-		anyRolling = boolUint8(int32FromUint8(v6) == false1)
+		manifoldCount = v2
+		anyRolling = boolUint8(int32FromUint8(b3AllZeroW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance)) == false1)
 		linearImpulse = b3Vec3W{
 			X: zeroW,
 			Y: zeroW,
@@ -51579,1297 +47419,237 @@ _2:
 				if !(pointIndex < (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount) {
 					break
 				}
-				cp = cm + 452 + uintptr(pointIndex)*208
+				cp = cm + 456 + uintptr(pointIndex)*208
 				normalImpulse = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v10 = totalNormalImpulse
-				v11 = normalImpulse
-				v12 = b3FloatW4{
-					X: v10.X + v11.X,
-					Y: v10.Y + v11.Y,
-					Z: v10.Z + v11.Z,
-					W: v10.W + v11.W,
+				totalNormalImpulse = b3AddW4(tls, totalNormalImpulse, normalImpulse)
+				v5 = momentA
+				v6 = normalImpulse
+				v7 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs
+				v8 = b3Vec3W4{
+					X: b3AddW4(tls, v5.X, b3MulW4(tls, v6, v7.X)),
+					Y: b3AddW4(tls, v5.Y, b3MulW4(tls, v6, v7.Y)),
+					Z: b3AddW4(tls, v5.Z, b3MulW4(tls, v6, v7.Z)),
 				}
-				goto _13
-			_13:
-				totalNormalImpulse = v12
-				v14 = momentA
-				v1 = normalImpulse
-				v16 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs
-				v5 = v1
-				v10 = v16.X
-				v11 = b3FloatW4{
-					X: float32(v5.X * v10.X),
-					Y: float32(v5.Y * v10.Y),
-					Z: float32(v5.Z * v10.Z),
-					W: float32(v5.W * v10.W),
-				}
-				goto _22
-			_22:
-				v12 = v14.X
-				v15 = v11
-				v19 = b3FloatW4{
-					X: v12.X + v15.X,
-					Y: v12.Y + v15.Y,
-					Z: v12.Z + v15.Z,
-					W: v12.W + v15.W,
-				}
-				goto _26
-			_26:
-				v20 = v1
-				v21 = v16.Y
-				v23 = b3FloatW4{
-					X: float32(v20.X * v21.X),
-					Y: float32(v20.Y * v21.Y),
-					Z: float32(v20.Z * v21.Z),
-					W: float32(v20.W * v21.W),
-				}
-				goto _30
-			_30:
-				v24 = v14.Y
-				v25 = v23
-				v27 = b3FloatW4{
-					X: v24.X + v25.X,
-					Y: v24.Y + v25.Y,
-					Z: v24.Z + v25.Z,
-					W: v24.W + v25.W,
-				}
-				goto _34
-			_34:
-				v28 = v1
-				v29 = v16.Z
-				v31 = b3FloatW4{
-					X: float32(v28.X * v29.X),
-					Y: float32(v28.Y * v29.Y),
-					Z: float32(v28.Z * v29.Z),
-					W: float32(v28.W * v29.W),
-				}
-				goto _38
-			_38:
-				v32 = v14.Z
-				v33 = v31
-				v35 = b3FloatW4{
-					X: v32.X + v33.X,
-					Y: v32.Y + v33.Y,
-					Z: v32.Z + v33.Z,
-					W: v32.W + v33.W,
-				}
-				goto _42
-			_42:
-				v17 = b3Vec3W4{
-					X: v19,
-					Y: v27,
-					Z: v35,
-				}
-				goto _18
-			_18:
-				momentA = v17
-				v14 = momentB
-				v1 = normalImpulse
-				v16 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs
-				v5 = v1
-				v10 = v16.X
-				v11 = b3FloatW4{
-					X: float32(v5.X * v10.X),
-					Y: float32(v5.Y * v10.Y),
-					Z: float32(v5.Z * v10.Z),
-					W: float32(v5.W * v10.W),
-				}
-				goto _51
-			_51:
-				v12 = v14.X
-				v15 = v11
-				v19 = b3FloatW4{
-					X: v12.X + v15.X,
-					Y: v12.Y + v15.Y,
-					Z: v12.Z + v15.Z,
-					W: v12.W + v15.W,
-				}
-				goto _55
-			_55:
-				v20 = v1
-				v21 = v16.Y
-				v23 = b3FloatW4{
-					X: float32(v20.X * v21.X),
-					Y: float32(v20.Y * v21.Y),
-					Z: float32(v20.Z * v21.Z),
-					W: float32(v20.W * v21.W),
-				}
-				goto _59
-			_59:
-				v24 = v14.Y
-				v25 = v23
-				v27 = b3FloatW4{
-					X: v24.X + v25.X,
-					Y: v24.Y + v25.Y,
-					Z: v24.Z + v25.Z,
-					W: v24.W + v25.W,
-				}
-				goto _63
-			_63:
-				v28 = v1
-				v29 = v16.Z
-				v31 = b3FloatW4{
-					X: float32(v28.X * v29.X),
-					Y: float32(v28.Y * v29.Y),
-					Z: float32(v28.Z * v29.Z),
-					W: float32(v28.W * v29.W),
-				}
-				goto _67
-			_67:
-				v32 = v14.Z
-				v33 = v31
-				v35 = b3FloatW4{
-					X: v32.X + v33.X,
-					Y: v32.Y + v33.Y,
-					Z: v32.Z + v33.Z,
-					W: v32.W + v33.W,
-				}
-				goto _71
-			_71:
-				v17 = b3Vec3W4{
-					X: v19,
-					Y: v27,
-					Z: v35,
-				}
-				goto _47
-			_47:
-				momentB = v17
 				goto _9
 			_9:
+				momentA = v8
+				v5 = momentB
+				v6 = normalImpulse
+				v7 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs
+				v8 = b3Vec3W4{
+					X: b3AddW4(tls, v5.X, b3MulW4(tls, v6, v7.X)),
+					Y: b3AddW4(tls, v5.Y, b3MulW4(tls, v6, v7.Y)),
+					Z: b3AddW4(tls, v5.Z, b3MulW4(tls, v6, v7.Z)),
+				}
+				goto _14
+			_14:
+				momentB = v8
+				goto _4
+			_4:
 				;
 				pointIndex = pointIndex + 1
 			}
 			normal = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v1 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X
-			v14 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1
-			v5 = v1
-			v10 = v14.X
-			v11 = b3FloatW4{
-				X: float32(v5.X * v10.X),
-				Y: float32(v5.Y * v10.Y),
-				Z: float32(v5.Z * v10.Z),
-				W: float32(v5.W * v10.W),
+			v6 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X
+			v5 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1
+			v7 = b3Vec3W4{
+				X: b3MulW4(tls, v6, v5.X),
+				Y: b3MulW4(tls, v6, v5.Y),
+				Z: b3MulW4(tls, v6, v5.Z),
 			}
-			goto _79
-		_79:
-			v12 = v1
-			v15 = v14.Y
-			v19 = b3FloatW4{
-				X: float32(v12.X * v15.X),
-				Y: float32(v12.Y * v15.Y),
-				Z: float32(v12.Z * v15.Z),
-				W: float32(v12.W * v15.W),
+			goto _18
+		_18:
+			frictionImpulse = v7
+			v8 = frictionImpulse
+			v11 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y
+			v10 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2
+			v12 = b3Vec3W4{
+				X: b3AddW4(tls, v8.X, b3MulW4(tls, v11, v10.X)),
+				Y: b3AddW4(tls, v8.Y, b3MulW4(tls, v11, v10.Y)),
+				Z: b3AddW4(tls, v8.Z, b3MulW4(tls, v11, v10.Z)),
 			}
-			goto _83
-		_83:
-			v20 = v1
-			v21 = v14.Z
-			v23 = b3FloatW4{
-				X: float32(v20.X * v21.X),
-				Y: float32(v20.Y * v21.Y),
-				Z: float32(v20.Z * v21.Z),
-				W: float32(v20.W * v21.W),
+			goto _23
+		_23:
+			frictionImpulse = v12
+			v5 = frictionImpulse
+			v6 = totalNormalImpulse
+			v7 = normal
+			v8 = b3Vec3W4{
+				X: b3AddW4(tls, v5.X, b3MulW4(tls, v6, v7.X)),
+				Y: b3AddW4(tls, v5.Y, b3MulW4(tls, v6, v7.Y)),
+				Z: b3AddW4(tls, v5.Z, b3MulW4(tls, v6, v7.Z)),
 			}
-			goto _87
-		_87:
-			v16 = b3Vec3W4{
-				X: v11,
-				Y: v19,
-				Z: v23,
+			goto _28
+		_28:
+			linear = v8
+			v11 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse
+			v10 = normal
+			v12 = b3Vec3W4{
+				X: b3MulW4(tls, v11, v10.X),
+				Y: b3MulW4(tls, v11, v10.Y),
+				Z: b3MulW4(tls, v11, v10.Z),
 			}
-			goto _75
-		_75:
-			frictionImpulse = v16
-			v17 = frictionImpulse
-			v24 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y
-			v43 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2
-			v25 = v24
-			v27 = v43.X
-			v28 = b3FloatW4{
-				X: float32(v25.X * v27.X),
-				Y: float32(v25.Y * v27.Y),
-				Z: float32(v25.Z * v27.Z),
-				W: float32(v25.W * v27.W),
-			}
-			goto _96
-		_96:
-			v29 = v17.X
-			v31 = v28
-			v32 = b3FloatW4{
-				X: v29.X + v31.X,
-				Y: v29.Y + v31.Y,
-				Z: v29.Z + v31.Z,
-				W: v29.W + v31.W,
-			}
-			goto _100
-		_100:
-			v33 = v24
-			v35 = v43.Y
-			v36 = b3FloatW4{
-				X: float32(v33.X * v35.X),
-				Y: float32(v33.Y * v35.Y),
-				Z: float32(v33.Z * v35.Z),
-				W: float32(v33.W * v35.W),
-			}
-			goto _104
-		_104:
-			v37 = v17.Y
-			v39 = v36
-			v40 = b3FloatW4{
-				X: v37.X + v39.X,
-				Y: v37.Y + v39.Y,
-				Z: v37.Z + v39.Z,
-				W: v37.W + v39.W,
-			}
-			goto _108
-		_108:
-			v41 = v24
-			v44 = v43.Z
-			v48 = b3FloatW4{
-				X: float32(v41.X * v44.X),
-				Y: float32(v41.Y * v44.Y),
-				Z: float32(v41.Z * v44.Z),
-				W: float32(v41.W * v44.W),
-			}
-			goto _112
-		_112:
-			v49 = v17.Z
-			v50 = v48
-			v52 = b3FloatW4{
-				X: v49.X + v50.X,
-				Y: v49.Y + v50.Y,
-				Z: v49.Z + v50.Z,
-				W: v49.W + v50.W,
-			}
-			goto _116
-		_116:
-			v45 = b3Vec3W4{
-				X: v32,
-				Y: v40,
-				Z: v52,
-			}
-			goto _92
-		_92:
-			frictionImpulse = v45
-			v14 = frictionImpulse
-			v1 = totalNormalImpulse
+			goto _32
+		_32:
+			twistImpulse = v12
+			v13 = momentA
 			v16 = normal
-			v5 = v1
-			v10 = v16.X
-			v11 = b3FloatW4{
-				X: float32(v5.X * v10.X),
-				Y: float32(v5.Y * v10.Y),
-				Z: float32(v5.Z * v10.Z),
-				W: float32(v5.W * v10.W),
+			c.X = b3SubW4(tls, b3MulW4(tls, v13.Y, v16.Z), b3MulW4(tls, v13.Z, v16.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v13.Z, v16.X), b3MulW4(tls, v13.X, v16.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v13.X, v16.Y), b3MulW4(tls, v13.Y, v16.X))
+			v17 = c
+			goto _36
+		_36:
+			v19 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterA
+			v21 = frictionImpulse
+			c.X = b3SubW4(tls, b3MulW4(tls, v19.Y, v21.Z), b3MulW4(tls, v19.Z, v21.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v19.Z, v21.X), b3MulW4(tls, v19.X, v21.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v19.X, v21.Y), b3MulW4(tls, v19.Y, v21.X))
+			v22 = c
+			goto _40
+		_40:
+			v24 = v17
+			v26 = v22
+			v27 = b3Vec3W4{
+				X: b3AddW4(tls, v24.X, v26.X),
+				Y: b3AddW4(tls, v24.Y, v26.Y),
+				Z: b3AddW4(tls, v24.Z, v26.Z),
 			}
-			goto _125
-		_125:
-			v12 = v14.X
-			v15 = v11
-			v19 = b3FloatW4{
-				X: v12.X + v15.X,
-				Y: v12.Y + v15.Y,
-				Z: v12.Z + v15.Z,
-				W: v12.W + v15.W,
+			goto _44
+		_44:
+			v30 = v27
+			v31 = twistImpulse
+			v33 = b3Vec3W4{
+				X: b3AddW4(tls, v30.X, v31.X),
+				Y: b3AddW4(tls, v30.Y, v31.Y),
+				Z: b3AddW4(tls, v30.Z, v31.Z),
 			}
-			goto _129
-		_129:
-			v20 = v1
-			v21 = v16.Y
-			v23 = b3FloatW4{
-				X: float32(v20.X * v21.X),
-				Y: float32(v20.Y * v21.Y),
-				Z: float32(v20.Z * v21.Z),
-				W: float32(v20.W * v21.W),
-			}
-			goto _133
-		_133:
-			v24 = v14.Y
-			v25 = v23
-			v27 = b3FloatW4{
-				X: v24.X + v25.X,
-				Y: v24.Y + v25.Y,
-				Z: v24.Z + v25.Z,
-				W: v24.W + v25.W,
-			}
-			goto _137
-		_137:
-			v28 = v1
-			v29 = v16.Z
-			v31 = b3FloatW4{
-				X: float32(v28.X * v29.X),
-				Y: float32(v28.Y * v29.Y),
-				Z: float32(v28.Z * v29.Z),
-				W: float32(v28.W * v29.W),
-			}
-			goto _141
-		_141:
-			v32 = v14.Z
-			v33 = v31
-			v35 = b3FloatW4{
-				X: v32.X + v33.X,
-				Y: v32.Y + v33.Y,
-				Z: v32.Z + v33.Z,
-				W: v32.W + v33.W,
-			}
-			goto _145
-		_145:
-			v17 = b3Vec3W4{
-				X: v19,
-				Y: v27,
-				Z: v35,
-			}
-			goto _121
-		_121:
-			linear = v17
-			v36 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse
-			v43 = normal
-			v37 = v36
-			v39 = v43.X
-			v40 = b3FloatW4{
-				X: float32(v37.X * v39.X),
-				Y: float32(v37.Y * v39.Y),
-				Z: float32(v37.Z * v39.Z),
-				W: float32(v37.W * v39.W),
-			}
-			goto _153
-		_153:
-			v41 = v36
-			v44 = v43.Y
-			v48 = b3FloatW4{
-				X: float32(v41.X * v44.X),
-				Y: float32(v41.Y * v44.Y),
-				Z: float32(v41.Z * v44.Z),
-				W: float32(v41.W * v44.W),
-			}
-			goto _157
-		_157:
-			v49 = v36
-			v50 = v43.Z
-			v52 = b3FloatW4{
-				X: float32(v49.X * v50.X),
-				Y: float32(v49.Y * v50.Y),
-				Z: float32(v49.Z * v50.Z),
-				W: float32(v49.W * v50.W),
-			}
-			goto _161
-		_161:
+			goto _48
+		_48:
+			angularA = v33
+			v34 = momentB
+			v35 = normal
+			c.X = b3SubW4(tls, b3MulW4(tls, v34.Y, v35.Z), b3MulW4(tls, v34.Z, v35.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v34.Z, v35.X), b3MulW4(tls, v34.X, v35.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v34.X, v35.Y), b3MulW4(tls, v34.Y, v35.X))
+			v37 = c
+			goto _52
+		_52:
+			v38 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterB
+			v39 = frictionImpulse
+			c.X = b3SubW4(tls, b3MulW4(tls, v38.Y, v39.Z), b3MulW4(tls, v38.Z, v39.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v38.Z, v39.X), b3MulW4(tls, v38.X, v39.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v38.X, v39.Y), b3MulW4(tls, v38.Y, v39.X))
+			v41 = c
+			goto _56
+		_56:
+			v42 = v37
+			v43 = v41
 			v45 = b3Vec3W4{
-				X: v40,
-				Y: v48,
-				Z: v52,
+				X: b3AddW4(tls, v42.X, v43.X),
+				Y: b3AddW4(tls, v42.Y, v43.Y),
+				Z: b3AddW4(tls, v42.Z, v43.Z),
 			}
-			goto _149
-		_149:
-			twistImpulse = v45
-			v46 = momentA
-			v73 = normal
-			v53 = v46.Y
-			v54 = v73.Z
-			v56 = b3FloatW4{
-				X: float32(v53.X * v54.X),
-				Y: float32(v53.Y * v54.Y),
-				Z: float32(v53.Z * v54.Z),
-				W: float32(v53.W * v54.W),
+			goto _60
+		_60:
+			v46 = v45
+			v47 = twistImpulse
+			v49 = b3Vec3W4{
+				X: b3AddW4(tls, v46.X, v47.X),
+				Y: b3AddW4(tls, v46.Y, v47.Y),
+				Z: b3AddW4(tls, v46.Z, v47.Z),
 			}
-			goto _167
-		_167:
-			v57 = v46.Z
-			v58 = v73.Y
-			v60 = b3FloatW4{
-				X: float32(v57.X * v58.X),
-				Y: float32(v57.Y * v58.Y),
-				Z: float32(v57.Z * v58.Z),
-				W: float32(v57.W * v58.W),
-			}
-			goto _171
-		_171:
-			v61 = v56
-			v62 = v60
-			v64 = b3FloatW4{
-				X: v61.X - v62.X,
-				Y: v61.Y - v62.Y,
-				Z: v61.Z - v62.Z,
-				W: v61.W - v62.W,
-			}
-			goto _175
-		_175:
-			c.X = v64
-			v65 = v46.Z
-			v66 = v73.X
-			v68 = b3FloatW4{
-				X: float32(v65.X * v66.X),
-				Y: float32(v65.Y * v66.Y),
-				Z: float32(v65.Z * v66.Z),
-				W: float32(v65.W * v66.W),
-			}
-			goto _179
-		_179:
-			v69 = v46.X
-			v70 = v73.Z
-			v72 = b3FloatW4{
-				X: float32(v69.X * v70.X),
-				Y: float32(v69.Y * v70.Y),
-				Z: float32(v69.Z * v70.Z),
-				W: float32(v69.W * v70.W),
-			}
-			goto _183
-		_183:
-			v76 = v68
-			v77 = v72
-			v78 = b3FloatW4{
-				X: v76.X - v77.X,
-				Y: v76.Y - v77.Y,
-				Z: v76.Z - v77.Z,
-				W: v76.W - v77.W,
-			}
-			goto _187
-		_187:
-			c.Y = v78
-			v80 = v46.X
-			v81 = v73.Y
-			v82 = b3FloatW4{
-				X: float32(v80.X * v81.X),
-				Y: float32(v80.Y * v81.Y),
-				Z: float32(v80.Z * v81.Z),
-				W: float32(v80.W * v81.W),
-			}
-			goto _191
-		_191:
-			v84 = v46.Y
-			v85 = v73.X
-			v86 = b3FloatW4{
-				X: float32(v84.X * v85.X),
-				Y: float32(v84.Y * v85.Y),
-				Z: float32(v84.Z * v85.Z),
-				W: float32(v84.W * v85.W),
-			}
-			goto _195
-		_195:
-			v89 = v82
-			v93 = v86
-			v94 = b3FloatW4{
-				X: v89.X - v93.X,
-				Y: v89.Y - v93.Y,
-				Z: v89.Z - v93.Z,
-				W: v89.W - v93.W,
-			}
-			goto _199
-		_199:
-			c.Z = v94
-			v74 = c
-			goto _201
-		_201:
-			v88 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterA
-			v90 = frictionImpulse
-			v95 = v88.Y
-			v97 = v90.Z
-			v98 = b3FloatW4{
-				X: float32(v95.X * v97.X),
-				Y: float32(v95.Y * v97.Y),
-				Z: float32(v95.Z * v97.Z),
-				W: float32(v95.W * v97.W),
-			}
-			goto _207
-		_207:
-			v99 = v88.Z
-			v101 = v90.Y
-			v102 = b3FloatW4{
-				X: float32(v99.X * v101.X),
-				Y: float32(v99.Y * v101.Y),
-				Z: float32(v99.Z * v101.Z),
-				W: float32(v99.W * v101.W),
-			}
-			goto _211
-		_211:
-			v103 = v98
-			v105 = v102
-			v106 = b3FloatW4{
-				X: v103.X - v105.X,
-				Y: v103.Y - v105.Y,
-				Z: v103.Z - v105.Z,
-				W: v103.W - v105.W,
-			}
-			goto _215
-		_215:
-			c.X = v106
-			v107 = v88.Z
-			v109 = v90.X
-			v110 = b3FloatW4{
-				X: float32(v107.X * v109.X),
-				Y: float32(v107.Y * v109.Y),
-				Z: float32(v107.Z * v109.Z),
-				W: float32(v107.W * v109.W),
-			}
-			goto _219
-		_219:
-			v111 = v88.X
-			v113 = v90.Z
-			v114 = b3FloatW4{
-				X: float32(v111.X * v113.X),
-				Y: float32(v111.Y * v113.Y),
-				Z: float32(v111.Z * v113.Z),
-				W: float32(v111.W * v113.W),
-			}
-			goto _223
-		_223:
-			v115 = v110
-			v118 = v114
-			v122 = b3FloatW4{
-				X: v115.X - v118.X,
-				Y: v115.Y - v118.Y,
-				Z: v115.Z - v118.Z,
-				W: v115.W - v118.W,
-			}
-			goto _227
-		_227:
-			c.Y = v122
-			v123 = v88.X
-			v124 = v90.Y
-			v126 = b3FloatW4{
-				X: float32(v123.X * v124.X),
-				Y: float32(v123.Y * v124.Y),
-				Z: float32(v123.Z * v124.Z),
-				W: float32(v123.W * v124.W),
-			}
-			goto _231
-		_231:
-			v127 = v88.Y
-			v128 = v90.X
-			v130 = b3FloatW4{
-				X: float32(v127.X * v128.X),
-				Y: float32(v127.Y * v128.Y),
-				Z: float32(v127.Z * v128.Z),
-				W: float32(v127.W * v128.W),
-			}
-			goto _235
-		_235:
-			v131 = v126
-			v132 = v130
-			v134 = b3FloatW4{
-				X: v131.X - v132.X,
-				Y: v131.Y - v132.Y,
-				Z: v131.Z - v132.Z,
-				W: v131.W - v132.W,
-			}
-			goto _239
-		_239:
-			c.Z = v134
-			v91 = c
-			goto _241
-		_241:
-			v117 = v74
-			v119 = v91
-			v135 = v117.X
-			v136 = v119.X
-			v138 = b3FloatW4{
-				X: v135.X + v136.X,
-				Y: v135.Y + v136.Y,
-				Z: v135.Z + v136.Z,
-				W: v135.W + v136.W,
-			}
-			goto _249
-		_249:
-			v139 = v117.Y
-			v140 = v119.Y
-			v142 = b3FloatW4{
-				X: v139.X + v140.X,
-				Y: v139.Y + v140.Y,
-				Z: v139.Z + v140.Z,
-				W: v139.W + v140.W,
-			}
-			goto _253
-		_253:
-			v143 = v117.Z
-			v144 = v119.Z
-			v146 = b3FloatW4{
-				X: v143.X + v144.X,
-				Y: v143.Y + v144.Y,
-				Z: v143.Z + v144.Z,
-				W: v143.W + v144.W,
-			}
-			goto _257
-		_257:
-			v120 = b3Vec3W4{
-				X: v138,
-				Y: v142,
-				Z: v146,
-			}
-			goto _245
-		_245:
-			v147 = v120
-			v148 = twistImpulse
-			v150 = v147.X
-			v151 = v148.X
-			v152 = b3FloatW4{
-				X: v150.X + v151.X,
-				Y: v150.Y + v151.Y,
-				Z: v150.Z + v151.Z,
-				W: v150.W + v151.W,
-			}
-			goto _265
-		_265:
-			v154 = v147.Y
-			v155 = v148.Y
-			v156 = b3FloatW4{
-				X: v154.X + v155.X,
-				Y: v154.Y + v155.Y,
-				Z: v154.Z + v155.Z,
-				W: v154.W + v155.W,
-			}
-			goto _269
-		_269:
-			v158 = v147.Z
-			v159 = v148.Z
-			v160 = b3FloatW4{
-				X: v158.X + v159.X,
-				Y: v158.Y + v159.Y,
-				Z: v158.Z + v159.Z,
-				W: v158.W + v159.W,
-			}
-			goto _273
-		_273:
-			v162 = b3Vec3W4{
-				X: v152,
-				Y: v156,
-				Z: v160,
-			}
-			goto _261
-		_261:
-			angularA = v162
-			v163 = momentB
-			v200 = normal
-			v164 = v163.Y
-			v165 = v200.Z
-			v166 = b3FloatW4{
-				X: float32(v164.X * v165.X),
-				Y: float32(v164.Y * v165.Y),
-				Z: float32(v164.Z * v165.Z),
-				W: float32(v164.W * v165.W),
-			}
-			goto _279
-		_279:
-			v168 = v163.Z
-			v169 = v200.Y
-			v170 = b3FloatW4{
-				X: float32(v168.X * v169.X),
-				Y: float32(v168.Y * v169.Y),
-				Z: float32(v168.Z * v169.Z),
-				W: float32(v168.W * v169.W),
-			}
-			goto _283
-		_283:
-			v172 = v166
-			v173 = v170
-			v174 = b3FloatW4{
-				X: v172.X - v173.X,
-				Y: v172.Y - v173.Y,
-				Z: v172.Z - v173.Z,
-				W: v172.W - v173.W,
-			}
-			goto _287
-		_287:
-			c.X = v174
-			v176 = v163.Z
-			v177 = v200.X
-			v178 = b3FloatW4{
-				X: float32(v176.X * v177.X),
-				Y: float32(v176.Y * v177.Y),
-				Z: float32(v176.Z * v177.Z),
-				W: float32(v176.W * v177.W),
-			}
-			goto _291
-		_291:
-			v180 = v163.X
-			v181 = v200.Z
-			v182 = b3FloatW4{
-				X: float32(v180.X * v181.X),
-				Y: float32(v180.Y * v181.Y),
-				Z: float32(v180.Z * v181.Z),
-				W: float32(v180.W * v181.W),
-			}
-			goto _295
-		_295:
-			v184 = v178
-			v185 = v182
-			v186 = b3FloatW4{
-				X: v184.X - v185.X,
-				Y: v184.Y - v185.Y,
-				Z: v184.Z - v185.Z,
-				W: v184.W - v185.W,
-			}
-			goto _299
-		_299:
-			c.Y = v186
-			v188 = v163.X
-			v189 = v200.Y
-			v190 = b3FloatW4{
-				X: float32(v188.X * v189.X),
-				Y: float32(v188.Y * v189.Y),
-				Z: float32(v188.Z * v189.Z),
-				W: float32(v188.W * v189.W),
-			}
-			goto _303
-		_303:
-			v192 = v163.Y
-			v193 = v200.X
-			v194 = b3FloatW4{
-				X: float32(v192.X * v193.X),
-				Y: float32(v192.Y * v193.Y),
-				Z: float32(v192.Z * v193.Z),
-				W: float32(v192.W * v193.W),
-			}
-			goto _307
-		_307:
-			v196 = v190
-			v197 = v194
-			v198 = b3FloatW4{
-				X: v196.X - v197.X,
-				Y: v196.Y - v197.Y,
-				Z: v196.Z - v197.Z,
-				W: v196.W - v197.W,
-			}
-			goto _311
-		_311:
-			c.Z = v198
-			v202 = c
-			goto _313
-		_313:
-			v203 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterB
-			v240 = frictionImpulse
-			v204 = v203.Y
-			v205 = v240.Z
-			v206 = b3FloatW4{
-				X: float32(v204.X * v205.X),
-				Y: float32(v204.Y * v205.Y),
-				Z: float32(v204.Z * v205.Z),
-				W: float32(v204.W * v205.W),
-			}
-			goto _319
-		_319:
-			v208 = v203.Z
-			v209 = v240.Y
-			v210 = b3FloatW4{
-				X: float32(v208.X * v209.X),
-				Y: float32(v208.Y * v209.Y),
-				Z: float32(v208.Z * v209.Z),
-				W: float32(v208.W * v209.W),
-			}
-			goto _323
-		_323:
-			v212 = v206
-			v213 = v210
-			v214 = b3FloatW4{
-				X: v212.X - v213.X,
-				Y: v212.Y - v213.Y,
-				Z: v212.Z - v213.Z,
-				W: v212.W - v213.W,
-			}
-			goto _327
-		_327:
-			c.X = v214
-			v216 = v203.Z
-			v217 = v240.X
-			v218 = b3FloatW4{
-				X: float32(v216.X * v217.X),
-				Y: float32(v216.Y * v217.Y),
-				Z: float32(v216.Z * v217.Z),
-				W: float32(v216.W * v217.W),
-			}
-			goto _331
-		_331:
-			v220 = v203.X
-			v221 = v240.Z
-			v222 = b3FloatW4{
-				X: float32(v220.X * v221.X),
-				Y: float32(v220.Y * v221.Y),
-				Z: float32(v220.Z * v221.Z),
-				W: float32(v220.W * v221.W),
-			}
-			goto _335
-		_335:
-			v224 = v218
-			v225 = v222
-			v226 = b3FloatW4{
-				X: v224.X - v225.X,
-				Y: v224.Y - v225.Y,
-				Z: v224.Z - v225.Z,
-				W: v224.W - v225.W,
-			}
-			goto _339
-		_339:
-			c.Y = v226
-			v228 = v203.X
-			v229 = v240.Y
-			v230 = b3FloatW4{
-				X: float32(v228.X * v229.X),
-				Y: float32(v228.Y * v229.Y),
-				Z: float32(v228.Z * v229.Z),
-				W: float32(v228.W * v229.W),
-			}
-			goto _343
-		_343:
-			v232 = v203.Y
-			v233 = v240.X
-			v234 = b3FloatW4{
-				X: float32(v232.X * v233.X),
-				Y: float32(v232.Y * v233.Y),
-				Z: float32(v232.Z * v233.Z),
-				W: float32(v232.W * v233.W),
-			}
-			goto _347
-		_347:
-			v236 = v230
-			v237 = v234
-			v238 = b3FloatW4{
-				X: v236.X - v237.X,
-				Y: v236.Y - v237.Y,
-				Z: v236.Z - v237.Z,
-				W: v236.W - v237.W,
-			}
-			goto _351
-		_351:
-			c.Z = v238
-			v242 = c
-			goto _353
-		_353:
-			v243 = v202
-			v244 = v242
-			v246 = v243.X
-			v247 = v244.X
-			v248 = b3FloatW4{
-				X: v246.X + v247.X,
-				Y: v246.Y + v247.Y,
-				Z: v246.Z + v247.Z,
-				W: v246.W + v247.W,
-			}
-			goto _361
-		_361:
-			v250 = v243.Y
-			v251 = v244.Y
-			v252 = b3FloatW4{
-				X: v250.X + v251.X,
-				Y: v250.Y + v251.Y,
-				Z: v250.Z + v251.Z,
-				W: v250.W + v251.W,
-			}
-			goto _365
-		_365:
-			v254 = v243.Z
-			v255 = v244.Z
-			v256 = b3FloatW4{
-				X: v254.X + v255.X,
-				Y: v254.Y + v255.Y,
-				Z: v254.Z + v255.Z,
-				W: v254.W + v255.W,
-			}
-			goto _369
-		_369:
-			v258 = b3Vec3W4{
-				X: v248,
-				Y: v252,
-				Z: v256,
-			}
-			goto _357
-		_357:
-			v259 = v258
-			v260 = twistImpulse
-			v262 = v259.X
-			v263 = v260.X
-			v264 = b3FloatW4{
-				X: v262.X + v263.X,
-				Y: v262.Y + v263.Y,
-				Z: v262.Z + v263.Z,
-				W: v262.W + v263.W,
-			}
-			goto _377
-		_377:
-			v266 = v259.Y
-			v267 = v260.Y
-			v268 = b3FloatW4{
-				X: v266.X + v267.X,
-				Y: v266.Y + v267.Y,
-				Z: v266.Z + v267.Z,
-				W: v266.W + v267.W,
-			}
-			goto _381
-		_381:
-			v270 = v259.Z
-			v271 = v260.Z
-			v272 = b3FloatW4{
-				X: v270.X + v271.X,
-				Y: v270.Y + v271.Y,
-				Z: v270.Z + v271.Z,
-				W: v270.W + v271.W,
-			}
-			goto _385
-		_385:
-			v274 = b3Vec3W4{
-				X: v264,
-				Y: v268,
-				Z: v272,
-			}
-			goto _373
-		_373:
-			angularB = v274
+			goto _64
+		_64:
+			angularB = v49
 			if anyRolling != 0 {
-				v275 = angularA
-				v312 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v276 = v275.X
-				v277 = v312.X
-				v278 = b3FloatW4{
-					X: v276.X + v277.X,
-					Y: v276.Y + v277.Y,
-					Z: v276.Z + v277.Z,
-					W: v276.W + v277.W,
+				v50 = angularA
+				v51 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v53 = b3Vec3W4{
+					X: b3AddW4(tls, v50.X, v51.X),
+					Y: b3AddW4(tls, v50.Y, v51.Y),
+					Z: b3AddW4(tls, v50.Z, v51.Z),
 				}
-				goto _393
-			_393:
-				v280 = v275.Y
-				v281 = v312.Y
-				v282 = b3FloatW4{
-					X: v280.X + v281.X,
-					Y: v280.Y + v281.Y,
-					Z: v280.Z + v281.Z,
-					W: v280.W + v281.W,
+				goto _68
+			_68:
+				angularA = v53
+				v5 = angularB
+				v7 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v8 = b3Vec3W4{
+					X: b3AddW4(tls, v5.X, v7.X),
+					Y: b3AddW4(tls, v5.Y, v7.Y),
+					Z: b3AddW4(tls, v5.Z, v7.Z),
 				}
-				goto _397
-			_397:
-				v284 = v275.Z
-				v285 = v312.Z
-				v286 = b3FloatW4{
-					X: v284.X + v285.X,
-					Y: v284.Y + v285.Y,
-					Z: v284.Z + v285.Z,
-					W: v284.W + v285.W,
-				}
-				goto _401
-			_401:
-				v314 = b3Vec3W4{
-					X: v278,
-					Y: v282,
-					Z: v286,
-				}
-				goto _389
-			_389:
-				angularA = v314
-				v14 = angularB
-				v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v1 = v14.X
-				v5 = v16.X
-				v10 = b3FloatW4{
-					X: v1.X + v5.X,
-					Y: v1.Y + v5.Y,
-					Z: v1.Z + v5.Z,
-					W: v1.W + v5.W,
-				}
-				goto _409
-			_409:
-				v11 = v14.Y
-				v12 = v16.Y
-				v15 = b3FloatW4{
-					X: v11.X + v12.X,
-					Y: v11.Y + v12.Y,
-					Z: v11.Z + v12.Z,
-					W: v11.W + v12.W,
-				}
-				goto _413
-			_413:
-				v19 = v14.Z
-				v20 = v16.Z
-				v21 = b3FloatW4{
-					X: v19.X + v20.X,
-					Y: v19.Y + v20.Y,
-					Z: v19.Z + v20.Z,
-					W: v19.W + v20.W,
-				}
-				goto _417
-			_417:
-				v17 = b3Vec3W4{
-					X: v10,
-					Y: v15,
-					Z: v21,
-				}
-				goto _405
-			_405:
-				angularB = v17
+				goto _72
+			_72:
+				angularB = v8
 			}
-			v14 = linearImpulse
-			v16 = linear
-			v1 = v14.X
-			v5 = v16.X
-			v10 = b3FloatW4{
-				X: v1.X + v5.X,
-				Y: v1.Y + v5.Y,
-				Z: v1.Z + v5.Z,
-				W: v1.W + v5.W,
+			v5 = linearImpulse
+			v7 = linear
+			v8 = b3Vec3W4{
+				X: b3AddW4(tls, v5.X, v7.X),
+				Y: b3AddW4(tls, v5.Y, v7.Y),
+				Z: b3AddW4(tls, v5.Z, v7.Z),
 			}
-			goto _425
-		_425:
-			v11 = v14.Y
-			v12 = v16.Y
-			v15 = b3FloatW4{
-				X: v11.X + v12.X,
-				Y: v11.Y + v12.Y,
-				Z: v11.Z + v12.Z,
-				W: v11.W + v12.W,
+			goto _76
+		_76:
+			linearImpulse = v8
+			v5 = angularImpulseA
+			v7 = angularA
+			v8 = b3Vec3W4{
+				X: b3AddW4(tls, v5.X, v7.X),
+				Y: b3AddW4(tls, v5.Y, v7.Y),
+				Z: b3AddW4(tls, v5.Z, v7.Z),
 			}
-			goto _429
-		_429:
-			v19 = v14.Z
-			v20 = v16.Z
-			v21 = b3FloatW4{
-				X: v19.X + v20.X,
-				Y: v19.Y + v20.Y,
-				Z: v19.Z + v20.Z,
-				W: v19.W + v20.W,
+			goto _80
+		_80:
+			angularImpulseA = v8
+			v5 = angularImpulseB
+			v7 = angularB
+			v8 = b3Vec3W4{
+				X: b3AddW4(tls, v5.X, v7.X),
+				Y: b3AddW4(tls, v5.Y, v7.Y),
+				Z: b3AddW4(tls, v5.Z, v7.Z),
 			}
-			goto _433
-		_433:
-			v17 = b3Vec3W4{
-				X: v10,
-				Y: v15,
-				Z: v21,
-			}
-			goto _421
-		_421:
-			linearImpulse = v17
-			v14 = angularImpulseA
-			v16 = angularA
-			v1 = v14.X
-			v5 = v16.X
-			v10 = b3FloatW4{
-				X: v1.X + v5.X,
-				Y: v1.Y + v5.Y,
-				Z: v1.Z + v5.Z,
-				W: v1.W + v5.W,
-			}
-			goto _441
-		_441:
-			v11 = v14.Y
-			v12 = v16.Y
-			v15 = b3FloatW4{
-				X: v11.X + v12.X,
-				Y: v11.Y + v12.Y,
-				Z: v11.Z + v12.Z,
-				W: v11.W + v12.W,
-			}
-			goto _445
-		_445:
-			v19 = v14.Z
-			v20 = v16.Z
-			v21 = b3FloatW4{
-				X: v19.X + v20.X,
-				Y: v19.Y + v20.Y,
-				Z: v19.Z + v20.Z,
-				W: v19.W + v20.W,
-			}
-			goto _449
-		_449:
-			v17 = b3Vec3W4{
-				X: v10,
-				Y: v15,
-				Z: v21,
-			}
-			goto _437
-		_437:
-			angularImpulseA = v17
-			v14 = angularImpulseB
-			v16 = angularB
-			v1 = v14.X
-			v5 = v16.X
-			v10 = b3FloatW4{
-				X: v1.X + v5.X,
-				Y: v1.Y + v5.Y,
-				Z: v1.Z + v5.Z,
-				W: v1.W + v5.W,
-			}
-			goto _457
-		_457:
-			v11 = v14.Y
-			v12 = v16.Y
-			v15 = b3FloatW4{
-				X: v11.X + v12.X,
-				Y: v11.Y + v12.Y,
-				Z: v11.Z + v12.Z,
-				W: v11.W + v12.W,
-			}
-			goto _461
-		_461:
-			v19 = v14.Z
-			v20 = v16.Z
-			v21 = b3FloatW4{
-				X: v19.X + v20.X,
-				Y: v19.Y + v20.Y,
-				Z: v19.Z + v20.Z,
-				W: v19.W + v20.W,
-			}
-			goto _465
-		_465:
-			v17 = b3Vec3W4{
-				X: v10,
-				Y: v15,
-				Z: v21,
-			}
-			goto _453
-		_453:
-			angularImpulseB = v17
-			goto _8
-		_8:
+			goto _84
+		_84:
+			angularImpulseB = v8
+			goto _3
+		_3:
 			;
 			manifoldIndex = manifoldIndex + 1
 		}
 		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c1)
 		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c1+16)
 		(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, angularImpulseA)
-		v14 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-		v1 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
-		v16 = linearImpulse
-		v5 = v1
-		v10 = v16.X
-		v11 = b3FloatW4{
-			X: float32(v5.X * v10.X),
-			Y: float32(v5.Y * v10.Y),
-			Z: float32(v5.Z * v10.Z),
-			W: float32(v5.W * v10.W),
+		v5 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+		v6 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
+		v7 = linearImpulse
+		v8 = b3Vec3W4{
+			X: b3SubW4(tls, v5.X, b3MulW4(tls, v6, v7.X)),
+			Y: b3SubW4(tls, v5.Y, b3MulW4(tls, v6, v7.Y)),
+			Z: b3SubW4(tls, v5.Z, b3MulW4(tls, v6, v7.Z)),
 		}
-		goto _474
-	_474:
-		v12 = v14.X
-		v15 = v11
-		v19 = b3FloatW4{
-			X: v12.X - v15.X,
-			Y: v12.Y - v15.Y,
-			Z: v12.Z - v15.Z,
-			W: v12.W - v15.W,
-		}
-		goto _478
-	_478:
-		v20 = v1
-		v21 = v16.Y
-		v23 = b3FloatW4{
-			X: float32(v20.X * v21.X),
-			Y: float32(v20.Y * v21.Y),
-			Z: float32(v20.Z * v21.Z),
-			W: float32(v20.W * v21.W),
-		}
-		goto _482
-	_482:
-		v24 = v14.Y
-		v25 = v23
-		v27 = b3FloatW4{
-			X: v24.X - v25.X,
-			Y: v24.Y - v25.Y,
-			Z: v24.Z - v25.Z,
-			W: v24.W - v25.W,
-		}
-		goto _486
-	_486:
-		v28 = v1
-		v29 = v16.Z
-		v31 = b3FloatW4{
-			X: float32(v28.X * v29.X),
-			Y: float32(v28.Y * v29.Y),
-			Z: float32(v28.Z * v29.Z),
-			W: float32(v28.W * v29.W),
-		}
-		goto _490
-	_490:
-		v32 = v14.Z
-		v33 = v31
-		v35 = b3FloatW4{
-			X: v32.X - v33.X,
-			Y: v32.Y - v33.Y,
-			Z: v32.Z - v33.Z,
-			W: v32.W - v33.W,
-		}
-		goto _494
-	_494:
-		v17 = b3Vec3W4{
-			X: v19,
-			Y: v27,
-			Z: v35,
-		}
-		goto _470
-	_470:
-		(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v17
+		goto _89
+	_89:
+		(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v8
 		(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, angularImpulseB)
-		v14 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-		v1 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
-		v16 = linearImpulse
-		v5 = v1
-		v10 = v16.X
-		v11 = b3FloatW4{
-			X: float32(v5.X * v10.X),
-			Y: float32(v5.Y * v10.Y),
-			Z: float32(v5.Z * v10.Z),
-			W: float32(v5.W * v10.W),
+		v5 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+		v6 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
+		v7 = linearImpulse
+		v8 = b3Vec3W4{
+			X: b3AddW4(tls, v5.X, b3MulW4(tls, v6, v7.X)),
+			Y: b3AddW4(tls, v5.Y, b3MulW4(tls, v6, v7.Y)),
+			Z: b3AddW4(tls, v5.Z, b3MulW4(tls, v6, v7.Z)),
 		}
-		goto _503
-	_503:
-		v12 = v14.X
-		v15 = v11
-		v19 = b3FloatW4{
-			X: v12.X + v15.X,
-			Y: v12.Y + v15.Y,
-			Z: v12.Z + v15.Z,
-			W: v12.W + v15.W,
-		}
-		goto _507
-	_507:
-		v20 = v1
-		v21 = v16.Y
-		v23 = b3FloatW4{
-			X: float32(v20.X * v21.X),
-			Y: float32(v20.Y * v21.Y),
-			Z: float32(v20.Z * v21.Z),
-			W: float32(v20.W * v21.W),
-		}
-		goto _511
-	_511:
-		v24 = v14.Y
-		v25 = v23
-		v27 = b3FloatW4{
-			X: v24.X + v25.X,
-			Y: v24.Y + v25.Y,
-			Z: v24.Z + v25.Z,
-			W: v24.W + v25.W,
-		}
-		goto _515
-	_515:
-		v28 = v1
-		v29 = v16.Z
-		v31 = b3FloatW4{
-			X: float32(v28.X * v29.X),
-			Y: float32(v28.Y * v29.Y),
-			Z: float32(v28.Z * v29.Z),
-			W: float32(v28.W * v29.W),
-		}
-		goto _519
-	_519:
-		v32 = v14.Z
-		v33 = v31
-		v35 = b3FloatW4{
-			X: v32.X + v33.X,
-			Y: v32.Y + v33.Y,
-			Z: v32.Z + v33.Z,
-			W: v32.W + v33.W,
-		}
-		goto _523
-	_523:
-		v17 = b3Vec3W4{
-			X: v19,
-			Y: v27,
-			Z: v35,
-		}
-		goto _499
-	_499:
-		(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v17
+		goto _94
+	_94:
+		(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v8
 		b3ScatterBodies(tls, states, c1, bp)
 		b3ScatterBodies(tls, states, c1+16, bp+208)
 		c1 = b3NextConstraintW(tls, c1, manifoldCount)
-		goto _3
-	_3:
+		goto _1
+	_1:
 		;
 		i = i + 1
 	}
@@ -52883,1592 +47663,222 @@ func b3PushContactsW(tls *_Stack, block b3SolverBlock, context uintptr, base uin
 	defer tls.Free(416)
 	var P, dp, gA, gB, normalA, normalB, rA, rB, uA, uB b3Vec3W
 	var biasRate, contactSpeed, dynamicBiasRate, dynamicImpulseScale, dynamicMassScale, impulse, impulseScale, invMass, inv_h, linearNormalVelocity, manifoldImpulse, massScale, negImpulse, normalSeparation, oneW, overlapBias, pointImpulseScale, pointMassScale, s3, separated, softMask, specBias, staticBiasRate, staticImpulseScale, staticMassScale, velocityBias, vn, zeroW b3FloatW
-	var c1, v112, v113, v114, v128, v129, v153, v154, v177, v178, v264, v265, v302, v304, v305, v342, v344, v345, v368, v369, v67, v68, v69, v88, v89 b3Vec3W4
-	var c2, cm, cp, manifolds, states, v32, v33 uintptr
-	var i, manifoldCount, manifoldIndex, pointIndex, v31 int32
-	var r, r1, r2, r3, v10, v100, v101, v102, v104, v105, v106, v108, v109, v110, v116, v117, v118, v120, v121, v122, v124, v125, v126, v13, v130, v132, v133, v134, v136, v137, v138, v140, v141, v142, v144, v145, v146, v148, v149, v150, v155, v157, v158, v159, v16, v161, v162, v163, v165, v166, v167, v169, v170, v171, v173, v174, v175, v179, v181, v182, v183, v185, v186, v187, v189, v19, v190, v191, v193, v194, v195, v197, v198, v199, v2, v201, v202, v203, v205, v206, v207, v209, v210, v211, v213, v214, v219, v22, v221, v222, v223, v225, v226, v227, v229, v230, v235, v237, v238, v239, v244, v246, v247, v248, v25, v253, v255, v256, v257, v262, v266, v267, v268, v270, v271, v272, v274, v275, v276, v278, v279, v28, v280, v282, v283, v284, v286, v287, v288, v290, v291, v292, v294, v295, v296, v298, v299, v300, v306, v307, v308, v310, v311, v312, v314, v315, v316, v318, v319, v320, v322, v323, v324, v326, v327, v328, v330, v331, v332, v334, v335, v336, v338, v339, v340, v346, v348, v349, v350, v352, v353, v354, v356, v357, v358, v360, v361, v362, v364, v365, v366, v370, v372, v373, v374, v376, v377, v378, v38, v380, v381, v382, v384, v385, v386, v388, v389, v390, v392, v393, v394, v396, v397, v398, v40, v400, v401, v402, v404, v405, v406, v408, v409, v41, v410, v412, v413, v414, v416, v417, v418, v42, v420, v421, v423, v424, v426, v427, v432, v434, v435, v436, v47, v49, v5, v50, v51, v56, v58, v59, v60, v65, v71, v72, v73, v75, v76, v77, v79, v8, v80, v81, v83, v84, v85, v90, v92, v93, v94, v96, v97, v98 b3FloatW4
-	var v1, v12, v15, v18, v21, v215, v216, v217, v218, v231, v232, v233, v234, v24, v240, v241, v242, v243, v249, v250, v251, v252, v258, v259, v260, v261, v27, v34, v35, v36, v37, v4, v428, v429, v43, v430, v431, v44, v45, v46, v52, v53, v54, v55, v61, v62, v63, v64, v7 float32
+	var c, v12, v13, v14, v16, v17, v21, v22, v25, v26, v29, v3, v30, v31, v33, v34, v35, v37, v38, v4, v41, v42, v5, v8, v9 b3Vec3W4
+	var c1, cm, cp, manifolds, states uintptr
+	var i, manifoldCount, manifoldIndex, pointIndex, v2 int32
+	var v10, v18, v23, v27, v39, v43 b3FloatW4
 	var _ /* bA at bp+0 */ b3BodyStateW
 	var _ /* bB at bp+208 */ b3BodyStateW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, biasRate, c1, c2, cm, contactSpeed, cp, dp, dynamicBiasRate, dynamicImpulseScale, dynamicMassScale, gA, gB, i, impulse, impulseScale, invMass, inv_h, linearNormalVelocity, manifoldCount, manifoldImpulse, manifoldIndex, manifolds, massScale, negImpulse, normalA, normalB, normalSeparation, oneW, overlapBias, pointImpulseScale, pointIndex, pointMassScale, r, r1, r2, r3, rA, rB, s3, separated, softMask, specBias, states, staticBiasRate, staticImpulseScale, staticMassScale, uA, uB, velocityBias, vn, zeroW, v1, v10, v100, v101, v102, v104, v105, v106, v108, v109, v110, v112, v113, v114, v116, v117, v118, v12, v120, v121, v122, v124, v125, v126, v128, v129, v13, v130, v132, v133, v134, v136, v137, v138, v140, v141, v142, v144, v145, v146, v148, v149, v15, v150, v153, v154, v155, v157, v158, v159, v16, v161, v162, v163, v165, v166, v167, v169, v170, v171, v173, v174, v175, v177, v178, v179, v18, v181, v182, v183, v185, v186, v187, v189, v19, v190, v191, v193, v194, v195, v197, v198, v199, v2, v201, v202, v203, v205, v206, v207, v209, v21, v210, v211, v213, v214, v215, v216, v217, v218, v219, v22, v221, v222, v223, v225, v226, v227, v229, v230, v231, v232, v233, v234, v235, v237, v238, v239, v24, v240, v241, v242, v243, v244, v246, v247, v248, v249, v25, v250, v251, v252, v253, v255, v256, v257, v258, v259, v260, v261, v262, v264, v265, v266, v267, v268, v27, v270, v271, v272, v274, v275, v276, v278, v279, v28, v280, v282, v283, v284, v286, v287, v288, v290, v291, v292, v294, v295, v296, v298, v299, v300, v302, v304, v305, v306, v307, v308, v31, v310, v311, v312, v314, v315, v316, v318, v319, v32, v320, v322, v323, v324, v326, v327, v328, v33, v330, v331, v332, v334, v335, v336, v338, v339, v34, v340, v342, v344, v345, v346, v348, v349, v35, v350, v352, v353, v354, v356, v357, v358, v36, v360, v361, v362, v364, v365, v366, v368, v369, v37, v370, v372, v373, v374, v376, v377, v378, v38, v380, v381, v382, v384, v385, v386, v388, v389, v390, v392, v393, v394, v396, v397, v398, v4, v40, v400, v401, v402, v404, v405, v406, v408, v409, v41, v410, v412, v413, v414, v416, v417, v418, v42, v420, v421, v423, v424, v426, v427, v428, v429, v43, v430, v431, v432, v434, v435, v436, v44, v45, v46, v47, v49, v5, v50, v51, v52, v53, v54, v55, v56, v58, v59, v60, v61, v62, v63, v64, v65, v67, v68, v69, v7, v71, v72, v73, v75, v76, v77, v79, v8, v80, v81, v83, v84, v85, v88, v89, v90, v92, v93, v94, v96, v97, v98
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, biasRate, c, c1, cm, contactSpeed, cp, dp, dynamicBiasRate, dynamicImpulseScale, dynamicMassScale, gA, gB, i, impulse, impulseScale, invMass, inv_h, linearNormalVelocity, manifoldCount, manifoldImpulse, manifoldIndex, manifolds, massScale, negImpulse, normalA, normalB, normalSeparation, oneW, overlapBias, pointImpulseScale, pointIndex, pointMassScale, rA, rB, s3, separated, softMask, specBias, states, staticBiasRate, staticImpulseScale, staticMassScale, uA, uB, velocityBias, vn, zeroW, v10, v12, v13, v14, v16, v17, v18, v2, v21, v22, v23, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v4, v41, v42, v43, v5, v8, v9
 	states = (*b3StepContext)(unsafe.Pointer(context)).States
-	v1 = (*b3StepContext)(unsafe.Pointer(context)).Inv_h
-	v2 = b3FloatW4{
-		X: v1,
-		Y: v1,
-		Z: v1,
-		W: v1,
-	}
-	goto _3
-_3:
-	inv_h = v2
-	v4 = -(*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).ContactSpeed
-	v5 = b3FloatW4{
-		X: v4,
-		Y: v4,
-		Z: v4,
-		W: v4,
-	}
-	goto _6
-_6:
-	contactSpeed = v5
-	v7 = float32FromFloat32(1)
-	v8 = b3FloatW4{
-		X: v7,
-		Y: v7,
-		Z: v7,
-		W: v7,
-	}
-	goto _9
-_9:
-	oneW = v8
-	v10 = b3FloatW4{}
-	goto _11
-_11:
-	zeroW = v10
-	v12 = float32((*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.MassScale * (*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.BiasRate)
-	v13 = b3FloatW4{
-		X: v12,
-		Y: v12,
-		Z: v12,
-		W: v12,
-	}
-	goto _14
-_14:
+	inv_h = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).Inv_h)
+	contactSpeed = b3SplatW4(tls, -(*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).ContactSpeed)
+	oneW = b3SplatW4(tls, float32FromFloat32(1))
+	zeroW = b3ZeroW4(tls)
 	// Stiffer for static contacts to avoid bodies getting pushed through the ground. Selected per
 	// lane from the null body index instead of stored per constraint.
-	dynamicBiasRate = v13
-	v15 = (*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.MassScale
-	v16 = b3FloatW4{
-		X: v15,
-		Y: v15,
-		Z: v15,
-		W: v15,
-	}
-	goto _17
-_17:
-	dynamicMassScale = v16
-	v18 = (*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.ImpulseScale
-	v19 = b3FloatW4{
-		X: v18,
-		Y: v18,
-		Z: v18,
-		W: v18,
-	}
-	goto _20
-_20:
-	dynamicImpulseScale = v19
-	v21 = float32((*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.MassScale * (*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.BiasRate)
-	v22 = b3FloatW4{
-		X: v21,
-		Y: v21,
-		Z: v21,
-		W: v21,
-	}
-	goto _23
-_23:
-	staticBiasRate = v22
-	v24 = (*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.MassScale
-	v25 = b3FloatW4{
-		X: v24,
-		Y: v24,
-		Z: v24,
-		W: v24,
-	}
-	goto _26
-_26:
-	staticMassScale = v25
-	v27 = (*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.ImpulseScale
-	v28 = b3FloatW4{
-		X: v27,
-		Y: v27,
-		Z: v27,
-		W: v27,
-	}
-	goto _29
-_29:
-	staticImpulseScale = v28
-	c2 = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
+	dynamicBiasRate = b3SplatW4(tls, float32((*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.MassScale*(*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.BiasRate))
+	dynamicMassScale = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.MassScale)
+	dynamicImpulseScale = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).ContactSoftness.ImpulseScale)
+	staticBiasRate = b3SplatW4(tls, float32((*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.MassScale*(*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.BiasRate))
+	staticMassScale = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.MassScale)
+	staticImpulseScale = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).StaticSoftness.ImpulseScale)
+	c1 = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
 	i = 0
 	for {
 		if !(i < int32FromUint16(block.Count)) {
 			break
 		}
 		if fixedManifoldCount > 0 {
-			v31 = fixedManifoldCount
+			v2 = fixedManifoldCount
 		} else {
-			v31 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).ManifoldCount
+			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
 		}
-		manifoldCount = v31
-		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c2)
-		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c2+16)
-		v32 = c2
-		v33 = c2 + 16
-		if *(*int32)(unsafe.Add(nil, v32)) == 0 || *(*int32)(unsafe.Add(nil, v33)) == 0 {
-			v34 = float32FromFloat32(1)
-		} else {
-			v34 = float32FromFloat32(0)
+		manifoldCount = v2
+		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c1)
+		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c1+16)
+		softMask = b3SoftMaskW4(tls, c1, c1+16)
+		biasRate = b3BlendW4(tls, dynamicBiasRate, staticBiasRate, softMask)
+		massScale = b3BlendW4(tls, dynamicMassScale, staticMassScale, softMask)
+		impulseScale = b3BlendW4(tls, dynamicImpulseScale, staticImpulseScale, softMask)
+		v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
+		v4 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
+		v5 = b3Vec3W4{
+			X: b3SubW4(tls, v3.X, v4.X),
+			Y: b3SubW4(tls, v3.Y, v4.Y),
+			Z: b3SubW4(tls, v3.Z, v4.Z),
 		}
-		r1.X = v34
-		if *(*int32)(unsafe.Add(nil, v32+1*4)) == 0 || *(*int32)(unsafe.Add(nil, v33+1*4)) == 0 {
-			v35 = float32FromFloat32(1)
-		} else {
-			v35 = float32FromFloat32(0)
-		}
-		r1.Y = v35
-		if *(*int32)(unsafe.Add(nil, v32+2*4)) == 0 || *(*int32)(unsafe.Add(nil, v33+2*4)) == 0 {
-			v36 = float32FromFloat32(1)
-		} else {
-			v36 = float32FromFloat32(0)
-		}
-		r1.Z = v36
-		if *(*int32)(unsafe.Add(nil, v32+3*4)) == 0 || *(*int32)(unsafe.Add(nil, v33+3*4)) == 0 {
-			v37 = float32FromFloat32(1)
-		} else {
-			v37 = float32FromFloat32(0)
-		}
-		r1.W = v37
-		v38 = r1
-		goto _39
-	_39:
-		softMask = v38
-		v40 = dynamicBiasRate
-		v41 = staticBiasRate
-		v42 = softMask
-		if v42.X != float32FromFloat32(0) {
-			v43 = v41.X
-		} else {
-			v43 = v40.X
-		}
-		r3.X = v43
-		if v42.Y != float32FromFloat32(0) {
-			v44 = v41.Y
-		} else {
-			v44 = v40.Y
-		}
-		r3.Y = v44
-		if v42.Z != float32FromFloat32(0) {
-			v45 = v41.Z
-		} else {
-			v45 = v40.Z
-		}
-		r3.Z = v45
-		if v42.W != float32FromFloat32(0) {
-			v46 = v41.W
-		} else {
-			v46 = v40.W
-		}
-		r3.W = v46
-		v47 = r3
-		goto _48
-	_48:
-		biasRate = v47
-		v49 = dynamicMassScale
-		v50 = staticMassScale
-		v51 = softMask
-		if v51.X != float32FromFloat32(0) {
-			v52 = v50.X
-		} else {
-			v52 = v49.X
-		}
-		r3.X = v52
-		if v51.Y != float32FromFloat32(0) {
-			v53 = v50.Y
-		} else {
-			v53 = v49.Y
-		}
-		r3.Y = v53
-		if v51.Z != float32FromFloat32(0) {
-			v54 = v50.Z
-		} else {
-			v54 = v49.Z
-		}
-		r3.Z = v54
-		if v51.W != float32FromFloat32(0) {
-			v55 = v50.W
-		} else {
-			v55 = v49.W
-		}
-		r3.W = v55
-		v56 = r3
-		goto _57
-	_57:
-		massScale = v56
-		v58 = dynamicImpulseScale
-		v59 = staticImpulseScale
-		v60 = softMask
-		if v60.X != float32FromFloat32(0) {
-			v61 = v59.X
-		} else {
-			v61 = v58.X
-		}
-		r3.X = v61
-		if v60.Y != float32FromFloat32(0) {
-			v62 = v59.Y
-		} else {
-			v62 = v58.Y
-		}
-		r3.Y = v62
-		if v60.Z != float32FromFloat32(0) {
-			v63 = v59.Z
-		} else {
-			v63 = v58.Z
-		}
-		r3.Z = v63
-		if v60.W != float32FromFloat32(0) {
-			v64 = v59.W
-		} else {
-			v64 = v58.W
-		}
-		r3.W = v64
-		v65 = r3
-		goto _66
-	_66:
-		impulseScale = v65
-		v67 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
-		v68 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
-		v71 = v67.X
-		v72 = v68.X
-		v73 = b3FloatW4{
-			X: v71.X - v72.X,
-			Y: v71.Y - v72.Y,
-			Z: v71.Z - v72.Z,
-			W: v71.W - v72.W,
-		}
-		goto _74
-	_74:
-		v75 = v67.Y
-		v76 = v68.Y
-		v77 = b3FloatW4{
-			X: v75.X - v76.X,
-			Y: v75.Y - v76.Y,
-			Z: v75.Z - v76.Z,
-			W: v75.W - v76.W,
-		}
-		goto _78
-	_78:
-		v79 = v67.Z
-		v80 = v68.Z
-		v81 = b3FloatW4{
-			X: v79.X - v80.X,
-			Y: v79.Y - v80.Y,
-			Z: v79.Z - v80.Z,
-			W: v79.W - v80.W,
-		}
-		goto _82
-	_82:
-		v69 = b3Vec3W4{
-			X: v73,
-			Y: v77,
-			Z: v81,
-		}
-		goto _70
-	_70:
-		dp = v69
-		v83 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassA
-		v84 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassB
-		v85 = b3FloatW4{
-			X: v83.X + v84.X,
-			Y: v83.Y + v84.Y,
-			Z: v83.Z + v84.Z,
-			W: v83.W + v84.W,
-		}
-		goto _86
-	_86:
-		invMass = v85
-		manifolds = b3GetManifoldsW(tls, c2)
+		goto _6
+	_6:
+		dp = v5
+		invMass = b3AddW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB)
+		manifolds = b3GetManifoldsW(tls, c1)
 		manifoldIndex = 0
 		for {
 			if !(manifoldIndex < manifoldCount) {
 				break
 			}
 			cm = manifolds + uintptr(manifoldIndex)*1288
-			v88 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v89 = dp
-			v92 = v88.X
-			v93 = v89.X
-			v94 = b3FloatW4{
-				X: float32(v92.X * v93.X),
-				Y: float32(v92.Y * v93.Y),
-				Z: float32(v92.Z * v93.Z),
-				W: float32(v92.W * v93.W),
-			}
-			goto _95
-		_95:
-			v96 = v88.Y
-			v97 = v89.Y
-			v98 = b3FloatW4{
-				X: float32(v96.X * v97.X),
-				Y: float32(v96.Y * v97.Y),
-				Z: float32(v96.Z * v97.Z),
-				W: float32(v96.W * v97.W),
-			}
-			goto _99
-		_99:
-			v100 = v94
-			v101 = v98
-			v102 = b3FloatW4{
-				X: v100.X + v101.X,
-				Y: v100.Y + v101.Y,
-				Z: v100.Z + v101.Z,
-				W: v100.W + v101.W,
-			}
-			goto _103
-		_103:
-			v104 = v88.Z
-			v105 = v89.Z
-			v106 = b3FloatW4{
-				X: float32(v104.X * v105.X),
-				Y: float32(v104.Y * v105.Y),
-				Z: float32(v104.Z * v105.Z),
-				W: float32(v104.W * v105.W),
-			}
-			goto _107
-		_107:
-			v108 = v102
-			v109 = v106
-			v110 = b3FloatW4{
-				X: v108.X + v109.X,
-				Y: v108.Y + v109.Y,
-				Z: v108.Z + v109.Z,
-				W: v108.W + v109.W,
-			}
-			goto _111
-		_111:
-			v90 = v110
-			goto _91
-		_91:
+			v8 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v9 = dp
+			v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v8.X, v9.X), b3MulW4(tls, v8.Y, v9.Y)), b3MulW4(tls, v8.Z, v9.Z))
+			goto _11
+		_11:
 			// Convert to normals to local space to reduce transform math.
 			// Read the normal rather than put on stack to avoid register spills.
-			normalSeparation = v90
+			normalSeparation = v10
 			normalA = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
 			normalB = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
-			v112 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-			v113 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-			v116 = v112.X
-			v117 = v113.X
-			v118 = b3FloatW4{
-				X: v116.X - v117.X,
-				Y: v116.Y - v117.Y,
-				Z: v116.Z - v117.Z,
-				W: v116.W - v117.W,
+			v12 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+			v13 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+			v14 = b3Vec3W4{
+				X: b3SubW4(tls, v12.X, v13.X),
+				Y: b3SubW4(tls, v12.Y, v13.Y),
+				Z: b3SubW4(tls, v12.Z, v13.Z),
 			}
-			goto _119
-		_119:
-			v120 = v112.Y
-			v121 = v113.Y
-			v122 = b3FloatW4{
-				X: v120.X - v121.X,
-				Y: v120.Y - v121.Y,
-				Z: v120.Z - v121.Z,
-				W: v120.W - v121.W,
-			}
-			goto _123
-		_123:
-			v124 = v112.Z
-			v125 = v113.Z
-			v126 = b3FloatW4{
-				X: v124.X - v125.X,
-				Y: v124.Y - v125.Y,
-				Z: v124.Z - v125.Z,
-				W: v124.W - v125.W,
-			}
-			goto _127
-		_127:
-			v114 = b3Vec3W4{
-				X: v118,
-				Y: v122,
-				Z: v126,
-			}
-			goto _115
-		_115:
-			v128 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v129 = v114
-			v132 = v128.X
-			v133 = v129.X
-			v134 = b3FloatW4{
-				X: float32(v132.X * v133.X),
-				Y: float32(v132.Y * v133.Y),
-				Z: float32(v132.Z * v133.Z),
-				W: float32(v132.W * v133.W),
-			}
-			goto _135
-		_135:
-			v136 = v128.Y
-			v137 = v129.Y
-			v138 = b3FloatW4{
-				X: float32(v136.X * v137.X),
-				Y: float32(v136.Y * v137.Y),
-				Z: float32(v136.Z * v137.Z),
-				W: float32(v136.W * v137.W),
-			}
-			goto _139
-		_139:
-			v140 = v134
-			v141 = v138
-			v142 = b3FloatW4{
-				X: v140.X + v141.X,
-				Y: v140.Y + v141.Y,
-				Z: v140.Z + v141.Z,
-				W: v140.W + v141.W,
-			}
-			goto _143
-		_143:
-			v144 = v128.Z
-			v145 = v129.Z
-			v146 = b3FloatW4{
-				X: float32(v144.X * v145.X),
-				Y: float32(v144.Y * v145.Y),
-				Z: float32(v144.Z * v145.Z),
-				W: float32(v144.W * v145.W),
-			}
-			goto _147
-		_147:
-			v148 = v142
-			v149 = v146
-			v150 = b3FloatW4{
-				X: v148.X + v149.X,
-				Y: v148.Y + v149.Y,
-				Z: v148.Z + v149.Z,
-				W: v148.W + v149.W,
-			}
-			goto _151
-		_151:
-			v130 = v150
-			goto _131
-		_131:
-			linearNormalVelocity = v130
+			goto _15
+		_15:
+			v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v17 = v14
+			v18 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v16.X, v17.X), b3MulW4(tls, v16.Y, v17.Y)), b3MulW4(tls, v16.Z, v17.Z))
+			goto _19
+		_19:
+			linearNormalVelocity = v18
 			manifoldImpulse = zeroW
 			pointIndex = 0
 			for {
 				if !(pointIndex < (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount) {
 					break
 				}
-				cp = cm + 452 + uintptr(pointIndex)*208
+				cp = cm + 456 + uintptr(pointIndex)*208
 				// Fixed anchor points for applying impulses
 				rA = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs
 				rB = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs
-				v153 = normalB
-				v154 = rB
-				v157 = v153.X
-				v158 = v154.X
-				v159 = b3FloatW4{
-					X: float32(v157.X * v158.X),
-					Y: float32(v157.Y * v158.Y),
-					Z: float32(v157.Z * v158.Z),
-					W: float32(v157.W * v158.W),
-				}
-				goto _160
-			_160:
-				v161 = v153.Y
-				v162 = v154.Y
-				v163 = b3FloatW4{
-					X: float32(v161.X * v162.X),
-					Y: float32(v161.Y * v162.Y),
-					Z: float32(v161.Z * v162.Z),
-					W: float32(v161.W * v162.W),
-				}
-				goto _164
-			_164:
-				v165 = v159
-				v166 = v163
-				v167 = b3FloatW4{
-					X: v165.X + v166.X,
-					Y: v165.Y + v166.Y,
-					Z: v165.Z + v166.Z,
-					W: v165.W + v166.W,
-				}
-				goto _168
-			_168:
-				v169 = v153.Z
-				v170 = v154.Z
-				v171 = b3FloatW4{
-					X: float32(v169.X * v170.X),
-					Y: float32(v169.Y * v170.Y),
-					Z: float32(v169.Z * v170.Z),
-					W: float32(v169.W * v170.W),
-				}
-				goto _172
-			_172:
-				v173 = v167
-				v174 = v171
-				v175 = b3FloatW4{
-					X: v173.X + v174.X,
-					Y: v173.Y + v174.Y,
-					Z: v173.Z + v174.Z,
-					W: v173.W + v174.W,
-				}
-				goto _176
-			_176:
-				v155 = v175
-				goto _156
-			_156:
-				v177 = normalA
-				v178 = rA
-				v181 = v177.X
-				v182 = v178.X
-				v183 = b3FloatW4{
-					X: float32(v181.X * v182.X),
-					Y: float32(v181.Y * v182.Y),
-					Z: float32(v181.Z * v182.Z),
-					W: float32(v181.W * v182.W),
-				}
-				goto _184
-			_184:
-				v185 = v177.Y
-				v186 = v178.Y
-				v187 = b3FloatW4{
-					X: float32(v185.X * v186.X),
-					Y: float32(v185.Y * v186.Y),
-					Z: float32(v185.Z * v186.Z),
-					W: float32(v185.W * v186.W),
-				}
-				goto _188
-			_188:
-				v189 = v183
-				v190 = v187
-				v191 = b3FloatW4{
-					X: v189.X + v190.X,
-					Y: v189.Y + v190.Y,
-					Z: v189.Z + v190.Z,
-					W: v189.W + v190.W,
-				}
-				goto _192
-			_192:
-				v193 = v177.Z
-				v194 = v178.Z
-				v195 = b3FloatW4{
-					X: float32(v193.X * v194.X),
-					Y: float32(v193.Y * v194.Y),
-					Z: float32(v193.Z * v194.Z),
-					W: float32(v193.W * v194.W),
-				}
-				goto _196
-			_196:
-				v197 = v191
-				v198 = v195
-				v199 = b3FloatW4{
-					X: v197.X + v198.X,
-					Y: v197.Y + v198.Y,
-					Z: v197.Z + v198.Z,
-					W: v197.W + v198.W,
-				}
-				goto _200
-			_200:
-				v179 = v199
-				goto _180
-			_180:
-				v201 = v155
-				v202 = v179
-				v203 = b3FloatW4{
-					X: v201.X - v202.X,
-					Y: v201.Y - v202.Y,
-					Z: v201.Z - v202.Z,
-					W: v201.W - v202.W,
-				}
-				goto _204
-			_204:
-				v205 = normalSeparation
-				v206 = v203
-				v207 = b3FloatW4{
-					X: v205.X + v206.X,
-					Y: v205.Y + v206.Y,
-					Z: v205.Z + v206.Z,
-					W: v205.W + v206.W,
-				}
-				goto _208
-			_208:
-				v209 = v207
-				v210 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations
-				v211 = b3FloatW4{
-					X: v209.X + v210.X,
-					Y: v209.Y + v210.Y,
-					Z: v209.Z + v210.Z,
-					W: v209.W + v210.W,
-				}
-				goto _212
-			_212:
-				s3 = v211
-				v213 = s3
-				v214 = zeroW
-				if v213.X > v214.X {
-					v215 = float32FromFloat32(1)
-				} else {
-					v215 = float32FromFloat32(0)
-				}
-				r2.X = v215
-				if v213.Y > v214.Y {
-					v216 = float32FromFloat32(1)
-				} else {
-					v216 = float32FromFloat32(0)
-				}
-				r2.Y = v216
-				if v213.Z > v214.Z {
-					v217 = float32FromFloat32(1)
-				} else {
-					v217 = float32FromFloat32(0)
-				}
-				r2.Z = v217
-				if v213.W > v214.W {
-					v218 = float32FromFloat32(1)
-				} else {
-					v218 = float32FromFloat32(0)
-				}
-				r2.W = v218
-				v219 = r2
-				goto _220
-			_220:
+				v21 = normalB
+				v22 = rB
+				v23 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v21.X, v22.X), b3MulW4(tls, v21.Y, v22.Y)), b3MulW4(tls, v21.Z, v22.Z))
+				goto _24
+			_24:
+				v25 = normalA
+				v26 = rA
+				v27 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v25.X, v26.X), b3MulW4(tls, v25.Y, v26.Y)), b3MulW4(tls, v25.Z, v26.Z))
+				goto _28
+			_28:
+				s3 = b3AddW4(tls, b3AddW4(tls, normalSeparation, b3SubW4(tls, v23, v27)), (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations)
 				// Apply speculative bias if separation is greater than zero, otherwise apply soft constraint bias
-				separated = v219
-				v221 = s3
-				v222 = inv_h
-				v223 = b3FloatW4{
-					X: float32(v221.X * v222.X),
-					Y: float32(v221.Y * v222.Y),
-					Z: float32(v221.Z * v222.Z),
-					W: float32(v221.W * v222.W),
-				}
-				goto _224
-			_224:
+				separated = b3GreaterThanW4(tls, s3, zeroW)
 				// Speculative bias - positive
-				specBias = v223
-				v225 = biasRate
-				v226 = s3
-				v227 = b3FloatW4{
-					X: float32(v225.X * v226.X),
-					Y: float32(v225.Y * v226.Y),
-					Z: float32(v225.Z * v226.Z),
-					W: float32(v225.W * v226.W),
-				}
-				goto _228
-			_228:
-				v229 = v227
-				v230 = contactSpeed
-				if v229.X >= v230.X {
-					v231 = v229.X
-				} else {
-					v231 = v230.X
-				}
-				r.X = v231
-				if v229.Y >= v230.Y {
-					v232 = v229.Y
-				} else {
-					v232 = v230.Y
-				}
-				r.Y = v232
-				if v229.Z >= v230.Z {
-					v233 = v229.Z
-				} else {
-					v233 = v230.Z
-				}
-				r.Z = v233
-				if v229.W >= v230.W {
-					v234 = v229.W
-				} else {
-					v234 = v230.W
-				}
-				r.W = v234
-				v235 = r
-				goto _236
-			_236:
+				specBias = b3MulW4(tls, s3, inv_h)
 				// Overlap bias - negative
-				overlapBias = v235
-				v237 = overlapBias
-				v238 = specBias
-				v239 = separated
-				if v239.X != float32FromFloat32(0) {
-					v240 = v238.X
-				} else {
-					v240 = v237.X
-				}
-				r3.X = v240
-				if v239.Y != float32FromFloat32(0) {
-					v241 = v238.Y
-				} else {
-					v241 = v237.Y
-				}
-				r3.Y = v241
-				if v239.Z != float32FromFloat32(0) {
-					v242 = v238.Z
-				} else {
-					v242 = v237.Z
-				}
-				r3.Z = v242
-				if v239.W != float32FromFloat32(0) {
-					v243 = v238.W
-				} else {
-					v243 = v237.W
-				}
-				r3.W = v243
-				v244 = r3
-				goto _245
-			_245:
-				velocityBias = v244
-				v246 = massScale
-				v247 = oneW
-				v248 = separated
-				if v248.X != float32FromFloat32(0) {
-					v249 = v247.X
-				} else {
-					v249 = v246.X
-				}
-				r3.X = v249
-				if v248.Y != float32FromFloat32(0) {
-					v250 = v247.Y
-				} else {
-					v250 = v246.Y
-				}
-				r3.Y = v250
-				if v248.Z != float32FromFloat32(0) {
-					v251 = v247.Z
-				} else {
-					v251 = v246.Z
-				}
-				r3.Z = v251
-				if v248.W != float32FromFloat32(0) {
-					v252 = v247.W
-				} else {
-					v252 = v246.W
-				}
-				r3.W = v252
-				v253 = r3
-				goto _254
-			_254:
-				pointMassScale = v253
-				v255 = impulseScale
-				v256 = zeroW
-				v257 = separated
-				if v257.X != float32FromFloat32(0) {
-					v258 = v256.X
-				} else {
-					v258 = v255.X
-				}
-				r3.X = v258
-				if v257.Y != float32FromFloat32(0) {
-					v259 = v256.Y
-				} else {
-					v259 = v255.Y
-				}
-				r3.Y = v259
-				if v257.Z != float32FromFloat32(0) {
-					v260 = v256.Z
-				} else {
-					v260 = v255.Z
-				}
-				r3.Z = v260
-				if v257.W != float32FromFloat32(0) {
-					v261 = v256.W
-				} else {
-					v261 = v255.W
-				}
-				r3.W = v261
-				v262 = r3
-				goto _263
-			_263:
-				pointImpulseScale = v262
-				v264 = rA
-				v265 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v266 = v264.Y
-				v267 = v265.Z
-				v268 = b3FloatW4{
-					X: float32(v266.X * v267.X),
-					Y: float32(v266.Y * v267.Y),
-					Z: float32(v266.Z * v267.Z),
-					W: float32(v266.W * v267.W),
-				}
-				goto _269
-			_269:
-				v270 = v264.Z
-				v271 = v265.Y
-				v272 = b3FloatW4{
-					X: float32(v270.X * v271.X),
-					Y: float32(v270.Y * v271.Y),
-					Z: float32(v270.Z * v271.Z),
-					W: float32(v270.W * v271.W),
-				}
-				goto _273
-			_273:
-				v274 = v268
-				v275 = v272
-				v276 = b3FloatW4{
-					X: v274.X - v275.X,
-					Y: v274.Y - v275.Y,
-					Z: v274.Z - v275.Z,
-					W: v274.W - v275.W,
-				}
-				goto _277
-			_277:
-				c1.X = v276
-				v278 = v264.Z
-				v279 = v265.X
-				v280 = b3FloatW4{
-					X: float32(v278.X * v279.X),
-					Y: float32(v278.Y * v279.Y),
-					Z: float32(v278.Z * v279.Z),
-					W: float32(v278.W * v279.W),
-				}
-				goto _281
-			_281:
-				v282 = v264.X
-				v283 = v265.Z
-				v284 = b3FloatW4{
-					X: float32(v282.X * v283.X),
-					Y: float32(v282.Y * v283.Y),
-					Z: float32(v282.Z * v283.Z),
-					W: float32(v282.W * v283.W),
-				}
-				goto _285
-			_285:
-				v286 = v280
-				v287 = v284
-				v288 = b3FloatW4{
-					X: v286.X - v287.X,
-					Y: v286.Y - v287.Y,
-					Z: v286.Z - v287.Z,
-					W: v286.W - v287.W,
-				}
-				goto _289
-			_289:
-				c1.Y = v288
-				v290 = v264.X
-				v291 = v265.Y
-				v292 = b3FloatW4{
-					X: float32(v290.X * v291.X),
-					Y: float32(v290.Y * v291.Y),
-					Z: float32(v290.Z * v291.Z),
-					W: float32(v290.W * v291.W),
-				}
-				goto _293
-			_293:
-				v294 = v264.Y
-				v295 = v265.X
-				v296 = b3FloatW4{
-					X: float32(v294.X * v295.X),
-					Y: float32(v294.Y * v295.Y),
-					Z: float32(v294.Z * v295.Z),
-					W: float32(v294.W * v295.W),
-				}
-				goto _297
-			_297:
-				v298 = v292
-				v299 = v296
-				v300 = b3FloatW4{
-					X: v298.X - v299.X,
-					Y: v298.Y - v299.Y,
-					Z: v298.Z - v299.Z,
-					W: v298.W - v299.W,
-				}
-				goto _301
-			_301:
-				c1.Z = v300
-				v302 = c1
-				goto _303
-			_303:
-				uA = v302
-				v304 = rB
-				v305 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v306 = v304.Y
-				v307 = v305.Z
-				v308 = b3FloatW4{
-					X: float32(v306.X * v307.X),
-					Y: float32(v306.Y * v307.Y),
-					Z: float32(v306.Z * v307.Z),
-					W: float32(v306.W * v307.W),
-				}
-				goto _309
-			_309:
-				v310 = v304.Z
-				v311 = v305.Y
-				v312 = b3FloatW4{
-					X: float32(v310.X * v311.X),
-					Y: float32(v310.Y * v311.Y),
-					Z: float32(v310.Z * v311.Z),
-					W: float32(v310.W * v311.W),
-				}
-				goto _313
-			_313:
-				v314 = v308
-				v315 = v312
-				v316 = b3FloatW4{
-					X: v314.X - v315.X,
-					Y: v314.Y - v315.Y,
-					Z: v314.Z - v315.Z,
-					W: v314.W - v315.W,
-				}
-				goto _317
-			_317:
-				c1.X = v316
-				v318 = v304.Z
-				v319 = v305.X
-				v320 = b3FloatW4{
-					X: float32(v318.X * v319.X),
-					Y: float32(v318.Y * v319.Y),
-					Z: float32(v318.Z * v319.Z),
-					W: float32(v318.W * v319.W),
-				}
-				goto _321
-			_321:
-				v322 = v304.X
-				v323 = v305.Z
-				v324 = b3FloatW4{
-					X: float32(v322.X * v323.X),
-					Y: float32(v322.Y * v323.Y),
-					Z: float32(v322.Z * v323.Z),
-					W: float32(v322.W * v323.W),
-				}
-				goto _325
-			_325:
-				v326 = v320
-				v327 = v324
-				v328 = b3FloatW4{
-					X: v326.X - v327.X,
-					Y: v326.Y - v327.Y,
-					Z: v326.Z - v327.Z,
-					W: v326.W - v327.W,
-				}
-				goto _329
-			_329:
-				c1.Y = v328
-				v330 = v304.X
-				v331 = v305.Y
-				v332 = b3FloatW4{
-					X: float32(v330.X * v331.X),
-					Y: float32(v330.Y * v331.Y),
-					Z: float32(v330.Z * v331.Z),
-					W: float32(v330.W * v331.W),
-				}
-				goto _333
-			_333:
-				v334 = v304.Y
-				v335 = v305.X
-				v336 = b3FloatW4{
-					X: float32(v334.X * v335.X),
-					Y: float32(v334.Y * v335.Y),
-					Z: float32(v334.Z * v335.Z),
-					W: float32(v334.W * v335.W),
-				}
-				goto _337
-			_337:
-				v338 = v332
-				v339 = v336
-				v340 = b3FloatW4{
-					X: v338.X - v339.X,
-					Y: v338.Y - v339.Y,
-					Z: v338.Z - v339.Z,
-					W: v338.W - v339.W,
-				}
-				goto _341
-			_341:
-				c1.Z = v340
-				v342 = c1
-				goto _343
-			_343:
-				uB = v342
-				gA = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA, uA)
-				gB = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB, uB)
-				v344 = uB
-				v345 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v348 = v344.X
-				v349 = v345.X
-				v350 = b3FloatW4{
-					X: float32(v348.X * v349.X),
-					Y: float32(v348.Y * v349.Y),
-					Z: float32(v348.Z * v349.Z),
-					W: float32(v348.W * v349.W),
-				}
-				goto _351
-			_351:
-				v352 = v344.Y
-				v353 = v345.Y
-				v354 = b3FloatW4{
-					X: float32(v352.X * v353.X),
-					Y: float32(v352.Y * v353.Y),
-					Z: float32(v352.Z * v353.Z),
-					W: float32(v352.W * v353.W),
-				}
-				goto _355
-			_355:
-				v356 = v350
-				v357 = v354
-				v358 = b3FloatW4{
-					X: v356.X + v357.X,
-					Y: v356.Y + v357.Y,
-					Z: v356.Z + v357.Z,
-					W: v356.W + v357.W,
-				}
-				goto _359
-			_359:
-				v360 = v344.Z
-				v361 = v345.Z
-				v362 = b3FloatW4{
-					X: float32(v360.X * v361.X),
-					Y: float32(v360.Y * v361.Y),
-					Z: float32(v360.Z * v361.Z),
-					W: float32(v360.W * v361.W),
-				}
-				goto _363
-			_363:
-				v364 = v358
-				v365 = v362
-				v366 = b3FloatW4{
-					X: v364.X + v365.X,
-					Y: v364.Y + v365.Y,
-					Z: v364.Z + v365.Z,
-					W: v364.W + v365.W,
-				}
-				goto _367
-			_367:
-				v346 = v366
-				goto _347
-			_347:
-				v368 = uA
-				v369 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v372 = v368.X
-				v373 = v369.X
-				v374 = b3FloatW4{
-					X: float32(v372.X * v373.X),
-					Y: float32(v372.Y * v373.Y),
-					Z: float32(v372.Z * v373.Z),
-					W: float32(v372.W * v373.W),
-				}
-				goto _375
-			_375:
-				v376 = v368.Y
-				v377 = v369.Y
-				v378 = b3FloatW4{
-					X: float32(v376.X * v377.X),
-					Y: float32(v376.Y * v377.Y),
-					Z: float32(v376.Z * v377.Z),
-					W: float32(v376.W * v377.W),
-				}
-				goto _379
-			_379:
-				v380 = v374
-				v381 = v378
-				v382 = b3FloatW4{
-					X: v380.X + v381.X,
-					Y: v380.Y + v381.Y,
-					Z: v380.Z + v381.Z,
-					W: v380.W + v381.W,
-				}
-				goto _383
-			_383:
-				v384 = v368.Z
-				v385 = v369.Z
-				v386 = b3FloatW4{
-					X: float32(v384.X * v385.X),
-					Y: float32(v384.Y * v385.Y),
-					Z: float32(v384.Z * v385.Z),
-					W: float32(v384.W * v385.W),
-				}
-				goto _387
-			_387:
-				v388 = v382
-				v389 = v386
-				v390 = b3FloatW4{
-					X: v388.X + v389.X,
-					Y: v388.Y + v389.Y,
-					Z: v388.Z + v389.Z,
-					W: v388.W + v389.W,
-				}
-				goto _391
-			_391:
-				v370 = v390
-				goto _371
-			_371:
-				v392 = v346
-				v393 = v370
-				v394 = b3FloatW4{
-					X: v392.X - v393.X,
-					Y: v392.Y - v393.Y,
-					Z: v392.Z - v393.Z,
-					W: v392.W - v393.W,
-				}
-				goto _395
-			_395:
-				v396 = linearNormalVelocity
-				v397 = v394
-				v398 = b3FloatW4{
-					X: v396.X + v397.X,
-					Y: v396.Y + v397.Y,
-					Z: v396.Z + v397.Z,
-					W: v396.W + v397.W,
-				}
-				goto _399
-			_399:
-				vn = v398
-				v400 = pointMassScale
-				v401 = vn
-				v402 = b3FloatW4{
-					X: float32(v400.X * v401.X),
-					Y: float32(v400.Y * v401.Y),
-					Z: float32(v400.Z * v401.Z),
-					W: float32(v400.W * v401.W),
-				}
-				goto _403
-			_403:
-				v404 = v402
-				v405 = velocityBias
-				v406 = b3FloatW4{
-					X: v404.X + v405.X,
-					Y: v404.Y + v405.Y,
-					Z: v404.Z + v405.Z,
-					W: v404.W + v405.W,
-				}
-				goto _407
-			_407:
-				v408 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses
-				v409 = v406
-				v410 = b3FloatW4{
-					X: float32(v408.X * v409.X),
-					Y: float32(v408.Y * v409.Y),
-					Z: float32(v408.Z * v409.Z),
-					W: float32(v408.W * v409.W),
-				}
-				goto _411
-			_411:
-				v412 = pointImpulseScale
-				v413 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v414 = b3FloatW4{
-					X: float32(v412.X * v413.X),
-					Y: float32(v412.Y * v413.Y),
-					Z: float32(v412.Z * v413.Z),
-					W: float32(v412.W * v413.W),
-				}
-				goto _415
-			_415:
-				v416 = v410
-				v417 = v414
-				v418 = b3FloatW4{
-					X: v416.X + v417.X,
-					Y: v416.Y + v417.Y,
-					Z: v416.Z + v417.Z,
-					W: v416.W + v417.W,
-				}
-				goto _419
-			_419:
-				negImpulse = v418
-				v420 = negImpulse
-				v421 = b3FloatW4{
-					X: -v420.X,
-					Y: -v420.Y,
-					Z: -v420.Z,
-					W: -v420.W,
-				}
-				goto _422
-			_422:
-				v423 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v424 = b3FloatW4{
-					X: -v423.X,
-					Y: -v423.Y,
-					Z: -v423.Z,
-					W: -v423.W,
-				}
-				goto _425
-			_425:
-				v426 = v421
-				v427 = v424
-				if v426.X >= v427.X {
-					v428 = v426.X
-				} else {
-					v428 = v427.X
-				}
-				r.X = v428
-				if v426.Y >= v427.Y {
-					v429 = v426.Y
-				} else {
-					v429 = v427.Y
-				}
-				r.Y = v429
-				if v426.Z >= v427.Z {
-					v430 = v426.Z
-				} else {
-					v430 = v427.Z
-				}
-				r.Z = v430
-				if v426.W >= v427.W {
-					v431 = v426.W
-				} else {
-					v431 = v427.W
-				}
-				r.W = v431
-				v432 = r
-				goto _433
-			_433:
-				impulse = v432
-				v434 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v435 = impulse
-				v436 = b3FloatW4{
-					X: v434.X + v435.X,
-					Y: v434.Y + v435.Y,
-					Z: v434.Z + v435.Z,
-					W: v434.W + v435.W,
-				}
-				goto _437
-			_437:
-				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = v436
-				v2 = linearNormalVelocity
-				v5 = invMass
-				v8 = impulse
-				v10 = b3FloatW4{
-					X: v2.X + float32(v5.X*v8.X),
-					Y: v2.Y + float32(v5.Y*v8.Y),
-					Z: v2.Z + float32(v5.Z*v8.Z),
-					W: v2.W + float32(v5.W*v8.W),
-				}
-				goto _442
-			_442:
-				linearNormalVelocity = v10
-				v2 = manifoldImpulse
-				v5 = impulse
-				v8 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
-				}
-				goto _446
-			_446:
-				manifoldImpulse = v8
-				v67 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v2 = impulse
-				v68 = gA
-				v5 = v2
-				v8 = v68.X
-				v10 = b3FloatW4{
-					X: float32(v5.X * v8.X),
-					Y: float32(v5.Y * v8.Y),
-					Z: float32(v5.Z * v8.Z),
-					W: float32(v5.W * v8.W),
-				}
-				goto _455
-			_455:
-				v13 = v67.X
-				v16 = v10
-				v19 = b3FloatW4{
-					X: v13.X - v16.X,
-					Y: v13.Y - v16.Y,
-					Z: v13.Z - v16.Z,
-					W: v13.W - v16.W,
-				}
-				goto _459
-			_459:
-				v22 = v2
-				v25 = v68.Y
-				v28 = b3FloatW4{
-					X: float32(v22.X * v25.X),
-					Y: float32(v22.Y * v25.Y),
-					Z: float32(v22.Z * v25.Z),
-					W: float32(v22.W * v25.W),
-				}
-				goto _463
-			_463:
-				v38 = v67.Y
-				v40 = v28
-				v41 = b3FloatW4{
-					X: v38.X - v40.X,
-					Y: v38.Y - v40.Y,
-					Z: v38.Z - v40.Z,
-					W: v38.W - v40.W,
-				}
-				goto _467
-			_467:
-				v42 = v2
-				v47 = v68.Z
-				v49 = b3FloatW4{
-					X: float32(v42.X * v47.X),
-					Y: float32(v42.Y * v47.Y),
-					Z: float32(v42.Z * v47.Z),
-					W: float32(v42.W * v47.W),
-				}
-				goto _471
-			_471:
-				v50 = v67.Z
-				v51 = v49
-				v56 = b3FloatW4{
-					X: v50.X - v51.X,
-					Y: v50.Y - v51.Y,
-					Z: v50.Z - v51.Z,
-					W: v50.W - v51.W,
-				}
-				goto _475
-			_475:
-				v69 = b3Vec3W4{
-					X: v19,
-					Y: v41,
-					Z: v56,
-				}
-				goto _451
-			_451:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v69
-				v67 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v2 = impulse
-				v68 = gB
-				v5 = v2
-				v8 = v68.X
-				v10 = b3FloatW4{
-					X: float32(v5.X * v8.X),
-					Y: float32(v5.Y * v8.Y),
-					Z: float32(v5.Z * v8.Z),
-					W: float32(v5.W * v8.W),
-				}
-				goto _484
-			_484:
-				v13 = v67.X
-				v16 = v10
-				v19 = b3FloatW4{
-					X: v13.X + v16.X,
-					Y: v13.Y + v16.Y,
-					Z: v13.Z + v16.Z,
-					W: v13.W + v16.W,
-				}
-				goto _488
-			_488:
-				v22 = v2
-				v25 = v68.Y
-				v28 = b3FloatW4{
-					X: float32(v22.X * v25.X),
-					Y: float32(v22.Y * v25.Y),
-					Z: float32(v22.Z * v25.Z),
-					W: float32(v22.W * v25.W),
-				}
-				goto _492
-			_492:
-				v38 = v67.Y
-				v40 = v28
-				v41 = b3FloatW4{
-					X: v38.X + v40.X,
-					Y: v38.Y + v40.Y,
-					Z: v38.Z + v40.Z,
-					W: v38.W + v40.W,
-				}
-				goto _496
-			_496:
-				v42 = v2
-				v47 = v68.Z
-				v49 = b3FloatW4{
-					X: float32(v42.X * v47.X),
-					Y: float32(v42.Y * v47.Y),
-					Z: float32(v42.Z * v47.Z),
-					W: float32(v42.W * v47.W),
-				}
-				goto _500
-			_500:
-				v50 = v67.Z
-				v51 = v49
-				v56 = b3FloatW4{
-					X: v50.X + v51.X,
-					Y: v50.Y + v51.Y,
-					Z: v50.Z + v51.Z,
-					W: v50.W + v51.W,
-				}
-				goto _504
-			_504:
-				v69 = b3Vec3W4{
-					X: v19,
-					Y: v41,
-					Z: v56,
-				}
-				goto _480
-			_480:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v69
-				goto _152
-			_152:
+				overlapBias = b3MaxW4(tls, b3MulW4(tls, biasRate, s3), contactSpeed)
+				velocityBias = b3BlendW4(tls, overlapBias, specBias, separated)
+				pointMassScale = b3BlendW4(tls, massScale, oneW, separated)
+				pointImpulseScale = b3BlendW4(tls, impulseScale, zeroW, separated)
+				v29 = rA
+				v30 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				c.X = b3SubW4(tls, b3MulW4(tls, v29.Y, v30.Z), b3MulW4(tls, v29.Z, v30.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v29.Z, v30.X), b3MulW4(tls, v29.X, v30.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v29.X, v30.Y), b3MulW4(tls, v29.Y, v30.X))
+				v31 = c
+				goto _32
+			_32:
+				uA = v31
+				v33 = rB
+				v34 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				c.X = b3SubW4(tls, b3MulW4(tls, v33.Y, v34.Z), b3MulW4(tls, v33.Z, v34.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v33.Z, v34.X), b3MulW4(tls, v33.X, v34.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v33.X, v34.Y), b3MulW4(tls, v33.Y, v34.X))
+				v35 = c
+				goto _36
+			_36:
+				uB = v35
+				gA = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, uA)
+				gB = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, uB)
+				v37 = uB
+				v38 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v39 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v37.X, v38.X), b3MulW4(tls, v37.Y, v38.Y)), b3MulW4(tls, v37.Z, v38.Z))
+				goto _40
+			_40:
+				v41 = uA
+				v42 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v43 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v41.X, v42.X), b3MulW4(tls, v41.Y, v42.Y)), b3MulW4(tls, v41.Z, v42.Z))
+				goto _44
+			_44:
+				vn = b3AddW4(tls, linearNormalVelocity, b3SubW4(tls, v39, v43))
+				negImpulse = b3AddW4(tls, b3MulW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses, b3AddW4(tls, b3MulW4(tls, pointMassScale, vn), velocityBias)), b3MulW4(tls, pointImpulseScale, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses))
+				impulse = b3MaxW4(tls, b3NegW4(tls, negImpulse), b3NegW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses))
+				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses, impulse)
+				linearNormalVelocity = b3MulAddW4(tls, linearNormalVelocity, invMass, impulse)
+				manifoldImpulse = b3AddW4(tls, manifoldImpulse, impulse)
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v10 = impulse
+				v4 = gA
+				v5 = b3Vec3W4{
+					X: b3SubW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3SubW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3SubW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
+				}
+				goto _49
+			_49:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v5
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v10 = impulse
+				v4 = gB
+				v5 = b3Vec3W4{
+					X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
+				}
+				goto _54
+			_54:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v5
+				goto _20
+			_20:
 				;
 				pointIndex = pointIndex + 1
 			}
-			v2 = manifoldImpulse
-			v67 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v5 = v2
-			v8 = v67.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v8.X),
-				Y: float32(v5.Y * v8.Y),
-				Z: float32(v5.Z * v8.Z),
-				W: float32(v5.W * v8.W),
+			v10 = manifoldImpulse
+			v3 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v4 = b3Vec3W4{
+				X: b3MulW4(tls, v10, v3.X),
+				Y: b3MulW4(tls, v10, v3.Y),
+				Z: b3MulW4(tls, v10, v3.Z),
 			}
-			goto _512
-		_512:
-			v13 = v2
-			v16 = v67.Y
-			v19 = b3FloatW4{
-				X: float32(v13.X * v16.X),
-				Y: float32(v13.Y * v16.Y),
-				Z: float32(v13.Z * v16.Z),
-				W: float32(v13.W * v16.W),
+			goto _58
+		_58:
+			P = v4
+			v5 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+			v18 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
+			v8 = P
+			v9 = b3Vec3W4{
+				X: b3SubW4(tls, v5.X, b3MulW4(tls, v18, v8.X)),
+				Y: b3SubW4(tls, v5.Y, b3MulW4(tls, v18, v8.Y)),
+				Z: b3SubW4(tls, v5.Z, b3MulW4(tls, v18, v8.Z)),
 			}
-			goto _516
-		_516:
-			v22 = v2
-			v25 = v67.Z
-			v28 = b3FloatW4{
-				X: float32(v22.X * v25.X),
-				Y: float32(v22.Y * v25.Y),
-				Z: float32(v22.Z * v25.Z),
-				W: float32(v22.W * v25.W),
+			goto _63
+		_63:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v9
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+			v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
+			v4 = P
+			v5 = b3Vec3W4{
+				X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _520
-		_520:
-			v68 = b3Vec3W4{
-				X: v10,
-				Y: v19,
-				Z: v28,
-			}
-			goto _508
-		_508:
-			P = v68
-			v69 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-			v38 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassA
-			v88 = P
-			v40 = v38
-			v41 = v88.X
-			v42 = b3FloatW4{
-				X: float32(v40.X * v41.X),
-				Y: float32(v40.Y * v41.Y),
-				Z: float32(v40.Z * v41.Z),
-				W: float32(v40.W * v41.W),
-			}
-			goto _529
-		_529:
-			v47 = v69.X
-			v49 = v42
-			v50 = b3FloatW4{
-				X: v47.X - v49.X,
-				Y: v47.Y - v49.Y,
-				Z: v47.Z - v49.Z,
-				W: v47.W - v49.W,
-			}
-			goto _533
-		_533:
-			v51 = v38
-			v56 = v88.Y
-			v58 = b3FloatW4{
-				X: float32(v51.X * v56.X),
-				Y: float32(v51.Y * v56.Y),
-				Z: float32(v51.Z * v56.Z),
-				W: float32(v51.W * v56.W),
-			}
-			goto _537
-		_537:
-			v59 = v69.Y
-			v60 = v58
-			v65 = b3FloatW4{
-				X: v59.X - v60.X,
-				Y: v59.Y - v60.Y,
-				Z: v59.Z - v60.Z,
-				W: v59.W - v60.W,
-			}
-			goto _541
-		_541:
-			v71 = v38
-			v72 = v88.Z
-			v73 = b3FloatW4{
-				X: float32(v71.X * v72.X),
-				Y: float32(v71.Y * v72.Y),
-				Z: float32(v71.Z * v72.Z),
-				W: float32(v71.W * v72.W),
-			}
-			goto _545
-		_545:
-			v75 = v69.Z
-			v76 = v73
-			v77 = b3FloatW4{
-				X: v75.X - v76.X,
-				Y: v75.Y - v76.Y,
-				Z: v75.Z - v76.Z,
-				W: v75.W - v76.W,
-			}
-			goto _549
-		_549:
-			v89 = b3Vec3W4{
-				X: v50,
-				Y: v65,
-				Z: v77,
-			}
-			goto _525
-		_525:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v89
-			v67 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassB
-			v68 = P
-			v5 = v2
-			v8 = v68.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v8.X),
-				Y: float32(v5.Y * v8.Y),
-				Z: float32(v5.Z * v8.Z),
-				W: float32(v5.W * v8.W),
-			}
-			goto _558
-		_558:
-			v13 = v67.X
-			v16 = v10
-			v19 = b3FloatW4{
-				X: v13.X + v16.X,
-				Y: v13.Y + v16.Y,
-				Z: v13.Z + v16.Z,
-				W: v13.W + v16.W,
-			}
-			goto _562
-		_562:
-			v22 = v2
-			v25 = v68.Y
-			v28 = b3FloatW4{
-				X: float32(v22.X * v25.X),
-				Y: float32(v22.Y * v25.Y),
-				Z: float32(v22.Z * v25.Z),
-				W: float32(v22.W * v25.W),
-			}
-			goto _566
-		_566:
-			v38 = v67.Y
-			v40 = v28
-			v41 = b3FloatW4{
-				X: v38.X + v40.X,
-				Y: v38.Y + v40.Y,
-				Z: v38.Z + v40.Z,
-				W: v38.W + v40.W,
-			}
-			goto _570
-		_570:
-			v42 = v2
-			v47 = v68.Z
-			v49 = b3FloatW4{
-				X: float32(v42.X * v47.X),
-				Y: float32(v42.Y * v47.Y),
-				Z: float32(v42.Z * v47.Z),
-				W: float32(v42.W * v47.W),
-			}
-			goto _574
-		_574:
-			v50 = v67.Z
-			v51 = v49
-			v56 = b3FloatW4{
-				X: v50.X + v51.X,
-				Y: v50.Y + v51.Y,
-				Z: v50.Z + v51.Z,
-				W: v50.W + v51.W,
-			}
-			goto _578
-		_578:
-			v69 = b3Vec3W4{
-				X: v19,
-				Y: v41,
-				Z: v56,
-			}
-			goto _554
-		_554:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v69
-			goto _87
-		_87:
+			goto _68
+		_68:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v5
+			goto _7
+		_7:
 			;
 			manifoldIndex = manifoldIndex + 1
 		}
-		b3ScatterBodies(tls, states, c2, bp)
-		b3ScatterBodies(tls, states, c2+16, bp+208)
-		c2 = b3NextConstraintW(tls, c2, manifoldCount)
-		goto _30
-	_30:
+		b3ScatterBodies(tls, states, c1, bp)
+		b3ScatterBodies(tls, states, c1+16, bp+208)
+		c1 = b3NextConstraintW(tls, c1, manifoldCount)
+		goto _1
+	_1:
 		;
 		i = i + 1
 	}
@@ -54478,42 +47888,19 @@ func b3ApplyRestitutionW(tls *_Stack, block b3SolverBlock, context uintptr, base
 	bp := tls.Alloc(416)
 	defer tls.Free(416)
 	var P, dp, normalA, normalB, rA, rB, vrA, vrB b3Vec3W
-	var allowance, approachImpulse, armed, compressionImpulse, impulse, inv_h, maxImpulse, negImpulse, negRestitutionThreshold, newImpulse, normalMass, normalSeparation, restitutionMask, s3, specBias, velocityBias, vn, zeroW, v125 b3FloatW
-	var c, v196, v197, v23, v234, v236, v237, v238, v24, v25, v252, v253, v290, v292, v293, v294, v308, v309, v310, v324, v325, v40, v41, v65, v66, v89, v90 b3Vec3W4
+	var allowance, approachImpulse, armed, compressionImpulse, impulse, inv_h, maxImpulse, negImpulse, negRestitutionThreshold, newImpulse, normalMass, normalSeparation, restitutionMask, s3, specBias, velocityBias, vn, zeroW, v21 b3FloatW
+	var c, v13, v14, v17, v18, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v43, v5, v8, v9 b3Vec3W4
 	var c1, cm, cp, manifolds, next, states uintptr
-	var i, manifoldCount, manifoldIndex, pointIndex, v10 int32
-	var propagate, v12 uint8
-	var r, r1, r2, r3, r4, r5, v101, v102, v103, v105, v106, v107, v109, v11, v110, v111, v113, v114, v115, v117, v118, v119, v121, v122, v123, v126, v127, v128, v133, v135, v136, v137, v139, v140, v145, v147, v148, v15, v153, v155, v156, v16, v161, v163, v164, v169, v171, v172, v173, v175, v176, v181, v183, v184, v185, v187, v188, v189, v194, v198, v199, v2, v200, v202, v203, v204, v206, v207, v208, v21, v210, v211, v212, v214, v215, v216, v218, v219, v220, v222, v223, v224, v226, v227, v228, v230, v231, v232, v240, v241, v242, v244, v245, v246, v248, v249, v250, v254, v255, v256, v258, v259, v260, v262, v263, v264, v266, v267, v268, v27, v270, v271, v272, v274, v275, v276, v278, v279, v28, v280, v282, v283, v284, v286, v287, v288, v29, v296, v297, v298, v300, v301, v302, v304, v305, v306, v31, v312, v313, v314, v316, v317, v318, v32, v320, v321, v322, v326, v328, v329, v33, v330, v332, v333, v334, v336, v337, v338, v340, v341, v342, v344, v345, v346, v348, v349, v35, v350, v352, v353, v354, v356, v357, v358, v36, v360, v361, v366, v368, v369, v37, v370, v372, v373, v374, v376, v377, v379, v380, v385, v387, v388, v393, v395, v396, v401, v403, v404, v405, v407, v408, v409, v411, v412, v413, v415, v416, v42, v421, v423, v424, v425, v427, v428, v433, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v60, v61, v62, v67, v69, v7, v70, v71, v73, v74, v75, v77, v78, v79, v81, v82, v83, v85, v86, v87, v91, v93, v94, v95, v97, v98, v99 b3FloatW4
-	var v1, v129, v130, v131, v132, v141, v142, v143, v144, v149, v150, v151, v152, v157, v158, v159, v160, v165, v166, v167, v168, v17, v177, v178, v179, v18, v180, v19, v190, v191, v192, v193, v20, v362, v363, v364, v365, v381, v382, v383, v384, v389, v390, v391, v392, v397, v398, v399, v4, v400, v417, v418, v419, v420, v429, v430, v431, v432, v438, v439 float32
-	var v14 bool
+	var i, manifoldCount, manifoldIndex, pointIndex, v2 int32
+	var propagate uint8
+	var v10, v15, v19, v44 b3FloatW4
 	var _ /* bA at bp+0 */ b3BodyStateW
 	var _ /* bB at bp+208 */ b3BodyStateW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, allowance, approachImpulse, armed, c, c1, cm, compressionImpulse, cp, dp, i, impulse, inv_h, manifoldCount, manifoldIndex, manifolds, maxImpulse, negImpulse, negRestitutionThreshold, newImpulse, next, normalA, normalB, normalMass, normalSeparation, pointIndex, propagate, r, r1, r2, r3, r4, r5, rA, rB, restitutionMask, s3, specBias, states, velocityBias, vn, vrA, vrB, zeroW, v1, v10, v101, v102, v103, v105, v106, v107, v109, v11, v110, v111, v113, v114, v115, v117, v118, v119, v12, v121, v122, v123, v125, v126, v127, v128, v129, v130, v131, v132, v133, v135, v136, v137, v139, v14, v140, v141, v142, v143, v144, v145, v147, v148, v149, v15, v150, v151, v152, v153, v155, v156, v157, v158, v159, v16, v160, v161, v163, v164, v165, v166, v167, v168, v169, v17, v171, v172, v173, v175, v176, v177, v178, v179, v18, v180, v181, v183, v184, v185, v187, v188, v189, v19, v190, v191, v192, v193, v194, v196, v197, v198, v199, v2, v20, v200, v202, v203, v204, v206, v207, v208, v21, v210, v211, v212, v214, v215, v216, v218, v219, v220, v222, v223, v224, v226, v227, v228, v23, v230, v231, v232, v234, v236, v237, v238, v24, v240, v241, v242, v244, v245, v246, v248, v249, v25, v250, v252, v253, v254, v255, v256, v258, v259, v260, v262, v263, v264, v266, v267, v268, v27, v270, v271, v272, v274, v275, v276, v278, v279, v28, v280, v282, v283, v284, v286, v287, v288, v29, v290, v292, v293, v294, v296, v297, v298, v300, v301, v302, v304, v305, v306, v308, v309, v31, v310, v312, v313, v314, v316, v317, v318, v32, v320, v321, v322, v324, v325, v326, v328, v329, v33, v330, v332, v333, v334, v336, v337, v338, v340, v341, v342, v344, v345, v346, v348, v349, v35, v350, v352, v353, v354, v356, v357, v358, v36, v360, v361, v362, v363, v364, v365, v366, v368, v369, v37, v370, v372, v373, v374, v376, v377, v379, v380, v381, v382, v383, v384, v385, v387, v388, v389, v390, v391, v392, v393, v395, v396, v397, v398, v399, v4, v40, v400, v401, v403, v404, v405, v407, v408, v409, v41, v411, v412, v413, v415, v416, v417, v418, v419, v42, v420, v421, v423, v424, v425, v427, v428, v429, v430, v431, v432, v433, v438, v439, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v60, v61, v62, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v77, v78, v79, v81, v82, v83, v85, v86, v87, v89, v90, v91, v93, v94, v95, v97, v98, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, allowance, approachImpulse, armed, c, c1, cm, compressionImpulse, cp, dp, i, impulse, inv_h, manifoldCount, manifoldIndex, manifolds, maxImpulse, negImpulse, negRestitutionThreshold, newImpulse, next, normalA, normalB, normalMass, normalSeparation, pointIndex, propagate, rA, rB, restitutionMask, s3, specBias, states, velocityBias, vn, vrA, vrB, zeroW, v10, v13, v14, v15, v17, v18, v19, v2, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v5, v8, v9
 	states = (*b3StepContext)(unsafe.Pointer(context)).States
-	v1 = (*b3StepContext)(unsafe.Pointer(context)).Inv_h
-	v2 = b3FloatW4{
-		X: v1,
-		Y: v1,
-		Z: v1,
-		W: v1,
-	}
-	goto _3
-_3:
-	inv_h = v2
-	v4 = -(*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).RestitutionThreshold
-	v5 = b3FloatW4{
-		X: v4,
-		Y: v4,
-		Z: v4,
-		W: v4,
-	}
-	goto _6
-_6:
-	negRestitutionThreshold = v5
-	v7 = b3FloatW4{}
-	goto _8
-_8:
-	zeroW = v7
+	inv_h = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).Inv_h)
+	negRestitutionThreshold = b3SplatW4(tls, -(*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).RestitutionThreshold)
+	zeroW = b3ZeroW4(tls)
 	propagate = (*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).EnableRestitutionPropagation
 	next = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
 	i = 0
@@ -54523,93 +47910,28 @@ _8:
 		}
 		c1 = next
 		if fixedManifoldCount > 0 {
-			v10 = fixedManifoldCount
+			v2 = fixedManifoldCount
 		} else {
-			v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
+			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
 		}
-		manifoldCount = v10
+		manifoldCount = v2
 		next = b3NextConstraintW(tls, c1, manifoldCount)
-		if v14 = int32FromUint8(propagate) == false1; v14 {
-			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution
-			v12 = boolUint8(v2.X == float32FromFloat32(0) && v2.Y == float32FromFloat32(0) && v2.Z == float32FromFloat32(0) && v2.W == float32FromFloat32(0))
-			goto _13
-		_13:
-		}
-		if v14 && v12 != 0 {
-			goto _9
+		if int32FromUint8(propagate) == false1 && b3AllZeroW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution) != 0 {
+			goto _1
 		}
 		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c1)
 		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c1+16)
-		v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution
-		v5 = zeroW
-		if v2.X > v5.X {
-			v1 = float32FromFloat32(1)
-		} else {
-			v1 = float32FromFloat32(0)
+		restitutionMask = b3GreaterThanW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution, zeroW)
+		v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
+		v4 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
+		v5 = b3Vec3W4{
+			X: b3SubW4(tls, v3.X, v4.X),
+			Y: b3SubW4(tls, v3.Y, v4.Y),
+			Z: b3SubW4(tls, v3.Z, v4.Z),
 		}
-		r3.X = v1
-		if v2.Y > v5.Y {
-			v4 = float32FromFloat32(1)
-		} else {
-			v4 = float32FromFloat32(0)
-		}
-		r3.Y = v4
-		if v2.Z > v5.Z {
-			v17 = float32FromFloat32(1)
-		} else {
-			v17 = float32FromFloat32(0)
-		}
-		r3.Z = v17
-		if v2.W > v5.W {
-			v18 = float32FromFloat32(1)
-		} else {
-			v18 = float32FromFloat32(0)
-		}
-		r3.W = v18
-		v7 = r3
-		goto _22
-	_22:
-		restitutionMask = v7
-		v23 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
-		v24 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
-		v11 = v23.X
-		v15 = v24.X
-		v16 = b3FloatW4{
-			X: v11.X - v15.X,
-			Y: v11.Y - v15.Y,
-			Z: v11.Z - v15.Z,
-			W: v11.W - v15.W,
-		}
-		goto _30
-	_30:
-		v21 = v23.Y
-		v27 = v24.Y
-		v28 = b3FloatW4{
-			X: v21.X - v27.X,
-			Y: v21.Y - v27.Y,
-			Z: v21.Z - v27.Z,
-			W: v21.W - v27.W,
-		}
-		goto _34
-	_34:
-		v29 = v23.Z
-		v31 = v24.Z
-		v32 = b3FloatW4{
-			X: v29.X - v31.X,
-			Y: v29.Y - v31.Y,
-			Z: v29.Z - v31.Z,
-			W: v29.W - v31.W,
-		}
-		goto _38
-	_38:
-		v25 = b3Vec3W4{
-			X: v16,
-			Y: v28,
-			Z: v32,
-		}
-		goto _26
-	_26:
-		dp = v25
+		goto _6
+	_6:
+		dp = v5
 		manifolds = b3GetManifoldsW(tls, c1)
 		manifoldIndex = 0
 		for {
@@ -54617,62 +47939,12 @@ _8:
 				break
 			}
 			cm = manifolds + uintptr(manifoldIndex)*1288
-			v40 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v41 = dp
-			v35 = v40.X
-			v36 = v41.X
-			v37 = b3FloatW4{
-				X: float32(v35.X * v36.X),
-				Y: float32(v35.Y * v36.Y),
-				Z: float32(v35.Z * v36.Z),
-				W: float32(v35.W * v36.W),
-			}
-			goto _47
-		_47:
-			v42 = v40.Y
-			v44 = v41.Y
-			v45 = b3FloatW4{
-				X: float32(v42.X * v44.X),
-				Y: float32(v42.Y * v44.Y),
-				Z: float32(v42.Z * v44.Z),
-				W: float32(v42.W * v44.W),
-			}
-			goto _51
-		_51:
-			v46 = v37
-			v48 = v45
-			v49 = b3FloatW4{
-				X: v46.X + v48.X,
-				Y: v46.Y + v48.Y,
-				Z: v46.Z + v48.Z,
-				W: v46.W + v48.W,
-			}
-			goto _55
-		_55:
-			v50 = v40.Z
-			v52 = v41.Z
-			v53 = b3FloatW4{
-				X: float32(v50.X * v52.X),
-				Y: float32(v50.Y * v52.Y),
-				Z: float32(v50.Z * v52.Z),
-				W: float32(v50.W * v52.W),
-			}
-			goto _59
-		_59:
-			v54 = v49
-			v56 = v53
-			v57 = b3FloatW4{
-				X: v54.X + v56.X,
-				Y: v54.Y + v56.Y,
-				Z: v54.Z + v56.Z,
-				W: v54.W + v56.W,
-			}
-			goto _63
-		_63:
-			v33 = v57
-			goto _43
-		_43:
-			normalSeparation = v33
+			v8 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v9 = dp
+			v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v8.X, v9.X), b3MulW4(tls, v8.Y, v9.Y)), b3MulW4(tls, v8.Z, v9.Z))
+			goto _11
+		_11:
+			normalSeparation = v10
 			normalA = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
 			normalB = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
 			// Read the point count rather than put on stack to avoid register spills.
@@ -54681,1513 +47953,155 @@ _8:
 				if !(pointIndex < (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount) {
 					break
 				}
-				cp = cm + 452 + uintptr(pointIndex)*208
+				cp = cm + 456 + uintptr(pointIndex)*208
 				rA = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs
 				rB = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs
-				v65 = normalB
-				v66 = rB
-				v60 = v65.X
-				v61 = v66.X
-				v62 = b3FloatW4{
-					X: float32(v60.X * v61.X),
-					Y: float32(v60.Y * v61.Y),
-					Z: float32(v60.Z * v61.Z),
-					W: float32(v60.W * v61.W),
-				}
-				goto _72
-			_72:
-				v67 = v65.Y
-				v69 = v66.Y
-				v70 = b3FloatW4{
-					X: float32(v67.X * v69.X),
-					Y: float32(v67.Y * v69.Y),
-					Z: float32(v67.Z * v69.Z),
-					W: float32(v67.W * v69.W),
-				}
-				goto _76
-			_76:
-				v71 = v62
-				v73 = v70
-				v74 = b3FloatW4{
-					X: v71.X + v73.X,
-					Y: v71.Y + v73.Y,
-					Z: v71.Z + v73.Z,
-					W: v71.W + v73.W,
-				}
-				goto _80
-			_80:
-				v75 = v65.Z
-				v77 = v66.Z
-				v78 = b3FloatW4{
-					X: float32(v75.X * v77.X),
-					Y: float32(v75.Y * v77.Y),
-					Z: float32(v75.Z * v77.Z),
-					W: float32(v75.W * v77.W),
-				}
-				goto _84
-			_84:
-				v79 = v74
-				v81 = v78
-				v82 = b3FloatW4{
-					X: v79.X + v81.X,
-					Y: v79.Y + v81.Y,
-					Z: v79.Z + v81.Z,
-					W: v79.W + v81.W,
-				}
-				goto _88
-			_88:
-				v58 = v82
-				goto _68
-			_68:
-				v89 = normalA
-				v90 = rA
-				v85 = v89.X
-				v86 = v90.X
-				v87 = b3FloatW4{
-					X: float32(v85.X * v86.X),
-					Y: float32(v85.Y * v86.Y),
-					Z: float32(v85.Z * v86.Z),
-					W: float32(v85.W * v86.W),
-				}
-				goto _96
-			_96:
-				v91 = v89.Y
-				v93 = v90.Y
-				v94 = b3FloatW4{
-					X: float32(v91.X * v93.X),
-					Y: float32(v91.Y * v93.Y),
-					Z: float32(v91.Z * v93.Z),
-					W: float32(v91.W * v93.W),
-				}
-				goto _100
-			_100:
-				v95 = v87
-				v97 = v94
-				v98 = b3FloatW4{
-					X: v95.X + v97.X,
-					Y: v95.Y + v97.Y,
-					Z: v95.Z + v97.Z,
-					W: v95.W + v97.W,
-				}
-				goto _104
-			_104:
-				v99 = v89.Z
-				v101 = v90.Z
-				v102 = b3FloatW4{
-					X: float32(v99.X * v101.X),
-					Y: float32(v99.Y * v101.Y),
-					Z: float32(v99.Z * v101.Z),
-					W: float32(v99.W * v101.W),
-				}
-				goto _108
-			_108:
-				v103 = v98
-				v105 = v102
-				v106 = b3FloatW4{
-					X: v103.X + v105.X,
-					Y: v103.Y + v105.Y,
-					Z: v103.Z + v105.Z,
-					W: v103.W + v105.W,
-				}
-				goto _112
-			_112:
-				v83 = v106
-				goto _92
-			_92:
-				v107 = v58
-				v109 = v83
-				v110 = b3FloatW4{
-					X: v107.X - v109.X,
-					Y: v107.Y - v109.Y,
-					Z: v107.Z - v109.Z,
-					W: v107.W - v109.W,
-				}
-				goto _116
-			_116:
-				v111 = normalSeparation
-				v113 = v110
-				v114 = b3FloatW4{
-					X: v111.X + v113.X,
-					Y: v111.Y + v113.Y,
-					Z: v111.Z + v113.Z,
-					W: v111.W + v113.W,
-				}
-				goto _120
-			_120:
-				v115 = v114
-				v117 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations
-				v118 = b3FloatW4{
-					X: v115.X + v117.X,
-					Y: v115.Y + v117.Y,
-					Z: v115.Z + v117.Z,
-					W: v115.W + v117.W,
-				}
-				goto _124
-			_124:
-				s3 = v118
+				v13 = normalB
+				v14 = rB
+				v15 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v13.X, v14.X), b3MulW4(tls, v13.Y, v14.Y)), b3MulW4(tls, v13.Z, v14.Z))
+				goto _16
+			_16:
+				v17 = normalA
+				v18 = rA
+				v19 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v17.X, v18.X), b3MulW4(tls, v17.Y, v18.Y)), b3MulW4(tls, v17.Z, v18.Z))
+				goto _20
+			_20:
+				s3 = b3AddW4(tls, b3AddW4(tls, normalSeparation, b3SubW4(tls, v15, v19)), (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations)
 				if propagate != 0 {
-					v125 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses
+					v21 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses
 				} else {
-					v119 = zeroW
-					v121 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses
-					v122 = restitutionMask
-					if v122.X != float32FromFloat32(0) {
-						v19 = v121.X
-					} else {
-						v19 = v119.X
-					}
-					r5.X = v19
-					if v122.Y != float32FromFloat32(0) {
-						v20 = v121.Y
-					} else {
-						v20 = v119.Y
-					}
-					r5.Y = v20
-					if v122.Z != float32FromFloat32(0) {
-						v129 = v121.Z
-					} else {
-						v129 = v119.Z
-					}
-					r5.Z = v129
-					if v122.W != float32FromFloat32(0) {
-						v130 = v121.W
-					} else {
-						v130 = v119.W
-					}
-					r5.W = v130
-					v123 = r5
-					goto _134
-				_134:
-					v125 = v123
-				}
-				normalMass = v125
-				v126 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses
-				v127 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses
-				v128 = b3FloatW4{
-					X: v126.X - v127.X,
-					Y: v126.Y - v127.Y,
-					Z: v126.Z - v127.Z,
-					W: v126.W - v127.W,
-				}
-				goto _138
-			_138:
-				compressionImpulse = v128
-				v133 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RelativeVelocities
-				v135 = negRestitutionThreshold
-				if v133.X < v135.X {
-					v131 = float32FromFloat32(1)
-				} else {
-					v131 = float32FromFloat32(0)
-				}
-				r4.X = v131
-				if v133.Y < v135.Y {
-					v132 = float32FromFloat32(1)
-				} else {
-					v132 = float32FromFloat32(0)
-				}
-				r4.Y = v132
-				if v133.Z < v135.Z {
-					v141 = float32FromFloat32(1)
-				} else {
-					v141 = float32FromFloat32(0)
-				}
-				r4.Z = v141
-				if v133.W < v135.W {
-					v142 = float32FromFloat32(1)
-				} else {
-					v142 = float32FromFloat32(0)
-				}
-				r4.W = v142
-				v136 = r4
-				goto _146
-			_146:
-				v137 = restitutionMask
-				v139 = v136
-				if v137.X != float32FromFloat32(0) && v139.X != float32FromFloat32(0) {
-					v143 = float32FromFloat32(1)
-				} else {
-					v143 = float32FromFloat32(0)
-				}
-				r2.X = v143
-				if v137.Y != float32FromFloat32(0) && v139.Y != float32FromFloat32(0) {
-					v144 = float32FromFloat32(1)
-				} else {
-					v144 = float32FromFloat32(0)
-				}
-				r2.Y = v144
-				if v137.Z != float32FromFloat32(0) && v139.Z != float32FromFloat32(0) {
-					v149 = float32FromFloat32(1)
-				} else {
-					v149 = float32FromFloat32(0)
-				}
-				r2.Z = v149
-				if v137.W != float32FromFloat32(0) && v139.W != float32FromFloat32(0) {
-					v150 = float32FromFloat32(1)
-				} else {
-					v150 = float32FromFloat32(0)
-				}
-				r2.W = v150
-				v140 = r2
-				goto _154
-			_154:
-				v145 = compressionImpulse
-				v147 = zeroW
-				if v145.X > v147.X {
-					v151 = float32FromFloat32(1)
-				} else {
-					v151 = float32FromFloat32(0)
-				}
-				r3.X = v151
-				if v145.Y > v147.Y {
-					v152 = float32FromFloat32(1)
-				} else {
-					v152 = float32FromFloat32(0)
-				}
-				r3.Y = v152
-				if v145.Z > v147.Z {
-					v157 = float32FromFloat32(1)
-				} else {
-					v157 = float32FromFloat32(0)
-				}
-				r3.Z = v157
-				if v145.W > v147.W {
-					v158 = float32FromFloat32(1)
-				} else {
-					v158 = float32FromFloat32(0)
-				}
-				r3.W = v158
-				v148 = r3
-				goto _162
-			_162:
-				v153 = v140
-				v155 = v148
-				if v153.X != float32FromFloat32(0) && v155.X != float32FromFloat32(0) {
-					v159 = float32FromFloat32(1)
-				} else {
-					v159 = float32FromFloat32(0)
-				}
-				r2.X = v159
-				if v153.Y != float32FromFloat32(0) && v155.Y != float32FromFloat32(0) {
-					v160 = float32FromFloat32(1)
-				} else {
-					v160 = float32FromFloat32(0)
-				}
-				r2.Y = v160
-				if v153.Z != float32FromFloat32(0) && v155.Z != float32FromFloat32(0) {
-					v165 = float32FromFloat32(1)
-				} else {
-					v165 = float32FromFloat32(0)
-				}
-				r2.Z = v165
-				if v153.W != float32FromFloat32(0) && v155.W != float32FromFloat32(0) {
-					v166 = float32FromFloat32(1)
-				} else {
-					v166 = float32FromFloat32(0)
-				}
-				r2.W = v166
-				v156 = r2
-				goto _170
-			_170:
-				armed = v156
-				v161 = s3
-				v163 = inv_h
-				v164 = b3FloatW4{
-					X: float32(v161.X * v163.X),
-					Y: float32(v161.Y * v163.Y),
-					Z: float32(v161.Z * v163.Z),
-					W: float32(v161.W * v163.W),
-				}
-				goto _174
-			_174:
-				v169 = zeroW
-				v171 = v164
-				if v169.X >= v171.X {
-					v167 = v169.X
-				} else {
-					v167 = v171.X
-				}
-				r1.X = v167
-				if v169.Y >= v171.Y {
-					v168 = v169.Y
-				} else {
-					v168 = v171.Y
-				}
-				r1.Y = v168
-				if v169.Z >= v171.Z {
-					v177 = v169.Z
-				} else {
-					v177 = v171.Z
-				}
-				r1.Z = v177
-				if v169.W >= v171.W {
-					v178 = v169.W
-				} else {
-					v178 = v171.W
-				}
-				r1.W = v178
-				v172 = r1
-				goto _182
-			_182:
-				specBias = v172
-				v173 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution
-				v175 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RelativeVelocities
-				v176 = b3FloatW4{
-					X: float32(v173.X * v175.X),
-					Y: float32(v173.Y * v175.Y),
-					Z: float32(v173.Z * v175.Z),
-					W: float32(v173.W * v175.W),
-				}
-				goto _186
-			_186:
-				v181 = specBias
-				v183 = v176
-				v184 = armed
-				if v184.X != float32FromFloat32(0) {
-					v179 = v183.X
-				} else {
-					v179 = v181.X
-				}
-				r5.X = v179
-				if v184.Y != float32FromFloat32(0) {
-					v180 = v183.Y
-				} else {
-					v180 = v181.Y
-				}
-				r5.Y = v180
-				if v184.Z != float32FromFloat32(0) {
-					v190 = v183.Z
-				} else {
-					v190 = v181.Z
-				}
-				r5.Z = v190
-				if v184.W != float32FromFloat32(0) {
-					v191 = v183.W
-				} else {
-					v191 = v181.W
-				}
-				r5.W = v191
-				v185 = r5
-				goto _195
-			_195:
-				velocityBias = v185
-				v196 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v197 = rA
-				v187 = v196.Y
-				v188 = v197.Z
-				v189 = b3FloatW4{
-					X: float32(v187.X * v188.X),
-					Y: float32(v187.Y * v188.Y),
-					Z: float32(v187.Z * v188.Z),
-					W: float32(v187.W * v188.W),
-				}
-				goto _201
-			_201:
-				v194 = v196.Z
-				v198 = v197.Y
-				v199 = b3FloatW4{
-					X: float32(v194.X * v198.X),
-					Y: float32(v194.Y * v198.Y),
-					Z: float32(v194.Z * v198.Z),
-					W: float32(v194.W * v198.W),
-				}
-				goto _205
-			_205:
-				v200 = v189
-				v202 = v199
-				v203 = b3FloatW4{
-					X: v200.X - v202.X,
-					Y: v200.Y - v202.Y,
-					Z: v200.Z - v202.Z,
-					W: v200.W - v202.W,
-				}
-				goto _209
-			_209:
-				c.X = v203
-				v204 = v196.Z
-				v206 = v197.X
-				v207 = b3FloatW4{
-					X: float32(v204.X * v206.X),
-					Y: float32(v204.Y * v206.Y),
-					Z: float32(v204.Z * v206.Z),
-					W: float32(v204.W * v206.W),
-				}
-				goto _213
-			_213:
-				v208 = v196.X
-				v210 = v197.Z
-				v211 = b3FloatW4{
-					X: float32(v208.X * v210.X),
-					Y: float32(v208.Y * v210.Y),
-					Z: float32(v208.Z * v210.Z),
-					W: float32(v208.W * v210.W),
-				}
-				goto _217
-			_217:
-				v212 = v207
-				v214 = v211
-				v215 = b3FloatW4{
-					X: v212.X - v214.X,
-					Y: v212.Y - v214.Y,
-					Z: v212.Z - v214.Z,
-					W: v212.W - v214.W,
-				}
-				goto _221
-			_221:
-				c.Y = v215
-				v216 = v196.X
-				v218 = v197.Y
-				v219 = b3FloatW4{
-					X: float32(v216.X * v218.X),
-					Y: float32(v216.Y * v218.Y),
-					Z: float32(v216.Z * v218.Z),
-					W: float32(v216.W * v218.W),
-				}
-				goto _225
-			_225:
-				v220 = v196.Y
-				v222 = v197.X
-				v223 = b3FloatW4{
-					X: float32(v220.X * v222.X),
-					Y: float32(v220.Y * v222.Y),
-					Z: float32(v220.Z * v222.Z),
-					W: float32(v220.W * v222.W),
-				}
-				goto _229
-			_229:
-				v224 = v219
-				v226 = v223
-				v227 = b3FloatW4{
-					X: v224.X - v226.X,
-					Y: v224.Y - v226.Y,
-					Z: v224.Z - v226.Z,
-					W: v224.W - v226.W,
-				}
-				goto _233
-			_233:
-				c.Z = v227
-				v234 = c
-				goto _235
-			_235:
-				v236 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-				v237 = v234
-				v228 = v236.X
-				v230 = v237.X
-				v231 = b3FloatW4{
-					X: v228.X + v230.X,
-					Y: v228.Y + v230.Y,
-					Z: v228.Z + v230.Z,
-					W: v228.W + v230.W,
-				}
-				goto _243
-			_243:
-				v232 = v236.Y
-				v240 = v237.Y
-				v241 = b3FloatW4{
-					X: v232.X + v240.X,
-					Y: v232.Y + v240.Y,
-					Z: v232.Z + v240.Z,
-					W: v232.W + v240.W,
-				}
-				goto _247
-			_247:
-				v242 = v236.Z
-				v244 = v237.Z
-				v245 = b3FloatW4{
-					X: v242.X + v244.X,
-					Y: v242.Y + v244.Y,
-					Z: v242.Z + v244.Z,
-					W: v242.W + v244.W,
-				}
-				goto _251
-			_251:
-				v238 = b3Vec3W4{
-					X: v231,
-					Y: v241,
-					Z: v245,
-				}
-				goto _239
-			_239:
-				vrA = v238
-				v252 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v253 = rB
-				v246 = v252.Y
-				v248 = v253.Z
-				v249 = b3FloatW4{
-					X: float32(v246.X * v248.X),
-					Y: float32(v246.Y * v248.Y),
-					Z: float32(v246.Z * v248.Z),
-					W: float32(v246.W * v248.W),
-				}
-				goto _257
-			_257:
-				v250 = v252.Z
-				v254 = v253.Y
-				v255 = b3FloatW4{
-					X: float32(v250.X * v254.X),
-					Y: float32(v250.Y * v254.Y),
-					Z: float32(v250.Z * v254.Z),
-					W: float32(v250.W * v254.W),
-				}
-				goto _261
-			_261:
-				v256 = v249
-				v258 = v255
-				v259 = b3FloatW4{
-					X: v256.X - v258.X,
-					Y: v256.Y - v258.Y,
-					Z: v256.Z - v258.Z,
-					W: v256.W - v258.W,
-				}
-				goto _265
-			_265:
-				c.X = v259
-				v260 = v252.Z
-				v262 = v253.X
-				v263 = b3FloatW4{
-					X: float32(v260.X * v262.X),
-					Y: float32(v260.Y * v262.Y),
-					Z: float32(v260.Z * v262.Z),
-					W: float32(v260.W * v262.W),
-				}
-				goto _269
-			_269:
-				v264 = v252.X
-				v266 = v253.Z
-				v267 = b3FloatW4{
-					X: float32(v264.X * v266.X),
-					Y: float32(v264.Y * v266.Y),
-					Z: float32(v264.Z * v266.Z),
-					W: float32(v264.W * v266.W),
-				}
-				goto _273
-			_273:
-				v268 = v263
-				v270 = v267
-				v271 = b3FloatW4{
-					X: v268.X - v270.X,
-					Y: v268.Y - v270.Y,
-					Z: v268.Z - v270.Z,
-					W: v268.W - v270.W,
-				}
-				goto _277
-			_277:
-				c.Y = v271
-				v272 = v252.X
-				v274 = v253.Y
-				v275 = b3FloatW4{
-					X: float32(v272.X * v274.X),
-					Y: float32(v272.Y * v274.Y),
-					Z: float32(v272.Z * v274.Z),
-					W: float32(v272.W * v274.W),
-				}
-				goto _281
-			_281:
-				v276 = v252.Y
-				v278 = v253.X
-				v279 = b3FloatW4{
-					X: float32(v276.X * v278.X),
-					Y: float32(v276.Y * v278.Y),
-					Z: float32(v276.Z * v278.Z),
-					W: float32(v276.W * v278.W),
-				}
-				goto _285
-			_285:
-				v280 = v275
-				v282 = v279
-				v283 = b3FloatW4{
-					X: v280.X - v282.X,
-					Y: v280.Y - v282.Y,
-					Z: v280.Z - v282.Z,
-					W: v280.W - v282.W,
-				}
-				goto _289
-			_289:
-				c.Z = v283
-				v290 = c
-				goto _291
-			_291:
-				v292 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-				v293 = v290
-				v284 = v292.X
-				v286 = v293.X
-				v287 = b3FloatW4{
-					X: v284.X + v286.X,
-					Y: v284.Y + v286.Y,
-					Z: v284.Z + v286.Z,
-					W: v284.W + v286.W,
-				}
-				goto _299
-			_299:
-				v288 = v292.Y
-				v296 = v293.Y
-				v297 = b3FloatW4{
-					X: v288.X + v296.X,
-					Y: v288.Y + v296.Y,
-					Z: v288.Z + v296.Z,
-					W: v288.W + v296.W,
-				}
-				goto _303
-			_303:
-				v298 = v292.Z
-				v300 = v293.Z
-				v301 = b3FloatW4{
-					X: v298.X + v300.X,
-					Y: v298.Y + v300.Y,
-					Z: v298.Z + v300.Z,
-					W: v298.W + v300.W,
-				}
-				goto _307
-			_307:
-				v294 = b3Vec3W4{
-					X: v287,
-					Y: v297,
-					Z: v301,
-				}
-				goto _295
-			_295:
-				vrB = v294
-				v308 = vrB
-				v309 = vrA
-				v302 = v308.X
-				v304 = v309.X
-				v305 = b3FloatW4{
-					X: v302.X - v304.X,
-					Y: v302.Y - v304.Y,
-					Z: v302.Z - v304.Z,
-					W: v302.W - v304.W,
-				}
-				goto _315
-			_315:
-				v306 = v308.Y
-				v312 = v309.Y
-				v313 = b3FloatW4{
-					X: v306.X - v312.X,
-					Y: v306.Y - v312.Y,
-					Z: v306.Z - v312.Z,
-					W: v306.W - v312.W,
-				}
-				goto _319
-			_319:
-				v314 = v308.Z
-				v316 = v309.Z
-				v317 = b3FloatW4{
-					X: v314.X - v316.X,
-					Y: v314.Y - v316.Y,
-					Z: v314.Z - v316.Z,
-					W: v314.W - v316.W,
-				}
-				goto _323
-			_323:
-				v310 = b3Vec3W4{
-					X: v305,
-					Y: v313,
-					Z: v317,
-				}
-				goto _311
-			_311:
-				v324 = v310
-				v325 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v320 = v324.X
-				v321 = v325.X
-				v322 = b3FloatW4{
-					X: float32(v320.X * v321.X),
-					Y: float32(v320.Y * v321.Y),
-					Z: float32(v320.Z * v321.Z),
-					W: float32(v320.W * v321.W),
-				}
-				goto _331
-			_331:
-				v326 = v324.Y
-				v328 = v325.Y
-				v329 = b3FloatW4{
-					X: float32(v326.X * v328.X),
-					Y: float32(v326.Y * v328.Y),
-					Z: float32(v326.Z * v328.Z),
-					W: float32(v326.W * v328.W),
-				}
-				goto _335
-			_335:
-				v330 = v322
-				v332 = v329
-				v333 = b3FloatW4{
-					X: v330.X + v332.X,
-					Y: v330.Y + v332.Y,
-					Z: v330.Z + v332.Z,
-					W: v330.W + v332.W,
-				}
-				goto _339
-			_339:
-				v334 = v324.Z
-				v336 = v325.Z
-				v337 = b3FloatW4{
-					X: float32(v334.X * v336.X),
-					Y: float32(v334.Y * v336.Y),
-					Z: float32(v334.Z * v336.Z),
-					W: float32(v334.W * v336.W),
-				}
-				goto _343
-			_343:
-				v338 = v333
-				v340 = v337
-				v341 = b3FloatW4{
-					X: v338.X + v340.X,
-					Y: v338.Y + v340.Y,
-					Z: v338.Z + v340.Z,
-					W: v338.W + v340.W,
-				}
-				goto _347
-			_347:
-				v318 = v341
-				goto _327
-			_327:
-				vn = v318
-				v342 = vn
-				v344 = velocityBias
-				v345 = b3FloatW4{
-					X: v342.X + v344.X,
-					Y: v342.Y + v344.Y,
-					Z: v342.Z + v344.Z,
-					W: v342.W + v344.W,
-				}
-				goto _351
-			_351:
-				v346 = normalMass
-				v348 = v345
-				v349 = b3FloatW4{
-					X: float32(v346.X * v348.X),
-					Y: float32(v346.Y * v348.Y),
-					Z: float32(v346.Z * v348.Z),
-					W: float32(v346.W * v348.W),
-				}
-				goto _355
-			_355:
-				negImpulse = v349
-				v350 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v352 = negImpulse
-				v353 = b3FloatW4{
-					X: v350.X - v352.X,
-					Y: v350.Y - v352.Y,
-					Z: v350.Z - v352.Z,
-					W: v350.W - v352.W,
-				}
-				goto _359
-			_359:
-				v354 = v353
-				v356 = zeroW
-				if v354.X >= v356.X {
-					v192 = v354.X
-				} else {
-					v192 = v356.X
-				}
-				r1.X = v192
-				if v354.Y >= v356.Y {
-					v193 = v354.Y
-				} else {
-					v193 = v356.Y
-				}
-				r1.Y = v193
-				if v354.Z >= v356.Z {
-					v362 = v354.Z
-				} else {
-					v362 = v356.Z
-				}
-				r1.Z = v362
-				if v354.W >= v356.W {
-					v363 = v354.W
-				} else {
-					v363 = v356.W
-				}
-				r1.W = v363
-				v357 = r1
-				goto _367
-			_367:
-				newImpulse = v357
-				v358 = newImpulse
-				v360 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v361 = b3FloatW4{
-					X: v358.X - v360.X,
-					Y: v358.Y - v360.Y,
-					Z: v358.Z - v360.Z,
-					W: v358.W - v360.W,
-				}
-				goto _371
-			_371:
-				impulse = v361
-				v366 = normalMass
-				v368 = vn
-				v369 = b3FloatW4{
-					X: float32(v366.X * v368.X),
-					Y: float32(v366.Y * v368.Y),
-					Z: float32(v366.Z * v368.Z),
-					W: float32(v366.W * v368.W),
-				}
-				goto _375
-			_375:
-				v370 = v369
-				v372 = b3FloatW4{
-					X: -v370.X,
-					Y: -v370.Y,
-					Z: -v370.Z,
-					W: -v370.W,
-				}
-				goto _378
-			_378:
-				v373 = v372
-				v374 = zeroW
-				if v373.X >= v374.X {
-					v364 = v373.X
-				} else {
-					v364 = v374.X
-				}
-				r1.X = v364
-				if v373.Y >= v374.Y {
-					v365 = v373.Y
-				} else {
-					v365 = v374.Y
-				}
-				r1.Y = v365
-				if v373.Z >= v374.Z {
-					v381 = v373.Z
-				} else {
-					v381 = v374.Z
-				}
-				r1.Z = v381
-				if v373.W >= v374.W {
-					v382 = v373.W
-				} else {
-					v382 = v374.W
-				}
-				r1.W = v382
-				v376 = r1
-				goto _386
-			_386:
-				v377 = impulse
-				v379 = zeroW
-				if v377.X >= v379.X {
-					v383 = v377.X
-				} else {
-					v383 = v379.X
-				}
-				r1.X = v383
-				if v377.Y >= v379.Y {
-					v384 = v377.Y
-				} else {
-					v384 = v379.Y
-				}
-				r1.Y = v384
-				if v377.Z >= v379.Z {
-					v389 = v377.Z
-				} else {
-					v389 = v379.Z
-				}
-				r1.Z = v389
-				if v377.W >= v379.W {
-					v390 = v377.W
-				} else {
-					v390 = v379.W
-				}
-				r1.W = v390
-				v380 = r1
-				goto _394
-			_394:
-				v385 = v376
-				v387 = v380
-				if v385.X <= v387.X {
-					v391 = v385.X
-				} else {
-					v391 = v387.X
-				}
-				r.X = v391
-				if v385.Y <= v387.Y {
-					v392 = v385.Y
-				} else {
-					v392 = v387.Y
-				}
-				r.Y = v392
-				if v385.Z <= v387.Z {
-					v397 = v385.Z
-				} else {
-					v397 = v387.Z
-				}
-				r.Z = v397
-				if v385.W <= v387.W {
-					v398 = v385.W
-				} else {
-					v398 = v387.W
-				}
-				r.W = v398
-				v388 = r
-				goto _402
-			_402:
-				approachImpulse = v388
-				v393 = compressionImpulse
-				v395 = approachImpulse
-				v396 = b3FloatW4{
-					X: v393.X + v395.X,
-					Y: v393.Y + v395.Y,
-					Z: v393.Z + v395.Z,
-					W: v393.W + v395.W,
-				}
-				goto _406
-			_406:
-				v401 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution
-				v403 = v396
-				v404 = b3FloatW4{
-					X: float32(v401.X * v403.X),
-					Y: float32(v401.Y * v403.Y),
-					Z: float32(v401.Z * v403.Z),
-					W: float32(v401.W * v403.W),
-				}
-				goto _410
-			_410:
-				v405 = v404
-				v407 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses
-				v408 = b3FloatW4{
-					X: v405.X - v407.X,
-					Y: v405.Y - v407.Y,
-					Z: v405.Z - v407.Z,
-					W: v405.W - v407.W,
-				}
-				goto _414
-			_414:
-				allowance = v408
-				v409 = allowance
-				v411 = zeroW
-				if v409.X >= v411.X {
-					v399 = v409.X
-				} else {
-					v399 = v411.X
-				}
-				r1.X = v399
-				if v409.Y >= v411.Y {
-					v400 = v409.Y
-				} else {
-					v400 = v411.Y
-				}
-				r1.Y = v400
-				if v409.Z >= v411.Z {
-					v417 = v409.Z
-				} else {
-					v417 = v411.Z
-				}
-				r1.Z = v417
-				if v409.W >= v411.W {
-					v418 = v409.W
-				} else {
-					v418 = v411.W
-				}
-				r1.W = v418
-				v412 = r1
-				goto _422
-			_422:
-				v413 = approachImpulse
-				v415 = v412
-				v416 = b3FloatW4{
-					X: v413.X + v415.X,
-					Y: v413.Y + v415.Y,
-					Z: v413.Z + v415.Z,
-					W: v413.W + v415.W,
-				}
-				goto _426
-			_426:
-				maxImpulse = v416
-				v421 = impulse
-				v423 = maxImpulse
-				if v421.X <= v423.X {
-					v419 = v421.X
-				} else {
-					v419 = v423.X
-				}
-				r.X = v419
-				if v421.Y <= v423.Y {
-					v420 = v421.Y
-				} else {
-					v420 = v423.Y
-				}
-				r.Y = v420
-				if v421.Z <= v423.Z {
-					v429 = v421.Z
-				} else {
-					v429 = v423.Z
-				}
-				r.Z = v429
-				if v421.W <= v423.W {
-					v430 = v421.W
-				} else {
-					v430 = v423.W
-				}
-				r.W = v430
-				v424 = r
-				goto _434
-			_434:
-				v425 = impulse
-				v427 = v424
-				v428 = armed
-				if v428.X != float32FromFloat32(0) {
-					v431 = v427.X
-				} else {
-					v431 = v425.X
-				}
-				r5.X = v431
-				if v428.Y != float32FromFloat32(0) {
-					v432 = v427.Y
-				} else {
-					v432 = v425.Y
-				}
-				r5.Y = v432
-				if v428.Z != float32FromFloat32(0) {
-					v438 = v427.Z
-				} else {
-					v438 = v425.Z
-				}
-				r5.Z = v438
-				if v428.W != float32FromFloat32(0) {
-					v439 = v427.W
-				} else {
-					v439 = v425.W
-				}
-				r5.W = v439
-				v433 = r5
-				goto _443
-			_443:
-				impulse = v433
-				v2 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v5 = impulse
-				v7 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
-				}
-				goto _447
-			_447:
-				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = v7
-				v2 = impulse
-				v5 = approachImpulse
-				v7 = b3FloatW4{
-					X: v2.X - v5.X,
-					Y: v2.Y - v5.Y,
-					Z: v2.Z - v5.Z,
-					W: v2.W - v5.W,
-				}
-				goto _451
-			_451:
-				v11 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses
-				v15 = v7
-				v16 = b3FloatW4{
-					X: v11.X + v15.X,
-					Y: v11.Y + v15.Y,
-					Z: v11.Z + v15.Z,
-					W: v11.W + v15.W,
-				}
-				goto _455
-			_455:
-				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses = v16
-				v2 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses
-				v5 = impulse
-				v7 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
-				}
-				goto _459
-			_459:
-				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses = v7
-				v2 = impulse
-				v23 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v5 = v2
-				v7 = v23.X
-				v11 = b3FloatW4{
-					X: float32(v5.X * v7.X),
-					Y: float32(v5.Y * v7.Y),
-					Z: float32(v5.Z * v7.Z),
-					W: float32(v5.W * v7.W),
-				}
-				goto _467
-			_467:
-				v15 = v2
-				v16 = v23.Y
-				v21 = b3FloatW4{
-					X: float32(v15.X * v16.X),
-					Y: float32(v15.Y * v16.Y),
-					Z: float32(v15.Z * v16.Z),
-					W: float32(v15.W * v16.W),
-				}
-				goto _471
-			_471:
-				v27 = v2
-				v28 = v23.Z
-				v29 = b3FloatW4{
-					X: float32(v27.X * v28.X),
-					Y: float32(v27.Y * v28.Y),
-					Z: float32(v27.Z * v28.Z),
-					W: float32(v27.W * v28.W),
-				}
-				goto _475
-			_475:
-				v24 = b3Vec3W4{
-					X: v11,
-					Y: v21,
-					Z: v29,
-				}
-				goto _463
-			_463:
-				P = v24
-				v25 = rA
-				v40 = P
-				v31 = v25.Y
-				v32 = v40.Z
-				v33 = b3FloatW4{
-					X: float32(v31.X * v32.X),
-					Y: float32(v31.Y * v32.Y),
-					Z: float32(v31.Z * v32.Z),
-					W: float32(v31.W * v32.W),
-				}
-				goto _481
-			_481:
-				v35 = v25.Z
-				v36 = v40.Y
-				v37 = b3FloatW4{
-					X: float32(v35.X * v36.X),
-					Y: float32(v35.Y * v36.Y),
-					Z: float32(v35.Z * v36.Z),
-					W: float32(v35.W * v36.W),
-				}
-				goto _485
-			_485:
-				v42 = v33
-				v44 = v37
-				v45 = b3FloatW4{
-					X: v42.X - v44.X,
-					Y: v42.Y - v44.Y,
-					Z: v42.Z - v44.Z,
-					W: v42.W - v44.W,
-				}
-				goto _489
-			_489:
-				c.X = v45
-				v46 = v25.Z
-				v48 = v40.X
-				v49 = b3FloatW4{
-					X: float32(v46.X * v48.X),
-					Y: float32(v46.Y * v48.Y),
-					Z: float32(v46.Z * v48.Z),
-					W: float32(v46.W * v48.W),
-				}
-				goto _493
-			_493:
-				v50 = v25.X
-				v52 = v40.Z
-				v53 = b3FloatW4{
-					X: float32(v50.X * v52.X),
-					Y: float32(v50.Y * v52.Y),
-					Z: float32(v50.Z * v52.Z),
-					W: float32(v50.W * v52.W),
-				}
-				goto _497
-			_497:
-				v54 = v49
-				v56 = v53
-				v57 = b3FloatW4{
-					X: v54.X - v56.X,
-					Y: v54.Y - v56.Y,
-					Z: v54.Z - v56.Z,
-					W: v54.W - v56.W,
-				}
-				goto _501
-			_501:
-				c.Y = v57
-				v58 = v25.X
-				v60 = v40.Y
-				v61 = b3FloatW4{
-					X: float32(v58.X * v60.X),
-					Y: float32(v58.Y * v60.Y),
-					Z: float32(v58.Z * v60.Z),
-					W: float32(v58.W * v60.W),
-				}
-				goto _505
-			_505:
-				v62 = v25.Y
-				v67 = v40.X
-				v69 = b3FloatW4{
-					X: float32(v62.X * v67.X),
-					Y: float32(v62.Y * v67.Y),
-					Z: float32(v62.Z * v67.Z),
-					W: float32(v62.W * v67.W),
-				}
-				goto _509
-			_509:
-				v70 = v61
-				v71 = v69
-				v73 = b3FloatW4{
-					X: v70.X - v71.X,
-					Y: v70.Y - v71.Y,
-					Z: v70.Z - v71.Z,
-					W: v70.W - v71.W,
-				}
-				goto _513
-			_513:
-				c.Z = v73
-				v41 = c
-				goto _515
-			_515:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, v41)
-				v23 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-				v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
-				v24 = P
-				v5 = v2
-				v7 = v24.X
-				v11 = b3FloatW4{
-					X: float32(v5.X * v7.X),
-					Y: float32(v5.Y * v7.Y),
-					Z: float32(v5.Z * v7.Z),
-					W: float32(v5.W * v7.W),
-				}
-				goto _524
-			_524:
-				v15 = v23.X
-				v16 = v11
-				v21 = b3FloatW4{
-					X: v15.X - v16.X,
-					Y: v15.Y - v16.Y,
-					Z: v15.Z - v16.Z,
-					W: v15.W - v16.W,
-				}
-				goto _528
-			_528:
-				v27 = v2
-				v28 = v24.Y
-				v29 = b3FloatW4{
-					X: float32(v27.X * v28.X),
-					Y: float32(v27.Y * v28.Y),
-					Z: float32(v27.Z * v28.Z),
-					W: float32(v27.W * v28.W),
-				}
-				goto _532
-			_532:
-				v31 = v23.Y
-				v32 = v29
-				v33 = b3FloatW4{
-					X: v31.X - v32.X,
-					Y: v31.Y - v32.Y,
-					Z: v31.Z - v32.Z,
-					W: v31.W - v32.W,
-				}
-				goto _536
-			_536:
-				v35 = v2
-				v36 = v24.Z
-				v37 = b3FloatW4{
-					X: float32(v35.X * v36.X),
-					Y: float32(v35.Y * v36.Y),
-					Z: float32(v35.Z * v36.Z),
-					W: float32(v35.W * v36.W),
-				}
-				goto _540
-			_540:
-				v42 = v23.Z
-				v44 = v37
-				v45 = b3FloatW4{
-					X: v42.X - v44.X,
-					Y: v42.Y - v44.Y,
-					Z: v42.Z - v44.Z,
-					W: v42.W - v44.W,
-				}
-				goto _544
-			_544:
-				v25 = b3Vec3W4{
-					X: v21,
-					Y: v33,
-					Z: v45,
-				}
-				goto _520
-			_520:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v25
-				v23 = rB
-				v24 = P
-				v2 = v23.Y
-				v5 = v24.Z
-				v7 = b3FloatW4{
-					X: float32(v2.X * v5.X),
-					Y: float32(v2.Y * v5.Y),
-					Z: float32(v2.Z * v5.Z),
-					W: float32(v2.W * v5.W),
-				}
-				goto _550
-			_550:
-				v11 = v23.Z
-				v15 = v24.Y
-				v16 = b3FloatW4{
-					X: float32(v11.X * v15.X),
-					Y: float32(v11.Y * v15.Y),
-					Z: float32(v11.Z * v15.Z),
-					W: float32(v11.W * v15.W),
-				}
-				goto _554
-			_554:
-				v21 = v7
-				v27 = v16
-				v28 = b3FloatW4{
-					X: v21.X - v27.X,
-					Y: v21.Y - v27.Y,
-					Z: v21.Z - v27.Z,
-					W: v21.W - v27.W,
-				}
-				goto _558
-			_558:
-				c.X = v28
-				v29 = v23.Z
-				v31 = v24.X
-				v32 = b3FloatW4{
-					X: float32(v29.X * v31.X),
-					Y: float32(v29.Y * v31.Y),
-					Z: float32(v29.Z * v31.Z),
-					W: float32(v29.W * v31.W),
-				}
-				goto _562
-			_562:
-				v33 = v23.X
-				v35 = v24.Z
-				v36 = b3FloatW4{
-					X: float32(v33.X * v35.X),
-					Y: float32(v33.Y * v35.Y),
-					Z: float32(v33.Z * v35.Z),
-					W: float32(v33.W * v35.W),
-				}
-				goto _566
-			_566:
-				v37 = v32
-				v42 = v36
-				v44 = b3FloatW4{
-					X: v37.X - v42.X,
-					Y: v37.Y - v42.Y,
-					Z: v37.Z - v42.Z,
-					W: v37.W - v42.W,
-				}
-				goto _570
-			_570:
-				c.Y = v44
-				v45 = v23.X
-				v46 = v24.Y
-				v48 = b3FloatW4{
-					X: float32(v45.X * v46.X),
-					Y: float32(v45.Y * v46.Y),
-					Z: float32(v45.Z * v46.Z),
-					W: float32(v45.W * v46.W),
-				}
-				goto _574
-			_574:
-				v49 = v23.Y
-				v50 = v24.X
-				v52 = b3FloatW4{
-					X: float32(v49.X * v50.X),
-					Y: float32(v49.Y * v50.Y),
-					Z: float32(v49.Z * v50.Z),
-					W: float32(v49.W * v50.W),
-				}
-				goto _578
-			_578:
-				v53 = v48
-				v54 = v52
-				v56 = b3FloatW4{
-					X: v53.X - v54.X,
-					Y: v53.Y - v54.Y,
-					Z: v53.Z - v54.Z,
-					W: v53.W - v54.W,
-				}
-				goto _582
-			_582:
-				c.Z = v56
-				v25 = c
-				goto _584
-			_584:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, v25)
-				v23 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-				v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
-				v24 = P
-				v5 = v2
-				v7 = v24.X
-				v11 = b3FloatW4{
-					X: float32(v5.X * v7.X),
-					Y: float32(v5.Y * v7.Y),
-					Z: float32(v5.Z * v7.Z),
-					W: float32(v5.W * v7.W),
-				}
-				goto _593
-			_593:
-				v15 = v23.X
-				v16 = v11
-				v21 = b3FloatW4{
-					X: v15.X + v16.X,
-					Y: v15.Y + v16.Y,
-					Z: v15.Z + v16.Z,
-					W: v15.W + v16.W,
-				}
-				goto _597
-			_597:
-				v27 = v2
-				v28 = v24.Y
-				v29 = b3FloatW4{
-					X: float32(v27.X * v28.X),
-					Y: float32(v27.Y * v28.Y),
-					Z: float32(v27.Z * v28.Z),
-					W: float32(v27.W * v28.W),
-				}
-				goto _601
-			_601:
-				v31 = v23.Y
-				v32 = v29
-				v33 = b3FloatW4{
-					X: v31.X + v32.X,
-					Y: v31.Y + v32.Y,
-					Z: v31.Z + v32.Z,
-					W: v31.W + v32.W,
-				}
-				goto _605
-			_605:
-				v35 = v2
-				v36 = v24.Z
-				v37 = b3FloatW4{
-					X: float32(v35.X * v36.X),
-					Y: float32(v35.Y * v36.Y),
-					Z: float32(v35.Z * v36.Z),
-					W: float32(v35.W * v36.W),
-				}
-				goto _609
-			_609:
-				v42 = v23.Z
-				v44 = v37
-				v45 = b3FloatW4{
-					X: v42.X + v44.X,
-					Y: v42.Y + v44.Y,
-					Z: v42.Z + v44.Z,
-					W: v42.W + v44.W,
-				}
-				goto _613
-			_613:
-				v25 = b3Vec3W4{
-					X: v21,
-					Y: v33,
-					Z: v45,
-				}
-				goto _589
-			_589:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v25
-				goto _64
-			_64:
+					v21 = b3BlendW4(tls, zeroW, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses, restitutionMask)
+				}
+				normalMass = v21
+				compressionImpulse = b3SubW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses)
+				armed = b3AndW4(tls, b3AndW4(tls, restitutionMask, b3LessThanW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RelativeVelocities, negRestitutionThreshold)), b3GreaterThanW4(tls, compressionImpulse, zeroW))
+				specBias = b3MaxW4(tls, zeroW, b3MulW4(tls, s3, inv_h))
+				velocityBias = b3BlendW4(tls, specBias, b3MulW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RelativeVelocities), armed)
+				v22 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v23 = rA
+				c.X = b3SubW4(tls, b3MulW4(tls, v22.Y, v23.Z), b3MulW4(tls, v22.Z, v23.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v22.Z, v23.X), b3MulW4(tls, v22.X, v23.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v22.X, v23.Y), b3MulW4(tls, v22.Y, v23.X))
+				v24 = c
+				goto _25
+			_25:
+				v26 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+				v27 = v24
+				v28 = b3Vec3W4{
+					X: b3AddW4(tls, v26.X, v27.X),
+					Y: b3AddW4(tls, v26.Y, v27.Y),
+					Z: b3AddW4(tls, v26.Z, v27.Z),
+				}
+				goto _29
+			_29:
+				vrA = v28
+				v30 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v31 = rB
+				c.X = b3SubW4(tls, b3MulW4(tls, v30.Y, v31.Z), b3MulW4(tls, v30.Z, v31.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v30.Z, v31.X), b3MulW4(tls, v30.X, v31.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v30.X, v31.Y), b3MulW4(tls, v30.Y, v31.X))
+				v32 = c
+				goto _33
+			_33:
+				v34 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+				v35 = v32
+				v36 = b3Vec3W4{
+					X: b3AddW4(tls, v34.X, v35.X),
+					Y: b3AddW4(tls, v34.Y, v35.Y),
+					Z: b3AddW4(tls, v34.Z, v35.Z),
+				}
+				goto _37
+			_37:
+				vrB = v36
+				v38 = vrB
+				v39 = vrA
+				v40 = b3Vec3W4{
+					X: b3SubW4(tls, v38.X, v39.X),
+					Y: b3SubW4(tls, v38.Y, v39.Y),
+					Z: b3SubW4(tls, v38.Z, v39.Z),
+				}
+				goto _41
+			_41:
+				v42 = v40
+				v43 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				v44 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v42.X, v43.X), b3MulW4(tls, v42.Y, v43.Y)), b3MulW4(tls, v42.Z, v43.Z))
+				goto _45
+			_45:
+				vn = v44
+				negImpulse = b3MulW4(tls, normalMass, b3AddW4(tls, vn, velocityBias))
+				newImpulse = b3MaxW4(tls, b3SubW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses, negImpulse), zeroW)
+				impulse = b3SubW4(tls, newImpulse, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses)
+				approachImpulse = b3MinW4(tls, b3MaxW4(tls, b3NegW4(tls, b3MulW4(tls, normalMass, vn)), zeroW), b3MaxW4(tls, impulse, zeroW))
+				allowance = b3SubW4(tls, b3MulW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Restitution, b3AddW4(tls, compressionImpulse, approachImpulse)), (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses)
+				maxImpulse = b3AddW4(tls, approachImpulse, b3MaxW4(tls, allowance, zeroW))
+				impulse = b3BlendW4(tls, impulse, b3MinW4(tls, impulse, maxImpulse), armed)
+				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses, impulse)
+				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).RestitutionImpulses, b3SubW4(tls, impulse, approachImpulse))
+				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses, impulse)
+				v10 = impulse
+				v3 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				v4 = b3Vec3W4{
+					X: b3MulW4(tls, v10, v3.X),
+					Y: b3MulW4(tls, v10, v3.Y),
+					Z: b3MulW4(tls, v10, v3.Z),
+				}
+				goto _49
+			_49:
+				P = v4
+				v5 = rA
+				v8 = P
+				c.X = b3SubW4(tls, b3MulW4(tls, v5.Y, v8.Z), b3MulW4(tls, v5.Z, v8.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v5.Z, v8.X), b3MulW4(tls, v5.X, v8.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v5.X, v8.Y), b3MulW4(tls, v5.Y, v8.X))
+				v9 = c
+				goto _53
+			_53:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, v9)
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+				v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
+				v4 = P
+				v5 = b3Vec3W4{
+					X: b3SubW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3SubW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3SubW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
+				}
+				goto _58
+			_58:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v5
+				v3 = rB
+				v4 = P
+				c.X = b3SubW4(tls, b3MulW4(tls, v3.Y, v4.Z), b3MulW4(tls, v3.Z, v4.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v3.Z, v4.X), b3MulW4(tls, v3.X, v4.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v3.X, v4.Y), b3MulW4(tls, v3.Y, v4.X))
+				v5 = c
+				goto _62
+			_62:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, v5)
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+				v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
+				v4 = P
+				v5 = b3Vec3W4{
+					X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
+				}
+				goto _67
+			_67:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v5
+				goto _12
+			_12:
 				;
 				pointIndex = pointIndex + 1
 			}
-			goto _39
-		_39:
+			goto _7
+		_7:
 			;
 			manifoldIndex = manifoldIndex + 1
 		}
 		b3ScatterBodies(tls, states, c1, bp)
 		b3ScatterBodies(tls, states, c1+16, bp+208)
-		goto _9
-	_9:
+		goto _1
+	_1:
 		;
 		i = i + 1
 	}
@@ -56256,7 +48170,7 @@ func b3StoreImpulsesW(tls *_Stack, block b3SolverBlock, context uintptr, workerI
 			}
 			laneManifoldCount = v2
 			if v7 = !!(laneManifoldCount == (*b3Contact)(unsafe.Pointer(contact1)).ManifoldCount && laneManifoldCount <= manifoldCount); !v7 {
-				b3InternalAssert(tls, __ccgo_ts+37268, __ccgo_ts+37034, int32FromInt32(1506))
+				b3InternalAssert(tls, __ccgo_ts+37268, __ccgo_ts+37034, int32FromInt32(1511))
 			}
 			_ = v7 || bool(int32FromInt32(0) != 0)
 			manifoldIndex = 0
@@ -56293,7 +48207,7 @@ func b3StoreImpulsesW(tls *_Stack, block b3SolverBlock, context uintptr, workerI
 				}
 				pointCount = (*Manifold)(unsafe.Pointer(m)).PointCount
 				if v7 = !!(pointCount <= (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount); !v7 {
-					b3InternalAssert(tls, __ccgo_ts+37350, __ccgo_ts+37034, int32FromInt32(1541))
+					b3InternalAssert(tls, __ccgo_ts+37350, __ccgo_ts+37034, int32FromInt32(1546))
 				}
 				_ = v7 || bool(int32FromInt32(0) != 0)
 				pointIndex = 0
@@ -56301,7 +48215,7 @@ func b3StoreImpulsesW(tls *_Stack, block b3SolverBlock, context uintptr, workerI
 					if !(pointIndex < pointCount) {
 						break
 					}
-					cp = cm + 452 + uintptr(pointIndex)*208
+					cp = cm + 456 + uintptr(pointIndex)*208
 					normalImpulse = cp + 112
 					totalNormalImpulse = cp + 128
 					mp = m + uintptr(pointIndex)*56
@@ -56426,470 +48340,102 @@ func b3RoundUpToSIMDWidth(tls *_Stack, count int32) (r int32) {
 func b3NegativeTransformFromSoA(tls *_Stack, R Matrix3, p Vec3, inX uintptr, inY uintptr, inZ uintptr, n int32, outX uintptr, outY uintptr, outZ uintptr, isPoint uint8) {
 	var i int32
 	var out, r0, r1, r2, t, v2 b3Vec3W
-	var v1, v10, v13, v16, v19, v22, v25, v37, v4, v40, v43, v7 float32
-	var v100, v102, v103, v104, v108, v11, v110, v111, v112, v114, v115, v116, v118, v119, v120, v14, v17, v21, v20, v23, v26, v28, v30, v32, v38, v41, v44, v5, v50, v53, v56, v60, v62, v63, v64, v66, v67, v68, v70, v71, v72, v74, v75, v76, v78, v79, v8, v80, v84, v86, v87, v88, v90, v91, v92, v94, v95, v96, v98, v99 b3FloatW4
-	var v106, v107, v130, v131, v35, v47, v58, v59, v82, v83 b3Vec3W4
-	var v49, v52, v55 uintptr
-	var v34 Vec3
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = i, out, r0, r1, r2, t, v2, v1, v10, v100, v102, v103, v104, v106, v107, v108, v11, v110, v111, v112, v114, v115, v116, v118, v119, v120, v13, v130, v131, v14, v16, v17, v19, v21, v20, v22, v23, v25, v26, v28, v30, v32, v34, v35, v37, v38, v4, v40, v41, v43, v44, v47, v49, v5, v50, v52, v53, v55, v56, v58, v59, v60, v62, v63, v64, v66, v67, v68, v7, v70, v71, v72, v74, v75, v76, v78, v79, v8, v80, v82, v83, v84, v86, v87, v88, v90, v91, v92, v94, v95, v96, v98, v99
-	v1 = R.Cx.X
-	v21 = b3FloatW4{
-		X: v1,
-		Y: v1,
-		Z: v1,
-		W: v1,
-	}
-	goto _3
-_3:
-	v4 = R.Cy.X
-	v5 = b3FloatW4{
-		X: v4,
-		Y: v4,
-		Z: v4,
-		W: v4,
-	}
-	goto _6
-_6:
-	v7 = R.Cz.X
-	v8 = b3FloatW4{
-		X: v7,
-		Y: v7,
-		Z: v7,
-		W: v7,
-	}
-	goto _9
-_9:
+	var v1 Vec3
+	var v11, v12, v15, v16, v19, v21, v20, v5, v7, v8 b3Vec3W4
+	var v13, v17, v9 b3FloatW4
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = i, out, r0, r1, r2, t, v2, v1, v11, v12, v13, v15, v16, v17, v19, v21, v20, v5, v7, v8, v9
 	// row-column
 	r0 = b3Vec3W{
-		X: v21,
-		Y: v5,
-		Z: v8,
+		X: b3SplatW4(tls, R.Cx.X),
+		Y: b3SplatW4(tls, R.Cy.X),
+		Z: b3SplatW4(tls, R.Cz.X),
 	}
-	v10 = R.Cx.Y
-	v11 = b3FloatW4{
-		X: v10,
-		Y: v10,
-		Z: v10,
-		W: v10,
-	}
-	goto _12
-_12:
-	v13 = R.Cy.Y
-	v14 = b3FloatW4{
-		X: v13,
-		Y: v13,
-		Z: v13,
-		W: v13,
-	}
-	goto _15
-_15:
-	v16 = R.Cz.Y
-	v17 = b3FloatW4{
-		X: v16,
-		Y: v16,
-		Z: v16,
-		W: v16,
-	}
-	goto _18
-_18:
 	r1 = b3Vec3W{
-		X: v11,
-		Y: v14,
-		Z: v17,
+		X: b3SplatW4(tls, R.Cx.Y),
+		Y: b3SplatW4(tls, R.Cy.Y),
+		Z: b3SplatW4(tls, R.Cz.Y),
 	}
-	v19 = R.Cx.Z
-	v20 = b3FloatW4{
-		X: v19,
-		Y: v19,
-		Z: v19,
-		W: v19,
-	}
-	goto _21
-_21:
-	v22 = R.Cy.Z
-	v23 = b3FloatW4{
-		X: v22,
-		Y: v22,
-		Z: v22,
-		W: v22,
-	}
-	goto _24
-_24:
-	v25 = R.Cz.Z
-	v26 = b3FloatW4{
-		X: v25,
-		Y: v25,
-		Z: v25,
-		W: v25,
-	}
-	goto _27
-_27:
 	r2 = b3Vec3W{
-		X: v20,
-		Y: v23,
-		Z: v26,
+		X: b3SplatW4(tls, R.Cx.Z),
+		Y: b3SplatW4(tls, R.Cy.Z),
+		Z: b3SplatW4(tls, R.Cz.Z),
 	}
-	v28 = b3FloatW4{}
-	goto _29
-_29:
-	v30 = b3FloatW4{}
-	goto _31
-_31:
-	v32 = b3FloatW4{}
-	goto _33
-_33:
 	t = b3Vec3W{
-		X: v28,
-		Y: v30,
-		Z: v32,
+		X: b3ZeroW4(tls),
+		Y: b3ZeroW4(tls),
+		Z: b3ZeroW4(tls),
 	}
 	if isPoint != 0 {
-		v34 = p
-		v37 = v34.X
-		v38 = b3FloatW4{
-			X: v37,
-			Y: v37,
-			Z: v37,
-			W: v37,
+		v1 = p
+		v21 = b3Vec3W4{
+			X: b3SplatW4(tls, v1.X),
+			Y: b3SplatW4(tls, v1.Y),
+			Z: b3SplatW4(tls, v1.Z),
 		}
-		goto _39
-	_39:
-		v40 = v34.Y
-		v41 = b3FloatW4{
-			X: v40,
-			Y: v40,
-			Z: v40,
-			W: v40,
-		}
-		goto _42
-	_42:
-		v43 = v34.Z
-		v44 = b3FloatW4{
-			X: v43,
-			Y: v43,
-			Z: v43,
-			W: v43,
-		}
-		goto _45
-	_45:
-		v35 = b3Vec3W4{
-			X: v38,
-			Y: v41,
-			Z: v44,
-		}
-		goto _36
-	_36:
-		t = v35
+		goto _3
+	_3:
+		t = v21
 	}
 	i = 0
 	for {
 		if !(i < n) {
 			break
 		}
-		v49 = inX + uintptr(i)*4
-		v21 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v49)),
-			Y: *(*float32)(unsafe.Add(nil, v49+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v49+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v49+3*4)),
+		v21 = b3Vec3W4{
+			X: b3LoadW4(tls, inX+uintptr(i)*4),
+			Y: b3LoadW4(tls, inY+uintptr(i)*4),
+			Z: b3LoadW4(tls, inZ+uintptr(i)*4),
 		}
-		goto _51
-	_51:
-		v52 = inY + uintptr(i)*4
-		v5 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v52)),
-			Y: *(*float32)(unsafe.Add(nil, v52+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v52+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v52+3*4)),
-		}
-		goto _54
-	_54:
-		v55 = inZ + uintptr(i)*4
-		v8 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v55)),
-			Y: *(*float32)(unsafe.Add(nil, v55+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v55+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v55+3*4)),
-		}
-		goto _57
-	_57:
-		v35 = b3Vec3W4{
-			X: v21,
-			Y: v5,
-			Z: v8,
-		}
-		goto _48
-	_48:
-		v2 = v35
-		v47 = r0
-		v58 = v2
-		v14 = v47.X
-		v17 = v58.X
-		v20 = b3FloatW4{
-			X: float32(v14.X * v17.X),
-			Y: float32(v14.Y * v17.Y),
-			Z: float32(v14.Z * v17.Z),
-			W: float32(v14.W * v17.W),
-		}
-		goto _65
-	_65:
-		v23 = v47.Y
-		v26 = v58.Y
-		v28 = b3FloatW4{
-			X: float32(v23.X * v26.X),
-			Y: float32(v23.Y * v26.Y),
-			Z: float32(v23.Z * v26.Z),
-			W: float32(v23.W * v26.W),
-		}
-		goto _69
-	_69:
-		v30 = v20
-		v32 = v28
-		v38 = b3FloatW4{
-			X: v30.X + v32.X,
-			Y: v30.Y + v32.Y,
-			Z: v30.Z + v32.Z,
-			W: v30.W + v32.W,
-		}
-		goto _73
-	_73:
-		v41 = v47.Z
-		v44 = v58.Z
-		v50 = b3FloatW4{
-			X: float32(v41.X * v44.X),
-			Y: float32(v41.Y * v44.Y),
-			Z: float32(v41.Z * v44.Z),
-			W: float32(v41.W * v44.W),
-		}
-		goto _77
-	_77:
-		v53 = v38
-		v56 = v50
-		v60 = b3FloatW4{
-			X: v53.X + v56.X,
-			Y: v53.Y + v56.Y,
-			Z: v53.Z + v56.Z,
-			W: v53.W + v56.W,
-		}
-		goto _81
-	_81:
-		v11 = v60
-		goto _61
-	_61:
-		v59 = r1
-		v82 = v2
-		v63 = v59.X
-		v64 = v82.X
-		v66 = b3FloatW4{
-			X: float32(v63.X * v64.X),
-			Y: float32(v63.Y * v64.Y),
-			Z: float32(v63.Z * v64.Z),
-			W: float32(v63.W * v64.W),
-		}
-		goto _89
-	_89:
-		v67 = v59.Y
-		v68 = v82.Y
-		v70 = b3FloatW4{
-			X: float32(v67.X * v68.X),
-			Y: float32(v67.Y * v68.Y),
-			Z: float32(v67.Z * v68.Z),
-			W: float32(v67.W * v68.W),
-		}
-		goto _93
-	_93:
-		v71 = v66
-		v72 = v70
-		v74 = b3FloatW4{
-			X: v71.X + v72.X,
-			Y: v71.Y + v72.Y,
-			Z: v71.Z + v72.Z,
-			W: v71.W + v72.W,
-		}
-		goto _97
-	_97:
-		v75 = v59.Z
-		v76 = v82.Z
-		v78 = b3FloatW4{
-			X: float32(v75.X * v76.X),
-			Y: float32(v75.Y * v76.Y),
-			Z: float32(v75.Z * v76.Z),
-			W: float32(v75.W * v76.W),
-		}
-		goto _101
-	_101:
-		v79 = v74
-		v80 = v78
-		v84 = b3FloatW4{
-			X: v79.X + v80.X,
-			Y: v79.Y + v80.Y,
-			Z: v79.Z + v80.Z,
-			W: v79.W + v80.W,
-		}
-		goto _105
-	_105:
-		v62 = v84
-		goto _85
-	_85:
-		v83 = r2
-		v106 = v2
-		v87 = v83.X
-		v88 = v106.X
-		v90 = b3FloatW4{
-			X: float32(v87.X * v88.X),
-			Y: float32(v87.Y * v88.Y),
-			Z: float32(v87.Z * v88.Z),
-			W: float32(v87.W * v88.W),
-		}
-		goto _113
-	_113:
-		v91 = v83.Y
-		v92 = v106.Y
-		v94 = b3FloatW4{
-			X: float32(v91.X * v92.X),
-			Y: float32(v91.Y * v92.Y),
-			Z: float32(v91.Z * v92.Z),
-			W: float32(v91.W * v92.W),
-		}
-		goto _117
-	_117:
-		v95 = v90
-		v96 = v94
-		v98 = b3FloatW4{
-			X: v95.X + v96.X,
-			Y: v95.Y + v96.Y,
-			Z: v95.Z + v96.Z,
-			W: v95.W + v96.W,
-		}
-		goto _121
-	_121:
-		v99 = v83.Z
-		v100 = v106.Z
-		v102 = b3FloatW4{
-			X: float32(v99.X * v100.X),
-			Y: float32(v99.Y * v100.Y),
-			Z: float32(v99.Z * v100.Z),
-			W: float32(v99.W * v100.W),
-		}
-		goto _125
-	_125:
-		v103 = v98
-		v104 = v102
-		v108 = b3FloatW4{
-			X: v103.X + v104.X,
-			Y: v103.Y + v104.Y,
-			Z: v103.Z + v104.Z,
-			W: v103.W + v104.W,
-		}
-		goto _129
-	_129:
-		v86 = v108
-		goto _109
-	_109:
+		goto _6
+	_6:
+		v2 = v21
+		v5 = r0
+		v7 = v2
+		v9 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v5.X, v7.X), b3MulW4(tls, v5.Y, v7.Y)), b3MulW4(tls, v5.Z, v7.Z))
+		goto _10
+	_10:
+		v8 = r1
+		v11 = v2
+		v13 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v8.X, v11.X), b3MulW4(tls, v8.Y, v11.Y)), b3MulW4(tls, v8.Z, v11.Z))
+		goto _14
+	_14:
+		v12 = r2
+		v15 = v2
+		v17 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v12.X, v15.X), b3MulW4(tls, v12.Y, v15.Y)), b3MulW4(tls, v12.Z, v15.Z))
+		goto _18
+	_18:
 		// Rotate one vector per lane
 		out = b3Vec3W{
-			X: v11,
-			Y: v62,
-			Z: v86,
-		}
-		if isPoint != 0 {
-			v107 = out
-			v130 = t
-			v110 = v107.X
-			v111 = v130.X
-			v112 = b3FloatW4{
-				X: v110.X + v111.X,
-				Y: v110.Y + v111.Y,
-				Z: v110.Z + v111.Z,
-				W: v110.W + v111.W,
-			}
-			goto _137
-		_137:
-			v114 = v107.Y
-			v115 = v130.Y
-			v116 = b3FloatW4{
-				X: v114.X + v115.X,
-				Y: v114.Y + v115.Y,
-				Z: v114.Z + v115.Z,
-				W: v114.W + v115.W,
-			}
-			goto _141
-		_141:
-			v118 = v107.Z
-			v119 = v130.Z
-			v120 = b3FloatW4{
-				X: v118.X + v119.X,
-				Y: v118.Y + v119.Y,
-				Z: v118.Z + v119.Z,
-				W: v118.W + v119.W,
-			}
-			goto _145
-		_145:
-			v131 = b3Vec3W4{
-				X: v112,
-				Y: v116,
-				Z: v120,
-			}
-			goto _133
-		_133:
-			out = v131
-		}
-		v35 = out
-		v21 = v35.X
-		v5 = b3FloatW4{
-			X: -v21.X,
-			Y: -v21.Y,
-			Z: -v21.Z,
-			W: -v21.W,
-		}
-		goto _151
-	_151:
-		v8 = v35.Y
-		v11 = b3FloatW4{
-			X: -v8.X,
-			Y: -v8.Y,
-			Z: -v8.Z,
-			W: -v8.W,
-		}
-		goto _154
-	_154:
-		v14 = v35.Z
-		v17 = b3FloatW4{
-			X: -v14.X,
-			Y: -v14.Y,
-			Z: -v14.Z,
-			W: -v14.W,
-		}
-		goto _157
-	_157:
-		v47 = b3Vec3W4{
-			X: v5,
-			Y: v11,
+			X: v9,
+			Y: v13,
 			Z: v17,
 		}
-		goto _148
-	_148:
-		v58 = v47
-		v49 = outX + uintptr(i)*4
-		v20 = v58.X
-		*(*float32)(unsafe.Add(nil, v49)) = v20.X
-		*(*float32)(unsafe.Add(nil, v49+1*4)) = v20.Y
-		*(*float32)(unsafe.Add(nil, v49+2*4)) = v20.Z
-		*(*float32)(unsafe.Add(nil, v49+3*4)) = v20.W
-		v52 = outY + uintptr(i)*4
-		v23 = v58.Y
-		*(*float32)(unsafe.Add(nil, v52)) = v23.X
-		*(*float32)(unsafe.Add(nil, v52+1*4)) = v23.Y
-		*(*float32)(unsafe.Add(nil, v52+2*4)) = v23.Z
-		*(*float32)(unsafe.Add(nil, v52+3*4)) = v23.W
-		v55 = outZ + uintptr(i)*4
-		v26 = v58.Z
-		*(*float32)(unsafe.Add(nil, v55)) = v26.X
-		*(*float32)(unsafe.Add(nil, v55+1*4)) = v26.Y
-		*(*float32)(unsafe.Add(nil, v55+2*4)) = v26.Z
-		*(*float32)(unsafe.Add(nil, v55+3*4)) = v26.W
-		goto _46
-	_46:
+		if isPoint != 0 {
+			v16 = out
+			v19 = t
+			v20 = b3Vec3W4{
+				X: b3AddW4(tls, v16.X, v19.X),
+				Y: b3AddW4(tls, v16.Y, v19.Y),
+				Z: b3AddW4(tls, v16.Z, v19.Z),
+			}
+			goto _22
+		_22:
+			out = v20
+		}
+		v21 = out
+		v5 = b3Vec3W4{
+			X: b3NegW4(tls, v21.X),
+			Y: b3NegW4(tls, v21.Y),
+			Z: b3NegW4(tls, v21.Z),
+		}
+		goto _25
+	_25:
+		v7 = v5
+		b3StoreW4(tls, outX+uintptr(i)*4, v7.X)
+		b3StoreW4(tls, outY+uintptr(i)*4, v7.Y)
+		b3StoreW4(tls, outZ+uintptr(i)*4, v7.Z)
+		goto _4
+	_4:
 		;
 		i = i + int32(_B3_SIMD_WIDTH)
 	}
@@ -56911,279 +48457,56 @@ _33:
 //	// The support is then recomputed exactly as dot(normal, vertex), without the embedded index.
 //	// todo consider using this for GJK
 func b3GetSupportWide(tls *_Stack, normal Vec3, vx uintptr, vy uintptr, vz uintptr, n int32, bias float32, support uintptr, vertexIndex uintptr) {
-	bp := tls.Alloc(32)
-	defer tls.Free(32)
-	var augmentedValue, biasV, d, minValue, value1 b3FloatW
-	var i, i1, vi, v75 int32
-	var mask uint32_t
+	var augmentedValue, biasV, d, minValue, value b3FloatW
+	var i, vi int32
 	var normalW, v1 b3Vec3W
-	var r, v111, v14, v17, v23, v26, v29, v33, v35, v36, v37, v39, v40, v41, v43, v44, v45, v47, v48, v49, v5, v51, v52, v53, v55, v56, v57, v59, v61, v63, v64, v69, v8 b3FloatW4
 	var v11 Vec3
-	var v10, v13, v16, v4, v65, v66, v67, v68, v7 float32
-	var v2, v20, v31, v32 b3Vec3W4
-	var v22, v25, v28 uintptr
-	var _ /* bits at bp+16 */ uint32_t
-	var _ /* bits at bp+24 */ uint32_t
-	var _ /* lanes at bp+0 */ [4]float32
-	var _ /* m at bp+20 */ float32
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = augmentedValue, biasV, d, i, i1, mask, minValue, normalW, r, v1, value1, vi, v11, v10, v111, v13, v14, v16, v17, v2, v20, v22, v23, v25, v26, v28, v29, v31, v32, v33, v35, v36, v37, v39, v4, v40, v41, v43, v44, v45, v47, v48, v49, v5, v51, v52, v53, v55, v56, v57, v59, v61, v63, v64, v65, v66, v67, v68, v69, v7, v75, v8
+	var v2, v5, v7, v8 b3Vec3W4
+	var v9 b3FloatW4
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = augmentedValue, biasV, d, i, minValue, normalW, v1, value, vi, v11, v2, v5, v7, v8, v9
 	v11 = normal
-	v4 = v11.X
-	v5 = b3FloatW4{
-		X: v4,
-		Y: v4,
-		Z: v4,
-		W: v4,
-	}
-	goto _6
-_6:
-	v7 = v11.Y
-	v8 = b3FloatW4{
-		X: v7,
-		Y: v7,
-		Z: v7,
-		W: v7,
-	}
-	goto _9
-_9:
-	v10 = v11.Z
-	v111 = b3FloatW4{
-		X: v10,
-		Y: v10,
-		Z: v10,
-		W: v10,
-	}
-	goto _12
-_12:
 	v2 = b3Vec3W4{
-		X: v5,
-		Y: v8,
-		Z: v111,
+		X: b3SplatW4(tls, v11.X),
+		Y: b3SplatW4(tls, v11.Y),
+		Z: b3SplatW4(tls, v11.Z),
 	}
 	goto _3
 _3:
 	normalW = v2
-	v13 = bias
-	v14 = b3FloatW4{
-		X: v13,
-		Y: v13,
-		Z: v13,
-		W: v13,
-	}
-	goto _15
-_15:
-	biasV = v14
-	v16 = __builtin_inff(tls)
-	v17 = b3FloatW4{
-		X: v16,
-		Y: v16,
-		Z: v16,
-		W: v16,
-	}
-	goto _18
-_18:
+	biasV = b3SplatW4(tls, bias)
 	// Start the minimum at a large value.
-	minValue = v17
+	minValue = b3SplatW4(tls, __builtin_inff(tls))
 	// Tail lanes hold vertex 0 with index bits >= vertexCount, so they never become the min value.
-	i1 = 0
+	i = 0
 	for {
-		if !(i1 < n) {
+		if !(i < n) {
 			break
 		}
-		v22 = vx + uintptr(i1)*4
-		v23 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v22)),
-			Y: *(*float32)(unsafe.Add(nil, v22+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v22+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v22+3*4)),
+		v5 = b3Vec3W4{
+			X: b3LoadW4(tls, vx+uintptr(i)*4),
+			Y: b3LoadW4(tls, vy+uintptr(i)*4),
+			Z: b3LoadW4(tls, vz+uintptr(i)*4),
 		}
-		goto _24
-	_24:
-		v25 = vy + uintptr(i1)*4
-		v26 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v25)),
-			Y: *(*float32)(unsafe.Add(nil, v25+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v25+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v25+3*4)),
-		}
-		goto _27
-	_27:
-		v28 = vz + uintptr(i1)*4
-		v29 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v28)),
-			Y: *(*float32)(unsafe.Add(nil, v28+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v28+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v28+3*4)),
-		}
-		goto _30
-	_30:
-		v20 = b3Vec3W4{
-			X: v23,
-			Y: v26,
-			Z: v29,
-		}
-		goto _21
-	_21:
-		v1 = v20
-		v31 = normalW
-		v32 = v1
-		v35 = v31.X
-		v36 = v32.X
-		v37 = b3FloatW4{
-			X: float32(v35.X * v36.X),
-			Y: float32(v35.Y * v36.Y),
-			Z: float32(v35.Z * v36.Z),
-			W: float32(v35.W * v36.W),
-		}
-		goto _38
-	_38:
-		v39 = v31.Y
-		v40 = v32.Y
-		v41 = b3FloatW4{
-			X: float32(v39.X * v40.X),
-			Y: float32(v39.Y * v40.Y),
-			Z: float32(v39.Z * v40.Z),
-			W: float32(v39.W * v40.W),
-		}
-		goto _42
-	_42:
-		v43 = v37
-		v44 = v41
-		v45 = b3FloatW4{
-			X: v43.X + v44.X,
-			Y: v43.Y + v44.Y,
-			Z: v43.Z + v44.Z,
-			W: v43.W + v44.W,
-		}
-		goto _46
-	_46:
-		v47 = v31.Z
-		v48 = v32.Z
-		v49 = b3FloatW4{
-			X: float32(v47.X * v48.X),
-			Y: float32(v47.Y * v48.Y),
-			Z: float32(v47.Z * v48.Z),
-			W: float32(v47.W * v48.W),
-		}
-		goto _50
-	_50:
-		v51 = v45
-		v52 = v49
-		v53 = b3FloatW4{
-			X: v51.X + v52.X,
-			Y: v51.Y + v52.Y,
-			Z: v51.Z + v52.Z,
-			W: v51.W + v52.W,
-		}
-		goto _54
-	_54:
-		v33 = v53
-		goto _34
-	_34:
-		d = v33
-		v55 = biasV
-		v56 = d
-		v57 = b3FloatW4{
-			X: v55.X - v56.X,
-			Y: v55.Y - v56.Y,
-			Z: v55.Z - v56.Z,
-			W: v55.W - v56.W,
-		}
-		goto _58
-	_58:
+		goto _6
+	_6:
+		v1 = v5
+		v7 = normalW
+		v8 = v1
+		v9 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v7.X, v8.X), b3MulW4(tls, v7.Y, v8.Y)), b3MulW4(tls, v7.Z, v8.Z))
+		goto _10
+	_10:
+		d = v9
 		// This is always positive.
-		value1 = v57
-		v59 = value1
-		mask = uint32(1)<<int32(_B3_HULL_BIT_COUNT) - uint32(1)
-		*(*[4]float32)(unsafe.Add(nil, bp)) = [4]float32{
-			0: v59.X,
-			1: v59.Y,
-			2: v59.Z,
-			3: v59.W,
-		}
-		i = 0
-		for {
-			if !(i < int32FromInt32(4)) {
-				break
-			}
-			memcpy(tls, bp+16, bp+uintptr(i)*4, uint64(4))
-			*(*uint32_t)(unsafe.Add(nil, bp+16)) = *(*uint32_t)(unsafe.Add(nil, bp+16)) & ^mask | uint32FromInt32(i1+i)
-			memcpy(tls, bp+uintptr(i)*4, bp+16, uint64(4))
-			goto _60
-		_60:
-			;
-			i = i + 1
-		}
-		v61 = b3FloatW4{
-			X: (*(*[4]float32)(unsafe.Add(nil, bp)))[0],
-			Y: (*(*[4]float32)(unsafe.Add(nil, bp)))[int32(1)],
-			Z: (*(*[4]float32)(unsafe.Add(nil, bp)))[int32(2)],
-			W: (*(*[4]float32)(unsafe.Add(nil, bp)))[int32(3)],
-		}
-		goto _62
-	_62:
-		augmentedValue = v61
-		v63 = minValue
-		v64 = augmentedValue
-		if v63.X <= v64.X {
-			v65 = v63.X
-		} else {
-			v65 = v64.X
-		}
-		r.X = v65
-		if v63.Y <= v64.Y {
-			v66 = v63.Y
-		} else {
-			v66 = v64.Y
-		}
-		r.Y = v66
-		if v63.Z <= v64.Z {
-			v67 = v63.Z
-		} else {
-			v67 = v64.Z
-		}
-		r.Z = v67
-		if v63.W <= v64.W {
-			v68 = v63.W
-		} else {
-			v68 = v64.W
-		}
-		r.W = v68
-		v69 = r
-		goto _70
-	_70:
-		minValue = v69
-		goto _19
-	_19:
+		value = b3SubW4(tls, biasV, d)
+		augmentedValue = b3EmbedIndexW4(tls, value, i, int32(_B3_HULL_BIT_COUNT))
+		minValue = b3MinW4(tls, minValue, augmentedValue)
+		goto _4
+	_4:
 		;
-		i1 = i1 + int32(_B3_SIMD_WIDTH)
+		i = i + int32(_B3_SIMD_WIDTH)
 	}
-	v5 = minValue
-	*(*float32)(unsafe.Add(nil, bp+20)) = v5.X
-	if v5.Y < *(*float32)(unsafe.Add(nil, bp+20)) {
-		v4 = v5.Y
-	} else {
-		v4 = *(*float32)(unsafe.Add(nil, bp+20))
-	}
-	*(*float32)(unsafe.Add(nil, bp+20)) = v4
-	if v5.Z < *(*float32)(unsafe.Add(nil, bp+20)) {
-		v7 = v5.Z
-	} else {
-		v7 = *(*float32)(unsafe.Add(nil, bp+20))
-	}
-	*(*float32)(unsafe.Add(nil, bp+20)) = v7
-	if v5.W < *(*float32)(unsafe.Add(nil, bp+20)) {
-		v10 = v5.W
-	} else {
-		v10 = *(*float32)(unsafe.Add(nil, bp+20))
-	}
-	*(*float32)(unsafe.Add(nil, bp+20)) = v10
-	memcpy(tls, bp+24, bp+20, uint64(4))
-	v75 = int32FromUint32(*(*uint32_t)(unsafe.Add(nil, bp+24)) & (uint32FromUint32(1)<<int32(_B3_HULL_BIT_COUNT) - uint32FromInt32(1)))
-	goto _76
-_76:
 	// One horizontal min, the winning lane's value and index bits ride through.
-	vi = v75
+	vi = b3MinIndexW4(tls, minValue, int32(_B3_HULL_BIT_COUNT))
 	// Exact support for the chosen vertex.
 	*(*int32)(unsafe.Add(nil, vertexIndex)) = vi
 	// Dot product
@@ -57254,12 +48577,11 @@ func b3GetFaceDots(tls *_Stack, hull1 uintptr, d Vec3, dots uintptr) {
 	var dW b3Vec3W
 	var faceStride, i, wideFaceCount, v1 int32
 	var m b3FloatW
-	var nx, ny, nz, v21, v24, v27, v3, v4, v54 uintptr
-	var v10, v13, v16, v22, v25, v28, v32, v34, v35, v36, v38, v39, v40, v42, v43, v44, v46, v47, v48, v50, v51, v52, v55 b3FloatW4
-	var v12, v15, v9 float32
-	var v19, v30, v31, v7 b3Vec3W4
+	var nx, ny, nz, v3, v4 uintptr
+	var v10, v12, v13, v7 b3Vec3W4
+	var v14 b3FloatW4
 	var v6 Vec3
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = dW, faceStride, i, m, nx, ny, nz, wideFaceCount, v1, v10, v12, v13, v15, v16, v19, v21, v22, v24, v25, v27, v28, v3, v30, v31, v32, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v46, v47, v48, v50, v51, v52, v54, v55, v6, v7, v9
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = dW, faceStride, i, m, nx, ny, nz, wideFaceCount, v1, v10, v12, v13, v14, v3, v4, v6, v7
 	v1 = ((*HullData)(unsafe.Pointer(hull1)).FaceCount + int32(_B3_HULL_SOA_PADDING) - int32(1)) & ^(int32FromInt32(_B3_HULL_SOA_PADDING) - int32FromInt32(1))
 	goto _2
 _2:
@@ -57276,37 +48598,10 @@ _5:
 	ny = nx + uintptr(faceStride)*4
 	nz = ny + uintptr(faceStride)*4
 	v6 = d
-	v9 = v6.X
-	v10 = b3FloatW4{
-		X: v9,
-		Y: v9,
-		Z: v9,
-		W: v9,
-	}
-	goto _11
-_11:
-	v12 = v6.Y
-	v13 = b3FloatW4{
-		X: v12,
-		Y: v12,
-		Z: v12,
-		W: v12,
-	}
-	goto _14
-_14:
-	v15 = v6.Z
-	v16 = b3FloatW4{
-		X: v15,
-		Y: v15,
-		Z: v15,
-		W: v15,
-	}
-	goto _17
-_17:
 	v7 = b3Vec3W4{
-		X: v10,
-		Y: v13,
-		Z: v16,
+		X: b3SplatW4(tls, v6.X),
+		Y: b3SplatW4(tls, v6.Y),
+		Z: b3SplatW4(tls, v6.Z),
 	}
 	goto _8
 _8:
@@ -57317,105 +48612,23 @@ _8:
 		if !(i < wideFaceCount) {
 			break
 		}
-		v21 = nx + uintptr(i)*4
-		v22 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v21)),
-			Y: *(*float32)(unsafe.Add(nil, v21+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v21+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v21+3*4)),
+		v10 = b3Vec3W4{
+			X: b3LoadW4(tls, nx+uintptr(i)*4),
+			Y: b3LoadW4(tls, ny+uintptr(i)*4),
+			Z: b3LoadW4(tls, nz+uintptr(i)*4),
 		}
-		goto _23
-	_23:
-		v24 = ny + uintptr(i)*4
-		v25 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v24)),
-			Y: *(*float32)(unsafe.Add(nil, v24+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v24+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v24+3*4)),
-		}
-		goto _26
-	_26:
-		v27 = nz + uintptr(i)*4
-		v28 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v27)),
-			Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-		}
-		goto _29
-	_29:
-		v19 = b3Vec3W4{
-			X: v22,
-			Y: v25,
-			Z: v28,
-		}
-		goto _20
-	_20:
-		v30 = v19
-		v31 = dW
-		v34 = v30.X
-		v35 = v31.X
-		v36 = b3FloatW4{
-			X: float32(v34.X * v35.X),
-			Y: float32(v34.Y * v35.Y),
-			Z: float32(v34.Z * v35.Z),
-			W: float32(v34.W * v35.W),
-		}
-		goto _37
-	_37:
-		v38 = v30.Y
-		v39 = v31.Y
-		v40 = b3FloatW4{
-			X: float32(v38.X * v39.X),
-			Y: float32(v38.Y * v39.Y),
-			Z: float32(v38.Z * v39.Z),
-			W: float32(v38.W * v39.W),
-		}
-		goto _41
-	_41:
-		v42 = v36
-		v43 = v40
-		v44 = b3FloatW4{
-			X: v42.X + v43.X,
-			Y: v42.Y + v43.Y,
-			Z: v42.Z + v43.Z,
-			W: v42.W + v43.W,
-		}
-		goto _45
-	_45:
-		v46 = v30.Z
-		v47 = v31.Z
-		v48 = b3FloatW4{
-			X: float32(v46.X * v47.X),
-			Y: float32(v46.Y * v47.Y),
-			Z: float32(v46.Z * v47.Z),
-			W: float32(v46.W * v47.W),
-		}
-		goto _49
-	_49:
-		v50 = v44
-		v51 = v48
-		v52 = b3FloatW4{
-			X: v50.X + v51.X,
-			Y: v50.Y + v51.Y,
-			Z: v50.Z + v51.Z,
-			W: v50.W + v51.W,
-		}
-		goto _53
-	_53:
-		v32 = v52
-		goto _33
-	_33:
+		goto _11
+	_11:
+		v12 = v10
+		v13 = dW
+		v14 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v12.X, v13.X), b3MulW4(tls, v12.Y, v13.Y)), b3MulW4(tls, v12.Z, v13.Z))
+		goto _15
+	_15:
 		// dot product per lane
-		m = v32
-		v54 = dots + uintptr(i)*4
-		v55 = m
-		*(*float32)(unsafe.Add(nil, v54)) = v55.X
-		*(*float32)(unsafe.Add(nil, v54+1*4)) = v55.Y
-		*(*float32)(unsafe.Add(nil, v54+2*4)) = v55.Z
-		*(*float32)(unsafe.Add(nil, v54+3*4)) = v55.W
-		goto _18
-	_18:
+		m = v14
+		b3StoreW4(tls, dots+uintptr(i)*4, m)
+		goto _9
+	_9:
 		;
 		i = i + int32(_B3_SIMD_WIDTH)
 	}
@@ -62672,8 +53885,6 @@ const _WAVE_PILE_GRID = 5
 const _WAVE_PILE_LAYERS = 4
 const static_assert = "_Static_assert"
 
-type _BoneId1 = int32
-
 const bone_pelvis = 0
 const bone_spine_01 = 1
 const bone_spine_03 = 2
@@ -62692,6 +53903,28 @@ const _FLT_MAX19 = 3.4028234663852886e+38
 
 const _FLT_MAX20 = 3.40282346638528859812e+38
 const _MESH_DROP_GRID_COUNT = 20
+
+const _BENCHMARK_DEBUG = 0
+const _FLT_MAX21 = 3.4028234663852886e+38
+const _RAIN_GRID_COUNT = 10
+const _RAIN_GRID_SIZE = 15
+const _RAIN_GROUP_SIZE = 3
+const _RAIN_LARGE_WORLD = 0
+const _SLEEP_PYRAMID_COUNT = 10
+const _SPINNER_SEGMENT_COUNT = 90
+const _STATIC_FLOOR_CELL_SIZE = 10
+const _STATIC_FLOOR_DROP_INTERVAL = 5
+const _STATIC_FLOOR_GRID = 1000
+const _STATIC_FLOOR_SPHERES = 100
+const _VILLAGE_BODY_GRID = 70
+const _VILLAGE_CAST_HEIGHT = 10
+const _VILLAGE_CAST_LENGTH = 12
+const _VILLAGE_CAST_RADIUS = 0.05
+const _VILLAGE_GRID = 100
+const _VILLAGE_STEP_COUNT = 600
+const _VILLAGE_TILE_WIDTH = 4
+
+const _FLT_MAX22 = 3.40282346638528859812e+38
 
 func __ccgo_fp(f interface{}) uintptr {
 	type iface [2]uintptr

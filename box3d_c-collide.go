@@ -9,70 +9,59 @@ var _ unsafe.Pointer
 var _ reflect.Type
 
 func b3CollideProxyAndSubtree(tls *_Stack, proxy uintptr, nodes uintptr, pair int32, context uintptr) {
-	var boxv, v1, v8 b3AABBV
-	var i, shapeId, stackCount, v3, v4 int32
-	var node3 uintptr
+	var boxv b3AABBV
+	var i, shapeId, stackCount, v1, v2 int32
+	var node2 uintptr
 	var proxyMark uint32_t
 	var stack [512]int32
-	var v10, v6 uint8
-	var v17 bool
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = boxv, i, node3, proxyMark, shapeId, stack, stackCount, v1, v10, v17, v3, v4, v6, v8
+	var v4 uint8
+	var v9 bool
+	_, _, _, _, _, _, _, _, _, _, _ = boxv, i, node2, proxyMark, shapeId, stack, stackCount, v1, v2, v4, v9
 	proxyMark = (*b3TreeNode)(unsafe.Pointer(proxy)).FlagIndex & (uint32FromUint32(1) << int32FromInt32(30))
-	v1 = *(*AABB)(unsafe.Add(nil, proxy))
-	goto _2
-_2:
-	boxv = v1
+	boxv = b3LoadAABBV(tls, proxy)
 	shapeId = *(*int32_t)(unsafe.Add(unsafe.Pointer(proxy), 28))
 	stackCount = 0
-	v3 = stackCount
+	v1 = stackCount
 	stackCount = stackCount + 1
-	stack[v3] = pair
+	stack[v1] = pair
 	for stackCount > 0 {
 		stackCount = stackCount - 1
-		v3 = stackCount
-		pair = stack[v3]
+		v1 = stackCount
+		pair = stack[v1]
 		i = 0
 		for {
 			if !(i < int32(2)) {
 				break
 			}
-			node3 = nodes + uintptr(pair)*32 + uintptr(i)*32
-			if ((*b3TreeNode)(unsafe.Pointer(node3)).FlagIndex|proxyMark)&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32(0) {
-				goto _5
+			node2 = nodes + uintptr(pair)*32 + uintptr(i)*32
+			if ((*b3TreeNode)(unsafe.Pointer(node2)).FlagIndex|proxyMark)&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32(0) {
+				goto _3
 			}
-			v1 = boxv
-			v8 = (*b3TreeNode)(unsafe.Pointer(node3)).Aabb
-			v10 = boolUint8(v1.LowerBound.X <= v8.UpperBound.X && v1.LowerBound.Y <= v8.UpperBound.Y && v1.LowerBound.Z <= v8.UpperBound.Z && v8.LowerBound.X <= v1.UpperBound.X && v8.LowerBound.Y <= v1.UpperBound.Y && v8.LowerBound.Z <= v1.UpperBound.Z)
-			goto _11
-		_11:
-			v6 = v10
-			goto _7
-		_7:
-			if int32FromUint8(v6) == false1 {
-				goto _5
+			if int32FromUint8(b3OverlapNode(tls, boxv, node2)) == false1 {
+				goto _3
 			}
-			v6 = boolUint8((*b3TreeNode)(unsafe.Pointer(node3)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
-			goto _13
-		_13:
-			if v6 != 0 {
-				b3AddCandidatePair(tls, shapeId, *(*int32_t)(unsafe.Add(unsafe.Pointer(node3), 28)), context)
-			} else {
-				if stackCount < int32(_B3_TREE_STACK_SIZE) {
-					v3 = stackCount
-					stackCount = stackCount + 1
-					v4 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node3)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
-					goto _16
-				_16:
-					stack[v3] = v4
-				} else {
-					if v17 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)); !v17 {
-						b3InternalAssert(tls, __ccgo_ts+4974, __ccgo_ts+4517, int32FromInt32(405))
-					}
-					_ = v17 || bool(int32FromInt32(0) != 0)
-				}
-			}
+			v4 = boolUint8((*b3TreeNode)(unsafe.Pointer(node2)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(31)) == uint32FromUint32(1)<<int32FromInt32(31))
 			goto _5
 		_5:
+			if v4 != 0 {
+				b3AddCandidatePair(tls, shapeId, *(*int32_t)(unsafe.Add(unsafe.Pointer(node2), 28)), context)
+			} else {
+				if stackCount < int32(_B3_TREE_STACK_SIZE) {
+					v1 = stackCount
+					stackCount = stackCount + 1
+					v2 = int32FromUint32((*b3TreeNode)(unsafe.Pointer(node2)).FlagIndex & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
+					goto _8
+				_8:
+					stack[v1] = v2
+				} else {
+					if v9 = !!(stackCount < int32FromInt32(_B3_TREE_STACK_SIZE)); !v9 {
+						b3InternalAssert(tls, __ccgo_ts+4974, __ccgo_ts+4517, int32FromInt32(405))
+					}
+					_ = v9 || bool(int32FromInt32(0) != 0)
+				}
+			}
+			goto _3
+		_3:
 			;
 			i = i + 1
 		}
@@ -3892,20 +3881,19 @@ _87:
 }
 
 func b3CollideTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex int32, context uintptr) {
-	var C, xf, xfc, v78 Transform
-	var angleA, angleB, angularDistance, arcSq, distSquared, distance, recycleDistance, recycleDistanceNonTouching, recycleTolerance, slack, speculativeDistance, xw, xx, xy, xz, yw, yy, yz, zw, zz, v100, v101, v102, v104, v107, v116, v121, v127, v134, v135, v137, v138, v139, v141, v142, v143, v145, v151, v163, v168, v174, v18, v2, v21, v25, v27, v28, v29, v3, v31, v4, v41, v46, v52, v6, v63, v74, v90, v91, v92, v94, v95, v96, v97, v99 float32
-	var arc, b13, c, c1, d, dc, dp, dv, maxExtent, maxExtentA, maxExtentB, normal, rA, rB, t1, t11, t12, t2, t21, t22, t3, t31, t32, v105, v106, v111, v112, v113, v115, v117, v118, v120, v122, v123, v125, v126, v131, v132, v146, v147, v148, v150, v158, v159, v160, v162, v164, v165, v167, v169, v170, v172, v173, v183, v184, v185, v187, v189, v190, v192, v194, v195, v197, v198, v211, v216, v217, v220, v221, v223, v224, v225, v227, v228, v229, v231, v232, v36, v37, v38, v40, v42, v43, v45, v47, v48, v50, v51, v57, v58, v59, v60, v62, v64, v65, v67, v68, v69, v71, v73, v75, v76, v80, v83, v86, v87, v88 Vec3
-	var awakeSims, bodySimA, bodySimB, color, contact, contactIndices, contacts, fatAABBs, graph, manifold, manifold1, mp, mp1, shapeA, shapeB, shapes, spec, staticSims, stepContext, taskContext, world, v15 uintptr
-	var blockIndex, v16 uint32_t
-	var bucketIndex, bucketIndex1, contactIndex, contactPrefetchDistance, encodedA, encodedB, i, manifoldCount, manifoldCount1, manifoldIndex, manifoldIndex1, pointCount, pointCount1, pointIndex, pointIndex1, prefetchEnd, shapeIdA, shapeIdB, v235, v236, v237, v239 int32
-	var dqA, dqB, q1, q2, qr, v109, v110, v129, v153, v154, v156, v157, v176, v178, v179, v181, v182, v19, v20, v201, v203, v206, v23, v24, v34, v35, v54, v56 Quat
-	var isFast, overlap, touching, wasTouching, v13, v9 uint8
-	var matrixA, matrixB, v204, v207, v215, v219 Matrix3
-	var transformA, transformB, v32, v33 WorldTransform
+	var C, xf, xfc, v72 Transform
+	var angleA, angleB, angularDistance, arcSq, distSquared, distance, recycleDistance, recycleDistanceNonTouching, recycleTolerance, slack, speculativeDistance, xw, xx, xy, xz, yw, yy, yz, zw, zz, v101, v110, v115, v12, v121, v128, v129, v131, v132, v133, v135, v136, v137, v139, v145, v15, v157, v162, v168, v19, v2, v21, v22, v23, v25, v3, v35, v4, v40, v46, v57, v6, v68, v84, v85, v86, v88, v89, v90, v91, v93, v94, v95, v96, v98 float32
+	var arc, b13, c, c1, d, dc, dp, dv, maxExtent, maxExtentA, maxExtentB, normal, rA, rB, t1, t11, t12, t2, t21, t22, t3, t31, t32, v100, v105, v106, v107, v109, v111, v112, v114, v116, v117, v119, v120, v125, v126, v140, v141, v142, v144, v152, v153, v154, v156, v158, v159, v161, v163, v164, v166, v167, v177, v178, v179, v181, v183, v184, v186, v188, v189, v191, v192, v205, v210, v211, v214, v215, v217, v218, v219, v221, v222, v223, v225, v226, v30, v31, v32, v34, v36, v37, v39, v41, v42, v44, v45, v51, v52, v53, v54, v56, v58, v59, v61, v62, v63, v65, v67, v69, v70, v74, v77, v80, v81, v82, v99 Vec3
+	var awakeSims, bodySimA, bodySimB, color, contact, contactIndices, contacts, fatAABBs, graph, manifold, manifold1, mp, mp1, shapeA, shapeB, shapes, spec, staticSims, stepContext, taskContext, world, v9 uintptr
+	var blockIndex, v10 uint32_t
+	var bucketIndex, bucketIndex1, contactIndex, contactPrefetchDistance, encodedA, encodedB, i, manifoldCount, manifoldCount1, manifoldIndex, manifoldIndex1, pointCount, pointCount1, pointIndex, pointIndex1, prefetchEnd, shapeIdA, shapeIdB, v229, v230, v231, v233 int32
+	var dqA, dqB, q1, q2, qr, v103, v104, v123, v13, v14, v147, v148, v150, v151, v17, v170, v172, v173, v175, v176, v18, v195, v197, v200, v28, v29, v48, v50 Quat
+	var isFast, overlap, touching, wasTouching, v75, v78 uint8
+	var matrixA, matrixB, v198, v201, v209, v213 Matrix3
+	var transformA, transformB, v26, v27 WorldTransform
 	var v1 bool
-	var v11, v12 b3AABBV
-	var v209, v210 Pos
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, angleA, angleB, angularDistance, arc, arcSq, awakeSims, b13, blockIndex, bodySimA, bodySimB, bucketIndex, bucketIndex1, c, c1, color, contact, contactIndex, contactIndices, contactPrefetchDistance, contacts, d, dc, distSquared, distance, dp, dqA, dqB, dv, encodedA, encodedB, fatAABBs, graph, i, isFast, manifold, manifold1, manifoldCount, manifoldCount1, manifoldIndex, manifoldIndex1, matrixA, matrixB, maxExtent, maxExtentA, maxExtentB, mp, mp1, normal, overlap, pointCount, pointCount1, pointIndex, pointIndex1, prefetchEnd, q1, q2, qr, rA, rB, recycleDistance, recycleDistanceNonTouching, recycleTolerance, shapeA, shapeB, shapeIdA, shapeIdB, shapes, slack, spec, speculativeDistance, staticSims, stepContext, t1, t11, t12, t2, t21, t22, t3, t31, t32, taskContext, touching, transformA, transformB, wasTouching, world, xf, xfc, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v100, v101, v102, v104, v105, v106, v107, v109, v11, v110, v111, v112, v113, v115, v116, v117, v118, v12, v120, v121, v122, v123, v125, v126, v127, v129, v13, v131, v132, v134, v135, v137, v138, v139, v141, v142, v143, v145, v146, v147, v148, v15, v150, v151, v153, v154, v156, v157, v158, v159, v16, v160, v162, v163, v164, v165, v167, v168, v169, v170, v172, v173, v174, v176, v178, v179, v18, v181, v182, v183, v184, v185, v187, v189, v19, v190, v192, v194, v195, v197, v198, v2, v20, v201, v203, v204, v206, v207, v209, v21, v210, v211, v215, v216, v217, v219, v220, v221, v223, v224, v225, v227, v228, v229, v23, v231, v232, v235, v236, v237, v239, v24, v25, v27, v28, v29, v3, v31, v32, v33, v34, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v48, v50, v51, v52, v54, v56, v57, v58, v59, v6, v60, v62, v63, v64, v65, v67, v68, v69, v71, v73, v74, v75, v76, v78, v80, v83, v86, v87, v88, v9, v90, v91, v92, v94, v95, v96, v97, v99
+	var v203, v204 Pos
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, angleA, angleB, angularDistance, arc, arcSq, awakeSims, b13, blockIndex, bodySimA, bodySimB, bucketIndex, bucketIndex1, c, c1, color, contact, contactIndex, contactIndices, contactPrefetchDistance, contacts, d, dc, distSquared, distance, dp, dqA, dqB, dv, encodedA, encodedB, fatAABBs, graph, i, isFast, manifold, manifold1, manifoldCount, manifoldCount1, manifoldIndex, manifoldIndex1, matrixA, matrixB, maxExtent, maxExtentA, maxExtentB, mp, mp1, normal, overlap, pointCount, pointCount1, pointIndex, pointIndex1, prefetchEnd, q1, q2, qr, rA, rB, recycleDistance, recycleDistanceNonTouching, recycleTolerance, shapeA, shapeB, shapeIdA, shapeIdB, shapes, slack, spec, speculativeDistance, staticSims, stepContext, t1, t11, t12, t2, t21, t22, t3, t31, t32, taskContext, touching, transformA, transformB, wasTouching, world, xf, xfc, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v100, v101, v103, v104, v105, v106, v107, v109, v110, v111, v112, v114, v115, v116, v117, v119, v12, v120, v121, v123, v125, v126, v128, v129, v13, v131, v132, v133, v135, v136, v137, v139, v14, v140, v141, v142, v144, v145, v147, v148, v15, v150, v151, v152, v153, v154, v156, v157, v158, v159, v161, v162, v163, v164, v166, v167, v168, v17, v170, v172, v173, v175, v176, v177, v178, v179, v18, v181, v183, v184, v186, v188, v189, v19, v191, v192, v195, v197, v198, v2, v200, v201, v203, v204, v205, v209, v21, v210, v211, v213, v214, v215, v217, v218, v219, v22, v221, v222, v223, v225, v226, v229, v23, v230, v231, v233, v25, v26, v27, v28, v29, v3, v30, v31, v32, v34, v35, v36, v37, v39, v4, v40, v41, v42, v44, v45, v46, v48, v50, v51, v52, v53, v54, v56, v57, v58, v59, v6, v61, v62, v63, v65, v67, v68, v69, v70, v72, v74, v75, v77, v78, v80, v81, v82, v84, v85, v86, v88, v89, v9, v90, v91, v93, v94, v95, v96, v98, v99
 	stepContext = context
 	world = (*b3StepContext)(unsafe.Pointer(stepContext)).World
 	graph = world + 1160
@@ -3951,28 +3939,20 @@ _5:
 		contact = contacts + uintptr(contactIndex)*216
 		shapeIdA = (*b3Contact)(unsafe.Pointer(contact)).ShapeIdA
 		shapeIdB = (*b3Contact)(unsafe.Pointer(contact)).ShapeIdB
-		v11 = *(*AABB)(unsafe.Add(nil, fatAABBs+uintptr(shapeIdA)*24))
-		v12 = *(*AABB)(unsafe.Add(nil, fatAABBs+uintptr(shapeIdB)*24))
-		v13 = boolUint8(v11.LowerBound.X <= v12.UpperBound.X && v11.LowerBound.Y <= v12.UpperBound.Y && v11.LowerBound.Z <= v12.UpperBound.Z && v12.LowerBound.X <= v11.UpperBound.X && v12.LowerBound.Y <= v11.UpperBound.Y && v12.LowerBound.Z <= v11.UpperBound.Z)
-		goto _14
-	_14:
-		v9 = v13
-		goto _10
-	_10:
 		// Do proxies still overlap?
-		overlap = v9
+		overlap = b3OverlapV8(tls, fatAABBs+uintptr(shapeIdA)*24, fatAABBs+uintptr(shapeIdB)*24)
 		if int32FromUint8(overlap) == false1 {
 			// This contact will be destroyed
 			*(*uint32_t)(unsafe.Add(nil, contact+68)) |= uint32(b3_simDisjoint)
 			*(*uint32_t)(unsafe.Add(nil, contact+68)) &= uint32FromInt32(^int32(b3_simTouchingFlag))
-			v15 = taskContext + 56
-			v16 = uint32FromInt32(contactIndex)
-			blockIndex = v16 / uint32(64)
-			if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v15)).BlockCount); !v1 {
+			v9 = taskContext + 56
+			v10 = uint32FromInt32(contactIndex)
+			blockIndex = v10 / uint32(64)
+			if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v9)).BlockCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+9611, __ccgo_ts+9643, int32FromInt32(30))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
-			*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v15)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v16 % uint32FromInt32(64))
+			*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v9)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v10 % uint32FromInt32(64))
 			goto _7
 		}
 		shapeA = shapes + uintptr(shapeIdA)*208
@@ -3996,256 +3976,256 @@ _5:
 		// This is inspired by persistent contact manifolds used in some physics engines, such as PhysX.
 		// However, this allows larger relative motion and has fewer tuning parameters (just one).
 		if int32FromUint8(isFast) == false1 && recycleDistance > float32FromFloat32(0) && (*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_relativeTransformValid) != 0 && (*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_contactRecycleFlag) != 0 {
-			v19 = transformA.Q
-			v20 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationA
-			v3 = float32(v19.V.X*v20.V.X) + float32(v19.V.Y*v20.V.Y) + float32(v19.V.Z*v20.V.Z) + float32(v19.S*v20.S)
-			goto _22
-		_22:
+			v13 = transformA.Q
+			v14 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationA
+			v3 = float32(v13.V.X*v14.V.X) + float32(v13.V.Y*v14.V.Y) + float32(v13.V.Z*v14.V.Z) + float32(v13.S*v14.S)
+			goto _16
+		_16:
 			// The scalar part of b3InvMulQuat is just the quaternion dot product.
 			// cos(relative_angle/2) = scalar(conj(q1) * q2) = dot(q1, q2)
 			// A small relative angle means this value is close to 1. Need to use abs or square
 			// due to double cover.
 			angleA = v3
-			v23 = transformB.Q
-			v24 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationB
-			v4 = float32(v23.V.X*v24.V.X) + float32(v23.V.Y*v24.V.Y) + float32(v23.V.Z*v24.V.Z) + float32(v23.S*v24.S)
-			goto _26
-		_26:
+			v17 = transformB.Q
+			v18 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationB
+			v4 = float32(v17.V.X*v18.V.X) + float32(v17.V.Y*v18.V.Y) + float32(v17.V.Z*v18.V.Z) + float32(v17.S*v18.S)
+			goto _20
+		_20:
 			angleB = v4
 			v6 = float32(angleA * angleA)
-			v18 = float32(angleB * angleB)
-			if v6 < v18 {
-				v25 = v6
+			v12 = float32(angleB * angleB)
+			if v6 < v12 {
+				v19 = v6
 			} else {
-				v25 = v18
+				v19 = v12
 			}
-			v21 = v25
-			goto _30
-		_30:
-			angularDistance = v21
-			v32 = transformA
-			v33 = transformB
-			v34 = v32.Q
-			v35 = v33.Q
-			v36 = v35.V
-			v37 = v34.V
-			c.X = float32(v36.Y*v37.Z) - float32(v36.Z*v37.Y)
-			c.Y = float32(v36.Z*v37.X) - float32(v36.X*v37.Z)
-			c.Z = float32(v36.X*v37.Y) - float32(v36.Y*v37.X)
-			v38 = c
-			goto _39
-		_39:
-			t12 = v38
-			v40 = t12
-			v27 = v34.S
-			v42 = v35.V
-			v43 = Vec3{
-				X: v40.X + float32(v27*v42.X),
-				Y: v40.Y + float32(v27*v42.Y),
-				Z: v40.Z + float32(v27*v42.Z),
+			v15 = v19
+			goto _24
+		_24:
+			angularDistance = v15
+			v26 = transformA
+			v27 = transformB
+			v28 = v26.Q
+			v29 = v27.Q
+			v30 = v29.V
+			v31 = v28.V
+			c.X = float32(v30.Y*v31.Z) - float32(v30.Z*v31.Y)
+			c.Y = float32(v30.Z*v31.X) - float32(v30.X*v31.Z)
+			c.Z = float32(v30.X*v31.Y) - float32(v30.Y*v31.X)
+			v32 = c
+			goto _33
+		_33:
+			t12 = v32
+			v34 = t12
+			v21 = v28.S
+			v36 = v29.V
+			v37 = Vec3{
+				X: v34.X + float32(v21*v36.X),
+				Y: v34.Y + float32(v21*v36.Y),
+				Z: v34.Z + float32(v21*v36.Z),
 			}
-			goto _44
-		_44:
-			t22 = v43
-			v45 = t22
-			v28 = v35.S
-			v47 = v34.V
-			v48 = Vec3{
-				X: v45.X - float32(v28*v47.X),
-				Y: v45.Y - float32(v28*v47.Y),
-				Z: v45.Z - float32(v28*v47.Z),
+			goto _38
+		_38:
+			t22 = v37
+			v39 = t22
+			v22 = v29.S
+			v41 = v28.V
+			v42 = Vec3{
+				X: v39.X - float32(v22*v41.X),
+				Y: v39.Y - float32(v22*v41.Y),
+				Z: v39.Z - float32(v22*v41.Z),
 			}
-			goto _49
-		_49:
-			t32 = v48
-			v50 = v34.V
-			v51 = v35.V
-			v29 = float32(v50.X*v51.X) + float32(v50.Y*v51.Y) + float32(v50.Z*v51.Z)
-			goto _53
-		_53:
+			goto _43
+		_43:
+			t32 = v42
+			v44 = v28.V
+			v45 = v29.V
+			v23 = float32(v44.X*v45.X) + float32(v44.Y*v45.Y) + float32(v44.Z*v45.Z)
+			goto _47
+		_47:
 			q2 = Quat{
 				V: t32,
-				S: float32(v34.S*v35.S) + v29,
+				S: float32(v28.S*v29.S) + v23,
 			}
-			v54 = q2
+			v48 = q2
+			goto _49
+		_49:
+			C.Q = v48
+			d = Vec3{
+				X: v27.P.X - v26.P.X,
+				Y: v27.P.Y - v26.P.Y,
+				Z: v27.P.Z - v26.P.Z,
+			}
+			v50 = v26.Q
+			v51 = d
+			v52 = v50.V
+			v53 = v51
+			c.X = float32(v52.Y*v53.Z) - float32(v52.Z*v53.Y)
+			c.Y = float32(v52.Z*v53.X) - float32(v52.X*v53.Z)
+			c.Z = float32(v52.X*v53.Y) - float32(v52.Y*v53.X)
+			v54 = c
 			goto _55
 		_55:
-			C.Q = v54
-			d = Vec3{
-				X: v33.P.X - v32.P.X,
-				Y: v33.P.Y - v32.P.Y,
-				Z: v33.P.Z - v32.P.Z,
+			t1 = v54
+			v56 = t1
+			v25 = v50.S
+			v58 = v51
+			v59 = Vec3{
+				X: v56.X - float32(v25*v58.X),
+				Y: v56.Y - float32(v25*v58.Y),
+				Z: v56.Z - float32(v25*v58.Z),
 			}
-			v56 = v32.Q
-			v57 = d
-			v58 = v56.V
-			v59 = v57
-			c.X = float32(v58.Y*v59.Z) - float32(v58.Z*v59.Y)
-			c.Y = float32(v58.Z*v59.X) - float32(v58.X*v59.Z)
-			c.Z = float32(v58.X*v59.Y) - float32(v58.Y*v59.X)
-			v60 = c
-			goto _61
-		_61:
-			t1 = v60
-			v62 = t1
-			v31 = v56.S
-			v64 = v57
-			v65 = Vec3{
-				X: v62.X - float32(v31*v64.X),
-				Y: v62.Y - float32(v31*v64.Y),
-				Z: v62.Z - float32(v31*v64.Z),
+			goto _60
+		_60:
+			t2 = v59
+			v61 = v50.V
+			v62 = t2
+			c.X = float32(v61.Y*v62.Z) - float32(v61.Z*v62.Y)
+			c.Y = float32(v61.Z*v62.X) - float32(v61.X*v62.Z)
+			c.Z = float32(v61.X*v62.Y) - float32(v61.Y*v62.X)
+			v63 = c
+			goto _64
+		_64:
+			t3 = v63
+			v67 = v51
+			v35 = float32FromFloat32(2)
+			v69 = t3
+			v70 = Vec3{
+				X: v67.X + float32(v35*v69.X),
+				Y: v67.Y + float32(v35*v69.Y),
+				Z: v67.Z + float32(v35*v69.Z),
 			}
+			goto _71
+		_71:
+			v65 = v70
 			goto _66
 		_66:
-			t2 = v65
-			v67 = v56.V
-			v68 = t2
-			c.X = float32(v67.Y*v68.Z) - float32(v67.Z*v68.Y)
-			c.Y = float32(v67.Z*v68.X) - float32(v67.X*v68.Z)
-			c.Z = float32(v67.X*v68.Y) - float32(v67.Y*v68.X)
-			v69 = c
-			goto _70
-		_70:
-			t3 = v69
-			v73 = v57
-			v41 = float32FromFloat32(2)
-			v75 = t3
-			v76 = Vec3{
-				X: v73.X + float32(v41*v75.X),
-				Y: v73.Y + float32(v41*v75.Y),
-				Z: v73.Z + float32(v41*v75.Z),
+			C.P = v65
+			v72 = C
+			goto _73
+		_73:
+			xf = v72
+			xfc = (*b3Contact)(unsafe.Pointer(contact)).CachedRelativePose
+			v75 = boolUint8(encodedA < -int32(1))
+			goto _76
+		_76:
+			if v75 != 0 {
+				v74 = b3Vec3_zero
+			} else {
+				v74 = (*b3BodySim)(unsafe.Pointer(bodySimA)).MaxExtent
 			}
-			goto _77
-		_77:
-			v71 = v76
-			goto _72
-		_72:
-			C.P = v71
-			v78 = C
+			maxExtentA = v74
+			v78 = boolUint8(encodedB < -int32(1))
 			goto _79
 		_79:
-			xf = v78
-			xfc = (*b3Contact)(unsafe.Pointer(contact)).CachedRelativePose
-			v9 = boolUint8(encodedA < -int32(1))
-			goto _82
-		_82:
-			if v9 != 0 {
-				v80 = b3Vec3_zero
+			if v78 != 0 {
+				v77 = b3Vec3_zero
 			} else {
-				v80 = (*b3BodySim)(unsafe.Pointer(bodySimA)).MaxExtent
+				v77 = (*b3BodySim)(unsafe.Pointer(bodySimB)).MaxExtent
 			}
-			maxExtentA = v80
-			v13 = boolUint8(encodedB < -int32(1))
-			goto _85
-		_85:
-			if v13 != 0 {
-				v83 = b3Vec3_zero
+			maxExtentB = v77
+			v80 = maxExtentA
+			v81 = maxExtentB
+			v40 = v80.X
+			v46 = v81.X
+			if v40 > v46 {
+				v68 = v40
 			} else {
-				v83 = (*b3BodySim)(unsafe.Pointer(bodySimB)).MaxExtent
+				v68 = v46
 			}
-			maxExtentB = v83
-			v86 = maxExtentA
-			v87 = maxExtentB
-			v46 = v86.X
-			v52 = v87.X
-			if v46 > v52 {
-				v74 = v46
+			v57 = v68
+			goto _87
+		_87:
+			v84 = v80.Y
+			v85 = v81.Y
+			if v84 > v85 {
+				v88 = v84
 			} else {
-				v74 = v52
+				v88 = v85
 			}
-			v63 = v74
-			goto _93
-		_93:
-			v90 = v86.Y
-			v91 = v87.Y
-			if v90 > v91 {
-				v94 = v90
+			v86 = v88
+			goto _92
+		_92:
+			v89 = v80.Z
+			v90 = v81.Z
+			if v89 > v90 {
+				v93 = v89
 			} else {
-				v94 = v91
+				v93 = v90
 			}
-			v92 = v94
-			goto _98
-		_98:
-			v95 = v86.Z
-			v96 = v87.Z
-			if v95 > v96 {
-				v99 = v95
-			} else {
-				v99 = v96
+			v91 = v93
+			goto _97
+		_97:
+			v82 = Vec3{
+				X: v57,
+				Y: v86,
+				Z: v91,
 			}
-			v97 = v99
-			goto _103
-		_103:
-			v88 = Vec3{
-				X: v63,
-				Y: v92,
-				Z: v97,
-			}
-			goto _89
-		_89:
-			maxExtent = v88
-			v105 = xf.P
-			v106 = xfc.P
+			goto _83
+		_83:
+			maxExtent = v82
+			v99 = xf.P
+			v100 = xfc.P
 			dv = Vec3{
-				X: v106.X - v105.X,
-				Y: v106.Y - v105.Y,
-				Z: v106.Z - v105.Z,
+				X: v100.X - v99.X,
+				Y: v100.Y - v99.Y,
+				Z: v100.Z - v99.Z,
 			}
-			v100 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
-			goto _108
-		_108:
+			v94 = float32(dv.X*dv.X) + float32(dv.Y*dv.Y) + float32(dv.Z*dv.Z)
+			goto _102
+		_102:
 			// Variation of Conservative Advancement
 			// distance + 2 * length(modified_cross(|qr.v|, maxExtent)) < recycleTolerance.
 			// 2*|qr.v| == 2*|sin(theta/2)| ~= theta for small angles.
-			distSquared = v100
+			distSquared = v94
 			if angularDistance > float32FromFloat32(0.99240388) && distSquared < float32(recycleTolerance*recycleTolerance) {
 				distance = sqrtf(tls, distSquared)
 				slack = recycleTolerance - distance
-				v109 = xfc.Q
-				v110 = xf.Q
-				v111 = v110.V
-				v112 = v109.V
-				c.X = float32(v111.Y*v112.Z) - float32(v111.Z*v112.Y)
-				c.Y = float32(v111.Z*v112.X) - float32(v111.X*v112.Z)
-				c.Z = float32(v111.X*v112.Y) - float32(v111.Y*v112.X)
-				v113 = c
-				goto _114
-			_114:
-				t12 = v113
-				v115 = t12
-				v101 = v109.S
-				v117 = v110.V
-				v118 = Vec3{
-					X: v115.X + float32(v101*v117.X),
-					Y: v115.Y + float32(v101*v117.Y),
-					Z: v115.Z + float32(v101*v117.Z),
+				v103 = xfc.Q
+				v104 = xf.Q
+				v105 = v104.V
+				v106 = v103.V
+				c.X = float32(v105.Y*v106.Z) - float32(v105.Z*v106.Y)
+				c.Y = float32(v105.Z*v106.X) - float32(v105.X*v106.Z)
+				c.Z = float32(v105.X*v106.Y) - float32(v105.Y*v106.X)
+				v107 = c
+				goto _108
+			_108:
+				t12 = v107
+				v109 = t12
+				v95 = v103.S
+				v111 = v104.V
+				v112 = Vec3{
+					X: v109.X + float32(v95*v111.X),
+					Y: v109.Y + float32(v95*v111.Y),
+					Z: v109.Z + float32(v95*v111.Z),
 				}
-				goto _119
-			_119:
-				t22 = v118
-				v120 = t22
-				v102 = v110.S
-				v122 = v109.V
-				v123 = Vec3{
-					X: v120.X - float32(v102*v122.X),
-					Y: v120.Y - float32(v102*v122.Y),
-					Z: v120.Z - float32(v102*v122.Z),
+				goto _113
+			_113:
+				t22 = v112
+				v114 = t22
+				v96 = v104.S
+				v116 = v103.V
+				v117 = Vec3{
+					X: v114.X - float32(v96*v116.X),
+					Y: v114.Y - float32(v96*v116.Y),
+					Z: v114.Z - float32(v96*v116.Z),
 				}
-				goto _124
-			_124:
-				t32 = v123
-				v125 = v109.V
-				v126 = v110.V
-				v104 = float32(v125.X*v126.X) + float32(v125.Y*v126.Y) + float32(v125.Z*v126.Z)
-				goto _128
-			_128:
+				goto _118
+			_118:
+				t32 = v117
+				v119 = v103.V
+				v120 = v104.V
+				v98 = float32(v119.X*v120.X) + float32(v119.Y*v120.Y) + float32(v119.Z*v120.Z)
+				goto _122
+			_122:
 				q2 = Quat{
 					V: t32,
-					S: float32(v109.S*v110.S) + v104,
+					S: float32(v103.S*v104.S) + v98,
 				}
-				v129 = q2
-				goto _130
-			_130:
+				v123 = q2
+				goto _124
+			_124:
 				// qr = inv( inv(qA0) * qB0 ) * inv(qA) * qB
 				//    = inv(qB0) * qA0 * inv(qA) * qB
 				// Suppose A is static
@@ -4253,242 +4233,242 @@ _5:
 				//    = inv(qB0) * qB
 				// qB = qB0 * qr
 				// Therefore qr is associated with the local angular velocity of body B when A is static.
-				qr = v129
-				v131 = qr.V
-				v107 = v131.X
-				if v107 < float32FromInt32(0) {
-					v121 = -v107
+				qr = v123
+				v125 = qr.V
+				v101 = v125.X
+				if v101 < float32FromInt32(0) {
+					v115 = -v101
 				} else {
-					v121 = v107
+					v115 = v101
 				}
-				v116 = v121
-				goto _136
-			_136:
-				v127 = v131.Y
-				if v127 < float32FromInt32(0) {
-					v135 = -v127
+				v110 = v115
+				goto _130
+			_130:
+				v121 = v125.Y
+				if v121 < float32FromInt32(0) {
+					v129 = -v121
 				} else {
-					v135 = v127
+					v129 = v121
 				}
-				v134 = v135
-				goto _140
-			_140:
-				v137 = v131.Z
-				if v137 < float32FromInt32(0) {
-					v139 = -v137
+				v128 = v129
+				goto _134
+			_134:
+				v131 = v125.Z
+				if v131 < float32FromInt32(0) {
+					v133 = -v131
 				} else {
-					v139 = v137
+					v133 = v131
 				}
-				v138 = v139
-				goto _144
-			_144:
-				v132 = Vec3{
-					X: v116,
-					Y: v134,
-					Z: v138,
+				v132 = v133
+				goto _138
+			_138:
+				v126 = Vec3{
+					X: v110,
+					Y: v128,
+					Z: v132,
 				}
-				goto _133
-			_133:
-				v146 = v132
-				v147 = maxExtent
-				c1.X = float32(v146.Y*v147.Z) + float32(v146.Z*v147.Y)
-				c1.Y = float32(v146.Z*v147.X) + float32(v146.X*v147.Z)
-				c1.Z = float32(v146.X*v147.Y) + float32(v146.Y*v147.X)
-				v148 = c1
-				goto _149
-			_149:
-				arc = v148
-				v150 = arc
-				v141 = float32(v150.X*v150.X) + float32(v150.Y*v150.Y) + float32(v150.Z*v150.Z)
-				goto _152
-			_152:
-				arcSq = float32(float32FromFloat32(4) * v141)
+				goto _127
+			_127:
+				v140 = v126
+				v141 = maxExtent
+				c1.X = float32(v140.Y*v141.Z) + float32(v140.Z*v141.Y)
+				c1.Y = float32(v140.Z*v141.X) + float32(v140.X*v141.Z)
+				c1.Z = float32(v140.X*v141.Y) + float32(v140.Y*v141.X)
+				v142 = c1
+				goto _143
+			_143:
+				arc = v142
+				v144 = arc
+				v135 = float32(v144.X*v144.X) + float32(v144.Y*v144.Y) + float32(v144.Z*v144.Z)
+				goto _146
+			_146:
+				arcSq = float32(float32FromFloat32(4) * v135)
 				if arcSq < float32(slack*slack) {
-					v153 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationA
-					v154 = Quat{
+					v147 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationA
+					v148 = Quat{
 						V: Vec3{
-							X: -v153.V.X,
-							Y: -v153.V.Y,
-							Z: -v153.V.Z,
+							X: -v147.V.X,
+							Y: -v147.V.Y,
+							Z: -v147.V.Z,
 						},
-						S: v153.S,
+						S: v147.S,
 					}
+					goto _149
+				_149:
+					v150 = transformA.Q
+					v151 = v148
+					v152 = v150.V
+					v153 = v151.V
+					c.X = float32(v152.Y*v153.Z) - float32(v152.Z*v153.Y)
+					c.Y = float32(v152.Z*v153.X) - float32(v152.X*v153.Z)
+					c.Z = float32(v152.X*v153.Y) - float32(v152.Y*v153.X)
+					v154 = c
 					goto _155
 				_155:
-					v156 = transformA.Q
-					v157 = v154
-					v158 = v156.V
-					v159 = v157.V
-					c.X = float32(v158.Y*v159.Z) - float32(v158.Z*v159.Y)
-					c.Y = float32(v158.Z*v159.X) - float32(v158.X*v159.Z)
-					c.Z = float32(v158.X*v159.Y) - float32(v158.Y*v159.X)
-					v160 = c
-					goto _161
-				_161:
-					t11 = v160
-					v162 = t11
-					v142 = v156.S
-					v164 = v157.V
-					v165 = Vec3{
-						X: v162.X + float32(v142*v164.X),
-						Y: v162.Y + float32(v142*v164.Y),
-						Z: v162.Z + float32(v142*v164.Z),
+					t11 = v154
+					v156 = t11
+					v136 = v150.S
+					v158 = v151.V
+					v159 = Vec3{
+						X: v156.X + float32(v136*v158.X),
+						Y: v156.Y + float32(v136*v158.Y),
+						Z: v156.Z + float32(v136*v158.Z),
 					}
-					goto _166
-				_166:
-					t21 = v165
-					v167 = t21
-					v143 = v157.S
-					v169 = v156.V
-					v170 = Vec3{
-						X: v167.X + float32(v143*v169.X),
-						Y: v167.Y + float32(v143*v169.Y),
-						Z: v167.Z + float32(v143*v169.Z),
+					goto _160
+				_160:
+					t21 = v159
+					v161 = t21
+					v137 = v151.S
+					v163 = v150.V
+					v164 = Vec3{
+						X: v161.X + float32(v137*v163.X),
+						Y: v161.Y + float32(v137*v163.Y),
+						Z: v161.Z + float32(v137*v163.Z),
 					}
+					goto _165
+				_165:
+					t31 = v164
+					v166 = v150.V
+					v167 = v151.V
+					v139 = float32(v166.X*v167.X) + float32(v166.Y*v167.Y) + float32(v166.Z*v167.Z)
+					goto _169
+				_169:
+					q1 = Quat{
+						V: t31,
+						S: float32(v150.S*v151.S) - v139,
+					}
+					v170 = q1
 					goto _171
 				_171:
-					t31 = v170
-					v172 = v156.V
-					v173 = v157.V
-					v145 = float32(v172.X*v173.X) + float32(v172.Y*v173.Y) + float32(v172.Z*v173.Z)
-					goto _175
-				_175:
-					q1 = Quat{
-						V: t31,
-						S: float32(v156.S*v157.S) - v145,
-					}
-					v176 = q1
-					goto _177
-				_177:
-					dqA = v176
-					v178 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationB
-					v179 = Quat{
+					dqA = v170
+					v172 = (*b3Contact)(unsafe.Pointer(contact)).CachedRotationB
+					v173 = Quat{
 						V: Vec3{
-							X: -v178.V.X,
-							Y: -v178.V.Y,
-							Z: -v178.V.Z,
+							X: -v172.V.X,
+							Y: -v172.V.Y,
+							Z: -v172.V.Z,
 						},
-						S: v178.S,
+						S: v172.S,
 					}
+					goto _174
+				_174:
+					v175 = transformB.Q
+					v176 = v173
+					v177 = v175.V
+					v178 = v176.V
+					c.X = float32(v177.Y*v178.Z) - float32(v177.Z*v178.Y)
+					c.Y = float32(v177.Z*v178.X) - float32(v177.X*v178.Z)
+					c.Z = float32(v177.X*v178.Y) - float32(v177.Y*v178.X)
+					v179 = c
 					goto _180
 				_180:
-					v181 = transformB.Q
-					v182 = v179
-					v183 = v181.V
-					v184 = v182.V
-					c.X = float32(v183.Y*v184.Z) - float32(v183.Z*v184.Y)
-					c.Y = float32(v183.Z*v184.X) - float32(v183.X*v184.Z)
-					c.Z = float32(v183.X*v184.Y) - float32(v183.Y*v184.X)
-					v185 = c
-					goto _186
-				_186:
-					t11 = v185
-					v187 = t11
-					v151 = v181.S
-					v189 = v182.V
-					v190 = Vec3{
-						X: v187.X + float32(v151*v189.X),
-						Y: v187.Y + float32(v151*v189.Y),
-						Z: v187.Z + float32(v151*v189.Z),
+					t11 = v179
+					v181 = t11
+					v145 = v175.S
+					v183 = v176.V
+					v184 = Vec3{
+						X: v181.X + float32(v145*v183.X),
+						Y: v181.Y + float32(v145*v183.Y),
+						Z: v181.Z + float32(v145*v183.Z),
 					}
-					goto _191
-				_191:
-					t21 = v190
-					v192 = t21
-					v163 = v182.S
-					v194 = v181.V
-					v195 = Vec3{
-						X: v192.X + float32(v163*v194.X),
-						Y: v192.Y + float32(v163*v194.Y),
-						Z: v192.Z + float32(v163*v194.Z),
+					goto _185
+				_185:
+					t21 = v184
+					v186 = t21
+					v157 = v176.S
+					v188 = v175.V
+					v189 = Vec3{
+						X: v186.X + float32(v157*v188.X),
+						Y: v186.Y + float32(v157*v188.Y),
+						Z: v186.Z + float32(v157*v188.Z),
 					}
-					goto _196
-				_196:
-					t31 = v195
-					v197 = v181.V
-					v198 = v182.V
-					v168 = float32(v197.X*v198.X) + float32(v197.Y*v198.Y) + float32(v197.Z*v198.Z)
-					goto _200
-				_200:
+					goto _190
+				_190:
+					t31 = v189
+					v191 = v175.V
+					v192 = v176.V
+					v162 = float32(v191.X*v192.X) + float32(v191.Y*v192.Y) + float32(v191.Z*v192.Z)
+					goto _194
+				_194:
 					q1 = Quat{
 						V: t31,
-						S: float32(v181.S*v182.S) - v168,
+						S: float32(v175.S*v176.S) - v162,
 					}
-					v201 = q1
+					v195 = q1
+					goto _196
+				_196:
+					dqB = v195
+					v197 = dqA
+					xx = float32(v197.V.X * v197.V.X)
+					yy = float32(v197.V.Y * v197.V.Y)
+					zz = float32(v197.V.Z * v197.V.Z)
+					xy = float32(v197.V.X * v197.V.Y)
+					xz = float32(v197.V.X * v197.V.Z)
+					xw = float32(v197.V.X * v197.S)
+					yz = float32(v197.V.Y * v197.V.Z)
+					yw = float32(v197.V.Y * v197.S)
+					zw = float32(v197.V.Z * v197.S)
+					v198 = Matrix3{
+						Cx: Vec3{
+							X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+							Y: float32(float32FromFloat32(2) * (xy + zw)),
+							Z: float32(float32FromFloat32(2) * (xz - yw)),
+						},
+						Cy: Vec3{
+							X: float32(float32FromFloat32(2) * (xy - zw)),
+							Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+							Z: float32(float32FromFloat32(2) * (yz + xw)),
+						},
+						Cz: Vec3{
+							X: float32(float32FromFloat32(2) * (xz + yw)),
+							Y: float32(float32FromFloat32(2) * (yz - xw)),
+							Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+						},
+					}
+					goto _199
+				_199:
+					matrixA = v198
+					v200 = dqB
+					xx = float32(v200.V.X * v200.V.X)
+					yy = float32(v200.V.Y * v200.V.Y)
+					zz = float32(v200.V.Z * v200.V.Z)
+					xy = float32(v200.V.X * v200.V.Y)
+					xz = float32(v200.V.X * v200.V.Z)
+					xw = float32(v200.V.X * v200.S)
+					yz = float32(v200.V.Y * v200.V.Z)
+					yw = float32(v200.V.Y * v200.S)
+					zw = float32(v200.V.Z * v200.S)
+					v201 = Matrix3{
+						Cx: Vec3{
+							X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+							Y: float32(float32FromFloat32(2) * (xy + zw)),
+							Z: float32(float32FromFloat32(2) * (xz - yw)),
+						},
+						Cy: Vec3{
+							X: float32(float32FromFloat32(2) * (xy - zw)),
+							Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+							Z: float32(float32FromFloat32(2) * (yz + xw)),
+						},
+						Cz: Vec3{
+							X: float32(float32FromFloat32(2) * (xz + yw)),
+							Y: float32(float32FromFloat32(2) * (yz - xw)),
+							Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+						},
+					}
 					goto _202
 				_202:
-					dqB = v201
-					v203 = dqA
-					xx = float32(v203.V.X * v203.V.X)
-					yy = float32(v203.V.Y * v203.V.Y)
-					zz = float32(v203.V.Z * v203.V.Z)
-					xy = float32(v203.V.X * v203.V.Y)
-					xz = float32(v203.V.X * v203.V.Z)
-					xw = float32(v203.V.X * v203.S)
-					yz = float32(v203.V.Y * v203.V.Z)
-					yw = float32(v203.V.Y * v203.S)
-					zw = float32(v203.V.Z * v203.S)
-					v204 = Matrix3{
-						Cx: Vec3{
-							X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
-							Y: float32(float32FromFloat32(2) * (xy + zw)),
-							Z: float32(float32FromFloat32(2) * (xz - yw)),
-						},
-						Cy: Vec3{
-							X: float32(float32FromFloat32(2) * (xy - zw)),
-							Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
-							Z: float32(float32FromFloat32(2) * (yz + xw)),
-						},
-						Cz: Vec3{
-							X: float32(float32FromFloat32(2) * (xz + yw)),
-							Y: float32(float32FromFloat32(2) * (yz - xw)),
-							Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
-						},
+					matrixB = v201
+					v203 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Center
+					v204 = (*b3BodySim)(unsafe.Pointer(bodySimA)).Center
+					v205 = Vec3{
+						X: v203.X - v204.X,
+						Y: v203.Y - v204.Y,
+						Z: v203.Z - v204.Z,
 					}
-					goto _205
-				_205:
-					matrixA = v204
-					v206 = dqB
-					xx = float32(v206.V.X * v206.V.X)
-					yy = float32(v206.V.Y * v206.V.Y)
-					zz = float32(v206.V.Z * v206.V.Z)
-					xy = float32(v206.V.X * v206.V.Y)
-					xz = float32(v206.V.X * v206.V.Z)
-					xw = float32(v206.V.X * v206.S)
-					yz = float32(v206.V.Y * v206.V.Z)
-					yw = float32(v206.V.Y * v206.S)
-					zw = float32(v206.V.Z * v206.S)
-					v207 = Matrix3{
-						Cx: Vec3{
-							X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
-							Y: float32(float32FromFloat32(2) * (xy + zw)),
-							Z: float32(float32FromFloat32(2) * (xz - yw)),
-						},
-						Cy: Vec3{
-							X: float32(float32FromFloat32(2) * (xy - zw)),
-							Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
-							Z: float32(float32FromFloat32(2) * (yz + xw)),
-						},
-						Cz: Vec3{
-							X: float32(float32FromFloat32(2) * (xz + yw)),
-							Y: float32(float32FromFloat32(2) * (yz - xw)),
-							Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
-						},
-					}
-					goto _208
-				_208:
-					matrixB = v207
-					v209 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Center
-					v210 = (*b3BodySim)(unsafe.Pointer(bodySimA)).Center
-					v211 = Vec3{
-						X: v209.X - v210.X,
-						Y: v209.Y - v210.Y,
-						Z: v209.Z - v210.Z,
-					}
-					goto _212
-				_212:
+					goto _206
+				_206:
 					// Minimize round-off
-					dc = v211
+					dc = v205
 					manifoldCount = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
 					manifoldIndex = 0
 					for {
@@ -4505,78 +4485,78 @@ _5:
 							}
 							// Keep anchors but update separation, same as sub-stepping. This eliminates jitter.
 							mp = manifold + uintptr(pointIndex)*56
-							v215 = matrixA
-							v216 = (*ManifoldPoint)(unsafe.Pointer(mp)).AnchorA
+							v209 = matrixA
+							v210 = (*ManifoldPoint)(unsafe.Pointer(mp)).AnchorA
 							b13 = Vec3{
-								X: float32(v215.Cx.X*v216.X) + float32(v215.Cy.X*v216.Y) + float32(v215.Cz.X*v216.Z),
-								Y: float32(v215.Cx.Y*v216.X) + float32(v215.Cy.Y*v216.Y) + float32(v215.Cz.Y*v216.Z),
-								Z: float32(v215.Cx.Z*v216.X) + float32(v215.Cy.Z*v216.Y) + float32(v215.Cz.Z*v216.Z),
+								X: float32(v209.Cx.X*v210.X) + float32(v209.Cy.X*v210.Y) + float32(v209.Cz.X*v210.Z),
+								Y: float32(v209.Cx.Y*v210.X) + float32(v209.Cy.Y*v210.Y) + float32(v209.Cz.Y*v210.Z),
+								Z: float32(v209.Cx.Z*v210.X) + float32(v209.Cy.Z*v210.Y) + float32(v209.Cz.Z*v210.Z),
 							}
-							v217 = b13
-							goto _218
-						_218:
-							rA = v217
-							v219 = matrixB
-							v220 = (*ManifoldPoint)(unsafe.Pointer(mp)).AnchorB
+							v211 = b13
+							goto _212
+						_212:
+							rA = v211
+							v213 = matrixB
+							v214 = (*ManifoldPoint)(unsafe.Pointer(mp)).AnchorB
 							b13 = Vec3{
-								X: float32(v219.Cx.X*v220.X) + float32(v219.Cy.X*v220.Y) + float32(v219.Cz.X*v220.Z),
-								Y: float32(v219.Cx.Y*v220.X) + float32(v219.Cy.Y*v220.Y) + float32(v219.Cz.Y*v220.Z),
-								Z: float32(v219.Cx.Z*v220.X) + float32(v219.Cy.Z*v220.Y) + float32(v219.Cz.Z*v220.Z),
+								X: float32(v213.Cx.X*v214.X) + float32(v213.Cy.X*v214.Y) + float32(v213.Cz.X*v214.Z),
+								Y: float32(v213.Cx.Y*v214.X) + float32(v213.Cy.Y*v214.Y) + float32(v213.Cz.Y*v214.Z),
+								Z: float32(v213.Cx.Z*v214.X) + float32(v213.Cy.Z*v214.Y) + float32(v213.Cz.Z*v214.Z),
 							}
-							v221 = b13
-							goto _222
-						_222:
-							rB = v221
-							v223 = rB
-							v224 = rA
-							v225 = Vec3{
-								X: v223.X - v224.X,
-								Y: v223.Y - v224.Y,
-								Z: v223.Z - v224.Z,
+							v215 = b13
+							goto _216
+						_216:
+							rB = v215
+							v217 = rB
+							v218 = rA
+							v219 = Vec3{
+								X: v217.X - v218.X,
+								Y: v217.Y - v218.Y,
+								Z: v217.Z - v218.Z,
 							}
-							goto _226
-						_226:
-							v227 = dc
-							v228 = v225
-							v229 = Vec3{
-								X: v227.X + v228.X,
-								Y: v227.Y + v228.Y,
-								Z: v227.Z + v228.Z,
+							goto _220
+						_220:
+							v221 = dc
+							v222 = v219
+							v223 = Vec3{
+								X: v221.X + v222.X,
+								Y: v221.Y + v222.Y,
+								Z: v221.Z + v222.Z,
 							}
-							goto _230
-						_230:
-							dp = v229
-							v231 = dp
-							v232 = normal
-							v174 = float32(v231.X*v232.X) + float32(v231.Y*v232.Y) + float32(v231.Z*v232.Z)
-							goto _234
-						_234:
-							(*ManifoldPoint)(unsafe.Pointer(mp)).Separation = (*ManifoldPoint)(unsafe.Pointer(mp)).BaseSeparation + v174
+							goto _224
+						_224:
+							dp = v223
+							v225 = dp
+							v226 = normal
+							v168 = float32(v225.X*v226.X) + float32(v225.Y*v226.Y) + float32(v225.Z*v226.Z)
+							goto _228
+						_228:
+							(*ManifoldPoint)(unsafe.Pointer(mp)).Separation = (*ManifoldPoint)(unsafe.Pointer(mp)).BaseSeparation + v168
 							(*ManifoldPoint)(unsafe.Pointer(mp)).NormalVelocity = float32FromFloat32(0)
 							(*ManifoldPoint)(unsafe.Pointer(mp)).Persisted = boolUint8(true1 != 0)
-							goto _214
-						_214:
+							goto _208
+						_208:
 							;
 							pointIndex = pointIndex + 1
 						}
-						goto _213
-					_213:
+						goto _207
+					_207:
 						;
 						manifoldIndex = manifoldIndex + 1
 					}
 					// Diagnostics
 					*(*int32)(unsafe.Add(nil, taskContext+156)) += int32(1)
-					v235 = manifoldCount
-					v236 = int32FromInt32(_B3_CONTACT_MANIFOLD_COUNT_BUCKETS) - int32FromInt32(1)
-					if v235 < v236 {
-						v239 = v235
+					v229 = manifoldCount
+					v230 = int32FromInt32(_B3_CONTACT_MANIFOLD_COUNT_BUCKETS) - int32FromInt32(1)
+					if v229 < v230 {
+						v233 = v229
 					} else {
-						v239 = v236
+						v233 = v230
 					}
-					v237 = v239
-					goto _238
-				_238:
-					bucketIndex = v237
+					v231 = v233
+					goto _232
+				_232:
+					bucketIndex = v231
 					if bucketIndex > 0 {
 						*(*int32)(unsafe.Add(nil, taskContext+3752+uintptr(bucketIndex-int32(1))*4)) += int32(1)
 					}
@@ -4589,122 +4569,122 @@ _5:
 		// Caching for contact recycling.
 		(*b3Contact)(unsafe.Pointer(contact)).CachedRotationA = transformA.Q
 		(*b3Contact)(unsafe.Pointer(contact)).CachedRotationB = transformB.Q
-		v32 = transformA
-		v33 = transformB
-		v19 = v32.Q
-		v20 = v33.Q
-		v36 = v20.V
-		v37 = v19.V
-		c.X = float32(v36.Y*v37.Z) - float32(v36.Z*v37.Y)
-		c.Y = float32(v36.Z*v37.X) - float32(v36.X*v37.Z)
-		c.Z = float32(v36.X*v37.Y) - float32(v36.Y*v37.X)
-		v38 = c
-		goto _247
-	_247:
-		t12 = v38
-		v40 = t12
-		v2 = v19.S
-		v42 = v20.V
-		v43 = Vec3{
-			X: v40.X + float32(v2*v42.X),
-			Y: v40.Y + float32(v2*v42.Y),
-			Z: v40.Z + float32(v2*v42.Z),
+		v26 = transformA
+		v27 = transformB
+		v13 = v26.Q
+		v14 = v27.Q
+		v30 = v14.V
+		v31 = v13.V
+		c.X = float32(v30.Y*v31.Z) - float32(v30.Z*v31.Y)
+		c.Y = float32(v30.Z*v31.X) - float32(v30.X*v31.Z)
+		c.Z = float32(v30.X*v31.Y) - float32(v30.Y*v31.X)
+		v32 = c
+		goto _241
+	_241:
+		t12 = v32
+		v34 = t12
+		v2 = v13.S
+		v36 = v14.V
+		v37 = Vec3{
+			X: v34.X + float32(v2*v36.X),
+			Y: v34.Y + float32(v2*v36.Y),
+			Z: v34.Z + float32(v2*v36.Z),
 		}
-		goto _252
-	_252:
-		t22 = v43
-		v45 = t22
-		v3 = v20.S
-		v47 = v19.V
-		v48 = Vec3{
-			X: v45.X - float32(v3*v47.X),
-			Y: v45.Y - float32(v3*v47.Y),
-			Z: v45.Z - float32(v3*v47.Z),
+		goto _246
+	_246:
+		t22 = v37
+		v39 = t22
+		v3 = v14.S
+		v41 = v13.V
+		v42 = Vec3{
+			X: v39.X - float32(v3*v41.X),
+			Y: v39.Y - float32(v3*v41.Y),
+			Z: v39.Z - float32(v3*v41.Z),
 		}
-		goto _257
-	_257:
-		t32 = v48
-		v50 = v19.V
-		v51 = v20.V
-		v4 = float32(v50.X*v51.X) + float32(v50.Y*v51.Y) + float32(v50.Z*v51.Z)
-		goto _261
-	_261:
+		goto _251
+	_251:
+		t32 = v42
+		v44 = v13.V
+		v45 = v14.V
+		v4 = float32(v44.X*v45.X) + float32(v44.Y*v45.Y) + float32(v44.Z*v45.Z)
+		goto _255
+	_255:
 		q2 = Quat{
 			V: t32,
-			S: float32(v19.S*v20.S) + v4,
+			S: float32(v13.S*v14.S) + v4,
 		}
-		v23 = q2
+		v17 = q2
+		goto _257
+	_257:
+		C.Q = v17
+		d = Vec3{
+			X: v27.P.X - v26.P.X,
+			Y: v27.P.Y - v26.P.Y,
+			Z: v27.P.Z - v26.P.Z,
+		}
+		v18 = v26.Q
+		v51 = d
+		v52 = v18.V
+		v53 = v51
+		c.X = float32(v52.Y*v53.Z) - float32(v52.Z*v53.Y)
+		c.Y = float32(v52.Z*v53.X) - float32(v52.X*v53.Z)
+		c.Z = float32(v52.X*v53.Y) - float32(v52.Y*v53.X)
+		v54 = c
 		goto _263
 	_263:
-		C.Q = v23
-		d = Vec3{
-			X: v33.P.X - v32.P.X,
-			Y: v33.P.Y - v32.P.Y,
-			Z: v33.P.Z - v32.P.Z,
+		t1 = v54
+		v56 = t1
+		v6 = v18.S
+		v58 = v51
+		v59 = Vec3{
+			X: v56.X - float32(v6*v58.X),
+			Y: v56.Y - float32(v6*v58.Y),
+			Z: v56.Z - float32(v6*v58.Z),
 		}
-		v24 = v32.Q
-		v57 = d
-		v58 = v24.V
-		v59 = v57
-		c.X = float32(v58.Y*v59.Z) - float32(v58.Z*v59.Y)
-		c.Y = float32(v58.Z*v59.X) - float32(v58.X*v59.Z)
-		c.Z = float32(v58.X*v59.Y) - float32(v58.Y*v59.X)
-		v60 = c
-		goto _269
-	_269:
-		t1 = v60
-		v62 = t1
-		v6 = v24.S
-		v64 = v57
-		v65 = Vec3{
-			X: v62.X - float32(v6*v64.X),
-			Y: v62.Y - float32(v6*v64.Y),
-			Z: v62.Z - float32(v6*v64.Z),
+		goto _268
+	_268:
+		t2 = v59
+		v61 = v18.V
+		v62 = t2
+		c.X = float32(v61.Y*v62.Z) - float32(v61.Z*v62.Y)
+		c.Y = float32(v61.Z*v62.X) - float32(v61.X*v62.Z)
+		c.Z = float32(v61.X*v62.Y) - float32(v61.Y*v62.X)
+		v63 = c
+		goto _272
+	_272:
+		t3 = v63
+		v67 = v51
+		v12 = float32FromFloat32(2)
+		v69 = t3
+		v70 = Vec3{
+			X: v67.X + float32(v12*v69.X),
+			Y: v67.Y + float32(v12*v69.Y),
+			Z: v67.Z + float32(v12*v69.Z),
 		}
+		goto _279
+	_279:
+		v65 = v70
 		goto _274
 	_274:
-		t2 = v65
-		v67 = v24.V
-		v68 = t2
-		c.X = float32(v67.Y*v68.Z) - float32(v67.Z*v68.Y)
-		c.Y = float32(v67.Z*v68.X) - float32(v67.X*v68.Z)
-		c.Z = float32(v67.X*v68.Y) - float32(v67.Y*v68.X)
-		v69 = c
-		goto _278
-	_278:
-		t3 = v69
-		v73 = v57
-		v18 = float32FromFloat32(2)
-		v75 = t3
-		v76 = Vec3{
-			X: v73.X + float32(v18*v75.X),
-			Y: v73.Y + float32(v18*v75.Y),
-			Z: v73.Z + float32(v18*v75.Z),
-		}
-		goto _285
-	_285:
-		v71 = v76
-		goto _280
-	_280:
-		C.P = v71
-		v78 = C
-		goto _287
-	_287:
-		(*b3Contact)(unsafe.Pointer(contact)).CachedRelativePose = v78
+		C.P = v65
+		v72 = C
+		goto _281
+	_281:
+		(*b3Contact)(unsafe.Pointer(contact)).CachedRelativePose = v72
 		*(*uint32_t)(unsafe.Add(nil, contact+68)) |= uint32(b3_relativeTransformValid)
 		// This updates solid contacts
 		touching = b3UpdateContact(tls, world, workerIndex, contact, shapeA, (*b3BodySim)(unsafe.Pointer(bodySimA)).LocalCenter, transformA, shapeB, (*b3BodySim)(unsafe.Pointer(bodySimB)).LocalCenter, transformB, isFast, (*b3TaskContext)(unsafe.Pointer(taskContext)).Arena)
-		v235 = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
-		v236 = int32FromInt32(_B3_CONTACT_MANIFOLD_COUNT_BUCKETS) - int32FromInt32(1)
-		if v235 < v236 {
-			v239 = v235
+		v229 = (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount
+		v230 = int32FromInt32(_B3_CONTACT_MANIFOLD_COUNT_BUCKETS) - int32FromInt32(1)
+		if v229 < v230 {
+			v233 = v229
 		} else {
-			v239 = v236
+			v233 = v230
 		}
-		v237 = v239
-		goto _291
-	_291:
-		bucketIndex1 = v237
+		v231 = v233
+		goto _285
+	_285:
+		bucketIndex1 = v231
 		if bucketIndex1 > 0 {
 			*(*int32)(unsafe.Add(nil, taskContext+3752+uintptr(bucketIndex1-int32(1))*4)) += int32(1)
 		}
@@ -4729,25 +4709,25 @@ _5:
 		// State changes that affect island connectivity. Also affects contact events.
 		if int32FromUint8(touching) == int32(true1) && int32FromUint8(wasTouching) == false1 {
 			*(*uint32_t)(unsafe.Add(nil, contact+68)) |= uint32(b3_simStartedTouching)
-			v15 = taskContext + 56
-			v16 = uint32FromInt32(contactIndex)
-			blockIndex = v16 / uint32(64)
-			if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v15)).BlockCount); !v1 {
+			v9 = taskContext + 56
+			v10 = uint32FromInt32(contactIndex)
+			blockIndex = v10 / uint32(64)
+			if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v9)).BlockCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+9611, __ccgo_ts+9643, int32FromInt32(30))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
-			*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v15)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v16 % uint32FromInt32(64))
+			*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v9)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v10 % uint32FromInt32(64))
 		} else {
 			if int32FromUint8(touching) == false1 && int32FromUint8(wasTouching) == int32(true1) {
 				*(*uint32_t)(unsafe.Add(nil, contact+68)) |= uint32(b3_simStoppedTouching)
-				v15 = taskContext + 56
-				v16 = uint32FromInt32(contactIndex)
-				blockIndex = v16 / uint32(64)
-				if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v15)).BlockCount); !v1 {
+				v9 = taskContext + 56
+				v10 = uint32FromInt32(contactIndex)
+				blockIndex = v10 / uint32(64)
+				if v1 = !!(blockIndex < (*b3BitSet)(unsafe.Pointer(v9)).BlockCount); !v1 {
 					b3InternalAssert(tls, __ccgo_ts+9611, __ccgo_ts+9643, int32FromInt32(30))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
-				*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v15)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v16 % uint32FromInt32(64))
+				*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v9)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v10 % uint32FromInt32(64))
 			}
 		}
 		if touching != 0 {
@@ -4767,13 +4747,13 @@ _5:
 					// Cache separation
 					mp1 = manifold1 + uintptr(pointIndex1)*56
 					(*ManifoldPoint)(unsafe.Pointer(mp1)).BaseSeparation = (*ManifoldPoint)(unsafe.Pointer(mp1)).Separation
-					goto _303
-				_303:
+					goto _297
+				_297:
 					;
 					pointIndex1 = pointIndex1 + 1
 				}
-				goto _302
-			_302:
+				goto _296
+			_296:
 				;
 				manifoldIndex1 = manifoldIndex1 + 1
 			}

@@ -21,14 +21,16 @@ jobs:
       env:
          GOOS: js
          GOARCH: wasm
+         GOEXPERIMENT: simd
 
       steps:
          - uses: actions/checkout@v7
 
+         # simd needs Go 1.27, example/go.mod only asks for 1.26
          - name: Setup Go
            uses: actions/setup-go@v7
            with:
-              go-version-file: example/go.mod
+              go-version: "1.27.x"
 
          - name: Build examples
            run: |

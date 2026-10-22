@@ -139,6 +139,7 @@ func main() {
 
 	slog.Info("Apply code migrations")
 	dst.Inspect(root, renameTLSType())
+	dedupeFloatW(root)
 	root = dstutil.Apply(root, nil, removeModernC())
 	root = dstutil.Apply(root, nil, hideSupportFuncs())
 	root = dstutil.Apply(root, nil, fixQSortInvocation())
@@ -169,6 +170,15 @@ func main() {
 	writeSource("../"+sceneFile, &dst.File{
 		Name:  dst.NewIdent(PKGNAME),
 		Decls: withImport(scenes, "unsafe"),
+	})
+
+	// the scalar wide float math, simd*.go replaces it with archsimd
+	writeSource("../box3d_c-floatw.go", &dst.File{
+		Name:  dst.NewIdent(PKGNAME),
+		Decls: withImport(extractDecls(root, floatWDecls), "unsafe"),
+		Decs: dst.FileDecorations{NodeDecs: dst.NodeDecs{
+			Start: dst.Decorations{"//go:build !(" + simdBuildTag + ")", "\n"},
+		}},
 	})
 
 	for idx := range extracted {

@@ -122,6 +122,34 @@ even for reads.
 With workers, the friction, restitution, custom filter and pre-solve callbacks run on several goroutines at once.
 Don't call into the `b3` package from these callbacks.
 
+## SIMD
+
+The contact solver can use SIMD through Go's experimental `simd/archsimd` package. This needs Go 1.27 and
+`GOEXPERIMENT=simd`, and works on arm64, wasm, and amd64 with `GOAMD64=v3` (AVX2):
+
+```sh
+GOEXPERIMENT=simd go build .
+GOEXPERIMENT=simd GOAMD64=v3 go build .
+```
+
+Other builds use the scalar version. Both give the same results. The wasm build then needs a runtime with wasm SIMD
+support, which all current browsers have.
+
+ccgo can't translate C vector types, so the port uses Box3D's scalar code (`BOX3D_DISABLE_SIMD`) and the generator
+moves the scalar wide float math into `box3d_c-floatw.go`. `simd.go` and `simd_<arch>.go` implement the same
+functions with `archsimd`, following Box3D's NEON version. Only the 4-wide path exists, there is no AVX2 8-wide
+version.
+
+## Benchmarks
+
+`BenchmarkUpstream` runs the benchmarks of Box3D's `benchmark/main.c` with 1 and 4 workers. The scenes are
+translated from `shared/benchmarks.c`. Like upstream, the first step is not timed, so `ns/op` compares with the
+milliseconds in `box3d-c/benchmark/<machine>/<name>.csv`. Some take seconds per run, so pick one:
+
+```sh
+GOEXPERIMENT=simd go test -run XXX -bench 'Upstream/large_pyramid' -benchtime 1x
+```
+
 ## Development
 
 `./fetch.sh` clones Box3D into `box3d-c` and applies `box3d.patch`. `./transpile.sh` translates it and writes the
@@ -152,3 +180,7 @@ go test -race -gcflags=all=-d=checkptr=0 ./...
   the transpiled code. If the build fails there, update both files.
 - **Determinism:** The scenes in Box3D's `shared/` directory are translated into `box3d_c-scenes_test.go`. Copy
   the expected hashes and sleep steps from Box3D's `test/test_determinism.c` into `determinism_test.go`.
+- **SIMD:** If Box3D changes `src/simd_scalar.h` or the `B3_SIMD_NONE` parts of `src/contact_solver_wide.inl`,
+  update `simd.go`. `./transpile.sh` fails if a function listed in `floatWDecls` in `transpile/floatw.go` no
+  longer exists. The SIMD build checks the struct layouts at startup: `archsimd.Float32x4` is 8 byte aligned,
+  the scalar `b3FloatW4` only 4, so `box3d.patch` pads the structs where the two differ.

@@ -4458,416 +4458,91 @@ func b3SolveContactsW(tls *_Stack, block b3SolverBlock, context uintptr, base ui
 	bp := tls.Alloc(416)
 	defer tls.Free(416)
 	var P, angularRelativeVelocity, deltaImpulse, dp, dv, gA, gB, normalA, normalB, oldImpulse, rA, rA1, rB, rB1, scaledImpulse, tangent1, tangent2, uA, uB b3Vec3W
-	var anyRolling, v15 uint8
-	var c1, v102, v103, v130, v131, v159, v160, v17, v18, v183, v184, v19, v231, v232, v269, v271, v272, v309, v311, v312, v335, v336, v38, v39, v62, v63, v64, v78, v79 b3Vec3W4
-	var c2, cm, cp, manifolds, states uintptr
+	var anyRolling uint8
+	var c, v12, v13, v14, v16, v17, v20, v21, v24, v25, v29, v3, v30, v33, v34, v37, v38, v39, v4, v41, v42, v43, v45, v46, v49, v5, v50, v8, v9 b3Vec3W4
+	var c1, cm, cp, manifolds, states uintptr
 	var deltaImpulse1, newImpulse1, vt b3Vec2W
-	var epsilonW, impulse, impulse1, invMass, inv_h, lengthSquared, lengthSquared1, linearNormalVelocity, linearTangentVelocity1, linearTangentVelocity2, manifoldImpulse, mask1, mask2, maxImpulse, maxImpulse1, maxLambda, negImpulse, newImpulse, normalSeparation, normalize, normalize1, oldImpulse1, oneW, s3, scale, scale1, totalNormalImpulse, totalTwistLimit, twistSpeed, velocityBias, vn, zeroW b3FloatW
-	var i, manifoldCount, manifoldIndex, pointIndex, v13 int32
-	var r, r1, r2, r3, v10, v100, v104, v106, v107, v108, v110, v111, v112, v114, v115, v116, v118, v119, v120, v122, v123, v124, v126, v127, v128, v132, v134, v135, v136, v138, v139, v14, v140, v142, v143, v144, v146, v147, v148, v150, v151, v152, v154, v155, v156, v161, v163, v164, v165, v167, v168, v169, v171, v172, v173, v175, v176, v177, v179, v180, v181, v185, v187, v188, v189, v191, v192, v193, v195, v196, v197, v199, v2, v200, v201, v203, v204, v205, v207, v208, v209, v21, v211, v212, v213, v215, v216, v217, v219, v22, v220, v221, v223, v224, v229, v23, v233, v234, v235, v237, v238, v239, v241, v242, v243, v245, v246, v247, v249, v25, v250, v251, v253, v254, v255, v257, v258, v259, v26, v261, v262, v263, v265, v266, v267, v27, v273, v274, v275, v277, v278, v279, v281, v282, v283, v285, v286, v287, v289, v29, v290, v291, v293, v294, v295, v297, v298, v299, v30, v301, v302, v303, v305, v306, v307, v31, v313, v315, v316, v317, v319, v320, v321, v323, v324, v325, v327, v328, v329, v33, v331, v332, v333, v337, v339, v34, v340, v341, v343, v344, v345, v347, v348, v349, v35, v351, v352, v353, v355, v356, v357, v359, v360, v361, v363, v364, v365, v367, v368, v369, v371, v372, v373, v375, v376, v378, v379, v381, v382, v387, v389, v390, v391, v40, v42, v43, v44, v46, v47, v48, v5, v50, v51, v52, v54, v55, v56, v58, v59, v60, v66, v67, v68, v7, v70, v71, v72, v74, v75, v76, v80, v82, v83, v84, v86, v87, v88, v90, v91, v92, v94, v95, v96, v98, v99 b3FloatW4
-	var v1, v225, v226, v227, v228, v383, v384, v385, v386, v4, v543, v9 float32
+	var epsilonW, impulse, impulse1, invMass, inv_h, lengthSquared, lengthSquared1, linearNormalVelocity, linearTangentVelocity1, linearTangentVelocity2, manifoldImpulse, mask, mask1, maxImpulse, maxImpulse1, maxLambda, negImpulse, newImpulse, normalSeparation, normalize, normalize1, oldImpulse1, oneW, s3, scale, scale1, totalNormalImpulse, totalTwistLimit, twistSpeed, velocityBias, vn, zeroW b3FloatW
+	var i, manifoldCount, manifoldIndex, pointIndex, v2 int32
+	var v10, v18, v22, v26, v31, v35, v47, v51 b3FloatW4
 	var _ /* bA at bp+0 */ b3BodyStateW
 	var _ /* bB at bp+208 */ b3BodyStateW
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, angularRelativeVelocity, anyRolling, c1, c2, cm, cp, deltaImpulse, deltaImpulse1, dp, dv, epsilonW, gA, gB, i, impulse, impulse1, invMass, inv_h, lengthSquared, lengthSquared1, linearNormalVelocity, linearTangentVelocity1, linearTangentVelocity2, manifoldCount, manifoldImpulse, manifoldIndex, manifolds, mask1, mask2, maxImpulse, maxImpulse1, maxLambda, negImpulse, newImpulse, newImpulse1, normalA, normalB, normalSeparation, normalize, normalize1, oldImpulse, oldImpulse1, oneW, pointIndex, r, r1, r2, r3, rA, rA1, rB, rB1, s3, scale, scale1, scaledImpulse, states, tangent1, tangent2, totalNormalImpulse, totalTwistLimit, twistSpeed, uA, uB, velocityBias, vn, vt, zeroW, v1, v10, v100, v102, v103, v104, v106, v107, v108, v110, v111, v112, v114, v115, v116, v118, v119, v120, v122, v123, v124, v126, v127, v128, v13, v130, v131, v132, v134, v135, v136, v138, v139, v14, v140, v142, v143, v144, v146, v147, v148, v15, v150, v151, v152, v154, v155, v156, v159, v160, v161, v163, v164, v165, v167, v168, v169, v17, v171, v172, v173, v175, v176, v177, v179, v18, v180, v181, v183, v184, v185, v187, v188, v189, v19, v191, v192, v193, v195, v196, v197, v199, v2, v200, v201, v203, v204, v205, v207, v208, v209, v21, v211, v212, v213, v215, v216, v217, v219, v22, v220, v221, v223, v224, v225, v226, v227, v228, v229, v23, v231, v232, v233, v234, v235, v237, v238, v239, v241, v242, v243, v245, v246, v247, v249, v25, v250, v251, v253, v254, v255, v257, v258, v259, v26, v261, v262, v263, v265, v266, v267, v269, v27, v271, v272, v273, v274, v275, v277, v278, v279, v281, v282, v283, v285, v286, v287, v289, v29, v290, v291, v293, v294, v295, v297, v298, v299, v30, v301, v302, v303, v305, v306, v307, v309, v31, v311, v312, v313, v315, v316, v317, v319, v320, v321, v323, v324, v325, v327, v328, v329, v33, v331, v332, v333, v335, v336, v337, v339, v34, v340, v341, v343, v344, v345, v347, v348, v349, v35, v351, v352, v353, v355, v356, v357, v359, v360, v361, v363, v364, v365, v367, v368, v369, v371, v372, v373, v375, v376, v378, v379, v38, v381, v382, v383, v384, v385, v386, v387, v389, v39, v390, v391, v4, v40, v42, v43, v44, v46, v47, v48, v5, v50, v51, v52, v54, v543, v55, v56, v58, v59, v60, v62, v63, v64, v66, v67, v68, v7, v70, v71, v72, v74, v75, v76, v78, v79, v80, v82, v83, v84, v86, v87, v88, v9, v90, v91, v92, v94, v95, v96, v98, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, angularRelativeVelocity, anyRolling, c, c1, cm, cp, deltaImpulse, deltaImpulse1, dp, dv, epsilonW, gA, gB, i, impulse, impulse1, invMass, inv_h, lengthSquared, lengthSquared1, linearNormalVelocity, linearTangentVelocity1, linearTangentVelocity2, manifoldCount, manifoldImpulse, manifoldIndex, manifolds, mask, mask1, maxImpulse, maxImpulse1, maxLambda, negImpulse, newImpulse, newImpulse1, normalA, normalB, normalSeparation, normalize, normalize1, oldImpulse, oldImpulse1, oneW, pointIndex, rA, rA1, rB, rB1, s3, scale, scale1, scaledImpulse, states, tangent1, tangent2, totalNormalImpulse, totalTwistLimit, twistSpeed, uA, uB, velocityBias, vn, vt, zeroW, v10, v12, v13, v14, v16, v17, v18, v2, v20, v21, v22, v24, v25, v26, v29, v3, v30, v31, v33, v34, v35, v37, v38, v39, v4, v41, v42, v43, v45, v46, v47, v49, v5, v50, v51, v8, v9
 	states = (*b3StepContext)(unsafe.Pointer(context)).States
-	v1 = (*b3StepContext)(unsafe.Pointer(context)).Inv_h
-	v2 = b3FloatW4{
-		X: v1,
-		Y: v1,
-		Z: v1,
-		W: v1,
-	}
-	goto _3
-_3:
-	inv_h = v2
-	v4 = float32FromFloat32(1)
-	v5 = b3FloatW4{
-		X: v4,
-		Y: v4,
-		Z: v4,
-		W: v4,
-	}
-	goto _6
-_6:
-	oneW = v5
-	v7 = b3FloatW4{}
-	goto _8
-_8:
-	zeroW = v7
-	v9 = float32FromFloat32(1.1920928955078125e-07)
-	v10 = b3FloatW4{
-		X: v9,
-		Y: v9,
-		Z: v9,
-		W: v9,
-	}
-	goto _11
-_11:
-	epsilonW = v10
-	c2 = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
+	inv_h = b3SplatW4(tls, (*b3StepContext)(unsafe.Pointer(context)).Inv_h)
+	oneW = b3SplatW4(tls, float32FromFloat32(1))
+	zeroW = b3ZeroW4(tls)
+	epsilonW = b3SplatW4(tls, float32FromFloat32(1.1920928955078125e-07))
+	c1 = b3GetConstraintW(tls, base, manifoldStarts, block.StartIndex, fixedManifoldCount)
 	i = 0
 	for {
 		if !(i < int32FromUint16(block.Count)) {
 			break
 		}
 		if fixedManifoldCount > 0 {
-			v13 = fixedManifoldCount
+			v2 = fixedManifoldCount
 		} else {
-			v13 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).ManifoldCount
+			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).ManifoldCount
 		}
-		manifoldCount = v13
-		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c2)
-		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c2+16)
-		v14 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingResistance
-		v15 = boolUint8(v14.X == float32FromFloat32(0) && v14.Y == float32FromFloat32(0) && v14.Z == float32FromFloat32(0) && v14.W == float32FromFloat32(0))
-		goto _16
-	_16:
-		anyRolling = boolUint8(int32FromUint8(v15) == false1)
-		v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
-		v18 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
-		v21 = v17.X
-		v22 = v18.X
-		v23 = b3FloatW4{
-			X: v21.X - v22.X,
-			Y: v21.Y - v22.Y,
-			Z: v21.Z - v22.Z,
-			W: v21.W - v22.W,
+		manifoldCount = v2
+		*(*b3BodyStateW)(unsafe.Add(nil, bp)) = b3GatherBodies(tls, states, c1)
+		*(*b3BodyStateW)(unsafe.Add(nil, bp+208)) = b3GatherBodies(tls, states, c1+16)
+		anyRolling = boolUint8(int32FromUint8(b3AllZeroW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance)) == false1)
+		v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dp
+		v4 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dp
+		v5 = b3Vec3W4{
+			X: b3SubW4(tls, v3.X, v4.X),
+			Y: b3SubW4(tls, v3.Y, v4.Y),
+			Z: b3SubW4(tls, v3.Z, v4.Z),
 		}
-		goto _24
-	_24:
-		v25 = v17.Y
-		v26 = v18.Y
-		v27 = b3FloatW4{
-			X: v25.X - v26.X,
-			Y: v25.Y - v26.Y,
-			Z: v25.Z - v26.Z,
-			W: v25.W - v26.W,
-		}
-		goto _28
-	_28:
-		v29 = v17.Z
-		v30 = v18.Z
-		v31 = b3FloatW4{
-			X: v29.X - v30.X,
-			Y: v29.Y - v30.Y,
-			Z: v29.Z - v30.Z,
-			W: v29.W - v30.W,
-		}
-		goto _32
-	_32:
-		v19 = b3Vec3W4{
-			X: v23,
-			Y: v27,
-			Z: v31,
-		}
-		goto _20
-	_20:
-		dp = v19
-		v33 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassA
-		v34 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassB
-		v35 = b3FloatW4{
-			X: v33.X + v34.X,
-			Y: v33.Y + v34.Y,
-			Z: v33.Z + v34.Z,
-			W: v33.W + v34.W,
-		}
-		goto _36
-	_36:
-		invMass = v35
-		manifolds = b3GetManifoldsW(tls, c2)
+		goto _6
+	_6:
+		dp = v5
+		invMass = b3AddW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB)
+		manifolds = b3GetManifoldsW(tls, c1)
 		manifoldIndex = 0
 		for {
 			if !(manifoldIndex < manifoldCount) {
 				break
 			}
 			cm = manifolds + uintptr(manifoldIndex)*1288
-			v38 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v39 = dp
-			v42 = v38.X
-			v43 = v39.X
-			v44 = b3FloatW4{
-				X: float32(v42.X * v43.X),
-				Y: float32(v42.Y * v43.Y),
-				Z: float32(v42.Z * v43.Z),
-				W: float32(v42.W * v43.W),
-			}
-			goto _45
-		_45:
-			v46 = v38.Y
-			v47 = v39.Y
-			v48 = b3FloatW4{
-				X: float32(v46.X * v47.X),
-				Y: float32(v46.Y * v47.Y),
-				Z: float32(v46.Z * v47.Z),
-				W: float32(v46.W * v47.W),
-			}
-			goto _49
-		_49:
-			v50 = v44
-			v51 = v48
-			v52 = b3FloatW4{
-				X: v50.X + v51.X,
-				Y: v50.Y + v51.Y,
-				Z: v50.Z + v51.Z,
-				W: v50.W + v51.W,
-			}
-			goto _53
-		_53:
-			v54 = v38.Z
-			v55 = v39.Z
-			v56 = b3FloatW4{
-				X: float32(v54.X * v55.X),
-				Y: float32(v54.Y * v55.Y),
-				Z: float32(v54.Z * v55.Z),
-				W: float32(v54.W * v55.W),
-			}
-			goto _57
-		_57:
-			v58 = v52
-			v59 = v56
-			v60 = b3FloatW4{
-				X: v58.X + v59.X,
-				Y: v58.Y + v59.Y,
-				Z: v58.Z + v59.Z,
-				W: v58.W + v59.W,
-			}
-			goto _61
-		_61:
-			v40 = v60
-			goto _41
-		_41:
+			v8 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v9 = dp
+			v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v8.X, v9.X), b3MulW4(tls, v8.Y, v9.Y)), b3MulW4(tls, v8.Z, v9.Z))
+			goto _11
+		_11:
 			// Read the normal rather than put on stack to avoid register spills.
-			normalSeparation = v40
+			normalSeparation = v10
 			normalA = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
 			normalB = b3InvRotateVectorW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).Dq, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
-			v62 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-			v63 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-			v66 = v62.X
-			v67 = v63.X
-			v68 = b3FloatW4{
-				X: v66.X - v67.X,
-				Y: v66.Y - v67.Y,
-				Z: v66.Z - v67.Z,
-				W: v66.W - v67.W,
+			v12 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+			v13 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+			v14 = b3Vec3W4{
+				X: b3SubW4(tls, v12.X, v13.X),
+				Y: b3SubW4(tls, v12.Y, v13.Y),
+				Z: b3SubW4(tls, v12.Z, v13.Z),
 			}
-			goto _69
-		_69:
-			v70 = v62.Y
-			v71 = v63.Y
-			v72 = b3FloatW4{
-				X: v70.X - v71.X,
-				Y: v70.Y - v71.Y,
-				Z: v70.Z - v71.Z,
-				W: v70.W - v71.W,
-			}
-			goto _73
-		_73:
-			v74 = v62.Z
-			v75 = v63.Z
-			v76 = b3FloatW4{
-				X: v74.X - v75.X,
-				Y: v74.Y - v75.Y,
-				Z: v74.Z - v75.Z,
-				W: v74.W - v75.W,
-			}
-			goto _77
-		_77:
-			v64 = b3Vec3W4{
-				X: v68,
-				Y: v72,
-				Z: v76,
-			}
-			goto _65
-		_65:
-			dv = v64
-			v78 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v79 = dv
-			v82 = v78.X
-			v83 = v79.X
-			v84 = b3FloatW4{
-				X: float32(v82.X * v83.X),
-				Y: float32(v82.Y * v83.Y),
-				Z: float32(v82.Z * v83.Z),
-				W: float32(v82.W * v83.W),
-			}
-			goto _85
-		_85:
-			v86 = v78.Y
-			v87 = v79.Y
-			v88 = b3FloatW4{
-				X: float32(v86.X * v87.X),
-				Y: float32(v86.Y * v87.Y),
-				Z: float32(v86.Z * v87.Z),
-				W: float32(v86.W * v87.W),
-			}
-			goto _89
-		_89:
-			v90 = v84
-			v91 = v88
-			v92 = b3FloatW4{
-				X: v90.X + v91.X,
-				Y: v90.Y + v91.Y,
-				Z: v90.Z + v91.Z,
-				W: v90.W + v91.W,
-			}
-			goto _93
-		_93:
-			v94 = v78.Z
-			v95 = v79.Z
-			v96 = b3FloatW4{
-				X: float32(v94.X * v95.X),
-				Y: float32(v94.Y * v95.Y),
-				Z: float32(v94.Z * v95.Z),
-				W: float32(v94.W * v95.W),
-			}
-			goto _97
-		_97:
-			v98 = v92
-			v99 = v96
-			v100 = b3FloatW4{
-				X: v98.X + v99.X,
-				Y: v98.Y + v99.Y,
-				Z: v98.Z + v99.Z,
-				W: v98.W + v99.W,
-			}
-			goto _101
-		_101:
-			v80 = v100
-			goto _81
-		_81:
-			linearNormalVelocity = v80
-			v102 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1
-			v103 = dv
-			v106 = v102.X
-			v107 = v103.X
-			v108 = b3FloatW4{
-				X: float32(v106.X * v107.X),
-				Y: float32(v106.Y * v107.Y),
-				Z: float32(v106.Z * v107.Z),
-				W: float32(v106.W * v107.W),
-			}
-			goto _109
-		_109:
-			v110 = v102.Y
-			v111 = v103.Y
-			v112 = b3FloatW4{
-				X: float32(v110.X * v111.X),
-				Y: float32(v110.Y * v111.Y),
-				Z: float32(v110.Z * v111.Z),
-				W: float32(v110.W * v111.W),
-			}
-			goto _113
-		_113:
-			v114 = v108
-			v115 = v112
-			v116 = b3FloatW4{
-				X: v114.X + v115.X,
-				Y: v114.Y + v115.Y,
-				Z: v114.Z + v115.Z,
-				W: v114.W + v115.W,
-			}
-			goto _117
-		_117:
-			v118 = v102.Z
-			v119 = v103.Z
-			v120 = b3FloatW4{
-				X: float32(v118.X * v119.X),
-				Y: float32(v118.Y * v119.Y),
-				Z: float32(v118.Z * v119.Z),
-				W: float32(v118.W * v119.W),
-			}
-			goto _121
-		_121:
-			v122 = v116
-			v123 = v120
-			v124 = b3FloatW4{
-				X: v122.X + v123.X,
-				Y: v122.Y + v123.Y,
-				Z: v122.Z + v123.Z,
-				W: v122.W + v123.W,
-			}
-			goto _125
-		_125:
-			v104 = v124
-			goto _105
-		_105:
-			v126 = v104
-			v127 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity1
-			v128 = b3FloatW4{
-				X: v126.X - v127.X,
-				Y: v126.Y - v127.Y,
-				Z: v126.Z - v127.Z,
-				W: v126.W - v127.W,
-			}
-			goto _129
-		_129:
-			linearTangentVelocity1 = v128
-			v130 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2
-			v131 = dv
-			v134 = v130.X
-			v135 = v131.X
-			v136 = b3FloatW4{
-				X: float32(v134.X * v135.X),
-				Y: float32(v134.Y * v135.Y),
-				Z: float32(v134.Z * v135.Z),
-				W: float32(v134.W * v135.W),
-			}
-			goto _137
-		_137:
-			v138 = v130.Y
-			v139 = v131.Y
-			v140 = b3FloatW4{
-				X: float32(v138.X * v139.X),
-				Y: float32(v138.Y * v139.Y),
-				Z: float32(v138.Z * v139.Z),
-				W: float32(v138.W * v139.W),
-			}
-			goto _141
-		_141:
-			v142 = v136
-			v143 = v140
-			v144 = b3FloatW4{
-				X: v142.X + v143.X,
-				Y: v142.Y + v143.Y,
-				Z: v142.Z + v143.Z,
-				W: v142.W + v143.W,
-			}
-			goto _145
-		_145:
-			v146 = v130.Z
-			v147 = v131.Z
-			v148 = b3FloatW4{
-				X: float32(v146.X * v147.X),
-				Y: float32(v146.Y * v147.Y),
-				Z: float32(v146.Z * v147.Z),
-				W: float32(v146.W * v147.W),
-			}
-			goto _149
-		_149:
-			v150 = v144
-			v151 = v148
-			v152 = b3FloatW4{
-				X: v150.X + v151.X,
-				Y: v150.Y + v151.Y,
-				Z: v150.Z + v151.Z,
-				W: v150.W + v151.W,
-			}
-			goto _153
-		_153:
-			v132 = v152
-			goto _133
-		_133:
-			v154 = v132
-			v155 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity2
-			v156 = b3FloatW4{
-				X: v154.X - v155.X,
-				Y: v154.Y - v155.Y,
-				Z: v154.Z - v155.Z,
-				W: v154.W - v155.W,
-			}
-			goto _157
-		_157:
-			linearTangentVelocity2 = v156
+			goto _15
+		_15:
+			dv = v14
+			v16 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v17 = dv
+			v18 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v16.X, v17.X), b3MulW4(tls, v16.Y, v17.Y)), b3MulW4(tls, v16.Z, v17.Z))
+			goto _19
+		_19:
+			linearNormalVelocity = v18
+			v20 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1
+			v21 = dv
+			v22 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v20.X, v21.X), b3MulW4(tls, v20.Y, v21.Y)), b3MulW4(tls, v20.Z, v21.Z))
+			goto _23
+		_23:
+			linearTangentVelocity1 = b3SubW4(tls, v22, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity1)
+			v24 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2
+			v25 = dv
+			v26 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v24.X, v25.X), b3MulW4(tls, v24.Y, v25.Y)), b3MulW4(tls, v24.Z, v25.Z))
+			goto _27
+		_27:
+			linearTangentVelocity2 = b3SubW4(tls, v26, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentVelocity2)
 			manifoldImpulse = zeroW
 			totalNormalImpulse = zeroW
 			totalTwistLimit = zeroW
@@ -4877,2759 +4552,361 @@ _11:
 				if !(pointIndex < (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount) {
 					break
 				}
-				cp = cm + 452 + uintptr(pointIndex)*208
+				cp = cm + 456 + uintptr(pointIndex)*208
 				// Fixed anchor points for applying impulses
 				rA = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorAs
 				rB = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).AnchorBs
-				v159 = normalB
-				v160 = rB
-				v163 = v159.X
-				v164 = v160.X
-				v165 = b3FloatW4{
-					X: float32(v163.X * v164.X),
-					Y: float32(v163.Y * v164.Y),
-					Z: float32(v163.Z * v164.Z),
-					W: float32(v163.W * v164.W),
-				}
-				goto _166
-			_166:
-				v167 = v159.Y
-				v168 = v160.Y
-				v169 = b3FloatW4{
-					X: float32(v167.X * v168.X),
-					Y: float32(v167.Y * v168.Y),
-					Z: float32(v167.Z * v168.Z),
-					W: float32(v167.W * v168.W),
-				}
-				goto _170
-			_170:
-				v171 = v165
-				v172 = v169
-				v173 = b3FloatW4{
-					X: v171.X + v172.X,
-					Y: v171.Y + v172.Y,
-					Z: v171.Z + v172.Z,
-					W: v171.W + v172.W,
-				}
-				goto _174
-			_174:
-				v175 = v159.Z
-				v176 = v160.Z
-				v177 = b3FloatW4{
-					X: float32(v175.X * v176.X),
-					Y: float32(v175.Y * v176.Y),
-					Z: float32(v175.Z * v176.Z),
-					W: float32(v175.W * v176.W),
-				}
-				goto _178
-			_178:
-				v179 = v173
-				v180 = v177
-				v181 = b3FloatW4{
-					X: v179.X + v180.X,
-					Y: v179.Y + v180.Y,
-					Z: v179.Z + v180.Z,
-					W: v179.W + v180.W,
-				}
-				goto _182
-			_182:
-				v161 = v181
-				goto _162
-			_162:
-				v183 = normalA
-				v184 = rA
-				v187 = v183.X
-				v188 = v184.X
-				v189 = b3FloatW4{
-					X: float32(v187.X * v188.X),
-					Y: float32(v187.Y * v188.Y),
-					Z: float32(v187.Z * v188.Z),
-					W: float32(v187.W * v188.W),
-				}
-				goto _190
-			_190:
-				v191 = v183.Y
-				v192 = v184.Y
-				v193 = b3FloatW4{
-					X: float32(v191.X * v192.X),
-					Y: float32(v191.Y * v192.Y),
-					Z: float32(v191.Z * v192.Z),
-					W: float32(v191.W * v192.W),
-				}
-				goto _194
-			_194:
-				v195 = v189
-				v196 = v193
-				v197 = b3FloatW4{
-					X: v195.X + v196.X,
-					Y: v195.Y + v196.Y,
-					Z: v195.Z + v196.Z,
-					W: v195.W + v196.W,
-				}
-				goto _198
-			_198:
-				v199 = v183.Z
-				v200 = v184.Z
-				v201 = b3FloatW4{
-					X: float32(v199.X * v200.X),
-					Y: float32(v199.Y * v200.Y),
-					Z: float32(v199.Z * v200.Z),
-					W: float32(v199.W * v200.W),
-				}
-				goto _202
-			_202:
-				v203 = v197
-				v204 = v201
-				v205 = b3FloatW4{
-					X: v203.X + v204.X,
-					Y: v203.Y + v204.Y,
-					Z: v203.Z + v204.Z,
-					W: v203.W + v204.W,
-				}
-				goto _206
-			_206:
-				v185 = v205
-				goto _186
-			_186:
-				v207 = v161
-				v208 = v185
-				v209 = b3FloatW4{
-					X: v207.X - v208.X,
-					Y: v207.Y - v208.Y,
-					Z: v207.Z - v208.Z,
-					W: v207.W - v208.W,
-				}
-				goto _210
-			_210:
-				v211 = normalSeparation
-				v212 = v209
-				v213 = b3FloatW4{
-					X: v211.X + v212.X,
-					Y: v211.Y + v212.Y,
-					Z: v211.Z + v212.Z,
-					W: v211.W + v212.W,
-				}
-				goto _214
-			_214:
-				v215 = v213
-				v216 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations
-				v217 = b3FloatW4{
-					X: v215.X + v216.X,
-					Y: v215.Y + v216.Y,
-					Z: v215.Z + v216.Z,
-					W: v215.W + v216.W,
-				}
-				goto _218
-			_218:
-				s3 = v217
-				v219 = s3
-				v220 = inv_h
-				v221 = b3FloatW4{
-					X: float32(v219.X * v220.X),
-					Y: float32(v219.Y * v220.Y),
-					Z: float32(v219.Z * v220.Z),
-					W: float32(v219.W * v220.W),
-				}
-				goto _222
-			_222:
-				v223 = zeroW
-				v224 = v221
-				if v223.X >= v224.X {
-					v225 = v223.X
-				} else {
-					v225 = v224.X
-				}
-				r1.X = v225
-				if v223.Y >= v224.Y {
-					v226 = v223.Y
-				} else {
-					v226 = v224.Y
-				}
-				r1.Y = v226
-				if v223.Z >= v224.Z {
-					v227 = v223.Z
-				} else {
-					v227 = v224.Z
-				}
-				r1.Z = v227
-				if v223.W >= v224.W {
-					v228 = v223.W
-				} else {
-					v228 = v224.W
-				}
-				r1.W = v228
-				v229 = r1
-				goto _230
-			_230:
+				v29 = normalB
+				v30 = rB
+				v31 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v29.X, v30.X), b3MulW4(tls, v29.Y, v30.Y)), b3MulW4(tls, v29.Z, v30.Z))
+				goto _32
+			_32:
+				v33 = normalA
+				v34 = rA
+				v35 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v33.X, v34.X), b3MulW4(tls, v33.Y, v34.Y)), b3MulW4(tls, v33.Z, v34.Z))
+				goto _36
+			_36:
+				s3 = b3AddW4(tls, b3AddW4(tls, normalSeparation, b3SubW4(tls, v31, v35)), (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).BaseSeparations)
 				// Speculative bias, positive if separated and zero if overlapped
-				velocityBias = v229
-				v231 = rA
-				v232 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v233 = v231.Y
-				v234 = v232.Z
-				v235 = b3FloatW4{
-					X: float32(v233.X * v234.X),
-					Y: float32(v233.Y * v234.Y),
-					Z: float32(v233.Z * v234.Z),
-					W: float32(v233.W * v234.W),
-				}
-				goto _236
-			_236:
-				v237 = v231.Z
-				v238 = v232.Y
-				v239 = b3FloatW4{
-					X: float32(v237.X * v238.X),
-					Y: float32(v237.Y * v238.Y),
-					Z: float32(v237.Z * v238.Z),
-					W: float32(v237.W * v238.W),
-				}
-				goto _240
-			_240:
-				v241 = v235
-				v242 = v239
-				v243 = b3FloatW4{
-					X: v241.X - v242.X,
-					Y: v241.Y - v242.Y,
-					Z: v241.Z - v242.Z,
-					W: v241.W - v242.W,
-				}
-				goto _244
-			_244:
-				c1.X = v243
-				v245 = v231.Z
-				v246 = v232.X
-				v247 = b3FloatW4{
-					X: float32(v245.X * v246.X),
-					Y: float32(v245.Y * v246.Y),
-					Z: float32(v245.Z * v246.Z),
-					W: float32(v245.W * v246.W),
-				}
-				goto _248
-			_248:
-				v249 = v231.X
-				v250 = v232.Z
-				v251 = b3FloatW4{
-					X: float32(v249.X * v250.X),
-					Y: float32(v249.Y * v250.Y),
-					Z: float32(v249.Z * v250.Z),
-					W: float32(v249.W * v250.W),
-				}
-				goto _252
-			_252:
-				v253 = v247
-				v254 = v251
-				v255 = b3FloatW4{
-					X: v253.X - v254.X,
-					Y: v253.Y - v254.Y,
-					Z: v253.Z - v254.Z,
-					W: v253.W - v254.W,
-				}
-				goto _256
-			_256:
-				c1.Y = v255
-				v257 = v231.X
-				v258 = v232.Y
-				v259 = b3FloatW4{
-					X: float32(v257.X * v258.X),
-					Y: float32(v257.Y * v258.Y),
-					Z: float32(v257.Z * v258.Z),
-					W: float32(v257.W * v258.W),
-				}
-				goto _260
-			_260:
-				v261 = v231.Y
-				v262 = v232.X
-				v263 = b3FloatW4{
-					X: float32(v261.X * v262.X),
-					Y: float32(v261.Y * v262.Y),
-					Z: float32(v261.Z * v262.Z),
-					W: float32(v261.W * v262.W),
-				}
-				goto _264
-			_264:
-				v265 = v259
-				v266 = v263
-				v267 = b3FloatW4{
-					X: v265.X - v266.X,
-					Y: v265.Y - v266.Y,
-					Z: v265.Z - v266.Z,
-					W: v265.W - v266.W,
-				}
-				goto _268
-			_268:
-				c1.Z = v267
-				v269 = c1
-				goto _270
-			_270:
-				uA = v269
-				v271 = rB
-				v272 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-				v273 = v271.Y
-				v274 = v272.Z
-				v275 = b3FloatW4{
-					X: float32(v273.X * v274.X),
-					Y: float32(v273.Y * v274.Y),
-					Z: float32(v273.Z * v274.Z),
-					W: float32(v273.W * v274.W),
-				}
-				goto _276
-			_276:
-				v277 = v271.Z
-				v278 = v272.Y
-				v279 = b3FloatW4{
-					X: float32(v277.X * v278.X),
-					Y: float32(v277.Y * v278.Y),
-					Z: float32(v277.Z * v278.Z),
-					W: float32(v277.W * v278.W),
-				}
-				goto _280
-			_280:
-				v281 = v275
-				v282 = v279
-				v283 = b3FloatW4{
-					X: v281.X - v282.X,
-					Y: v281.Y - v282.Y,
-					Z: v281.Z - v282.Z,
-					W: v281.W - v282.W,
-				}
-				goto _284
-			_284:
-				c1.X = v283
-				v285 = v271.Z
-				v286 = v272.X
-				v287 = b3FloatW4{
-					X: float32(v285.X * v286.X),
-					Y: float32(v285.Y * v286.Y),
-					Z: float32(v285.Z * v286.Z),
-					W: float32(v285.W * v286.W),
-				}
-				goto _288
-			_288:
-				v289 = v271.X
-				v290 = v272.Z
-				v291 = b3FloatW4{
-					X: float32(v289.X * v290.X),
-					Y: float32(v289.Y * v290.Y),
-					Z: float32(v289.Z * v290.Z),
-					W: float32(v289.W * v290.W),
-				}
-				goto _292
-			_292:
-				v293 = v287
-				v294 = v291
-				v295 = b3FloatW4{
-					X: v293.X - v294.X,
-					Y: v293.Y - v294.Y,
-					Z: v293.Z - v294.Z,
-					W: v293.W - v294.W,
-				}
-				goto _296
-			_296:
-				c1.Y = v295
-				v297 = v271.X
-				v298 = v272.Y
-				v299 = b3FloatW4{
-					X: float32(v297.X * v298.X),
-					Y: float32(v297.Y * v298.Y),
-					Z: float32(v297.Z * v298.Z),
-					W: float32(v297.W * v298.W),
-				}
-				goto _300
-			_300:
-				v301 = v271.Y
-				v302 = v272.X
-				v303 = b3FloatW4{
-					X: float32(v301.X * v302.X),
-					Y: float32(v301.Y * v302.Y),
-					Z: float32(v301.Z * v302.Z),
-					W: float32(v301.W * v302.W),
-				}
-				goto _304
-			_304:
-				v305 = v299
-				v306 = v303
-				v307 = b3FloatW4{
-					X: v305.X - v306.X,
-					Y: v305.Y - v306.Y,
-					Z: v305.Z - v306.Z,
-					W: v305.W - v306.W,
-				}
-				goto _308
-			_308:
-				c1.Z = v307
-				v309 = c1
-				goto _310
-			_310:
-				uB = v309
-				gA = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA, uA)
-				gB = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB, uB)
-				v311 = uB
-				v312 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v315 = v311.X
-				v316 = v312.X
-				v317 = b3FloatW4{
-					X: float32(v315.X * v316.X),
-					Y: float32(v315.Y * v316.Y),
-					Z: float32(v315.Z * v316.Z),
-					W: float32(v315.W * v316.W),
-				}
-				goto _318
-			_318:
-				v319 = v311.Y
-				v320 = v312.Y
-				v321 = b3FloatW4{
-					X: float32(v319.X * v320.X),
-					Y: float32(v319.Y * v320.Y),
-					Z: float32(v319.Z * v320.Z),
-					W: float32(v319.W * v320.W),
-				}
-				goto _322
-			_322:
-				v323 = v317
-				v324 = v321
-				v325 = b3FloatW4{
-					X: v323.X + v324.X,
-					Y: v323.Y + v324.Y,
-					Z: v323.Z + v324.Z,
-					W: v323.W + v324.W,
-				}
-				goto _326
-			_326:
-				v327 = v311.Z
-				v328 = v312.Z
-				v329 = b3FloatW4{
-					X: float32(v327.X * v328.X),
-					Y: float32(v327.Y * v328.Y),
-					Z: float32(v327.Z * v328.Z),
-					W: float32(v327.W * v328.W),
-				}
-				goto _330
-			_330:
-				v331 = v325
-				v332 = v329
-				v333 = b3FloatW4{
-					X: v331.X + v332.X,
-					Y: v331.Y + v332.Y,
-					Z: v331.Z + v332.Z,
-					W: v331.W + v332.W,
-				}
-				goto _334
-			_334:
-				v313 = v333
-				goto _314
-			_314:
-				v335 = uA
-				v336 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v339 = v335.X
-				v340 = v336.X
-				v341 = b3FloatW4{
-					X: float32(v339.X * v340.X),
-					Y: float32(v339.Y * v340.Y),
-					Z: float32(v339.Z * v340.Z),
-					W: float32(v339.W * v340.W),
-				}
-				goto _342
-			_342:
-				v343 = v335.Y
-				v344 = v336.Y
-				v345 = b3FloatW4{
-					X: float32(v343.X * v344.X),
-					Y: float32(v343.Y * v344.Y),
-					Z: float32(v343.Z * v344.Z),
-					W: float32(v343.W * v344.W),
-				}
-				goto _346
-			_346:
-				v347 = v341
-				v348 = v345
-				v349 = b3FloatW4{
-					X: v347.X + v348.X,
-					Y: v347.Y + v348.Y,
-					Z: v347.Z + v348.Z,
-					W: v347.W + v348.W,
-				}
-				goto _350
-			_350:
-				v351 = v335.Z
-				v352 = v336.Z
-				v353 = b3FloatW4{
-					X: float32(v351.X * v352.X),
-					Y: float32(v351.Y * v352.Y),
-					Z: float32(v351.Z * v352.Z),
-					W: float32(v351.W * v352.W),
-				}
-				goto _354
-			_354:
-				v355 = v349
-				v356 = v353
-				v357 = b3FloatW4{
-					X: v355.X + v356.X,
-					Y: v355.Y + v356.Y,
-					Z: v355.Z + v356.Z,
-					W: v355.W + v356.W,
-				}
-				goto _358
-			_358:
-				v337 = v357
-				goto _338
-			_338:
-				v359 = v313
-				v360 = v337
-				v361 = b3FloatW4{
-					X: v359.X - v360.X,
-					Y: v359.Y - v360.Y,
-					Z: v359.Z - v360.Z,
-					W: v359.W - v360.W,
-				}
-				goto _362
-			_362:
-				v363 = linearNormalVelocity
-				v364 = v361
-				v365 = b3FloatW4{
-					X: v363.X + v364.X,
-					Y: v363.Y + v364.Y,
-					Z: v363.Z + v364.Z,
-					W: v363.W + v364.W,
-				}
-				goto _366
-			_366:
-				vn = v365
-				v367 = vn
-				v368 = velocityBias
-				v369 = b3FloatW4{
-					X: v367.X + v368.X,
-					Y: v367.Y + v368.Y,
-					Z: v367.Z + v368.Z,
-					W: v367.W + v368.W,
-				}
-				goto _370
-			_370:
-				v371 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses
-				v372 = v369
-				v373 = b3FloatW4{
-					X: float32(v371.X * v372.X),
-					Y: float32(v371.Y * v372.Y),
-					Z: float32(v371.Z * v372.Z),
-					W: float32(v371.W * v372.W),
-				}
-				goto _374
-			_374:
-				negImpulse = v373
-				v375 = negImpulse
-				v376 = b3FloatW4{
-					X: -v375.X,
-					Y: -v375.Y,
-					Z: -v375.Z,
-					W: -v375.W,
-				}
-				goto _377
-			_377:
-				v378 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v379 = b3FloatW4{
-					X: -v378.X,
-					Y: -v378.Y,
-					Z: -v378.Z,
-					W: -v378.W,
-				}
-				goto _380
-			_380:
-				v381 = v376
-				v382 = v379
-				if v381.X >= v382.X {
-					v383 = v381.X
-				} else {
-					v383 = v382.X
-				}
-				r1.X = v383
-				if v381.Y >= v382.Y {
-					v384 = v381.Y
-				} else {
-					v384 = v382.Y
-				}
-				r1.Y = v384
-				if v381.Z >= v382.Z {
-					v385 = v381.Z
-				} else {
-					v385 = v382.Z
-				}
-				r1.Z = v385
-				if v381.W >= v382.W {
-					v386 = v381.W
-				} else {
-					v386 = v382.W
-				}
-				r1.W = v386
-				v387 = r1
-				goto _388
-			_388:
-				impulse = v387
-				v389 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses
-				v390 = impulse
-				v391 = b3FloatW4{
-					X: v389.X + v390.X,
-					Y: v389.Y + v390.Y,
-					Z: v389.Z + v390.Z,
-					W: v389.W + v390.W,
-				}
-				goto _392
-			_392:
-				newImpulse = v391
+				velocityBias = b3MaxW4(tls, zeroW, b3MulW4(tls, s3, inv_h))
+				v37 = rA
+				v38 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				c.X = b3SubW4(tls, b3MulW4(tls, v37.Y, v38.Z), b3MulW4(tls, v37.Z, v38.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v37.Z, v38.X), b3MulW4(tls, v37.X, v38.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v37.X, v38.Y), b3MulW4(tls, v37.Y, v38.X))
+				v39 = c
+				goto _40
+			_40:
+				uA = v39
+				v41 = rB
+				v42 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+				c.X = b3SubW4(tls, b3MulW4(tls, v41.Y, v42.Z), b3MulW4(tls, v41.Z, v42.Y))
+				c.Y = b3SubW4(tls, b3MulW4(tls, v41.Z, v42.X), b3MulW4(tls, v41.X, v42.Z))
+				c.Z = b3SubW4(tls, b3MulW4(tls, v41.X, v42.Y), b3MulW4(tls, v41.Y, v42.X))
+				v43 = c
+				goto _44
+			_44:
+				uB = v43
+				gA = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, uA)
+				gB = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, uB)
+				v45 = uB
+				v46 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v47 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v45.X, v46.X), b3MulW4(tls, v45.Y, v46.Y)), b3MulW4(tls, v45.Z, v46.Z))
+				goto _48
+			_48:
+				v49 = uA
+				v50 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v51 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v49.X, v50.X), b3MulW4(tls, v49.Y, v50.Y)), b3MulW4(tls, v49.Z, v50.Z))
+				goto _52
+			_52:
+				vn = b3AddW4(tls, linearNormalVelocity, b3SubW4(tls, v47, v51))
+				negImpulse = b3MulW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalMasses, b3AddW4(tls, vn, velocityBias))
+				impulse = b3MaxW4(tls, b3NegW4(tls, negImpulse), b3NegW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses))
+				newImpulse = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses, impulse)
 				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).NormalImpulses = newImpulse
-				v2 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses
-				v5 = newImpulse
-				v7 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
+				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses = b3AddW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses, newImpulse)
+				totalNormalImpulse = b3AddW4(tls, totalNormalImpulse, newImpulse)
+				totalTwistLimit = b3AddW4(tls, totalTwistLimit, b3MulW4(tls, (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).LeverArms, newImpulse))
+				linearNormalVelocity = b3MulAddW4(tls, linearNormalVelocity, invMass, impulse)
+				manifoldImpulse = b3AddW4(tls, manifoldImpulse, impulse)
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v10 = impulse
+				v4 = gA
+				v5 = b3Vec3W4{
+					X: b3SubW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3SubW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3SubW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 				}
-				goto _396
-			_396:
-				(*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).TotalNormalImpulses = v7
-				v2 = totalNormalImpulse
-				v5 = newImpulse
-				v7 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
+				goto _57
+			_57:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v5
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v10 = impulse
+				v4 = gB
+				v5 = b3Vec3W4{
+					X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+					Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+					Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 				}
-				goto _400
-			_400:
-				totalNormalImpulse = v7
-				v2 = (*b3ContactConstraintPointWide)(unsafe.Pointer(cp)).LeverArms
-				v5 = newImpulse
-				v7 = b3FloatW4{
-					X: float32(v2.X * v5.X),
-					Y: float32(v2.Y * v5.Y),
-					Z: float32(v2.Z * v5.Z),
-					W: float32(v2.W * v5.W),
-				}
-				goto _404
-			_404:
-				v10 = totalTwistLimit
-				v14 = v7
-				v21 = b3FloatW4{
-					X: v10.X + v14.X,
-					Y: v10.Y + v14.Y,
-					Z: v10.Z + v14.Z,
-					W: v10.W + v14.W,
-				}
-				goto _408
-			_408:
-				totalTwistLimit = v21
-				v2 = linearNormalVelocity
-				v5 = invMass
-				v7 = impulse
-				v10 = b3FloatW4{
-					X: v2.X + float32(v5.X*v7.X),
-					Y: v2.Y + float32(v5.Y*v7.Y),
-					Z: v2.Z + float32(v5.Z*v7.Z),
-					W: v2.W + float32(v5.W*v7.W),
-				}
-				goto _413
-			_413:
-				linearNormalVelocity = v10
-				v2 = manifoldImpulse
-				v5 = impulse
-				v7 = b3FloatW4{
-					X: v2.X + v5.X,
-					Y: v2.Y + v5.Y,
-					Z: v2.Z + v5.Z,
-					W: v2.W + v5.W,
-				}
-				goto _417
-			_417:
-				manifoldImpulse = v7
-				v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v2 = impulse
-				v18 = gA
-				v5 = v2
-				v7 = v18.X
-				v10 = b3FloatW4{
-					X: float32(v5.X * v7.X),
-					Y: float32(v5.Y * v7.Y),
-					Z: float32(v5.Z * v7.Z),
-					W: float32(v5.W * v7.W),
-				}
-				goto _426
-			_426:
-				v14 = v17.X
-				v21 = v10
-				v22 = b3FloatW4{
-					X: v14.X - v21.X,
-					Y: v14.Y - v21.Y,
-					Z: v14.Z - v21.Z,
-					W: v14.W - v21.W,
-				}
-				goto _430
-			_430:
-				v23 = v2
-				v25 = v18.Y
-				v26 = b3FloatW4{
-					X: float32(v23.X * v25.X),
-					Y: float32(v23.Y * v25.Y),
-					Z: float32(v23.Z * v25.Z),
-					W: float32(v23.W * v25.W),
-				}
-				goto _434
-			_434:
-				v27 = v17.Y
-				v29 = v26
-				v30 = b3FloatW4{
-					X: v27.X - v29.X,
-					Y: v27.Y - v29.Y,
-					Z: v27.Z - v29.Z,
-					W: v27.W - v29.W,
-				}
-				goto _438
-			_438:
-				v31 = v2
-				v33 = v18.Z
-				v34 = b3FloatW4{
-					X: float32(v31.X * v33.X),
-					Y: float32(v31.Y * v33.Y),
-					Z: float32(v31.Z * v33.Z),
-					W: float32(v31.W * v33.W),
-				}
-				goto _442
-			_442:
-				v35 = v17.Z
-				v40 = v34
-				v42 = b3FloatW4{
-					X: v35.X - v40.X,
-					Y: v35.Y - v40.Y,
-					Z: v35.Z - v40.Z,
-					W: v35.W - v40.W,
-				}
-				goto _446
-			_446:
-				v19 = b3Vec3W4{
-					X: v22,
-					Y: v30,
-					Z: v42,
-				}
-				goto _422
-			_422:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v19
-				v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v2 = impulse
-				v18 = gB
-				v5 = v2
-				v7 = v18.X
-				v10 = b3FloatW4{
-					X: float32(v5.X * v7.X),
-					Y: float32(v5.Y * v7.Y),
-					Z: float32(v5.Z * v7.Z),
-					W: float32(v5.W * v7.W),
-				}
-				goto _455
-			_455:
-				v14 = v17.X
-				v21 = v10
-				v22 = b3FloatW4{
-					X: v14.X + v21.X,
-					Y: v14.Y + v21.Y,
-					Z: v14.Z + v21.Z,
-					W: v14.W + v21.W,
-				}
-				goto _459
-			_459:
-				v23 = v2
-				v25 = v18.Y
-				v26 = b3FloatW4{
-					X: float32(v23.X * v25.X),
-					Y: float32(v23.Y * v25.Y),
-					Z: float32(v23.Z * v25.Z),
-					W: float32(v23.W * v25.W),
-				}
-				goto _463
-			_463:
-				v27 = v17.Y
-				v29 = v26
-				v30 = b3FloatW4{
-					X: v27.X + v29.X,
-					Y: v27.Y + v29.Y,
-					Z: v27.Z + v29.Z,
-					W: v27.W + v29.W,
-				}
-				goto _467
-			_467:
-				v31 = v2
-				v33 = v18.Z
-				v34 = b3FloatW4{
-					X: float32(v31.X * v33.X),
-					Y: float32(v31.Y * v33.Y),
-					Z: float32(v31.Z * v33.Z),
-					W: float32(v31.W * v33.W),
-				}
-				goto _471
-			_471:
-				v35 = v17.Z
-				v40 = v34
-				v42 = b3FloatW4{
-					X: v35.X + v40.X,
-					Y: v35.Y + v40.Y,
-					Z: v35.Z + v40.Z,
-					W: v35.W + v40.W,
-				}
-				goto _475
-			_475:
-				v19 = b3Vec3W4{
-					X: v22,
-					Y: v30,
-					Z: v42,
-				}
-				goto _451
-			_451:
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v19
-				goto _158
-			_158:
+				goto _62
+			_62:
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v5
+				goto _28
+			_28:
 				;
 				pointIndex = pointIndex + 1
 			}
 			// Rolling resistance. After normal constraints because it uses the normal impulse.
 			if anyRolling != 0 {
-				v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-				v18 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-				v2 = v17.X
-				v5 = v18.X
-				v7 = b3FloatW4{
-					X: v2.X - v5.X,
-					Y: v2.Y - v5.Y,
-					Z: v2.Z - v5.Z,
-					W: v2.W - v5.W,
+				v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+				v4 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+				v5 = b3Vec3W4{
+					X: b3SubW4(tls, v3.X, v4.X),
+					Y: b3SubW4(tls, v3.Y, v4.Y),
+					Z: b3SubW4(tls, v3.Z, v4.Z),
 				}
-				goto _483
-			_483:
-				v10 = v17.Y
-				v14 = v18.Y
-				v21 = b3FloatW4{
-					X: v10.X - v14.X,
-					Y: v10.Y - v14.Y,
-					Z: v10.Z - v14.Z,
-					W: v10.W - v14.W,
-				}
-				goto _487
-			_487:
-				v22 = v17.Z
-				v23 = v18.Z
-				v25 = b3FloatW4{
-					X: v22.X - v23.X,
-					Y: v22.Y - v23.Y,
-					Z: v22.Z - v23.Z,
-					W: v22.W - v23.W,
-				}
-				goto _491
-			_491:
-				v19 = b3Vec3W4{
-					X: v7,
-					Y: v21,
-					Z: v25,
-				}
-				goto _479
-			_479:
+				goto _66
+			_66:
 				// flip A/B order to negate
-				deltaImpulse = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingMass, v19)
+				deltaImpulse = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingMass, v5)
 				oldImpulse = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v38 = oldImpulse
-				v39 = deltaImpulse
-				v26 = v38.X
-				v27 = v39.X
-				v29 = b3FloatW4{
-					X: v26.X + v27.X,
-					Y: v26.Y + v27.Y,
-					Z: v26.Z + v27.Z,
-					W: v26.W + v27.W,
+				v8 = oldImpulse
+				v9 = deltaImpulse
+				v12 = b3Vec3W4{
+					X: b3AddW4(tls, v8.X, v9.X),
+					Y: b3AddW4(tls, v8.Y, v9.Y),
+					Z: b3AddW4(tls, v8.Z, v9.Z),
 				}
-				goto _499
-			_499:
-				v30 = v38.Y
-				v31 = v39.Y
-				v33 = b3FloatW4{
-					X: v30.X + v31.X,
-					Y: v30.Y + v31.Y,
-					Z: v30.Z + v31.Z,
-					W: v30.W + v31.W,
-				}
-				goto _503
-			_503:
-				v34 = v38.Z
-				v35 = v39.Z
-				v40 = b3FloatW4{
-					X: v34.X + v35.X,
-					Y: v34.Y + v35.Y,
-					Z: v34.Z + v35.Z,
-					W: v34.W + v35.W,
-				}
-				goto _507
-			_507:
-				v62 = b3Vec3W4{
-					X: v29,
-					Y: v33,
-					Z: v40,
-				}
-				goto _495
-			_495:
-				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse = v62
-				v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).RollingResistance
-				v5 = totalNormalImpulse
-				v7 = b3FloatW4{
-					X: float32(v2.X * v5.X),
-					Y: float32(v2.Y * v5.Y),
-					Z: float32(v2.Z * v5.Z),
-					W: float32(v2.W * v5.W),
-				}
-				goto _511
-			_511:
-				maxImpulse = v7
-				v17 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v18 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v14 = v17.X
-				v21 = v18.X
-				v22 = b3FloatW4{
-					X: float32(v14.X * v21.X),
-					Y: float32(v14.Y * v21.Y),
-					Z: float32(v14.Z * v21.Z),
-					W: float32(v14.W * v21.W),
-				}
-				goto _519
-			_519:
-				v23 = v17.Y
-				v25 = v18.Y
-				v26 = b3FloatW4{
-					X: float32(v23.X * v25.X),
-					Y: float32(v23.Y * v25.Y),
-					Z: float32(v23.Z * v25.Z),
-					W: float32(v23.W * v25.W),
-				}
-				goto _523
-			_523:
-				v27 = v22
-				v29 = v26
-				v30 = b3FloatW4{
-					X: v27.X + v29.X,
-					Y: v27.Y + v29.Y,
-					Z: v27.Z + v29.Z,
-					W: v27.W + v29.W,
-				}
-				goto _527
-			_527:
-				v31 = v17.Z
-				v33 = v18.Z
-				v34 = b3FloatW4{
-					X: float32(v31.X * v33.X),
-					Y: float32(v31.Y * v33.Y),
-					Z: float32(v31.Z * v33.Z),
-					W: float32(v31.W * v33.W),
-				}
-				goto _531
-			_531:
-				v35 = v30
-				v40 = v34
-				v42 = b3FloatW4{
-					X: v35.X + v40.X,
-					Y: v35.Y + v40.Y,
-					Z: v35.Z + v40.Z,
-					W: v35.W + v40.W,
-				}
-				goto _535
-			_535:
-				v10 = v42
-				goto _515
-			_515:
+				goto _70
+			_70:
+				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse = v12
+				maxImpulse = b3MulW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).RollingResistance, totalNormalImpulse)
+				v3 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v4 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v3.X, v4.X), b3MulW4(tls, v3.Y, v4.Y)), b3MulW4(tls, v3.Z, v4.Z))
+				goto _74
+			_74:
 				lengthSquared = v10
-				v43 = epsilonW
-				v44 = maxImpulse
-				v46 = maxImpulse
-				v47 = b3FloatW4{
-					X: v43.X + float32(v44.X*v46.X),
-					Y: v43.Y + float32(v44.Y*v46.Y),
-					Z: v43.Z + float32(v44.Z*v46.Z),
-					W: v43.W + float32(v44.W*v46.W),
-				}
-				goto _540
-			_540:
-				v48 = lengthSquared
-				v50 = v47
-				if v48.X > v50.X {
-					v1 = float32FromFloat32(1)
-				} else {
-					v1 = float32FromFloat32(0)
-				}
-				r2.X = v1
-				if v48.Y > v50.Y {
-					v4 = float32FromFloat32(1)
-				} else {
-					v4 = float32FromFloat32(0)
-				}
-				r2.Y = v4
-				if v48.Z > v50.Z {
-					v9 = float32FromFloat32(1)
-				} else {
-					v9 = float32FromFloat32(0)
-				}
-				r2.Z = v9
-				if v48.W > v50.W {
-					v225 = float32FromFloat32(1)
-				} else {
-					v225 = float32FromFloat32(0)
-				}
-				r2.W = v225
-				v51 = r2
-				goto _548
-			_548:
 				// if ( magSqr > maxLambda * maxLambda + FLT_EPSILON )
 				//{
 				//	c->rollingImpulse *= maxLambda / sqrtf( magSqr );
 				// }
-				mask1 = v51
-				v52 = lengthSquared
-				v54 = b3FloatW4{
-					X: sqrtf(tls, v52.X),
-					Y: sqrtf(tls, v52.Y),
-					Z: sqrtf(tls, v52.Z),
-					W: sqrtf(tls, v52.W),
-				}
-				goto _551
-			_551:
-				v55 = v54
-				v56 = epsilonW
-				v58 = b3FloatW4{
-					X: v55.X + v56.X,
-					Y: v55.Y + v56.Y,
-					Z: v55.Z + v56.Z,
-					W: v55.W + v56.W,
-				}
-				goto _555
-			_555:
-				v59 = maxImpulse
-				v60 = v58
-				v66 = b3FloatW4{
-					X: v59.X / v60.X,
-					Y: v59.Y / v60.Y,
-					Z: v59.Z / v60.Z,
-					W: v59.W / v60.W,
-				}
-				goto _559
-			_559:
+				mask = b3GreaterThanW4(tls, lengthSquared, b3MulAddW4(tls, epsilonW, maxImpulse, maxImpulse))
 				// No approximate _mm_rsqrt_ps here to maintain cross-platform determinism
-				normalize = v66
-				v67 = oneW
-				v68 = normalize
-				v70 = mask1
-				if v70.X != float32FromFloat32(0) {
-					v226 = v68.X
-				} else {
-					v226 = v67.X
+				normalize = b3DivW4(tls, maxImpulse, b3AddW4(tls, b3SqrtW4(tls, lengthSquared), epsilonW))
+				scale = b3BlendW4(tls, oneW, normalize, mask)
+				v18 = scale
+				v5 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v8 = b3Vec3W4{
+					X: b3MulW4(tls, v18, v5.X),
+					Y: b3MulW4(tls, v18, v5.Y),
+					Z: b3MulW4(tls, v18, v5.Z),
 				}
-				r3.X = v226
-				if v70.Y != float32FromFloat32(0) {
-					v227 = v68.Y
-				} else {
-					v227 = v67.Y
-				}
-				r3.Y = v227
-				if v70.Z != float32FromFloat32(0) {
-					v228 = v68.Z
-				} else {
-					v228 = v67.Z
-				}
-				r3.Z = v228
-				if v70.W != float32FromFloat32(0) {
-					v383 = v68.W
-				} else {
-					v383 = v67.W
-				}
-				r3.W = v383
-				v71 = r3
-				goto _568
-			_568:
-				scale = v71
-				v72 = scale
-				v19 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v74 = v72
-				v75 = v19.X
-				v76 = b3FloatW4{
-					X: float32(v74.X * v75.X),
-					Y: float32(v74.Y * v75.Y),
-					Z: float32(v74.Z * v75.Z),
-					W: float32(v74.W * v75.W),
-				}
-				goto _576
-			_576:
-				v80 = v72
-				v82 = v19.Y
-				v83 = b3FloatW4{
-					X: float32(v80.X * v82.X),
-					Y: float32(v80.Y * v82.Y),
-					Z: float32(v80.Z * v82.Z),
-					W: float32(v80.W * v82.W),
-				}
-				goto _580
-			_580:
-				v84 = v72
-				v86 = v19.Z
-				v87 = b3FloatW4{
-					X: float32(v84.X * v86.X),
-					Y: float32(v84.Y * v86.Y),
-					Z: float32(v84.Z * v86.Z),
-					W: float32(v84.W * v86.W),
-				}
-				goto _584
-			_584:
-				v38 = b3Vec3W4{
-					X: v76,
-					Y: v83,
-					Z: v87,
-				}
-				goto _572
-			_572:
+				goto _78
+			_78:
 				// Blend the result to ensure there are no +/-0 determinism problems, since 0 * -1 == -0.
-				scaledImpulse = v38
-				v88 = zeroW
-				v90 = scaledImpulse.X
-				v91 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-				if v91.X != float32FromFloat32(0) {
-					v384 = v90.X
-				} else {
-					v384 = v88.X
+				scaledImpulse = v8
+				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.X = b3BlendW4(tls, zeroW, scaledImpulse.X, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Y = b3BlendW4(tls, zeroW, scaledImpulse.Y, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Z = b3BlendW4(tls, zeroW, scaledImpulse.Z, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask)
+				v3 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
+				v4 = oldImpulse
+				v5 = b3Vec3W4{
+					X: b3SubW4(tls, v3.X, v4.X),
+					Y: b3SubW4(tls, v3.Y, v4.Y),
+					Z: b3SubW4(tls, v3.Z, v4.Z),
 				}
-				r3.X = v384
-				if v91.Y != float32FromFloat32(0) {
-					v385 = v90.Y
-				} else {
-					v385 = v88.Y
-				}
-				r3.Y = v385
-				if v91.Z != float32FromFloat32(0) {
-					v386 = v90.Z
-				} else {
-					v386 = v88.Z
-				}
-				r3.Z = v386
-				if v91.W != float32FromFloat32(0) {
-					v543 = v90.W
-				} else {
-					v543 = v88.W
-				}
-				r3.W = v543
-				v92 = r3
-				goto _593
-			_593:
-				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.X = v92
-				v2 = zeroW
-				v5 = scaledImpulse.Y
-				v7 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-				if v7.X != float32FromFloat32(0) {
-					v1 = v5.X
-				} else {
-					v1 = v2.X
-				}
-				r3.X = v1
-				if v7.Y != float32FromFloat32(0) {
-					v4 = v5.Y
-				} else {
-					v4 = v2.Y
-				}
-				r3.Y = v4
-				if v7.Z != float32FromFloat32(0) {
-					v9 = v5.Z
-				} else {
-					v9 = v2.Z
-				}
-				r3.Z = v9
-				if v7.W != float32FromFloat32(0) {
-					v225 = v5.W
-				} else {
-					v225 = v2.W
-				}
-				r3.W = v225
-				v10 = r3
-				goto _602
-			_602:
-				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Y = v10
-				v2 = zeroW
-				v5 = scaledImpulse.Z
-				v7 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingMask
-				if v7.X != float32FromFloat32(0) {
-					v1 = v5.X
-				} else {
-					v1 = v2.X
-				}
-				r3.X = v1
-				if v7.Y != float32FromFloat32(0) {
-					v4 = v5.Y
-				} else {
-					v4 = v2.Y
-				}
-				r3.Y = v4
-				if v7.Z != float32FromFloat32(0) {
-					v9 = v5.Z
-				} else {
-					v9 = v2.Z
-				}
-				r3.Z = v9
-				if v7.W != float32FromFloat32(0) {
-					v225 = v5.W
-				} else {
-					v225 = v2.W
-				}
-				r3.W = v225
-				v10 = r3
-				goto _611
-			_611:
-				(*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse.Z = v10
-				v17 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).RollingImpulse
-				v18 = oldImpulse
-				v2 = v17.X
-				v5 = v18.X
-				v7 = b3FloatW4{
-					X: v2.X - v5.X,
-					Y: v2.Y - v5.Y,
-					Z: v2.Z - v5.Z,
-					W: v2.W - v5.W,
-				}
-				goto _619
-			_619:
-				v10 = v17.Y
-				v14 = v18.Y
-				v21 = b3FloatW4{
-					X: v10.X - v14.X,
-					Y: v10.Y - v14.Y,
-					Z: v10.Z - v14.Z,
-					W: v10.W - v14.W,
-				}
-				goto _623
-			_623:
-				v22 = v17.Z
-				v23 = v18.Z
-				v25 = b3FloatW4{
-					X: v22.X - v23.X,
-					Y: v22.Y - v23.Y,
-					Z: v22.Z - v23.Z,
-					W: v22.W - v23.W,
-				}
-				goto _627
-			_627:
-				v19 = b3Vec3W4{
-					X: v7,
-					Y: v21,
-					Z: v25,
-				}
-				goto _615
-			_615:
-				deltaImpulse = v19
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA, deltaImpulse)
-				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB, deltaImpulse)
+				goto _82
+			_82:
+				deltaImpulse = v5
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, deltaImpulse)
+				(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, deltaImpulse)
 			}
 			// Central twist friction. Friction goes last to improve stacking stability.
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-			v18 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-			v2 = v17.X
-			v5 = v18.X
-			v7 = b3FloatW4{
-				X: v2.X - v5.X,
-				Y: v2.Y - v5.Y,
-				Z: v2.Z - v5.Z,
-				W: v2.W - v5.W,
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+			v4 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+			v5 = b3Vec3W4{
+				X: b3SubW4(tls, v3.X, v4.X),
+				Y: b3SubW4(tls, v3.Y, v4.Y),
+				Z: b3SubW4(tls, v3.Z, v4.Z),
 			}
-			goto _635
-		_635:
-			v10 = v17.Y
-			v14 = v18.Y
-			v21 = b3FloatW4{
-				X: v10.X - v14.X,
-				Y: v10.Y - v14.Y,
-				Z: v10.Z - v14.Z,
-				W: v10.W - v14.W,
-			}
-			goto _639
-		_639:
-			v22 = v17.Z
-			v23 = v18.Z
-			v25 = b3FloatW4{
-				X: v22.X - v23.X,
-				Y: v22.Y - v23.Y,
-				Z: v22.Z - v23.Z,
-				W: v22.W - v23.W,
-			}
-			goto _643
-		_643:
-			v19 = b3Vec3W4{
-				X: v7,
-				Y: v21,
-				Z: v25,
-			}
-			goto _631
-		_631:
-			v38 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v39 = v19
-			v27 = v38.X
-			v29 = v39.X
-			v30 = b3FloatW4{
-				X: float32(v27.X * v29.X),
-				Y: float32(v27.Y * v29.Y),
-				Z: float32(v27.Z * v29.Z),
-				W: float32(v27.W * v29.W),
-			}
-			goto _651
-		_651:
-			v31 = v38.Y
-			v33 = v39.Y
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _655
-		_655:
-			v35 = v30
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X + v40.X,
-				Y: v35.Y + v40.Y,
-				Z: v35.Z + v40.Z,
-				W: v35.W + v40.W,
-			}
-			goto _659
-		_659:
-			v43 = v38.Z
-			v44 = v39.Z
-			v46 = b3FloatW4{
-				X: float32(v43.X * v44.X),
-				Y: float32(v43.Y * v44.Y),
-				Z: float32(v43.Z * v44.Z),
-				W: float32(v43.W * v44.W),
-			}
-			goto _663
-		_663:
-			v47 = v42
-			v48 = v46
-			v50 = b3FloatW4{
-				X: v47.X + v48.X,
-				Y: v47.Y + v48.Y,
-				Z: v47.Z + v48.Z,
-				W: v47.W + v48.W,
-			}
-			goto _667
-		_667:
-			v26 = v50
-			goto _647
-		_647:
-			twistSpeed = v26
-			v51 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).Friction
-			v52 = totalTwistLimit
-			v54 = b3FloatW4{
-				X: float32(v51.X * v52.X),
-				Y: float32(v51.Y * v52.Y),
-				Z: float32(v51.Z * v52.Z),
-				W: float32(v51.W * v52.W),
-			}
-			goto _671
-		_671:
-			maxLambda = v54
+			goto _86
+		_86:
+			v8 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v9 = v5
+			v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v8.X, v9.X), b3MulW4(tls, v8.Y, v9.Y)), b3MulW4(tls, v8.Z, v9.Z))
+			goto _90
+		_90:
+			twistSpeed = v10
+			maxLambda = b3MulW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Friction, totalTwistLimit)
 			oldImpulse1 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse
-			v55 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistMass
-			v56 = twistSpeed
-			v58 = b3FloatW4{
-				X: float32(v55.X * v56.X),
-				Y: float32(v55.Y * v56.Y),
-				Z: float32(v55.Z * v56.Z),
-				W: float32(v55.W * v56.W),
+			impulse1 = b3NegW4(tls, b3MulW4(tls, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistMass, twistSpeed))
+			impulse1 = b3MaxW4(tls, b3SubW4(tls, b3NegW4(tls, maxLambda), oldImpulse1), b3MinW4(tls, impulse1, b3SubW4(tls, maxLambda, oldImpulse1)))
+			(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse = b3AddW4(tls, oldImpulse1, impulse1)
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+			v10 = impulse1
+			v4 = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
+			v5 = b3Vec3W4{
+				X: b3SubW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3SubW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3SubW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _675
-		_675:
-			v59 = v58
-			v60 = b3FloatW4{
-				X: -v59.X,
-				Y: -v59.Y,
-				Z: -v59.Z,
-				W: -v59.W,
+			goto _95
+		_95:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v5
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+			v10 = impulse1
+			v4 = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
+			v5 = b3Vec3W4{
+				X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _678
-		_678:
-			impulse1 = v60
-			v66 = maxLambda
-			v67 = b3FloatW4{
-				X: -v66.X,
-				Y: -v66.Y,
-				Z: -v66.Z,
-				W: -v66.W,
-			}
-			goto _681
-		_681:
-			v68 = v67
-			v70 = oldImpulse1
-			v71 = b3FloatW4{
-				X: v68.X - v70.X,
-				Y: v68.Y - v70.Y,
-				Z: v68.Z - v70.Z,
-				W: v68.W - v70.W,
-			}
-			goto _685
-		_685:
-			v72 = maxLambda
-			v74 = oldImpulse1
-			v75 = b3FloatW4{
-				X: v72.X - v74.X,
-				Y: v72.Y - v74.Y,
-				Z: v72.Z - v74.Z,
-				W: v72.W - v74.W,
-			}
-			goto _689
-		_689:
-			v76 = impulse1
-			v80 = v75
-			if v76.X <= v80.X {
-				v1 = v76.X
-			} else {
-				v1 = v80.X
-			}
-			r.X = v1
-			if v76.Y <= v80.Y {
-				v4 = v76.Y
-			} else {
-				v4 = v80.Y
-			}
-			r.Y = v4
-			if v76.Z <= v80.Z {
-				v9 = v76.Z
-			} else {
-				v9 = v80.Z
-			}
-			r.Z = v9
-			if v76.W <= v80.W {
-				v225 = v76.W
-			} else {
-				v225 = v80.W
-			}
-			r.W = v225
-			v82 = r
-			goto _697
-		_697:
-			v83 = v71
-			v84 = v82
-			if v83.X >= v84.X {
-				v226 = v83.X
-			} else {
-				v226 = v84.X
-			}
-			r1.X = v226
-			if v83.Y >= v84.Y {
-				v227 = v83.Y
-			} else {
-				v227 = v84.Y
-			}
-			r1.Y = v227
-			if v83.Z >= v84.Z {
-				v228 = v83.Z
-			} else {
-				v228 = v84.Z
-			}
-			r1.Z = v228
-			if v83.W >= v84.W {
-				v383 = v83.W
-			} else {
-				v383 = v84.W
-			}
-			r1.W = v383
-			v86 = r1
-			goto _705
-		_705:
-			impulse1 = v86
-			v2 = oldImpulse1
-			v5 = impulse1
-			v7 = b3FloatW4{
-				X: v2.X + v5.X,
-				Y: v2.Y + v5.Y,
-				Z: v2.Z + v5.Z,
-				W: v2.W + v5.W,
-			}
-			goto _709
-		_709:
-			(*b3ContactManifoldWide)(unsafe.Pointer(cm)).TwistImpulse = v7
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-			v2 = impulse1
-			v18 = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
-			v5 = v2
-			v7 = v18.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
-			}
-			goto _718
-		_718:
-			v14 = v17.X
-			v21 = v10
-			v22 = b3FloatW4{
-				X: v14.X - v21.X,
-				Y: v14.Y - v21.Y,
-				Z: v14.Z - v21.Z,
-				W: v14.W - v21.W,
-			}
-			goto _722
-		_722:
-			v23 = v2
-			v25 = v18.Y
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
-			}
-			goto _726
-		_726:
-			v27 = v17.Y
-			v29 = v26
-			v30 = b3FloatW4{
-				X: v27.X - v29.X,
-				Y: v27.Y - v29.Y,
-				Z: v27.Z - v29.Z,
-				W: v27.W - v29.W,
-			}
-			goto _730
-		_730:
-			v31 = v2
-			v33 = v18.Z
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _734
-		_734:
-			v35 = v17.Z
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X - v40.X,
-				Y: v35.Y - v40.Y,
-				Z: v35.Z - v40.Z,
-				W: v35.W - v40.W,
-			}
-			goto _738
-		_738:
-			v19 = b3Vec3W4{
-				X: v22,
-				Y: v30,
-				Z: v42,
-			}
-			goto _714
-		_714:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = v19
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-			v2 = impulse1
-			v18 = b3MulMVW(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal)
-			v5 = v2
-			v7 = v18.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
-			}
-			goto _747
-		_747:
-			v14 = v17.X
-			v21 = v10
-			v22 = b3FloatW4{
-				X: v14.X + v21.X,
-				Y: v14.Y + v21.Y,
-				Z: v14.Z + v21.Z,
-				W: v14.W + v21.W,
-			}
-			goto _751
-		_751:
-			v23 = v2
-			v25 = v18.Y
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
-			}
-			goto _755
-		_755:
-			v27 = v17.Y
-			v29 = v26
-			v30 = b3FloatW4{
-				X: v27.X + v29.X,
-				Y: v27.Y + v29.Y,
-				Z: v27.Z + v29.Z,
-				W: v27.W + v29.W,
-			}
-			goto _759
-		_759:
-			v31 = v2
-			v33 = v18.Z
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _763
-		_763:
-			v35 = v17.Z
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X + v40.X,
-				Y: v35.Y + v40.Y,
-				Z: v35.Z + v40.Z,
-				W: v35.W + v40.W,
-			}
-			goto _767
-		_767:
-			v19 = b3Vec3W4{
-				X: v22,
-				Y: v30,
-				Z: v42,
-			}
-			goto _743
-		_743:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v19
+			goto _100
+		_100:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = v5
 			// Central friction. Friction goes last to improve stacking stability.
 			tangent1 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent1
 			tangent2 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Tangent2
 			// Fixed anchor points for applying impulses
 			rA1 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterA
 			rB1 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).CenterB
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
-			v18 = rB1
-			v2 = v17.Y
-			v5 = v18.Z
-			v7 = b3FloatW4{
-				X: float32(v2.X * v5.X),
-				Y: float32(v2.Y * v5.Y),
-				Z: float32(v2.Z * v5.Z),
-				W: float32(v2.W * v5.W),
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W
+			v4 = rB1
+			c.X = b3SubW4(tls, b3MulW4(tls, v3.Y, v4.Z), b3MulW4(tls, v3.Z, v4.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v3.Z, v4.X), b3MulW4(tls, v3.X, v4.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v3.X, v4.Y), b3MulW4(tls, v3.Y, v4.X))
+			v5 = c
+			goto _104
+		_104:
+			v8 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
+			v9 = rA1
+			c.X = b3SubW4(tls, b3MulW4(tls, v8.Y, v9.Z), b3MulW4(tls, v8.Z, v9.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v8.Z, v9.X), b3MulW4(tls, v8.X, v9.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v8.X, v9.Y), b3MulW4(tls, v8.Y, v9.X))
+			v12 = c
+			goto _108
+		_108:
+			v13 = v5
+			v14 = v12
+			v16 = b3Vec3W4{
+				X: b3SubW4(tls, v13.X, v14.X),
+				Y: b3SubW4(tls, v13.Y, v14.Y),
+				Z: b3SubW4(tls, v13.Z, v14.Z),
 			}
-			goto _773
-		_773:
-			v10 = v17.Z
-			v14 = v18.Y
-			v21 = b3FloatW4{
-				X: float32(v10.X * v14.X),
-				Y: float32(v10.Y * v14.Y),
-				Z: float32(v10.Z * v14.Z),
-				W: float32(v10.W * v14.W),
-			}
-			goto _777
-		_777:
-			v22 = v7
-			v23 = v21
-			v25 = b3FloatW4{
-				X: v22.X - v23.X,
-				Y: v22.Y - v23.Y,
-				Z: v22.Z - v23.Z,
-				W: v22.W - v23.W,
-			}
-			goto _781
-		_781:
-			c1.X = v25
-			v26 = v17.Z
-			v27 = v18.X
-			v29 = b3FloatW4{
-				X: float32(v26.X * v27.X),
-				Y: float32(v26.Y * v27.Y),
-				Z: float32(v26.Z * v27.Z),
-				W: float32(v26.W * v27.W),
-			}
-			goto _785
-		_785:
-			v30 = v17.X
-			v31 = v18.Z
-			v33 = b3FloatW4{
-				X: float32(v30.X * v31.X),
-				Y: float32(v30.Y * v31.Y),
-				Z: float32(v30.Z * v31.Z),
-				W: float32(v30.W * v31.W),
-			}
-			goto _789
-		_789:
-			v34 = v29
-			v35 = v33
-			v40 = b3FloatW4{
-				X: v34.X - v35.X,
-				Y: v34.Y - v35.Y,
-				Z: v34.Z - v35.Z,
-				W: v34.W - v35.W,
-			}
-			goto _793
-		_793:
-			c1.Y = v40
-			v42 = v17.X
-			v43 = v18.Y
-			v44 = b3FloatW4{
-				X: float32(v42.X * v43.X),
-				Y: float32(v42.Y * v43.Y),
-				Z: float32(v42.Z * v43.Z),
-				W: float32(v42.W * v43.W),
-			}
-			goto _797
-		_797:
-			v46 = v17.Y
-			v47 = v18.X
-			v48 = b3FloatW4{
-				X: float32(v46.X * v47.X),
-				Y: float32(v46.Y * v47.Y),
-				Z: float32(v46.Z * v47.Z),
-				W: float32(v46.W * v47.W),
-			}
-			goto _801
-		_801:
-			v50 = v44
-			v51 = v48
-			v52 = b3FloatW4{
-				X: v50.X - v51.X,
-				Y: v50.Y - v51.Y,
-				Z: v50.Z - v51.Z,
-				W: v50.W - v51.W,
-			}
-			goto _805
-		_805:
-			c1.Z = v52
-			v19 = c1
-			goto _807
-		_807:
-			v38 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W
-			v39 = rA1
-			v54 = v38.Y
-			v55 = v39.Z
-			v56 = b3FloatW4{
-				X: float32(v54.X * v55.X),
-				Y: float32(v54.Y * v55.Y),
-				Z: float32(v54.Z * v55.Z),
-				W: float32(v54.W * v55.W),
-			}
-			goto _813
-		_813:
-			v58 = v38.Z
-			v59 = v39.Y
-			v60 = b3FloatW4{
-				X: float32(v58.X * v59.X),
-				Y: float32(v58.Y * v59.Y),
-				Z: float32(v58.Z * v59.Z),
-				W: float32(v58.W * v59.W),
-			}
-			goto _817
-		_817:
-			v66 = v56
-			v67 = v60
-			v68 = b3FloatW4{
-				X: v66.X - v67.X,
-				Y: v66.Y - v67.Y,
-				Z: v66.Z - v67.Z,
-				W: v66.W - v67.W,
-			}
-			goto _821
-		_821:
-			c1.X = v68
-			v70 = v38.Z
-			v71 = v39.X
-			v72 = b3FloatW4{
-				X: float32(v70.X * v71.X),
-				Y: float32(v70.Y * v71.Y),
-				Z: float32(v70.Z * v71.Z),
-				W: float32(v70.W * v71.W),
-			}
-			goto _825
-		_825:
-			v74 = v38.X
-			v75 = v39.Z
-			v76 = b3FloatW4{
-				X: float32(v74.X * v75.X),
-				Y: float32(v74.Y * v75.Y),
-				Z: float32(v74.Z * v75.Z),
-				W: float32(v74.W * v75.W),
-			}
-			goto _829
-		_829:
-			v80 = v72
-			v82 = v76
-			v83 = b3FloatW4{
-				X: v80.X - v82.X,
-				Y: v80.Y - v82.Y,
-				Z: v80.Z - v82.Z,
-				W: v80.W - v82.W,
-			}
-			goto _833
-		_833:
-			c1.Y = v83
-			v84 = v38.X
-			v86 = v39.Y
-			v87 = b3FloatW4{
-				X: float32(v84.X * v86.X),
-				Y: float32(v84.Y * v86.Y),
-				Z: float32(v84.Z * v86.Z),
-				W: float32(v84.W * v86.W),
-			}
-			goto _837
-		_837:
-			v88 = v38.Y
-			v90 = v39.X
-			v91 = b3FloatW4{
-				X: float32(v88.X * v90.X),
-				Y: float32(v88.Y * v90.Y),
-				Z: float32(v88.Z * v90.Z),
-				W: float32(v88.W * v90.W),
-			}
-			goto _841
-		_841:
-			v92 = v87
-			v94 = v91
-			v95 = b3FloatW4{
-				X: v92.X - v94.X,
-				Y: v92.Y - v94.Y,
-				Z: v92.Z - v94.Z,
-				W: v92.W - v94.W,
-			}
-			goto _845
-		_845:
-			c1.Z = v95
-			v62 = c1
-			goto _847
-		_847:
-			v63 = v19
-			v64 = v62
-			v96 = v63.X
-			v98 = v64.X
-			v99 = b3FloatW4{
-				X: v96.X - v98.X,
-				Y: v96.Y - v98.Y,
-				Z: v96.Z - v98.Z,
-				W: v96.W - v98.W,
-			}
-			goto _855
-		_855:
-			v100 = v63.Y
-			v104 = v64.Y
-			v106 = b3FloatW4{
-				X: v100.X - v104.X,
-				Y: v100.Y - v104.Y,
-				Z: v100.Z - v104.Z,
-				W: v100.W - v104.W,
-			}
-			goto _859
-		_859:
-			v107 = v63.Z
-			v108 = v64.Z
-			v110 = b3FloatW4{
-				X: v107.X - v108.X,
-				Y: v107.Y - v108.Y,
-				Z: v107.Z - v108.Z,
-				W: v107.W - v108.W,
-			}
-			goto _863
-		_863:
-			v78 = b3Vec3W4{
-				X: v99,
-				Y: v106,
-				Z: v110,
-			}
-			goto _851
-		_851:
-			angularRelativeVelocity = v78
-			v79 = angularRelativeVelocity
-			v102 = tangent1
-			v112 = v79.X
-			v114 = v102.X
-			v115 = b3FloatW4{
-				X: float32(v112.X * v114.X),
-				Y: float32(v112.Y * v114.Y),
-				Z: float32(v112.Z * v114.Z),
-				W: float32(v112.W * v114.W),
-			}
-			goto _871
-		_871:
-			v116 = v79.Y
-			v118 = v102.Y
-			v119 = b3FloatW4{
-				X: float32(v116.X * v118.X),
-				Y: float32(v116.Y * v118.Y),
-				Z: float32(v116.Z * v118.Z),
-				W: float32(v116.W * v118.W),
-			}
-			goto _875
-		_875:
-			v120 = v115
-			v122 = v119
-			v123 = b3FloatW4{
-				X: v120.X + v122.X,
-				Y: v120.Y + v122.Y,
-				Z: v120.Z + v122.Z,
-				W: v120.W + v122.W,
-			}
-			goto _879
-		_879:
-			v124 = v79.Z
-			v126 = v102.Z
-			v127 = b3FloatW4{
-				X: float32(v124.X * v126.X),
-				Y: float32(v124.Y * v126.Y),
-				Z: float32(v124.Z * v126.Z),
-				W: float32(v124.W * v126.W),
-			}
-			goto _883
-		_883:
-			v128 = v123
-			v132 = v127
-			v134 = b3FloatW4{
-				X: v128.X + v132.X,
-				Y: v128.Y + v132.Y,
-				Z: v128.Z + v132.Z,
-				W: v128.W + v132.W,
-			}
-			goto _887
-		_887:
-			v111 = v134
-			goto _867
-		_867:
-			v135 = linearTangentVelocity1
-			v136 = v111
-			v138 = b3FloatW4{
-				X: v135.X + v136.X,
-				Y: v135.Y + v136.Y,
-				Z: v135.Z + v136.Z,
-				W: v135.W + v136.W,
-			}
-			goto _891
-		_891:
-			v103 = angularRelativeVelocity
-			v130 = tangent2
-			v140 = v103.X
-			v142 = v130.X
-			v143 = b3FloatW4{
-				X: float32(v140.X * v142.X),
-				Y: float32(v140.Y * v142.Y),
-				Z: float32(v140.Z * v142.Z),
-				W: float32(v140.W * v142.W),
-			}
-			goto _899
-		_899:
-			v144 = v103.Y
-			v146 = v130.Y
-			v147 = b3FloatW4{
-				X: float32(v144.X * v146.X),
-				Y: float32(v144.Y * v146.Y),
-				Z: float32(v144.Z * v146.Z),
-				W: float32(v144.W * v146.W),
-			}
-			goto _903
-		_903:
-			v148 = v143
-			v150 = v147
-			v151 = b3FloatW4{
-				X: v148.X + v150.X,
-				Y: v148.Y + v150.Y,
-				Z: v148.Z + v150.Z,
-				W: v148.W + v150.W,
-			}
-			goto _907
-		_907:
-			v152 = v103.Z
-			v154 = v130.Z
-			v155 = b3FloatW4{
-				X: float32(v152.X * v154.X),
-				Y: float32(v152.Y * v154.Y),
-				Z: float32(v152.Z * v154.Z),
-				W: float32(v152.W * v154.W),
-			}
-			goto _911
-		_911:
-			v156 = v151
-			v161 = v155
-			v163 = b3FloatW4{
-				X: v156.X + v161.X,
-				Y: v156.Y + v161.Y,
-				Z: v156.Z + v161.Z,
-				W: v156.W + v161.W,
-			}
-			goto _915
-		_915:
-			v139 = v163
-			goto _895
-		_895:
-			v164 = linearTangentVelocity2
-			v165 = v139
-			v167 = b3FloatW4{
-				X: v164.X + v165.X,
-				Y: v164.Y + v165.Y,
-				Z: v164.Z + v165.Z,
-				W: v164.W + v165.W,
-			}
-			goto _919
-		_919:
+			goto _112
+		_112:
+			angularRelativeVelocity = v16
+			v17 = angularRelativeVelocity
+			v20 = tangent1
+			v10 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v17.X, v20.X), b3MulW4(tls, v17.Y, v20.Y)), b3MulW4(tls, v17.Z, v20.Z))
+			goto _116
+		_116:
+			v21 = angularRelativeVelocity
+			v24 = tangent2
+			v18 = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, v21.X, v24.X), b3MulW4(tls, v21.Y, v24.Y)), b3MulW4(tls, v21.Z, v24.Z))
+			goto _120
+		_120:
 			// Relative tangent velocity at contact
 			vt = b3Vec2W{
-				X: v138,
-				Y: v167,
+				X: b3AddW4(tls, linearTangentVelocity1, v10),
+				Y: b3AddW4(tls, linearTangentVelocity2, v18),
 			}
 			// Incremental tangent impulse
 			deltaImpulse1 = b3MulMV2W(tls, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).TangentMass, vt)
-			v168 = deltaImpulse1.X
-			v169 = b3FloatW4{
-				X: -v168.X,
-				Y: -v168.Y,
-				Z: -v168.Z,
-				W: -v168.W,
-			}
-			goto _922
-		_922:
-			v171 = deltaImpulse1.Y
-			v172 = b3FloatW4{
-				X: -v171.X,
-				Y: -v171.Y,
-				Z: -v171.Z,
-				W: -v171.W,
-			}
-			goto _925
-		_925:
 			deltaImpulse1 = b3Vec2W{
-				X: v169,
-				Y: v172,
+				X: b3NegW4(tls, deltaImpulse1.X),
+				Y: b3NegW4(tls, deltaImpulse1.Y),
 			}
 			newImpulse1 = b3AddV2W(tls, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse, deltaImpulse1)
-			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).Friction
-			v5 = totalNormalImpulse
-			v7 = b3FloatW4{
-				X: float32(v2.X * v5.X),
-				Y: float32(v2.Y * v5.Y),
-				Z: float32(v2.Z * v5.Z),
-				W: float32(v2.W * v5.W),
-			}
-			goto _929
-		_929:
-			maxImpulse1 = v7
-			v10 = newImpulse1.X
-			v14 = newImpulse1.X
-			v21 = b3FloatW4{
-				X: float32(v10.X * v14.X),
-				Y: float32(v10.Y * v14.Y),
-				Z: float32(v10.Z * v14.Z),
-				W: float32(v10.W * v14.W),
-			}
-			goto _933
-		_933:
-			v22 = newImpulse1.Y
-			v23 = newImpulse1.Y
-			v25 = b3FloatW4{
-				X: float32(v22.X * v23.X),
-				Y: float32(v22.Y * v23.Y),
-				Z: float32(v22.Z * v23.Z),
-				W: float32(v22.W * v23.W),
-			}
-			goto _937
-		_937:
-			v26 = v21
-			v27 = v25
-			v29 = b3FloatW4{
-				X: v26.X + v27.X,
-				Y: v26.Y + v27.Y,
-				Z: v26.Z + v27.Z,
-				W: v26.W + v27.W,
-			}
-			goto _941
-		_941:
+			maxImpulse1 = b3MulW4(tls, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).Friction, totalNormalImpulse)
 			// Clamp the accumulated impulse
-			lengthSquared1 = v29
-			v30 = maxImpulse1
-			v31 = maxImpulse1
-			v33 = b3FloatW4{
-				X: float32(v30.X * v31.X),
-				Y: float32(v30.Y * v31.Y),
-				Z: float32(v30.Z * v31.Z),
-				W: float32(v30.W * v31.W),
-			}
-			goto _945
-		_945:
-			v34 = lengthSquared1
-			v35 = v33
-			if v34.X > v35.X {
-				v1 = float32FromFloat32(1)
-			} else {
-				v1 = float32FromFloat32(0)
-			}
-			r2.X = v1
-			if v34.Y > v35.Y {
-				v4 = float32FromFloat32(1)
-			} else {
-				v4 = float32FromFloat32(0)
-			}
-			r2.Y = v4
-			if v34.Z > v35.Z {
-				v9 = float32FromFloat32(1)
-			} else {
-				v9 = float32FromFloat32(0)
-			}
-			r2.Z = v9
-			if v34.W > v35.W {
-				v225 = float32FromFloat32(1)
-			} else {
-				v225 = float32FromFloat32(0)
-			}
-			r2.W = v225
-			v40 = r2
-			goto _953
-		_953:
+			lengthSquared1 = b3AddW4(tls, b3MulW4(tls, newImpulse1.X, newImpulse1.X), b3MulW4(tls, newImpulse1.Y, newImpulse1.Y))
 			// Max impulse can be zero
-			mask2 = v40
-			v42 = lengthSquared1
-			v43 = b3FloatW4{
-				X: sqrtf(tls, v42.X),
-				Y: sqrtf(tls, v42.Y),
-				Z: sqrtf(tls, v42.Z),
-				W: sqrtf(tls, v42.W),
-			}
-			goto _956
-		_956:
-			v44 = v43
-			v46 = epsilonW
-			v47 = b3FloatW4{
-				X: v44.X + v46.X,
-				Y: v44.Y + v46.Y,
-				Z: v44.Z + v46.Z,
-				W: v44.W + v46.W,
-			}
-			goto _960
-		_960:
-			v48 = maxImpulse1
-			v50 = v47
-			v51 = b3FloatW4{
-				X: v48.X / v50.X,
-				Y: v48.Y / v50.Y,
-				Z: v48.Z / v50.Z,
-				W: v48.W / v50.W,
-			}
-			goto _964
-		_964:
+			mask1 = b3GreaterThanW4(tls, lengthSquared1, b3MulW4(tls, maxImpulse1, maxImpulse1))
 			// No approximate _mm_rsqrt_ps here to maintain cross-platform determinism. Add epsilon to avoid divide by
 			// zero.
-			normalize1 = v51
-			v52 = oneW
-			v54 = normalize1
-			v55 = mask2
-			if v55.X != float32FromFloat32(0) {
-				v226 = v54.X
-			} else {
-				v226 = v52.X
-			}
-			r3.X = v226
-			if v55.Y != float32FromFloat32(0) {
-				v227 = v54.Y
-			} else {
-				v227 = v52.Y
-			}
-			r3.Y = v227
-			if v55.Z != float32FromFloat32(0) {
-				v228 = v54.Z
-			} else {
-				v228 = v52.Z
-			}
-			r3.Z = v228
-			if v55.W != float32FromFloat32(0) {
-				v383 = v54.W
-			} else {
-				v383 = v52.W
-			}
-			r3.W = v383
-			v56 = r3
-			goto _973
-		_973:
-			scale1 = v56
-			v58 = scale1
-			v59 = newImpulse1.X
-			v60 = b3FloatW4{
-				X: float32(v58.X * v59.X),
-				Y: float32(v58.Y * v59.Y),
-				Z: float32(v58.Z * v59.Z),
-				W: float32(v58.W * v59.W),
-			}
-			goto _977
-		_977:
-			v66 = scale1
-			v67 = newImpulse1.Y
-			v68 = b3FloatW4{
-				X: float32(v66.X * v67.X),
-				Y: float32(v66.Y * v67.Y),
-				Z: float32(v66.Z * v67.Z),
-				W: float32(v66.W * v67.W),
-			}
-			goto _981
-		_981:
+			normalize1 = b3DivW4(tls, maxImpulse1, b3AddW4(tls, b3SqrtW4(tls, lengthSquared1), epsilonW))
+			scale1 = b3BlendW4(tls, oneW, normalize1, mask1)
 			newImpulse1 = b3Vec2W{
-				X: v60,
-				Y: v68,
+				X: b3MulW4(tls, scale1, newImpulse1.X),
+				Y: b3MulW4(tls, scale1, newImpulse1.Y),
 			}
-			v2 = newImpulse1.X
-			v5 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X
-			v7 = b3FloatW4{
-				X: v2.X - v5.X,
-				Y: v2.Y - v5.Y,
-				Z: v2.Z - v5.Z,
-				W: v2.W - v5.W,
-			}
-			goto _985
-		_985:
-			v10 = newImpulse1.Y
-			v14 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y
-			v21 = b3FloatW4{
-				X: v10.X - v14.X,
-				Y: v10.Y - v14.Y,
-				Z: v10.Z - v14.Z,
-				W: v10.W - v14.W,
-			}
-			goto _989
-		_989:
 			deltaImpulse1 = b3Vec2W{
-				X: v7,
-				Y: v21,
+				X: b3SubW4(tls, newImpulse1.X, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.X),
+				Y: b3SubW4(tls, newImpulse1.Y, (*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse.Y),
 			}
 			(*b3ContactManifoldWide)(unsafe.Pointer(cm)).FrictionImpulse = newImpulse1
-			v2 = deltaImpulse1.X
-			v17 = tangent1
-			v5 = v2
-			v7 = v17.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
+			v10 = deltaImpulse1.X
+			v3 = tangent1
+			v4 = b3Vec3W4{
+				X: b3MulW4(tls, v10, v3.X),
+				Y: b3MulW4(tls, v10, v3.Y),
+				Z: b3MulW4(tls, v10, v3.Z),
 			}
-			goto _997
-		_997:
-			v14 = v2
-			v21 = v17.Y
-			v22 = b3FloatW4{
-				X: float32(v14.X * v21.X),
-				Y: float32(v14.Y * v21.Y),
-				Z: float32(v14.Z * v21.Z),
-				W: float32(v14.W * v21.W),
+			goto _124
+		_124:
+			v18 = deltaImpulse1.Y
+			v5 = tangent2
+			v8 = b3Vec3W4{
+				X: b3MulW4(tls, v18, v5.X),
+				Y: b3MulW4(tls, v18, v5.Y),
+				Z: b3MulW4(tls, v18, v5.Z),
 			}
-			goto _1001
-		_1001:
-			v23 = v2
-			v25 = v17.Z
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
+			goto _128
+		_128:
+			v9 = v4
+			v12 = v8
+			v13 = b3Vec3W4{
+				X: b3AddW4(tls, v9.X, v12.X),
+				Y: b3AddW4(tls, v9.Y, v12.Y),
+				Z: b3AddW4(tls, v9.Z, v12.Z),
 			}
-			goto _1005
-		_1005:
-			v18 = b3Vec3W4{
-				X: v10,
-				Y: v22,
-				Z: v26,
-			}
-			goto _993
-		_993:
-			v27 = deltaImpulse1.Y
-			v19 = tangent2
-			v29 = v27
-			v30 = v19.X
-			v31 = b3FloatW4{
-				X: float32(v29.X * v30.X),
-				Y: float32(v29.Y * v30.Y),
-				Z: float32(v29.Z * v30.Z),
-				W: float32(v29.W * v30.W),
-			}
-			goto _1013
-		_1013:
-			v33 = v27
-			v34 = v19.Y
-			v35 = b3FloatW4{
-				X: float32(v33.X * v34.X),
-				Y: float32(v33.Y * v34.Y),
-				Z: float32(v33.Z * v34.Z),
-				W: float32(v33.W * v34.W),
-			}
-			goto _1017
-		_1017:
-			v40 = v27
-			v42 = v19.Z
-			v43 = b3FloatW4{
-				X: float32(v40.X * v42.X),
-				Y: float32(v40.Y * v42.Y),
-				Z: float32(v40.Z * v42.Z),
-				W: float32(v40.W * v42.W),
-			}
-			goto _1021
-		_1021:
-			v38 = b3Vec3W4{
-				X: v31,
-				Y: v35,
-				Z: v43,
-			}
-			goto _1009
-		_1009:
-			v39 = v18
-			v62 = v38
-			v44 = v39.X
-			v46 = v62.X
-			v47 = b3FloatW4{
-				X: v44.X + v46.X,
-				Y: v44.Y + v46.Y,
-				Z: v44.Z + v46.Z,
-				W: v44.W + v46.W,
-			}
-			goto _1029
-		_1029:
-			v48 = v39.Y
-			v50 = v62.Y
-			v51 = b3FloatW4{
-				X: v48.X + v50.X,
-				Y: v48.Y + v50.Y,
-				Z: v48.Z + v50.Z,
-				W: v48.W + v50.W,
-			}
-			goto _1033
-		_1033:
-			v52 = v39.Z
-			v54 = v62.Z
-			v55 = b3FloatW4{
-				X: v52.X + v54.X,
-				Y: v52.Y + v54.Y,
-				Z: v52.Z + v54.Z,
-				W: v52.W + v54.W,
-			}
-			goto _1037
-		_1037:
-			v63 = b3Vec3W4{
-				X: v47,
-				Y: v51,
-				Z: v55,
-			}
-			goto _1025
-		_1025:
+			goto _132
+		_132:
 			// Apply delta impulse
-			P = v63
-			v64 = rA1
-			v78 = P
-			v56 = v64.Y
-			v58 = v78.Z
-			v59 = b3FloatW4{
-				X: float32(v56.X * v58.X),
-				Y: float32(v56.Y * v58.Y),
-				Z: float32(v56.Z * v58.Z),
-				W: float32(v56.W * v58.W),
+			P = v13
+			v14 = rA1
+			v16 = P
+			c.X = b3SubW4(tls, b3MulW4(tls, v14.Y, v16.Z), b3MulW4(tls, v14.Z, v16.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v14.Z, v16.X), b3MulW4(tls, v14.X, v16.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v14.X, v16.Y), b3MulW4(tls, v14.Y, v16.X))
+			v17 = c
+			goto _136
+		_136:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIA, v17)
+			v3 = rB1
+			v4 = P
+			c.X = b3SubW4(tls, b3MulW4(tls, v3.Y, v4.Z), b3MulW4(tls, v3.Z, v4.Y))
+			c.Y = b3SubW4(tls, b3MulW4(tls, v3.Z, v4.X), b3MulW4(tls, v3.X, v4.Z))
+			c.Z = b3SubW4(tls, b3MulW4(tls, v3.X, v4.Y), b3MulW4(tls, v3.Y, v4.X))
+			v5 = c
+			goto _140
+		_140:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvIB, v5)
+			v3 = P
+			v10 = manifoldImpulse
+			v4 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
+			v5 = b3Vec3W4{
+				X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _1043
-		_1043:
-			v60 = v64.Z
-			v66 = v78.Y
-			v67 = b3FloatW4{
-				X: float32(v60.X * v66.X),
-				Y: float32(v60.Y * v66.Y),
-				Z: float32(v60.Z * v66.Z),
-				W: float32(v60.W * v66.W),
+			goto _145
+		_145:
+			P = v5
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
+			v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassA
+			v4 = P
+			v5 = b3Vec3W4{
+				X: b3SubW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3SubW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3SubW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _1047
-		_1047:
-			v68 = v59
-			v70 = v67
-			v71 = b3FloatW4{
-				X: v68.X - v70.X,
-				Y: v68.Y - v70.Y,
-				Z: v68.Z - v70.Z,
-				W: v68.W - v70.W,
+			goto _150
+		_150:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v5
+			v3 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
+			v10 = (*b3ContactConstraintWide)(unsafe.Pointer(c1)).InvMassB
+			v4 = P
+			v5 = b3Vec3W4{
+				X: b3AddW4(tls, v3.X, b3MulW4(tls, v10, v4.X)),
+				Y: b3AddW4(tls, v3.Y, b3MulW4(tls, v10, v4.Y)),
+				Z: b3AddW4(tls, v3.Z, b3MulW4(tls, v10, v4.Z)),
 			}
-			goto _1051
-		_1051:
-			c1.X = v71
-			v72 = v64.Z
-			v74 = v78.X
-			v75 = b3FloatW4{
-				X: float32(v72.X * v74.X),
-				Y: float32(v72.Y * v74.Y),
-				Z: float32(v72.Z * v74.Z),
-				W: float32(v72.W * v74.W),
-			}
-			goto _1055
-		_1055:
-			v76 = v64.X
-			v80 = v78.Z
-			v82 = b3FloatW4{
-				X: float32(v76.X * v80.X),
-				Y: float32(v76.Y * v80.Y),
-				Z: float32(v76.Z * v80.Z),
-				W: float32(v76.W * v80.W),
-			}
-			goto _1059
-		_1059:
-			v83 = v75
-			v84 = v82
-			v86 = b3FloatW4{
-				X: v83.X - v84.X,
-				Y: v83.Y - v84.Y,
-				Z: v83.Z - v84.Z,
-				W: v83.W - v84.W,
-			}
-			goto _1063
-		_1063:
-			c1.Y = v86
-			v87 = v64.X
-			v88 = v78.Y
-			v90 = b3FloatW4{
-				X: float32(v87.X * v88.X),
-				Y: float32(v87.Y * v88.Y),
-				Z: float32(v87.Z * v88.Z),
-				W: float32(v87.W * v88.W),
-			}
-			goto _1067
-		_1067:
-			v91 = v64.Y
-			v92 = v78.X
-			v94 = b3FloatW4{
-				X: float32(v91.X * v92.X),
-				Y: float32(v91.Y * v92.Y),
-				Z: float32(v91.Z * v92.Z),
-				W: float32(v91.W * v92.W),
-			}
-			goto _1071
-		_1071:
-			v95 = v90
-			v96 = v94
-			v98 = b3FloatW4{
-				X: v95.X - v96.X,
-				Y: v95.Y - v96.Y,
-				Z: v95.Z - v96.Z,
-				W: v95.W - v96.W,
-			}
-			goto _1075
-		_1075:
-			c1.Z = v98
-			v79 = c1
-			goto _1077
-		_1077:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).W = b3MulSubMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIA, v79)
-			v17 = rB1
-			v18 = P
-			v2 = v17.Y
-			v5 = v18.Z
-			v7 = b3FloatW4{
-				X: float32(v2.X * v5.X),
-				Y: float32(v2.Y * v5.Y),
-				Z: float32(v2.Z * v5.Z),
-				W: float32(v2.W * v5.W),
-			}
-			goto _1083
-		_1083:
-			v10 = v17.Z
-			v14 = v18.Y
-			v21 = b3FloatW4{
-				X: float32(v10.X * v14.X),
-				Y: float32(v10.Y * v14.Y),
-				Z: float32(v10.Z * v14.Z),
-				W: float32(v10.W * v14.W),
-			}
-			goto _1087
-		_1087:
-			v22 = v7
-			v23 = v21
-			v25 = b3FloatW4{
-				X: v22.X - v23.X,
-				Y: v22.Y - v23.Y,
-				Z: v22.Z - v23.Z,
-				W: v22.W - v23.W,
-			}
-			goto _1091
-		_1091:
-			c1.X = v25
-			v26 = v17.Z
-			v27 = v18.X
-			v29 = b3FloatW4{
-				X: float32(v26.X * v27.X),
-				Y: float32(v26.Y * v27.Y),
-				Z: float32(v26.Z * v27.Z),
-				W: float32(v26.W * v27.W),
-			}
-			goto _1095
-		_1095:
-			v30 = v17.X
-			v31 = v18.Z
-			v33 = b3FloatW4{
-				X: float32(v30.X * v31.X),
-				Y: float32(v30.Y * v31.Y),
-				Z: float32(v30.Z * v31.Z),
-				W: float32(v30.W * v31.W),
-			}
-			goto _1099
-		_1099:
-			v34 = v29
-			v35 = v33
-			v40 = b3FloatW4{
-				X: v34.X - v35.X,
-				Y: v34.Y - v35.Y,
-				Z: v34.Z - v35.Z,
-				W: v34.W - v35.W,
-			}
-			goto _1103
-		_1103:
-			c1.Y = v40
-			v42 = v17.X
-			v43 = v18.Y
-			v44 = b3FloatW4{
-				X: float32(v42.X * v43.X),
-				Y: float32(v42.Y * v43.Y),
-				Z: float32(v42.Z * v43.Z),
-				W: float32(v42.W * v43.W),
-			}
-			goto _1107
-		_1107:
-			v46 = v17.Y
-			v47 = v18.X
-			v48 = b3FloatW4{
-				X: float32(v46.X * v47.X),
-				Y: float32(v46.Y * v47.Y),
-				Z: float32(v46.Z * v47.Z),
-				W: float32(v46.W * v47.W),
-			}
-			goto _1111
-		_1111:
-			v50 = v44
-			v51 = v48
-			v52 = b3FloatW4{
-				X: v50.X - v51.X,
-				Y: v50.Y - v51.Y,
-				Z: v50.Z - v51.Z,
-				W: v50.W - v51.W,
-			}
-			goto _1115
-		_1115:
-			c1.Z = v52
-			v19 = c1
-			goto _1117
-		_1117:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W = b3MulAddMVW(tls, (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).W, (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvIB, v19)
-			v17 = P
-			v2 = manifoldImpulse
-			v18 = (*b3ContactManifoldWide)(unsafe.Pointer(cm)).Normal
-			v5 = v2
-			v7 = v18.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
-			}
-			goto _1126
-		_1126:
-			v14 = v17.X
-			v21 = v10
-			v22 = b3FloatW4{
-				X: v14.X + v21.X,
-				Y: v14.Y + v21.Y,
-				Z: v14.Z + v21.Z,
-				W: v14.W + v21.W,
-			}
-			goto _1130
-		_1130:
-			v23 = v2
-			v25 = v18.Y
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
-			}
-			goto _1134
-		_1134:
-			v27 = v17.Y
-			v29 = v26
-			v30 = b3FloatW4{
-				X: v27.X + v29.X,
-				Y: v27.Y + v29.Y,
-				Z: v27.Z + v29.Z,
-				W: v27.W + v29.W,
-			}
-			goto _1138
-		_1138:
-			v31 = v2
-			v33 = v18.Z
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _1142
-		_1142:
-			v35 = v17.Z
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X + v40.X,
-				Y: v35.Y + v40.Y,
-				Z: v35.Z + v40.Z,
-				W: v35.W + v40.W,
-			}
-			goto _1146
-		_1146:
-			v19 = b3Vec3W4{
-				X: v22,
-				Y: v30,
-				Z: v42,
-			}
-			goto _1122
-		_1122:
-			P = v19
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp))).V
-			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassA
-			v18 = P
-			v5 = v2
-			v7 = v18.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
-			}
-			goto _1155
-		_1155:
-			v14 = v17.X
-			v21 = v10
-			v22 = b3FloatW4{
-				X: v14.X - v21.X,
-				Y: v14.Y - v21.Y,
-				Z: v14.Z - v21.Z,
-				W: v14.W - v21.W,
-			}
-			goto _1159
-		_1159:
-			v23 = v2
-			v25 = v18.Y
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
-			}
-			goto _1163
-		_1163:
-			v27 = v17.Y
-			v29 = v26
-			v30 = b3FloatW4{
-				X: v27.X - v29.X,
-				Y: v27.Y - v29.Y,
-				Z: v27.Z - v29.Z,
-				W: v27.W - v29.W,
-			}
-			goto _1167
-		_1167:
-			v31 = v2
-			v33 = v18.Z
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _1171
-		_1171:
-			v35 = v17.Z
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X - v40.X,
-				Y: v35.Y - v40.Y,
-				Z: v35.Z - v40.Z,
-				W: v35.W - v40.W,
-			}
-			goto _1175
-		_1175:
-			v19 = b3Vec3W4{
-				X: v22,
-				Y: v30,
-				Z: v42,
-			}
-			goto _1151
-		_1151:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp))).V = v19
-			v17 = (*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V
-			v2 = (*b3ContactConstraintWide)(unsafe.Pointer(c2)).InvMassB
-			v18 = P
-			v5 = v2
-			v7 = v18.X
-			v10 = b3FloatW4{
-				X: float32(v5.X * v7.X),
-				Y: float32(v5.Y * v7.Y),
-				Z: float32(v5.Z * v7.Z),
-				W: float32(v5.W * v7.W),
-			}
-			goto _1184
-		_1184:
-			v14 = v17.X
-			v21 = v10
-			v22 = b3FloatW4{
-				X: v14.X + v21.X,
-				Y: v14.Y + v21.Y,
-				Z: v14.Z + v21.Z,
-				W: v14.W + v21.W,
-			}
-			goto _1188
-		_1188:
-			v23 = v2
-			v25 = v18.Y
-			v26 = b3FloatW4{
-				X: float32(v23.X * v25.X),
-				Y: float32(v23.Y * v25.Y),
-				Z: float32(v23.Z * v25.Z),
-				W: float32(v23.W * v25.W),
-			}
-			goto _1192
-		_1192:
-			v27 = v17.Y
-			v29 = v26
-			v30 = b3FloatW4{
-				X: v27.X + v29.X,
-				Y: v27.Y + v29.Y,
-				Z: v27.Z + v29.Z,
-				W: v27.W + v29.W,
-			}
-			goto _1196
-		_1196:
-			v31 = v2
-			v33 = v18.Z
-			v34 = b3FloatW4{
-				X: float32(v31.X * v33.X),
-				Y: float32(v31.Y * v33.Y),
-				Z: float32(v31.Z * v33.Z),
-				W: float32(v31.W * v33.W),
-			}
-			goto _1200
-		_1200:
-			v35 = v17.Z
-			v40 = v34
-			v42 = b3FloatW4{
-				X: v35.X + v40.X,
-				Y: v35.Y + v40.Y,
-				Z: v35.Z + v40.Z,
-				W: v35.W + v40.W,
-			}
-			goto _1204
-		_1204:
-			v19 = b3Vec3W4{
-				X: v22,
-				Y: v30,
-				Z: v42,
-			}
-			goto _1180
-		_1180:
-			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v19
-			goto _37
-		_37:
+			goto _155
+		_155:
+			(*(*b3BodyStateW)(unsafe.Add(nil, bp+208))).V = v5
+			goto _7
+		_7:
 			;
 			manifoldIndex = manifoldIndex + 1
 		}
-		b3ScatterBodies(tls, states, c2, bp)
-		b3ScatterBodies(tls, states, c2+16, bp+208)
-		c2 = b3NextConstraintW(tls, c2, manifoldCount)
-		goto _12
-	_12:
+		b3ScatterBodies(tls, states, c1, bp)
+		b3ScatterBodies(tls, states, c1+16, bp+208)
+		c1 = b3NextConstraintW(tls, c1, manifoldCount)
+		goto _1
+	_1:
 		;
 		i = i + 1
 	}

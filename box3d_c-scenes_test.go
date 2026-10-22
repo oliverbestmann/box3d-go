@@ -4,6 +4,8 @@ import "unsafe"
 
 var _ unsafe.Pointer
 
+type _BoneId1 = int32
+
 type _BoneId = int32
 
 type _Bone struct {
@@ -71,7 +73,7 @@ type _QuerySpawnData struct {
 	LastSpawnPosition Pos
 }
 
-func _CreateGroup(tls *_Stack, data uintptr, worldId WorldId, rowIndex int32, columnIndex int32) {
+func _CreateGroup1(tls *_Stack, data uintptr, worldId WorldId, rowIndex int32, columnIndex int32) {
 	var colorize uint8
 	var dampingRatio, frictionTorque, groupDistance, hertz, span float32
 	var groupIndex, i int32
@@ -136,7 +138,7 @@ func _CreateFallingRagdolls(tls *_Stack, worldId WorldId) (r _FallingRagdollData
 			body = b3CreateBody(tls, worldId, bp+14152)
 			b3CreateMeshShape(tls, body, bp+14264, (*(*_FallingRagdollData)(unsafe.Add(nil, bp))).GridMesh, b3Vec3_one)
 			b3CreateMeshShape(tls, body, bp+14264, (*(*_FallingRagdollData)(unsafe.Add(nil, bp))).TorusMesh, b3Vec3_one)
-			_CreateGroup(tls, bp, worldId, i, j)
+			_CreateGroup1(tls, bp, worldId, i, j)
 			(*(*BodyDef)(unsafe.Add(nil, bp+14152))).Position.Z += float32FromFloat32(15)
 			goto _2
 		_2:
@@ -2947,4 +2949,2774 @@ func _DestroyMeshDrop(tls *_Stack, data uintptr) {
 	b3DestroyMesh(tls, (*_MeshDropData)(unsafe.Pointer(data)).Mesh)
 }
 
+type _VillageCast struct {
+	Origin   Pos
+	Point    Pos
+	Normal   Vec3
+	Fraction float32
+	Hit      uint8
+}
+
+type _VillageCurtain struct {
+	Casts       uintptr
+	CastCount   int32
+	Translation Vec3
+	Radius      float32
+}
+
+var g_groundShapeId = ShapeId{}
+
+func _GetGroundShapeId(tls *_Stack) (r ShapeId) {
+	return g_groundShapeId
+}
+
+func _ResetGroundShapeId(tls *_Stack) {
+	g_groundShapeId = b3_nullShapeId
+}
+
+func _CreateJointGrid(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(432)
+	defer tls.Free(432)
+	var bodies uintptr
+	var body BodyId
+	var fi, fk float32
+	var i, index, k, n, v3 int32
+	var _ /* bodyDef at bp+320 */ BodyDef
+	var _ /* jointDef at bp+136 */ SphericalJointDef
+	var _ /* shapeDef at bp+0 */ ShapeDef
+	var _ /* sphere at bp+120 */ Sphere
+	_, _, _, _, _, _, _, _, _ = bodies, body, fi, fk, i, index, k, n, v3
+	b3World_EnableSleeping(tls, worldId, boolUint8(false1 != 0))
+	n = int32(100)
+	// Allocate to avoid huge stack usage
+	bodies = malloc(tls, uint64FromInt32(n*n)*uint64(8))
+	index = 0
+	*(*ShapeDef)(unsafe.Add(nil, bp)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp))).Filter.CategoryBits = uint64(2)
+	(*(*ShapeDef)(unsafe.Add(nil, bp))).Filter.MaskBits = uint64(^uint32FromUint32(2))
+	*(*Sphere)(unsafe.Add(nil, bp+120)) = Sphere{
+		Radius: float32FromFloat32(0.4),
+	}
+	*(*SphericalJointDef)(unsafe.Add(nil, bp+136)) = b3DefaultSphericalJointDef(tls)
+	*(*BodyDef)(unsafe.Add(nil, bp+320)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+320))).EnableSleep = boolUint8(false1 != 0)
+	k = 0
+	for {
+		if !(k < n) {
+			break
+		}
+		i = 0
+		for {
+			if !(i < n) {
+				break
+			}
+			fk = float32(k)
+			fi = float32(i)
+			if i == 0 {
+				(*(*BodyDef)(unsafe.Add(nil, bp+320))).Type1 = int32(b3_staticBody)
+			} else {
+				(*(*BodyDef)(unsafe.Add(nil, bp+320))).Type1 = int32(b3_dynamicBody)
+			}
+			(*(*BodyDef)(unsafe.Add(nil, bp+320))).Position = Pos{
+				X: fk,
+				Y: -fi,
+			}
+			body = b3CreateBody(tls, worldId, bp+320)
+			b3CreateSphereShape(tls, body, bp, bp+120)
+			if i > 0 {
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.BodyIdA = *(*BodyId)(unsafe.Add(nil, bodies+uintptr(index-int32(1))*8))
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.BodyIdB = body
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.LocalFrameA.P = Vec3{
+					Y: -float32FromFloat32(0.5),
+				}
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.LocalFrameB.P = Vec3{
+					Y: float32FromFloat32(0.5),
+				}
+				b3CreateSphericalJoint(tls, worldId, bp+136)
+			}
+			if k > 0 {
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.BodyIdA = *(*BodyId)(unsafe.Add(nil, bodies+uintptr(index-n)*8))
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.BodyIdB = body
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.LocalFrameA.P = Vec3{
+					X: float32FromFloat32(0.5),
+				}
+				(*(*SphericalJointDef)(unsafe.Add(nil, bp+136))).Base.LocalFrameB.P = Vec3{
+					X: -float32FromFloat32(0.5),
+				}
+				b3CreateSphericalJoint(tls, worldId, bp+136)
+			}
+			v3 = index
+			index = index + 1
+			*(*BodyId)(unsafe.Add(nil, bodies+uintptr(v3)*8)) = body
+			goto _2
+		_2:
+			;
+			i = i + 1
+		}
+		goto _1
+	_1:
+		;
+		k = k + 1
+	}
+	free(tls, bodies)
+}
+
+// C documentation
+//
+//	// The 80 block version falls over after 1000 steps.
+func _CreateLargePyramid(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(1856)
+	defer tls.Free(1856)
+	var baseCount, i, j int32
+	var bodyId, groundId BodyId
+	var h, shift, x, y float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+928 */ BodyDef
+	var _ /* box at bp+112 */ BoxHull
+	var _ /* box at bp+1160 */ BoxHull
+	var _ /* shapeDef at bp+1040 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _, _ = baseCount, bodyId, groundId, h, i, j, shift, x, y
+	b3World_EnableSleeping(tls, worldId, boolUint8(false1 != 0))
+	baseCount = int32(100)
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		Y: -float32FromFloat32(1),
+	}
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(400), float32FromFloat32(1), float32FromFloat32(400))
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
+	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Density = float32FromFloat32(100)
+	h = float32FromFloat32(0.5)
+	*(*BoxHull)(unsafe.Add(nil, bp+1160)) = b3MakeBoxHull(tls, h, h, h)
+	shift = float32(float32FromFloat32(1) * h)
+	i = 0
+	for {
+		if !(i < baseCount) {
+			break
+		}
+		y = float32((float32(float32FromFloat32(2)*float32(i)) + float32FromFloat32(1)) * shift)
+		j = i
+		for {
+			if !(j < baseCount) {
+				break
+			}
+			x = float32((float32(i)+float32FromFloat32(1))*shift) + float32(float32(float32FromFloat32(2)*float32(j-i))*shift) - float32(h*float32(baseCount))
+			(*(*BodyDef)(unsafe.Add(nil, bp+928))).Position = Pos{
+				X: x,
+				Y: y,
+			}
+			bodyId = b3CreateBody(tls, worldId, bp+928)
+			b3CreateHullShape(tls, bodyId, bp+1040, bp+1160)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _CreateWidePyramid(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(1856)
+	defer tls.Free(1856)
+	var bodyId, groundId BodyId
+	var boxSeparation, boxSize, h, halfBoxSize, x, y, z, v4, v5 float32
+	var i, j, k, pyramidHeight int32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+1624 */ BodyDef
+	var _ /* box at bp+112 */ BoxHull
+	var _ /* box at bp+928 */ BoxHull
+	var _ /* shapeDef at bp+1736 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyId, boxSeparation, boxSize, groundId, h, halfBoxSize, i, j, k, pyramidHeight, x, y, z, v4, v5
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		Y: -float32FromFloat32(1),
+	}
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(100), float32FromFloat32(1), float32FromFloat32(100))
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
+	boxSize = float32FromFloat32(2)
+	boxSeparation = float32FromFloat32(0.5)
+	halfBoxSize = float32(float32FromFloat32(0.5) * boxSize)
+	pyramidHeight = int32(15)
+	h = float32(float64(halfBoxSize) - float64(0.025))
+	*(*BoxHull)(unsafe.Add(nil, bp+928)) = b3MakeBoxHull(tls, h, h, h)
+	*(*BodyDef)(unsafe.Add(nil, bp+1624)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+1624))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1736)) = b3DefaultShapeDef(tls)
+	i = 0
+	for {
+		if !(i < pyramidHeight) {
+			break
+		}
+		j = i / int32(2)
+		for {
+			if !(j < pyramidHeight-(i+int32(1))/int32(2)) {
+				break
+			}
+			k = i / int32(2)
+			for {
+				if !(k < pyramidHeight-(i+int32(1))/int32(2)) {
+					break
+				}
+				if i&int32(1) != 0 {
+					v4 = halfBoxSize
+				} else {
+					v4 = float32FromFloat32(0)
+				}
+				x = float32(-pyramidHeight) + float32(boxSize*float32(j)) + v4
+				y = float32FromFloat32(1) + float32((boxSize+boxSeparation)*float32(i))
+				if i&int32(1) != 0 {
+					v5 = halfBoxSize
+				} else {
+					v5 = float32FromFloat32(0)
+				}
+				z = float32(-pyramidHeight) + float32(boxSize*float32(k)) + v5
+				(*(*BodyDef)(unsafe.Add(nil, bp+1624))).Position = Pos{
+					X: x,
+					Y: y,
+					Z: z,
+				}
+				bodyId = b3CreateBody(tls, worldId, bp+1624)
+				b3CreateHullShape(tls, bodyId, bp+1736, bp+928)
+				goto _3
+			_3:
+				;
+				k = k + 1
+			}
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _CreateSmallPyramid(tls *_Stack, worldId WorldId, baseCount int32, extent float32, centerX float32, baseZ float32) {
+	bp := tls.Alloc(928)
+	defer tls.Free(928)
+	var bodyId BodyId
+	var i, j int32
+	var x, y float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* box at bp+232 */ BoxHull
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _ = bodyId, i, j, x, y
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).EnableSleep = boolUint8(false1 != 0)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(100)
+	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, extent, extent, extent)
+	i = 0
+	for {
+		if !(i < baseCount) {
+			break
+		}
+		y = float32((float32(float32FromFloat32(2)*float32(i)) + float32FromFloat32(1)) * extent)
+		j = i
+		for {
+			if !(j < baseCount) {
+				break
+			}
+			x = float32((float32(i)+float32FromFloat32(1))*extent) + float32(float32(float32FromFloat32(2)*float32(j-i))*extent) + centerX - float32FromFloat32(0.5)
+			(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+				X: x,
+				Y: y,
+				Z: baseZ,
+			}
+			bodyId = b3CreateBody(tls, worldId, bp)
+			b3CreateHullShape(tls, bodyId, bp+112, bp+232)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _CreateManyPyramids(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(928)
+	defer tls.Free(928)
+	var baseCount, columnCount, i, j, rowCount int32
+	var baseWidth, baseZ, centerX, deltaZ, extent, groundExtent float32
+	var groundId BodyId
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* box at bp+232 */ BoxHull
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _ = baseCount, baseWidth, baseZ, centerX, columnCount, deltaZ, extent, groundExtent, groundId, i, j, rowCount
+	baseCount = int32(10)
+	extent = float32FromFloat32(0.5)
+	rowCount = int32(14)
+	columnCount = int32(14)
+	groundExtent = float32(float32(extent*float32(columnCount)) * (float32(baseCount) + float32FromFloat32(1)))
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		Y: -float32FromFloat32(1),
+	}
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, groundExtent, float32FromFloat32(1), groundExtent)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+112, bp+232)
+	baseWidth = float32(float32(float32FromFloat32(2)*extent) * float32(baseCount))
+	baseZ = -groundExtent + float32(float32FromFloat32(2)*extent)
+	deltaZ = float32(float32FromFloat32(2)*(groundExtent-float32(float32FromFloat32(2)*extent))) / (float32(rowCount) - float32FromFloat32(1))
+	i = 0
+	for {
+		if !(i < rowCount) {
+			break
+		}
+		j = 0
+		for {
+			if !(j < columnCount) {
+				break
+			}
+			centerX = -groundExtent + float32(float32(j)*(baseWidth+float32(float32FromFloat32(2)*extent))) + float32(float32FromFloat32(2)*extent)
+			_CreateSmallPyramid(tls, worldId, baseCount, extent, centerX, baseZ)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		baseZ = baseZ + deltaZ
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+type _Group struct {
+	Humans [3]_Human
+}
+
+type _RainData struct {
+	Groups      uintptr
+	GridMesh    uintptr
+	TorusMesh   uintptr
+	ColumnCount int32
+	ColumnIndex int32
+}
+
+func _GetRainCapacity(tls *_Stack, capacity uintptr) {
+}
+
+func _CreateRain(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(240)
+	defer tls.Free(240)
+	var body BodyId
+	var halfMeshGridRows, i, j int32
+	var meshGridCellWidth, span float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _, _ = body, halfMeshGridRows, i, j, meshGridCellWidth, span
+	memset(tls, uintptr(unsafe.Pointer(&g_rainData)), 0, uint64(32))
+	g_rainData.Groups = malloc(tls, uint64FromInt32(int32FromInt32(_RAIN_GRID_COUNT)*int32FromInt32(_RAIN_GRID_COUNT))*uint64FromInt64(5292))
+	memset(tls, g_rainData.Groups, 0, uint64FromInt32(int32FromInt32(_RAIN_GRID_COUNT)*int32FromInt32(_RAIN_GRID_COUNT))*uint64FromInt64(5292))
+	halfMeshGridRows = int32(4)
+	meshGridCellWidth = float32FromFloat32(15) / float32(float32FromFloat32(2)*float32(halfMeshGridRows))
+	g_rainData.GridMesh = b3CreateGridMesh(tls, int32(2)*halfMeshGridRows, int32(2)*halfMeshGridRows, meshGridCellWidth, int32(1), boolUint8(true1 != 0))
+	g_rainData.TorusMesh = b3CreateTorusMesh(tls, int32(16), int32(16), float32(float32FromFloat32(0.25)*float32FromFloat32(15)), float32FromFloat32(1))
+	span = float32(float32FromFloat32(15) * float32FromInt32(_RAIN_GRID_COUNT))
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.X = float32(-float32FromFloat32(0.5)*span) + float32(float32FromFloat32(0.5)*float32FromFloat32(15))
+	i = 0
+	for {
+		if !(i < int32(_RAIN_GRID_COUNT)) {
+			break
+		}
+		(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Z = float32(-float32FromFloat32(0.5)*span) + float32(float32FromFloat32(0.5)*float32FromFloat32(15))
+		j = 0
+		for {
+			if !(j < int32(_RAIN_GRID_COUNT)) {
+				break
+			}
+			body = b3CreateBody(tls, worldId, bp)
+			b3CreateMeshShape(tls, body, bp+112, g_rainData.GridMesh, b3Vec3_one)
+			b3CreateMeshShape(tls, body, bp+112, g_rainData.TorusMesh, b3Vec3_one)
+			(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Z += float32FromFloat32(15)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		(*(*BodyDef)(unsafe.Add(nil, bp))).Position.X += float32FromFloat32(15)
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	// b3World_SetJointTuning( worldId, 60.0f, 1.0f );
+}
+
+func _DestroyRain(tls *_Stack) {
+	b3DestroyMesh(tls, g_rainData.GridMesh)
+	b3DestroyMesh(tls, g_rainData.TorusMesh)
+	free(tls, g_rainData.Groups)
+	g_rainData.Groups = uintptrFromInt32(0)
+}
+
+func _CreateGroup(tls *_Stack, worldId WorldId, rowIndex int32, columnIndex int32) {
+	var colorize uint8
+	var dampingRatio, frictionTorque, groupDistance, hertz, span float32
+	var groupIndex, i int32
+	var human uintptr
+	var position Pos
+	_, _, _, _, _, _, _, _, _, _ = colorize, dampingRatio, frictionTorque, groupDistance, groupIndex, hertz, human, i, position, span
+	groupIndex = rowIndex*int32(_RAIN_GRID_COUNT) + columnIndex
+	span = float32(float32FromInt32(_RAIN_GRID_COUNT) * float32FromFloat32(15))
+	groupDistance = float32(float32FromFloat32(1)*span) / float32FromInt32(_RAIN_GRID_COUNT)
+	position.X = float32(-float32FromFloat32(0.5)*span) + float32(groupDistance*(float32(columnIndex)+float32FromFloat32(0.5)))
+	position.Y = float32FromFloat32(20)
+	position.Z = float32(-float32FromFloat32(0.5)*span) + float32(groupDistance*(float32(rowIndex)+float32FromFloat32(0.5)))
+	frictionTorque = float32FromFloat32(5)
+	hertz = float32FromFloat32(1)
+	dampingRatio = float32FromFloat32(0.7)
+	colorize = boolUint8(false1 != 0)
+	i = 0
+	for {
+		if !(i < int32(_RAIN_GROUP_SIZE)) {
+			break
+		}
+		human = g_rainData.Groups + uintptr(groupIndex)*5292 + uintptr(i)*1764
+		_CreateHuman(tls, human, worldId, position, frictionTorque, hertz, dampingRatio, groupIndex, uintptrFromInt32(0), colorize)
+		position.X += float32FromFloat32(0.75)
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _DestroyGroup(tls *_Stack, rowIndex int32, columnIndex int32) {
+	var groupIndex, i int32
+	_, _ = groupIndex, i
+	groupIndex = rowIndex*int32(_RAIN_GRID_COUNT) + columnIndex
+	i = 0
+	for {
+		if !(i < int32(_RAIN_GROUP_SIZE)) {
+			break
+		}
+		_DestroyHuman(tls, g_rainData.Groups+uintptr(groupIndex)*5292+uintptr(i)*1764)
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _StepRain(tls *_Stack, worldId WorldId, stepCount int32) {
+	var delay, i, i1, increment, v2, v3, v4, v6 int32
+	_, _, _, _, _, _, _, _ = delay, i, i1, increment, v2, v3, v4, v6
+	delay = int32(0x2F)
+	increment = int32(1)
+	if stepCount&delay == 0 {
+		if g_rainData.ColumnCount < int32(_RAIN_GRID_COUNT) {
+			i = 0
+			for {
+				if !(i < int32(_RAIN_GRID_COUNT)) {
+					break
+				}
+				_CreateGroup(tls, worldId, i, g_rainData.ColumnCount)
+				goto _1
+			_1:
+				;
+				i = i + increment
+			}
+			v2 = g_rainData.ColumnCount + increment
+			v3 = int32(_RAIN_GRID_COUNT)
+			if v2 < v3 {
+				v6 = v2
+			} else {
+				v6 = v3
+			}
+			v4 = v6
+			goto _5
+		_5:
+			g_rainData.ColumnCount = v4
+		} else {
+			i1 = 0
+			for {
+				if !(i1 < int32(_RAIN_GRID_COUNT)) {
+					break
+				}
+				_DestroyGroup(tls, i1, g_rainData.ColumnIndex)
+				_CreateGroup(tls, worldId, i1, g_rainData.ColumnIndex)
+				goto _7
+			_7:
+				;
+				i1 = i1 + increment
+			}
+			g_rainData.ColumnIndex = g_rainData.ColumnIndex + increment
+			if g_rainData.ColumnIndex >= int32(_RAIN_GRID_COUNT) {
+				g_rainData.ColumnIndex = 0
+			}
+		}
+	}
+}
+
+// Static Floor: a huge grid of static box bodies with b3ShapeDef::invokeContactCreation = true,
+// plus a small number of dynamic spheres that drop onto it staggered over time. The point of this
+// benchmark is to exercise the b3BroadPhase move buffer at steady state when it was once populated
+// with ~staticShapeCount entries and now sees only a handful of dynamic moves per step.
+
+type _StaticFloorData struct {
+	SpheresDropped int32
+}
+
+var g_staticFloorData _StaticFloorData
+
+func _GetLargeWorldCapacity(tls *_Stack, capacity uintptr) {
+	var floorCount, v1, v2, v3, v5 int32
+	_, _, _, _, _ = floorCount, v1, v2, v3, v5
+	floorCount = int32FromInt32(_STATIC_FLOOR_GRID) * int32FromInt32(_STATIC_FLOOR_GRID)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = floorCount
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = floorCount
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32(_STATIC_FLOOR_SPHERES)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32(_STATIC_FLOOR_SPHERES)
+	v1 = int32(1024)
+	v2 = int32FromInt32(8) * int32FromInt32(_STATIC_FLOOR_SPHERES)
+	if v1 > v2 {
+		v5 = v1
+	} else {
+		v5 = v2
+	}
+	v3 = v5
+	goto _4
+_4:
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = v3
+}
+
+func _CreateLargeWorld(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(928)
+	defer tls.Free(928)
+	var body BodyId
+	var cell, halfSpan, x, z float32
+	var gridCount, i, j int32
+	var _ /* bodyDef at bp+696 */ BodyDef
+	var _ /* box at bp+0 */ BoxHull
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _ = body, cell, gridCount, halfSpan, i, j, x, z
+	memset(tls, uintptr(unsafe.Pointer(&g_staticFloorData)), 0, uint64(4))
+	cell = float32FromFloat32(10)
+	gridCount = int32(_STATIC_FLOOR_GRID)
+	halfSpan = float32(float32(float32FromFloat32(0.5)*cell) * float32(gridCount))
+	*(*BoxHull)(unsafe.Add(nil, bp)) = b3MakeBoxHull(tls, float32(float32FromFloat32(0.5)*cell), float32FromFloat32(0.25), float32(float32FromFloat32(0.5)*cell))
+	*(*BodyDef)(unsafe.Add(nil, bp+696)) = b3DefaultBodyDef(tls)
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	// The trigger: every static shape gets buffered into the move set on creation.
+	(*(*ShapeDef)(unsafe.Add(nil, bp+808))).InvokeContactCreation = boolUint8(true1 != 0)
+	i = 0
+	for {
+		if !(i < gridCount) {
+			break
+		}
+		x = -halfSpan + float32((float32(i)+float32FromFloat32(0.5))*cell)
+		j = 0
+		for {
+			if !(j < gridCount) {
+				break
+			}
+			z = -halfSpan + float32((float32(j)+float32FromFloat32(0.5))*cell)
+			(*(*BodyDef)(unsafe.Add(nil, bp+696))).Position = Pos{
+				X: x,
+				Z: z,
+			}
+			body = b3CreateBody(tls, worldId, bp+696)
+			b3CreateHullShape(tls, body, bp+808, bp)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _StepLargeWorld(tls *_Stack, worldId WorldId, stepCount int32) {
+	bp := tls.Alloc(256)
+	defer tls.Free(256)
+	var body BodyId
+	var gi, gj, idx, side int32
+	var halfSpan, inset, usable, x, z float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* sphere at bp+232 */ Sphere
+	_, _, _, _, _, _, _, _, _, _ = body, gi, gj, halfSpan, idx, inset, side, usable, x, z
+	if g_staticFloorData.SpheresDropped >= int32(_STATIC_FLOOR_SPHERES) {
+		return
+	}
+	if stepCount == 0 {
+		return
+	}
+	if stepCount%int32(_STATIC_FLOOR_DROP_INTERVAL) != 0 {
+		return
+	}
+	// Spread spheres in a coarse grid across the floor so they don't all pile on one box.
+	side = int32(1)
+	for side*side < int32(_STATIC_FLOOR_SPHERES) {
+		side = side + int32(1)
+	}
+	idx = g_staticFloorData.SpheresDropped
+	gi = idx % side
+	gj = idx / side
+	halfSpan = float32(float32(float32FromFloat32(0.5)*float32FromFloat32(10)) * float32FromInt32(_STATIC_FLOOR_GRID))
+	// Confine drops to the inner 80% of the floor so spheres can't roll off the edge.
+	inset = float32(float32(float32FromFloat32(0.1)*float32FromFloat32(2)) * halfSpan)
+	usable = float32(float32FromFloat32(2)*halfSpan) - float32(float32FromFloat32(2)*inset)
+	x = -halfSpan + inset + float32((float32(gi)+float32FromFloat32(0.5))*(usable/float32(side)))
+	z = -halfSpan + inset + float32((float32(gj)+float32FromFloat32(0.5))*(usable/float32(side)))
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		X: x,
+		Y: float32FromFloat32(1.5),
+		Z: z,
+	}
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*Sphere)(unsafe.Add(nil, bp+232)) = Sphere{
+		Radius: float32FromFloat32(0.5),
+	}
+	body = b3CreateBody(tls, worldId, bp)
+	b3CreateSphereShape(tls, body, bp+112, bp+232)
+	g_staticFloorData.SpheresDropped += int32(1)
+}
+
+func _GetWasherCapacity(tls *_Stack, capacity uintptr) {
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = int32(16)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32(10000)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = int32(16)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32(10000)
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32(60000)
+}
+
+func _CreateWasher(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(2432)
+	defer tls.Free(2432)
+	var a11, a21, c, nd, p1, p11, p2, p21, p3, p31, p4, p41, p5, p51, p6, p61, p7, p71, p8, p81, pd, t1, t11, t2, t21, t3, t31, u1, u2, v1, v100, v16, v17, v18, v19, v2, v3, v33, v34, v35, v36, v38, v4, v40, v41, v43, v44, v45, v47, v49, v51, v52, v55, v56, v57, v58, v60, v62, v63, v65, v66, v67, v69, v71, v73, v74, v77, v78, v79, v80, v82, v84, v85, v87, v88, v89, v91, v93, v95, v96, v98 Vec3
+	var a6, aa, angle, motorSpeed, r0, r1, r2, x, y, z, v10, v12, v20, v24, v25, v27, v39, v5, v50, v61, v72, v9 float32
+	var bodyId, bodyId1, groundId BodyId
+	var cs CosSin
+	var gridCount, i, i1, j, k int32
+	var hull, hull1 uintptr
+	var kinematic, v22, v7 uint8
+	var q2, q3, qo, v14, v29 Quat
+	var v13, v28 bool
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+2200 */ BodyDef
+	var _ /* bodyDef at bp+928 */ BodyDef
+	var _ /* box at bp+112 */ BoxHull
+	var _ /* cube at bp+1504 */ BoxHull
+	var _ /* jointDef at bp+1352 */ RevoluteJointDef
+	var _ /* points at bp+1160 */ [8]Vec3
+	var _ /* points at bp+1256 */ [8]Vec3
+	var _ /* shapeDef at bp+1040 */ ShapeDef
+	var _ /* shapeDef at bp+2312 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a6, aa, angle, bodyId, bodyId1, c, cs, gridCount, groundId, hull, hull1, i, i1, j, k, kinematic, motorSpeed, nd, p1, p11, p2, p21, p3, p31, p4, p41, p5, p51, p6, p61, p7, p71, p8, p81, pd, q2, q3, qo, r0, r1, r2, t1, t11, t2, t21, t3, t31, u1, u2, x, y, z, v1, v10, v100, v12, v13, v14, v16, v17, v18, v19, v2, v20, v22, v24, v25, v27, v28, v29, v3, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v45, v47, v49, v5, v50, v51, v52, v55, v56, v57, v58, v60, v61, v62, v63, v65, v66, v67, v69, v7, v71, v72, v73, v74, v77, v78, v79, v80, v82, v84, v85, v87, v88, v89, v9, v91, v93, v95, v96, v98
+	kinematic = boolUint8(true1 != 0)
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Y = -float32FromFloat32(1)
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(60), float32FromFloat32(1), float32FromFloat32(60))
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
+	motorSpeed = float32FromFloat32(25)
+	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Position = Pos{
+		Y: float32FromFloat32(21),
+	}
+	if int32FromUint8(kinematic) == int32(true1) {
+		(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_kinematicBody)
+		(*(*BodyDef)(unsafe.Add(nil, bp+928))).AngularVelocity = Vec3{
+			Z: float32(float32FromFloat32(3.14159265359) / float32FromFloat32(180) * motorSpeed),
+		}
+		(*(*BodyDef)(unsafe.Add(nil, bp+928))).LinearVelocity = Vec3{
+			X: float32FromFloat32(0.001),
+			Y: -float32FromFloat32(0.002),
+		}
+	} else {
+		(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
+	}
+	bodyId = b3CreateBody(tls, worldId, bp+928)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	r0 = float32FromFloat32(14)
+	r1 = float32FromFloat32(16)
+	r2 = float32FromFloat32(18)
+	nd = Vec3{
+		Z: -float32FromFloat32(10),
+	}
+	pd = Vec3{
+		Z: float32FromFloat32(10),
+	}
+	angle = float32FromFloat32(3.14159265359) / float32FromFloat32(18)
+	v1 = b3Vec3_axisZ
+	v2 = v1
+	v3 = v2
+	v4 = v2
+	v5 = float32(v3.X*v4.X) + float32(v3.Y*v4.Y) + float32(v3.Z*v4.Z)
+	goto _6
+_6:
+	aa = v5
+	v9 = float32FromFloat32(1) - aa
+	if v9 < float32FromInt32(0) {
+		v12 = -v9
+	} else {
+		v12 = v9
+	}
+	v10 = v12
+	goto _11
+_11:
+	v7 = boolUint8(v10 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+	goto _8
+_8:
+	;
+	if v13 = !!(v7 != 0); !v13 {
+		b3InternalAssert(tls, __ccgo_ts+37544, __ccgo_ts+6355, int32FromInt32(520))
+	}
+	_ = v13 || bool(int32FromInt32(0) != 0)
+	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*angle))
+	q2 = Quat{
+		V: Vec3{
+			X: float32(cs.Sine * v1.X),
+			Y: float32(cs.Sine * v1.Y),
+			Z: float32(cs.Sine * v1.Z),
+		},
+		S: cs.Cosine,
+	}
+	v14 = q2
+	goto _15
+_15:
+	q3 = v14
+	v16 = b3Vec3_axisZ
+	v17 = v16
+	v18 = v17
+	v19 = v17
+	v20 = float32(v18.X*v19.X) + float32(v18.Y*v19.Y) + float32(v18.Z*v19.Z)
+	goto _21
+_21:
+	aa = v20
+	v24 = float32FromFloat32(1) - aa
+	if v24 < float32FromInt32(0) {
+		v27 = -v24
+	} else {
+		v27 = v24
+	}
+	v25 = v27
+	goto _26
+_26:
+	v22 = boolUint8(v25 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+	goto _23
+_23:
+	;
+	if v28 = !!(v22 != 0); !v28 {
+		b3InternalAssert(tls, __ccgo_ts+37544, __ccgo_ts+6355, int32FromInt32(520))
+	}
+	_ = v28 || bool(int32FromInt32(0) != 0)
+	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*float32(float32FromFloat32(0.1)*angle)))
+	q2 = Quat{
+		V: Vec3{
+			X: float32(cs.Sine * v16.X),
+			Y: float32(cs.Sine * v16.Y),
+			Z: float32(cs.Sine * v16.Z),
+		},
+		S: cs.Cosine,
+	}
+	v29 = q2
+	goto _30
+_30:
+	qo = v29
+	u1 = Vec3{
+		X: float32FromFloat32(1),
+	}
+	i = 0
+	for {
+		if !(i < int32(36)) {
+			break
+		}
+		if i == int32(35) {
+			u2 = Vec3{
+				X: float32FromFloat32(1),
+			}
+		} else {
+			v14 = q3
+			v1 = u1
+			v2 = v14.V
+			v3 = v1
+			c.X = float32(v2.Y*v3.Z) - float32(v2.Z*v3.Y)
+			c.Y = float32(v2.Z*v3.X) - float32(v2.X*v3.Z)
+			c.Z = float32(v2.X*v3.Y) - float32(v2.Y*v3.X)
+			v4 = c
+			goto _37
+		_37:
+			t1 = v4
+			v16 = t1
+			v5 = v14.S
+			v17 = v1
+			v18 = Vec3{
+				X: v16.X + float32(v5*v17.X),
+				Y: v16.Y + float32(v5*v17.Y),
+				Z: v16.Z + float32(v5*v17.Z),
+			}
+			goto _42
+		_42:
+			t2 = v18
+			v19 = v14.V
+			v33 = t2
+			c.X = float32(v19.Y*v33.Z) - float32(v19.Z*v33.Y)
+			c.Y = float32(v19.Z*v33.X) - float32(v19.X*v33.Z)
+			c.Z = float32(v19.X*v33.Y) - float32(v19.Y*v33.X)
+			v34 = c
+			goto _46
+		_46:
+			t3 = v34
+			v36 = v1
+			v9 = float32FromFloat32(2)
+			v38 = t3
+			v40 = Vec3{
+				X: v36.X + float32(v9*v38.X),
+				Y: v36.Y + float32(v9*v38.Y),
+				Z: v36.Z + float32(v9*v38.Z),
+			}
+			goto _53
+		_53:
+			v35 = v40
+			goto _48
+		_48:
+			u2 = v35
+		}
+		v14 = qo
+		v1 = u1
+		v2 = v14.V
+		v3 = v1
+		c.X = float32(v2.Y*v3.Z) - float32(v2.Z*v3.Y)
+		c.Y = float32(v2.Z*v3.X) - float32(v2.X*v3.Z)
+		c.Z = float32(v2.X*v3.Y) - float32(v2.Y*v3.X)
+		v4 = c
+		goto _59
+	_59:
+		t11 = v4
+		v16 = t11
+		v5 = v14.S
+		v17 = v1
+		v18 = Vec3{
+			X: v16.X - float32(v5*v17.X),
+			Y: v16.Y - float32(v5*v17.Y),
+			Z: v16.Z - float32(v5*v17.Z),
+		}
+		goto _64
+	_64:
+		t21 = v18
+		v19 = v14.V
+		v33 = t21
+		c.X = float32(v19.Y*v33.Z) - float32(v19.Z*v33.Y)
+		c.Y = float32(v19.Z*v33.X) - float32(v19.X*v33.Z)
+		c.Z = float32(v19.X*v33.Y) - float32(v19.Y*v33.X)
+		v34 = c
+		goto _68
+	_68:
+		t31 = v34
+		v36 = v1
+		v9 = float32FromFloat32(2)
+		v38 = t31
+		v40 = Vec3{
+			X: v36.X + float32(v9*v38.X),
+			Y: v36.Y + float32(v9*v38.Y),
+			Z: v36.Z + float32(v9*v38.Z),
+		}
+		goto _75
+	_75:
+		v35 = v40
+		goto _70
+	_70:
+		a11 = v35
+		v29 = qo
+		v41 = u2
+		v43 = v29.V
+		v44 = v41
+		c.X = float32(v43.Y*v44.Z) - float32(v43.Z*v44.Y)
+		c.Y = float32(v43.Z*v44.X) - float32(v43.X*v44.Z)
+		c.Z = float32(v43.X*v44.Y) - float32(v43.Y*v44.X)
+		v45 = c
+		goto _81
+	_81:
+		t1 = v45
+		v47 = t1
+		v10 = v29.S
+		v49 = v41
+		v51 = Vec3{
+			X: v47.X + float32(v10*v49.X),
+			Y: v47.Y + float32(v10*v49.Y),
+			Z: v47.Z + float32(v10*v49.Z),
+		}
+		goto _86
+	_86:
+		t2 = v51
+		v52 = v29.V
+		v55 = t2
+		c.X = float32(v52.Y*v55.Z) - float32(v52.Z*v55.Y)
+		c.Y = float32(v52.Z*v55.X) - float32(v52.X*v55.Z)
+		c.Z = float32(v52.X*v55.Y) - float32(v52.Y*v55.X)
+		v56 = c
+		goto _90
+	_90:
+		t3 = v56
+		v58 = v41
+		v12 = float32FromFloat32(2)
+		v60 = t3
+		v62 = Vec3{
+			X: v58.X + float32(v12*v60.X),
+			Y: v58.Y + float32(v12*v60.Y),
+			Z: v58.Z + float32(v12*v60.Z),
+		}
+		goto _97
+	_97:
+		v57 = v62
+		goto _92
+	_92:
+		a21 = v57
+		v63 = nd
+		v20 = r1
+		v65 = a11
+		v66 = Vec3{
+			X: v63.X + float32(v20*v65.X),
+			Y: v63.Y + float32(v20*v65.Y),
+			Z: v63.Z + float32(v20*v65.Z),
+		}
+		goto _102
+	_102:
+		p1 = v66
+		v67 = nd
+		v24 = r2
+		v69 = a11
+		v71 = Vec3{
+			X: v67.X + float32(v24*v69.X),
+			Y: v67.Y + float32(v24*v69.Y),
+			Z: v67.Z + float32(v24*v69.Z),
+		}
+		goto _107
+	_107:
+		p2 = v71
+		v73 = nd
+		v25 = r1
+		v74 = a21
+		v77 = Vec3{
+			X: v73.X + float32(v25*v74.X),
+			Y: v73.Y + float32(v25*v74.Y),
+			Z: v73.Z + float32(v25*v74.Z),
+		}
+		goto _112
+	_112:
+		p3 = v77
+		v78 = nd
+		v27 = r2
+		v79 = a21
+		v80 = Vec3{
+			X: v78.X + float32(v27*v79.X),
+			Y: v78.Y + float32(v27*v79.Y),
+			Z: v78.Z + float32(v27*v79.Z),
+		}
+		goto _117
+	_117:
+		p4 = v80
+		v82 = pd
+		v39 = r1
+		v84 = a11
+		v85 = Vec3{
+			X: v82.X + float32(v39*v84.X),
+			Y: v82.Y + float32(v39*v84.Y),
+			Z: v82.Z + float32(v39*v84.Z),
+		}
+		goto _122
+	_122:
+		p5 = v85
+		v87 = pd
+		v50 = r2
+		v88 = a11
+		v89 = Vec3{
+			X: v87.X + float32(v50*v88.X),
+			Y: v87.Y + float32(v50*v88.Y),
+			Z: v87.Z + float32(v50*v88.Z),
+		}
+		goto _127
+	_127:
+		p6 = v89
+		v91 = pd
+		v61 = r1
+		v93 = a21
+		v95 = Vec3{
+			X: v91.X + float32(v61*v93.X),
+			Y: v91.Y + float32(v61*v93.Y),
+			Z: v91.Z + float32(v61*v93.Z),
+		}
+		goto _132
+	_132:
+		p7 = v95
+		v96 = pd
+		v72 = r2
+		v98 = a21
+		v100 = Vec3{
+			X: v96.X + float32(v72*v98.X),
+			Y: v96.Y + float32(v72*v98.Y),
+			Z: v96.Z + float32(v72*v98.Z),
+		}
+		goto _137
+	_137:
+		p8 = v100
+		*(*[8]Vec3)(unsafe.Add(nil, bp+1160)) = [8]Vec3{
+			0: p1,
+			1: p2,
+			2: p3,
+			3: p4,
+			4: p5,
+			5: p6,
+			6: p7,
+			7: p8,
+		}
+		hull = b3CreateHull(tls, bp+1160, int32(8), int32(8))
+		b3CreateHullShape(tls, bodyId, bp+1040, hull)
+		b3DestroyHull(tls, hull)
+		if i%int32(9) == 0 {
+			v1 = nd
+			v5 = r0
+			v2 = u1
+			v3 = Vec3{
+				X: v1.X + float32(v5*v2.X),
+				Y: v1.Y + float32(v5*v2.Y),
+				Z: v1.Z + float32(v5*v2.Z),
+			}
+			goto _142
+		_142:
+			p11 = v3
+			v4 = nd
+			v9 = r1
+			v16 = u1
+			v17 = Vec3{
+				X: v4.X + float32(v9*v16.X),
+				Y: v4.Y + float32(v9*v16.Y),
+				Z: v4.Z + float32(v9*v16.Z),
+			}
+			goto _147
+		_147:
+			p21 = v17
+			v18 = nd
+			v10 = r0
+			v19 = u2
+			v33 = Vec3{
+				X: v18.X + float32(v10*v19.X),
+				Y: v18.Y + float32(v10*v19.Y),
+				Z: v18.Z + float32(v10*v19.Z),
+			}
+			goto _152
+		_152:
+			p31 = v33
+			v34 = nd
+			v12 = r1
+			v35 = u2
+			v36 = Vec3{
+				X: v34.X + float32(v12*v35.X),
+				Y: v34.Y + float32(v12*v35.Y),
+				Z: v34.Z + float32(v12*v35.Z),
+			}
+			goto _157
+		_157:
+			p41 = v36
+			v38 = pd
+			v20 = r0
+			v40 = u1
+			v41 = Vec3{
+				X: v38.X + float32(v20*v40.X),
+				Y: v38.Y + float32(v20*v40.Y),
+				Z: v38.Z + float32(v20*v40.Z),
+			}
+			goto _162
+		_162:
+			p51 = v41
+			v43 = pd
+			v24 = r1
+			v44 = u1
+			v45 = Vec3{
+				X: v43.X + float32(v24*v44.X),
+				Y: v43.Y + float32(v24*v44.Y),
+				Z: v43.Z + float32(v24*v44.Z),
+			}
+			goto _167
+		_167:
+			p61 = v45
+			v47 = pd
+			v25 = r0
+			v49 = u2
+			v51 = Vec3{
+				X: v47.X + float32(v25*v49.X),
+				Y: v47.Y + float32(v25*v49.Y),
+				Z: v47.Z + float32(v25*v49.Z),
+			}
+			goto _172
+		_172:
+			p71 = v51
+			v52 = pd
+			v27 = r1
+			v55 = u2
+			v56 = Vec3{
+				X: v52.X + float32(v27*v55.X),
+				Y: v52.Y + float32(v27*v55.Y),
+				Z: v52.Z + float32(v27*v55.Z),
+			}
+			goto _177
+		_177:
+			p81 = v56
+			*(*[8]Vec3)(unsafe.Add(nil, bp+1256)) = [8]Vec3{
+				0: p11,
+				1: p21,
+				2: p31,
+				3: p41,
+				4: p51,
+				5: p61,
+				6: p71,
+				7: p81,
+			}
+			hull1 = b3CreateHull(tls, bp+1256, int32(8), int32(8))
+			b3CreateHullShape(tls, bodyId, bp+1040, hull1)
+			b3DestroyHull(tls, hull1)
+		}
+		u1 = u2
+		goto _31
+	_31:
+		;
+		i = i + 1
+	}
+	if int32FromUint8(kinematic) == false1 {
+		*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352)) = b3DefaultRevoluteJointDef(tls)
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).Base.BodyIdA = groundId
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).Base.BodyIdB = bodyId
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).Base.LocalFrameA.P.Y = float32FromFloat32(10)
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).MotorSpeed = float32(float32FromFloat32(3.14159265359) / float32FromFloat32(180) * motorSpeed)
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).MaxMotorTorque = float32FromFloat32(1e+08)
+		(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1352))).EnableMotor = boolUint8(true1 != 0)
+		b3CreateRevoluteJoint(tls, worldId, bp+1352)
+	}
+	gridCount = int32(20)
+	a6 = float32FromFloat32(0.2)
+	*(*BoxHull)(unsafe.Add(nil, bp+1504)) = b3MakeBoxHull(tls, a6, a6, a6)
+	*(*BodyDef)(unsafe.Add(nil, bp+2200)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+2200))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+2312)) = b3DefaultShapeDef(tls)
+	x = float32(float32(-float32FromFloat32(2)*a6) * float32(gridCount))
+	i1 = 0
+	for {
+		if !(i1 < gridCount) {
+			break
+		}
+		y = float32(float32(-float32FromFloat32(2)*a6)*float32(gridCount)) + float32FromFloat32(21)
+		j = 0
+		for {
+			if !(j < gridCount) {
+				break
+			}
+			z = float32(float32(-float32FromFloat32(2)*a6) * float32(gridCount))
+			k = 0
+			for {
+				if !(k < gridCount) {
+					break
+				}
+				(*(*BodyDef)(unsafe.Add(nil, bp+2200))).Position = Pos{
+					X: x,
+					Y: y,
+					Z: z,
+				}
+				bodyId1 = b3CreateBody(tls, worldId, bp+2200)
+				b3CreateHullShape(tls, bodyId1, bp+2312, bp+1504)
+				z = z + float32(float32FromFloat32(4)*a6)
+				goto _180
+			_180:
+				;
+				k = k + 1
+			}
+			y = y + float32(float32FromFloat32(4)*a6)
+			goto _179
+		_179:
+			;
+			j = j + 1
+		}
+		x = x + float32(float32FromFloat32(4)*a6)
+		goto _178
+	_178:
+		;
+		i1 = i1 + 1
+	}
+}
+
+func _CreateTrees(tls *_Stack, worldId WorldId, scale int32) {
+	bp := tls.Alloc(240)
+	defer tls.Free(240)
+	var aa, amplitude, angularVelocity, cellWidth, columnHz, l, r, rowHz, tilt, velocityScale, y, yTilt, z, v10, v12, v5, v9 float32
+	var bodyCount, bodyIndex, hullCount, i, i1, shapeIndex, xCount, zCount int32
+	var bodyId, groundId BodyId
+	var c, omega, v, v1, v2, v3, v4 Vec3
+	var center, v19, v20 Pos
+	var cs, cs1 CosSin
+	var hulls [22]uintptr
+	var q, v14 Quat
+	var v13 bool
+	var v7 uint8
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, amplitude, angularVelocity, bodyCount, bodyId, bodyIndex, c, cellWidth, center, columnHz, cs, cs1, groundId, hullCount, hulls, i, i1, l, omega, q, r, rowHz, shapeIndex, tilt, v, velocityScale, xCount, y, yTilt, z, zCount, v1, v10, v12, v13, v14, v19, v2, v20, v3, v4, v5, v7, v9
+	memset(tls, uintptr(unsafe.Pointer(&g_treeData)), 0, uint64(8))
+	// float tilt = 0.15f * B3_PI;
+	tilt = float32(float32FromFloat32(0) * float32FromFloat32(3.14159265359))
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{}
+	v1 = Vec3{
+		X: float32FromFloat32(1),
+	}
+	v2 = v1
+	v3 = v2
+	v4 = v2
+	v5 = float32(v3.X*v4.X) + float32(v3.Y*v4.Y) + float32(v3.Z*v4.Z)
+	goto _6
+_6:
+	aa = v5
+	v9 = float32FromFloat32(1) - aa
+	if v9 < float32FromInt32(0) {
+		v12 = -v9
+	} else {
+		v12 = v9
+	}
+	v10 = v12
+	goto _11
+_11:
+	v7 = boolUint8(v10 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+	goto _8
+_8:
+	;
+	if v13 = !!(v7 != 0); !v13 {
+		b3InternalAssert(tls, __ccgo_ts+37544, __ccgo_ts+6355, int32FromInt32(520))
+	}
+	_ = v13 || bool(int32FromInt32(0) != 0)
+	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*tilt))
+	q = Quat{
+		V: Vec3{
+			X: float32(cs.Sine * v1.X),
+			Y: float32(cs.Sine * v1.Y),
+			Z: float32(cs.Sine * v1.Z),
+		},
+		S: cs.Cosine,
+	}
+	v14 = q
+	goto _15
+_15:
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Rotation = v14
+	groundId = b3CreateBody(tls, worldId, bp)
+	xCount = scale * int32(150)
+	// int zCount = BENCHMARK_DEBUG ? 100 : 400;
+	zCount = scale * int32(200)
+	cellWidth = float32FromFloat32(1) / float32(scale)
+	amplitude = float32FromFloat32(0.4)
+	rowHz = float32FromFloat32(0.05)
+	columnHz = float32FromFloat32(0.1)
+	g_treeData.MeshData = b3CreateWaveMesh(tls, xCount, zCount, cellWidth, amplitude, rowHz, columnHz)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	b3CreateMeshShape(tls, groundId, bp+112, g_treeData.MeshData, b3Vec3_one)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).SleepThreshold = float32FromFloat32(0.2)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Rotation = b3Quat_identity
+	bodyCount = int32(50)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.9)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.05)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).UpdateBodyMass = boolUint8(false1 != 0)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(1)
+	hullCount = int32(22)
+	hulls = [22]uintptr{}
+	y = float32FromFloat32(1)
+	r = float32FromFloat32(0.75)
+	l = float32FromFloat32(1.5)
+	i = 0
+	for {
+		if !(i < hullCount) {
+			break
+		}
+		hulls[i] = b3CreateCylinder(tls, l+float32(float32FromFloat32(2)*r), r, y-r, int32(6))
+		y = y + (l + float32(float32FromFloat32(2)*r))
+		r = float32(float32FromFloat32(0.95) * r)
+		goto _16
+	_16:
+		;
+		i = i + 1
+	}
+	angularVelocity = -float32FromFloat32(0.5)
+	z = -float32FromFloat32(70)
+	cs1 = b3ComputeCosSin(tls, tilt)
+	yTilt = cs1.Sine / cs1.Cosine
+	bodyIndex = 0
+	for {
+		if !(bodyIndex < bodyCount) {
+			break
+		}
+		(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+			Y: float32FromFloat32(1) - float32(z*yTilt),
+			Z: z,
+		}
+		bodyId = b3CreateBody(tls, worldId, bp)
+		shapeIndex = 0
+		for {
+			if !(shapeIndex < int32(22)) {
+				break
+			}
+			// Random rotation provided no benefit to behavior.
+			// float angle = B3_PI * RandomFloat();
+			// b3Transform xf;
+			// xf.p = b3Vec3_zero;
+			// xf.q = b3MakeQuatFromAxisAngle( (b3Vec3){ 0.0f, 1.0f, 0.0f }, angle );
+			// b3Vec3 scale = {1.0f, 1.0f, 1.0f};
+			// b3CreateTransformedHullShape( bodyId, &shapeDef, hulls[shapeIndex], xf, scale );
+			b3CreateHullShape(tls, bodyId, bp+112, hulls[shapeIndex])
+			goto _18
+		_18:
+			;
+			shapeIndex = shapeIndex + 1
+		}
+		velocityScale = float32FromFloat32(0.5) + float32(float32FromFloat32(0.5)*float32(bodyIndex))/float32(bodyCount)
+		b3Body_ApplyMassFromShapes(tls, bodyId)
+		center = b3Body_GetWorldCenter(tls, bodyId)
+		omega = Vec3{
+			Z: float32(velocityScale * angularVelocity),
+		}
+		v19 = center
+		v20 = (*(*BodyDef)(unsafe.Add(nil, bp))).Position
+		v1 = Vec3{
+			X: v19.X - v20.X,
+			Y: v19.Y - v20.Y,
+			Z: v19.Z - v20.Z,
+		}
+		goto _22
+	_22:
+		v2 = omega
+		v3 = v1
+		c.X = float32(v2.Y*v3.Z) - float32(v2.Z*v3.Y)
+		c.Y = float32(v2.Z*v3.X) - float32(v2.X*v3.Z)
+		c.Z = float32(v2.X*v3.Y) - float32(v2.Y*v3.X)
+		v4 = c
+		goto _26
+	_26:
+		v = v4
+		b3Body_SetAngularVelocity(tls, bodyId, omega)
+		b3Body_SetLinearVelocity(tls, bodyId, v)
+		z = z + float32FromFloat32(3)
+		angularVelocity = -angularVelocity
+		goto _17
+	_17:
+		;
+		bodyIndex = bodyIndex + 1
+	}
+	i1 = 0
+	for {
+		if !(i1 < hullCount) {
+			break
+		}
+		b3DestroyHull(tls, hulls[i1])
+		goto _27
+	_27:
+		;
+		i1 = i1 + 1
+	}
+}
+
+func _CreateTrees25(tls *_Stack, worldId WorldId) {
+	_CreateTrees(tls, worldId, int32(4))
+}
+
+func _CreateTrees50(tls *_Stack, worldId WorldId) {
+	_CreateTrees(tls, worldId, int32(2))
+}
+
+func _CreateTrees100(tls *_Stack, worldId WorldId) {
+	_CreateTrees(tls, worldId, int32(1))
+}
+
+func _DestroyTrees(tls *_Stack) {
+	b3DestroyMesh(tls, g_treeData.MeshData)
+	memset(tls, uintptr(unsafe.Pointer(&g_treeData)), 0, uint64(8))
+}
+
+func _CreateMeshDropBenchmark(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(1168)
+	defer tls.Free(1168)
+	var angularVelocity, linearVelocity, v, v20, v39 Vec3
+	var bodyId, groundId BodyId
+	var borderCount, gridCount, i, j, meshGridCount, v11, v16, v25, v30, v35, v6 int32
+	var cellWidth, columnHz, groundAmplitude, offset, r, rowHz, spacing, v10, v13, v15, v18, v22, v23, v24, v27, v29, v3, v32, v34, v37, v4, v5, v8 float32
+	var x uint32_t
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+928 */ BodyDef
+	var _ /* box at bp+232 */ BoxHull
+	var _ /* shapeDef at bp+1040 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularVelocity, bodyId, borderCount, cellWidth, columnHz, gridCount, groundAmplitude, groundId, i, j, linearVelocity, meshGridCount, offset, r, rowHz, spacing, v, x, v10, v11, v13, v15, v16, v18, v20, v22, v23, v24, v25, v27, v29, v3, v30, v32, v34, v35, v37, v39, v4, v5, v6, v8
+	memset(tls, uintptr(unsafe.Pointer(&g_meshDropData)), 0, uint64(8))
+	meshGridCount = int32(120)
+	borderCount = int32(10)
+	cellWidth = float32FromFloat32(1)
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	groundId = b3CreateBody(tls, worldId, bp)
+	rowHz = float32FromFloat32(0.1)
+	columnHz = float32FromFloat32(0.2)
+	groundAmplitude = float32FromFloat32(0.5)
+	g_meshDropData.MeshData = b3CreateWaveMesh(tls, meshGridCount, meshGridCount, cellWidth, groundAmplitude, rowHz, columnHz)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.CategoryBits = uint64(1)
+	b3CreateMeshShape(tls, groundId, bp+112, g_meshDropData.MeshData, b3Vec3_one)
+	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, float32FromFloat32(0.02), float32FromFloat32(0.2), float32FromFloat32(0.04))
+	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	// Don't allow shapes to collide with each other.
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Filter.CategoryBits = uint64(2)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Filter.MaskBits = uint64(1)
+	g_randomSeed = uint32(3963634789)
+	gridCount = int32(100)
+	spacing = float32(cellWidth*float32(meshGridCount-int32FromInt32(2)*borderCount)) / float32(gridCount)
+	offset = float32(float32(float32FromFloat32(0.5)*spacing) * float32(int32FromInt32(1)-gridCount))
+	i = 0
+	for {
+		if !(i < gridCount) {
+			break
+		}
+		j = 0
+		for {
+			if !(j < gridCount) {
+				break
+			}
+			v3 = -float32FromFloat32(1)
+			v4 = float32FromFloat32(1)
+			v5 = v3
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v6 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _7
+		_7:
+			r = float32(v6 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v4-v5)*r) + v5
+			v8 = r
+			goto _9
+		_9:
+			v.X = v8
+			v10 = v3
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v11 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _12
+		_12:
+			r = float32(v11 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v4-v10)*r) + v10
+			v13 = r
+			goto _14
+		_14:
+			v.Y = v13
+			v15 = v3
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v16 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _17
+		_17:
+			r = float32(v16 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v4-v15)*r) + v15
+			v18 = r
+			goto _19
+		_19:
+			v.Z = v18
+			v20 = v
+			goto _21
+		_21:
+			linearVelocity = v20
+			v22 = -float32FromFloat32(5)
+			v23 = float32FromFloat32(5)
+			v24 = v22
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v25 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _26
+		_26:
+			r = float32(v25 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v23-v24)*r) + v24
+			v27 = r
+			goto _28
+		_28:
+			v.X = v27
+			v29 = v22
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v30 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _31
+		_31:
+			r = float32(v30 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v23-v29)*r) + v29
+			v32 = r
+			goto _33
+		_33:
+			v.Y = v32
+			v34 = v22
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v35 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _36
+		_36:
+			r = float32(v35 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v23-v34)*r) + v34
+			v37 = r
+			goto _38
+		_38:
+			v.Z = v37
+			v39 = v
+			goto _40
+		_40:
+			angularVelocity = v39
+			(*(*BodyDef)(unsafe.Add(nil, bp+928))).Position = Pos{
+				X: offset + float32(spacing*float32(i)),
+				Y: float32FromFloat32(5),
+				Z: offset + float32(spacing*float32(j)),
+			}
+			(*(*BodyDef)(unsafe.Add(nil, bp+928))).LinearVelocity = linearVelocity
+			(*(*BodyDef)(unsafe.Add(nil, bp+928))).AngularVelocity = angularVelocity
+			bodyId = b3CreateBody(tls, worldId, bp+928)
+			b3CreateHullShape(tls, bodyId, bp+1040, bp+232)
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _DestroyMeshDropBenchmark(tls *_Stack) {
+	b3DestroyMesh(tls, g_meshDropData.MeshData)
+	memset(tls, uintptr(unsafe.Pointer(&g_meshDropData)), 0, uint64(8))
+}
+
+type _JunkyardData struct {
+	PusherId BodyId
+	Degrees  float32
+	Radius   float32
+}
+
+func _CreateJunkyard(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(4176)
+	defer tls.Free(4176)
+	var X, Y, Z, count int32
+	var bodyId, groundId BodyId
+	var height, mHeight float32
+	var hull, rockHull uintptr
+	var offset, offset1, offset2, offset3 Vec3
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+3712 */ BodyDef
+	var _ /* bodyDef at bp+3944 */ BodyDef
+	var _ /* box at bp+1624 */ BoxHull
+	var _ /* box at bp+232 */ BoxHull
+	var _ /* box at bp+2320 */ BoxHull
+	var _ /* box at bp+3016 */ BoxHull
+	var _ /* box at bp+928 */ BoxHull
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+3824 */ ShapeDef
+	var _ /* shapeDef at bp+4056 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = X, Y, Z, bodyId, count, groundId, height, hull, mHeight, offset, offset1, offset2, offset3, rockHull
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Y = -float32FromFloat32(1)
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, float32FromFloat32(120), float32FromFloat32(1), float32FromFloat32(120))
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+112, bp+232)
+	offset = Vec3{
+		X: -float32FromFloat32(50),
+		Y: float32FromFloat32(8),
+	}
+	*(*BoxHull)(unsafe.Add(nil, bp+928)) = b3MakeOffsetBoxHull(tls, float32FromFloat32(1), float32FromFloat32(8), float32FromFloat32(50), offset)
+	b3CreateHullShape(tls, groundId, bp+112, bp+928)
+	offset1 = Vec3{
+		X: float32FromFloat32(50),
+		Y: float32FromFloat32(8),
+	}
+	*(*BoxHull)(unsafe.Add(nil, bp+1624)) = b3MakeOffsetBoxHull(tls, float32FromFloat32(1), float32FromFloat32(8), float32FromFloat32(50), offset1)
+	b3CreateHullShape(tls, groundId, bp+112, bp+1624)
+	offset2 = Vec3{
+		Y: float32FromFloat32(8),
+		Z: -float32FromFloat32(50),
+	}
+	*(*BoxHull)(unsafe.Add(nil, bp+2320)) = b3MakeOffsetBoxHull(tls, float32FromFloat32(50), float32FromFloat32(8), float32FromFloat32(1), offset2)
+	b3CreateHullShape(tls, groundId, bp+112, bp+2320)
+	offset3 = Vec3{
+		Y: float32FromFloat32(8),
+		Z: float32FromFloat32(50),
+	}
+	*(*BoxHull)(unsafe.Add(nil, bp+3016)) = b3MakeOffsetBoxHull(tls, float32FromFloat32(50), float32FromFloat32(8), float32FromFloat32(1), offset3)
+	b3CreateHullShape(tls, groundId, bp+112, bp+3016)
+	rockHull = b3CreateRock(tls, float32FromFloat32(1.5))
+	count = int32(24)
+	height = float32FromFloat32(24)
+	*(*BodyDef)(unsafe.Add(nil, bp+3712)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+3712))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+3824)) = b3DefaultShapeDef(tls)
+	Y = 0
+	for {
+		if !(Y < count) {
+			break
+		}
+		X = 0
+		for {
+			if !(X <= int32(20)) {
+				break
+			}
+			Z = 0
+			for {
+				if !(Z <= int32(20)) {
+					break
+				}
+				(*(*BodyDef)(unsafe.Add(nil, bp+3712))).Position.X = -float32FromFloat32(40) + float32(float32FromFloat32(4)*float32(X))
+				(*(*BodyDef)(unsafe.Add(nil, bp+3712))).Position.Y = float32(float32FromFloat32(4)*float32(Y)) + height + float32FromFloat32(1)
+				(*(*BodyDef)(unsafe.Add(nil, bp+3712))).Position.Z = -float32FromFloat32(40) + float32(float32FromFloat32(4)*float32(Z))
+				bodyId = b3CreateBody(tls, worldId, bp+3712)
+				b3CreateHullShape(tls, bodyId, bp+3824, rockHull)
+				goto _3
+			_3:
+				;
+				Z = Z + 1
+			}
+			goto _2
+		_2:
+			;
+			X = X + 1
+		}
+		goto _1
+	_1:
+		;
+		Y = Y + 1
+	}
+	b3DestroyHull(tls, rockHull)
+	g_junkyardData.Radius = float32FromFloat32(35)
+	mHeight = float32FromFloat32(24)
+	hull = b3CreateCylinder(tls, mHeight, float32FromFloat32(4), float32FromFloat32(0), int32(16))
+	*(*BodyDef)(unsafe.Add(nil, bp+3944)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+3944))).Type1 = int32(b3_kinematicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp+3944))).Position = Pos{
+		X: g_junkyardData.Radius,
+	}
+	g_junkyardData.PusherId = b3CreateBody(tls, worldId, bp+3944)
+	g_junkyardData.Degrees = float32FromFloat32(0)
+	*(*ShapeDef)(unsafe.Add(nil, bp+4056)) = b3DefaultShapeDef(tls)
+	b3CreateHullShape(tls, g_junkyardData.PusherId, bp+4056, hull)
+	b3DestroyHull(tls, hull)
+}
+
+func _GetJunkyardCapacity(tls *_Stack, capacity uintptr) {
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = int32(16)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32FromInt32(20)*int32FromInt32(20)*int32FromInt32(24) + int32FromInt32(1)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = int32(16)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32FromInt32(20)*int32FromInt32(20)*int32FromInt32(24) + int32FromInt32(1)
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32FromInt32(250) * int32FromInt32(1024)
+}
+
+func _StepJunkyard(tls *_Stack, worldId WorldId, stepCount int32) {
+	var cs CosSin
+	var omega, r, timeStep float32
+	var target WorldTransform
+	var targetPos Pos
+	_, _, _, _, _, _ = cs, omega, r, target, targetPos, timeStep
+	_ = worldId
+	_ = stepCount
+	timeStep = float32FromFloat32(1) / float32FromFloat32(60)
+	omega = -float32FromFloat32(6)
+	g_junkyardData.Degrees += float32(omega * timeStep)
+	cs = b3ComputeCosSin(tls, float32(g_junkyardData.Degrees*float32FromFloat32(3.14159265359))/float32FromFloat32(180))
+	r = g_junkyardData.Radius
+	targetPos = Pos{
+		X: float32(r * cs.Cosine),
+		Z: float32(r * cs.Sine),
+	}
+	target = WorldTransform{
+		P: targetPos,
+		Q: b3Quat_identity,
+	}
+	b3Body_SetTargetTransform(tls, g_junkyardData.PusherId, target, timeStep, boolUint8(false1 != 0))
+}
+
+// Huge pile of large convexes, ported from PEEL. Each convex is the hull of 32 random points on a
+// sphere. A fixed LCG seed makes the hull identical across runs so results compare directly.
+
+func _GetConvexPileCapacity(tls *_Stack, capacity uintptr) {
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32(5120)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32(5120)
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32FromInt32(64) * int32FromInt32(1024)
+}
+
+func _CreateConvexPile(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(1168)
+	defer tls.Free(1168)
+	var amplitude, posX, posY, posZ, scatter float32
+	var bodyId, groundId BodyId
+	var convex uintptr
+	var countX, countZ, layer, layers, x, z int32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+928 */ BodyDef
+	var _ /* box at bp+112 */ BoxHull
+	var _ /* shapeDef at bp+1040 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = amplitude, bodyId, convex, countX, countZ, groundId, layer, layers, posX, posY, posZ, scatter, x, z
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		Y: -float32FromFloat32(1),
+	}
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(250), float32FromFloat32(1), float32FromFloat32(250))
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
+	countX = int32(8)
+	countZ = int32(8)
+	layers = int32(80)
+	amplitude = float32FromFloat32(2)
+	scatter = float32(float32FromFloat32(2) * amplitude)
+	convex = b3CreateComplexHull(tls, amplitude)
+	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	// Grid tall enough to collapse into a pile
+	layer = 0
+	for {
+		if !(layer < layers) {
+			break
+		}
+		z = 0
+		for {
+			if !(z < countZ) {
+				break
+			}
+			x = 0
+			for {
+				if !(x < countX) {
+					break
+				}
+				posX = float32((float32(x) - float32(float32FromFloat32(0.5)*float32(countX))) * scatter)
+				posZ = float32((float32(z) - float32(float32FromFloat32(0.5)*float32(countZ))) * scatter)
+				posY = amplitude + float32(float32(float32FromFloat32(2)*amplitude)*float32(layer))
+				(*(*BodyDef)(unsafe.Add(nil, bp+928))).Position = Pos{
+					X: posX,
+					Y: posY,
+					Z: posZ,
+				}
+				bodyId = b3CreateBody(tls, worldId, bp+928)
+				b3CreateHullShape(tls, bodyId, bp+1040, convex)
+				goto _3
+			_3:
+				;
+				x = x + 1
+			}
+			goto _2
+		_2:
+			;
+			z = z + 1
+		}
+		goto _1
+	_1:
+		;
+		layer = layer + 1
+	}
+	b3DestroyHull(tls, convex)
+}
+
+type _SpinnerData struct {
+	CylinderMesh uintptr
+	SpinnerId    JointId
+}
+
+var g_spinnerData _SpinnerData
+
+// C documentation
+//
+//	// An inward facing cylinder capped on both ends, axis along z. Every triangle is wound so its
+//	// normal points at the axis, which is what holds the contents in. The caps do the same job along
+//	// the axis that the 2D loop had for free.
+func _CreateInwardCylinderMesh(tls *_Stack, radius float32, halfDepth float32, yCenter float32, segmentCount int32) (r uintptr) {
+	bp := tls.Alloc(48)
+	defer tls.Free(48)
+	var angle, x, y float32
+	var centerNegative, centerPositive, i, i1, index, j, triangleCount, vertexCount, v3 int32
+	var cs CosSin
+	var indices, meshData, vertices uintptr
+	var _ /* meshDef at bp+0 */ MeshDef
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angle, centerNegative, centerPositive, cs, i, i1, index, indices, j, meshData, triangleCount, vertexCount, vertices, x, y, v3
+	vertexCount = int32(2)*segmentCount + int32(2)
+	triangleCount = int32(4) * segmentCount
+	vertices = malloc(tls, uint64FromInt32(vertexCount)*uint64(12))
+	indices = malloc(tls, uint64FromInt32(int32(3)*triangleCount)*uint64(4))
+	i = 0
+	for {
+		if !(i < segmentCount) {
+			break
+		}
+		angle = float32(float32(float32FromFloat32(2)*float32FromFloat32(3.14159265359))*float32(i)) / float32(segmentCount)
+		cs = b3ComputeCosSin(tls, angle)
+		x = float32(radius * cs.Cosine)
+		y = float32(radius*cs.Sine) + yCenter
+		*(*Vec3)(unsafe.Add(nil, vertices+uintptr(int32(2)*i+0)*12)) = Vec3{
+			X: x,
+			Y: y,
+			Z: -halfDepth,
+		}
+		*(*Vec3)(unsafe.Add(nil, vertices+uintptr(int32(2)*i+int32(1))*12)) = Vec3{
+			X: x,
+			Y: y,
+			Z: halfDepth,
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	centerNegative = int32(2) * segmentCount
+	centerPositive = int32(2)*segmentCount + int32(1)
+	*(*Vec3)(unsafe.Add(nil, vertices+uintptr(centerNegative)*12)) = Vec3{
+		Y: yCenter,
+		Z: -halfDepth,
+	}
+	*(*Vec3)(unsafe.Add(nil, vertices+uintptr(centerPositive)*12)) = Vec3{
+		Y: yCenter,
+		Z: halfDepth,
+	}
+	index = 0
+	i1 = 0
+	for {
+		if !(i1 < segmentCount) {
+			break
+		}
+		j = (i1 + int32(1)) % segmentCount
+		// Wall, normal towards the axis
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*i1 + 0
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*i1 + int32(1)
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*j + int32(1)
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*i1 + 0
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*j + int32(1)
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*j + 0
+		// Near cap, normal towards positive z
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = centerNegative
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*i1 + 0
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*j + 0
+		// Far cap, normal towards negative z
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = centerPositive
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*j + int32(1)
+		v3 = index
+		index = index + 1
+		*(*int32)(unsafe.Add(nil, indices+uintptr(v3)*4)) = int32(2)*i1 + int32(1)
+		goto _2
+	_2:
+		;
+		i1 = i1 + 1
+	}
+	*(*MeshDef)(unsafe.Add(nil, bp)) = MeshDef{}
+	(*(*MeshDef)(unsafe.Add(nil, bp))).vertices = vertices
+	(*(*MeshDef)(unsafe.Add(nil, bp))).vertexCount = vertexCount
+	(*(*MeshDef)(unsafe.Add(nil, bp))).indices = indices
+	(*(*MeshDef)(unsafe.Add(nil, bp))).triangleCount = triangleCount
+	(*(*MeshDef)(unsafe.Add(nil, bp))).IdentifyEdges = boolUint8(true1 != 0)
+	meshData = b3CreateMesh(tls, bp, uintptrFromInt32(0), 0)
+	free(tls, vertices)
+	free(tls, indices)
+	return meshData
+}
+
+func _GetSpinnerCapacity(tls *_Stack, capacity uintptr) {
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = int32(4)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = int32(4)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32(2000)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32(2000)
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32(20000)
+}
+
+// C documentation
+//
+//	// A paddle on a motor churning a pile of small shapes inside a closed cylinder. The cylinder axis
+//	// is z so the cross section matches the 2D benchmark and the hinge, which turns about the local
+//	// frame z axis, lines up with it. The paddle circle is internally tangent to the cylinder at the
+//	// bottom, so the tip scrapes the floor.
+func _CreateSpinner(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(1568)
+	defer tls.Free(1568)
+	var bodyCount, i int32
+	var bodyId, groundId, spinnerId BodyId
+	var chordHalfWidth, halfDepth, halfLength, radius, spacing, x, xLimit, y, yCenter, yStart, z, zLimit float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* bodyDef at bp+1328 */ BodyDef
+	var _ /* bodyDef at bp+232 */ BodyDef
+	var _ /* jointDef at bp+1160 */ RevoluteJointDef
+	var _ /* paddle at bp+344 */ BoxHull
+	var _ /* shapeDef at bp+1040 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+1440 */ ShapeDef
+	var _ /* sphere at bp+1312 */ Sphere
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyCount, bodyId, chordHalfWidth, groundId, halfDepth, halfLength, i, radius, spacing, spinnerId, x, xLimit, y, yCenter, yStart, z, zLimit
+	g_spinnerData = _SpinnerData{}
+	radius = float32FromFloat32(12)
+	halfDepth = float32FromFloat32(1)
+	yCenter = radius
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	groundId = b3CreateBody(tls, worldId, bp)
+	g_spinnerData.CylinderMesh = _CreateInwardCylinderMesh(tls, radius, halfDepth, yCenter, int32(_SPINNER_SEGMENT_COUNT))
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	b3CreateMeshShape(tls, groundId, bp+112, g_spinnerData.CylinderMesh, b3Vec3_one)
+	halfLength = float32(float32FromFloat32(0.5) * radius)
+	*(*BodyDef)(unsafe.Add(nil, bp+232)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+232))).Type1 = int32(b3_dynamicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp+232))).Position = Pos{
+		Y: yCenter - halfLength,
+	}
+	(*(*BodyDef)(unsafe.Add(nil, bp+232))).EnableSleep = boolUint8(false1 != 0)
+	spinnerId = b3CreateBody(tls, worldId, bp+232)
+	*(*BoxHull)(unsafe.Add(nil, bp+344)) = b3MakeBoxHull(tls, float32FromFloat32(0.3), halfLength+float32FromFloat32(0.1), halfDepth+float32FromFloat32(0.1))
+	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.Friction = float32FromFloat32(0)
+	b3CreateHullShape(tls, spinnerId, bp+1040, bp+344)
+	*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160)) = b3DefaultRevoluteJointDef(tls)
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).Base.BodyIdA = groundId
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).Base.BodyIdB = spinnerId
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).Base.LocalFrameA.P = Vec3{
+		Y: yCenter - halfLength,
+	}
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).EnableMotor = boolUint8(true1 != 0)
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).MotorSpeed = float32FromFloat32(8)
+	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).MaxMotorTorque = float32FromFloat32(3.4028234663852886e+38)
+	g_spinnerData.SpinnerId = b3CreateRevoluteJoint(tls, worldId, bp+1160)
+	*(*Sphere)(unsafe.Add(nil, bp+1312)) = Sphere{
+		Radius: float32FromFloat32(0.2),
+	}
+	*(*BodyDef)(unsafe.Add(nil, bp+1328)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+1328))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1440)) = b3DefaultShapeDef(tls)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Restitution = float32FromFloat32(0.1)
+	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).Density = float32FromFloat32(0.25)
+	bodyCount = int32(1500)
+	// The grid starts low where the cylinder is narrow, so the span has to fit the chord there
+	spacing = float32FromFloat32(0.55)
+	yStart = float32FromFloat32(2)
+	chordHalfWidth = sqrtf(tls, float32(radius*radius)-float32((yCenter-yStart)*(yCenter-yStart)))
+	xLimit = chordHalfWidth - float32(float32FromFloat32(2)*spacing)
+	zLimit = halfDepth - float32(float32FromFloat32(2)*(*(*Sphere)(unsafe.Add(nil, bp+1312))).Radius)
+	x = -xLimit
+	y = yStart
+	z = -zLimit
+	i = 0
+	for {
+		if !(i < bodyCount) {
+			break
+		}
+		(*(*BodyDef)(unsafe.Add(nil, bp+1328))).Position = Pos{
+			X: x,
+			Y: y,
+			Z: z,
+		}
+		bodyId = b3CreateBody(tls, worldId, bp+1328)
+		b3CreateSphereShape(tls, bodyId, bp+1440, bp+1312)
+		z = z + spacing
+		if z > zLimit {
+			z = -zLimit
+			x = x + spacing
+			if x > xLimit {
+				x = -xLimit
+				y = y + spacing
+			}
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _DestroySpinner(tls *_Stack) {
+	if g_spinnerData.CylinderMesh != uintptrFromInt32(0) {
+		b3DestroyMesh(tls, g_spinnerData.CylinderMesh)
+		g_spinnerData.CylinderMesh = uintptrFromInt32(0)
+	}
+}
+
+// C documentation
+//
+//	// The motor is unbounded, so a healthy run holds the commanded speed and the angle advances
+//	// steadily. A stalling solver shows up here before it shows up in the step time.
+func _GetSpinnerAngle(tls *_Stack) (r float32) {
+	if int32FromUint8(b3Joint_IsValid(tls, g_spinnerData.SpinnerId)) == false1 {
+		return float32FromFloat32(0)
+	}
+	return b3RevoluteJoint_GetAngle(tls, g_spinnerData.SpinnerId)
+}
+
+type _SleepData struct {
+	BodyIdA [10]BodyId
+	BodyIdB [10]BodyId
+}
+
+var g_sleepData _SleepData
+
+// C documentation
+//
+//	// Reports two bodies that are certain to share a touching contact, so the filter joint below
+//	// always lands inside one island.
+func _CreateSleepPyramid(tls *_Stack, worldId WorldId, baseCount int32, extent float32, centerX float32, bodyIdA uintptr, bodyIdB uintptr) {
+	bp := tls.Alloc(928)
+	defer tls.Free(928)
+	var bodyId BodyId
+	var i, j int32
+	var x, y float32
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* box at bp+232 */ BoxHull
+	var _ /* shapeDef at bp+112 */ ShapeDef
+	_, _, _, _, _ = bodyId, i, j, x, y
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).SleepThreshold = float32FromFloat32(1)
+	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, extent, extent, extent)
+	i = 0
+	for {
+		if !(i < baseCount) {
+			break
+		}
+		y = float32((float32(float32FromFloat32(2)*float32(i)) + float32FromFloat32(1)) * extent)
+		j = i
+		for {
+			if !(j < baseCount) {
+				break
+			}
+			x = float32((float32(i)+float32FromFloat32(1))*extent) + float32(float32(float32FromFloat32(2)*float32(j-i))*extent) + centerX
+			(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+				X: x,
+				Y: y,
+			}
+			bodyId = b3CreateBody(tls, worldId, bp)
+			b3CreateHullShape(tls, bodyId, bp+112, bp+232)
+			if i == 0 && j == 0 {
+				*(*BodyId)(unsafe.Add(nil, bodyIdA)) = bodyId
+			} else {
+				if i == int32(1) && j == int32(1) {
+					// Rests on the base body above, so the pair always has a touching contact
+					*(*BodyId)(unsafe.Add(nil, bodyIdB)) = bodyId
+				}
+			}
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _GetSleepCapacity(tls *_Stack, capacity uintptr) {
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = int32(4)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = int32(4)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = int32(2200)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = int32(2200)
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32(12000)
+}
+
+// C documentation
+//
+//	// Stress tests waking and sleeping. Each pyramid settles into its own island and the step below
+//	// wakes one of them again, so the island splitter never gets to rest.
+func _CreateSleep(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(928)
+	defer tls.Free(928)
+	var baseCount, i int32
+	var baseWidth, centerX, extent, pitch, span float32
+	var groundId BodyId
+	var _ /* bodyDef at bp+0 */ BodyDef
+	var _ /* box at bp+112 */ BoxHull
+	var _ /* shapeDef at bp+808 */ ShapeDef
+	_, _, _, _, _, _, _, _ = baseCount, baseWidth, centerX, extent, groundId, i, pitch, span
+	g_sleepData = _SleepData{}
+	baseCount = int32(20)
+	extent = float32FromFloat32(0.5)
+	baseWidth = float32(float32(float32FromFloat32(2)*extent) * float32(baseCount))
+	pitch = baseWidth + float32(float32FromFloat32(8)*extent)
+	span = float32(pitch * float32(int32FromInt32(_SLEEP_PYRAMID_COUNT)-int32FromInt32(1)))
+	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
+		Y: -float32FromFloat32(1),
+	}
+	groundId = b3CreateBody(tls, worldId, bp)
+	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32(float32FromFloat32(0.5)*span)+baseWidth, float32FromFloat32(1), float32FromFloat32(4))
+	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
+	i = 0
+	for {
+		if !(i < int32(_SLEEP_PYRAMID_COUNT)) {
+			break
+		}
+		centerX = float32(-float32FromFloat32(0.5)*span) + float32(float32(i)*pitch) - float32(float32FromFloat32(0.5)*baseWidth)
+		_CreateSleepPyramid(tls, worldId, baseCount, extent, centerX, uintptr(unsafe.Pointer(&g_sleepData))+uintptr(i)*8, uintptr(unsafe.Pointer(&g_sleepData))+80+uintptr(i)*8)
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+func _StepSleep(tls *_Stack, worldId WorldId, stepCount int32) {
+	bp := tls.Alloc(112)
+	defer tls.Free(112)
+	var i int32
+	var jointId JointId
+	var _ /* jointDef at bp+0 */ FilterJointDef
+	_, _ = i, jointId
+	_ = stepCount
+	i = 0
+	for {
+		if !(i < int32(_SLEEP_PYRAMID_COUNT)) {
+			break
+		}
+		if int32FromUint8(b3Body_IsAwake(tls, *(*BodyId)(unsafe.Add(nil, uintptr(unsafe.Pointer(&g_sleepData))+uintptr(i)*8)))) == false1 {
+			// Creating and destroying a joint engages the island splitter
+			*(*FilterJointDef)(unsafe.Add(nil, bp)) = b3DefaultFilterJointDef(tls)
+			(*(*FilterJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA = *(*BodyId)(unsafe.Add(nil, uintptr(unsafe.Pointer(&g_sleepData))+uintptr(i)*8))
+			(*(*FilterJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB = *(*BodyId)(unsafe.Add(nil, uintptr(unsafe.Pointer(&g_sleepData))+80+uintptr(i)*8))
+			jointId = b3CreateFilterJoint(tls, worldId, bp)
+			// This wakes the island
+			b3DestroyJoint(tls, jointId, boolUint8(true1 != 0))
+			// Only one per step
+			break
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+}
+
+// One cast per meter across the full span
+
+type _VillageData struct {
+	Compound        uintptr
+	Rotation        Quat
+	HalfSpan        float32
+	CastTranslation Vec3
+	CastCount       int32
+	Casts           [401]_VillageCast
+}
+
+var g_villageData _VillageData
+
+func _GetVillageCapacity(tls *_Stack, capacity uintptr) {
+	var bodyCount int32
+	_ = bodyCount
+	bodyCount = int32FromInt32(_VILLAGE_BODY_GRID) * int32FromInt32(_VILLAGE_BODY_GRID)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticShapeCount = int32(1)
+	(*Capacity)(unsafe.Pointer(capacity)).StaticBodyCount = int32(1)
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicShapeCount = bodyCount
+	(*Capacity)(unsafe.Pointer(capacity)).DynamicBodyCount = bodyCount
+	(*Capacity)(unsafe.Pointer(capacity)).ContactCount = int32(4) * bodyCount
+}
+
+func _CreateVillage(tls *_Stack, worldId WorldId) {
+	bp := tls.Alloc(2016)
+	defer tls.Free(2016)
+	var aa, halfSpan, offset, r, radius, radius1, spacing, tileWidth, x1, z, v11, v12, v14, v20, v23, v25, v26, v7 float32
+	var bodyGrid, capsuleCount, gridCount, hullCount, i, i1, index, j, j1, meshCount, propCapacity, sphereCount, tileCount, tileIndex, v21, v28, v33 int32
+	var bodyId, groundId BodyId
+	var capsules, hulls, meshes, spheres, wave uintptr
+	var cs CosSin
+	var q, v16 Quat
+	var v, v3, v4, v5, v6 Vec3
+	var x uint32_t
+	var v15 bool
+	var v9 uint8
+	var _ /* bodyDef at bp+1776 */ BodyDef
+	var _ /* bodyDef at bp+800 */ BodyDef
+	var _ /* box at bp+1080 */ BoxHull
+	var _ /* capsule at bp+1048 */ Capsule
+	var _ /* def at bp+736 */ CompoundDef
+	var _ /* material at bp+0 */ SurfaceMaterial
+	var _ /* shapeDef at bp+1888 */ ShapeDef
+	var _ /* shapeDef at bp+912 */ ShapeDef
+	var _ /* sphere at bp+1032 */ Sphere
+	var _ /* tile at bp+40 */ BoxHull
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, bodyGrid, bodyId, capsuleCount, capsules, cs, gridCount, groundId, halfSpan, hullCount, hulls, i, i1, index, j, j1, meshCount, meshes, offset, propCapacity, q, r, radius, radius1, spacing, sphereCount, spheres, tileCount, tileIndex, tileWidth, v, wave, x, x1, z, v11, v12, v14, v15, v16, v20, v21, v23, v25, v26, v28, v3, v33, v4, v5, v6, v7, v9
+	memset(tls, uintptr(unsafe.Pointer(&g_villageData)), 0, uint64(17688))
+	g_randomSeed = uint32(2718281828)
+	gridCount = int32(_VILLAGE_GRID)
+	tileWidth = float32FromInt32(_VILLAGE_TILE_WIDTH)
+	halfSpan = float32(float32(float32FromFloat32(0.5)*tileWidth) * float32(gridCount))
+	g_villageData.HalfSpan = halfSpan
+	tileCount = gridCount * gridCount
+	propCapacity = tileCount/int32(8) + int32(1)
+	hulls = malloc(tls, uint64FromInt32(tileCount)*uint64(80))
+	meshes = malloc(tls, uint64FromInt32(tileCount)*uint64(64))
+	capsules = malloc(tls, uint64FromInt32(propCapacity)*uint64(72))
+	spheres = malloc(tls, uint64FromInt32(propCapacity)*uint64(56))
+	*(*SurfaceMaterial)(unsafe.Add(nil, bp)) = b3DefaultSurfaceMaterial(tls)
+	*(*BoxHull)(unsafe.Add(nil, bp+40)) = b3MakeBoxHull(tls, float32(float32FromFloat32(0.5)*tileWidth), float32FromFloat32(0.5), float32(float32FromFloat32(0.5)*tileWidth))
+	// A wave patch replaces a sparse set of tiles so the compound carries mesh children
+	wave = b3CreateWaveMesh(tls, int32(8), int32(8), tileWidth/float32FromFloat32(8), float32FromFloat32(0.25), float32FromFloat32(0.25), float32FromFloat32(0.25))
+	hullCount = 0
+	meshCount = 0
+	capsuleCount = 0
+	sphereCount = 0
+	i = 0
+	for {
+		if !(i < gridCount) {
+			break
+		}
+		x1 = -halfSpan + float32((float32(i)+float32FromFloat32(0.5))*tileWidth)
+		j = 0
+		for {
+			if !(j < gridCount) {
+				break
+			}
+			z = -halfSpan + float32((float32(j)+float32FromFloat32(0.5))*tileWidth)
+			if i%int32(16) == int32(8) && j%int32(16) == int32(8) {
+				*(*CompoundMeshDef)(unsafe.Add(nil, meshes+uintptr(meshCount)*64)) = CompoundMeshDef{
+					MeshData: (*MeshData)(unsafe.Pointer(wave)),
+					Transform: Transform{
+						P: Vec3{
+							X: x1,
+							Z: z,
+						},
+						Q: b3Quat_identity,
+					},
+					Scale:         b3Vec3_one,
+					Materials:     (*SurfaceMaterial)(unsafe.Pointer(bp)),
+					MaterialCount: int32(1),
+				}
+				meshCount = meshCount + int32(1)
+				goto _2
+			}
+			*(*CompoundHullDef)(unsafe.Add(nil, hulls+uintptr(hullCount)*80)) = CompoundHullDef{
+				Hull: (*HullData)(unsafe.Pointer(bp + 40)),
+				Transform: Transform{
+					P: Vec3{
+						X: x1,
+						Y: -float32FromFloat32(0.5),
+						Z: z,
+					},
+					Q: b3Quat_identity,
+				},
+				Material: *(*SurfaceMaterial)(unsafe.Add(nil, bp)),
+			}
+			hullCount = hullCount + int32(1)
+			tileIndex = i*gridCount + j
+			if tileIndex%int32(8) != 0 {
+				goto _2
+			}
+			if tileIndex/int32(8)&int32(1) != 0 {
+				radius = float32FromFloat32(0.25)
+				*(*CompoundCapsuleDef)(unsafe.Add(nil, capsules+uintptr(capsuleCount)*72)) = CompoundCapsuleDef{
+					Capsule: Capsule{
+						Center1: Vec3{
+							X: x1 - float32FromFloat32(1),
+							Y: radius,
+							Z: z,
+						},
+						Center2: Vec3{
+							X: x1 + float32FromFloat32(1),
+							Y: radius,
+							Z: z,
+						},
+						Radius: radius,
+					},
+					Material: *(*SurfaceMaterial)(unsafe.Add(nil, bp)),
+				}
+				capsuleCount = capsuleCount + int32(1)
+			} else {
+				radius1 = float32FromFloat32(0.5)
+				*(*CompoundSphereDef)(unsafe.Add(nil, spheres+uintptr(sphereCount)*56)) = CompoundSphereDef{
+					Sphere: Sphere{
+						Center: Vec3{
+							X: x1,
+							Y: radius1,
+							Z: z,
+						},
+						Radius: radius1,
+					},
+					Material: *(*SurfaceMaterial)(unsafe.Add(nil, bp)),
+				}
+				sphereCount = sphereCount + int32(1)
+			}
+			goto _2
+		_2:
+			;
+			j = j + 1
+		}
+		goto _1
+	_1:
+		;
+		i = i + 1
+	}
+	*(*CompoundDef)(unsafe.Add(nil, bp+736)) = CompoundDef{
+		capsules:     capsules,
+		capsuleCount: capsuleCount,
+		hulls:        hulls,
+		hullCount:    hullCount,
+		meshes:       meshes,
+		meshCount:    meshCount,
+		spheres:      spheres,
+		sphereCount:  sphereCount,
+	}
+	g_villageData.Compound = b3CreateCompound(tls, bp+736)
+	// The compound clones its inputs
+	b3DestroyMesh(tls, wave)
+	free(tls, hulls)
+	free(tls, meshes)
+	free(tls, capsules)
+	free(tls, spheres)
+	// Rotated so broad-phase lookups transform into the compound frame
+	v3 = Vec3{
+		Y: float32FromFloat32(1),
+	}
+	v4 = v3
+	v5 = v4
+	v6 = v4
+	v7 = float32(v5.X*v6.X) + float32(v5.Y*v6.Y) + float32(v5.Z*v6.Z)
+	goto _8
+_8:
+	aa = v7
+	v11 = float32FromFloat32(1) - aa
+	if v11 < float32FromInt32(0) {
+		v14 = -v11
+	} else {
+		v14 = v11
+	}
+	v12 = v14
+	goto _13
+_13:
+	v9 = boolUint8(v12 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+	goto _10
+_10:
+	;
+	if v15 = !!(v9 != 0); !v15 {
+		b3InternalAssert(tls, __ccgo_ts+37544, __ccgo_ts+6355, int32FromInt32(520))
+	}
+	_ = v15 || bool(int32FromInt32(0) != 0)
+	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*float32(-float32FromFloat32(1.15)*float32FromFloat32(3.14159265359))))
+	q = Quat{
+		V: Vec3{
+			X: float32(cs.Sine * v3.X),
+			Y: float32(cs.Sine * v3.Y),
+			Z: float32(cs.Sine * v3.Z),
+		},
+		S: cs.Cosine,
+	}
+	v16 = q
+	goto _17
+_17:
+	g_villageData.Rotation = v16
+	*(*BodyDef)(unsafe.Add(nil, bp+800)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+800))).Rotation = g_villageData.Rotation
+	groundId = b3CreateBody(tls, worldId, bp+800)
+	*(*ShapeDef)(unsafe.Add(nil, bp+912)) = b3DefaultShapeDef(tls)
+	b3CreateBakedCompoundShape(tls, groundId, bp+912, g_villageData.Compound)
+	*(*Sphere)(unsafe.Add(nil, bp+1032)) = Sphere{
+		Radius: float32FromFloat32(0.3),
+	}
+	*(*Capsule)(unsafe.Add(nil, bp+1048)) = Capsule{
+		Center1: Vec3{
+			X: -float32FromFloat32(0.3),
+		},
+		Center2: Vec3{
+			X: float32FromFloat32(0.3),
+		},
+		Radius: float32FromFloat32(0.2),
+	}
+	*(*BoxHull)(unsafe.Add(nil, bp+1080)) = b3MakeCubeHull(tls, float32FromFloat32(0.3))
+	*(*BodyDef)(unsafe.Add(nil, bp+1776)) = b3DefaultBodyDef(tls)
+	(*(*BodyDef)(unsafe.Add(nil, bp+1776))).Type1 = int32(b3_dynamicBody)
+	*(*ShapeDef)(unsafe.Add(nil, bp+1888)) = b3DefaultShapeDef(tls)
+	bodyGrid = int32(_VILLAGE_BODY_GRID)
+	spacing = float32FromFloat32(1.6)
+	offset = float32(float32(float32FromFloat32(0.5)*spacing) * float32(int32FromInt32(1)-bodyGrid))
+	i1 = 0
+	for {
+		if !(i1 < bodyGrid) {
+			break
+		}
+		j1 = 0
+		for {
+			if !(j1 < bodyGrid) {
+				break
+			}
+			index = i1*bodyGrid + j1
+			v7 = float32FromFloat32(2)
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v21 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _22
+		_22:
+			r = float32(v21 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((float32FromFloat32(6)-v7)*r) + v7
+			v11 = r
+			goto _24
+		_24:
+			(*(*BodyDef)(unsafe.Add(nil, bp+1776))).Position = Pos{
+				X: offset + float32(spacing*float32(i1)),
+				Y: v11,
+				Z: offset + float32(spacing*float32(j1)),
+			}
+			(*(*BodyDef)(unsafe.Add(nil, bp+1776))).LinearVelocity = b3Vec3_zero
+			v7 = -float32FromFloat32(2)
+			v11 = float32FromFloat32(2)
+			v12 = v7
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v21 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _29
+		_29:
+			r = float32(v21 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v11-v12)*r) + v12
+			v14 = r
+			goto _31
+		_31:
+			v.X = v14
+			v20 = v7
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v28 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _34
+		_34:
+			r = float32(v28 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v11-v20)*r) + v20
+			v23 = r
+			goto _36
+		_36:
+			v.Y = v23
+			v25 = v7
+			x = g_randomSeed
+			x = x ^ x<<int32(13)
+			x = x ^ x>>int32(17)
+			x = x ^ x<<int32(5)
+			g_randomSeed = x
+			v33 = int32FromUint32(x % uint32FromInt32(int32FromInt32(_RAND_LIMIT)+int32FromInt32(1)))
+			goto _39
+		_39:
+			r = float32(v33 & int32FromInt32(_RAND_LIMIT))
+			r = r / float32FromInt32(_RAND_LIMIT)
+			r = float32((v11-v25)*r) + v25
+			v26 = r
+			goto _41
+		_41:
+			v.Z = v26
+			v3 = v
+			goto _43
+		_43:
+			(*(*BodyDef)(unsafe.Add(nil, bp+1776))).AngularVelocity = v3
+			// Fast enough to need continuous collision against the compound
+			if index%int32(20) == 0 {
+				(*(*BodyDef)(unsafe.Add(nil, bp+1776))).Position.Y = float32FromFloat32(20)
+				(*(*BodyDef)(unsafe.Add(nil, bp+1776))).LinearVelocity = Vec3{
+					Y: -float32FromFloat32(80),
+				}
+			}
+			bodyId = b3CreateBody(tls, worldId, bp+1776)
+			switch index % int32FromInt32(3) {
+			case 0:
+				b3CreateSphereShape(tls, bodyId, bp+1888, bp+1032)
+			case int32(1):
+				b3CreateCapsuleShape(tls, bodyId, bp+1888, bp+1048)
+			default:
+				b3CreateHullShape(tls, bodyId, bp+1888, bp+1080)
+				break
+			}
+			goto _19
+		_19:
+			;
+			j1 = j1 + 1
+		}
+		goto _18
+	_18:
+		;
+		i1 = i1 + 1
+	}
+}
+
+func _VillageCastCallback(tls *_Stack, shapeId ShapeId, point Pos, normal Vec3, fraction float32, userMaterialId uint64, triangleIndex int32, childIndex int32, context uintptr) (r float32) {
+	var cast uintptr
+	_ = cast
+	_ = shapeId
+	_ = userMaterialId
+	_ = triangleIndex
+	_ = childIndex
+	// Clipping makes each report closer than the last, so the final one is the closest
+	cast = context
+	(*_VillageCast)(unsafe.Pointer(cast)).Point = point
+	(*_VillageCast)(unsafe.Pointer(cast)).Normal = normal
+	(*_VillageCast)(unsafe.Pointer(cast)).Fraction = fraction
+	(*_VillageCast)(unsafe.Pointer(cast)).Hit = boolUint8(true1 != 0)
+	return fraction
+}
+
+// C documentation
+//
+//	// A curtain of tilted sphere casts, one per meter, sweeps across the compound once per run.
+func _StepVillage(tls *_Stack, worldId WorldId, stepIndex int32) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var c, localOrigin, localTranslation, t1, t2, t3, translation, v10, v12, v13, v14, v16, v18, v2, v20, v21, v25, v3, v4, v5, v7, v9 Vec3
+	var cast uintptr
+	var castCount, i int32
+	var filter QueryFilter
+	var halfSpan, t, x, v19, v8 float32
+	var q1, v1 Quat
+	var tilt CosSin
+	var v47 Pos
+	var _ /* point at bp+0 */ Vec3
+	var _ /* proxy at bp+16 */ ShapeProxy
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, cast, castCount, filter, halfSpan, i, localOrigin, localTranslation, q1, t, t1, t2, t3, tilt, translation, x, v1, v10, v12, v13, v14, v16, v18, v19, v2, v20, v21, v25, v3, v4, v47, v5, v7, v8, v9
+	halfSpan = g_villageData.HalfSpan
+	t = float32(stepIndex%int32FromInt32(_VILLAGE_STEP_COUNT)) / float32(int32FromInt32(_VILLAGE_STEP_COUNT)-int32FromInt32(1))
+	x = -halfSpan + float32(float32(float32FromFloat32(2)*halfSpan)*t)
+	tilt = b3ComputeCosSin(tls, float32(float32FromFloat32(20)/float32FromFloat32(180)*float32FromFloat32(3.14159265359)))
+	localTranslation = Vec3{
+		X: float32(float32FromFloat32(12) * tilt.Sine),
+		Y: float32(-float32FromFloat32(12) * tilt.Cosine),
+	}
+	// The curtain is laid out in the compound frame
+	q1 = g_villageData.Rotation
+	v1 = q1
+	v2 = localTranslation
+	v3 = v1.V
+	v4 = v2
+	c.X = float32(v3.Y*v4.Z) - float32(v3.Z*v4.Y)
+	c.Y = float32(v3.Z*v4.X) - float32(v3.X*v4.Z)
+	c.Z = float32(v3.X*v4.Y) - float32(v3.Y*v4.X)
+	v5 = c
+	goto _6
+_6:
+	t1 = v5
+	v7 = t1
+	v8 = v1.S
+	v9 = v2
+	v10 = Vec3{
+		X: v7.X + float32(v8*v9.X),
+		Y: v7.Y + float32(v8*v9.Y),
+		Z: v7.Z + float32(v8*v9.Z),
+	}
+	goto _11
+_11:
+	t2 = v10
+	v12 = v1.V
+	v13 = t2
+	c.X = float32(v12.Y*v13.Z) - float32(v12.Z*v13.Y)
+	c.Y = float32(v12.Z*v13.X) - float32(v12.X*v13.Z)
+	c.Z = float32(v12.X*v13.Y) - float32(v12.Y*v13.X)
+	v14 = c
+	goto _15
+_15:
+	t3 = v14
+	v18 = v2
+	v19 = float32FromFloat32(2)
+	v20 = t3
+	v21 = Vec3{
+		X: v18.X + float32(v19*v20.X),
+		Y: v18.Y + float32(v19*v20.Y),
+		Z: v18.Z + float32(v19*v20.Z),
+	}
+	goto _22
+_22:
+	v16 = v21
+	goto _17
+_17:
+	translation = v16
+	*(*Vec3)(unsafe.Add(nil, bp)) = b3Vec3_zero
+	*(*ShapeProxy)(unsafe.Add(nil, bp+16)) = ShapeProxy{
+		Points: (*Vec3)(unsafe.Pointer(bp)),
+		Count:  int32(1),
+		Radius: float32FromFloat32(0.05),
+	}
+	filter = b3DefaultQueryFilter(tls)
+	castCount = int32(float32(float32FromFloat32(2)*halfSpan)) + int32(1)
+	i = 0
+	for {
+		if !(i < castCount) {
+			break
+		}
+		localOrigin = Vec3{
+			X: x,
+			Y: float32FromFloat32(10),
+			Z: -halfSpan + float32(i),
+		}
+		cast = uintptr(unsafe.Pointer(&g_villageData)) + 44 + uintptr(i)*44
+		*(*_VillageCast)(unsafe.Add(nil, cast)) = _VillageCast{}
+		v1 = q1
+		v2 = localOrigin
+		v3 = v1.V
+		v4 = v2
+		c.X = float32(v3.Y*v4.Z) - float32(v3.Z*v4.Y)
+		c.Y = float32(v3.Z*v4.X) - float32(v3.X*v4.Z)
+		c.Z = float32(v3.X*v4.Y) - float32(v3.Y*v4.X)
+		v5 = c
+		goto _29
+	_29:
+		t1 = v5
+		v7 = t1
+		v8 = v1.S
+		v9 = v2
+		v10 = Vec3{
+			X: v7.X + float32(v8*v9.X),
+			Y: v7.Y + float32(v8*v9.Y),
+			Z: v7.Z + float32(v8*v9.Z),
+		}
+		goto _34
+	_34:
+		t2 = v10
+		v12 = v1.V
+		v13 = t2
+		c.X = float32(v12.Y*v13.Z) - float32(v12.Z*v13.Y)
+		c.Y = float32(v12.Z*v13.X) - float32(v12.X*v13.Z)
+		c.Z = float32(v12.X*v13.Y) - float32(v12.Y*v13.X)
+		v14 = c
+		goto _38
+	_38:
+		t3 = v14
+		v18 = v2
+		v19 = float32FromFloat32(2)
+		v20 = t3
+		v21 = Vec3{
+			X: v18.X + float32(v19*v20.X),
+			Y: v18.Y + float32(v19*v20.Y),
+			Z: v18.Z + float32(v19*v20.Z),
+		}
+		goto _45
+	_45:
+		v16 = v21
+		goto _40
+	_40:
+		v25 = v16
+		v47 = Pos{
+			X: v25.X,
+			Y: v25.Y,
+			Z: v25.Z,
+		}
+		goto _48
+	_48:
+		(*_VillageCast)(unsafe.Pointer(cast)).Origin = v47
+		(*_VillageCast)(unsafe.Pointer(cast)).Fraction = float32FromFloat32(1)
+		b3World_CastShape(tls, worldId, (*_VillageCast)(unsafe.Pointer(cast)).Origin, bp+16, translation, filter, __ccgo_fp(_VillageCastCallback), cast)
+		goto _23
+	_23:
+		;
+		i = i + 1
+	}
+	g_villageData.CastTranslation = translation
+	g_villageData.CastCount = castCount
+}
+
+func _GetVillageCurtain(tls *_Stack) (r _VillageCurtain) {
+	return _VillageCurtain{
+		Casts:       uintptr(unsafe.Pointer(&g_villageData)) + 44,
+		CastCount:   g_villageData.CastCount,
+		Translation: g_villageData.CastTranslation,
+		Radius:      float32FromFloat32(0.05),
+	}
+}
+
+func _DestroyVillage(tls *_Stack) {
+	b3DestroyCompound(tls, g_villageData.Compound)
+	memset(tls, uintptr(unsafe.Pointer(&g_villageData)), 0, uint64(17688))
+}
+
+var g_junkyardData _JunkyardData
+
+var g_meshDropData struct {
+	MeshData uintptr
+}
+
+var g_rainData _RainData
+
 var g_randomSeed = uint32(_RAND_SEED)
+
+var g_treeData struct {
+	MeshData uintptr
+}

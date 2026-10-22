@@ -854,15 +854,11 @@ _9:
 }
 
 func b3DynamicTree_Refit(tls *_Stack, tree1 uintptr) {
-	var children1, children2, pair1, v6, v7 int32
+	var children1, children2, pair, v6, v7 int32
 	var flags1, flags2 uint32_t
-	var node1, nodes, v8 uintptr
-	var out, v11, v12, v51 AABB
+	var node1, nodes uintptr
 	var refit1, refit2, v1, v3 uint8
-	var v13, v14, v15, v32, v33, v34 Vec3
-	var v17, v18, v19, v21, v22, v23, v24, v26, v27, v28, v29, v31, v36, v37, v38, v40, v41, v42, v43, v45, v46, v47, v48, v50 float32
-	var v9 b3AABBV
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = children1, children2, flags1, flags2, node1, nodes, out, pair1, refit1, refit2, v1, v11, v12, v13, v14, v15, v17, v18, v19, v21, v22, v23, v24, v26, v27, v28, v29, v3, v31, v32, v33, v34, v36, v37, v38, v40, v41, v42, v43, v45, v46, v47, v48, v50, v51, v6, v7, v8, v9
+	_, _, _, _, _, _, _, _, _, _, _, _, _ = children1, children2, flags1, flags2, node1, nodes, pair, refit1, refit2, v1, v3, v6, v7
 	v3 = boolUint8((*b3TreeNode)(unsafe.Pointer((*b3DynamicTree)(unsafe.Pointer(tree1)).Nodes+uintptr(_B3_ROOT_NODE)*32)).FlagIndex&(uint32FromUint32(1)<<int32FromInt32(30)) == uint32FromUint32(1)<<int32FromInt32(30))
 	goto _4
 _4:
@@ -878,12 +874,12 @@ _2:
 		b3RefitSubtree(tls, nodes, _B3_ROOT_NODE)
 		return
 	}
-	pair1 = (*b3DynamicTree)(unsafe.Pointer(tree1)).NodeEnd - int32(2)
+	pair = (*b3DynamicTree)(unsafe.Pointer(tree1)).NodeEnd - int32(2)
 	for {
-		if !(pair1 >= 0) {
+		if !(pair >= 0) {
 			break
 		}
-		node1 = nodes + uintptr(pair1)*32
+		node1 = nodes + uintptr(pair)*32
 		flags1 = (*(*b3TreeNode)(unsafe.Add(nil, node1))).FlagIndex
 		flags2 = (*(*b3TreeNode)(unsafe.Add(nil, node1+1*32))).FlagIndex
 		// Did either move?
@@ -896,7 +892,7 @@ _2:
 		if refit1 != 0 {
 			v6 = int32FromUint32(flags1 & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
 		} else {
-			v6 = pair1
+			v6 = pair
 		}
 		// If the node needs a refit then get the child index. Otherwise use a valid dummy index.
 		// The store function won't actually modify the node at the dummy index. This
@@ -905,198 +901,16 @@ _2:
 		if refit2 != 0 {
 			v7 = int32FromUint32(flags2 & (uint32FromUint32(0xFFFFFFFF) & ^(uint32FromUint32(1)<<int32FromInt32(30) | uint32FromUint32(1)<<int32FromInt32(31))))
 		} else {
-			v7 = pair1
+			v7 = pair
 		}
 		children2 = v7
 		// Conditionally store the union.
-		v8 = nodes + uintptr(children1)*32
-		v11 = (*(*b3TreeNode)(unsafe.Add(nil, v8))).Aabb
-		v12 = (*(*b3TreeNode)(unsafe.Add(nil, v8+1*32))).Aabb
-		v13 = v11.LowerBound
-		v14 = v12.LowerBound
-		v17 = v13.X
-		v18 = v14.X
-		if v17 < v18 {
-			v21 = v17
-		} else {
-			v21 = v18
-		}
-		v19 = v21
-		goto _20
-	_20:
-		v22 = v13.Y
-		v23 = v14.Y
-		if v22 < v23 {
-			v26 = v22
-		} else {
-			v26 = v23
-		}
-		v24 = v26
-		goto _25
-	_25:
-		v27 = v13.Z
-		v28 = v14.Z
-		if v27 < v28 {
-			v31 = v27
-		} else {
-			v31 = v28
-		}
-		v29 = v31
-		goto _30
-	_30:
-		v15 = Vec3{
-			X: v19,
-			Y: v24,
-			Z: v29,
-		}
-		goto _16
-	_16:
-		out.LowerBound = v15
-		v32 = v11.UpperBound
-		v33 = v12.UpperBound
-		v36 = v32.X
-		v37 = v33.X
-		if v36 > v37 {
-			v40 = v36
-		} else {
-			v40 = v37
-		}
-		v38 = v40
-		goto _39
-	_39:
-		v41 = v32.Y
-		v42 = v33.Y
-		if v41 > v42 {
-			v45 = v41
-		} else {
-			v45 = v42
-		}
-		v43 = v45
-		goto _44
-	_44:
-		v46 = v32.Z
-		v47 = v33.Z
-		if v46 > v47 {
-			v50 = v46
-		} else {
-			v50 = v47
-		}
-		v48 = v50
-		goto _49
-	_49:
-		v34 = Vec3{
-			X: v38,
-			Y: v43,
-			Z: v48,
-		}
-		goto _35
-	_35:
-		out.UpperBound = v34
-		v51 = out
-		goto _52
-	_52:
-		v9 = v51
-		goto _10
-	_10:
-		if refit1 != 0 {
-			*(*AABB)(unsafe.Add(nil, node1)) = v9
-		}
-		v8 = nodes + uintptr(children2)*32
-		v11 = (*(*b3TreeNode)(unsafe.Add(nil, v8))).Aabb
-		v12 = (*(*b3TreeNode)(unsafe.Add(nil, v8+1*32))).Aabb
-		v13 = v11.LowerBound
-		v14 = v12.LowerBound
-		v17 = v13.X
-		v18 = v14.X
-		if v17 < v18 {
-			v21 = v17
-		} else {
-			v21 = v18
-		}
-		v19 = v21
-		goto _65
-	_65:
-		v22 = v13.Y
-		v23 = v14.Y
-		if v22 < v23 {
-			v26 = v22
-		} else {
-			v26 = v23
-		}
-		v24 = v26
-		goto _70
-	_70:
-		v27 = v13.Z
-		v28 = v14.Z
-		if v27 < v28 {
-			v31 = v27
-		} else {
-			v31 = v28
-		}
-		v29 = v31
-		goto _75
-	_75:
-		v15 = Vec3{
-			X: v19,
-			Y: v24,
-			Z: v29,
-		}
-		goto _61
-	_61:
-		out.LowerBound = v15
-		v32 = v11.UpperBound
-		v33 = v12.UpperBound
-		v36 = v32.X
-		v37 = v33.X
-		if v36 > v37 {
-			v40 = v36
-		} else {
-			v40 = v37
-		}
-		v38 = v40
-		goto _84
-	_84:
-		v41 = v32.Y
-		v42 = v33.Y
-		if v41 > v42 {
-			v45 = v41
-		} else {
-			v45 = v42
-		}
-		v43 = v45
-		goto _89
-	_89:
-		v46 = v32.Z
-		v47 = v33.Z
-		if v46 > v47 {
-			v50 = v46
-		} else {
-			v50 = v47
-		}
-		v48 = v50
-		goto _94
-	_94:
-		v34 = Vec3{
-			X: v38,
-			Y: v43,
-			Z: v48,
-		}
-		goto _80
-	_80:
-		out.UpperBound = v34
-		v51 = out
-		goto _97
-	_97:
-		v9 = v51
-		goto _55
-	_55:
-		if refit2 != 0 {
-			*(*AABB)(unsafe.Add(nil, node1+1*32)) = v9
-		}
+		b3StoreAABBV3(tls, node1, b3UnionPairV3(tls, nodes+uintptr(children1)*32), refit1)
+		b3StoreAABBV3(tls, node1+1*32, b3UnionPairV3(tls, nodes+uintptr(children2)*32), refit2)
 		goto _5
 	_5:
 		;
-		pair1 = pair1 - int32(2)
+		pair = pair - int32(2)
 	}
 }
 

@@ -103,6 +103,22 @@ index b03063d..2038b9d 100644
  
  // Body simulation data used for integration of position and velocity
  // Transform data used for collision and solver preparation.
+diff --git a/src/contact_solver_wide.inl b/src/contact_solver_wide.inl
+index 1f685b3..3670854 100644
+--- a/src/contact_solver_wide.inl
++++ b/src/contact_solver_wide.inl
+@@ -153,6 +153,11 @@ typedef struct B3_WIDE( b3ContactManifold )
+ 
+ 	int pointCount;
+ 
++#if defined( __CCGO__ )
++	// archsimd.Float32x4 is 8 byte aligned, keep the Go SIMD build at the same offsets
++	int padding;
++#endif
++
+ 	b3ContactConstraintPointWide points[B3_MAX_MANIFOLD_POINTS];
+ } b3ContactManifoldWide;
+ 
 diff --git a/src/manifold.h b/src/manifold.h
 index 577c5d0..828ea5e 100644
 --- a/src/manifold.h
@@ -172,6 +188,46 @@ index e10b9ed..aae25b5 100644
  
  static inline b3V32 b3AddV( b3V32 a, b3V32 b )
  {
+diff --git a/src/simd_scalar.h b/src/simd_scalar.h
+index 56cb045..0e0c22f 100644
+--- a/src/simd_scalar.h
++++ b/src/simd_scalar.h
+@@ -10,6 +10,15 @@
+ #include <math.h>
+ #include <string.h>
+ 
++// ccgo inlines the static inline functions of headers. Pretend this is not a header, so they
++// stay functions and the Go SIMD build can replace them. #line breaks pragma once, so guard.
++#ifndef B3_SIMD_SCALAR_H
++#define B3_SIMD_SCALAR_H
++
++#if defined( __CCGO__ )
++#line 22 "simd_scalar.inl"
++#endif
++
+ // scalar math
+ typedef struct b3FloatW4
+ {
+@@ -287,7 +296,12 @@ B3_FORCE_INLINE void b3StoreAABBV( b3AABB* aabb, b3AABBV value, bool condition )
+ 	}
+ }
+ 
+-B3_FORCE_INLINE void b3TransposeW4( b3FloatW4 r0, b3FloatW4 r1, b3FloatW4 r2, b3FloatW4 r3, b3FloatW4* c0, b3FloatW4* c1,
++#if defined( __CCGO__ )
++static inline
++#else
++B3_FORCE_INLINE
++#endif
++void b3TransposeW4( b3FloatW4 r0, b3FloatW4 r1, b3FloatW4 r2, b3FloatW4 r3, b3FloatW4* c0, b3FloatW4* c1,
+ 									b3FloatW4* c2, b3FloatW4* c3 )
+ {
+ 	b3FloatW4 t0 = (b3FloatW4){ r0.x, r2.x, r0.y, r2.y };
+@@ -299,3 +313,5 @@ B3_FORCE_INLINE void b3TransposeW4( b3FloatW4 r0, b3FloatW4 r1, b3FloatW4 r2, b3
+ 	*c2 = (b3FloatW4){ t2.x, t3.x, t2.y, t3.y };
+ 	*c3 = (b3FloatW4){ t2.z, t3.z, t2.w, t3.w };
+ }
++
++#endif
 diff --git a/src/simd_wide.h b/src/simd_wide.h
 index fe0bb9c..6536256 100644
 --- a/src/simd_wide.h

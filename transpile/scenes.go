@@ -7,12 +7,10 @@ import (
 	"path/filepath"
 	"regexp"
 	"slices"
+	"strings"
 
 	"github.com/dave/dst"
 )
-
-// the globals of the scenes, which extractScenes does not look for
-var sceneVars = []string{"g_randomSeed"}
 
 // sceneSources are the scenes of the box3d determinism test. They are translated with the
 // library and moved into a test file, so the Go tests can compare against the golden hashes
@@ -21,14 +19,15 @@ var sceneSources = []string{
 	"../box3d-c/shared/determinism.c",
 	"../box3d-c/shared/human.c",
 	"../box3d-c/shared/stability.c",
+	"../box3d-c/shared/benchmarks.c",
 	"csrc/scenes.c",
 }
 
 const sceneFile = "box3d_c-scenes_test.go"
 
 var (
-	reSceneFunc = regexp.MustCompile(`(?m)^(?:static )?[A-Za-z_][A-Za-z0-9_ ]*?\**\s*\b([A-Za-z_][A-Za-z0-9_]*)\( [^;]*$`)
-	reSceneType = regexp.MustCompile(`(?m)^\} ([A-Za-z_][A-Za-z0-9_]*);`)
+	reSceneFunc = regexp.MustCompile(`(?m)^(?:static )?[A-Za-z_][A-Za-z0-9_ ]*?\**\s*\b([A-Za-z_][A-Za-z0-9_]*)\(\s*[^;]*$`)
+	reSceneType = regexp.MustCompile(`(?m)^(?:\}|struct) ([A-Za-z_][A-Za-z0-9_]*);?$`)
 )
 
 // sceneNames returns the C names of the functions and types of the scenes.
@@ -58,8 +57,9 @@ func sceneNames() []string {
 // but every function of a scene source must be found.
 func extractScenes(root *dst.File) []dst.Decl {
 	wanted := map[string]string{}
-	for _, name := range append(sceneNames(), sceneVars...) {
-		for _, goName := range []string{name, "_" + name, "__" + name} {
+	for _, name := range sceneNames() {
+		// ccgo appends a number to a static name that is defined in more than one source
+		for _, goName := range []string{name, "_" + name, "__" + name, name + "1", "_" + name + "1"} {
 			wanted[goName] = name
 		}
 	}
@@ -85,6 +85,12 @@ func extractScenes(root *dst.File) []dst.Decl {
 		}
 
 		cName, ok := wanted[name]
+
+		// the globals of the scenes, the library has none with this prefix
+		if strings.HasPrefix(name, "g_") {
+			cName, ok = name, true
+		}
+
 		if !ok {
 			return false
 		}

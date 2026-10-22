@@ -2582,17 +2582,17 @@ _6:
 	}
 }
 
-func b3FindHullSupportVertex(tls *_Stack, hull1 uintptr, direction Vec3) (r2 int32) {
+func b3FindHullSupportVertex(tls *_Stack, hull1 uintptr, direction Vec3) (r int32) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
-	var bestDot, v12, v15, v20, v23, v58, v59, v6, v60, v61, v67, v68, v69, v70, v9 float32
-	var bestDotW, bestIndexW, dot, dx, dy, dz, four, index, mask1, r, r1, v10, v13, v16, v18, v21, v24, v28, v30, v31, v32, v35, v37, v38, v39, v41, v42, v43, v46, v48, v49, v50, v52, v53, v54, v56, v57, v62, v64, v65, v66, v7, v71 b3FloatW4
+	var bestDot float32
+	var bestDotW, bestIndexW, dot, dx, dy, dz, four, index, mask b3FloatW4
 	var bestIndex, i, lane, laneIndex, loopCount, soaVertexCount, vertexCount, v4 int32
-	var vx, vy, vz, v1, v2, v27, v34, v45 uintptr
-	var v91 bool
+	var vx, vy, vz, v1, v2 uintptr
+	var v8 bool
 	var _ /* dots at bp+0 */ [4]float32
 	var _ /* indices at bp+16 */ [4]float32
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bestDot, bestDotW, bestIndex, bestIndexW, dot, dx, dy, dz, four, i, index, lane, laneIndex, loopCount, mask1, r, r1, soaVertexCount, vertexCount, vx, vy, vz, v1, v10, v12, v13, v15, v16, v18, v2, v20, v21, v23, v24, v27, v28, v30, v31, v32, v34, v35, v37, v38, v39, v4, v41, v42, v43, v45, v46, v48, v49, v50, v52, v53, v54, v56, v57, v58, v59, v6, v60, v61, v62, v64, v65, v66, v67, v68, v69, v7, v70, v71, v9, v91
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bestDot, bestDotW, bestIndex, bestIndexW, dot, dx, dy, dz, four, i, index, lane, laneIndex, loopCount, mask, soaVertexCount, vertexCount, vx, vy, vz, v1, v2, v4, v8
 	bestIndex = -int32(1)
 	bestDot = -float32FromFloat32(3.4028234663852886e+38)
 	vertexCount = (*HullData)(unsafe.Pointer(hull1)).VertexCount
@@ -2611,75 +2611,13 @@ _5:
 	soaVertexCount = v4
 	vy = vx + uintptr(soaVertexCount)*4
 	vz = vy + uintptr(soaVertexCount)*4
-	v6 = direction.X
-	v7 = b3FloatW4{
-		X: v6,
-		Y: v6,
-		Z: v6,
-		W: v6,
-	}
-	goto _8
-_8:
-	dx = v7
-	v9 = direction.Y
-	v10 = b3FloatW4{
-		X: v9,
-		Y: v9,
-		Z: v9,
-		W: v9,
-	}
-	goto _11
-_11:
-	dy = v10
-	v12 = direction.Z
-	v13 = b3FloatW4{
-		X: v12,
-		Y: v12,
-		Z: v12,
-		W: v12,
-	}
-	goto _14
-_14:
-	dz = v13
-	v15 = float32FromFloat32(4)
-	v16 = b3FloatW4{
-		X: v15,
-		Y: v15,
-		Z: v15,
-		W: v15,
-	}
-	goto _17
-_17:
-	four = v16
-	v18 = b3FloatW4{
-		X: float32FromFloat32(0),
-		Y: float32FromFloat32(1),
-		Z: float32FromFloat32(2),
-		W: float32FromFloat32(3),
-	}
-	goto _19
-_19:
-	index = v18
-	v20 = -float32FromFloat32(3.4028234663852886e+38)
-	v21 = b3FloatW4{
-		X: v20,
-		Y: v20,
-		Z: v20,
-		W: v20,
-	}
-	goto _22
-_22:
-	bestDotW = v21
-	v23 = -float32FromFloat32(1)
-	v24 = b3FloatW4{
-		X: v23,
-		Y: v23,
-		Z: v23,
-		W: v23,
-	}
-	goto _25
-_25:
-	bestIndexW = v24
+	dx = b3SplatW4(tls, direction.X)
+	dy = b3SplatW4(tls, direction.Y)
+	dz = b3SplatW4(tls, direction.Z)
+	four = b3SplatW4(tls, float32FromFloat32(4))
+	index = b3SetW4(tls, float32FromFloat32(0), float32FromFloat32(1), float32FromFloat32(2), float32FromFloat32(3))
+	bestDotW = b3SplatW4(tls, -float32FromFloat32(3.4028234663852886e+38))
+	bestIndexW = b3SplatW4(tls, -float32FromFloat32(1))
 	// Keep this at 4 wide to avoid regressing 4 wide platforms.
 	loopCount = (vertexCount + int32(3)) & ^int32FromInt32(3)
 	i = 0
@@ -2687,204 +2625,18 @@ _25:
 		if !(i < loopCount) {
 			break
 		}
-		v27 = vx + uintptr(i)*4
-		v28 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v27)),
-			Y: *(*float32)(unsafe.Add(nil, v27+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v27+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v27+3*4)),
-		}
-		goto _29
-	_29:
-		v30 = dx
-		v31 = v28
-		v32 = b3FloatW4{
-			X: float32(v30.X * v31.X),
-			Y: float32(v30.Y * v31.Y),
-			Z: float32(v30.Z * v31.Z),
-			W: float32(v30.W * v31.W),
-		}
-		goto _33
-	_33:
-		v34 = vy + uintptr(i)*4
-		v35 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v34)),
-			Y: *(*float32)(unsafe.Add(nil, v34+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v34+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v34+3*4)),
-		}
-		goto _36
-	_36:
-		v37 = dy
-		v38 = v35
-		v39 = b3FloatW4{
-			X: float32(v37.X * v38.X),
-			Y: float32(v37.Y * v38.Y),
-			Z: float32(v37.Z * v38.Z),
-			W: float32(v37.W * v38.W),
-		}
-		goto _40
-	_40:
-		v41 = v32
-		v42 = v39
-		v43 = b3FloatW4{
-			X: v41.X + v42.X,
-			Y: v41.Y + v42.Y,
-			Z: v41.Z + v42.Z,
-			W: v41.W + v42.W,
-		}
-		goto _44
-	_44:
-		v45 = vz + uintptr(i)*4
-		v46 = b3FloatW4{
-			X: *(*float32)(unsafe.Add(nil, v45)),
-			Y: *(*float32)(unsafe.Add(nil, v45+1*4)),
-			Z: *(*float32)(unsafe.Add(nil, v45+2*4)),
-			W: *(*float32)(unsafe.Add(nil, v45+3*4)),
-		}
-		goto _47
-	_47:
-		v48 = dz
-		v49 = v46
-		v50 = b3FloatW4{
-			X: float32(v48.X * v49.X),
-			Y: float32(v48.Y * v49.Y),
-			Z: float32(v48.Z * v49.Z),
-			W: float32(v48.W * v49.W),
-		}
-		goto _51
-	_51:
-		v52 = v43
-		v53 = v50
-		v54 = b3FloatW4{
-			X: v52.X + v53.X,
-			Y: v52.Y + v53.Y,
-			Z: v52.Z + v53.Z,
-			W: v52.W + v53.W,
-		}
-		goto _55
-	_55:
-		dot = v54
-		v56 = dot
-		v57 = bestDotW
-		if v56.X > v57.X {
-			v58 = float32FromFloat32(1)
-		} else {
-			v58 = float32FromFloat32(0)
-		}
-		r.X = v58
-		if v56.Y > v57.Y {
-			v59 = float32FromFloat32(1)
-		} else {
-			v59 = float32FromFloat32(0)
-		}
-		r.Y = v59
-		if v56.Z > v57.Z {
-			v60 = float32FromFloat32(1)
-		} else {
-			v60 = float32FromFloat32(0)
-		}
-		r.Z = v60
-		if v56.W > v57.W {
-			v61 = float32FromFloat32(1)
-		} else {
-			v61 = float32FromFloat32(0)
-		}
-		r.W = v61
-		v62 = r
-		goto _63
-	_63:
-		mask1 = v62
-		v64 = bestDotW
-		v65 = dot
-		v66 = mask1
-		if v66.X != float32FromFloat32(0) {
-			v67 = v65.X
-		} else {
-			v67 = v64.X
-		}
-		r1.X = v67
-		if v66.Y != float32FromFloat32(0) {
-			v68 = v65.Y
-		} else {
-			v68 = v64.Y
-		}
-		r1.Y = v68
-		if v66.Z != float32FromFloat32(0) {
-			v69 = v65.Z
-		} else {
-			v69 = v64.Z
-		}
-		r1.Z = v69
-		if v66.W != float32FromFloat32(0) {
-			v70 = v65.W
-		} else {
-			v70 = v64.W
-		}
-		r1.W = v70
-		v71 = r1
-		goto _72
-	_72:
-		bestDotW = v71
-		v7 = bestIndexW
-		v10 = index
-		v13 = mask1
-		if v13.X != float32FromFloat32(0) {
-			v6 = v10.X
-		} else {
-			v6 = v7.X
-		}
-		r1.X = v6
-		if v13.Y != float32FromFloat32(0) {
-			v9 = v10.Y
-		} else {
-			v9 = v7.Y
-		}
-		r1.Y = v9
-		if v13.Z != float32FromFloat32(0) {
-			v12 = v10.Z
-		} else {
-			v12 = v7.Z
-		}
-		r1.Z = v12
-		if v13.W != float32FromFloat32(0) {
-			v15 = v10.W
-		} else {
-			v15 = v7.W
-		}
-		r1.W = v15
-		v16 = r1
-		goto _81
-	_81:
-		bestIndexW = v16
-		v7 = index
-		v10 = four
-		v13 = b3FloatW4{
-			X: v7.X + v10.X,
-			Y: v7.Y + v10.Y,
-			Z: v7.Z + v10.Z,
-			W: v7.W + v10.W,
-		}
-		goto _85
-	_85:
-		index = v13
-		goto _26
-	_26:
+		dot = b3AddW4(tls, b3AddW4(tls, b3MulW4(tls, dx, b3LoadW4(tls, vx+uintptr(i)*4)), b3MulW4(tls, dy, b3LoadW4(tls, vy+uintptr(i)*4))), b3MulW4(tls, dz, b3LoadW4(tls, vz+uintptr(i)*4)))
+		mask = b3GreaterThanW4(tls, dot, bestDotW)
+		bestDotW = b3BlendW4(tls, bestDotW, dot, mask)
+		bestIndexW = b3BlendW4(tls, bestIndexW, index, mask)
+		index = b3AddW4(tls, index, four)
+		goto _6
+	_6:
 		;
 		i = i + int32(4)
 	}
-	v1 = bp
-	v7 = bestDotW
-	*(*float32)(unsafe.Add(nil, v1)) = v7.X
-	*(*float32)(unsafe.Add(nil, v1+1*4)) = v7.Y
-	*(*float32)(unsafe.Add(nil, v1+2*4)) = v7.Z
-	*(*float32)(unsafe.Add(nil, v1+3*4)) = v7.W
-	v1 = bp + 16
-	v7 = bestIndexW
-	*(*float32)(unsafe.Add(nil, v1)) = v7.X
-	*(*float32)(unsafe.Add(nil, v1+1*4)) = v7.Y
-	*(*float32)(unsafe.Add(nil, v1+2*4)) = v7.Z
-	*(*float32)(unsafe.Add(nil, v1+3*4)) = v7.W
+	b3StoreW4(tls, bp, bestDotW)
+	b3StoreW4(tls, bp+16, bestIndexW)
 	lane = 0
 	for {
 		if !(lane < int32(4)) {
@@ -2895,15 +2647,15 @@ _25:
 			bestIndex = laneIndex
 			bestDot = (*(*[4]float32)(unsafe.Add(nil, bp)))[lane]
 		}
-		goto _90
-	_90:
+		goto _7
+	_7:
 		;
 		lane = lane + 1
 	}
-	if v91 = !!(0 <= bestIndex && bestIndex < vertexCount); !v91 {
+	if v8 = !!(0 <= bestIndex && bestIndex < vertexCount); !v8 {
 		b3InternalAssert(tls, __ccgo_ts+14778, __ccgo_ts+13811, int32FromInt32(1691))
 	}
-	_ = v91 || bool(int32FromInt32(0) != 0)
+	_ = v8 || bool(int32FromInt32(0) != 0)
 	return bestIndex
 }
 

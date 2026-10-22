@@ -25,12 +25,42 @@ jobs:
          - name: Run go vet
            run: go vet -unsafeptr=false ./...
 
+   test-simd:
+      runs-on: ${{ matrix.os }}
+      strategy:
+         matrix:
+            os: [ubuntu-26.04, ubuntu-26.04-arm]
+
+      env:
+         GOEXPERIMENT: simd
+         # SIMD on amd64 needs AVX, arm64 ignores this
+         GOAMD64: v3
+
+      steps:
+         - uses: actions/checkout@v7
+
+         - name: Setup Go
+           uses: actions/setup-go@v7
+           with:
+              go-version: "1.27.x"
+
+         - name: Run tests
+           run: go test -v ./...
+
+         - name: Run go vet
+           run: go vet -unsafeptr=false ./...
+
    # the determinism tests check that wasm gives the same hashes as the native builds
    test-wasm:
       runs-on: ubuntu-26.04-arm
+      strategy:
+         matrix:
+            goexperiment: ["", "simd"]
+
       env:
          GOOS: wasip1
          GOARCH: wasm
+         GOEXPERIMENT: ${{ matrix.goexperiment }}
 
       steps:
          - uses: actions/checkout@v7
