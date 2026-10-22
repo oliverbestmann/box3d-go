@@ -117,12 +117,12 @@ jobs:
          - name: Compile example
            run: |
               cd example
-              go build ./...
+              go build -o /dev/null ./...
 
          - name: Compile example to wasm
            run: |
               cd example
-              go build ./...
+              go build -o /dev/null ./...
            env:
               GOOS: js
               GOARCH: wasm
