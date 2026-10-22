@@ -290,7 +290,7 @@ func GetCompoundChild(compound *CompoundData, childIndex int32) (r ChildShape) {
 	r = b3GetCompoundChild(theStack, uintptr(unsafe.Pointer(compound)), childIndex)
 	return
 }
-func DestroyCompound(compound *CompoundData) {
+func destroyCompound(compound *CompoundData) {
 	defer runtime.KeepAlive(compound)
 	escapes(compound)
 	b3DestroyCompound(theStack, uintptr(unsafe.Pointer(compound)))
@@ -463,48 +463,48 @@ func OverlapHeightField(shape *HeightFieldData, shapeTransform Transform, proxy 
 	r = b3OverlapHeightField(theStack, uintptr(unsafe.Pointer(shape)), shapeTransform, proxyStack.Addr)
 	return
 }
-func CreateGrid(rowCount int32, columnCount int32, scale Vec3, makeHoles uint8) (r *HeightFieldData) {
-	r = (*HeightFieldData)(unsafe.Pointer(b3CreateGrid(theStack, rowCount, columnCount, scale, makeHoles)))
+func CreateGrid(rowCount int32, columnCount int32, scale Vec3, makeHoles uint8) (r OwnedHeightField) {
+	r = OwnedHeightField{(*HeightFieldData)(unsafe.Pointer(b3CreateGrid(theStack, rowCount, columnCount, scale, makeHoles)))}
 	return
 }
-func CreateWave(rowCount int32, columnCount int32, scale Vec3, rowFrequency float32, columnFrequency float32, makeHoles uint8) (r *HeightFieldData) {
-	r = (*HeightFieldData)(unsafe.Pointer(b3CreateWave(theStack, rowCount, columnCount, scale, rowFrequency, columnFrequency, makeHoles)))
+func CreateWave(rowCount int32, columnCount int32, scale Vec3, rowFrequency float32, columnFrequency float32, makeHoles uint8) (r OwnedHeightField) {
+	r = OwnedHeightField{(*HeightFieldData)(unsafe.Pointer(b3CreateWave(theStack, rowCount, columnCount, scale, rowFrequency, columnFrequency, makeHoles)))}
 	return
 }
-func DestroyHeightField(heightField *HeightFieldData) {
+func destroyHeightField(heightField *HeightFieldData) {
 	defer runtime.KeepAlive(heightField)
 	escapes(heightField)
 	b3DestroyHeightField(theStack, uintptr(unsafe.Pointer(heightField)))
 }
-func CreateCylinder(height float32, radius float32, yOffset float32, sides int32) (r *HullData) {
-	r = (*HullData)(unsafe.Pointer(b3CreateCylinder(theStack, height, radius, yOffset, sides)))
+func CreateCylinder(height float32, radius float32, yOffset float32, sides int32) (r OwnedHull) {
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CreateCylinder(theStack, height, radius, yOffset, sides)))}
 	return
 }
-func CreateCone(height float32, radius1 float32, radius2 float32, slices int32) (r *HullData) {
-	r = (*HullData)(unsafe.Pointer(b3CreateCone(theStack, height, radius1, radius2, slices)))
+func CreateCone(height float32, radius1 float32, radius2 float32, slices int32) (r OwnedHull) {
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CreateCone(theStack, height, radius1, radius2, slices)))}
 	return
 }
-func CreateRock(radius float32) (r *HullData) {
-	r = (*HullData)(unsafe.Pointer(b3CreateRock(theStack, radius)))
+func CreateRock(radius float32) (r OwnedHull) {
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CreateRock(theStack, radius)))}
 	return
 }
-func CreateComplexHull(radius float32) (r *HullData) {
-	r = (*HullData)(unsafe.Pointer(b3CreateComplexHull(theStack, radius)))
+func CreateComplexHull(radius float32) (r OwnedHull) {
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CreateComplexHull(theStack, radius)))}
 	return
 }
-func CloneHull(hull *HullData) (r *HullData) {
+func CloneHull(hull *HullData) (r OwnedHull) {
 	defer runtime.KeepAlive(hull)
 	escapes(hull)
-	r = (*HullData)(unsafe.Pointer(b3CloneHull(theStack, uintptr(unsafe.Pointer(hull)))))
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CloneHull(theStack, uintptr(unsafe.Pointer(hull)))))}
 	return
 }
-func CloneAndTransformHull(original *HullData, transform Transform, scale Vec3) (r *HullData) {
+func CloneAndTransformHull(original *HullData, transform Transform, scale Vec3) (r OwnedHull) {
 	defer runtime.KeepAlive(original)
 	escapes(original)
-	r = (*HullData)(unsafe.Pointer(b3CloneAndTransformHull(theStack, uintptr(unsafe.Pointer(original)), transform, scale)))
+	r = OwnedHull{(*HullData)(unsafe.Pointer(b3CloneAndTransformHull(theStack, uintptr(unsafe.Pointer(original)), transform, scale)))}
 	return
 }
-func DestroyHull(hull *HullData) {
+func destroyHull(hull *HullData) {
 	defer runtime.KeepAlive(hull)
 	escapes(hull)
 	b3DestroyHull(theStack, uintptr(unsafe.Pointer(hull)))
@@ -748,31 +748,31 @@ func GetHeight(mesh *MeshData) (r int32) {
 	r = b3GetHeight(theStack, uintptr(unsafe.Pointer(mesh)))
 	return
 }
-func CreateGridMesh(xCount int32, zCount int32, cellWidth float32, materialCount int32, identifyEdges uint8) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreateGridMesh(theStack, xCount, zCount, cellWidth, materialCount, identifyEdges)))
+func CreateGridMesh(xCount int32, zCount int32, cellWidth float32, materialCount int32, identifyEdges uint8) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateGridMesh(theStack, xCount, zCount, cellWidth, materialCount, identifyEdges)))}
 	return
 }
-func CreateWaveMesh(xCount int32, zCount int32, cellWidth float32, amplitude float32, rowFrequency float32, columnFrequency float32) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreateWaveMesh(theStack, xCount, zCount, cellWidth, amplitude, rowFrequency, columnFrequency)))
+func CreateWaveMesh(xCount int32, zCount int32, cellWidth float32, amplitude float32, rowFrequency float32, columnFrequency float32) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateWaveMesh(theStack, xCount, zCount, cellWidth, amplitude, rowFrequency, columnFrequency)))}
 	return
 }
-func CreateTorusMesh(radialResolution int32, tubularResolution int32, radius float32, thickness float32) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreateTorusMesh(theStack, radialResolution, tubularResolution, radius, thickness)))
+func CreateTorusMesh(radialResolution int32, tubularResolution int32, radius float32, thickness float32) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateTorusMesh(theStack, radialResolution, tubularResolution, radius, thickness)))}
 	return
 }
-func CreateBoxMesh(center Vec3, extent Vec3, identifyEdges uint8) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreateBoxMesh(theStack, center, extent, identifyEdges)))
+func CreateBoxMesh(center Vec3, extent Vec3, identifyEdges uint8) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateBoxMesh(theStack, center, extent, identifyEdges)))}
 	return
 }
-func CreateHollowBoxMesh(center Vec3, extent Vec3) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreateHollowBoxMesh(theStack, center, extent)))
+func CreateHollowBoxMesh(center Vec3, extent Vec3) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateHollowBoxMesh(theStack, center, extent)))}
 	return
 }
-func CreatePlatformMesh(center Vec3, height float32, topWidth float32, bottomWidth float32) (r *MeshData) {
-	r = (*MeshData)(unsafe.Pointer(b3CreatePlatformMesh(theStack, center, height, topWidth, bottomWidth)))
+func CreatePlatformMesh(center Vec3, height float32, topWidth float32, bottomWidth float32) (r OwnedMesh) {
+	r = OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreatePlatformMesh(theStack, center, height, topWidth, bottomWidth)))}
 	return
 }
-func DestroyMesh(mesh *MeshData) {
+func destroyMesh(mesh *MeshData) {
 	defer runtime.KeepAlive(mesh)
 	escapes(mesh)
 	b3DestroyMesh(theStack, uintptr(unsafe.Pointer(mesh)))

@@ -432,19 +432,17 @@ func MakeAABB(points []Vec3, radius float32) AABB {
 }
 
 // CreateHull computes the convex hull of points, with at most maxVertexCount vertices.
-// It returns nil if the hull fails, for example because B3_MAX_HULL_VERTICES is exceeded.
-// Destroy the hull with DestroyHull.
-func CreateHull(points []Vec3, maxVertexCount int) *HullData {
+// HullData is nil if the hull fails, for example because B3_MAX_HULL_VERTICES is exceeded.
+func CreateHull(points []Vec3, maxVertexCount int) OwnedHull {
 	defer runtime.KeepAlive(points)
 
 	hull := b3CreateHull(theStack, sliceAddr(points), int32(len(points)), int32(maxVertexCount))
-	return (*HullData)(unsafe.Pointer(hull))
+	return OwnedHull{(*HullData)(unsafe.Pointer(hull))}
 }
 
 // CreateMesh creates a triangle mesh from vertices and three indices per triangle.
 // materialIndices holds one material per triangle, or nil. box3d copies the slices.
-// Destroy the mesh with DestroyMesh after the last shape that uses it.
-func CreateMesh(def MeshDef, vertices []Vec3, indices []int32, materialIndices []uint8) *MeshData {
+func CreateMesh(def MeshDef, vertices []Vec3, indices []int32, materialIndices []uint8) OwnedMesh {
 	if len(materialIndices) > 0 && len(materialIndices)*3 != len(indices) {
 		panic("CreateMesh: need one material index per triangle")
 	}
@@ -461,13 +459,12 @@ func CreateMesh(def MeshDef, vertices []Vec3, indices []int32, materialIndices [
 	defStack := copyToStack(theStack, def)
 	defer defStack.Free()
 
-	return (*MeshData)(unsafe.Pointer(b3CreateMesh(theStack, defStack.Addr, 0, 0)))
+	return OwnedMesh{(*MeshData)(unsafe.Pointer(b3CreateMesh(theStack, defStack.Addr, 0, 0)))}
 }
 
 // CreateHeightField creates a height field with CountX * CountZ heights. materialIndices
 // holds one material per cell, or nil. box3d copies the slices.
-// Destroy the height field with DestroyHeightField after the last shape that uses it.
-func CreateHeightField(def HeightFieldDef, heights []float32, materialIndices []uint8) *HeightFieldData {
+func CreateHeightField(def HeightFieldDef, heights []float32, materialIndices []uint8) OwnedHeightField {
 	if len(heights) != int(def.CountX)*int(def.CountZ) {
 		panic("CreateHeightField: need CountX * CountZ heights")
 	}
@@ -484,13 +481,12 @@ func CreateHeightField(def HeightFieldDef, heights []float32, materialIndices []
 	defStack := copyToStack(theStack, def)
 	defer defStack.Free()
 
-	return (*HeightFieldData)(unsafe.Pointer(b3CreateHeightField(theStack, defStack.Addr)))
+	return OwnedHeightField{(*HeightFieldData)(unsafe.Pointer(b3CreateHeightField(theStack, defStack.Addr)))}
 }
 
 // CreateCompound creates a compound shape from the children. box3d copies the children, but
 // a mesh child refers to its MeshData, which must outlive the compound.
-// Destroy the compound with DestroyCompound after the last shape that uses it.
-func CreateCompound(capsules []CompoundCapsuleDef, hulls []CompoundHullDef, meshes []CompoundMeshDef, spheres []CompoundSphereDef) *CompoundData {
+func CreateCompound(capsules []CompoundCapsuleDef, hulls []CompoundHullDef, meshes []CompoundMeshDef, spheres []CompoundSphereDef) OwnedCompound {
 	var def CompoundDef
 	def.capsules, def.capsuleCount = sliceAddr(capsules), int32(len(capsules))
 	def.hulls, def.hullCount = sliceAddr(hulls), int32(len(hulls))
@@ -505,7 +501,52 @@ func CreateCompound(capsules []CompoundCapsuleDef, hulls []CompoundHullDef, mesh
 	defStack := copyToStack(theStack, def)
 	defer defStack.Free()
 
-	return (*CompoundData)(unsafe.Pointer(b3CreateCompound(theStack, defStack.Addr)))
+	return OwnedCompound{(*CompoundData)(unsafe.Pointer(b3CreateCompound(theStack, defStack.Addr)))}
+}
+
+// The Owned types hold data that box3d allocated for you, returned by the Create and Clone
+// functions. The Go GC does not free it, call Destroy when you no longer need it. Methods and
+// fields of the data are promoted, pass the embedded pointer to functions that take the data.
+// Data you only borrow, like Shape.GetHull, is a plain pointer and has no Destroy.
+
+// OwnedHull is a hull you own. Shapes copy hulls, so you can destroy it after creating them.
+type OwnedHull struct{ *HullData }
+
+// Destroy frees the hull.
+func (h OwnedHull) Destroy() {
+	if h.HullData != nil {
+		destroyHull(h.HullData)
+	}
+}
+
+// OwnedMesh is a mesh you own. Shapes keep using it, destroy it after the last of them.
+type OwnedMesh struct{ *MeshData }
+
+// Destroy frees the mesh.
+func (m OwnedMesh) Destroy() {
+	if m.MeshData != nil {
+		destroyMesh(m.MeshData)
+	}
+}
+
+// OwnedHeightField is a height field you own. Shapes keep using it, destroy it after the last of them.
+type OwnedHeightField struct{ *HeightFieldData }
+
+// Destroy frees the height field.
+func (h OwnedHeightField) Destroy() {
+	if h.HeightFieldData != nil {
+		destroyHeightField(h.HeightFieldData)
+	}
+}
+
+// OwnedCompound is a compound you own. Shapes keep using it, destroy it after the last of them.
+type OwnedCompound struct{ *CompoundData }
+
+// Destroy frees the compound.
+func (c OwnedCompound) Destroy() {
+	if c.CompoundData != nil {
+		destroyCompound(c.CompoundData)
+	}
 }
 
 // Materials returns the materials of the compound.

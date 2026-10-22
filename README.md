@@ -38,11 +38,22 @@ an index into your own slice. The C pointer fields of the definitions are not ex
   creating the world.
 - Custom task system: not supported, the built-in scheduler runs the workers, see below.
 
-Hulls, meshes, height fields and compounds that Box3D creates are returned as Go pointers into Box3D's heap, for
-example `*b3.HullData`. Read their arrays with methods like `HullData.Points()` or `MeshData.Triangles()`, and free
-them with `DestroyHull`, `DestroyMesh` and so on. `MakeBoxHull` returns a `BoxHull` by value, pass `&box.Base` to
-the functions that take a hull. Shapes copy hulls, but keep a reference to meshes, height fields and compounds, so
-destroy those only after the last shape that uses them.
+Hulls, meshes, height fields and compounds that Box3D creates live in Box3D's heap, which the Go GC does not
+free. The `Create...` and `Clone...` functions return them as `OwnedHull`, `OwnedMesh`, `OwnedHeightField` and
+`OwnedCompound`. Call `Destroy` on these when you are done, otherwise the memory leaks. They embed the data
+pointer, so `hull.Points()` or `mesh.Triangles()` work directly, and functions that read the data take the
+embedded pointer:
+
+```go
+hull := b3.CreateHull(points, 32)
+defer hull.Destroy()
+
+body.CreateHullShape(b3.DefaultShapeDef(), hull.HullData)
+```
+
+Shapes copy hulls, so you can destroy a hull right after creating its shapes. Shapes keep using meshes, height
+fields and compounds, so destroy those only after the last shape that uses them. Data that you only borrow, like
+`Shape.GetHull()` or a `BoxHull` from `MakeBoxHull` (pass `&box.Base`), is a plain pointer and has no `Destroy`.
 
 ## Example
 

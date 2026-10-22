@@ -56,16 +56,16 @@ func TestCreateHull(t *testing.T) {
 	}
 
 	hull := CreateHull(points, 32)
-	require.NotNil(t, hull)
-	defer DestroyHull(hull)
+	require.NotNil(t, hull.HullData)
+	defer hull.Destroy()
 
 	assert.EqualValues(t, 8, hull.VertexCount)
 	assert.InDelta(t, 8, hull.Volume, 1e-4)
 
-	mass := ComputeHullMass(hull, 2)
+	mass := ComputeHullMass(hull.HullData, 2)
 	assert.InDelta(t, 16, mass.Mass, 1e-3)
 
-	out := RayCastHull(hull, RayCastInput{Origin: Vec3{X: -5}, Translation: Vec3{X: 10}, MaxFraction: 1})
+	out := RayCastHull(hull.HullData, RayCastInput{Origin: Vec3{X: -5}, Translation: Vec3{X: 10}, MaxFraction: 1})
 	assert.EqualValues(t, 1, out.Hit)
 	assert.InDelta(t, 0.4, out.Fraction, 1e-5)
 }
@@ -77,8 +77,8 @@ func TestCreateMesh(t *testing.T) {
 
 	def := MeshDef{IdentifyEdges: 1}
 	mesh := CreateMesh(def, vertices, indices, []uint8{1, 2})
-	require.NotNil(t, mesh)
-	defer DestroyMesh(mesh)
+	require.NotNil(t, mesh.MeshData)
+	defer mesh.Destroy()
 
 	assert.EqualValues(t, 2, mesh.TriangleCount)
 	assert.Equal(t, vertices, mesh.Vertices())
@@ -87,13 +87,13 @@ func TestCreateMesh(t *testing.T) {
 	assert.Len(t, mesh.Flags(), 2)
 
 	var triangles []int32
-	QueryMesh(Mesh{Data: mesh, Scale: Vec3{X: 1, Y: 1, Z: 1}}, AABB{UpperBound: Vec3{X: 1, Y: 1, Z: 1}}, func(a, b, c Vec3, triangleIndex int32) bool {
+	QueryMesh(Mesh{Data: mesh.MeshData, Scale: Vec3{X: 1, Y: 1, Z: 1}}, AABB{UpperBound: Vec3{X: 1, Y: 1, Z: 1}}, func(a, b, c Vec3, triangleIndex int32) bool {
 		triangles = append(triangles, triangleIndex)
 		return true
 	})
 	assert.ElementsMatch(t, []int32{0, 1}, triangles)
 
-	out := RayCastMesh(Mesh{Data: mesh, Scale: Vec3{X: 1, Y: 1, Z: 1}}, RayCastInput{
+	out := RayCastMesh(Mesh{Data: mesh.MeshData, Scale: Vec3{X: 1, Y: 1, Z: 1}}, RayCastInput{
 		Origin:      Vec3{X: 0.25, Y: 1, Z: 0.5},
 		Translation: Vec3{Y: -2},
 		MaxFraction: 1,
@@ -119,10 +119,10 @@ func TestCreateHeightField(t *testing.T) {
 	}
 
 	hf := CreateHeightField(def, make([]float32, 16), make([]uint8, 9))
-	require.NotNil(t, hf)
-	defer DestroyHeightField(hf)
+	require.NotNil(t, hf.HeightFieldData)
+	defer hf.Destroy()
 
-	out := RayCastHeightField(hf, RayCastInput{
+	out := RayCastHeightField(hf.HeightFieldData, RayCastInput{
 		Origin:      Vec3{X: 1.25, Y: 10, Z: 1.25},
 		Translation: Vec3{Y: -20},
 		MaxFraction: 1,
@@ -133,7 +133,7 @@ func TestCreateHeightField(t *testing.T) {
 	assert.InDelta(t, 1, out.Normal.Y, 1e-5)
 
 	var count int
-	QueryHeightField(hf, AABB{LowerBound: Vec3{X: 0.1, Y: -1, Z: 0.1}, UpperBound: Vec3{X: 0.9, Y: 1, Z: 0.9}}, func(a, b, c Vec3, triangleIndex int32) bool {
+	QueryHeightField(hf.HeightFieldData, AABB{LowerBound: Vec3{X: 0.1, Y: -1, Z: 0.1}, UpperBound: Vec3{X: 0.9, Y: 1, Z: 0.9}}, func(a, b, c Vec3, triangleIndex int32) bool {
 		count++
 		return true
 	})
@@ -149,19 +149,19 @@ func TestCreateCompound(t *testing.T) {
 
 	box := MakeBoxHull(0.5, 0.5, 0.5)
 	meshData := CreateBoxMesh(Vec3{}, Vec3{X: 0.5, Y: 0.5, Z: 0.5}, 0)
-	defer DestroyMesh(meshData)
+	defer meshData.Destroy()
 
 	compound := CreateCompound(
 		[]CompoundCapsuleDef{{Capsule: Capsule{Center1: Vec3{X: -1}, Center2: Vec3{X: 1}, Radius: 0.25}, Material: mat}},
 		[]CompoundHullDef{{Hull: &box.Base, Transform: TransformIdentity, Material: mat}},
-		[]CompoundMeshDef{{MeshData: meshData, Transform: TransformIdentity, Scale: Vec3{X: 1, Y: 1, Z: 1}, Materials: &mat, MaterialCount: 1}},
+		[]CompoundMeshDef{{MeshData: meshData.MeshData, Transform: TransformIdentity, Scale: Vec3{X: 1, Y: 1, Z: 1}, Materials: &mat, MaterialCount: 1}},
 		[]CompoundSphereDef{
 			{Sphere: Sphere{Center: Vec3{X: 5}, Radius: 0.5}, Material: mat},
 			{Sphere: Sphere{Center: Vec3{X: -5}, Radius: 0.5}, Material: mat},
 		},
 	)
-	require.NotNil(t, compound)
-	defer DestroyCompound(compound)
+	require.NotNil(t, compound.CompoundData)
+	defer compound.Destroy()
 
 	assert.EqualValues(t, 1, compound.CapsuleCount)
 	assert.EqualValues(t, 1, compound.HullCount)
@@ -173,7 +173,7 @@ func TestCreateCompound(t *testing.T) {
 
 	shapeTypes := map[ShapeType]int{}
 	for i := range compound.CapsuleCount + compound.HullCount + compound.MeshCount + compound.SphereCount {
-		child := GetCompoundChild(compound, i)
+		child := GetCompoundChild(compound.CompoundData, i)
 		shapeTypes[child.Type1]++
 
 		switch child.Type1 {
@@ -197,9 +197,9 @@ func TestCreateCompound(t *testing.T) {
 
 	body := world.CreateBody(DefaultBodyDef())
 	def := DefaultShapeDef()
-	shape := body.CreateBakedCompoundShape(def, compound)
+	shape := body.CreateBakedCompoundShape(def, compound.CompoundData)
 	assert.Equal(t, CompoundShape, shape.GetType())
-	assert.Equal(t, compound, shape.GetCompound())
+	assert.Equal(t, compound.CompoundData, shape.GetCompound())
 
 	result := world.CastRayClosest(Pos{X: 5, Y: 5}, Vec3{Y: -10}, DefaultQueryFilter())
 	assert.EqualValues(t, 1, result.Hit)

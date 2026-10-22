@@ -751,6 +751,13 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 							Args: []dst.Expr{call},
 						}},
 					}
+
+					// the caller frees what these return, the Owned types in box3d.go say so
+					if reOwnedResult.MatchString(decl.Name.Name) {
+						ownedType := "Owned" + strings.TrimSuffix(goType, "Data")
+						ty = dst.NewIdent(ownedType)
+						result = &dst.CompositeLit{Type: dst.NewIdent(ownedType), Elts: []dst.Expr{result}}
+					}
 				} else if isUintptr(ty) && resultType == "char" {
 					ty = dst.NewIdent("string")
 					result = &dst.CallExpr{Fun: dst.NewIdent("toString"), Args: []dst.Expr{call}}
@@ -841,9 +848,16 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 		} else {
 			slog.Info("Wrap normal method", slog.String("method", decl.Name.Name))
 
+			name := strings.ReplaceAll(strings.TrimPrefix(decl.Name.Name, inlinePrefix)[2:], "_", "")
+
+			// the Destroy methods of the Owned types in box3d.go call these
+			if ownedDestroy[decl.Name.Name] {
+				name = strings.ToLower(name[:1]) + name[1:]
+			}
+
 			// normal method
 			fdecl = &dst.FuncDecl{
-				Name: dst.NewIdent(strings.ReplaceAll(strings.TrimPrefix(decl.Name.Name, inlinePrefix)[2:], "_", "")),
+				Name: dst.NewIdent(name),
 				Type: &dst.FuncType{
 					TypeParams: decl.Type.TypeParams,
 					Params:     &dst.FieldList{List: paramTypes},
@@ -857,6 +871,17 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 
 		return true
 	}
+}
+
+// reOwnedResult matches the functions that return box3d data the caller has to free
+var reOwnedResult = regexp.MustCompile(`^b3(Create|Clone)`)
+
+// ownedDestroy free the data of the Owned types
+var ownedDestroy = map[string]bool{
+	"b3DestroyHull":        true,
+	"b3DestroyMesh":        true,
+	"b3DestroyHeightField": true,
+	"b3DestroyCompound":    true,
 }
 
 // byReference are the types of data that box3d allocates. They have a header that is followed by
