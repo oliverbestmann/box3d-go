@@ -144,32 +144,56 @@ version.
 
 `BenchmarkUpstream` runs the benchmarks of Box3D's `benchmark/main.c` with 1 and 4 workers. The scenes are
 translated from `shared/benchmarks.c`. Like upstream, the first step is not timed, so `ns/op` compares with the
-milliseconds in `box3d-c/benchmark/<machine>/<name>.csv`. Some take seconds per run, so pick one:
+milliseconds that upstream's benchmark program prints. Some take seconds per run, so pick one:
 
 ```sh
 GOEXPERIMENT=simd go test -run XXX -bench 'Upstream/large_pyramid' -benchtime 1x
 ```
 
-Milliseconds for one run, measured once with Go 1.27 on Linux arm64 (Apple Silicon). The C column is upstream's
-`m2air_neon` CSV, from a different machine and maybe an older Box3D, so only use it as a rough reference:
+Milliseconds for a single run of each benchmark, all on the same Linux arm64 machine (Apple Silicon). Go uses Go
+1.27. C is upstream's `benchmark/main.c` at the same commit, built with GCC 16 and `-O3 -DNDEBUG -ffp-contract=off`
+and run with `-t=4 -w=<workers> -r=1`. The C scalar column adds `-DBOX3D_DISABLE_SIMD`. The C build has no asserts,
+the Go port keeps them. Go is about 2 to 2.5 times slower than C:
 
-| Benchmark | Scalar, 1 worker | SIMD, 1 worker | Scalar, 4 workers | SIMD, 4 workers | C NEON, 1 / 4 threads |
-|---|---:|---:|---:|---:|---:|
-| convex_pile | 16,640 | 9,987 | 5,888 | 3,744 | 15,033 / 4,297 |
-| joint_grid | 1,264 | 1,275 | 648 | 441 | 1,090 / 309 |
-| junkyard | 36,688 | 23,832 | 12,655 | 9,201 | 13,501 / 4,254 |
-| large_pyramid | 6,374 | 2,221 | 1,918 | 841 | 1,811 / 564 |
-| large_world | 24.3 | 10.8 | 169 | 72.0 | 9.0 / 15.0 |
-| many_pyramids | 5,992 | 2,192 | 1,703 | 829 | 1,917 / 621 |
-| mesh_drop | 4,074 | 2,235 | 1,612 | 1,197 | - |
-| rain | 3,066 | 2,623 | 1,709 | 1,536 | 1,955 / 626 |
-| sleep | 3,550 | 1,121 | 1,363 | 798 | - |
-| spinner | 8,596 | 4,544 | 4,117 | 2,962 | - |
-| trees100 | 322 | 297 | 589 | 386 | 186 / 91.2 |
-| trees50 | 549 | 402 | 659 | 536 | 288 / 157 |
-| trees25 | 1,013 | 731 | 1,083 | 774 | 610 / 236 |
-| village | 7,522 | 3,732 | 4,625 | 3,841 | - |
-| washer | 51,059 | 29,212 | 18,401 | 11,370 | 21,065 / 7,675 |
+1 worker:
+
+| Benchmark | C scalar | Go scalar | C NEON | Go SIMD |
+|---|---:|---:|---:|---:|
+| convex_pile | 6,672 | 16,640 | 4,887 | 9,987 |
+| joint_grid | 895 | 1,264 | 898 | 1,275 |
+| junkyard | 15,505 | 36,688 | 10,581 | 23,832 |
+| large_pyramid | 2,796 | 6,374 | 1,210 | 2,221 |
+| large_world | 8.8 | 24.3 | 4.8 | 10.8 |
+| many_pyramids | 2,676 | 5,992 | 1,225 | 2,192 |
+| mesh_drop | 1,979 | 4,074 | 1,389 | 2,235 |
+| rain | 1,877 | 3,066 | 1,690 | 2,623 |
+| sleep | 1,499 | 3,550 | 588 | 1,121 |
+| spinner | 3,951 | 8,596 | 2,438 | 4,544 |
+| trees100 | 144 | 322 | 111 | 297 |
+| trees50 | 236 | 549 | 188 | 402 |
+| trees25 | 497 | 1,013 | 398 | 731 |
+| village | 3,340 | 7,522 | 1,965 | 3,732 |
+| washer | 23,471 | 51,059 | 15,285 | 29,212 |
+
+4 workers:
+
+| Benchmark | C scalar | Go scalar | C NEON | Go SIMD |
+|---|---:|---:|---:|---:|
+| convex_pile | 2,157 | 5,888 | 1,682 | 3,744 |
+| joint_grid | 328 | 648 | 289 | 441 |
+| junkyard | 5,011 | 12,655 | 3,646 | 9,201 |
+| large_pyramid | 853 | 1,918 | 447 | 841 |
+| large_world | 28.2 | 169 | 17.4 | 72.0 |
+| many_pyramids | 777 | 1,703 | 417 | 829 |
+| mesh_drop | 646 | 1,612 | 565 | 1,197 |
+| rain | 689 | 1,709 | 603 | 1,536 |
+| sleep | 511 | 1,363 | 274 | 798 |
+| spinner | 1,787 | 4,117 | 1,195 | 2,962 |
+| trees100 | 100 | 589 | 95.4 | 386 |
+| trees50 | 229 | 659 | 154 | 536 |
+| trees25 | 517 | 1,083 | 456 | 774 |
+| village | 1,392 | 4,625 | 1,208 | 3,841 |
+| washer | 8,105 | 18,401 | 5,691 | 11,370 |
 
 ## Development
 
