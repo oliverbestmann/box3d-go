@@ -137,8 +137,9 @@ var pointerFields = map[string]map[string]string{
 }
 
 // fixApiFields applies apiFields. A field can have the same name in many structs, so this
-// needs the types of the selectors.
-func fixApiFields(root *dst.File) {
+// needs the types of the selectors. It returns the pointer-free mirrors of the structs with
+// toPointer fields by type name, see addMirrors.
+func fixApiFields(root *dst.File) map[string]string {
 	restorer := decorator.NewRestorer()
 	file, err := restorer.RestoreFile(root)
 	must(err)
@@ -187,6 +188,8 @@ func fixApiFields(root *dst.File) {
 			}
 		}
 	}
+
+	mirrors := addMirrors(root, pkg, fields)
 
 	dstNodes := map[ast.Node]dst.Node{}
 	for d, a := range restorer.Ast.Nodes {
@@ -308,6 +311,80 @@ func fixApiFields(root *dst.File) {
 			ident.Name = strings.ToLower(ident.Name[:1]) + ident.Name[1:]
 		}
 	}
+
+	return mirrors
+}
+
+// addMirrors declares cX for every struct X that contains a toPointer field, directly or in a
+// nested struct. cX keeps the uintptr of the C code, so the wrappers can copy X to the box3d
+// stack, where the GC and the stack mover don't see pointers.
+func addMirrors(root *dst.File, pkg *types.Package, fields map[*types.Var]fieldChange) map[string]string {
+	var hasPointer func(t types.Type) bool
+	hasPointer = func(t types.Type) bool {
+		switch t := t.Underlying().(type) {
+		case *types.Array:
+			return hasPointer(t.Elem())
+		case *types.Struct:
+			for field := range t.Fields() {
+				if fields[field] == toPointer || hasPointer(field.Type()) {
+					return true
+				}
+			}
+		}
+
+		return false
+	}
+
+	mirrors := map[string]string{}
+	for _, name := range pkg.Scope().Names() {
+		if obj, ok := pkg.Scope().Lookup(name).(*types.TypeName); ok && obj.Exported() && !obj.IsAlias() && hasPointer(obj.Type()) {
+			mirrors[name] = "c" + name
+		}
+	}
+
+	var decls []dst.Decl
+	for _, decl := range root.Decls {
+		decls = append(decls, decl)
+
+		gen, ok := decl.(*dst.GenDecl)
+		if !ok || gen.Tok != token.TYPE {
+			continue
+		}
+
+		for _, spec := range gen.Specs {
+			spec := spec.(*dst.TypeSpec)
+			mirror := mirrors[spec.Name.Name]
+			if mirror == "" {
+				continue
+			}
+
+			// the clone is not in the type info, so the field changes skip it
+			clone := dst.Clone(spec).(*dst.TypeSpec)
+			clone.Name.Name = mirror
+			var renameTypes func(node dst.Node) bool
+			renameTypes = func(node dst.Node) bool {
+				switch node := node.(type) {
+				case *dst.Field:
+					// field names of nested structs stay, only their types change
+					dst.Inspect(node.Type, renameTypes)
+					return false
+				case *dst.Ident:
+					if mirrors[node.Name] != "" {
+						node.Name = mirrors[node.Name]
+					}
+				}
+
+				return true
+			}
+
+			dst.Inspect(clone.Type, renameTypes)
+
+			decls = append(decls, &dst.GenDecl{Tok: token.TYPE, Specs: []dst.Spec{clone}})
+		}
+	}
+
+	root.Decls = decls
+	return mirrors
 }
 
 // handWrittenFiles returns the non-test Go files of the package root that are not generated

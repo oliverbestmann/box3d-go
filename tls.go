@@ -1,6 +1,9 @@
 package b3
 
 import (
+	"fmt"
+	"reflect"
+	"sync"
 	"unsafe"
 )
 
@@ -87,7 +90,11 @@ func (a alloc) Free() {
 	a.tls.Free(a.size)
 }
 
+// copyToStack copies value to the box3d stack. The stack is a byte slice, the GC and the stack
+// mover do not see pointers in it, so T must not contain any, see copyToStackAs.
 func copyToStack[T any](tls *_Stack, value T) alloc {
+	assertPointerFree[T]()
+
 	n := int(unsafe.Sizeof(value))
 	stack := tls.Alloc(n)
 	*(*T)(unsafe.Pointer(stack)) = value
@@ -95,10 +102,59 @@ func copyToStack[T any](tls *_Stack, value T) alloc {
 	return alloc{Addr: stack, tls: tls, size: n}
 }
 
+// copyToStackAs copies value to the box3d stack as C, a pointer-free mirror of T with the same
+// layout. box3d sees the pointers of value as uintptr, the caller must keep value alive.
+func copyToStackAs[C, T any](tls *_Stack, value T) alloc {
+	if unsafe.Sizeof(*new(C)) != unsafe.Sizeof(value) {
+		panic(fmt.Sprintf("copyToStackAs: %T and %T differ in size", *new(C), value))
+	}
+
+	// the pointees must not live on a goroutine stack, the stack mover does not update the copy
+	escapes(value)
+
+	return copyToStack(tls, *(*C)(unsafe.Pointer(&value)))
+}
+
 func sliceToStack[T any](tls *_Stack, values []T) alloc {
+	assertPointerFree[T]()
+
 	n := len(values) * int(unsafe.Sizeof(*new(T)))
 	stack := tls.Alloc(n)
 	copy(unsafe.Slice((*T)(unsafe.Pointer(stack)), len(values)), values)
 
 	return alloc{Addr: stack, tls: tls, size: n}
+}
+
+// pointerFree caches assertPointerFree, reflect.Type -> bool
+var pointerFree sync.Map
+
+func assertPointerFree[T any]() {
+	t := reflect.TypeFor[T]()
+	ok, cached := pointerFree.Load(t)
+	if !cached {
+		ok, _ = pointerFree.LoadOrStore(t, !hasPointers(t))
+	}
+
+	if !ok.(bool) {
+		panic(fmt.Sprintf("box3d stack: %s contains pointers", t))
+	}
+}
+
+// hasPointers reports if values of t contain anything the GC or the stack mover must see.
+func hasPointers(t reflect.Type) bool {
+	switch t.Kind() {
+	case reflect.Pointer, reflect.UnsafePointer, reflect.Map, reflect.Chan,
+		reflect.Func, reflect.Interface, reflect.Slice, reflect.String:
+		return true
+	case reflect.Array:
+		return t.Len() > 0 && hasPointers(t.Elem())
+	case reflect.Struct:
+		for i := range t.NumField() {
+			if hasPointers(t.Field(i).Type) {
+				return true
+			}
+		}
+	}
+
+	return false
 }

@@ -67,14 +67,14 @@ func (b Body) CastRay(origin Pos, translation Vec3, _filter QueryFilter, maxFrac
 }
 func (b Body) CastShape(origin Pos, proxy ShapeProxy, translation Vec3, _filter QueryFilter, maxFraction float32, canEncroach uint8, bodyTransform WorldTransform) (r1 BodyCastResult) {
 	defer runtime.KeepAlive(proxy)
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r1 = b3Body_CastShape(theStack, b.Id, origin, proxyStack.Addr, translation, _filter, maxFraction, canEncroach, bodyTransform)
 	return
 }
 func (b Body) OverlapShape(origin Pos, proxy ShapeProxy, _filter QueryFilter, bodyTransform WorldTransform) (r1 uint8) {
 	defer runtime.KeepAlive(proxy)
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r1 = b3Body_OverlapShape(theStack, b.Id, origin, proxyStack.Addr, _filter, bodyTransform)
 	return
@@ -235,7 +235,7 @@ func OverlapCapsule(shape Capsule, shapeTransform Transform, proxy ShapeProxy) (
 	defer runtime.KeepAlive(shape)
 	shapeStack := copyToStack(theStack, shape)
 	defer shapeStack.Free()
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapCapsule(theStack, shapeStack.Addr, shapeTransform, proxyStack.Addr)
 	return
@@ -255,7 +255,7 @@ func ShapeCastCapsule(capsule Capsule, input ShapeCastInput) (r CastOutput) {
 	defer runtime.KeepAlive(capsule)
 	capsuleStack := copyToStack(theStack, capsule)
 	defer capsuleStack.Free()
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r = b3ShapeCastCapsule(theStack, capsuleStack.Addr, inputStack.Addr)
 	return
@@ -305,7 +305,7 @@ func OverlapCompound(shape *CompoundData, shapeTransform Transform, proxy ShapeP
 	defer runtime.KeepAlive(proxy)
 	defer runtime.KeepAlive(shape)
 	escapes(shape)
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapCompound(theStack, uintptr(unsafe.Pointer(shape)), shapeTransform, proxyStack.Addr)
 	return
@@ -323,7 +323,7 @@ func ShapeCastCompound(shape *CompoundData, input ShapeCastInput) (r1 CastOutput
 	defer runtime.KeepAlive(input)
 	defer runtime.KeepAlive(shape)
 	escapes(shape)
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r1 = b3ShapeCastCompound(theStack, uintptr(unsafe.Pointer(shape)), inputStack.Addr)
 	return
@@ -338,7 +338,7 @@ func GetMaxManifoldPoints() (r int32)            { r = b3GetMaxManifoldPoints(th
 func GetByteCount() (r int64)                    { r = b3GetByteCount(theStack); return }
 func ShapeCast(input ShapeCastPairInput) (r CastOutput) {
 	defer runtime.KeepAlive(input)
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastPairInput](theStack, input)
 	defer inputStack.Free()
 	r = b3ShapeCast(theStack, inputStack.Addr)
 	return
@@ -352,7 +352,7 @@ func GetSweepTransform(sweep Sweep, time float32) (r Transform) {
 }
 func TimeOfImpact(input TOIInput) (r TOIOutput) {
 	defer runtime.KeepAlive(input)
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cTOIInput](theStack, input)
 	defer inputStack.Free()
 	r = b3TimeOfImpact(theStack, inputStack.Addr)
 	return
@@ -449,7 +449,7 @@ func ShapeCastHeightField(heightField *HeightFieldData, input ShapeCastInput) (r
 	defer runtime.KeepAlive(input)
 	defer runtime.KeepAlive(heightField)
 	escapes(heightField)
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r1 = b3ShapeCastHeightField(theStack, uintptr(unsafe.Pointer(heightField)), inputStack.Addr)
 	return
@@ -458,7 +458,7 @@ func OverlapHeightField(shape *HeightFieldData, shapeTransform Transform, proxy 
 	defer runtime.KeepAlive(proxy)
 	defer runtime.KeepAlive(shape)
 	escapes(shape)
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapHeightField(theStack, uintptr(unsafe.Pointer(shape)), shapeTransform, proxyStack.Addr)
 	return
@@ -525,7 +525,7 @@ func OverlapHull(shape *HullData, shapeTransform Transform, proxy ShapeProxy) (r
 	defer runtime.KeepAlive(proxy)
 	defer runtime.KeepAlive(shape)
 	escapes(shape)
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapHull(theStack, uintptr(unsafe.Pointer(shape)), shapeTransform, proxyStack.Addr)
 	return
@@ -543,7 +543,7 @@ func ShapeCastHull(shape *HullData, input ShapeCastInput) (r CastOutput) {
 	defer runtime.KeepAlive(input)
 	defer runtime.KeepAlive(shape)
 	escapes(shape)
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r = b3ShapeCastHull(theStack, uintptr(unsafe.Pointer(shape)), inputStack.Addr)
 	return
@@ -780,9 +780,9 @@ func destroyMesh(mesh *MeshData) {
 func OverlapMesh(shape Mesh, shapeTransform Transform, proxy ShapeProxy) (r uint8) {
 	defer runtime.KeepAlive(proxy)
 	defer runtime.KeepAlive(shape)
-	shapeStack := copyToStack(theStack, shape)
+	shapeStack := copyToStackAs[cMesh](theStack, shape)
 	defer shapeStack.Free()
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapMesh(theStack, shapeStack.Addr, shapeTransform, proxyStack.Addr)
 	return
@@ -796,7 +796,7 @@ func ComputeMeshAABB(shape *MeshData, transform1 Transform, scale Vec3) (r AABB)
 func RayCastMesh(mesh3 Mesh, input RayCastInput) (r CastOutput) {
 	defer runtime.KeepAlive(input)
 	defer runtime.KeepAlive(mesh3)
-	mesh3Stack := copyToStack(theStack, mesh3)
+	mesh3Stack := copyToStackAs[cMesh](theStack, mesh3)
 	defer mesh3Stack.Free()
 	inputStack := copyToStack(theStack, input)
 	defer inputStack.Free()
@@ -806,9 +806,9 @@ func RayCastMesh(mesh3 Mesh, input RayCastInput) (r CastOutput) {
 func ShapeCastMesh(mesh3 Mesh, input ShapeCastInput) (r1 CastOutput) {
 	defer runtime.KeepAlive(input)
 	defer runtime.KeepAlive(mesh3)
-	mesh3Stack := copyToStack(theStack, mesh3)
+	mesh3Stack := copyToStackAs[cMesh](theStack, mesh3)
 	defer mesh3Stack.Free()
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r1 = b3ShapeCastMesh(theStack, mesh3Stack.Addr, inputStack.Addr)
 	return
@@ -1150,7 +1150,7 @@ func (b RevoluteJoint) GetMotorTorque() (r float32) {
 func (b Body) CreateSphereShape(def ShapeDef, sphere Sphere) (r Shape) {
 	defer runtime.KeepAlive(sphere)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	sphereStack := copyToStack(theStack, sphere)
 	defer sphereStack.Free()
@@ -1160,7 +1160,7 @@ func (b Body) CreateSphereShape(def ShapeDef, sphere Sphere) (r Shape) {
 func (b Body) CreateCapsuleShape(def ShapeDef, capsule Capsule) (r Shape) {
 	defer runtime.KeepAlive(capsule)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	capsuleStack := copyToStack(theStack, capsule)
 	defer capsuleStack.Free()
@@ -1170,7 +1170,7 @@ func (b Body) CreateCapsuleShape(def ShapeDef, capsule Capsule) (r Shape) {
 func (b Body) CreateHullShape(def ShapeDef, hull *HullData) (r Shape) {
 	defer runtime.KeepAlive(hull)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	escapes(hull)
 	r.Id = b3CreateHullShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(hull)))
@@ -1179,7 +1179,7 @@ func (b Body) CreateHullShape(def ShapeDef, hull *HullData) (r Shape) {
 func (b Body) CreateTransformedHullShape(def ShapeDef, hull *HullData, transform Transform, scale Vec3) (r Shape) {
 	defer runtime.KeepAlive(hull)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	escapes(hull)
 	r.Id = b3CreateTransformedHullShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(hull)), transform, scale)
@@ -1188,7 +1188,7 @@ func (b Body) CreateTransformedHullShape(def ShapeDef, hull *HullData, transform
 func (b Body) CreateMeshShape(def ShapeDef, mesh *MeshData, scale Vec3) (r Shape) {
 	defer runtime.KeepAlive(mesh)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	escapes(mesh)
 	r.Id = b3CreateMeshShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(mesh)), scale)
@@ -1197,7 +1197,7 @@ func (b Body) CreateMeshShape(def ShapeDef, mesh *MeshData, scale Vec3) (r Shape
 func (b Body) CreateHeightFieldShape(def ShapeDef, heightField *HeightFieldData) (r Shape) {
 	defer runtime.KeepAlive(heightField)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	escapes(heightField)
 	r.Id = b3CreateHeightFieldShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(heightField)))
@@ -1206,7 +1206,7 @@ func (b Body) CreateHeightFieldShape(def ShapeDef, heightField *HeightFieldData)
 func (b Body) CreateBakedCompoundShape(def ShapeDef, compound *CompoundData) (r Shape) {
 	defer runtime.KeepAlive(compound)
 	defer runtime.KeepAlive(def)
-	defStack := copyToStack(theStack, def)
+	defStack := copyToStackAs[cShapeDef](theStack, def)
 	defer defStack.Free()
 	escapes(compound)
 	r.Id = b3CreateBakedCompoundShape(theStack, b.Id, defStack.Addr, uintptr(unsafe.Pointer(compound)))
@@ -1349,7 +1349,7 @@ func OverlapSphere(shape Sphere, shapeTransform Transform, proxy ShapeProxy) (r 
 	defer runtime.KeepAlive(shape)
 	shapeStack := copyToStack(theStack, shape)
 	defer shapeStack.Free()
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 	r = b3OverlapSphere(theStack, shapeStack.Addr, shapeTransform, proxyStack.Addr)
 	return
@@ -1379,7 +1379,7 @@ func ShapeCastSphere(sphere Sphere, input ShapeCastInput) (r CastOutput) {
 	defer runtime.KeepAlive(sphere)
 	sphereStack := copyToStack(theStack, sphere)
 	defer sphereStack.Free()
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cShapeCastInput](theStack, input)
 	defer inputStack.Free()
 	r = b3ShapeCastSphere(theStack, sphereStack.Addr, inputStack.Addr)
 	return

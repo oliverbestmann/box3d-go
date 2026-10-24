@@ -138,6 +138,10 @@ even for reads.
 With workers, the friction, restitution, custom filter and pre-solve callbacks run on several goroutines at once.
 Don't call into the `b3` package from these callbacks.
 
+Don't panic in the callbacks that run during `World.Step`. The world stays locked after such a panic, and every
+later call on it fails an assert. With workers, the panic happens on a worker goroutine and crashes the program. You
+can recover a panic in a query callback, like `CastRay` or `OverlapShape`; the world stays usable.
+
 ## SIMD
 
 The contact solver can use SIMD (CPU instructions that compute 4 floats at once) through Go's experimental

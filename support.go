@@ -313,7 +313,8 @@ func fclose(tls *_Stack, f uintptr) (r1 int32) {
 
 // escapes forces x onto the heap. box3d only sees memory as a uintptr, which the compiler does
 // not track, so memory handed to box3d must not live on a goroutine stack that can move.
-func escapes(x any) {
+// It is generic, so the conversion to any only happens in the branch that never runs.
+func escapes[T any](x T) {
 	if dummy.b {
 		dummy.x = x
 	}

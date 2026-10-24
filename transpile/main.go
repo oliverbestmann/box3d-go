@@ -151,7 +151,7 @@ func main() {
 	hideInternals(root.(*dst.File), api)
 	removeDeadCode(root)
 	removeSelfAssignments(root)
-	fixApiFields(root.(*dst.File))
+	api.Mirrors = fixApiFields(root.(*dst.File))
 
 	var decls []dst.Decl
 
@@ -622,6 +622,11 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 						// the copy on the stack is invisible to the GC, keep the Go pointers of the value alive
 						body = append([]dst.Stmt{keepAlive(name.Name)}, body...)
 
+						var copyFn dst.Expr = dst.NewIdent("copyToStack")
+						if mirror := api.Mirrors[actualType.GoType(&api)]; mirror != "" {
+							copyFn = &dst.IndexExpr{X: dst.NewIdent("copyToStackAs"), Index: dst.NewIdent(mirror)}
+						}
+
 						stackName := name.Name + "Stack"
 						body = append(body,
 							&dst.AssignStmt{
@@ -629,7 +634,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 								Lhs: []dst.Expr{dst.NewIdent(stackName)},
 								Rhs: []dst.Expr{
 									&dst.CallExpr{
-										Fun: dst.NewIdent("copyToStack"),
+										Fun: copyFn,
 										Args: []dst.Expr{
 											dst.NewIdent("theStack"),
 											dst.NewIdent(name.Name),
@@ -1010,6 +1015,9 @@ type API struct {
 
 	// function to the C type of its pointer result
 	ResultTypes map[string]string
+
+	// Go type to its pointer-free mirror, see addMirrors
+	Mirrors map[string]string
 }
 
 func (a *API) addPointerType(fn string, param int, ty ParamType) {

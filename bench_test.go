@@ -119,3 +119,34 @@ func BenchmarkUpstream(b *testing.B) {
 func malloc(tls *_Stack, size uint64) uintptr {
 	return __builtin_aligned_alloc(tls, 16, size)
 }
+
+// BenchmarkShapeDistance measures a wrapper call that copies its input to the box3d stack.
+func BenchmarkShapeDistance(b *testing.B) {
+	input := DistanceInput{
+		ProxyA:    MakeProxy([]Vec3{{}, {X: 1}, {Y: 1}, {Z: 1}}, 0),
+		ProxyB:    MakeProxy([]Vec3{{X: 3}}, 0.5),
+		Transform: TransformIdentity,
+	}
+
+	for range b.N {
+		ShapeDistance(input, nil, nil)
+	}
+}
+
+// BenchmarkOverlapShape measures a world query with a proxy.
+func BenchmarkOverlapShape(b *testing.B) {
+	world := CreateWorld(DefaultWorldDef())
+	defer world.DestroyWorld()
+
+	cube := MakeCubeHull(1)
+	for i := range 10 {
+		bodyDef := DefaultBodyDef()
+		bodyDef.Position = Pos{X: float32(i) * 3}
+		world.CreateBody(bodyDef).CreateHullShape(DefaultShapeDef(), &cube.Base)
+	}
+
+	proxy := MakeProxy([]Vec3{{}}, 0.5)
+	for range b.N {
+		world.OverlapShape(Pos{X: 6}, proxy, DefaultQueryFilter(), func(Shape) bool { return true })
+	}
+}

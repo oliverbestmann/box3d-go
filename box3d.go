@@ -90,6 +90,7 @@ func (b World) DestroyWorld() {
 
 // SetRestitutionCallback sets the worlds RestitutionCallback. Use nil to restore the default.
 // The callback may be called from multiple goroutines when concurrency is enabled.
+// It must not panic, the world stays locked afterwards.
 func (b World) SetRestitutionCallback(callback RestitutionCallback) {
 	var fn any
 	if callback != nil {
@@ -103,6 +104,7 @@ func (b World) SetRestitutionCallback(callback RestitutionCallback) {
 
 // SetFrictionCallback sets the worlds FrictionCallback. Use nil to restore the default.
 // The callback may be called from multiple goroutines when concurrency is enabled.
+// It must not panic, the world stays locked afterwards.
 func (b World) SetFrictionCallback(callback FrictionCallback) {
 	var fn any
 	if callback != nil {
@@ -120,6 +122,7 @@ type CustomFilter func(shapeA, shapeB Shape) bool
 
 // SetCustomFilterCallback sets the worlds CustomFilter. Use nil to remove it.
 // The callback may be called from multiple goroutines when concurrency is enabled.
+// It must not panic, the world stays locked afterwards.
 func (b World) SetCustomFilterCallback(fcn CustomFilter) {
 	var fn any
 	if fcn != nil {
@@ -137,6 +140,7 @@ type PreSolve = func(shapeA, shapeB Shape, point Pos, normal Vec3) bool
 
 // SetPreSolveCallback sets the worlds PreSolve callback. Use nil to remove it.
 // The callback may be called from multiple goroutines when concurrency is enabled.
+// It must not panic, the world stays locked afterwards.
 func (b World) SetPreSolveCallback(preSolve PreSolve) {
 	var fn any
 	if preSolve != nil {
@@ -166,7 +170,7 @@ func (b World) OverlapShape(origin Pos, proxy ShapeProxy, filter QueryFilter, fc
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(proxy)
 
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 
 	return b3World_OverlapShape(theStack, b.Id, origin, proxyStack.Addr, filter, __ccgo_fp(fn), 0)
@@ -203,7 +207,7 @@ func (b World) CastShape(origin Pos, proxy ShapeProxy, translation Vec3, filter 
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(proxy)
 
-	proxyStack := copyToStack(theStack, proxy)
+	proxyStack := copyToStackAs[cShapeProxy](theStack, proxy)
 	defer proxyStack.Free()
 
 	return b3World_CastShape(theStack, b.Id, origin, proxyStack.Addr, translation, filter, __ccgo_fp(fn), 0)
@@ -370,7 +374,7 @@ func ShapeDistance(input DistanceInput, cache *SimplexCache, simplexes []Simplex
 
 	defer runtime.KeepAlive(input)
 
-	inputStack := copyToStack(theStack, input)
+	inputStack := copyToStackAs[cDistanceInput](theStack, input)
 	defer inputStack.Free()
 
 	// box3d writes into cache via a uintptr, it must live on the heap
@@ -645,7 +649,7 @@ func QueryMesh(mesh Mesh, bounds AABB, fcn MeshQuery) {
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(mesh)
 
-	meshStack := copyToStack(theStack, mesh)
+	meshStack := copyToStackAs[cMesh](theStack, mesh)
 	defer meshStack.Free()
 
 	b3QueryMesh(theStack, meshStack.Addr, bounds, __ccgo_fp(fn), 0)

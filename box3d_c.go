@@ -849,6 +849,27 @@ type ShapeDef struct {
 	InternalValue            int32
 }
 
+type cShapeDef struct {
+	Name                     uintptr
+	UserData                 uintptr
+	Materials                uintptr
+	MaterialCount            int32
+	BaseMaterial             SurfaceMaterial
+	Density                  float32
+	ExplosionScale           float32
+	Filter                   Filter
+	EnableCustomFiltering    uint8
+	IsSensor                 uint8
+	EnableSensorEvents       uint8
+	EnableContactEvents      uint8
+	EnableHitEvents          uint8
+	EnablePreSolveEvents     uint8
+	InvokeContactCreation    uint8
+	UpdateBodyMass           uint8
+	EnableSpeculativeContact uint8
+	InternalValue            int32
+}
+
 type Profile struct {
 	Step                float32
 	Pairs               float32
@@ -1160,8 +1181,21 @@ type ShapeProxy struct {
 	Radius float32
 }
 
+type cShapeProxy struct {
+	Points uintptr
+	Count  int32
+	Radius float32
+}
+
 type ShapeCastInput struct {
 	Proxy       ShapeProxy
+	Translation Vec3
+	MaxFraction float32
+	CanEncroach uint8
+}
+
+type cShapeCastInput struct {
+	Proxy       cShapeProxy
 	Translation Vec3
 	MaxFraction float32
 	CanEncroach uint8
@@ -1213,9 +1247,25 @@ type ShapeCastPairInput struct {
 	CanEncroach  uint8
 }
 
+type cShapeCastPairInput struct {
+	ProxyA       cShapeProxy
+	ProxyB       cShapeProxy
+	Transform    Transform
+	TranslationB Vec3
+	MaxFraction  float32
+	CanEncroach  uint8
+}
+
 type DistanceInput struct {
 	ProxyA    ShapeProxy
 	ProxyB    ShapeProxy
+	Transform Transform
+	UseRadii  uint8
+}
+
+type cDistanceInput struct {
+	ProxyA    cShapeProxy
+	ProxyB    cShapeProxy
 	Transform Transform
 	UseRadii  uint8
 }
@@ -1254,6 +1304,14 @@ type Sweep struct {
 type TOIInput struct {
 	ProxyA      ShapeProxy
 	ProxyB      ShapeProxy
+	SweepA      Sweep
+	SweepB      Sweep
+	MaxFraction float32
+}
+
+type cTOIInput struct {
+	ProxyA      cShapeProxy
+	ProxyB      cShapeProxy
 	SweepA      Sweep
 	SweepB      Sweep
 	MaxFraction float32
@@ -1503,6 +1561,11 @@ type Mesh struct {
 	Scale Vec3
 }
 
+type cMesh struct {
+	Data  uintptr
+	Scale Vec3
+}
+
 type HeightFieldDef struct {
 	heights             uintptr
 	materialIndices     uintptr
@@ -1543,11 +1606,25 @@ type CompoundHullDef struct {
 	Material  SurfaceMaterial
 }
 
+type cCompoundHullDef struct {
+	Hull      uintptr
+	Transform Transform
+	Material  SurfaceMaterial
+}
+
 type CompoundMeshDef struct {
 	MeshData      *MeshData
 	Transform     Transform
 	Scale         Vec3
 	Materials     *SurfaceMaterial
+	MaterialCount int32
+}
+
+type cCompoundMeshDef struct {
+	MeshData      uintptr
+	Transform     Transform
+	Scale         Vec3
+	Materials     uintptr
 	MaterialCount int32
 }
 
@@ -1601,11 +1678,26 @@ type CompoundHull struct {
 	Padding       uint16
 }
 
+type cCompoundHull struct {
+	Hull          uintptr
+	Transform     Transform
+	MaterialIndex uint16
+	Padding       uint16
+}
+
 type CompoundMesh struct {
 	MeshData        *MeshData
 	Transform       Transform
 	Scale           Vec3
 	MaterialIndices *uint16
+	MaterialCount   int32
+}
+
+type cCompoundMesh struct {
+	MeshData        uintptr
+	Transform       Transform
+	Scale           Vec3
+	MaterialIndices uintptr
 	MaterialCount   int32
 }
 
@@ -1625,6 +1717,20 @@ type ChildShape struct {
 	}
 	Transform       Transform
 	MaterialIndices *uint16
+	MaterialCount   int32
+	Type1           ShapeType
+}
+
+type cChildShape struct {
+	ｆ__ccgo0_0 struct {
+		Hull         [0]uintptr
+		Mesh         [0]cMesh
+		Sphere       [0]Sphere
+		Capsule      Capsule
+		ｆ__ccgo_pad4 [4]byte
+	}
+	Transform       Transform
+	MaterialIndices uintptr
 	MaterialCount   int32
 	Type1           ShapeType
 }
