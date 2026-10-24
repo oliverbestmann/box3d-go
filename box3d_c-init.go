@@ -360,7 +360,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -4780,7 +4780,7 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -4826,8 +4826,8 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -4882,8 +4882,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -4948,8 +4948,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -7666,7 +7666,7 @@ func init() {
 	}
 	var v129 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -8847,7 +8847,7 @@ func init() {
 	var v30 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -14055,7 +14055,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -19514,7 +19514,7 @@ func init() {
 		panic(g)
 	}
 	var v211 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -19560,8 +19560,8 @@ func init() {
 		panic(g)
 	}
 	var v212 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -19616,8 +19616,8 @@ func init() {
 		panic(g)
 	}
 	var v213 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -19682,8 +19682,8 @@ func init() {
 		panic(g)
 	}
 	var v214 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -25963,7 +25963,7 @@ func init() {
 	}
 	var v312 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -26011,7 +26011,7 @@ func init() {
 	var v317 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -26485,7 +26485,7 @@ func init() {
 	var v36 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -30466,7 +30466,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -32943,7 +32943,7 @@ func init() {
 		panic(g)
 	}
 	var v143 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -32989,8 +32989,8 @@ func init() {
 		panic(g)
 	}
 	var v144 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -33045,8 +33045,8 @@ func init() {
 		panic(g)
 	}
 	var v145 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -33111,8 +33111,8 @@ func init() {
 		panic(g)
 	}
 	var v146 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -37787,7 +37787,7 @@ func init() {
 	}
 	var v198 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -37821,7 +37821,7 @@ func init() {
 	var v202 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -38184,7 +38184,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -40838,7 +40838,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -42829,7 +42829,7 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -42875,8 +42875,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -42931,8 +42931,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -42997,8 +42997,8 @@ func init() {
 		panic(g)
 	}
 	var v95 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -45715,7 +45715,7 @@ func init() {
 	}
 	var v130 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -45733,7 +45733,7 @@ func init() {
 	var v132 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -46100,7 +46100,7 @@ func init() {
 	var v18 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -46153,7 +46153,7 @@ func init() {
 	var v19 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -48272,7 +48272,7 @@ func init() {
 	}
 	var v49 struct {
 		Compound uintptr
-		Proxy    ShapeProxy
+		Proxy    cShapeProxy
 		Overlap  uint8
 	}
 	// struct "b3CompoundOverlapContext"
@@ -49130,7 +49130,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -51269,7 +51269,7 @@ func init() {
 		panic(g)
 	}
 	var v108 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -51315,8 +51315,8 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -51371,8 +51371,8 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -51437,8 +51437,8 @@ func init() {
 		panic(g)
 	}
 	var v111 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -54333,7 +54333,7 @@ func init() {
 	}
 	var v151 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -54343,7 +54343,7 @@ func init() {
 	}
 	var v152 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -54361,7 +54361,7 @@ func init() {
 	var v154 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -54768,7 +54768,7 @@ func init() {
 	var v28 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -63028,7 +63028,7 @@ func init() {
 		panic(g)
 	}
 	var v140 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -63074,8 +63074,8 @@ func init() {
 		panic(g)
 	}
 	var v141 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -63130,8 +63130,8 @@ func init() {
 		panic(g)
 	}
 	var v142 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -63196,8 +63196,8 @@ func init() {
 		panic(g)
 	}
 	var v143 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -67792,7 +67792,7 @@ func init() {
 	}
 	var v190 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -68239,7 +68239,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -72316,7 +72316,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -74891,7 +74891,7 @@ func init() {
 		panic(g)
 	}
 	var v140 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -74937,8 +74937,8 @@ func init() {
 		panic(g)
 	}
 	var v141 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -74993,8 +74993,8 @@ func init() {
 		panic(g)
 	}
 	var v142 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -75059,8 +75059,8 @@ func init() {
 		panic(g)
 	}
 	var v143 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -79773,7 +79773,7 @@ func init() {
 	}
 	var v193 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -79807,7 +79807,7 @@ func init() {
 	var v197 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -80254,7 +80254,7 @@ func init() {
 	var v30 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -86681,7 +86681,7 @@ func init() {
 		panic(g)
 	}
 	var v135 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -86727,8 +86727,8 @@ func init() {
 		panic(g)
 	}
 	var v136 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -86783,8 +86783,8 @@ func init() {
 		panic(g)
 	}
 	var v137 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -86849,8 +86849,8 @@ func init() {
 		panic(g)
 	}
 	var v138 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -91468,7 +91468,7 @@ func init() {
 	}
 	var v187 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -91921,7 +91921,7 @@ func init() {
 	var v26 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -94621,7 +94621,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -96704,7 +96704,7 @@ func init() {
 		panic(g)
 	}
 	var v104 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -96750,8 +96750,8 @@ func init() {
 		panic(g)
 	}
 	var v105 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -96806,8 +96806,8 @@ func init() {
 		panic(g)
 	}
 	var v106 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -96872,8 +96872,8 @@ func init() {
 		panic(g)
 	}
 	var v107 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -99643,7 +99643,7 @@ func init() {
 	}
 	var v144 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -99661,7 +99661,7 @@ func init() {
 	var v146 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -100562,7 +100562,7 @@ func init() {
 	var v21 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -104982,7 +104982,7 @@ func init() {
 		panic(g)
 	}
 	var v95 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -105104,8 +105104,8 @@ func init() {
 		panic(g)
 	}
 	var v97 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -105160,8 +105160,8 @@ func init() {
 		panic(g)
 	}
 	var v98 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -105226,8 +105226,8 @@ func init() {
 		panic(g)
 	}
 	var v99 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -107944,7 +107944,7 @@ func init() {
 	}
 	var v134 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -108361,7 +108361,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -118653,7 +118653,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -118699,8 +118699,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -118755,8 +118755,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -118821,8 +118821,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -124974,7 +124974,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -125449,7 +125449,7 @@ func init() {
 	var v28 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -129991,7 +129991,7 @@ func init() {
 		panic(g)
 	}
 	var v105 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -130037,8 +130037,8 @@ func init() {
 		panic(g)
 	}
 	var v106 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -130093,8 +130093,8 @@ func init() {
 		panic(g)
 	}
 	var v107 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -130159,8 +130159,8 @@ func init() {
 		panic(g)
 	}
 	var v108 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -132928,7 +132928,7 @@ func init() {
 	}
 	var v146 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -133404,7 +133404,7 @@ func init() {
 	var v34 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -137333,7 +137333,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -139764,7 +139764,7 @@ func init() {
 		panic(g)
 	}
 	var v138 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -139810,8 +139810,8 @@ func init() {
 		panic(g)
 	}
 	var v139 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -139866,8 +139866,8 @@ func init() {
 		panic(g)
 	}
 	var v140 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -139932,8 +139932,8 @@ func init() {
 		panic(g)
 	}
 	var v141 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -144509,7 +144509,7 @@ func init() {
 	}
 	var v191 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -144543,7 +144543,7 @@ func init() {
 	var v195 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -145156,7 +145156,7 @@ func init() {
 	var v26 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -147901,7 +147901,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -150226,7 +150226,7 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -150272,8 +150272,8 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -150328,8 +150328,8 @@ func init() {
 		panic(g)
 	}
 	var v111 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -150394,8 +150394,8 @@ func init() {
 		panic(g)
 	}
 	var v112 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -153541,7 +153541,7 @@ func init() {
 	}
 	var v152 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -153559,7 +153559,7 @@ func init() {
 	var v154 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -154136,7 +154136,7 @@ func init() {
 	var v27 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -162484,7 +162484,7 @@ func init() {
 		panic(g)
 	}
 	var v142 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -162530,8 +162530,8 @@ func init() {
 		panic(g)
 	}
 	var v143 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -162586,8 +162586,8 @@ func init() {
 		panic(g)
 	}
 	var v144 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -162652,8 +162652,8 @@ func init() {
 		panic(g)
 	}
 	var v145 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -167324,7 +167324,7 @@ func init() {
 	}
 	var v193 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -167775,7 +167775,7 @@ func init() {
 	var v30 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -172921,7 +172921,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -178406,7 +178406,7 @@ func init() {
 		panic(g)
 	}
 	var v210 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -178452,8 +178452,8 @@ func init() {
 		panic(g)
 	}
 	var v211 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -178508,8 +178508,8 @@ func init() {
 		panic(g)
 	}
 	var v212 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -178574,8 +178574,8 @@ func init() {
 		panic(g)
 	}
 	var v213 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -184803,7 +184803,7 @@ func init() {
 	}
 	var v309 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -184851,7 +184851,7 @@ func init() {
 	var v314 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -185218,7 +185218,7 @@ func init() {
 	var v18 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -187918,7 +187918,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -190001,7 +190001,7 @@ func init() {
 		panic(g)
 	}
 	var v96 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -190047,8 +190047,8 @@ func init() {
 		panic(g)
 	}
 	var v97 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -190103,8 +190103,8 @@ func init() {
 		panic(g)
 	}
 	var v98 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -190169,8 +190169,8 @@ func init() {
 		panic(g)
 	}
 	var v99 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -192887,7 +192887,7 @@ func init() {
 	}
 	var v134 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -192905,7 +192905,7 @@ func init() {
 	var v136 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -193268,7 +193268,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -197688,7 +197688,7 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -197734,8 +197734,8 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -197790,8 +197790,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -197856,8 +197856,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -200581,7 +200581,7 @@ func init() {
 	}
 	var v130 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -201022,7 +201022,7 @@ func init() {
 	var v27 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -203819,7 +203819,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -206002,7 +206002,7 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -206048,8 +206048,8 @@ func init() {
 		panic(g)
 	}
 	var v111 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -206104,8 +206104,8 @@ func init() {
 		panic(g)
 	}
 	var v112 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -206170,8 +206170,8 @@ func init() {
 		panic(g)
 	}
 	var v113 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -209168,7 +209168,7 @@ func init() {
 	}
 	var v155 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -209186,7 +209186,7 @@ func init() {
 	var v157 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -209676,7 +209676,7 @@ func init() {
 	var v40 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -213651,7 +213651,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -216242,7 +216242,7 @@ func init() {
 		panic(g)
 	}
 	var v150 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -216288,8 +216288,8 @@ func init() {
 		panic(g)
 	}
 	var v151 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -216344,8 +216344,8 @@ func init() {
 		panic(g)
 	}
 	var v152 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -216410,8 +216410,8 @@ func init() {
 		panic(g)
 	}
 	var v153 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -220616,7 +220616,7 @@ func init() {
 	}
 	var v203 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -220650,7 +220650,7 @@ func init() {
 	var v207 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -221061,7 +221061,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -231353,7 +231353,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -231399,8 +231399,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -231455,8 +231455,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -231521,8 +231521,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -237674,7 +237674,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -238073,7 +238073,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -242493,7 +242493,7 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -242539,8 +242539,8 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -242595,8 +242595,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -242661,8 +242661,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -245379,7 +245379,7 @@ func init() {
 	}
 	var v129 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -245752,7 +245752,7 @@ func init() {
 	var v18 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -252237,7 +252237,7 @@ func init() {
 		panic(g)
 	}
 	var v156 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -252283,8 +252283,8 @@ func init() {
 		panic(g)
 	}
 	var v157 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -252339,8 +252339,8 @@ func init() {
 		panic(g)
 	}
 	var v158 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -252405,8 +252405,8 @@ func init() {
 		panic(g)
 	}
 	var v159 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -256532,7 +256532,7 @@ func init() {
 	}
 	var v241 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -256941,7 +256941,7 @@ func init() {
 	var v27 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -262988,7 +262988,7 @@ func init() {
 		panic(g)
 	}
 	var v127 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -263034,8 +263034,8 @@ func init() {
 		panic(g)
 	}
 	var v128 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -263090,8 +263090,8 @@ func init() {
 		panic(g)
 	}
 	var v129 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -263156,8 +263156,8 @@ func init() {
 		panic(g)
 	}
 	var v130 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -267174,7 +267174,7 @@ func init() {
 	}
 	var v174 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -267607,7 +267607,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -277899,7 +277899,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -277945,8 +277945,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -278001,8 +278001,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -278067,8 +278067,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -284220,7 +284220,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -284735,7 +284735,7 @@ func init() {
 	var v38 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -289988,7 +289988,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -295517,7 +295517,7 @@ func init() {
 		panic(g)
 	}
 	var v222 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -295563,8 +295563,8 @@ func init() {
 		panic(g)
 	}
 	var v223 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -295619,8 +295619,8 @@ func init() {
 		panic(g)
 	}
 	var v224 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -295685,8 +295685,8 @@ func init() {
 		panic(g)
 	}
 	var v225 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -301120,7 +301120,7 @@ func init() {
 		Filter      QueryFilter
 		Fraction    float32
 		Origin      Pos
-		Input       ShapeCastInput
+		Input       cShapeCastInput
 		UserContext uintptr
 	}
 	// struct "WorldMoverCastContext"
@@ -301326,7 +301326,7 @@ func init() {
 		World       uintptr
 		Fcn         uintptr
 		Filter      QueryFilter
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Origin      Pos
 		UserContext uintptr
 	}
@@ -302496,7 +302496,7 @@ func init() {
 	}
 	var v335 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -302544,7 +302544,7 @@ func init() {
 	var v340 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -302955,7 +302955,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -313247,7 +313247,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -313293,8 +313293,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -313349,8 +313349,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -313415,8 +313415,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -319568,7 +319568,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -320027,7 +320027,7 @@ func init() {
 	var v32 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -329277,7 +329277,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -329323,8 +329323,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -329379,8 +329379,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -329445,8 +329445,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -335466,7 +335466,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -335907,7 +335907,7 @@ func init() {
 	var v31 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -345157,7 +345157,7 @@ func init() {
 		panic(g)
 	}
 	var v203 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -345203,8 +345203,8 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -345259,8 +345259,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -345325,8 +345325,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -351417,7 +351417,7 @@ func init() {
 	}
 	var v303 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -351850,7 +351850,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -362142,7 +362142,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -362188,8 +362188,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -362244,8 +362244,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -362310,8 +362310,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -368463,7 +368463,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -369232,7 +369232,7 @@ func init() {
 	var v27 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -373223,7 +373223,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -375654,7 +375654,7 @@ func init() {
 		panic(g)
 	}
 	var v133 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -375700,8 +375700,8 @@ func init() {
 		panic(g)
 	}
 	var v134 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -375756,8 +375756,8 @@ func init() {
 		panic(g)
 	}
 	var v135 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -375822,8 +375822,8 @@ func init() {
 		panic(g)
 	}
 	var v136 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -380450,7 +380450,7 @@ func init() {
 	}
 	var v187 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -380484,7 +380484,7 @@ func init() {
 	var v191 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -380895,7 +380895,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -380948,7 +380948,7 @@ func init() {
 	var v30 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -386092,7 +386092,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -389516,7 +389516,7 @@ func init() {
 		panic(g)
 	}
 	var v203 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -389562,8 +389562,8 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -389618,8 +389618,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -389684,8 +389684,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -392460,7 +392460,7 @@ func init() {
 		panic(g)
 	}
 	var v244 struct {
-		ToiInput          TOIInput
+		ToiInput          cTOIInput
 		ToiOutput         TOIOutput
 		CompoundTransform Transform
 		LocalSweepBoundsB AABB
@@ -392526,7 +392526,7 @@ func init() {
 		panic(g)
 	}
 	var v245 struct {
-		ToiInput            TOIInput
+		ToiInput            cTOIInput
 		ToiOutput           TOIOutput
 		LocalCentroidB      Vec3
 		MeshLocalCentroidB1 Vec3
@@ -395931,7 +395931,7 @@ func init() {
 	}
 	var v305 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -395941,7 +395941,7 @@ func init() {
 	}
 	var v306 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -395975,7 +395975,7 @@ func init() {
 	var v310 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -396378,7 +396378,7 @@ func init() {
 	var v19 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -400684,7 +400684,7 @@ func init() {
 		panic(g)
 	}
 	var v89 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -400730,8 +400730,8 @@ func init() {
 		panic(g)
 	}
 	var v90 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -400786,8 +400786,8 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -400852,8 +400852,8 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -403567,7 +403567,7 @@ func init() {
 	}
 	var v128 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -404016,7 +404016,7 @@ func init() {
 	var v37 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -408341,7 +408341,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -412979,7 +412979,7 @@ func init() {
 		panic(g)
 	}
 	var v158 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -413025,8 +413025,8 @@ func init() {
 		panic(g)
 	}
 	var v159 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -413081,8 +413081,8 @@ func init() {
 		panic(g)
 	}
 	var v160 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -413147,8 +413147,8 @@ func init() {
 		panic(g)
 	}
 	var v161 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -418193,7 +418193,7 @@ func init() {
 	}
 	var v216 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -418241,7 +418241,7 @@ func init() {
 	var v221 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -418644,7 +418644,7 @@ func init() {
 	var v27 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -426992,7 +426992,7 @@ func init() {
 		panic(g)
 	}
 	var v142 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -427038,8 +427038,8 @@ func init() {
 		panic(g)
 	}
 	var v143 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -427094,8 +427094,8 @@ func init() {
 		panic(g)
 	}
 	var v144 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -427160,8 +427160,8 @@ func init() {
 		panic(g)
 	}
 	var v145 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -431832,7 +431832,7 @@ func init() {
 	}
 	var v193 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -432231,7 +432231,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -434885,7 +434885,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -436876,7 +436876,7 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -436922,8 +436922,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -436978,8 +436978,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -437044,8 +437044,8 @@ func init() {
 		panic(g)
 	}
 	var v95 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -439762,7 +439762,7 @@ func init() {
 	}
 	var v130 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -439780,7 +439780,7 @@ func init() {
 	var v132 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -440191,7 +440191,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -450483,7 +450483,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -450529,8 +450529,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -450585,8 +450585,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -450651,8 +450651,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -456804,7 +456804,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -457283,7 +457283,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -463556,7 +463556,7 @@ func init() {
 		panic(g)
 	}
 	var v135 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -463602,8 +463602,8 @@ func init() {
 		panic(g)
 	}
 	var v136 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -463658,8 +463658,8 @@ func init() {
 		panic(g)
 	}
 	var v137 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -463724,8 +463724,8 @@ func init() {
 		panic(g)
 	}
 	var v138 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -468247,7 +468247,7 @@ func init() {
 	}
 	var v186 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -469313,7 +469313,7 @@ func init() {
 	var v25 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -472200,7 +472200,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -474451,7 +474451,7 @@ func init() {
 		panic(g)
 	}
 	var v112 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -474497,8 +474497,8 @@ func init() {
 		panic(g)
 	}
 	var v113 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -474553,8 +474553,8 @@ func init() {
 		panic(g)
 	}
 	var v114 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -474619,8 +474619,8 @@ func init() {
 		panic(g)
 	}
 	var v115 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -477707,7 +477707,7 @@ func init() {
 	}
 	var v154 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -477741,7 +477741,7 @@ func init() {
 	var v158 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -478100,7 +478100,7 @@ func init() {
 	var v16 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -482406,7 +482406,7 @@ func init() {
 		panic(g)
 	}
 	var v86 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -482452,8 +482452,8 @@ func init() {
 		panic(g)
 	}
 	var v87 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -482508,8 +482508,8 @@ func init() {
 		panic(g)
 	}
 	var v88 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -482574,8 +482574,8 @@ func init() {
 		panic(g)
 	}
 	var v89 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -485236,7 +485236,7 @@ func init() {
 	}
 	var v123 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -485653,7 +485653,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -495945,7 +495945,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -495991,8 +495991,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -496047,8 +496047,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -496113,8 +496113,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -502266,7 +502266,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -502713,7 +502713,7 @@ func init() {
 	var v29 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -513005,7 +513005,7 @@ func init() {
 		panic(g)
 	}
 	var v204 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -513051,8 +513051,8 @@ func init() {
 		panic(g)
 	}
 	var v205 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -513107,8 +513107,8 @@ func init() {
 		panic(g)
 	}
 	var v206 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -513173,8 +513173,8 @@ func init() {
 		panic(g)
 	}
 	var v207 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -519326,7 +519326,7 @@ func init() {
 	}
 	var v302 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -519859,7 +519859,7 @@ func init() {
 	var v37 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -524452,7 +524452,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -527317,7 +527317,7 @@ func init() {
 		panic(g)
 	}
 	var v156 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -527363,8 +527363,8 @@ func init() {
 		panic(g)
 	}
 	var v157 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -527419,8 +527419,8 @@ func init() {
 		panic(g)
 	}
 	var v158 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -527485,8 +527485,8 @@ func init() {
 		panic(g)
 	}
 	var v159 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -532226,7 +532226,7 @@ func init() {
 	}
 	var v212 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -532260,7 +532260,7 @@ func init() {
 	var v216 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -532795,7 +532795,7 @@ func init() {
 	var v32 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -538898,7 +538898,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -539123,7 +539123,7 @@ func init() {
 		ｆ__ccgo21_176  struct {
 			Sphere       [0]Sphere
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			HeightField  [0]uintptr
 			Compound     [0]uintptr
 			Capsule      Capsule
@@ -545130,7 +545130,7 @@ func init() {
 		panic(g)
 	}
 	var v231 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -545176,8 +545176,8 @@ func init() {
 		panic(g)
 	}
 	var v232 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -545232,8 +545232,8 @@ func init() {
 		panic(g)
 	}
 	var v233 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -545298,8 +545298,8 @@ func init() {
 		panic(g)
 	}
 	var v234 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -551927,7 +551927,7 @@ func init() {
 	}
 	var v336 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -551997,7 +551997,7 @@ func init() {
 	var v343 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -552009,7 +552009,7 @@ func init() {
 	var v344 struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -552368,7 +552368,7 @@ func init() {
 	var v16 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -556776,7 +556776,7 @@ func init() {
 		panic(g)
 	}
 	var v88 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -556822,8 +556822,8 @@ func init() {
 		panic(g)
 	}
 	var v89 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -556878,8 +556878,8 @@ func init() {
 		panic(g)
 	}
 	var v90 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -556944,8 +556944,8 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -559748,7 +559748,7 @@ func init() {
 	}
 	var v127 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -560113,7 +560113,7 @@ func init() {
 	var v16 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -564521,7 +564521,7 @@ func init() {
 		panic(g)
 	}
 	var v88 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -564567,8 +564567,8 @@ func init() {
 		panic(g)
 	}
 	var v89 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -564623,8 +564623,8 @@ func init() {
 		panic(g)
 	}
 	var v90 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -564689,8 +564689,8 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -567445,7 +567445,7 @@ func init() {
 	}
 	var v124 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -567822,7 +567822,7 @@ func init() {
 	var v22 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -572604,7 +572604,7 @@ func init() {
 		panic(g)
 	}
 	var v101 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -572650,8 +572650,8 @@ func init() {
 		panic(g)
 	}
 	var v102 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -572706,8 +572706,8 @@ func init() {
 		panic(g)
 	}
 	var v103 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -572772,8 +572772,8 @@ func init() {
 		panic(g)
 	}
 	var v104 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -575578,7 +575578,7 @@ func init() {
 	}
 	var v139 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -575939,7 +575939,7 @@ func init() {
 	var v19 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -580305,7 +580305,7 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -580351,8 +580351,8 @@ func init() {
 		panic(g)
 	}
 	var v94 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -580407,8 +580407,8 @@ func init() {
 		panic(g)
 	}
 	var v95 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -580473,8 +580473,8 @@ func init() {
 		panic(g)
 	}
 	var v96 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -583229,7 +583229,7 @@ func init() {
 	}
 	var v129 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -583582,7 +583582,7 @@ func init() {
 	var v17 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -587862,7 +587862,7 @@ func init() {
 		panic(g)
 	}
 	var v90 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -587908,8 +587908,8 @@ func init() {
 		panic(g)
 	}
 	var v91 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -587964,8 +587964,8 @@ func init() {
 		panic(g)
 	}
 	var v92 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -588030,8 +588030,8 @@ func init() {
 		panic(g)
 	}
 	var v93 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -590836,7 +590836,7 @@ func init() {
 	}
 	var v128 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte
@@ -591205,7 +591205,7 @@ func init() {
 	var v22 struct {
 		ｆ__ccgo0_0 struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -595588,7 +595588,7 @@ func init() {
 		panic(g)
 	}
 	var v104 struct {
-		Proxy       ShapeProxy
+		Proxy       cShapeProxy
 		Translation Vec3
 		MaxFraction float32
 		CanEncroach uint8
@@ -595634,8 +595634,8 @@ func init() {
 		panic(g)
 	}
 	var v105 struct {
-		ProxyA      ShapeProxy
-		ProxyB      ShapeProxy
+		ProxyA      cShapeProxy
+		ProxyB      cShapeProxy
 		SweepA      Sweep
 		SweepB      Sweep
 		MaxFraction float32
@@ -595690,8 +595690,8 @@ func init() {
 		panic(g)
 	}
 	var v106 struct {
-		ProxyA       ShapeProxy
-		ProxyB       ShapeProxy
+		ProxyA       cShapeProxy
+		ProxyB       cShapeProxy
 		Transform    Transform
 		TranslationB Vec3
 		MaxFraction  float32
@@ -595756,8 +595756,8 @@ func init() {
 		panic(g)
 	}
 	var v107 struct {
-		ProxyA    ShapeProxy
-		ProxyB    ShapeProxy
+		ProxyA    cShapeProxy
+		ProxyB    cShapeProxy
 		Transform Transform
 		UseRadii  uint8
 	}
@@ -598614,7 +598614,7 @@ func init() {
 	}
 	var v144 struct {
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		Sphere       [0]Sphere
 		Capsule      Capsule
 		ｆ__ccgo_pad4 [4]byte

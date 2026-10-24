@@ -18,7 +18,7 @@ import (
 // TestStackTypesArePointerFree checks every instantiation of copyToStack and sliceToStack.
 // They store into the byte slice of _Stack, where the GC and the stack mover don't see pointers.
 func TestStackTypesArePointerFree(t *testing.T) {
-	fset, _, info := typeCheck(t)
+	fset, _, info, _ := typeCheck(t)
 
 	checked := 0
 	for ident, inst := range info.Instances {
@@ -43,8 +43,44 @@ func TestStackTypesArePointerFree(t *testing.T) {
 	}
 }
 
+// The generated code must not store Go pointers, it mostly stores into box3d memory. There the
+// write barrier shades the stale uintptr in the slot, and the GC finds a bad pointer.
+func TestGeneratedCodeStoresNoPointers(t *testing.T) {
+	fset, _, info, files := typeCheck(t)
+
+	checked := 0
+	for _, f := range files {
+		if !strings.HasPrefix(fset.Position(f.Pos()).Filename, "box3d_c") {
+			continue
+		}
+
+		ast.Inspect(f, func(node ast.Node) bool {
+			assign, ok := node.(*ast.AssignStmt)
+			if !ok {
+				return true
+			}
+
+			for _, lhs := range assign.Lhs {
+				// a store into a local variable can not hit box3d memory
+				if _, ok := lhs.(*ast.Ident); ok {
+					continue
+				}
+
+				checked++
+				if typeHasPointers(info.Types[lhs].Type) {
+					t.Errorf("%s: store of %s", fset.Position(lhs.Pos()), info.Types[lhs].Type)
+				}
+			}
+
+			return true
+		})
+	}
+
+	require.NotZero(t, checked)
+}
+
 // typeCheck type-checks the non-test files of the package for the current build.
-func typeCheck(t *testing.T) (*token.FileSet, *types.Package, *types.Info) {
+func typeCheck(t *testing.T) (*token.FileSet, *types.Package, *types.Info, []*ast.File) {
 	fset := token.NewFileSet()
 	pkg, err := build.ImportDir(".", 0)
 	if err != nil {
@@ -61,19 +97,19 @@ func typeCheck(t *testing.T) (*token.FileSet, *types.Package, *types.Info) {
 		files = append(files, f)
 	}
 
-	info := &types.Info{Instances: map[*ast.Ident]types.Instance{}}
+	info := &types.Info{Instances: map[*ast.Ident]types.Instance{}, Types: map[ast.Expr]types.TypeAndValue{}}
 	conf := types.Config{Importer: importer.ForCompiler(fset, "source", nil)}
 	typesPkg, err := conf.Check("b3", fset, files, info)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	return fset, typesPkg, info
+	return fset, typesPkg, info, files
 }
 
 // TestMirrorLayouts checks that every mirror cX has the layout of X, see copyToStackAs.
 func TestMirrorLayouts(t *testing.T) {
-	_, pkg, _ := typeCheck(t)
+	_, pkg, _, _ := typeCheck(t)
 	sizes := types.SizesFor("gc", runtime.GOARCH)
 
 	checked := 0

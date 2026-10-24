@@ -276,7 +276,7 @@ func b3RecW_QUERYFILTER(tls *_Stack, buf uintptr, v QueryFilter) {
 //
 //	// Variable length: count, then count points, then radius. The point cloud lives behind a pointer so
 //	// it cannot ride along as POD.
-func b3RecW_SHAPEPROXY(tls *_Stack, buf uintptr, v ShapeProxy) {
+func b3RecW_SHAPEPROXY(tls *_Stack, buf uintptr, v cShapeProxy) {
 	var count, i int32
 	_, _ = count, i
 	count = v.Count
@@ -292,7 +292,7 @@ func b3RecW_SHAPEPROXY(tls *_Stack, buf uintptr, v ShapeProxy) {
 		if !(i < count) {
 			break
 		}
-		b3RecW_VEC3(tls, buf, *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer(v.Points))+uintptr(i)*12)))
+		b3RecW_VEC3(tls, buf, *(*Vec3)(unsafe.Add(nil, v.Points+uintptr(i)*12)))
 		goto _1
 	_1:
 		;
@@ -470,13 +470,13 @@ func b3RecW_BODYDEF(tls *_Stack, buf uintptr, v BodyDef) {
 	// internalValue omitted
 }
 
-func b3RecW_SHAPEDEF(tls *_Stack, buf uintptr, v ShapeDef) {
+func b3RecW_SHAPEDEF(tls *_Stack, buf uintptr, v cShapeDef) {
 	var i, matCount, v1 int32
 	_, _, _ = i, matCount, v1
 	b3RecW_STR(tls, buf, v.name)
 	// userData: not preserved
 	b3RecW_U64(tls, buf, 0)
-	if uintptr(unsafe.Pointer(v.Materials)) != uintptrFromInt32(0) {
+	if v.Materials != uintptrFromInt32(0) {
 		v1 = v.MaterialCount
 	} else {
 		v1 = 0
@@ -490,7 +490,7 @@ func b3RecW_SHAPEDEF(tls *_Stack, buf uintptr, v ShapeDef) {
 		if !(i < matCount) {
 			break
 		}
-		b3RecW_MATERIAL(tls, buf, *(*SurfaceMaterial)(unsafe.Add(nil, uintptr(unsafe.Pointer(v.Materials))+uintptr(i)*40)))
+		b3RecW_MATERIAL(tls, buf, *(*SurfaceMaterial)(unsafe.Add(nil, v.Materials+uintptr(i)*40)))
 		goto _2
 	_2:
 		;
@@ -4489,11 +4489,11 @@ func b3RecReserveScratch(tls *_Stack, rdr uintptr, data uintptr, cap1 uintptr, n
 //
 //	// Variable length, mirrors b3RecW_SHAPEPROXY: count, count points, radius. The decoded proxy borrows
 //	// the reader's scratch for its point cloud, valid until the next proxy read.
-func b3RecR_SHAPEPROXY(tls *_Stack, rdr uintptr) (r ShapeProxy) {
+func b3RecR_SHAPEPROXY(tls *_Stack, rdr uintptr) (r cShapeProxy) {
 	var count, i int32
-	var p ShapeProxy
+	var p cShapeProxy
 	_, _, _ = count, i, p
-	p = ShapeProxy{}
+	p = cShapeProxy{}
 	count = b3RecR_I32(tls, rdr)
 	if count < 0 {
 		count = 0
@@ -4513,7 +4513,7 @@ func b3RecR_SHAPEPROXY(tls *_Stack, rdr uintptr) (r ShapeProxy) {
 			;
 			i = i + 1
 		}
-		p.Points = (*Vec3)(unsafe.Pointer((*b3RecReader)(unsafe.Pointer(rdr)).ProxyScratch))
+		p.Points = (*b3RecReader)(unsafe.Pointer(rdr)).ProxyScratch
 		p.Count = count
 	}
 	p.Radius = b3RecR_F32(tls, rdr)
@@ -4751,8 +4751,8 @@ func b3RecR_BODYDEF(tls *_Stack, rdr uintptr) (r BodyDef) {
 	return def
 }
 
-func b3RecR_SHAPEDEF(tls *_Stack, rdr uintptr) (r ShapeDef) {
-	var def ShapeDef
+func b3RecR_SHAPEDEF(tls *_Stack, rdr uintptr) (r cShapeDef) {
+	var def cShapeDef
 	var i, i1, matCount int32
 	_, _, _, _ = def, i, i1, matCount
 	def = b3DefaultShapeDef(tls)
@@ -4774,7 +4774,7 @@ func b3RecR_SHAPEDEF(tls *_Stack, rdr uintptr) (r ShapeDef) {
 			;
 			i = i + 1
 		}
-		def.Materials = (*SurfaceMaterial)(unsafe.Pointer((*b3RecReader)(unsafe.Pointer(rdr)).MatScratch))
+		def.Materials = (*b3RecReader)(unsafe.Pointer(rdr)).MatScratch
 		def.MaterialCount = matCount
 	} else {
 		i1 = 0
@@ -4788,7 +4788,7 @@ func b3RecR_SHAPEDEF(tls *_Stack, rdr uintptr) (r ShapeDef) {
 			;
 			i1 = i1 + 1
 		}
-		def.Materials = (*SurfaceMaterial)(unsafe.Pointer(uintptrFromInt32(0)))
+		def.Materials = uintptrFromInt32(0)
 		def.MaterialCount = 0
 	}
 	def.BaseMaterial = b3RecR_MATERIAL(tls, rdr)
@@ -5314,7 +5314,7 @@ func b3RecDispatch_CreateCompoundShape(tls *_Stack, a uintptr, rdr uintptr) {
 	var compound, slot uintptr
 	var gotId, recId ShapeId
 	var id uint32_t
-	var _ /* shapeDef at bp+0 */ ShapeDef
+	var _ /* shapeDef at bp+0 */ cShapeDef
 	_, _, _, _, _, _ = bodyId, compound, gotId, id, recId, slot
 	recId = b3RecR_SHAPEID(tls, rdr)
 	if !((*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0) {
@@ -5330,7 +5330,7 @@ func b3RecDispatch_CreateCompoundShape(tls *_Stack, a uintptr, rdr uintptr) {
 	compound = (*b3RegistrySlot)(unsafe.Pointer(slot)).Bytes
 	bodyId = b3RecMakeBodyId(tls, rdr, (*b3RecArgs_CreateCompoundShape)(unsafe.Pointer(a)).Body)
 	// b3CreateCompoundShape takes a non-const def pointer; cast away const for the scratch def
-	*(*ShapeDef)(unsafe.Add(nil, bp)) = (*b3RecArgs_CreateCompoundShape)(unsafe.Pointer(a)).Def
+	*(*cShapeDef)(unsafe.Add(nil, bp)) = (*b3RecArgs_CreateCompoundShape)(unsafe.Pointer(a)).Def
 	gotId = b3CreateBakedCompoundShape(tls, bodyId, bp, compound)
 	b3RecCheckShapeId(tls, rdr, gotId, recId)
 }
@@ -6028,18 +6028,18 @@ func b3RecReplayPlaneTrampoline(tls *_Stack, id ShapeId, planes uintptr, planeCo
 func b3RecStashProxy(tls *_Stack, q uintptr, proxy uintptr) {
 	var count, i int32
 	_, _ = count, i
-	count = (*ShapeProxy)(unsafe.Pointer(proxy)).Count
+	count = (*cShapeProxy)(unsafe.Pointer(proxy)).Count
 	if count > int32(_B3_MAX_HULL_VERTICES) {
 		count = int32(_B3_MAX_HULL_VERTICES)
 	}
 	(*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyCount = count
-	(*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius = (*ShapeProxy)(unsafe.Pointer(proxy)).Radius
+	(*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius = (*cShapeProxy)(unsafe.Pointer(proxy)).Radius
 	i = 0
 	for {
 		if !(i < count) {
 			break
 		}
-		*(*Vec3)(unsafe.Add(nil, q+72+uintptr(i)*12)) = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))+uintptr(i)*12))
+		*(*Vec3)(unsafe.Add(nil, q+72+uintptr(i)*12)) = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxy)).Points+uintptr(i)*12))
 		goto _1
 	_1:
 		;

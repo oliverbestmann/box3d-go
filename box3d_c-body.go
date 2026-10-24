@@ -972,7 +972,7 @@ func b3Body_GetClosestPoint(tls *_Stack, bodyId BodyId, result uintptr, _target 
 	var v2 Pos
 	var v5 bool
 	var _ /* cache at bp+80 */ SimplexCache
-	var _ /* input at bp+16 */ DistanceInput
+	var _ /* input at bp+16 */ cDistanceInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = body, closestDistance, closestPoint, output, r, shape, shapeId, transform, type1, world, worldTransform, v1, v2, v3, v5
 	world = b3GetUnlockedWorld(tls, int32FromUint16(bodyId.World0))
 	if world == uintptrFromInt32(0) {
@@ -995,14 +995,14 @@ _4:
 	transform = v3
 	closestDistance = float32FromFloat32(3.4028234663852886e+38)
 	closestPoint = transform.P
-	*(*DistanceInput)(unsafe.Add(nil, bp+16)) = DistanceInput{}
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp)),
+	*(*cDistanceInput)(unsafe.Add(nil, bp+16)) = cDistanceInput{}
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = cShapeProxy{
+		Points: bp,
 		Count:  int32(1),
 	}
 	// Target rides in frame A at the origin, so the relative pose of the shape in A is the body transform
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).Transform = transform
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).Transform = transform
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(false1 != 0)
 	shapeId = (*b3Body)(unsafe.Pointer(body)).HeadShapeId
 	for shapeId != -int32(1) {
 		if v5 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v5 {
@@ -1015,7 +1015,7 @@ _4:
 		if type1 != int32(b3_sphereShape) && type1 != int32(b3_capsuleShape) && type1 != int32(b3_hullShape) {
 			continue
 		}
-		(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = b3MakeShapeProxy(tls, shape)
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = b3MakeShapeProxy(tls, shape)
 		*(*SimplexCache)(unsafe.Add(nil, bp+80)) = SimplexCache{}
 		output = b3ShapeDistance(tls, bp+16, bp+80, uintptrFromInt32(0), 0)
 		if output.Distance < closestDistance {
@@ -1164,7 +1164,7 @@ func b3Body_CastShape(tls *_Stack, bodyId BodyId, origin Pos, proxy uintptr, tra
 	var v22 Vec3
 	var v5 bool
 	var v8 uint8
-	var _ /* shapeInput at bp+32 */ ShapeCastInput
+	var _ /* shapeInput at bp+32 */ cShapeCastInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = body, id, materialIndex, r, result, shape1, shapeId, shapeOutput, transform, userMaterialId, world, v1, v10, v11, v12, v13, v15, v16, v17, v2, v21, v22, v3, v5, v6, v7, v8
 	world = b3GetUnlockedWorld(tls, int32FromUint16(bodyId.World0))
 	if world == uintptrFromInt32(0) {
@@ -1184,11 +1184,11 @@ func b3Body_CastShape(tls *_Stack, bodyId BodyId, origin Pos, proxy uintptr, tra
 	goto _4
 _4:
 	transform = v3
-	*(*ShapeCastInput)(unsafe.Add(nil, bp+32)) = ShapeCastInput{}
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).Proxy = *(*ShapeProxy)(unsafe.Add(nil, proxy))
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).Translation = translation
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction = maxFraction
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).CanEncroach = canEncroach
+	*(*cShapeCastInput)(unsafe.Add(nil, bp+32)) = cShapeCastInput{}
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).Proxy = *(*cShapeProxy)(unsafe.Add(nil, proxy))
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).Translation = translation
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction = maxFraction
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).CanEncroach = canEncroach
 	shapeId = (*b3Body)(unsafe.Pointer(body)).HeadShapeId
 	for shapeId != -int32(1) {
 		if v5 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v5 {
@@ -1209,7 +1209,7 @@ _4:
 		if int32FromUint8(shapeOutput.Hit) == false1 {
 			continue
 		}
-		if shapeOutput.Fraction > (*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction {
+		if shapeOutput.Fraction > (*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction {
 			continue
 		}
 		// Careful with id, shapeId is the next shape.
@@ -1264,7 +1264,7 @@ _4:
 			Iterations:     shapeOutput.Iterations,
 			Hit:            boolUint8(true1 != 0),
 		}
-		(*(*ShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction = shapeOutput.Fraction
+		(*(*cShapeCastInput)(unsafe.Add(nil, bp+32))).MaxFraction = shapeOutput.Fraction
 	}
 	return result
 }
@@ -1416,7 +1416,7 @@ func b3Body_TimeOfImpactMover(tls *_Stack, bodyId BodyId, origin Pos, mover uint
 	var v67 bool
 	var v70 uint8
 	var _ /* capsulePoints at bp+32 */ [2]Vec3
-	var _ /* input at bp+56 */ TOIInput
+	var _ /* input at bp+56 */ cTOIInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = body, bodySim, c, localCenter, output, r, result, rv, shape, shapeId, t11, t2, t3, type1, world, xf1, xf2, v1, v10, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v25, v27, v28, v29, v3, v30, v32, v34, v35, v36, v5, v6, v67, v68, v69, v7, v70
 	result = BodyTOIResult{}
 	result.Fraction = float32FromFloat32(1)
@@ -1455,9 +1455,9 @@ _8:
 		0: (*Capsule)(unsafe.Pointer(mover)).Center1,
 		1: (*Capsule)(unsafe.Pointer(mover)).Center2,
 	}
-	*(*TOIInput)(unsafe.Add(nil, bp+56)) = TOIInput{}
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp + 32)),
+	*(*cTOIInput)(unsafe.Add(nil, bp+56)) = cTOIInput{}
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).ProxyB = cShapeProxy{
+		Points: bp + 32,
 		Count:  int32(2),
 		Radius: (*Capsule)(unsafe.Pointer(mover)).Radius,
 	}
@@ -1519,7 +1519,7 @@ _37:
 	v32 = v36
 	goto _33
 _33:
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepA.C1 = v32
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepA.C1 = v32
 	v3 = xf2
 	v10 = v3.Q
 	v11 = localCenter
@@ -1578,16 +1578,16 @@ _66:
 	v32 = v36
 	goto _62
 _62:
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepA.C2 = v32
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepA.Q1 = bodyTransform1.Q
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepA.Q2 = bodyTransform2.Q
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepA.LocalCenter = localCenter
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepB.C1 = b3Vec3_zero
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepB.C2 = moverTranslation
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepB.Q1 = b3Quat_identity
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepB.Q2 = b3Quat_identity
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).SweepB.LocalCenter = b3Vec3_zero
-	(*(*TOIInput)(unsafe.Add(nil, bp+56))).MaxFraction = float32FromFloat32(1)
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepA.C2 = v32
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepA.Q1 = bodyTransform1.Q
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepA.Q2 = bodyTransform2.Q
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepA.LocalCenter = localCenter
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepB.C1 = b3Vec3_zero
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepB.C2 = moverTranslation
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepB.Q1 = b3Quat_identity
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepB.Q2 = b3Quat_identity
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).SweepB.LocalCenter = b3Vec3_zero
+	(*(*cTOIInput)(unsafe.Add(nil, bp+56))).MaxFraction = float32FromFloat32(1)
 	shapeId = (*b3Body)(unsafe.Pointer(body)).HeadShapeId
 	for shapeId != -int32(1) {
 		if v67 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v67 {
@@ -1608,11 +1608,11 @@ _62:
 		if type1 != int32(b3_sphereShape) && type1 != int32(b3_capsuleShape) && type1 != int32(b3_hullShape) {
 			continue
 		}
-		(*(*TOIInput)(unsafe.Add(nil, bp+56))).ProxyA = b3MakeShapeProxy(tls, shape)
+		(*(*cTOIInput)(unsafe.Add(nil, bp+56))).ProxyA = b3MakeShapeProxy(tls, shape)
 		output = b3TimeOfImpact(tls, bp+56)
 		// Mimic behavior in b3ContinuousQueryCallback. Ignore shapes that initially overlap.
 		if float32FromFloat32(0) < output.Fraction && output.Fraction < result.Fraction {
-			(*(*TOIInput)(unsafe.Add(nil, bp+56))).MaxFraction = output.Fraction
+			(*(*cTOIInput)(unsafe.Add(nil, bp+56))).MaxFraction = output.Fraction
 			v2 = origin
 			v11 = output.Point
 			v6 = Pos{

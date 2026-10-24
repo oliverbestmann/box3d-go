@@ -710,7 +710,7 @@ func b3CollideHullAndSphere(tls *_Stack, manifold uintptr, capacity int32, hullA
 	var v2 Quat
 	var v61 bool
 	var _ /* center at bp+0 */ Vec3
-	var _ /* distanceInput at bp+16 */ DistanceInput
+	var _ /* distanceInput at bp+16 */ cDistanceInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bestDistance, bestIndex, c, c1, cA, cA1, cB, cB1, distance, distanceOutput, index, lengthSquared, normal, normal1, plane1, planes, point1, point2, pt, pt1, radius, radiusA, radiusB, rv, s, speculativeDistance, t1, t2, t3, u, v1, v10, v11, v13, v14, v15, v17, v19, v2, v20, v21, v22, v24, v26, v27, v28, v3, v30, v31, v33, v4, v46, v49, v5, v6, v61, v68, v8, v9
 	(*LocalManifold)(unsafe.Pointer(manifold)).PointCount = 0
 	if capacity == 0 {
@@ -784,16 +784,16 @@ _25:
 	v31 = uintptr(int64(v30) + int64((*HullData)(unsafe.Pointer(v30)).PointOffset))
 	goto _32
 _32:
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(v31)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = cShapeProxy{
+		Points: v31,
 		Count:  (*HullData)(unsafe.Pointer(hullA)).VertexCount,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = cShapeProxy{
+		Points: bp,
 		Count:  int32(1),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(false1 != 0)
 	radiusA = float32FromFloat32(0)
 	radiusB = (*Sphere)(unsafe.Pointer(sphereB)).Radius
 	radius = radiusA + radiusB
@@ -1565,7 +1565,7 @@ func b3CollideHullAndCapsule(tls *_Stack, manifold uintptr, capacity int32, hull
 	var refPlane, v73, v80 Plane
 	var v15 Transform
 	var v16 Quat
-	var _ /* distanceInput at bp+0 */ DistanceInput
+	var _ /* distanceInput at bp+0 */ cDistanceInput
 	var _ /* verticesB at bp+64 */ [2]b3ClipVertex
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, delta, distance1, distance2, distanceOutput, edgeQuery, edgeSeparation, faceQuery, faceSeparation, kTolerance, linearSlop, normal, planes, point1, point11, point2, pointCount, pt, pt1, pt2, refFace, refPlane, rv, speculativeDistance, t1, t2, t3, v1, v11, v12, v14, v15, v16, v17, v18, v19, v2, v20, v22, v23, v24, v25, v27, v28, v29, v31, v33, v34, v35, v36, v38, v40, v41, v42, v7, v73, v8, v80, v9
 	(*LocalManifold)(unsafe.Pointer(manifold)).PointCount = 0
@@ -1580,16 +1580,16 @@ func b3CollideHullAndCapsule(tls *_Stack, manifold uintptr, capacity int32, hull
 	v2 = uintptr(int64(v1) + int64((*HullData)(unsafe.Pointer(v1)).PointOffset))
 	goto _3
 _3:
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(v2)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: v2,
 		Count:  (*HullData)(unsafe.Pointer(hullA)).VertexCount,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(capsuleB)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = cShapeProxy{
+		Points: capsuleB,
 		Count:  int32(2),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = transformBtoA
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = transformBtoA
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
 	distanceOutput = b3ShapeDistance(tls, bp, cache, uintptrFromInt32(0), 0)
 	speculativeDistance = float32(float32FromFloat32(4) * float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)))
 	if distanceOutput.Distance > (*Capsule)(unsafe.Pointer(capsuleB)).Radius+speculativeDistance {
@@ -2817,7 +2817,7 @@ func b3CollideMoverAndHeightField(tls *_Stack, planes uintptr, capacity int32, s
 	var _ /* B3_SWAP_TEMP at bp+176 */ [12]uint8
 	var _ /* cache at bp+64 */ SimplexCache
 	var _ /* corners at bp+80 */ [4]Vec3
-	var _ /* distanceInput at bp+0 */ DistanceInput
+	var _ /* distanceInput at bp+0 */ cDistanceInput
 	var _ /* point11 at bp+128 */ Vec3
 	var _ /* point12 at bp+140 */ Vec3
 	var _ /* point21 at bp+152 */ Vec3
@@ -2825,13 +2825,13 @@ func b3CollideMoverAndHeightField(tls *_Stack, planes uintptr, capacity int32, s
 	var _ /* triangleVertices at bp+188 */ [3]Vec3
 	var _ /* triangleVertices at bp+224 */ [3]Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boundsCenter, boundsExtent, boundsMax, boundsMin, c, c1, cellIndex, center, center1, center2, clockWise, column, distanceOutput, distanceOutput1, e1, e2, localMaxX, localMaxZ, localMinX, localMinZ, material, maxCol, maxRow, minCol, minRow, n, overlap1, overlap2, plane, plane1, planeCount, r, radius, row, scale, signedVolume, signedVolume1, triangleIndex, triangleIndex1, v11, v12, v21, v22, v1, v10, v111, v13, v14, v16, v17, v18, v2, v20, v211, v221, v23, v24, v25, v27, v28, v29, v3, v31, v32, v33, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v46, v47, v48, v5, v50, v52, v54, v56, v61, v62, v7, v76, v77, v78, v79, v8, v81, v82, v83, v85, v86, v87, v91, v92
-	*(*DistanceInput)(unsafe.Add(nil, bp)) = DistanceInput{}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(mover)),
+	*(*cDistanceInput)(unsafe.Add(nil, bp)) = cDistanceInput{}
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = cShapeProxy{
+		Points: mover,
 		Count:  int32(2),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	radius = (*Capsule)(unsafe.Pointer(mover)).Radius
 	v1 = (*Capsule)(unsafe.Pointer(mover)).Center1
@@ -3135,8 +3135,8 @@ _57:
 						1: *(*Vec3)(unsafe.Add(nil, bp+152)),
 						2: *(*Vec3)(unsafe.Add(nil, bp+140)),
 					}
-					(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-						Points: (*Vec3)(unsafe.Pointer(bp + 188)),
+					(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+						Points: bp + 188,
 						Count:  int32(3),
 					}
 					// reset the cache
@@ -3223,8 +3223,8 @@ _57:
 						1: *(*Vec3)(unsafe.Add(nil, bp+140)),
 						2: *(*Vec3)(unsafe.Add(nil, bp+152)),
 					}
-					(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-						Points: (*Vec3)(unsafe.Pointer(bp + 224)),
+					(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+						Points: bp + 224,
 						Count:  int32(3),
 					}
 					// reset the cache
@@ -3275,7 +3275,7 @@ func b3CollideMoverAndHull(tls *_Stack, result uintptr, shape uintptr, mover uin
 	var points, v1, v2 uintptr
 	var totalRadius float32
 	var _ /* cache at bp+64 */ SimplexCache
-	var _ /* distanceInput at bp+0 */ DistanceInput
+	var _ /* distanceInput at bp+0 */ cDistanceInput
 	_, _, _, _, _, _ = distanceOutput, plane, points, totalRadius, v1, v2
 	v1 = shape
 	if (*HullData)(unsafe.Pointer(v1)).PointOffset == int32FromInt32(0) {
@@ -3286,17 +3286,17 @@ func b3CollideMoverAndHull(tls *_Stack, result uintptr, shape uintptr, mover uin
 	goto _3
 _3:
 	points = v2
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(points)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: points,
 		Count:  (*HullData)(unsafe.Pointer(shape)).VertexCount,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(mover)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = cShapeProxy{
+		Points: mover,
 		Count:  int32(2),
 		Radius: (*Capsule)(unsafe.Pointer(mover)).Radius,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
 	totalRadius = (*Capsule)(unsafe.Pointer(mover)).Radius
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	distanceOutput = b3ShapeDistance(tls, bp, bp+64, uintptrFromInt32(0), 0)
@@ -3337,7 +3337,7 @@ func b3CollideMoverAndMesh(tls *_Stack, planes uintptr, capacity int32, shape ui
 	var v4 bool
 	var _ /* B3_SWAP_TEMP at bp+128 */ [12]uint8
 	var _ /* cache at bp+64 */ SimplexCache
-	var _ /* distanceInput at bp+0 */ DistanceInput
+	var _ /* distanceInput at bp+0 */ cDistanceInput
 	var _ /* meshScale at bp+80 */ Vec3
 	var _ /* triangleVertices at bp+140 */ [3]Vec3
 	var _ /* vertex1 at bp+92 */ Vec3
@@ -3347,13 +3347,13 @@ func b3CollideMoverAndMesh(tls *_Stack, planes uintptr, capacity int32, shape ui
 	if capacity == 0 {
 		return 0
 	}
-	*(*DistanceInput)(unsafe.Add(nil, bp)) = DistanceInput{}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(mover)),
+	*(*cDistanceInput)(unsafe.Add(nil, bp)) = cDistanceInput{}
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = cShapeProxy{
+		Points: mover,
 		Count:  int32(2),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	radius = (*Capsule)(unsafe.Pointer(mover)).Radius
 	v1 = (*Capsule)(unsafe.Pointer(mover)).Center1
@@ -3468,7 +3468,7 @@ _30:
 _37:
 	boundsMax = v36
 	// Scale may have reflection so min/max may become invalid when unscaled
-	*(*Vec3)(unsafe.Add(nil, bp+80)) = (*Mesh)(unsafe.Pointer(shape)).Scale
+	*(*Vec3)(unsafe.Add(nil, bp+80)) = (*cMesh)(unsafe.Pointer(shape)).Scale
 	ccw = boolUint8(float32(float32((*(*Vec3)(unsafe.Add(nil, bp+80))).X*(*(*Vec3)(unsafe.Add(nil, bp+80))).Y)*(*(*Vec3)(unsafe.Add(nil, bp+80))).Z) > float32FromFloat32(0))
 	v38 = bp + 80
 	v39 = b3V32{
@@ -3589,8 +3589,8 @@ _74:
 _78:
 	invScaledBoundsExtent = v77
 	count = 0
-	node = b3GetRoot(tls, uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data)))
-	v79 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data))
+	node = b3GetRoot(tls, (*cMesh)(unsafe.Pointer(shape)).Data)
+	v79 = (*cMesh)(unsafe.Pointer(shape)).Data
 	if (*MeshData)(unsafe.Pointer(v79)).TriangleOffset == int32FromInt32(0) {
 		v80 = uintptrFromInt32(0)
 		goto _81
@@ -3599,7 +3599,7 @@ _78:
 	goto _81
 _81:
 	triangles = v80
-	v82 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data))
+	v82 = (*cMesh)(unsafe.Pointer(shape)).Data
 	if (*MeshData)(unsafe.Pointer(v82)).VertexOffset == int32FromInt32(0) {
 		v83 = uintptrFromInt32(0)
 		goto _84
@@ -3608,7 +3608,7 @@ _81:
 	goto _84
 _84:
 	vertices = v83
-	v85 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data))
+	v85 = (*cMesh)(unsafe.Pointer(shape)).Data
 	if (*MeshData)(unsafe.Pointer(v85)).MaterialOffset == int32FromInt32(0) {
 		v86 = uintptrFromInt32(0)
 		goto _87
@@ -3823,8 +3823,8 @@ _87:
 							// Backside
 							goto _115
 						}
-						(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-							Points: (*Vec3)(unsafe.Pointer(bp + 140)),
+						(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+							Points: bp + 140,
 							Count:  int32(3),
 						}
 						// reset the cache
@@ -5727,7 +5727,7 @@ func b3CollideTriangleAndCapsule(tls *_Stack, manifold uintptr, capacity int32, 
 	var mp, mp1 uintptr
 	var plane, plane2, v211, v29 Plane
 	var v26 bool
-	var _ /* distanceInput at bp+0 */ DistanceInput
+	var _ /* distanceInput at bp+0 */ cDistanceInput
 	var _ /* segment at bp+64 */ [2]b3ClipVertex
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, c1, capsuleCenter, cosAngle, delta, distance1, distance2, distanceOutput, edgeQuery, edgeSeparation, faceQuery, faceSeparation, havePoints, kTolerance, lengthSquared, linearSlop, mp, mp1, normal, offset, plane, plane2, point1, point12, point21, radius, s, speculativeDistance, u, v1, v2, v3, v11, v10, v111, v12, v14, v15, v17, v18, v19, v21, v211, v23, v24, v25, v26, v27, v29, v31, v30, v32, v33, v34, v4, v45, v47, v6, v7, v8
 	(*LocalManifold)(unsafe.Pointer(manifold)).PointCount = 0
@@ -5821,16 +5821,16 @@ _31:
 		// Cull back side collision
 		return
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(triangleA)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: triangleA,
 		Count:  int32(3),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(capsuleB)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = cShapeProxy{
+		Points: capsuleB,
 		Count:  int32(2),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(false1 != 0)
 	distanceOutput = b3ShapeDistance(tls, bp, cache, uintptrFromInt32(0), 0)
 	speculativeDistance = float32(float32FromFloat32(4) * float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)))
 	radius = (*Capsule)(unsafe.Pointer(capsuleB)).Radius
@@ -6620,7 +6620,7 @@ func b3CollideTriangleAndHull(tls *_Stack, manifold uintptr, capacity int32, v1 
 	var plane, plane2, trianglePlane, v211, v23 Plane
 	var triangleEdges, trianglePoints [3]Vec3
 	var v56 bool
-	var _ /* input at bp+160 */ DistanceInput
+	var _ /* input at bp+160 */ cDistanceInput
 	var _ /* localCache at bp+104 */ b3SATCache
 	var _ /* localCache at bp+112 */ b3SATCache
 	var _ /* localCache at bp+96 */ b3SATCache
@@ -7211,17 +7211,17 @@ _152:
 			1: v2,
 			2: v3,
 		}
-		*(*DistanceInput)(unsafe.Add(nil, bp+160)) = DistanceInput{}
-		(*(*DistanceInput)(unsafe.Add(nil, bp+160))).ProxyA = ShapeProxy{
-			Points: (*Vec3)(unsafe.Pointer(bp + 120)),
+		*(*cDistanceInput)(unsafe.Add(nil, bp+160)) = cDistanceInput{}
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+160))).ProxyA = cShapeProxy{
+			Points: bp + 120,
 			Count:  int32(3),
 		}
-		(*(*DistanceInput)(unsafe.Add(nil, bp+160))).ProxyB = ShapeProxy{
-			Points: (*Vec3)(unsafe.Pointer(hullPoints)),
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+160))).ProxyB = cShapeProxy{
+			Points: hullPoints,
 			Count:  (*HullData)(unsafe.Pointer(hullB)).VertexCount,
 		}
-		(*(*DistanceInput)(unsafe.Add(nil, bp+160))).Transform = b3Transform_identity
-		(*(*DistanceInput)(unsafe.Add(nil, bp+160))).UseRadii = boolUint8(false1 != 0)
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+160))).Transform = b3Transform_identity
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+160))).UseRadii = boolUint8(false1 != 0)
 		*(*SimplexCache)(unsafe.Add(nil, bp+224)) = SimplexCache{}
 		output = b3ShapeDistance(tls, bp+160, bp+224, uintptrFromInt32(0), 0)
 		if output.Distance > float32FromFloat32(0) {

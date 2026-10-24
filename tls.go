@@ -115,6 +115,16 @@ func copyToStackAs[C, T any](tls *_Stack, value T) alloc {
 	return copyToStack(tls, *(*C)(unsafe.Pointer(&value)))
 }
 
+// fromC reinterprets value, a pointer-free mirror returned by box3d, as its public type T.
+// The pointers in it point into box3d memory or are nil.
+func fromC[T, C any](value C) T {
+	if unsafe.Sizeof(*new(T)) != unsafe.Sizeof(value) {
+		panic(fmt.Sprintf("fromC: %T and %T differ in size", *new(T), value))
+	}
+
+	return *(*T)(unsafe.Pointer(&value))
+}
+
 func sliceToStack[T any](tls *_Stack, values []T) alloc {
 	assertPointerFree[T]()
 

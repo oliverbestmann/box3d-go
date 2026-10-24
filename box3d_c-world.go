@@ -3646,15 +3646,15 @@ func b3World_OverlapShape(tls *_Stack, worldId WorldId, origin1 Pos, proxy uintp
 		*(*uintptr)(unsafe.Pointer(bp)) = __ccgo_fp_fcn
 		b3RecW_WORLDID(tls, bp+16, worldId)
 		b3RecW_POSITION(tls, bp+16, origin1)
-		b3RecW_SHAPEPROXY(tls, bp+16, *(*ShapeProxy)(unsafe.Add(nil, proxy)))
+		b3RecW_SHAPEPROXY(tls, bp+16, *(*cShapeProxy)(unsafe.Add(nil, proxy)))
 		b3RecW_QUERYFILTER(tls, bp+16, filter)
 		(*(*b3RecQueryWriter)(unsafe.Add(nil, bp))).CountOffset = b3RecReserveU32(tls, bp+16)
 		__ccgo_fp_fcn = __ccgo_fp(b3RecOverlapTrampoline)
 		context = bp
 	}
-	v2 = uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))
-	v3 = (*ShapeProxy)(unsafe.Pointer(proxy)).Count
-	v4 = (*ShapeProxy)(unsafe.Pointer(proxy)).Radius
+	v2 = (*cShapeProxy)(unsafe.Pointer(proxy)).Points
+	v3 = (*cShapeProxy)(unsafe.Pointer(proxy)).Count
+	v4 = (*cShapeProxy)(unsafe.Pointer(proxy)).Radius
 	if v1 = !!(v3 > int32FromInt32(0)); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+6345, __ccgo_ts+6355, int32FromInt32(948))
 	}
@@ -3816,7 +3816,7 @@ _70:
 		World:       world,
 		Fcn:         __ccgo_fp_fcn,
 		Filter:      filter,
-		Proxy:       *(*ShapeProxy)(unsafe.Add(nil, proxy)),
+		Proxy:       *(*cShapeProxy)(unsafe.Add(nil, proxy)),
 		Origin:      origin1,
 		UserContext: context,
 	}
@@ -4241,7 +4241,7 @@ func b3World_CastShape(tls *_Stack, worldId WorldId, origin1 Pos, proxy uintptr,
 		*(*uintptr)(unsafe.Pointer(bp)) = __ccgo_fp_fcn
 		b3RecW_WORLDID(tls, bp+16, worldId)
 		b3RecW_POSITION(tls, bp+16, origin1)
-		b3RecW_SHAPEPROXY(tls, bp+16, *(*ShapeProxy)(unsafe.Add(nil, proxy)))
+		b3RecW_SHAPEPROXY(tls, bp+16, *(*cShapeProxy)(unsafe.Add(nil, proxy)))
 		b3RecW_VEC3(tls, bp+16, translation)
 		b3RecW_QUERYFILTER(tls, bp+16, filter)
 		(*(*b3RecQueryWriter)(unsafe.Add(nil, bp))).CountOffset = b3RecReserveU32(tls, bp+16)
@@ -4254,14 +4254,14 @@ func b3World_CastShape(tls *_Stack, worldId WorldId, origin1 Pos, proxy uintptr,
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Filter = filter
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Fraction = float32FromFloat32(1)
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Origin = origin1
-	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Input.Proxy = *(*ShapeProxy)(unsafe.Add(nil, proxy))
+	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Input.Proxy = *(*cShapeProxy)(unsafe.Add(nil, proxy))
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Input.Translation = translation
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Input.MaxFraction = float32FromFloat32(1)
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).Input.CanEncroach = boolUint8(false1 != 0)
 	(*(*_WorldShapeCastContext)(unsafe.Add(nil, bp+64))).UserContext = context
-	v3 = uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))
-	v4 = (*ShapeProxy)(unsafe.Pointer(proxy)).Count
-	v5 = (*ShapeProxy)(unsafe.Pointer(proxy)).Radius
+	v3 = (*cShapeProxy)(unsafe.Pointer(proxy)).Points
+	v4 = (*cShapeProxy)(unsafe.Pointer(proxy)).Count
+	v5 = (*cShapeProxy)(unsafe.Pointer(proxy)).Radius
 	if v1 = !!(v4 > int32FromInt32(0)); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+6345, __ccgo_ts+6355, int32FromInt32(948))
 	}
@@ -4506,8 +4506,8 @@ func b3World_CastMover(tls *_Stack, worldId WorldId, origin1 Pos, mover uintptr,
 		Origin:      origin1,
 		UserContext: context,
 	}
-	(*(*_WorldMoverCastContext)(unsafe.Add(nil, bp+64))).Input.Proxy = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(mover)),
+	(*(*_WorldMoverCastContext)(unsafe.Add(nil, bp+64))).Input.Proxy = cShapeProxy{
+		Points: mover,
 		Count:  int32(2),
 		Radius: (*Capsule)(unsafe.Pointer(mover)).Radius,
 	}

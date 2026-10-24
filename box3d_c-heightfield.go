@@ -1379,14 +1379,14 @@ _5:
 func b3RayCastHeightField(tls *_Stack, heightField uintptr, input uintptr) (r CastOutput) {
 	bp := tls.Alloc(48)
 	defer tls.Free(48)
-	var _ /* shapeCastInput at bp+0 */ ShapeCastInput
-	*(*ShapeCastInput)(unsafe.Add(nil, bp)) = ShapeCastInput{}
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp))).Proxy = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(input)),
+	var _ /* shapeCastInput at bp+0 */ cShapeCastInput
+	*(*cShapeCastInput)(unsafe.Add(nil, bp)) = cShapeCastInput{}
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp))).Proxy = cShapeProxy{
+		Points: input,
 		Count:  int32(1),
 	}
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp))).Translation = (*RayCastInput)(unsafe.Pointer(input)).Translation
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp))).MaxFraction = (*RayCastInput)(unsafe.Pointer(input)).MaxFraction
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp))).Translation = (*RayCastInput)(unsafe.Pointer(input)).Translation
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp))).MaxFraction = (*RayCastInput)(unsafe.Pointer(input)).MaxFraction
 	return b3ShapeCastHeightField(tls, heightField, bp)
 }
 
@@ -1405,8 +1405,8 @@ func b3OverlapHeightField(tls *_Stack, shape uintptr, shapeTransform Transform, 
 	var _ /* buffer at bp+0 */ [128]Vec3
 	var _ /* cache at bp+1640 */ SimplexCache
 	var _ /* corners at bp+1656 */ [4]Vec3
-	var _ /* input at bp+1576 */ DistanceInput
-	var _ /* localProxy at bp+1536 */ ShapeProxy
+	var _ /* input at bp+1576 */ cDistanceInput
+	var _ /* localProxy at bp+1536 */ cShapeProxy
 	var _ /* point11 at bp+1704 */ Vec3
 	var _ /* point12 at bp+1716 */ Vec3
 	var _ /* point21 at bp+1728 */ Vec3
@@ -1414,7 +1414,7 @@ func b3OverlapHeightField(tls *_Stack, shape uintptr, shapeTransform Transform, 
 	var _ /* triangleVertices at bp+1752 */ [3]Vec3
 	var _ /* triangleVertices at bp+1788 */ [3]Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = boundsCenter, boundsExtent, boundsMax, boundsMin, cellIndex, column, material, maxCol, maxRow, minCol, minRow, output, output1, row, scale, tolerance, tolerance1, v11, v12, v21, v22, v1, v111, v121, v13, v15, v16, v17, v2, v211, v221, v23, v4, v5, v7, v8, v9
-	*(*ShapeProxy)(unsafe.Add(nil, bp+1536)) = b3MakeLocalProxy(tls, proxy, shapeTransform, bp)
+	*(*cShapeProxy)(unsafe.Add(nil, bp+1536)) = b3MakeLocalProxy(tls, proxy, shapeTransform, bp)
 	*(*AABB)(unsafe.Add(nil, bp+1552)) = b3ComputeProxyAABB(tls, bp+1536)
 	scale = (*HeightFieldData)(unsafe.Pointer(shape)).Scale
 	minRow = int32(floorf(tls, (*(*AABB)(unsafe.Add(nil, bp+1552))).LowerBound.Z/scale.Z))
@@ -1468,9 +1468,9 @@ _14:
 	goto _18
 _18:
 	boundsExtent = v17
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1576))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, bp+1536))
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1576))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1576))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1576))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, bp+1536))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1576))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1576))).UseRadii = boolUint8(true1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+1640)) = SimplexCache{}
 	// Outer loop on rows and inner loop on columns so that triangle indices increase monotonically.
 	row = minRow
@@ -1553,8 +1553,8 @@ _18:
 					1: *(*Vec3)(unsafe.Add(nil, bp+1728)),
 					2: *(*Vec3)(unsafe.Add(nil, bp+1716)),
 				}
-				(*(*DistanceInput)(unsafe.Add(nil, bp+1576))).ProxyA = ShapeProxy{
-					Points: (*Vec3)(unsafe.Pointer(bp + 1752)),
+				(*(*cDistanceInput)(unsafe.Add(nil, bp+1576))).ProxyA = cShapeProxy{
+					Points: bp + 1752,
 					Count:  int32(3),
 				}
 				// reset the cache
@@ -1573,8 +1573,8 @@ _18:
 					1: *(*Vec3)(unsafe.Add(nil, bp+1716)),
 					2: *(*Vec3)(unsafe.Add(nil, bp+1728)),
 				}
-				(*(*DistanceInput)(unsafe.Add(nil, bp+1576))).ProxyA = ShapeProxy{
-					Points: (*Vec3)(unsafe.Pointer(bp + 1788)),
+				(*(*cDistanceInput)(unsafe.Add(nil, bp+1576))).ProxyA = cShapeProxy{
+					Points: bp + 1788,
 					Count:  int32(3),
 				}
 				// reset the cache

@@ -113,7 +113,7 @@ func _CreateFallingRagdolls(tls *_Stack, worldId WorldId) (r _FallingRagdollData
 	var meshGridCellWidth, span float32
 	var _ /* bodyDef at bp+14152 */ BodyDef
 	var _ /* data at bp+0 */ _FallingRagdollData
-	var _ /* shapeDef at bp+14264 */ ShapeDef
+	var _ /* shapeDef at bp+14264 */ cShapeDef
 	_, _, _, _, _, _ = body, halfMeshGridRows, i, j, meshGridCellWidth, span
 	*(*_FallingRagdollData)(unsafe.Add(nil, bp)) = _FallingRagdollData{}
 	halfMeshGridRows = int32(4)
@@ -122,7 +122,7 @@ func _CreateFallingRagdolls(tls *_Stack, worldId WorldId) (r _FallingRagdollData
 	(*(*_FallingRagdollData)(unsafe.Add(nil, bp))).TorusMesh = b3CreateTorusMesh(tls, int32(16), int32(16), float32(float32FromFloat32(0.25)*float32FromFloat32(15)), float32FromFloat32(1))
 	span = float32(float32FromFloat32(15) * float32FromInt32(_RAGDOLL_GRID_COUNT))
 	*(*BodyDef)(unsafe.Add(nil, bp+14152)) = b3DefaultBodyDef(tls)
-	*(*ShapeDef)(unsafe.Add(nil, bp+14264)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+14264)) = b3DefaultShapeDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+14152))).Position.X = float32(-float32FromFloat32(0.5)*span) + float32(float32FromFloat32(0.5)*float32FromFloat32(15))
 	i = 0
 	for {
@@ -243,8 +243,8 @@ func _CreateWavePile(tls *_Stack, worldId WorldId) (r1 _WavePileData) {
 	var _ /* box at bp+1056 */ BoxHull
 	var _ /* capsule at bp+1768 */ Capsule
 	var _ /* data at bp+0 */ _WavePileData
-	var _ /* shapeDef at bp+1912 */ ShapeDef
-	var _ /* shapeDef at bp+936 */ ShapeDef
+	var _ /* shapeDef at bp+1912 */ cShapeDef
+	var _ /* shapeDef at bp+936 */ cShapeDef
 	var _ /* sphere at bp+1752 */ Sphere
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyId, cs2, cs3, extent, fieldCount, fieldScale, groundId, i, index, j, jitter, layer, q, r, rock, spacing, sqrt1MinusU1, sqrtU1, u1, u2, u3, v, x, v11, v12, v14, v16, v17, v19, v21, v38, v4, v5, v6, v7, v9
 	*(*_WavePileData)(unsafe.Add(nil, bp)) = _WavePileData{}
@@ -262,7 +262,7 @@ func _CreateWavePile(tls *_Stack, worldId WorldId) (r1 _WavePileData) {
 	(*(*BodyDef)(unsafe.Add(nil, bp+824))).Position.X = float32(-float32FromFloat32(0.5) * extent)
 	(*(*BodyDef)(unsafe.Add(nil, bp+824))).Position.Z = float32(-float32FromFloat32(0.5) * extent)
 	groundId = b3CreateBody(tls, worldId, bp+824)
-	*(*ShapeDef)(unsafe.Add(nil, bp+936)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+936)) = b3DefaultShapeDef(tls)
 	b3CreateHeightFieldShape(tls, groundId, bp+936, (*(*_WavePileData)(unsafe.Add(nil, bp))).HeightField)
 	rock = b3CreateRock(tls, float32FromFloat32(0.55))
 	*(*BoxHull)(unsafe.Add(nil, bp+1056)) = b3MakeBoxHull(tls, float32FromFloat32(0.45), float32FromFloat32(0.3), float32FromFloat32(0.55))
@@ -282,8 +282,8 @@ func _CreateWavePile(tls *_Stack, worldId WorldId) (r1 _WavePileData) {
 	*(*BodyDef)(unsafe.Add(nil, bp+1800)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+1800))).Type1 = int32(b3_dynamicBody)
 	// Rolling resistance so the pile sleeps quickly.
-	*(*ShapeDef)(unsafe.Add(nil, bp+1912)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1912))).BaseMaterial.RollingResistance = float32FromFloat32(0.3)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1912)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1912))).BaseMaterial.RollingResistance = float32FromFloat32(0.3)
 	spacing = float32FromFloat32(1.7)
 	index = 0
 	layer = 0
@@ -535,10 +535,10 @@ func _QuerySpawnOnce(tls *_Stack, worldId WorldId, data uintptr) {
 	var _ /* capsule at bp+360 */ Capsule
 	var _ /* fraction at bp+80 */ float32
 	var _ /* overlap at bp+64 */ _QuerySpawnOverlapContext
-	var _ /* proxy at bp+96 */ ShapeProxy
+	var _ /* proxy at bp+96 */ cShapeProxy
 	var _ /* proxyPoint at bp+84 */ Vec3
 	var _ /* ray at bp+0 */ RayResult
-	var _ /* shapeDef at bp+224 */ ShapeDef
+	var _ /* shapeDef at bp+224 */ cShapeDef
 	var _ /* sphere at bp+344 */ Sphere
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aabb, bodyId, center, cs2, cs21, cs3, cs31, extent, filter, q, r, rayOrigin, rayTranslation, size, spawnPosition, sqrt1MinusU1, sqrt1MinusU11, sqrtU1, sqrtU11, u1, u11, u2, u21, u3, u31, v, v1, v2, x, v11, v111, v113, v13, v14, v16, v18, v21, v20, v211, v23, v25, v26, v28, v3, v30, v31, v33, v35, v37, v38, v39, v4, v45, v47, v6, v8, v9
 	filter = b3DefaultQueryFilter(tls)
@@ -875,8 +875,8 @@ _97:
 	// Sphere cast fraction sets the spawn size.
 	*(*float32)(unsafe.Add(nil, bp+80)) = float32FromFloat32(1)
 	*(*Vec3)(unsafe.Add(nil, bp+84)) = b3Vec3_zero
-	*(*ShapeProxy)(unsafe.Add(nil, bp+96)) = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp + 84)),
+	*(*cShapeProxy)(unsafe.Add(nil, bp+96)) = cShapeProxy{
+		Points: bp + 84,
 		Count:  int32(1),
 		Radius: float32FromFloat32(0.5),
 	}
@@ -1062,8 +1062,8 @@ _152:
 	(*(*BodyDef)(unsafe.Add(nil, bp+112))).LinearDamping = float32FromFloat32(1)
 	(*(*BodyDef)(unsafe.Add(nil, bp+112))).AngularDamping = float32FromFloat32(1)
 	bodyId = b3CreateBody(tls, worldId, bp+112)
-	*(*ShapeDef)(unsafe.Add(nil, bp+224)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+224))).BaseMaterial.RollingResistance = float32FromFloat32(0.2)
+	*(*cShapeDef)(unsafe.Add(nil, bp+224)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+224))).BaseMaterial.RollingResistance = float32FromFloat32(0.2)
 	switch ((*_QuerySpawnData)(unsafe.Pointer(data)).SpawnCount + (*(*_QuerySpawnOverlapContext)(unsafe.Add(nil, bp+64))).Count) % int32FromInt32(3) {
 	case 0:
 		*(*Sphere)(unsafe.Add(nil, bp+344)) = Sphere{
@@ -1164,7 +1164,7 @@ func _CreateHuman(tls *_Stack, human uintptr, worldId WorldId, position Pos, fri
 	var _ /* head at bp+316 */ Capsule
 	var _ /* jointDef at bp+624 */ RevoluteJointDef
 	var _ /* jointDef at bp+776 */ SphericalJointDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	var _ /* shin at bp+372 */ Capsule
 	var _ /* shin at bp+456 */ Capsule
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyIdA, bodyIdB, bone, bone1, bone10, bone11, bone12, bone2, bone3, bone4, bone5, bone6, bone7, bone8, bone9, defaultDensity, i, i1, i2, lengthSq, pantColor, parent, qn, s, shirtColor, skinColor, skinColors, v3, v4, v5, v64, v65, v66, v67, v69, v7, v79
@@ -1198,8 +1198,8 @@ func _CreateHuman(tls *_Stack, human uintptr, worldId WorldId, position Pos, fri
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).UserData = uint64(userData)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
-	defaultDensity = (*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	defaultDensity = (*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density
 	shirtColor = int32(b3_colorMediumTurquoise)
 	pantColor = int32(b3_colorDodgerBlue)
 	skinColors = [4]b3HexColor1{
@@ -1235,15 +1235,15 @@ func _CreateHuman(tls *_Stack, human uintptr, worldId WorldId, position Pos, fri
 _6:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = pantColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+232)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.04),
@@ -1282,15 +1282,15 @@ _6:
 _11:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone1)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
 	if colorize != 0 {
 		v7 = shirtColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.5)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.5)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+260)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.029876),
@@ -1357,15 +1357,15 @@ _11:
 _16:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone2)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = shirtColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.5)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.5)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+288)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.063996),
@@ -1433,15 +1433,15 @@ _16:
 _21:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone3)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = skinColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.2)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.05)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.2)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.05)
 	*(*Capsule)(unsafe.Add(nil, bp+316)) = Capsule{
 		Center1: Vec3{
 			Y: -float32FromFloat32(0.21234),
@@ -1512,15 +1512,15 @@ _21:
 _26:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone4)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
 	if colorize != 0 {
 		v7 = pantColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+344)) = Capsule{
 		Center1: Vec3{
 			X: -float32FromFloat32(0.047269),
@@ -1594,15 +1594,15 @@ _26:
 _31:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone5)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = pantColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0)
 	*(*Capsule)(unsafe.Add(nil, bp+372)) = Capsule{
 		Center1: Vec3{
 			X: -float32FromFloat32(0.445),
@@ -1615,7 +1615,7 @@ _31:
 		Radius: float32FromFloat32(0.08),
 	}
 	b3CreateCapsuleShape(tls, (*_Bone)(unsafe.Pointer(bone5)).BodyId, bp+112, bp+372)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32(float32FromFloat32(0.5) * defaultDensity)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = float32(float32FromFloat32(0.5) * defaultDensity)
 	*(*Capsule)(unsafe.Add(nil, bp+400)) = Capsule{
 		Center1: Vec3{
 			X: -float32FromFloat32(0.456371),
@@ -1630,7 +1630,7 @@ _31:
 		Radius: float32FromFloat32(0.07),
 	}
 	b3CreateCapsuleShape(tls, (*_Bone)(unsafe.Pointer(bone5)).BodyId, bp+112, bp+400)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = defaultDensity
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = defaultDensity
 	(*_Bone)(unsafe.Pointer(bone5)).JointType = int32(b3_revoluteJoint)
 	(*_Bone)(unsafe.Pointer(bone5)).LocalFrameA = Transform{
 		P: Vec3{
@@ -1690,15 +1690,15 @@ _31:
 _36:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone6)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = -groupIndex
 	if colorize != 0 {
 		v7 = pantColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+428)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.047269),
@@ -1772,15 +1772,15 @@ _36:
 _41:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone7)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = pantColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0)
 	*(*Capsule)(unsafe.Add(nil, bp+456)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.445),
@@ -1794,7 +1794,7 @@ _41:
 		Radius: float32FromFloat32(0.08),
 	}
 	b3CreateCapsuleShape(tls, (*_Bone)(unsafe.Pointer(bone7)).BodyId, bp+112, bp+456)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32(float32FromFloat32(0.5) * defaultDensity)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = float32(float32FromFloat32(0.5) * defaultDensity)
 	*(*Capsule)(unsafe.Add(nil, bp+484)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.369113),
@@ -1809,7 +1809,7 @@ _41:
 		Radius: float32FromFloat32(0.07),
 	}
 	b3CreateCapsuleShape(tls, (*_Bone)(unsafe.Pointer(bone7)).BodyId, bp+112, bp+484)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = defaultDensity
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = defaultDensity
 	(*_Bone)(unsafe.Pointer(bone7)).JointType = int32(b3_revoluteJoint)
 	(*_Bone)(unsafe.Pointer(bone7)).LocalFrameA = Transform{
 		P: Vec3{
@@ -1869,15 +1869,15 @@ _41:
 _46:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone8)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = shirtColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+512)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.296038),
@@ -1954,15 +1954,15 @@ _46:
 _51:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone9)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = skinColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.3)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.3)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+540)) = Capsule{
 		Center1: Vec3{
 			X: float32FromFloat32(0.312329),
@@ -2037,15 +2037,15 @@ _51:
 _56:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone10)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = shirtColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.6)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+568)) = Capsule{
 		Center1: Vec3{
 			X: -float32FromFloat32(0.300237),
@@ -2122,15 +2122,15 @@ _56:
 _61:
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = v5
 	(*_Bone)(unsafe.Pointer(bone11)).BodyId = b3CreateBody(tls, worldId, bp)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.GroupIndex = 0
 	if colorize != 0 {
 		v7 = skinColor
 	} else {
 		v7 = 0
 	}
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.3)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.CustomColor = uint32FromInt32(v7)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.3)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	*(*Capsule)(unsafe.Add(nil, bp+596)) = Capsule{
 		Center1: Vec3{
 			X: -float32FromFloat32(0.312649),
@@ -2740,8 +2740,8 @@ func _CreateMeshDrop(tls *_Stack, worldId WorldId, origin Pos) (r1 _MeshDropData
 	var _ /* bodyDef at bp+4152 */ BodyDef
 	var _ /* box at bp+3456 */ BoxHull
 	var _ /* data at bp+0 */ _MeshDropData
-	var _ /* shapeDef at bp+3336 */ ShapeDef
-	var _ /* shapeDef at bp+4264 */ ShapeDef
+	var _ /* shapeDef at bp+3336 */ cShapeDef
+	var _ /* shapeDef at bp+4264 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularVelocity, bodyId, cellWidth, columnHz, gridCount, gridCount1, groundAmplitude, groundId, i, j, linearVelocity, r, rowHz, v, x, v10, v11, v13, v15, v16, v18, v20, v22, v23, v24, v25, v27, v29, v3, v30, v32, v34, v35, v37, v39, v4, v41, v42, v43, v5, v6, v8
 	*(*_MeshDropData)(unsafe.Add(nil, bp)) = _MeshDropData{}
 	*(*BodyDef)(unsafe.Add(nil, bp+3224)) = b3DefaultBodyDef(tls)
@@ -2753,17 +2753,17 @@ func _CreateMeshDrop(tls *_Stack, worldId WorldId, origin Pos) (r1 _MeshDropData
 	columnHz = float32FromFloat32(0.2)
 	groundAmplitude = float32FromFloat32(0.5)
 	(*(*_MeshDropData)(unsafe.Add(nil, bp))).Mesh = b3CreateWaveMesh(tls, gridCount, gridCount, cellWidth, groundAmplitude, rowHz, columnHz)
-	*(*ShapeDef)(unsafe.Add(nil, bp+3336)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+3336))).Filter.CategoryBits = uint64(1)
+	*(*cShapeDef)(unsafe.Add(nil, bp+3336)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+3336))).Filter.CategoryBits = uint64(1)
 	b3CreateMeshShape(tls, groundId, bp+3336, (*(*_MeshDropData)(unsafe.Add(nil, bp))).Mesh, b3Vec3_one)
 	*(*BoxHull)(unsafe.Add(nil, bp+3456)) = b3MakeBoxHull(tls, float32FromFloat32(0.02), float32FromFloat32(0.2), float32FromFloat32(0.04))
 	*(*BodyDef)(unsafe.Add(nil, bp+4152)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+4152))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+4264)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+4264))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	*(*cShapeDef)(unsafe.Add(nil, bp+4264)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+4264))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	// Don't allow shapes to collide with each other.
-	(*(*ShapeDef)(unsafe.Add(nil, bp+4264))).Filter.CategoryBits = uint64(2)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+4264))).Filter.MaskBits = uint64(1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+4264))).Filter.CategoryBits = uint64(2)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+4264))).Filter.MaskBits = uint64(1)
 	g_randomSeed = uint32(3963634789)
 	gridCount1 = int32(_MESH_DROP_GRID_COUNT)
 	i = 0
@@ -2983,7 +2983,7 @@ func _CreateJointGrid(tls *_Stack, worldId WorldId) {
 	var i, index, k, n, v3 int32
 	var _ /* bodyDef at bp+320 */ BodyDef
 	var _ /* jointDef at bp+136 */ SphericalJointDef
-	var _ /* shapeDef at bp+0 */ ShapeDef
+	var _ /* shapeDef at bp+0 */ cShapeDef
 	var _ /* sphere at bp+120 */ Sphere
 	_, _, _, _, _, _, _, _, _ = bodies, body, fi, fk, i, index, k, n, v3
 	b3World_EnableSleeping(tls, worldId, boolUint8(false1 != 0))
@@ -2991,9 +2991,9 @@ func _CreateJointGrid(tls *_Stack, worldId WorldId) {
 	// Allocate to avoid huge stack usage
 	bodies = malloc(tls, uint64FromInt32(n*n)*uint64(8))
 	index = 0
-	*(*ShapeDef)(unsafe.Add(nil, bp)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp))).Filter.CategoryBits = uint64(2)
-	(*(*ShapeDef)(unsafe.Add(nil, bp))).Filter.MaskBits = uint64(^uint32FromUint32(2))
+	*(*cShapeDef)(unsafe.Add(nil, bp)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp))).Filter.CategoryBits = uint64(2)
+	(*(*cShapeDef)(unsafe.Add(nil, bp))).Filter.MaskBits = uint64(^uint32FromUint32(2))
 	*(*Sphere)(unsafe.Add(nil, bp+120)) = Sphere{
 		Radius: float32FromFloat32(0.4),
 	}
@@ -3074,8 +3074,8 @@ func _CreateLargePyramid(tls *_Stack, worldId WorldId) {
 	var _ /* bodyDef at bp+928 */ BodyDef
 	var _ /* box at bp+112 */ BoxHull
 	var _ /* box at bp+1160 */ BoxHull
-	var _ /* shapeDef at bp+1040 */ ShapeDef
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+1040 */ cShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _, _ = baseCount, bodyId, groundId, h, i, j, shift, x, y
 	b3World_EnableSleeping(tls, worldId, boolUint8(false1 != 0))
 	baseCount = int32(100)
@@ -3085,12 +3085,12 @@ func _CreateLargePyramid(tls *_Stack, worldId WorldId) {
 	}
 	groundId = b3CreateBody(tls, worldId, bp)
 	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(400), float32FromFloat32(1), float32FromFloat32(400))
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
 	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Density = float32FromFloat32(100)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1040))).Density = float32FromFloat32(100)
 	h = float32FromFloat32(0.5)
 	*(*BoxHull)(unsafe.Add(nil, bp+1160)) = b3MakeBoxHull(tls, h, h, h)
 	shift = float32(float32FromFloat32(1) * h)
@@ -3134,8 +3134,8 @@ func _CreateWidePyramid(tls *_Stack, worldId WorldId) {
 	var _ /* bodyDef at bp+1624 */ BodyDef
 	var _ /* box at bp+112 */ BoxHull
 	var _ /* box at bp+928 */ BoxHull
-	var _ /* shapeDef at bp+1736 */ ShapeDef
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+1736 */ cShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyId, boxSeparation, boxSize, groundId, h, halfBoxSize, i, j, k, pyramidHeight, x, y, z, v4, v5
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
@@ -3143,7 +3143,7 @@ func _CreateWidePyramid(tls *_Stack, worldId WorldId) {
 	}
 	groundId = b3CreateBody(tls, worldId, bp)
 	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(100), float32FromFloat32(1), float32FromFloat32(100))
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
 	boxSize = float32FromFloat32(2)
 	boxSeparation = float32FromFloat32(0.5)
@@ -3153,7 +3153,7 @@ func _CreateWidePyramid(tls *_Stack, worldId WorldId) {
 	*(*BoxHull)(unsafe.Add(nil, bp+928)) = b3MakeBoxHull(tls, h, h, h)
 	*(*BodyDef)(unsafe.Add(nil, bp+1624)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+1624))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1736)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1736)) = b3DefaultShapeDef(tls)
 	i = 0
 	for {
 		if !(i < pyramidHeight) {
@@ -3214,13 +3214,13 @@ func _CreateSmallPyramid(tls *_Stack, worldId WorldId, baseCount int32, extent f
 	var x, y float32
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* box at bp+232 */ BoxHull
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _ = bodyId, i, j, x, y
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).EnableSleep = boolUint8(false1 != 0)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(100)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(100)
 	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, extent, extent, extent)
 	i = 0
 	for {
@@ -3261,7 +3261,7 @@ func _CreateManyPyramids(tls *_Stack, worldId WorldId) {
 	var groundId BodyId
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* box at bp+232 */ BoxHull
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _ = baseCount, baseWidth, baseZ, centerX, columnCount, deltaZ, extent, groundExtent, groundId, i, j, rowCount
 	baseCount = int32(10)
 	extent = float32FromFloat32(0.5)
@@ -3273,7 +3273,7 @@ func _CreateManyPyramids(tls *_Stack, worldId WorldId) {
 		Y: -float32FromFloat32(1),
 	}
 	groundId = b3CreateBody(tls, worldId, bp)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, groundExtent, float32FromFloat32(1), groundExtent)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+112, bp+232)
 	baseWidth = float32(float32(float32FromFloat32(2)*extent) * float32(baseCount))
@@ -3326,7 +3326,7 @@ func _CreateRain(tls *_Stack, worldId WorldId) {
 	var halfMeshGridRows, i, j int32
 	var meshGridCellWidth, span float32
 	var _ /* bodyDef at bp+0 */ BodyDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _, _ = body, halfMeshGridRows, i, j, meshGridCellWidth, span
 	memset(tls, uintptr(unsafe.Pointer(&g_rainData)), 0, uint64(32))
 	g_rainData.Groups = malloc(tls, uint64FromInt32(int32FromInt32(_RAIN_GRID_COUNT)*int32FromInt32(_RAIN_GRID_COUNT))*uint64FromInt64(5292))
@@ -3337,7 +3337,7 @@ func _CreateRain(tls *_Stack, worldId WorldId) {
 	g_rainData.TorusMesh = b3CreateTorusMesh(tls, int32(16), int32(16), float32(float32FromFloat32(0.25)*float32FromFloat32(15)), float32FromFloat32(1))
 	span = float32(float32FromFloat32(15) * float32FromInt32(_RAIN_GRID_COUNT))
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.X = float32(-float32FromFloat32(0.5)*span) + float32(float32FromFloat32(0.5)*float32FromFloat32(15))
 	i = 0
 	for {
@@ -3514,7 +3514,7 @@ func _CreateLargeWorld(tls *_Stack, worldId WorldId) {
 	var gridCount, i, j int32
 	var _ /* bodyDef at bp+696 */ BodyDef
 	var _ /* box at bp+0 */ BoxHull
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _ = body, cell, gridCount, halfSpan, i, j, x, z
 	memset(tls, uintptr(unsafe.Pointer(&g_staticFloorData)), 0, uint64(4))
 	cell = float32FromFloat32(10)
@@ -3522,9 +3522,9 @@ func _CreateLargeWorld(tls *_Stack, worldId WorldId) {
 	halfSpan = float32(float32(float32FromFloat32(0.5)*cell) * float32(gridCount))
 	*(*BoxHull)(unsafe.Add(nil, bp)) = b3MakeBoxHull(tls, float32(float32FromFloat32(0.5)*cell), float32FromFloat32(0.25), float32(float32FromFloat32(0.5)*cell))
 	*(*BodyDef)(unsafe.Add(nil, bp+696)) = b3DefaultBodyDef(tls)
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	// The trigger: every static shape gets buffered into the move set on creation.
-	(*(*ShapeDef)(unsafe.Add(nil, bp+808))).InvokeContactCreation = boolUint8(true1 != 0)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+808))).InvokeContactCreation = boolUint8(true1 != 0)
 	i = 0
 	for {
 		if !(i < gridCount) {
@@ -3562,7 +3562,7 @@ func _StepLargeWorld(tls *_Stack, worldId WorldId, stepCount int32) {
 	var gi, gj, idx, side int32
 	var halfSpan, inset, usable, x, z float32
 	var _ /* bodyDef at bp+0 */ BodyDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	var _ /* sphere at bp+232 */ Sphere
 	_, _, _, _, _, _, _, _, _, _ = body, gi, gj, halfSpan, idx, inset, side, usable, x, z
 	if g_staticFloorData.SpheresDropped >= int32(_STATIC_FLOOR_SPHERES) {
@@ -3595,7 +3595,7 @@ func _StepLargeWorld(tls *_Stack, worldId WorldId, stepCount int32) {
 		Y: float32FromFloat32(1.5),
 		Z: z,
 	}
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	*(*Sphere)(unsafe.Add(nil, bp+232)) = Sphere{
 		Radius: float32FromFloat32(0.5),
 	}
@@ -3632,16 +3632,16 @@ func _CreateWasher(tls *_Stack, worldId WorldId) {
 	var _ /* jointDef at bp+1352 */ RevoluteJointDef
 	var _ /* points at bp+1160 */ [8]Vec3
 	var _ /* points at bp+1256 */ [8]Vec3
-	var _ /* shapeDef at bp+1040 */ ShapeDef
-	var _ /* shapeDef at bp+2312 */ ShapeDef
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+1040 */ cShapeDef
+	var _ /* shapeDef at bp+2312 */ cShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a6, aa, angle, bodyId, bodyId1, c, cs, gridCount, groundId, hull, hull1, i, i1, j, k, kinematic, motorSpeed, nd, p1, p11, p2, p21, p3, p31, p4, p41, p5, p51, p6, p61, p7, p71, p8, p81, pd, q2, q3, qo, r0, r1, r2, t1, t11, t2, t21, t3, t31, u1, u2, x, y, z, v1, v10, v100, v12, v13, v14, v16, v17, v18, v19, v2, v20, v22, v24, v25, v27, v28, v29, v3, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v45, v47, v49, v5, v50, v51, v52, v55, v56, v57, v58, v60, v61, v62, v63, v65, v66, v67, v69, v7, v71, v72, v73, v74, v77, v78, v79, v80, v82, v84, v85, v87, v88, v89, v9, v91, v93, v95, v96, v98
 	kinematic = boolUint8(true1 != 0)
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Y = -float32FromFloat32(1)
 	groundId = b3CreateBody(tls, worldId, bp)
 	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(60), float32FromFloat32(1), float32FromFloat32(60))
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
 	motorSpeed = float32FromFloat32(25)
 	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
@@ -3661,7 +3661,7 @@ func _CreateWasher(tls *_Stack, worldId WorldId) {
 		(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
 	}
 	bodyId = b3CreateBody(tls, worldId, bp+928)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
 	r0 = float32FromFloat32(14)
 	r1 = float32FromFloat32(16)
 	r2 = float32FromFloat32(18)
@@ -4122,7 +4122,7 @@ _30:
 	*(*BoxHull)(unsafe.Add(nil, bp+1504)) = b3MakeBoxHull(tls, a6, a6, a6)
 	*(*BodyDef)(unsafe.Add(nil, bp+2200)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+2200))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+2312)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+2312)) = b3DefaultShapeDef(tls)
 	x = float32(float32(-float32FromFloat32(2)*a6) * float32(gridCount))
 	i1 = 0
 	for {
@@ -4182,7 +4182,7 @@ func _CreateTrees(tls *_Stack, worldId WorldId, scale int32) {
 	var v13 bool
 	var v7 uint8
 	var _ /* bodyDef at bp+0 */ BodyDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, amplitude, angularVelocity, bodyCount, bodyId, bodyIndex, c, cellWidth, center, columnHz, cs, cs1, groundId, hullCount, hulls, i, i1, l, omega, q, r, rowHz, shapeIndex, tilt, v, velocityScale, xCount, y, yTilt, z, zCount, v1, v10, v12, v13, v14, v19, v2, v20, v3, v4, v5, v7, v9
 	memset(tls, uintptr(unsafe.Pointer(&g_treeData)), 0, uint64(8))
 	// float tilt = 0.15f * B3_PI;
@@ -4238,16 +4238,16 @@ _15:
 	rowHz = float32FromFloat32(0.05)
 	columnHz = float32FromFloat32(0.1)
 	g_treeData.MeshData = b3CreateWaveMesh(tls, xCount, zCount, cellWidth, amplitude, rowHz, columnHz)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	b3CreateMeshShape(tls, groundId, bp+112, g_treeData.MeshData, b3Vec3_one)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).SleepThreshold = float32FromFloat32(0.2)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Rotation = b3Quat_identity
 	bodyCount = int32(50)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.9)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.05)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).UpdateBodyMass = boolUint8(false1 != 0)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.9)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.RollingResistance = float32FromFloat32(0.05)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).UpdateBodyMass = boolUint8(false1 != 0)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Density = float32FromFloat32(1)
 	hullCount = int32(22)
 	hulls = [22]uintptr{}
 	y = float32FromFloat32(1)
@@ -4372,8 +4372,8 @@ func _CreateMeshDropBenchmark(tls *_Stack, worldId WorldId) {
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* bodyDef at bp+928 */ BodyDef
 	var _ /* box at bp+232 */ BoxHull
-	var _ /* shapeDef at bp+1040 */ ShapeDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+1040 */ cShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularVelocity, bodyId, borderCount, cellWidth, columnHz, gridCount, groundAmplitude, groundId, i, j, linearVelocity, meshGridCount, offset, r, rowHz, spacing, v, x, v10, v11, v13, v15, v16, v18, v20, v22, v23, v24, v25, v27, v29, v3, v30, v32, v34, v35, v37, v39, v4, v5, v6, v8
 	memset(tls, uintptr(unsafe.Pointer(&g_meshDropData)), 0, uint64(8))
 	meshGridCount = int32(120)
@@ -4385,17 +4385,17 @@ func _CreateMeshDropBenchmark(tls *_Stack, worldId WorldId) {
 	columnHz = float32FromFloat32(0.2)
 	groundAmplitude = float32FromFloat32(0.5)
 	g_meshDropData.MeshData = b3CreateWaveMesh(tls, meshGridCount, meshGridCount, cellWidth, groundAmplitude, rowHz, columnHz)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).Filter.CategoryBits = uint64(1)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).Filter.CategoryBits = uint64(1)
 	b3CreateMeshShape(tls, groundId, bp+112, g_meshDropData.MeshData, b3Vec3_one)
 	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, float32FromFloat32(0.02), float32FromFloat32(0.2), float32FromFloat32(0.04))
 	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.RollingResistance = float32FromFloat32(0.1)
 	// Don't allow shapes to collide with each other.
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Filter.CategoryBits = uint64(2)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).Filter.MaskBits = uint64(1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1040))).Filter.CategoryBits = uint64(2)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1040))).Filter.MaskBits = uint64(1)
 	g_randomSeed = uint32(3963634789)
 	gridCount = int32(100)
 	spacing = float32(cellWidth*float32(meshGridCount-int32FromInt32(2)*borderCount)) / float32(gridCount)
@@ -4566,14 +4566,14 @@ func _CreateJunkyard(tls *_Stack, worldId WorldId) {
 	var _ /* box at bp+2320 */ BoxHull
 	var _ /* box at bp+3016 */ BoxHull
 	var _ /* box at bp+928 */ BoxHull
-	var _ /* shapeDef at bp+112 */ ShapeDef
-	var _ /* shapeDef at bp+3824 */ ShapeDef
-	var _ /* shapeDef at bp+4056 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
+	var _ /* shapeDef at bp+3824 */ cShapeDef
+	var _ /* shapeDef at bp+4056 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = X, Y, Z, bodyId, count, groundId, height, hull, mHeight, offset, offset1, offset2, offset3, rockHull
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position.Y = -float32FromFloat32(1)
 	groundId = b3CreateBody(tls, worldId, bp)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, float32FromFloat32(120), float32FromFloat32(1), float32FromFloat32(120))
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+112, bp+232)
 	offset = Vec3{
@@ -4605,7 +4605,7 @@ func _CreateJunkyard(tls *_Stack, worldId WorldId) {
 	height = float32FromFloat32(24)
 	*(*BodyDef)(unsafe.Add(nil, bp+3712)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+3712))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+3824)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+3824)) = b3DefaultShapeDef(tls)
 	Y = 0
 	for {
 		if !(Y < count) {
@@ -4652,7 +4652,7 @@ func _CreateJunkyard(tls *_Stack, worldId WorldId) {
 	}
 	g_junkyardData.PusherId = b3CreateBody(tls, worldId, bp+3944)
 	g_junkyardData.Degrees = float32FromFloat32(0)
-	*(*ShapeDef)(unsafe.Add(nil, bp+4056)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+4056)) = b3DefaultShapeDef(tls)
 	b3CreateHullShape(tls, g_junkyardData.PusherId, bp+4056, hull)
 	b3DestroyHull(tls, hull)
 }
@@ -4708,8 +4708,8 @@ func _CreateConvexPile(tls *_Stack, worldId WorldId) {
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* bodyDef at bp+928 */ BodyDef
 	var _ /* box at bp+112 */ BoxHull
-	var _ /* shapeDef at bp+1040 */ ShapeDef
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+1040 */ cShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = amplitude, bodyId, convex, countX, countZ, groundId, layer, layers, posX, posY, posZ, scatter, x, z
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Position = Pos{
@@ -4717,7 +4717,7 @@ func _CreateConvexPile(tls *_Stack, worldId WorldId) {
 	}
 	groundId = b3CreateBody(tls, worldId, bp)
 	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32FromFloat32(250), float32FromFloat32(1), float32FromFloat32(250))
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
 	countX = int32(8)
 	countZ = int32(8)
@@ -4727,7 +4727,7 @@ func _CreateConvexPile(tls *_Stack, worldId WorldId) {
 	convex = b3CreateComplexHull(tls, amplitude)
 	*(*BodyDef)(unsafe.Add(nil, bp+928)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+928))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
 	// Grid tall enough to collapse into a pile
 	layer = 0
 	for {
@@ -4919,9 +4919,9 @@ func _CreateSpinner(tls *_Stack, worldId WorldId) {
 	var _ /* bodyDef at bp+232 */ BodyDef
 	var _ /* jointDef at bp+1160 */ RevoluteJointDef
 	var _ /* paddle at bp+344 */ BoxHull
-	var _ /* shapeDef at bp+1040 */ ShapeDef
-	var _ /* shapeDef at bp+112 */ ShapeDef
-	var _ /* shapeDef at bp+1440 */ ShapeDef
+	var _ /* shapeDef at bp+1040 */ cShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
+	var _ /* shapeDef at bp+1440 */ cShapeDef
 	var _ /* sphere at bp+1312 */ Sphere
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyCount, bodyId, chordHalfWidth, groundId, halfDepth, halfLength, i, radius, spacing, spinnerId, x, xLimit, y, yCenter, yStart, z, zLimit
 	g_spinnerData = _SpinnerData{}
@@ -4931,8 +4931,8 @@ func _CreateSpinner(tls *_Stack, worldId WorldId) {
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	groundId = b3CreateBody(tls, worldId, bp)
 	g_spinnerData.CylinderMesh = _CreateInwardCylinderMesh(tls, radius, halfDepth, yCenter, int32(_SPINNER_SEGMENT_COUNT))
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+112))).BaseMaterial.Friction = float32FromFloat32(0.1)
 	b3CreateMeshShape(tls, groundId, bp+112, g_spinnerData.CylinderMesh, b3Vec3_one)
 	halfLength = float32(float32FromFloat32(0.5) * radius)
 	*(*BodyDef)(unsafe.Add(nil, bp+232)) = b3DefaultBodyDef(tls)
@@ -4943,8 +4943,8 @@ func _CreateSpinner(tls *_Stack, worldId WorldId) {
 	(*(*BodyDef)(unsafe.Add(nil, bp+232))).EnableSleep = boolUint8(false1 != 0)
 	spinnerId = b3CreateBody(tls, worldId, bp+232)
 	*(*BoxHull)(unsafe.Add(nil, bp+344)) = b3MakeBoxHull(tls, float32FromFloat32(0.3), halfLength+float32FromFloat32(0.1), halfDepth+float32FromFloat32(0.1))
-	*(*ShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.Friction = float32FromFloat32(0)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1040)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1040))).BaseMaterial.Friction = float32FromFloat32(0)
 	b3CreateHullShape(tls, spinnerId, bp+1040, bp+344)
 	*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160)) = b3DefaultRevoluteJointDef(tls)
 	(*(*RevoluteJointDef)(unsafe.Add(nil, bp+1160))).Base.BodyIdA = groundId
@@ -4961,10 +4961,10 @@ func _CreateSpinner(tls *_Stack, worldId WorldId) {
 	}
 	*(*BodyDef)(unsafe.Add(nil, bp+1328)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+1328))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1440)) = b3DefaultShapeDef(tls)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Friction = float32FromFloat32(0.1)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Restitution = float32FromFloat32(0.1)
-	(*(*ShapeDef)(unsafe.Add(nil, bp+1440))).Density = float32FromFloat32(0.25)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1440)) = b3DefaultShapeDef(tls)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Friction = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1440))).BaseMaterial.Restitution = float32FromFloat32(0.1)
+	(*(*cShapeDef)(unsafe.Add(nil, bp+1440))).Density = float32FromFloat32(0.25)
 	bodyCount = int32(1500)
 	// The grid starts low where the cylinder is narrow, so the span has to fit the chord there
 	spacing = float32FromFloat32(0.55)
@@ -5040,12 +5040,12 @@ func _CreateSleepPyramid(tls *_Stack, worldId WorldId, baseCount int32, extent f
 	var x, y float32
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* box at bp+232 */ BoxHull
-	var _ /* shapeDef at bp+112 */ ShapeDef
+	var _ /* shapeDef at bp+112 */ cShapeDef
 	_, _, _, _, _ = bodyId, i, j, x, y
 	*(*BodyDef)(unsafe.Add(nil, bp)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).Type1 = int32(b3_dynamicBody)
 	(*(*BodyDef)(unsafe.Add(nil, bp))).SleepThreshold = float32FromFloat32(1)
-	*(*ShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+112)) = b3DefaultShapeDef(tls)
 	*(*BoxHull)(unsafe.Add(nil, bp+232)) = b3MakeBoxHull(tls, extent, extent, extent)
 	i = 0
 	for {
@@ -5105,7 +5105,7 @@ func _CreateSleep(tls *_Stack, worldId WorldId) {
 	var groundId BodyId
 	var _ /* bodyDef at bp+0 */ BodyDef
 	var _ /* box at bp+112 */ BoxHull
-	var _ /* shapeDef at bp+808 */ ShapeDef
+	var _ /* shapeDef at bp+808 */ cShapeDef
 	_, _, _, _, _, _, _, _ = baseCount, baseWidth, centerX, extent, groundId, i, pitch, span
 	g_sleepData = _SleepData{}
 	baseCount = int32(20)
@@ -5119,7 +5119,7 @@ func _CreateSleep(tls *_Stack, worldId WorldId) {
 	}
 	groundId = b3CreateBody(tls, worldId, bp)
 	*(*BoxHull)(unsafe.Add(nil, bp+112)) = b3MakeBoxHull(tls, float32(float32FromFloat32(0.5)*span)+baseWidth, float32FromFloat32(1), float32FromFloat32(4))
-	*(*ShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+808)) = b3DefaultShapeDef(tls)
 	g_groundShapeId = b3CreateHullShape(tls, groundId, bp+808, bp+112)
 	i = 0
 	for {
@@ -5209,8 +5209,8 @@ func _CreateVillage(tls *_Stack, worldId WorldId) {
 	var _ /* capsule at bp+1048 */ Capsule
 	var _ /* def at bp+736 */ CompoundDef
 	var _ /* material at bp+0 */ SurfaceMaterial
-	var _ /* shapeDef at bp+1888 */ ShapeDef
-	var _ /* shapeDef at bp+912 */ ShapeDef
+	var _ /* shapeDef at bp+1888 */ cShapeDef
+	var _ /* shapeDef at bp+912 */ cShapeDef
 	var _ /* sphere at bp+1032 */ Sphere
 	var _ /* tile at bp+40 */ BoxHull
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, bodyGrid, bodyId, capsuleCount, capsules, cs, gridCount, groundId, halfSpan, hullCount, hulls, i, i1, index, j, j1, meshCount, meshes, offset, propCapacity, q, r, radius, radius1, spacing, sphereCount, spheres, tileCount, tileIndex, tileWidth, v, wave, x, x1, z, v11, v12, v14, v15, v16, v20, v21, v23, v25, v26, v28, v3, v33, v4, v5, v6, v7, v9
@@ -5247,8 +5247,8 @@ func _CreateVillage(tls *_Stack, worldId WorldId) {
 			}
 			z = -halfSpan + float32((float32(j)+float32FromFloat32(0.5))*tileWidth)
 			if i%int32(16) == int32(8) && j%int32(16) == int32(8) {
-				*(*CompoundMeshDef)(unsafe.Add(nil, meshes+uintptr(meshCount)*64)) = CompoundMeshDef{
-					MeshData: (*MeshData)(unsafe.Pointer(wave)),
+				*(*cCompoundMeshDef)(unsafe.Add(nil, meshes+uintptr(meshCount)*64)) = cCompoundMeshDef{
+					MeshData: wave,
 					Transform: Transform{
 						P: Vec3{
 							X: x1,
@@ -5257,14 +5257,14 @@ func _CreateVillage(tls *_Stack, worldId WorldId) {
 						Q: b3Quat_identity,
 					},
 					Scale:         b3Vec3_one,
-					Materials:     (*SurfaceMaterial)(unsafe.Pointer(bp)),
+					Materials:     bp,
 					MaterialCount: int32(1),
 				}
 				meshCount = meshCount + int32(1)
 				goto _2
 			}
-			*(*CompoundHullDef)(unsafe.Add(nil, hulls+uintptr(hullCount)*80)) = CompoundHullDef{
-				Hull: (*HullData)(unsafe.Pointer(bp + 40)),
+			*(*cCompoundHullDef)(unsafe.Add(nil, hulls+uintptr(hullCount)*80)) = cCompoundHullDef{
+				Hull: bp + 40,
 				Transform: Transform{
 					P: Vec3{
 						X: x1,
@@ -5385,7 +5385,7 @@ _17:
 	*(*BodyDef)(unsafe.Add(nil, bp+800)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+800))).Rotation = g_villageData.Rotation
 	groundId = b3CreateBody(tls, worldId, bp+800)
-	*(*ShapeDef)(unsafe.Add(nil, bp+912)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+912)) = b3DefaultShapeDef(tls)
 	b3CreateBakedCompoundShape(tls, groundId, bp+912, g_villageData.Compound)
 	*(*Sphere)(unsafe.Add(nil, bp+1032)) = Sphere{
 		Radius: float32FromFloat32(0.3),
@@ -5402,7 +5402,7 @@ _17:
 	*(*BoxHull)(unsafe.Add(nil, bp+1080)) = b3MakeCubeHull(tls, float32FromFloat32(0.3))
 	*(*BodyDef)(unsafe.Add(nil, bp+1776)) = b3DefaultBodyDef(tls)
 	(*(*BodyDef)(unsafe.Add(nil, bp+1776))).Type1 = int32(b3_dynamicBody)
-	*(*ShapeDef)(unsafe.Add(nil, bp+1888)) = b3DefaultShapeDef(tls)
+	*(*cShapeDef)(unsafe.Add(nil, bp+1888)) = b3DefaultShapeDef(tls)
 	bodyGrid = int32(_VILLAGE_BODY_GRID)
 	spacing = float32FromFloat32(1.6)
 	offset = float32(float32(float32FromFloat32(0.5)*spacing) * float32(int32FromInt32(1)-bodyGrid))
@@ -5552,7 +5552,7 @@ func _StepVillage(tls *_Stack, worldId WorldId, stepIndex int32) {
 	var tilt CosSin
 	var v47 Pos
 	var _ /* point at bp+0 */ Vec3
-	var _ /* proxy at bp+16 */ ShapeProxy
+	var _ /* proxy at bp+16 */ cShapeProxy
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, cast, castCount, filter, halfSpan, i, localOrigin, localTranslation, q1, t, t1, t2, t3, tilt, translation, x, v1, v10, v12, v13, v14, v16, v18, v19, v2, v20, v21, v25, v3, v4, v47, v5, v7, v8, v9
 	halfSpan = g_villageData.HalfSpan
 	t = float32(stepIndex%int32FromInt32(_VILLAGE_STEP_COUNT)) / float32(int32FromInt32(_VILLAGE_STEP_COUNT)-int32FromInt32(1))
@@ -5610,8 +5610,8 @@ _22:
 _17:
 	translation = v16
 	*(*Vec3)(unsafe.Add(nil, bp)) = b3Vec3_zero
-	*(*ShapeProxy)(unsafe.Add(nil, bp+16)) = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp)),
+	*(*cShapeProxy)(unsafe.Add(nil, bp+16)) = cShapeProxy{
+		Points: bp,
 		Count:  int32(1),
 		Radius: float32FromFloat32(0.05),
 	}

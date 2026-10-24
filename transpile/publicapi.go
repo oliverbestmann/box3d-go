@@ -92,7 +92,7 @@ const (
 	// toUint64 turns a void* that box3d never reads into an opaque number
 	toUint64
 
-	// toPointer turns a uintptr into a Go pointer, see pointerFields
+	// toPointer turns a uintptr into a Go pointer in the public type, see pointerFields and addMirrors
 	toPointer
 )
 
@@ -124,7 +124,8 @@ var apiFields = map[string]map[string]fieldChange{
 	"ContactData":     {"Manifolds": unexport, "ManifoldCount": unexport},
 }
 
-// pointerFields are the Go types of the toPointer fields. The C code still sees a uintptr.
+// pointerFields are the Go types of the toPointer fields. The C code still sees a uintptr, it
+// works on the pointer-free mirrors cX, see addMirrors.
 var pointerFields = map[string]map[string]string{
 	"ShapeDef":        {"Materials": "SurfaceMaterial"},
 	"ShapeProxy":      {"Points": "Vec3"},
@@ -158,7 +159,6 @@ func fixApiFields(root *dst.File) map[string]string {
 	pkg, _ := conf.Check(PKGNAME, restorer.Fset, files, info)
 
 	fields := map[*types.Var]fieldChange{}
-	pointees := map[*types.Var]string{}
 	for typeName, changes := range apiFields {
 		obj := pkg.Scope().Lookup(typeName)
 		if obj == nil {
@@ -178,31 +178,24 @@ func fixApiFields(root *dst.File) map[string]string {
 
 			fields[st.Field(idx)] = change
 
-			if change == toPointer {
-				pointee := pointerFields[typeName][name]
-				if pointee == "" {
-					panic(fmt.Sprintf("no pointer type for %s.%s", typeName, name))
-				}
-
-				pointees[st.Field(idx)] = pointee
+			if change == toPointer && pointerFields[typeName][name] == "" {
+				panic(fmt.Sprintf("no pointer type for %s.%s", typeName, name))
 			}
 		}
 	}
-
-	mirrors := addMirrors(root, pkg, fields)
 
 	dstNodes := map[ast.Node]dst.Node{}
 	for d, a := range restorer.Ast.Nodes {
 		dstNodes[a] = d
 	}
 
-	// the declarations and all uses of the fields
+	// the declarations and all uses of the fields. toPointer fields only change in the public
+	// types, the C code keeps the uintptr, see addMirrors.
 	changes := map[*dst.Ident]fieldChange{}
-	pointeeOf := map[*dst.Ident]string{}
 	for _, objects := range []map[*ast.Ident]types.Object{info.Defs, info.Uses} {
 		for ident, obj := range objects {
 			field, ok := obj.(*types.Var)
-			if !ok || fields[field] == 0 {
+			if !ok || fields[field] == 0 || fields[field] == toPointer {
 				continue
 			}
 
@@ -213,37 +206,23 @@ func fixApiFields(root *dst.File) map[string]string {
 			}
 
 			changes[node] = fields[field]
-			pointeeOf[node] = pointees[field]
 		}
 	}
 
 	// isRetyped reports whether expr selects a field with a new Go type
 	isRetyped := func(expr dst.Expr) bool {
 		sel, ok := expr.(*dst.SelectorExpr)
-		return ok && (changes[sel.Sel] == toUint64 || changes[sel.Sel] == toPointer)
-	}
-
-	unsafePointer := func(expr dst.Expr) dst.Expr {
-		return &dst.CallExpr{Fun: &dst.SelectorExpr{X: dst.NewIdent("unsafe"), Sel: dst.NewIdent("Pointer")}, Args: []dst.Expr{expr}}
+		return ok && changes[sel.Sel] == toUint64
 	}
 
 	// toGo converts a uintptr of the C code to the Go type of field
-	toGo := func(field *dst.Ident, expr dst.Expr) dst.Expr {
-		if changes[field] == toUint64 {
-			return &dst.CallExpr{Fun: dst.NewIdent("uint64"), Args: []dst.Expr{expr}}
-		}
-
-		ty := &dst.ParenExpr{X: &dst.StarExpr{X: dst.NewIdent(pointeeOf[field])}}
-		return &dst.CallExpr{Fun: ty, Args: []dst.Expr{unsafePointer(expr)}}
+	toGo := func(expr dst.Expr) dst.Expr {
+		return &dst.CallExpr{Fun: dst.NewIdent("uint64"), Args: []dst.Expr{expr}}
 	}
 
 	// toC converts the field back to the uintptr of the C code
 	toC := func(sel *dst.SelectorExpr) dst.Expr {
-		if changes[sel.Sel] == toUint64 {
-			return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{sel}}
-		}
-
-		return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{unsafePointer(sel)}}
+		return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{sel}}
 	}
 
 	// selectors that are written to, all other uses read the field
@@ -263,12 +242,12 @@ func fixApiFields(root *dst.File) map[string]string {
 
 				sel := lhs.(*dst.SelectorExpr)
 				written[sel] = true
-				node.Rhs[idx] = toGo(sel.Sel, node.Rhs[idx])
+				node.Rhs[idx] = toGo(node.Rhs[idx])
 			}
 
 		case *dst.KeyValueExpr:
-			if key, ok := node.Key.(*dst.Ident); ok && (changes[key] == toUint64 || changes[key] == toPointer) {
-				node.Value = toGo(key, node.Value)
+			if key, ok := node.Key.(*dst.Ident); ok && changes[key] == toUint64 {
+				node.Value = toGo(node.Value)
 			}
 
 		case *dst.UnaryExpr:
@@ -295,11 +274,8 @@ func fixApiFields(root *dst.File) map[string]string {
 				break
 			}
 
-			switch changes[node.Names[0]] {
-			case toUint64:
+			if changes[node.Names[0]] == toUint64 {
 				node.Type = dst.NewIdent("uint64")
-			case toPointer:
-				node.Type = &dst.StarExpr{X: dst.NewIdent(pointeeOf[node.Names[0]])}
 			}
 		}
 
@@ -312,13 +288,14 @@ func fixApiFields(root *dst.File) map[string]string {
 		}
 	}
 
-	return mirrors
+	return addMirrors(root, pkg, info, dstNodes, fields)
 }
 
-// addMirrors declares cX for every struct X that contains a toPointer field, directly or in a
-// nested struct. cX keeps the uintptr of the C code, so the wrappers can copy X to the box3d
-// stack, where the GC and the stack mover don't see pointers.
-func addMirrors(root *dst.File, pkg *types.Package, fields map[*types.Var]fieldChange) map[string]string {
+// addMirrors handles every struct X that contains a toPointer field, directly or in a nested
+// struct. The C code works on the pointer-free mirror cX: a typed store of a Go pointer into
+// box3d memory runs a write barrier, which shades the stale uintptr in the slot and crashes the GC.
+// The public X is a clone with Go pointers, the wrappers convert between both.
+func addMirrors(root *dst.File, pkg *types.Package, info *types.Info, dstNodes map[ast.Node]dst.Node, fields map[*types.Var]fieldChange) map[string]string {
 	var hasPointer func(t types.Type) bool
 	hasPointer = func(t types.Type) bool {
 		switch t := t.Underlying().(type) {
@@ -336,55 +313,58 @@ func addMirrors(root *dst.File, pkg *types.Package, fields map[*types.Var]fieldC
 	}
 
 	mirrors := map[string]string{}
+	mirrored := map[types.Object]bool{}
 	for _, name := range pkg.Scope().Names() {
 		if obj, ok := pkg.Scope().Lookup(name).(*types.TypeName); ok && obj.Exported() && !obj.IsAlias() && hasPointer(obj.Type()) {
 			mirrors[name] = "c" + name
+			mirrored[obj] = true
 		}
 	}
 
+	// the public types are clones from before the renaming below, they keep the public names
 	var decls []dst.Decl
 	for _, decl := range root.Decls {
-		decls = append(decls, decl)
-
 		gen, ok := decl.(*dst.GenDecl)
-		if !ok || gen.Tok != token.TYPE {
+		if !ok || gen.Tok != token.TYPE || len(gen.Specs) != 1 || mirrors[gen.Specs[0].(*dst.TypeSpec).Name.Name] == "" {
+			decls = append(decls, decl)
 			continue
 		}
 
-		for _, spec := range gen.Specs {
-			spec := spec.(*dst.TypeSpec)
-			mirror := mirrors[spec.Name.Name]
-			if mirror == "" {
-				continue
-			}
+		// the public type takes the place and the comments of the original
+		spec := gen.Specs[0].(*dst.TypeSpec)
+		public := dst.Clone(spec).(*dst.TypeSpec)
+		retypePointerFields(public)
+		gen.Specs[0] = public
 
-			// the clone is not in the type info, so the field changes skip it
-			clone := dst.Clone(spec).(*dst.TypeSpec)
-			clone.Name.Name = mirror
-			var renameTypes func(node dst.Node) bool
-			renameTypes = func(node dst.Node) bool {
-				switch node := node.(type) {
-				case *dst.Field:
-					// field names of nested structs stay, only their types change
-					dst.Inspect(node.Type, renameTypes)
-					return false
-				case *dst.Ident:
-					if mirrors[node.Name] != "" {
-						node.Name = mirrors[node.Name]
-					}
-				}
-
-				return true
-			}
-
-			dst.Inspect(clone.Type, renameTypes)
-
-			decls = append(decls, &dst.GenDecl{Tok: token.TYPE, Specs: []dst.Spec{clone}})
-		}
+		decls = append(decls, gen, &dst.GenDecl{Tok: token.TYPE, Specs: []dst.Spec{spec}})
 	}
 
 	root.Decls = decls
+
+	// all uses of the types in the C code, including the original declarations
+	for _, objects := range []map[*ast.Ident]types.Object{info.Defs, info.Uses} {
+		for ident, obj := range objects {
+			if !mirrored[obj] {
+				continue
+			}
+
+			if node, ok := dstNodes[ident].(*dst.Ident); ok {
+				node.Name = mirrors[node.Name]
+			}
+		}
+	}
+
 	return mirrors
+}
+
+// retypePointerFields gives the toPointer fields of a public type their Go pointer type.
+func retypePointerFields(spec *dst.TypeSpec) {
+	pointees := pointerFields[spec.Name.Name]
+	for _, field := range spec.Type.(*dst.StructType).Fields.List {
+		if len(field.Names) == 1 && pointees[field.Names[0].Name] != "" {
+			field.Type = &dst.StarExpr{X: dst.NewIdent(pointees[field.Names[0].Name])}
+		}
+	}
 }
 
 // handWrittenFiles returns the non-test Go files of the package root that are not generated

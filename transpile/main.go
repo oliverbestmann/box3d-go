@@ -745,6 +745,14 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 			for _, param := range decl.Type.Results.List {
 				ty := renameApiIdent(param, api.ExposedTypes)
 
+				if public := publicOfMirror(api, identOf(ty)); public != "" {
+					ty = dst.NewIdent(public)
+					result = &dst.CallExpr{
+						Fun:  &dst.IndexListExpr{X: dst.NewIdent("fromC"), Indices: []dst.Expr{dst.NewIdent(public), dst.NewIdent(identOf(param.Type))}},
+						Args: []dst.Expr{call},
+					}
+				}
+
 				if resultType := api.ResultTypes[decl.Name.Name]; isUintptr(ty) && byReference[resultType] {
 					// box3d owns the memory, it stays valid until it is destroyed
 					goType := strings.TrimPrefix(resultType, "b3")
@@ -876,6 +884,17 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 
 		return true
 	}
+}
+
+// publicOfMirror returns the public type of the pointer-free mirror, or ""
+func publicOfMirror(api API, mirror string) string {
+	for public, m := range api.Mirrors {
+		if m == mirror {
+			return public
+		}
+	}
+
+	return ""
 }
 
 // reOwnedResult matches the functions that return box3d data the caller has to free

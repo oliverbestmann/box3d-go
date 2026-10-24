@@ -526,9 +526,9 @@ func b3GetCompoundSphere(tls *_Stack, compound uintptr, index int32) (r Compound
 	return *(*CompoundSphere)(unsafe.Add(nil, spheres+uintptr(index)*20))
 }
 
-func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r ChildShape) {
+func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r cChildShape) {
 	var capsules, hullInstances, spheres uintptr
-	var compoundMesh CompoundMesh
+	var compoundMesh cCompoundMesh
 	var hullOffset uint32_t
 	var v1 bool
 	_, _, _, _, _, _ = capsules, compoundMesh, hullInstances, hullOffset, spheres, v1
@@ -539,10 +539,10 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		capsules = uintptr(int64(compound) + int64((*CompoundData)(unsafe.Pointer(compound)).CapsuleOffset))
-		return ChildShape{
+		return cChildShape{
 			ｆ__ccgo0_0: *(*struct {
 				Hull         [0]uintptr
-				Mesh         [0]Mesh
+				Mesh         [0]cMesh
 				Sphere       [0]Sphere
 				Capsule      Capsule
 				ｆ__ccgo_pad4 [4]byte
@@ -551,7 +551,7 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 				_ [4]byte
 			}{f: (*(*CompoundCapsule)(unsafe.Add(nil, capsules+uintptr(childIndex)*32))).Capsule})),
 			Transform:       b3Transform_identity,
-			MaterialIndices: (*uint16)(unsafe.Pointer(capsules + uintptr(childIndex)*32 + 28)),
+			MaterialIndices: capsules + uintptr(childIndex)*32 + 28,
 			MaterialCount:   int32(1),
 		}
 	}
@@ -564,10 +564,10 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		hullInstances = uintptr(int64(compound) + int64((*CompoundData)(unsafe.Pointer(compound)).HullOffset))
 		hullOffset = (*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(childIndex)*36))).HullOffset
-		return ChildShape{
+		return cChildShape{
 			ｆ__ccgo0_0: *(*struct {
 				Hull         [0]uintptr
-				Mesh         [0]Mesh
+				Mesh         [0]cMesh
 				Sphere       [0]Sphere
 				Capsule      Capsule
 				ｆ__ccgo_pad4 [4]byte
@@ -576,7 +576,7 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 				_ [24]byte
 			}{f: uintptr(int64(compound) + int64FromUint32(hullOffset))})),
 			Transform:       (*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(childIndex)*36))).Transform,
-			MaterialIndices: (*uint16)(unsafe.Pointer(hullInstances + uintptr(childIndex)*36 + 32)),
+			MaterialIndices: hullInstances + uintptr(childIndex)*36 + 32,
 			MaterialCount:   int32(1),
 			Type1:           int32(b3_hullShape),
 		}
@@ -585,22 +585,22 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 	// Mesh?
 	if 0 <= childIndex && childIndex < (*CompoundData)(unsafe.Pointer(compound)).MeshCount {
 		compoundMesh = b3GetCompoundMesh(tls, compound, childIndex)
-		return ChildShape{
+		return cChildShape{
 			ｆ__ccgo0_0: *(*struct {
 				Hull         [0]uintptr
-				Mesh         [0]Mesh
+				Mesh         [0]cMesh
 				Sphere       [0]Sphere
 				Capsule      Capsule
 				ｆ__ccgo_pad4 [4]byte
 			})(unsafe.Pointer(&struct {
-				f Mesh
+				f cMesh
 				_ [8]byte
-			}{f: Mesh{
-				Data:  (*MeshData)(unsafe.Pointer(uintptr(unsafe.Pointer(compoundMesh.MeshData)))),
+			}{f: cMesh{
+				Data:  compoundMesh.MeshData,
 				Scale: compoundMesh.Scale,
 			}})),
 			Transform:       compoundMesh.Transform,
-			MaterialIndices: (*uint16)(unsafe.Pointer(uintptr(unsafe.Pointer(compoundMesh.MaterialIndices)))),
+			MaterialIndices: compoundMesh.MaterialIndices,
 			MaterialCount:   compoundMesh.MaterialCount,
 			Type1:           int32(b3_meshShape),
 		}
@@ -616,10 +616,10 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	spheres = uintptr(int64(compound) + int64((*CompoundData)(unsafe.Pointer(compound)).SphereOffset))
-	return ChildShape{
+	return cChildShape{
 		ｆ__ccgo0_0: *(*struct {
 			Hull         [0]uintptr
-			Mesh         [0]Mesh
+			Mesh         [0]cMesh
 			Sphere       [0]Sphere
 			Capsule      Capsule
 			ｆ__ccgo_pad4 [4]byte
@@ -628,7 +628,7 @@ func b3GetCompoundChild(tls *_Stack, compound uintptr, childIndex int32) (r Chil
 			_ [16]byte
 		}{f: (*(*CompoundSphere)(unsafe.Add(nil, spheres+uintptr(childIndex)*20))).Sphere})),
 		Transform:       b3Transform_identity,
-		MaterialIndices: (*uint16)(unsafe.Pointer(spheres + uintptr(childIndex)*20 + 16)),
+		MaterialIndices: spheres + uintptr(childIndex)*20 + 16,
 		MaterialCount:   int32(1),
 		Type1:           int32(b3_sphereShape),
 	}
@@ -694,11 +694,11 @@ func b3CreateCompound(tls *_Stack, def uintptr) (r uintptr) {
 		if !(i < (*CompoundDef)(unsafe.Pointer(def)).meshCount) {
 			break
 		}
-		if v1 = !!((*(*CompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i)*64))).MaterialCount > int32FromInt32(0)); !v1 {
+		if v1 = !!((*(*cCompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i)*64))).MaterialCount > int32FromInt32(0)); !v1 {
 			b3InternalAssert(tls, __ccgo_ts+5929, __ccgo_ts+5323, int32FromInt32(293))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
-		materialCapacity = materialCapacity + (*(*CompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i)*64))).MaterialCount
+		materialCapacity = materialCapacity + (*(*cCompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i)*64))).MaterialCount
 		goto _2
 	_2:
 		;
@@ -1553,8 +1553,8 @@ _12:
 				break
 			}
 			hullDef = (*CompoundDef)(unsafe.Pointer(def)).hulls + uintptr(i2)*80
-			hull = uintptr(unsafe.Pointer((*CompoundHullDef)(unsafe.Pointer(hullDef)).Hull))
-			aabb1 = b3ComputeHullAABB(tls, hull, (*CompoundHullDef)(unsafe.Pointer(hullDef)).Transform)
+			hull = (*cCompoundHullDef)(unsafe.Pointer(hullDef)).Hull
+			aabb1 = b3ComputeHullAABB(tls, hull, (*cCompoundHullDef)(unsafe.Pointer(hullDef)).Transform)
 			b3DynamicTree_CreateProxy(tls, bp+144, aabb1, uint64(^uint64FromUint64(0)), uint64FromInt32(childIndex))
 			childIndex = childIndex + int32(1)
 			v4 = bp + 256
@@ -2065,10 +2065,10 @@ _12:
 			(*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(i2)*36))).MaterialIndex = uint16FromInt32(materialIndex1)
 			// Is this a new material?
 			if materialIndex1 == materialCount {
-				*(*SurfaceMaterial)(unsafe.Add(nil, materials+uintptr(materialIndex1)*40)) = (*CompoundHullDef)(unsafe.Pointer(hullDef)).Material
+				*(*SurfaceMaterial)(unsafe.Add(nil, materials+uintptr(materialIndex1)*40)) = (*cCompoundHullDef)(unsafe.Pointer(hullDef)).Material
 				materialCount = materialCount + int32(1)
 			}
-			(*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(i2)*36))).Transform = (*CompoundHullDef)(unsafe.Pointer(hullDef)).Transform
+			(*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(i2)*36))).Transform = (*cCompoundHullDef)(unsafe.Pointer(hullDef)).Transform
 			// Look for an existing matching hull
 			itr14 = b3HullMap_get_or_insert(tls, bp+288, hull, sharedHullCount)
 			// Get the unique index for this hull
@@ -2405,19 +2405,19 @@ _12:
 				break
 			}
 			meshDef = (*CompoundDef)(unsafe.Pointer(def)).meshes + uintptr(i3)*64
-			meshData = uintptr(unsafe.Pointer((*CompoundMeshDef)(unsafe.Pointer(meshDef)).MeshData))
-			aabb2 = b3ComputeMeshAABB(tls, meshData, (*CompoundMeshDef)(unsafe.Pointer(meshDef)).Transform, (*CompoundMeshDef)(unsafe.Pointer(meshDef)).Scale)
+			meshData = (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).MeshData
+			aabb2 = b3ComputeMeshAABB(tls, meshData, (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).Transform, (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).Scale)
 			b3DynamicTree_CreateProxy(tls, bp+144, aabb2, uint64(^uint64FromUint64(0)), uint64FromInt32(childIndex))
 			childIndex = childIndex + int32(1)
 			// No effort to share mesh materials. It would be easier to do if the number of materials was limited.
-			if v1 = !!((*MeshData)(unsafe.Pointer(meshData)).MaterialCount == (*CompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount); !v1 {
+			if v1 = !!((*MeshData)(unsafe.Pointer(meshData)).MaterialCount == (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+5962, __ccgo_ts+5323, int32FromInt32(408))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			meshMaterialStart = meshMaterialCursor
 			j = 0
 			for {
-				if !(j < (*CompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount) {
+				if !(j < (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount) {
 					break
 				}
 				v4 = bp + 256
@@ -2425,7 +2425,7 @@ _12:
 				*(*int32)(unsafe.Pointer(bp + 136)) = v101
 				for int32FromInt32(true1) != 0 {
 					v5 = v4
-					v9 = uintptr(unsafe.Pointer((*CompoundMeshDef)(unsafe.Pointer(meshDef)).Materials)) + uintptr(j)*40
+					v9 = (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).Materials + uintptr(j)*40
 					v13 = bp + 136
 					hash2 = b3HashMaterial(tls, v9)
 					v31 = uint16(hash2 >> int32FromInt32(48) & uint64(_VT_HASH_FRAG_MASK))
@@ -2929,7 +2929,7 @@ _12:
 				meshMaterialCursor = meshMaterialCursor + int32(1)
 				// Is this a new material?
 				if materialIndex2 == materialCount {
-					*(*SurfaceMaterial)(unsafe.Add(nil, materials+uintptr(materialIndex2)*40)) = *(*SurfaceMaterial)(unsafe.Add(nil, uintptr(unsafe.Pointer((*CompoundMeshDef)(unsafe.Pointer(meshDef)).Materials))+uintptr(j)*40))
+					*(*SurfaceMaterial)(unsafe.Add(nil, materials+uintptr(materialIndex2)*40)) = *(*SurfaceMaterial)(unsafe.Add(nil, (*cCompoundMeshDef)(unsafe.Pointer(meshDef)).Materials+uintptr(j)*40))
 					materialCount = materialCount + int32(1)
 				}
 				goto _510
@@ -3443,10 +3443,10 @@ _12:
 			// Get the shared mesh index.
 			sharedMeshIndex = (*b3MeshMap_bucket)(unsafe.Pointer(itr15.Data)).Val
 			// Create mesh instance.
-			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).Transform = (*(*CompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i3)*64))).Transform
-			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).Scale = (*(*CompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i3)*64))).Scale
+			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).Transform = (*(*cCompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i3)*64))).Transform
+			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).Scale = (*(*cCompoundMeshDef)(unsafe.Add(nil, (*CompoundDef)(unsafe.Pointer(def)).meshes+uintptr(i3)*64))).Scale
 			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).MaterialOffset = uint32FromInt32(meshMaterialStart)
-			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).MaterialCount = uint32FromInt32((*CompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount)
+			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).MaterialCount = uint32FromInt32((*cCompoundMeshDef)(unsafe.Pointer(meshDef)).MaterialCount)
 			// The offset isn't known yet, so store the index of the shared mesh.
 			(*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(i3)*52))).MeshOffset = uint32FromInt32(sharedMeshIndex)
 			// Is this a new mesh?
@@ -4293,23 +4293,23 @@ func b3CompoundOverlapCallback(tls *_Stack, proxyId int32, userData uint64, cont
 	var overlap uint8
 	var overlapContext uintptr
 	var v1 bool
-	var _ /* child at bp+0 */ ChildShape
+	var _ /* child at bp+0 */ cChildShape
 	_, _, _, _ = childIndex, overlap, overlapContext, v1
 	_ = uint64FromInt64(4)
 	childIndex = int32FromUint64(userData)
 	overlapContext = context
-	*(*ChildShape)(unsafe.Pointer(bp)) = ChildShape{}
-	*(*ChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, (*b3CompoundOverlapContext)(unsafe.Pointer(overlapContext)).Compound, childIndex)
+	*(*cChildShape)(unsafe.Pointer(bp)) = cChildShape{}
+	*(*cChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, (*b3CompoundOverlapContext)(unsafe.Pointer(overlapContext)).Compound, childIndex)
 	overlap = boolUint8(false1 != 0)
-	switch (*(*ChildShape)(unsafe.Add(nil, bp))).Type1 {
+	switch (*(*cChildShape)(unsafe.Add(nil, bp))).Type1 {
 	case int32(b3_capsuleShape):
-		overlap = b3OverlapCapsule(tls, bp, (*(*ChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
+		overlap = b3OverlapCapsule(tls, bp, (*(*cChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
 	case int32(b3_hullShape):
-		overlap = b3OverlapHull(tls, *(*uintptr)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp)))), (*(*ChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
+		overlap = b3OverlapHull(tls, *(*uintptr)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp)))), (*(*cChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
 	case int32(b3_meshShape):
-		overlap = b3OverlapMesh(tls, bp, (*(*ChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
+		overlap = b3OverlapMesh(tls, bp, (*(*cChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
 	case int32(b3_sphereShape):
-		overlap = b3OverlapSphere(tls, bp, (*(*ChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
+		overlap = b3OverlapSphere(tls, bp, (*(*cChildShape)(unsafe.Add(nil, bp))).Transform, overlapContext+8)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
 			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+5323, int32FromInt32(734))
@@ -4342,7 +4342,7 @@ func b3OverlapCompound(tls *_Stack, shape uintptr, shapeTransform Transform, pro
 	var _ /* context at bp+1536 */ b3CompoundOverlapContext
 	var _ /* view at bp+1568 */ b3TreeView
 	_, _, _, _, _ = aabb, view, v1, v2, v3
-	if v1 = !!(0 < (*ShapeProxy)(unsafe.Pointer(proxy)).Count && (*ShapeProxy)(unsafe.Pointer(proxy)).Count <= int32(_B3_MAX_HULL_VERTICES)); !v1 {
+	if v1 = !!(0 < (*cShapeProxy)(unsafe.Pointer(proxy)).Count && (*cShapeProxy)(unsafe.Pointer(proxy)).Count <= int32(_B3_MAX_HULL_VERTICES)); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+6212, __ccgo_ts+5323, int32FromInt32(754))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
@@ -4375,18 +4375,18 @@ func b3CompoundRayCastCallback(tls *_Stack, input uintptr, proxyId int32, userDa
 	var v15, v26 float32
 	var v8 Quat
 	var v52 bool
-	var _ /* child at bp+0 */ ChildShape
+	var _ /* child at bp+0 */ cChildShape
 	var _ /* localInput at bp+80 */ RayCastInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, castContext, childIndex, compound, output, rv, t11, t12, t2, t21, t3, t31, v1, v10, v11, v12, v14, v15, v16, v17, v19, v2, v20, v21, v23, v25, v26, v27, v28, v4, v5, v52, v6, v8, v9
 	_ = uint64FromInt64(4)
 	castContext = context
 	compound = (*b3CompoundCastContext)(unsafe.Pointer(castContext)).Compound
 	childIndex = int32FromUint64(userData)
-	*(*ChildShape)(unsafe.Pointer(bp)) = ChildShape{}
-	*(*ChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, compound, childIndex)
+	*(*cChildShape)(unsafe.Pointer(bp)) = cChildShape{}
+	*(*cChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, compound, childIndex)
 	// Get the input in child local space.
 	*(*RayCastInput)(unsafe.Add(nil, bp+80)) = *(*RayCastInput)(unsafe.Add(nil, input))
-	v1 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+	v1 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 	v4 = (*RayCastInput)(unsafe.Pointer(input)).Origin
 	v5 = v1.P
 	v6 = Vec3{
@@ -4444,7 +4444,7 @@ _24:
 	goto _3
 _3:
 	(*(*RayCastInput)(unsafe.Add(nil, bp+80))).Origin = v2
-	v8 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform.Q
+	v8 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform.Q
 	v2 = (*RayCastInput)(unsafe.Pointer(input)).Translation
 	v4 = v8.V
 	v5 = v2
@@ -4490,23 +4490,23 @@ _51:
 _46:
 	(*(*RayCastInput)(unsafe.Add(nil, bp+80))).Translation = v17
 	output = CastOutput{}
-	switch (*(*ChildShape)(unsafe.Add(nil, bp))).Type1 {
+	switch (*(*cChildShape)(unsafe.Add(nil, bp))).Type1 {
 	case int32(b3_capsuleShape):
 		output = b3RayCastCapsule(tls, bp, bp+80)
-		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer((*(*ChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))))
+		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))
 	case int32(b3_hullShape):
-		output = b3RayCastHull(tls, *(*uintptr)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp)))), bp+80)
-		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer((*(*ChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))))
+		output = b3RayCastHull(tls, *(*uintptr)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp)))), bp+80)
+		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))
 	case int32(b3_meshShape):
 		output = b3RayCastMesh(tls, bp, bp+80)
-		if v52 = !!(0 <= output.MaterialIndex && output.MaterialIndex < (*(*ChildShape)(unsafe.Add(nil, bp))).MaterialCount); !v52 {
+		if v52 = !!(0 <= output.MaterialIndex && output.MaterialIndex < (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialCount); !v52 {
 			b3InternalAssert(tls, __ccgo_ts+6273, __ccgo_ts+5323, int32FromInt32(814))
 		}
 		_ = v52 || bool(int32FromInt32(0) != 0)
-		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer((*(*ChildShape)(unsafe.Add(nil, bp))).MaterialIndices))+uintptr(output.MaterialIndex)*2)))
+		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialIndices+uintptr(output.MaterialIndex)*2)))
 	case int32(b3_sphereShape):
 		output = b3RayCastSphere(tls, bp, bp+80)
-		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer((*(*ChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))))
+		output.MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialIndices)))
 	default:
 		if v52 = bool(!!(int32FromInt32(false1) != 0)); !v52 {
 			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+5323, int32FromInt32(825))
@@ -4515,7 +4515,7 @@ _46:
 		break
 	}
 	if output.Hit != 0 {
-		v1 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+		v1 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 		v8 = v1.Q
 		v2 = output.Point
 		v4 = v8.V
@@ -4574,7 +4574,7 @@ _46:
 		goto _78
 	_78:
 		output.Point = v23
-		v8 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform.Q
+		v8 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform.Q
 		v2 = output.Normal
 		v4 = v8.V
 		v5 = v2
@@ -4810,15 +4810,15 @@ func b3CompoundMoverCallback(tls *_Stack, proxyId int32, userData uint64, contex
 	var v15, v26 float32
 	var v59 bool
 	var v8 Quat
-	var _ /* child at bp+0 */ ChildShape
+	var _ /* child at bp+0 */ cChildShape
 	var _ /* localMover at bp+80 */ Capsule
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, capacity, childIndex, i, moverContext, planeCount, planes, rv, t11, t12, t2, t21, t3, t31, v1, v10, v11, v12, v14, v15, v16, v17, v19, v2, v20, v21, v23, v25, v26, v27, v28, v4, v5, v59, v6, v8, v9
 	_ = uint64FromInt64(4)
 	childIndex = int32FromUint64(userData)
 	moverContext = context
-	*(*ChildShape)(unsafe.Pointer(bp)) = ChildShape{}
-	*(*ChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, (*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).Compound, childIndex)
-	v1 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+	*(*cChildShape)(unsafe.Pointer(bp)) = cChildShape{}
+	*(*cChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, (*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).Compound, childIndex)
+	v1 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 	v4 = (*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).Mover.Center1
 	v5 = v1.P
 	v6 = Vec3{
@@ -4876,7 +4876,7 @@ _24:
 	goto _3
 _3:
 	(*(*Capsule)(unsafe.Add(nil, bp+80))).Center1 = v2
-	v1 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+	v1 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 	v4 = (*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).Mover.Center2
 	v5 = v1.P
 	v6 = Vec3{
@@ -4942,11 +4942,11 @@ _32:
 	_ = v59 || bool(int32FromInt32(0) != 0)
 	planes = (*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).Planes + uintptr((*b3CompoundMoverContext)(unsafe.Pointer(moverContext)).PlaneCount)*40
 	planeCount = 0
-	switch (*(*ChildShape)(unsafe.Add(nil, bp))).Type1 {
+	switch (*(*cChildShape)(unsafe.Add(nil, bp))).Type1 {
 	case int32(b3_capsuleShape):
 		planeCount = b3CollideMoverAndCapsule(tls, planes, bp, bp+80)
 	case int32(b3_hullShape):
-		planeCount = b3CollideMoverAndHull(tls, planes, *(*uintptr)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp)))), bp+80)
+		planeCount = b3CollideMoverAndHull(tls, planes, *(*uintptr)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp)))), bp+80)
 	case int32(b3_meshShape):
 		planeCount = b3CollideMoverAndMesh(tls, planes, capacity, bp, bp+80)
 	case int32(b3_sphereShape):
@@ -4964,7 +4964,7 @@ _32:
 		if !(i < planeCount) {
 			break
 		}
-		v8 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform.Q
+		v8 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform.Q
 		v2 = (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).Plane.Normal
 		v4 = v8.V
 		v5 = v2
@@ -5009,7 +5009,7 @@ _32:
 		goto _78
 	_78:
 		(*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).Plane.Normal = v17
-		v1 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+		v1 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 		v8 = v1.Q
 		v2 = (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).Point
 		v4 = v8.V
@@ -5069,11 +5069,11 @@ _32:
 	_108:
 		(*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).Point = v23
 		(*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).ChildIndex = childIndex
-		if v59 = !!(0 <= (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex && (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex < (*(*ChildShape)(unsafe.Add(nil, bp))).MaterialCount); !v59 {
+		if v59 = !!(0 <= (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex && (*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex < (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialCount); !v59 {
 			b3InternalAssert(tls, __ccgo_ts+6410, __ccgo_ts+5323, int32FromInt32(1178))
 		}
 		_ = v59 || bool(int32FromInt32(0) != 0)
-		(*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer((*(*ChildShape)(unsafe.Add(nil, bp))).MaterialIndices))+uintptr((*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex)*2)))
+		(*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, (*(*cChildShape)(unsafe.Add(nil, bp))).MaterialIndices+uintptr((*(*PlaneResult)(unsafe.Add(nil, planes+uintptr(i)*40))).MaterialIndex)*2)))
 		goto _61
 	_61:
 		;
@@ -5103,22 +5103,22 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 	var sweepB, toiContext, v1, v2 uintptr
 	var xw, xx, xy, xz, yw, yy, yz, zw, zz, v100, v116, v127, v13, v151, v162, v174, v185, v209, v220, v235, v24, v246, v264, v276, v287, v304, v305, v307, v308, v309, v311, v312, v313, v315, v319, v320, v39, v44, v50, v63, v74, v89 float32
 	var v373 bool
-	var _ /* child at bp+0 */ ChildShape
+	var _ /* child at bp+0 */ cChildShape
 	var _ /* meshContext at bp+80 */ b3MeshImpactContext
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b7, c, center, extent, localBounds, m2, meshWorldTransform, out, out1, out2, out3, output, q2, rv, sweepB, t11, t12, t13, t21, t22, t23, t3, t31, t32, toiContext, xfB1, xfB2, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v100, v101, v102, v104, v105, v106, v108, v109, v110, v111, v112, v113, v115, v116, v117, v118, v12, v120, v121, v122, v124, v126, v127, v128, v129, v13, v131, v133, v134, v135, v137, v138, v14, v140, v141, v142, v144, v145, v146, v147, v148, v15, v150, v151, v152, v153, v155, v156, v157, v159, v161, v162, v163, v164, v17, v174, v18, v185, v19, v2, v209, v21, v220, v23, v235, v24, v246, v25, v256, v257, v26, v264, v276, v28, v287, v29, v298, v30, v300, v304, v305, v307, v308, v309, v311, v312, v313, v315, v319, v32, v320, v33, v34, v346, v348, v35, v359, v36, v371, v373, v38, v39, v4, v40, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v54, v56, v57, v58, v59, v6, v60, v62, v63, v64, v65, v67, v68, v69, v7, v71, v73, v74, v75, v76, v78, v79, v8, v80, v82, v83, v84, v85, v86, v88, v89, v9, v90, v91, v93, v94, v95, v97, v99
 	toiContext = context
-	*(*ChildShape)(unsafe.Pointer(bp)) = ChildShape{}
-	*(*ChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, compound, childIndex)
+	*(*cChildShape)(unsafe.Pointer(bp)) = cChildShape{}
+	*(*cChildShape)(unsafe.Pointer(bp)) = b3GetCompoundChild(tls, compound, childIndex)
 	output = TOIOutput{}
-	(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.SweepA = b3MakeCompoundChildSweep(tls, (*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).CompoundTransform, (*(*ChildShape)(unsafe.Add(nil, bp))).Transform)
-	switch (*(*ChildShape)(unsafe.Add(nil, bp))).Type1 {
+	(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.SweepA = b3MakeCompoundChildSweep(tls, (*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).CompoundTransform, (*(*cChildShape)(unsafe.Add(nil, bp))).Transform)
+	switch (*(*cChildShape)(unsafe.Add(nil, bp))).Type1 {
 	case int32(b3_capsuleShape):
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = (*Vec3)(unsafe.Pointer(bp))
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = bp
 		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Count = int32(2)
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Radius = (*(*ChildShape)(unsafe.Add(nil, bp))).ｆ__ccgo0_0.Capsule.Radius
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Radius = (*(*cChildShape)(unsafe.Add(nil, bp))).ｆ__ccgo0_0.Capsule.Radius
 		output = b3TimeOfImpact(tls, toiContext)
 	case int32(b3_hullShape):
-		v1 = *(*uintptr)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp))))
+		v1 = *(*uintptr)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp))))
 		if (*HullData)(unsafe.Pointer(v1)).PointOffset == int32FromInt32(0) {
 			v2 = uintptrFromInt32(0)
 			goto _3
@@ -5126,8 +5126,8 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		v2 = uintptr(int64(v1) + int64((*HullData)(unsafe.Pointer(v1)).PointOffset))
 		goto _3
 	_3:
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = (*Vec3)(unsafe.Pointer(v2))
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Count = (*HullData)(unsafe.Pointer(*(*uintptr)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp)))))).VertexCount
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = v2
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Count = (*HullData)(unsafe.Pointer(*(*uintptr)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp)))))).VertexCount
 		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Radius = float32FromFloat32(0)
 		output = b3TimeOfImpact(tls, toiContext)
 	case int32(b3_meshShape):
@@ -5137,7 +5137,7 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		(*(*b3MeshImpactContext)(unsafe.Add(nil, bp+80))).LocalCentroidB = (*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).LocalCentroidB
 		(*(*b3MeshImpactContext)(unsafe.Add(nil, bp+80))).FallbackRadius = (*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).FallbackRadius
 		v4 = (*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).CompoundTransform
-		v5 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+		v5 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 		v6 = v4.Q
 		v7 = v5.P
 		v8 = v6.V
@@ -5589,7 +5589,7 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		goto _197
 	_197:
 		(*(*b3MeshImpactContext)(unsafe.Add(nil, bp+80))).MeshLocalCentroidB2 = v35
-		v4 = (*(*ChildShape)(unsafe.Add(nil, bp))).Transform
+		v4 = (*(*cChildShape)(unsafe.Add(nil, bp))).Transform
 		v7 = v4.P
 		v8 = Vec3{
 			X: -v7.X,
@@ -5946,9 +5946,9 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		b3QueryMesh(tls, bp, localBounds, __ccgo_fp(b3MeshTimeOfImpactFcn), bp+80)
 		output = (*(*b3MeshImpactContext)(unsafe.Add(nil, bp+80))).ToiOutput
 	case int32(b3_sphereShape):
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = (*Vec3)(unsafe.Pointer(bp))
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = bp
 		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Count = int32(1)
-		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Radius = (*(*Sphere)(unsafe.Pointer(&*(*ChildShape)(unsafe.Add(nil, bp))))).Radius
+		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Radius = (*(*Sphere)(unsafe.Pointer(&*(*cChildShape)(unsafe.Add(nil, bp))))).Radius
 		output = b3TimeOfImpact(tls, toiContext)
 	default:
 		if v373 = bool(!!(int32FromInt32(false1) != 0)); !v373 {
@@ -5962,7 +5962,7 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.MaxFraction = output.Fraction
 	}
 	// Clear this to be safe
-	(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA = ShapeProxy{}
+	(*b3CompoundImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA = cShapeProxy{}
 	// Continue the query
 	return boolUint8(true1 != 0)
 }

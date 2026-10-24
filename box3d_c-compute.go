@@ -4475,7 +4475,7 @@ _83:
 	meshScale = b3Vec3_one
 	meshFlipped = boolUint8(false1 != 0)
 	if (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) {
-		v72 = uintptr(unsafe.Pointer((*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data))
+		v72 = (*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data
 		if (*MeshData)(unsafe.Pointer(v72)).TriangleOffset == int32FromInt32(0) {
 			v74 = uintptrFromInt32(0)
 			goto _86
@@ -4484,7 +4484,7 @@ _83:
 		goto _86
 	_86:
 		meshTriangles = v74
-		v3 = uintptr(unsafe.Pointer((*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data))
+		v3 = (*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data
 		if (*MeshData)(unsafe.Pointer(v3)).VertexOffset == int32FromInt32(0) {
 			v5 = uintptrFromInt32(0)
 			goto _89
@@ -4493,7 +4493,7 @@ _83:
 		goto _89
 	_89:
 		meshVertices = v5
-		meshScale = (*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Scale
+		meshScale = (*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Scale
 		meshFlipped = boolUint8(float32(float32(meshScale.X*meshScale.Y)*meshScale.Z) < float32FromFloat32(0))
 	}
 	cxx = b3SplatW4(tls, relativeMatrix.Cx.X)
@@ -4706,11 +4706,11 @@ _83:
 		if (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) {
 			v3 = shapeA + 176
 			v4 = triangleIndex2
-			if v1 = !!(0 <= v4 && v4 < (*MeshData)(unsafe.Pointer(uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(v3)).Data)))).TriangleCount); !v1 {
+			if v1 = !!(0 <= v4 && v4 < (*MeshData)(unsafe.Pointer((*cMesh)(unsafe.Pointer(v3)).Data)).TriangleCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+22608, __ccgo_ts+22672, int32FromInt32(143))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
-			v5 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(v3)).Data))
+			v5 = (*cMesh)(unsafe.Pointer(v3)).Data
 			if (*MeshData)(unsafe.Pointer(v5)).TriangleOffset == int32FromInt32(0) {
 				v7 = uintptrFromInt32(0)
 				goto _130
@@ -4719,7 +4719,7 @@ _83:
 			goto _130
 		_130:
 			triangles = v7
-			v9 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(v3)).Data))
+			v9 = (*cMesh)(unsafe.Pointer(v3)).Data
 			if (*MeshData)(unsafe.Pointer(v9)).FlagsOffset == int32FromInt32(0) {
 				v11 = uintptrFromInt32(0)
 				goto _133
@@ -4728,7 +4728,7 @@ _83:
 			goto _133
 		_133:
 			flags = v11
-			v13 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(v3)).Data))
+			v13 = (*cMesh)(unsafe.Pointer(v3)).Data
 			if (*MeshData)(unsafe.Pointer(v13)).VertexOffset == int32FromInt32(0) {
 				v66 = uintptrFromInt32(0)
 				goto _136
@@ -4739,7 +4739,7 @@ _83:
 			vertices = v66
 			triangle = *(*MeshTriangle)(unsafe.Add(nil, triangles+uintptr(v4)*12))
 			triangleFlags = *(*uint8_t)(unsafe.Add(nil, flags+uintptr(v4)))
-			scale = (*Mesh)(unsafe.Pointer(v3)).Scale
+			scale = (*cMesh)(unsafe.Pointer(v3)).Scale
 			v19 = scale
 			v20 = *(*Vec3)(unsafe.Add(nil, vertices+uintptr(triangle.Index1)*12))
 			v21 = Vec3{
@@ -5774,7 +5774,7 @@ _307:
 		restitution = float32FromFloat32(0)
 		sampleCount = float32FromFloat32(0)
 		if (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) {
-			v66 = uintptr(unsafe.Pointer((*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data))
+			v66 = (*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data
 			if (*MeshData)(unsafe.Pointer(v66)).MaterialOffset == int32FromInt32(0) {
 				v68 = uintptrFromInt32(0)
 				goto _311
@@ -6258,14 +6258,14 @@ func b3ComputeProxyAABB(tls *_Stack, proxy uintptr) (r1 AABB) {
 	var r, v2, v3, v4 Vec3
 	var v10, v11, v12, v13, v15, v16, v17, v18, v20, v6, v7, v8 float32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aabb, i, points, r, v10, v11, v12, v13, v15, v16, v17, v18, v2, v20, v3, v4, v6, v7, v8
-	points = uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))
+	points = (*cShapeProxy)(unsafe.Pointer(proxy)).Points
 	aabb = AABB{
 		LowerBound: *(*Vec3)(unsafe.Add(nil, points)),
 		UpperBound: *(*Vec3)(unsafe.Add(nil, points)),
 	}
 	i = int32(1)
 	for {
-		if !(i < (*ShapeProxy)(unsafe.Pointer(proxy)).Count) {
+		if !(i < (*cShapeProxy)(unsafe.Pointer(proxy)).Count) {
 			break
 		}
 		v2 = aabb.LowerBound
@@ -6354,9 +6354,9 @@ func b3ComputeProxyAABB(tls *_Stack, proxy uintptr) (r1 AABB) {
 		i = i + 1
 	}
 	r = Vec3{
-		X: (*ShapeProxy)(unsafe.Pointer(proxy)).Radius,
-		Y: (*ShapeProxy)(unsafe.Pointer(proxy)).Radius,
-		Z: (*ShapeProxy)(unsafe.Pointer(proxy)).Radius,
+		X: (*cShapeProxy)(unsafe.Pointer(proxy)).Radius,
+		Y: (*cShapeProxy)(unsafe.Pointer(proxy)).Radius,
+		Z: (*cShapeProxy)(unsafe.Pointer(proxy)).Radius,
 	}
 	v2 = aabb.LowerBound
 	v3 = r

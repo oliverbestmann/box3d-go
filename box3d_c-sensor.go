@@ -14,13 +14,13 @@ func b3OverlapSensor(tls *_Stack, sensorShape uintptr, sensorTransform Transform
 	var c, rv, t1, t11, t12, t2, t21, t22, t3, t31, t32, v10, v11, v13, v15, v16, v18, v19, v20, v22, v24, v26, v27, v3, v31, v32, v33, v35, v37, v38, v4, v40, v42, v43, v45, v46, v5, v8, v9 Vec3
 	var i, v53, v54, v55, v57 int32
 	var out, relativeTransform, v1, v2, v51 Transform
-	var proxy ShapeProxy
+	var proxy cShapeProxy
 	var q2, v29, v30, v49, v7 Quat
 	var type1 b3ShapeType1
 	var v14, v25, v36, v41, v47 float32
 	var v88 bool
 	var _ /* localPoints at bp+0 */ [128]Vec3
-	var _ /* localProxy at bp+1536 */ ShapeProxy
+	var _ /* localProxy at bp+1536 */ cShapeProxy
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, i, out, proxy, q2, relativeTransform, rv, t1, t11, t12, t2, t21, t22, t3, t31, t32, type1, v1, v10, v11, v13, v14, v15, v16, v18, v19, v2, v20, v22, v24, v25, v26, v27, v29, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v49, v5, v51, v53, v54, v55, v57, v7, v8, v88, v9
 	type1 = (*b3Shape)(unsafe.Pointer(sensorShape)).Type1
 	proxy = b3MakeShapeProxy(tls, visitorShape)
@@ -141,15 +141,15 @@ _52:
 	v55 = v57
 	goto _56
 _56:
-	(*(*ShapeProxy)(unsafe.Add(nil, bp+1536))).Count = v55
+	(*(*cShapeProxy)(unsafe.Add(nil, bp+1536))).Count = v55
 	i = 0
 	for {
-		if !(i < (*(*ShapeProxy)(unsafe.Add(nil, bp+1536))).Count) {
+		if !(i < (*(*cShapeProxy)(unsafe.Add(nil, bp+1536))).Count) {
 			break
 		}
 		v1 = relativeTransform
 		v7 = v1.Q
-		v3 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer(proxy.Points))+uintptr(i)*12))
+		v3 = *(*Vec3)(unsafe.Add(nil, proxy.Points+uintptr(i)*12))
 		v4 = v7.V
 		v5 = v3
 		c.X = float32(v4.Y*v5.Z) - float32(v4.Z*v5.Y)
@@ -211,8 +211,8 @@ _56:
 		;
 		i = i + 1
 	}
-	(*(*ShapeProxy)(unsafe.Add(nil, bp+1536))).Points = (*Vec3)(unsafe.Pointer(bp))
-	(*(*ShapeProxy)(unsafe.Add(nil, bp+1536))).Radius = proxy.Radius
+	(*(*cShapeProxy)(unsafe.Add(nil, bp+1536))).Points = bp
+	(*(*cShapeProxy)(unsafe.Add(nil, bp+1536))).Radius = proxy.Radius
 	switch type1 {
 	case int32(b3_capsuleShape):
 		return b3OverlapCapsule(tls, sensorShape+176, b3Transform_identity, bp+1536)

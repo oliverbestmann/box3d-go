@@ -8,17 +8,17 @@ import (
 var _ unsafe.Pointer
 var _ reflect.Type
 
-func b3GetCompoundHull(tls *_Stack, compound uintptr, index int32) (r CompoundHull) {
+func b3GetCompoundHull(tls *_Stack, compound uintptr, index int32) (r cCompoundHull) {
 	var hullInstances uintptr
 	var hullOffset uint32_t
-	var result CompoundHull
+	var result cCompoundHull
 	var v1 bool
 	_, _, _, _ = hullInstances, hullOffset, result, v1
 	if v1 = !!(0 <= index && index < (*CompoundData)(unsafe.Pointer(compound)).HullCount && (*CompoundData)(unsafe.Pointer(compound)).HullOffset > 0); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+5349, __ccgo_ts+5323, int32FromInt32(81))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
-	result = CompoundHull{}
+	result = cCompoundHull{}
 	if (*CompoundData)(unsafe.Pointer(compound)).HullOffset == 0 {
 		return result
 	}
@@ -28,7 +28,7 @@ func b3GetCompoundHull(tls *_Stack, compound uintptr, index int32) (r CompoundHu
 		b3InternalAssert(tls, __ccgo_ts+5419, __ccgo_ts+5323, int32FromInt32(91))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
-	result.Hull = (*HullData)(unsafe.Pointer(uintptr(int64(compound) + int64FromUint32(hullOffset))))
+	result.Hull = uintptr(int64(compound) + int64FromUint32(hullOffset))
 	result.Transform = (*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(index)*36))).Transform
 	result.MaterialIndex = (*(*b3HullInstance)(unsafe.Add(nil, hullInstances+uintptr(index)*36))).MaterialIndex
 	return result
@@ -5957,7 +5957,7 @@ func b3OverlapHull(tls *_Stack, shape uintptr, shapeTransform Transform, proxy u
 	var q1, v10, v32, v33, v52 Quat
 	var v17, v28, v39, v44, v50 float32
 	var _ /* cache at bp+64 */ SimplexCache
-	var _ /* input at bp+0 */ DistanceInput
+	var _ /* input at bp+0 */ cDistanceInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, out, output, points, q1, t1, t11, t2, t21, t3, t31, v1, v10, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v25, v27, v28, v29, v30, v32, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v54, v6, v7, v8
 	v1 = shape
 	if (*HullData)(unsafe.Pointer(v1)).PointOffset == int32FromInt32(0) {
@@ -5968,11 +5968,11 @@ func b3OverlapHull(tls *_Stack, shape uintptr, shapeTransform Transform, proxy u
 	goto _3
 _3:
 	points = v2
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(points)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: points,
 		Count:  (*HullData)(unsafe.Pointer(shape)).VertexCount,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, proxy))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, proxy))
 	v4 = shapeTransform
 	v5 = b3Transform_identity
 	v6 = v5.P
@@ -6078,8 +6078,8 @@ _53:
 	v54 = out
 	goto _55
 _55:
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = v54
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = v54
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	output = b3ShapeDistance(tls, bp, bp+64, uintptrFromInt32(0), 0)
 	return boolUint8(output.Distance < float32(float32FromFloat32(0.1)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls))))

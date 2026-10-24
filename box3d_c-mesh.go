@@ -8,17 +8,17 @@ import (
 var _ unsafe.Pointer
 var _ reflect.Type
 
-func b3GetCompoundMesh(tls *_Stack, compound uintptr, index int32) (r CompoundMesh) {
+func b3GetCompoundMesh(tls *_Stack, compound uintptr, index int32) (r cCompoundMesh) {
 	var meshInstances uintptr
 	var meshOffset uint32_t
-	var result CompoundMesh
+	var result cCompoundMesh
 	var v1 bool
 	_, _, _, _ = meshInstances, meshOffset, result, v1
 	if v1 = !!(0 <= index && index < (*CompoundData)(unsafe.Pointer(compound)).MeshCount && (*CompoundData)(unsafe.Pointer(compound)).MeshOffset > 0); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+5503, __ccgo_ts+5323, int32FromInt32(100))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
-	result = CompoundMesh{}
+	result = cCompoundMesh{}
 	if (*CompoundData)(unsafe.Pointer(compound)).MeshOffset == 0 {
 		return result
 	}
@@ -28,10 +28,10 @@ func b3GetCompoundMesh(tls *_Stack, compound uintptr, index int32) (r CompoundMe
 		b3InternalAssert(tls, __ccgo_ts+5573, __ccgo_ts+5323, int32FromInt32(110))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
-	result.MeshData = (*MeshData)(unsafe.Pointer(uintptr(int64(compound) + int64FromUint32(meshOffset))))
+	result.MeshData = uintptr(int64(compound) + int64FromUint32(meshOffset))
 	result.Transform = (*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(index)*52))).Transform
 	result.Scale = (*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(index)*52))).Scale
-	result.MaterialIndices = (*uint16)(unsafe.Pointer(uintptr(int64(compound) + int64FromUint32((*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(index)*52))).MaterialOffset))))
+	result.MaterialIndices = uintptr(int64(compound) + int64FromUint32((*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(index)*52))).MaterialOffset))
 	result.MaterialCount = int32FromUint32((*(*b3MeshInstance)(unsafe.Add(nil, meshInstances+uintptr(index)*52))).MaterialCount)
 	return result
 }
@@ -2074,22 +2074,22 @@ func b3OverlapMesh(tls *_Stack, shape uintptr, shapeTransform Transform, proxy u
 	var _ /* aabb at bp+1568 */ AABB
 	var _ /* buffer at bp+16 */ [128]Vec3
 	var _ /* cache at bp+0 */ SimplexCache
-	var _ /* input at bp+1608 */ DistanceInput
-	var _ /* localProxy at bp+1552 */ ShapeProxy
+	var _ /* input at bp+1608 */ cDistanceInput
+	var _ /* localProxy at bp+1552 */ cShapeProxy
 	var _ /* meshScale at bp+1592 */ Vec3
 	var _ /* triangleVertices at bp+1708 */ [3]Vec3
 	var _ /* vertex1 at bp+1672 */ Vec3
 	var _ /* vertex2 at bp+1684 */ Vec3
 	var _ /* vertex3 at bp+1696 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = count, index, invScale, invScaledBoundsCenter, invScaledBoundsExtent, invScaledBoundsMax, invScaledBoundsMin, node, nodeMax, nodeMin, output, scale, separation, stack, temp1, temp2, tolerance, triangle, triangleCount, triangleIndex, triangleOffset, triangles, v1, v2, v3, vertices, v11, v10, v100, v101, v102, v105, v12, v13, v14, v16, v17, v19, v21, v20, v211, v23, v24, v25, v27, v28, v29, v31, v30, v311, v32, v34, v35, v36, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v52, v53, v55, v58, v6, v7, v76, v80, v9, v92, v93, v94, v96, v97, v98
-	if v11 = !!((*ShapeProxy)(unsafe.Pointer(proxy)).Count > int32FromInt32(0)); !v11 {
+	if v11 = !!((*cShapeProxy)(unsafe.Pointer(proxy)).Count > int32FromInt32(0)); !v11 {
 		b3InternalAssert(tls, __ccgo_ts+22073, __ccgo_ts+21165, int32FromInt32(1839))
 	}
 	_ = v11 || bool(int32FromInt32(0) != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp)) = SimplexCache{}
-	*(*ShapeProxy)(unsafe.Add(nil, bp+1552)) = b3MakeLocalProxy(tls, proxy, shapeTransform, bp+16)
+	*(*cShapeProxy)(unsafe.Add(nil, bp+1552)) = b3MakeLocalProxy(tls, proxy, shapeTransform, bp+16)
 	*(*AABB)(unsafe.Add(nil, bp+1568)) = b3ComputeProxyAABB(tls, bp+1552)
-	*(*Vec3)(unsafe.Add(nil, bp+1592)) = (*Mesh)(unsafe.Pointer(shape)).Scale
+	*(*Vec3)(unsafe.Add(nil, bp+1592)) = (*cMesh)(unsafe.Pointer(shape)).Scale
 	v21 = bp + 1592
 	v31 = b3V32{
 		X: *(*float32)(unsafe.Add(nil, v21)),
@@ -2225,12 +2225,12 @@ _44:
 	goto _48
 _48:
 	invScaledBoundsExtent = v47
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1608))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, bp+1552))
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1608))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp+1608))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1608))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, bp+1552))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1608))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+1608))).UseRadii = boolUint8(true1 != 0)
 	count = 0
-	node = b3GetRoot(tls, uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data)))
-	v21 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data))
+	node = b3GetRoot(tls, (*cMesh)(unsafe.Pointer(shape)).Data)
+	v21 = (*cMesh)(unsafe.Pointer(shape)).Data
 	if (*MeshData)(unsafe.Pointer(v21)).TriangleOffset == int32FromInt32(0) {
 		v9 = uintptrFromInt32(0)
 		goto _51
@@ -2239,7 +2239,7 @@ _48:
 	goto _51
 _51:
 	triangles = v9
-	v16 = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(shape)).Data))
+	v16 = (*cMesh)(unsafe.Pointer(shape)).Data
 	if (*MeshData)(unsafe.Pointer(v16)).VertexOffset == int32FromInt32(0) {
 		v49 = uintptrFromInt32(0)
 		goto _54
@@ -2395,8 +2395,8 @@ _54:
 							1: v98,
 							2: v102,
 						}
-						(*(*DistanceInput)(unsafe.Add(nil, bp+1608))).ProxyA = ShapeProxy{
-							Points: (*Vec3)(unsafe.Pointer(bp + 1708)),
+						(*(*cDistanceInput)(unsafe.Add(nil, bp+1608))).ProxyA = cShapeProxy{
+							Points: bp + 1708,
 							Count:  int32(3),
 						}
 						// reset the cache
@@ -2456,8 +2456,8 @@ func b3RayCastMesh(tls *_Stack, mesh3 uintptr, input uintptr) (r CastOutput) {
 	var _ /* vertex2 at bp+36 */ Vec3
 	var _ /* vertex3 at bp+48 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = alpha, axis, bestOutput, c, c1, c2, ccw, count, data, edge1, edge2, edgeSeparation, index1, invScale, invScaledRayDelta, invScaledRayEnd, invScaledRayMax, invScaledRayMin, invScaledRayStart, lambda, lengthSquared, materialIndices, node, nodeCenter, nodeExtent, nodeMax1, nodeMin1, rayDelta1, rayStart1, s, scale, separation, stack, triangle, triangleCount, triangleIndex, triangleOffset, triangles, u, v1, v2, v3, vertices, v11, v10, v100, v102, v103, v104, v106, v107, v109, v111, v110, v1111, v112, v113, v115, v116, v117, v118, v119, v120, v122, v123, v124, v126, v128, v129, v13, v130, v132, v134, v135, v136, v138, v139, v14, v140, v142, v143, v144, v146, v147, v15, v17, v18, v19, v21, v211, v215, v22, v23, v25, v26, v27, v29, v30, v31, v33, v34, v35, v37, v38, v39, v4, v40, v41, v42, v44, v45, v46, v47, v48, v5, v50, v51, v53, v54, v56, v57, v59, v60, v62, v63, v64, v66, v67, v68, v7, v70, v71, v72, v74, v75, v76, v77, v79, v8, v80, v81, v83, v84, v85, v86, v87, v88, v90, v91, v92, v94, v95, v96, v98, v99
-	data = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(mesh3)).Data))
-	*(*Vec3)(unsafe.Add(nil, bp+12)) = (*Mesh)(unsafe.Pointer(mesh3)).Scale
+	data = (*cMesh)(unsafe.Pointer(mesh3)).Data
+	*(*Vec3)(unsafe.Add(nil, bp+12)) = (*cMesh)(unsafe.Pointer(mesh3)).Scale
 	bestOutput = CastOutput{}
 	bestOutput.Fraction = (*RayCastInput)(unsafe.Pointer(input)).MaxFraction
 	bestOutput.TriangleIndex = -int32(1)
@@ -3133,7 +3133,7 @@ func b3QueryMesh(tls *_Stack, mesh2 uintptr, _bounds AABB, __ccgo_fp_fcn uintptr
 	var _ /* vertex2 at bp+48 */ Vec3
 	var _ /* vertex3 at bp+60 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a8, b8, c, ccw, count, data, index, invScale, invScaledBoundsCenter, invScaledBoundsExtent, invScaledBoundsMax, invScaledBoundsMin, leftChild, node, overlapLeft, overlapRight, result, rightChild, scale, separation, stack, temp1, temp2, triangle, triangleCount, triangleIndex, triangleOffset, triangles, v1, v2, v3, vertices, v11, v111, v12, v13, v132, v136, v15, v16, v165, v166, v18, v19, v21, v20, v22, v23, v24, v26, v27, v28, v29, v30, v31, v33, v34, v35, v36, v37, v38, v4, v40, v41, v42, v44, v45, v46, v48, v49, v5, v51, v52, v54, v55, v57, v58, v6, v60, v61, v62, v64, v65, v66, v68, v69, v70, v72, v73, v74, v75, v77, v78, v79, v8, v9, v91, v92, v93, v95, v96, v97
-	*(*Vec3)(unsafe.Add(nil, bp+24)) = (*Mesh)(unsafe.Pointer(mesh2)).Scale
+	*(*Vec3)(unsafe.Add(nil, bp+24)) = (*cMesh)(unsafe.Pointer(mesh2)).Scale
 	ccw = boolUint8(float32(float32((*(*Vec3)(unsafe.Add(nil, bp+24))).X*(*(*Vec3)(unsafe.Add(nil, bp+24))).Y)*(*(*Vec3)(unsafe.Add(nil, bp+24))).Z) > float32FromFloat32(0))
 	v11 = bp + 24
 	v21 = b3V32{
@@ -3270,7 +3270,7 @@ _43:
 	goto _47
 _47:
 	invScaledBoundsExtent = v46
-	data = uintptr(unsafe.Pointer((*Mesh)(unsafe.Pointer(mesh2)).Data))
+	data = (*cMesh)(unsafe.Pointer(mesh2)).Data
 	count = 0
 	node = b3GetRoot(tls, data)
 	v48 = data
@@ -3658,7 +3658,7 @@ func b3MeshTimeOfImpactFcn(tls *_Stack, a4 Vec3, b3 Vec3, c1 Vec3, triangleIndex
 	var lengthSquared, offset1, offset2, s, v22, v30 float32
 	var output TOIOutput
 	var toiContext uintptr
-	var _ /* fallbackInput at bp+40 */ TOIInput
+	var _ /* fallbackInput at bp+40 */ cTOIInput
 	var _ /* triangle at bp+0 */ [3]Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, c11, c2, lengthSquared, n, offset1, offset2, output, s, toiContext, u, v1, v10, v11, v13, v14, v16, v17, v18, v2, v20, v21, v22, v24, v25, v26, v28, v29, v3, v30, v5, v6, v7, v9
 	_ = uint64FromInt64(4)
@@ -3751,7 +3751,7 @@ _31:
 		1: b3,
 		2: c1,
 	}
-	(*b3MeshImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = (*Vec3)(unsafe.Pointer(bp))
+	(*b3MeshImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Points = bp
 	(*b3MeshImpactContext)(unsafe.Pointer(toiContext)).ToiInput.ProxyA.Count = int32(3)
 	output = b3TimeOfImpact(tls, toiContext)
 	// It is possible for a hit at fraction == 0
@@ -3761,9 +3761,9 @@ _31:
 	} else {
 		if float32FromFloat32(0) == output.Fraction {
 			// fallback to TOI of a small circle around the fast shape centroid
-			*(*TOIInput)(unsafe.Add(nil, bp+40)) = (*b3MeshImpactContext)(unsafe.Pointer(toiContext)).ToiInput
-			(*(*TOIInput)(unsafe.Add(nil, bp+40))).ProxyB = ShapeProxy{
-				Points: (*Vec3)(unsafe.Pointer(toiContext + 228)),
+			*(*cTOIInput)(unsafe.Add(nil, bp+40)) = (*b3MeshImpactContext)(unsafe.Pointer(toiContext)).ToiInput
+			(*(*cTOIInput)(unsafe.Add(nil, bp+40))).ProxyB = cShapeProxy{
+				Points: toiContext + 228,
 				Count:  int32(1),
 				Radius: (*b3MeshImpactContext)(unsafe.Pointer(toiContext)).FallbackRadius + float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)),
 			}

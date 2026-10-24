@@ -269,13 +269,13 @@ func GetCompoundCapsule(compound *CompoundData, index int32) (r CompoundCapsule)
 func GetCompoundHull(compound *CompoundData, index int32) (r CompoundHull) {
 	defer runtime.KeepAlive(compound)
 	escapes(compound)
-	r = b3GetCompoundHull(theStack, uintptr(unsafe.Pointer(compound)), index)
+	r = fromC[CompoundHull, cCompoundHull](b3GetCompoundHull(theStack, uintptr(unsafe.Pointer(compound)), index))
 	return
 }
 func GetCompoundMesh(compound *CompoundData, index int32) (r CompoundMesh) {
 	defer runtime.KeepAlive(compound)
 	escapes(compound)
-	r = b3GetCompoundMesh(theStack, uintptr(unsafe.Pointer(compound)), index)
+	r = fromC[CompoundMesh, cCompoundMesh](b3GetCompoundMesh(theStack, uintptr(unsafe.Pointer(compound)), index))
 	return
 }
 func GetCompoundSphere(compound *CompoundData, index int32) (r CompoundSphere) {
@@ -287,7 +287,7 @@ func GetCompoundSphere(compound *CompoundData, index int32) (r CompoundSphere) {
 func GetCompoundChild(compound *CompoundData, childIndex int32) (r ChildShape) {
 	defer runtime.KeepAlive(compound)
 	escapes(compound)
-	r = b3GetCompoundChild(theStack, uintptr(unsafe.Pointer(compound)), childIndex)
+	r = fromC[ChildShape, cChildShape](b3GetCompoundChild(theStack, uintptr(unsafe.Pointer(compound)), childIndex))
 	return
 }
 func destroyCompound(compound *CompoundData) {
@@ -1287,7 +1287,7 @@ func (b Shape) GetHull() (r *HullData) {
 	r = (*HullData)(unsafe.Pointer(b3Shape_GetHull(theStack, b.Id)))
 	return
 }
-func (b Shape) GetMesh() (r Mesh) { r = b3Shape_GetMesh(theStack, b.Id); return }
+func (b Shape) GetMesh() (r Mesh) { r = fromC[Mesh, cMesh](b3Shape_GetMesh(theStack, b.Id)); return }
 func (b Shape) GetHeightField() (r *HeightFieldData) {
 	r = (*HeightFieldData)(unsafe.Pointer(b3Shape_GetHeightField(theStack, b.Id)))
 	return
@@ -1486,8 +1486,11 @@ func DefaultBodyDef() (r BodyDef)                 { r = b3DefaultBodyDef(theStac
 func DefaultFilter() (r Filter)                   { r = b3DefaultFilter(theStack); return }
 func DefaultQueryFilter() (r QueryFilter)         { r = b3DefaultQueryFilter(theStack); return }
 func DefaultSurfaceMaterial() (r SurfaceMaterial) { r = b3DefaultSurfaceMaterial(theStack); return }
-func DefaultShapeDef() (r ShapeDef)               { r = b3DefaultShapeDef(theStack); return }
-func (b WeldJoint) SetLinearHertz(hertz float32)  { b3WeldJoint_SetLinearHertz(theStack, b.Id, hertz) }
+func DefaultShapeDef() (r ShapeDef) {
+	r = fromC[ShapeDef, cShapeDef](b3DefaultShapeDef(theStack))
+	return
+}
+func (b WeldJoint) SetLinearHertz(hertz float32) { b3WeldJoint_SetLinearHertz(theStack, b.Id, hertz) }
 func (b WeldJoint) GetLinearHertz() (r float32) {
 	r = b3WeldJoint_GetLinearHertz(theStack, b.Id)
 	return

@@ -850,8 +850,8 @@ type ShapeDef struct {
 }
 
 type cShapeDef struct {
-	Name                     uintptr
-	UserData                 uintptr
+	name                     uintptr
+	UserData                 uint64
 	Materials                uintptr
 	MaterialCount            int32
 	BaseMaterial             SurfaceMaterial
@@ -2912,7 +2912,7 @@ type b3Shape struct {
 	ｆ__ccgo21_176  struct {
 		Sphere       [0]Sphere
 		Hull         [0]uintptr
-		Mesh         [0]Mesh
+		Mesh         [0]cMesh
 		HeightField  [0]uintptr
 		Compound     [0]uintptr
 		Capsule      Capsule
@@ -3988,7 +3988,7 @@ type b3RecCType_CAPSULE = Capsule
 
 type b3RecCType_QUERYFILTER = QueryFilter
 
-type b3RecCType_SHAPEPROXY = ShapeProxy
+type b3RecCType_SHAPEPROXY = cShapeProxy
 
 type b3RecCType_GEOMID = uint32
 
@@ -4012,7 +4012,7 @@ type b3RecCType_JOINTID = JointId
 
 type b3RecCType_BODYDEF = BodyDef
 
-type b3RecCType_SHAPEDEF = ShapeDef
+type b3RecCType_SHAPEDEF = cShapeDef
 
 type b3RecCType_EXPLOSIONDEF = ExplosionDef
 
@@ -6271,14 +6271,14 @@ func b3OverlapCapsule(tls *_Stack, shape uintptr, shapeTransform Transform, prox
 	var q1, v29, v30, v49, v7 Quat
 	var v14, v25, v36, v41, v47 float32
 	var _ /* cache at bp+64 */ SimplexCache
-	var _ /* input at bp+0 */ DistanceInput
+	var _ /* input at bp+0 */ cDistanceInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, out, output, q1, t1, t11, t2, t21, t3, t31, v1, v10, v11, v13, v14, v15, v16, v18, v19, v2, v20, v22, v24, v25, v26, v27, v29, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v49, v5, v51, v7, v8, v9
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(shape)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: shape,
 		Count:  int32(2),
 		Radius: (*Capsule)(unsafe.Pointer(shape)).Radius,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, proxy))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, proxy))
 	v1 = shapeTransform
 	v2 = b3Transform_identity
 	v3 = v2.P
@@ -6384,8 +6384,8 @@ _50:
 	v51 = out
 	goto _52
 _52:
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = v51
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = v51
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	output = b3ShapeDistance(tls, bp, bp+64, uintptrFromInt32(0), 0)
 	return boolUint8(output.Distance < float32(float32FromFloat32(0.1)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls))))
@@ -7393,7 +7393,7 @@ type vt_table_itr_0002 struct {
 
 type b3CompoundOverlapContext struct {
 	Compound uintptr
-	Proxy    ShapeProxy
+	Proxy    cShapeProxy
 	Overlap  uint8
 }
 
@@ -8095,7 +8095,7 @@ func b3InitializeContactRegisters(tls *_Stack) {
 
 func b3CreateContact(tls *_Stack, world uintptr, shapeA uintptr, shapeB uintptr, childIndex int32) {
 	var bodyA, bodyB, contact, headContact, headContact1, set, v10, v12, v15, v29, v35, v36 uintptr
-	var child ChildShape
+	var child cChildShape
 	var contactId, generation, headContactKey, headContactKey1, keyA, keyB, newCapacity, newCapacity1, newSize, newSize1, oldSize, oldSize1, setIndex, shapeIdA, shapeIdB, v13, v8, v9 int32
 	var emptyContact b3Contact
 	var maxRadius, radiusA, radiusB, v30, v31, v32, v34, v43, v44, v45, v47 float32
@@ -8914,7 +8914,7 @@ func b3UpdateContact(tls *_Stack, world uintptr, workerIndex int32, contact uint
 	defer tls.Free(208)
 	var C, xfChild, xfChild1, v53, v7 WorldTransform
 	var c, centerA, centerB, offset, r, t1, t11, t2, t21, t3, t31, v11, v12, v13, v15, v17, v18, v20, v22, v23, v25, v26, v32, v33, v34, v35, v37, v39, v40, v42, v43, v44, v46, v48, v50, v51, v59, v60, v61, v63, v65, v66 Vec3
-	var child ChildShape
+	var child cChildShape
 	var childIndex, i, i1, j, j1, manifoldCount, pointCount int32
 	var flip, flip1, flip2, flip3, flip4, flip5, touching uint8
 	var manifold, manifold1, mp, mp1, parentMaterials, v3, v4, v6 uintptr
@@ -8935,7 +8935,7 @@ func b3UpdateContact(tls *_Stack, world uintptr, workerIndex int32, contact uint
 		(*(*b3Shape)(unsafe.Add(nil, bp))).Type1 = child.Type1
 		// Handle child material for non-meshes.
 		if child.Type1 != int32(b3_meshShape) {
-			if v1 = !!(0 <= int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer(child.MaterialIndices))))) && int32FromUint16(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer(child.MaterialIndices))))) < (*b3Shape)(unsafe.Pointer(shapeA)).MaterialCount); !v1 {
+			if v1 = !!(0 <= int32FromUint16(*(*uint16_t)(unsafe.Add(nil, child.MaterialIndices))) && int32FromUint16(*(*uint16_t)(unsafe.Add(nil, child.MaterialIndices))) < (*b3Shape)(unsafe.Pointer(shapeA)).MaterialCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+9151, __ccgo_ts+7283, int32FromInt32(758))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
@@ -8949,7 +8949,7 @@ func b3UpdateContact(tls *_Stack, world uintptr, workerIndex int32, contact uint
 			goto _5
 		_5:
 			parentMaterials = v4
-			(*(*b3Shape)(unsafe.Add(nil, bp))).Material = *(*SurfaceMaterial)(unsafe.Add(nil, parentMaterials+uintptr(*(*uint16_t)(unsafe.Add(nil, uintptr(unsafe.Pointer(child.MaterialIndices)))))*40))
+			(*(*b3Shape)(unsafe.Add(nil, bp))).Material = *(*SurfaceMaterial)(unsafe.Add(nil, parentMaterials+uintptr(*(*uint16_t)(unsafe.Add(nil, child.MaterialIndices)))*40))
 			(*(*b3Shape)(unsafe.Add(nil, bp))).Materials = uintptrFromInt32(0)
 			(*(*b3Shape)(unsafe.Add(nil, bp))).MaterialCount = int32(1)
 		}
@@ -9072,7 +9072,7 @@ func b3UpdateContact(tls *_Stack, world uintptr, workerIndex int32, contact uint
 				touching = b3UpdateConvexContact(tls, world, workerIndex, contact, bp, xfChild, shapeB, xfB, flip2, arena)
 			} else {
 				if child.Type1 == int32(b3_meshShape) {
-					*(*Mesh)(unsafe.Add(unsafe.Pointer(&*(*b3Shape)(unsafe.Add(nil, bp))), 176)) = *(*Mesh)(unsafe.Pointer(&child))
+					*(*cMesh)(unsafe.Add(unsafe.Pointer(&*(*b3Shape)(unsafe.Add(nil, bp))), 176)) = *(*cMesh)(unsafe.Pointer(&child))
 					v7 = xfA
 					v8 = child.Transform
 					v9 = v7.Q
@@ -9175,7 +9175,7 @@ func b3UpdateContact(tls *_Stack, world uintptr, workerIndex int32, contact uint
 					goto _102
 				_102:
 					xfChild1 = v53
-					touching = b3ComputeMeshManifolds(tls, world, workerIndex, contact, bp, uintptr(unsafe.Pointer(child.MaterialIndices)), xfChild1, shapeB, xfB, isFast, arena)
+					touching = b3ComputeMeshManifolds(tls, world, workerIndex, contact, bp, child.MaterialIndices, xfChild1, shapeB, xfB, isFast, arena)
 					if touching != 0 && (int32FromUint8((*b3Shape)(unsafe.Pointer(shapeA)).Flags)&int32(b3_enableHitEvents) != 0 || int32FromUint8((*b3Shape)(unsafe.Pointer(shapeB)).Flags)&int32(b3_enableHitEvents) != 0) {
 						*(*uint32_t)(unsafe.Add(nil, contact+68)) |= uint32(b3_simEnableHitEvent)
 					} else {
@@ -14182,8 +14182,8 @@ func b3GetProxySupport(tls *_Stack, proxy uintptr, axis Vec3) (r int32) {
 	var points uintptr
 	var v1 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = count, index, maxIndex, maxProjection, origin, points, projection, v1, v10, v4, v5, v6, v8, v9
-	count = (*ShapeProxy)(unsafe.Pointer(proxy)).Count
-	points = uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))
+	count = (*cShapeProxy)(unsafe.Pointer(proxy)).Count
+	points = (*cShapeProxy)(unsafe.Pointer(proxy)).Points
 	if v1 = !!(count > int32FromInt32(0)); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+6345, __ccgo_ts+10532, int32FromInt32(19))
 	}
@@ -15093,8 +15093,8 @@ _5:
 	case int32(2):
 		if uniqueCountA == int32(2) && uniqueCountB == int32(2) {
 			// Edge/Edge
-			vA1 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
-			v2 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
+			vA1 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
+			v2 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
 			v3 = vA1
 			v4 = Vec3{
 				X: v2.X - v3.X,
@@ -15165,8 +15165,8 @@ _5:
 			goto _29
 		_29:
 			edgeA = v16
-			vB1 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
-			v22 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
+			vB1 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
+			v22 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
 			v24 = vB1
 			v25 = Vec3{
 				X: v22.X - v24.X,
@@ -15428,9 +15428,9 @@ _5:
 		}
 	case int32(3):
 		if uniqueCountA == int32(3) {
-			vA11 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
-			vA2 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
-			vA3 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(2)])*12))
+			vA11 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
+			vA2 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
+			vA3 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(2)])*12))
 			v2 = vA2
 			v3 = vA11
 			v4 = Vec3{
@@ -15547,7 +15547,7 @@ _5:
 			goto _184
 		_184:
 			localPointA = v33
-			localPointB = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
+			localPointB = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
 			v42 = qB
 			v35 = localPointB
 			v36 = v42.V
@@ -15678,9 +15678,9 @@ _5:
 			fcn.Witness2 = localPointA
 		} else {
 			if uniqueCountB == int32(3) {
-				vB11 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
-				vB2 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
-				vB3 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(2)])*12))
+				vB11 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
+				vB2 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
+				vB3 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(2)])*12))
 				v2 = vB2
 				v3 = vB11
 				v4 = Vec3{
@@ -15769,7 +15769,7 @@ _5:
 				goto _275
 			_275:
 				axisB = v16
-				localPointA1 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
+				localPointA1 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
 				v22 = vB11
 				v24 = vB2
 				v25 = Vec3{
@@ -15939,8 +15939,8 @@ _5:
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 				}
-				vA12 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
-				vA21 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyA)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
+				vA12 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[0])*12))
+				vA21 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyA)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+16)))[int32(1)])*12))
 				v2 = vA21
 				v3 = vA12
 				v4 = Vec3{
@@ -16019,8 +16019,8 @@ _5:
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 				}
-				vB12 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
-				vB21 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxyB)).Points))+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
+				vB12 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[0])*12))
+				vB21 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxyB)).Points+uintptr((*(*[3]int32)(unsafe.Add(nil, bp+28)))[int32(1)])*12))
 				v2 = vB21
 				v3 = vB12
 				v4 = Vec3{
@@ -16397,8 +16397,8 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		goto _42
 	_42:
 		localAxisB = v41
-		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, localAxisA)
-		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, localAxisB)
+		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, localAxisA)
+		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, localAxisB)
 		v2 = xfB.P
 		v3 = xfA.P
 		v4 = Vec3{
@@ -16409,8 +16409,8 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		goto _51
 	_51:
 		deltaP = v4
-		localPointA = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
-		localPointB = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
+		localPointA = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
+		localPointB = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
 		v1 = xfB.Q
 		v5 = localPointB
 		v7 = v1.V
@@ -16689,7 +16689,7 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		goto _176
 	_176:
 		axisA = v16
-		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, axisA)
+		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, axisA)
 		v1 = xfB.Q
 		v2 = axis1
 		v3 = v1.V
@@ -16743,7 +16743,7 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		}
 		goto _206
 	_206:
-		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, v24)
+		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, v24)
 		v2 = xfB.P
 		v3 = xfA.P
 		v4 = Vec3{
@@ -16754,8 +16754,8 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		goto _210
 	_210:
 		deltaP1 = v4
-		localPointA1 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
-		localPointB1 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
+		localPointA1 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
+		localPointB1 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
 		v1 = xfB.Q
 		v5 = localPointB1
 		v7 = v1.V
@@ -17028,10 +17028,10 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		}
 		goto _342
 	_342:
-		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, v53)
+		*(*int32)(unsafe.Add(nil, indexB)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Count, v53)
 		v289 = xfB
 		v1 = v289.Q
-		v2 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
+		v2 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexB)))*12))
 		v3 = v1.V
 		v4 = v2
 		c.X = float32(v3.Y*v4.Z) - float32(v3.Z*v4.Y)
@@ -17202,10 +17202,10 @@ func b3FindMinSeparation(tls *_Stack, fcn uintptr, indexA uintptr, indexB uintpt
 		}
 		goto _426
 	_426:
-		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points)), (*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, v46)
+		*(*int32)(unsafe.Add(nil, indexA)) = b3GetPointSupport(tls, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Count, v46)
 		v289 = xfA
 		v1 = v289.Q
-		v2 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
+		v2 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(*(*int32)(unsafe.Add(nil, indexA)))*12))
 		v3 = v1.V
 		v4 = v2
 		c.X = float32(v3.Y*v4.Z) - float32(v3.Z*v4.Y)
@@ -17361,7 +17361,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		axis = (*b3SeparationFunction)(unsafe.Pointer(fcn)).Witness1
 		v1 = transform1
 		v2 = v1.Q
-		v3 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(index1)*12))
+		v3 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(index1)*12))
 		v4 = v2.V
 		v5 = v3
 		c.X = float32(v4.Y*v5.Z) - float32(v4.Z*v5.Y)
@@ -17420,7 +17420,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		point1 = v24
 		v30 = transform2
 		v31 = v30.Q
-		v32 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(index2)*12))
+		v32 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(index2)*12))
 		v33 = v31.V
 		v34 = v32
 		c.X = float32(v33.Y*v34.Z) - float32(v33.Z*v34.Y)
@@ -17610,7 +17610,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		axis1 = v53
 		v1 = transform1
 		v2 = v1.Q
-		v3 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(index1)*12))
+		v3 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(index1)*12))
 		v4 = v2.V
 		v5 = v3
 		c.X = float32(v4.Y*v5.Z) - float32(v4.Z*v5.Y)
@@ -17669,7 +17669,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		point11 = v24
 		v30 = transform2
 		v31 = v30.Q
-		v32 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(index2)*12))
+		v32 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(index2)*12))
 		v33 = v31.V
 		v34 = v32
 		c.X = float32(v33.Y*v34.Z) - float32(v33.Z*v34.Y)
@@ -17848,7 +17848,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		point12 = v46
 		v30 = transform2
 		v67 = v30.Q
-		v53 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points))+uintptr(index2)*12))
+		v53 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyB)).Points+uintptr(index2)*12))
 		v55 = v67.V
 		v56 = v53
 		c.X = float32(v55.Y*v56.Z) - float32(v55.Z*v56.Y)
@@ -17968,7 +17968,7 @@ func b3EvaluateSeparation(tls *_Stack, fcn uintptr, index1 int32, index2 int32, 
 		axis3 = v17
 		v1 = transform1
 		v31 = v1.Q
-		v24 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points))+uintptr(index1)*12))
+		v24 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer((*b3SeparationFunction)(unsafe.Pointer(fcn)).ProxyA)).Points+uintptr(index1)*12))
 		v26 = v31.V
 		v27 = v24
 		c.X = float32(v26.Y*v27.Z) - float32(v26.Z*v27.Y)
@@ -18258,12 +18258,12 @@ func b3TimeOfImpact(tls *_Stack, input uintptr) (r TOIOutput) {
 	var q2, v26, v48, v49, v68 Quat
 	var v18 bool
 	var _ /* cache at bp+168 */ SimplexCache
-	var _ /* distanceInput at bp+184 */ DistanceInput
+	var _ /* distanceInput at bp+184 */ cDistanceInput
 	var _ /* function at bp+248 */ b3SeparationFunction
 	var _ /* indexA at bp+432 */ int32
 	var _ /* indexB at bp+436 */ int32
-	var _ /* proxyA at bp+136 */ ShapeProxy
-	var _ /* proxyB at bp+152 */ ShapeProxy
+	var _ /* proxyA at bp+136 */ cShapeProxy
+	var _ /* proxyB at bp+152 */ cShapeProxy
 	var _ /* sweepA at bp+0 */ Sweep
 	var _ /* sweepB at bp+68 */ Sweep
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, c, c1, distanceIterations, distanceOutput, done, linearSlop, maxIterations, maxPushBackIterations, maxRootIterations, origin, out, output, pA, pA1, pA2, pA3, pB, pB1, pB2, pB3, pushBackIterations, q2, rootIterationCount, rv, s11, s2, s21, t1, t11, t12, t13, t14, t2, t21, t22, t23, t3, t31, t32, tMax, target, tolerance, totalRadius, worldNormal, worldPointA, worldPointB, xfA, xfB, v1, v10, v11, v13, v14, v15, v17, v18, v2, v20, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v41, v43, v44, v45, v46, v48, v49, v5, v50, v51, v52, v54, v56, v57, v59, v6, v61, v62, v64, v65, v68, v7, v70, v73, v74, v75, v76, v78, v80, v81, v83, v84, v85, v87, v89, v9, v91
@@ -18271,8 +18271,8 @@ func b3TimeOfImpact(tls *_Stack, input uintptr) (r TOIOutput) {
 	// Set these to invalid values so they can be validated on exit
 	output.State = int32(b3_toiStateUnknown)
 	output.Fraction = -float32FromFloat32(1)
-	*(*Sweep)(unsafe.Add(nil, bp)) = (*TOIInput)(unsafe.Pointer(input)).SweepA
-	*(*Sweep)(unsafe.Add(nil, bp+68)) = (*TOIInput)(unsafe.Pointer(input)).SweepB
+	*(*Sweep)(unsafe.Add(nil, bp)) = (*cTOIInput)(unsafe.Pointer(input)).SweepA
+	*(*Sweep)(unsafe.Add(nil, bp+68)) = (*cTOIInput)(unsafe.Pointer(input)).SweepB
 	// Shift to origin
 	origin = (*(*Sweep)(unsafe.Add(nil, bp))).C1
 	(*(*Sweep)(unsafe.Add(nil, bp))).C1 = b3Vec3_zero
@@ -18306,13 +18306,13 @@ _8:
 	goto _12
 _12:
 	(*(*Sweep)(unsafe.Add(nil, bp+68))).C2 = v3
-	*(*ShapeProxy)(unsafe.Add(nil, bp+136)) = (*TOIInput)(unsafe.Pointer(input)).ProxyA
-	*(*ShapeProxy)(unsafe.Add(nil, bp+152)) = (*TOIInput)(unsafe.Pointer(input)).ProxyB
-	maxPushBackIterations = (*(*ShapeProxy)(unsafe.Add(nil, bp+136))).Count + (*(*ShapeProxy)(unsafe.Add(nil, bp+152))).Count
-	tMax = (*TOIInput)(unsafe.Pointer(input)).MaxFraction
+	*(*cShapeProxy)(unsafe.Add(nil, bp+136)) = (*cTOIInput)(unsafe.Pointer(input)).ProxyA
+	*(*cShapeProxy)(unsafe.Add(nil, bp+152)) = (*cTOIInput)(unsafe.Pointer(input)).ProxyB
+	maxPushBackIterations = (*(*cShapeProxy)(unsafe.Add(nil, bp+136))).Count + (*(*cShapeProxy)(unsafe.Add(nil, bp+152))).Count
+	tMax = (*cTOIInput)(unsafe.Pointer(input)).MaxFraction
 	// Setup target distance and tolerance
 	linearSlop = float32(float32FromFloat32(0.005) * b3GetLengthUnitsPerMeter(tls))
-	totalRadius = (*(*ShapeProxy)(unsafe.Add(nil, bp+136))).Radius + (*(*ShapeProxy)(unsafe.Add(nil, bp+152))).Radius
+	totalRadius = (*(*cShapeProxy)(unsafe.Add(nil, bp+136))).Radius + (*(*cShapeProxy)(unsafe.Add(nil, bp+152))).Radius
 	v13 = linearSlop
 	v14 = totalRadius - linearSlop
 	if v13 > v14 {
@@ -18334,10 +18334,10 @@ _16:
 	distanceIterations = 0
 	// Prepare input for distance query.
 	*(*SimplexCache)(unsafe.Add(nil, bp+168)) = SimplexCache{}
-	*(*DistanceInput)(unsafe.Add(nil, bp+184)) = DistanceInput{}
-	(*(*DistanceInput)(unsafe.Add(nil, bp+184))).ProxyA = *(*ShapeProxy)(unsafe.Add(nil, bp+136))
-	(*(*DistanceInput)(unsafe.Add(nil, bp+184))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, bp+152))
-	(*(*DistanceInput)(unsafe.Add(nil, bp+184))).UseRadii = boolUint8(false1 != 0)
+	*(*cDistanceInput)(unsafe.Add(nil, bp+184)) = cDistanceInput{}
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+184))).ProxyA = *(*cShapeProxy)(unsafe.Add(nil, bp+136))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+184))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, bp+152))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+184))).UseRadii = boolUint8(false1 != 0)
 	// The outer loop progressively attempts to compute new separating axes.
 	// This loop terminates when an axis is repeated (no progress is made).
 	for {
@@ -18449,7 +18449,7 @@ _16:
 		v70 = out
 		goto _71
 	_71:
-		(*(*DistanceInput)(unsafe.Add(nil, bp+184))).Transform = v70
+		(*(*cDistanceInput)(unsafe.Add(nil, bp+184))).Transform = v70
 		distanceOutput = b3ShapeDistance(tls, bp+184, bp+168, uintptrFromInt32(0), 0)
 		output.Distance = distanceOutput.Distance
 		v26 = xfA.Q
@@ -18623,7 +18623,7 @@ _16:
 			output.State = int32(b3_toiStateOverlapped)
 			output.Fraction = float32FromFloat32(0)
 			v1 = worldPointA
-			v13 = (*(*ShapeProxy)(unsafe.Add(nil, bp+136))).Radius
+			v13 = (*(*cShapeProxy)(unsafe.Add(nil, bp+136))).Radius
 			v2 = worldNormal
 			v3 = Vec3{
 				X: v1.X + float32(v13*v2.X),
@@ -18635,7 +18635,7 @@ _16:
 			// Averaged hit point
 			pA = v3
 			v5 = worldPointB
-			v14 = -(*(*ShapeProxy)(unsafe.Add(nil, bp+152))).Radius
+			v14 = -(*(*cShapeProxy)(unsafe.Add(nil, bp+152))).Radius
 			v6 = worldNormal
 			v7 = Vec3{
 				X: v5.X + float32(v14*v6.X),
@@ -18678,7 +18678,7 @@ _16:
 			// Success!
 			output.State = int32(b3_toiStateHit)
 			v1 = worldPointA
-			v13 = (*(*ShapeProxy)(unsafe.Add(nil, bp+136))).Radius
+			v13 = (*(*cShapeProxy)(unsafe.Add(nil, bp+136))).Radius
 			v2 = worldNormal
 			v3 = Vec3{
 				X: v1.X + float32(v13*v2.X),
@@ -18690,7 +18690,7 @@ _16:
 			// Averaged hit point
 			pA1 = v3
 			v5 = worldPointB
-			v14 = -(*(*ShapeProxy)(unsafe.Add(nil, bp+152))).Radius
+			v14 = -(*(*cShapeProxy)(unsafe.Add(nil, bp+152))).Radius
 			v6 = worldNormal
 			v7 = Vec3{
 				X: v5.X + float32(v14*v6.X),
@@ -18736,7 +18736,7 @@ _16:
 			output.State = int32(b3_toiStateFailed)
 			output.Fraction = t14
 			v1 = worldPointA
-			v13 = (*TOIInput)(unsafe.Pointer(input)).ProxyA.Radius
+			v13 = (*cTOIInput)(unsafe.Pointer(input)).ProxyA.Radius
 			v2 = worldNormal
 			v3 = Vec3{
 				X: v1.X + float32(v13*v2.X),
@@ -18748,7 +18748,7 @@ _16:
 			// Averaged hit point
 			pA2 = v3
 			v5 = worldPointB
-			v14 = -(*TOIInput)(unsafe.Pointer(input)).ProxyB.Radius
+			v14 = -(*cTOIInput)(unsafe.Pointer(input)).ProxyB.Radius
 			v6 = worldNormal
 			v7 = Vec3{
 				X: v5.X + float32(v14*v6.X),
@@ -18807,7 +18807,7 @@ _16:
 			if s21-target > tolerance {
 				// Success!
 				output.State = int32(b3_toiStateSeparated)
-				output.Fraction = (*TOIInput)(unsafe.Pointer(input)).MaxFraction
+				output.Fraction = (*cTOIInput)(unsafe.Pointer(input)).MaxFraction
 				done = boolUint8(true1 != 0)
 				break
 			}
@@ -18883,7 +18883,7 @@ _16:
 			// Restart the inner loop if we have a failing edge case.
 			if rootIterationCount == maxRootIterations-int32(1) && (*(*b3SeparationFunction)(unsafe.Add(nil, bp+248))).Type1 == int32(b3_separationEdges) {
 				rootIterationCount = 0
-				t23 = (*TOIInput)(unsafe.Pointer(input)).MaxFraction
+				t23 = (*cTOIInput)(unsafe.Pointer(input)).MaxFraction
 				b3ForceFixedAxis(tls, bp+248, t14)
 				if v18 = !!((*(*b3SeparationFunction)(unsafe.Add(nil, bp+248))).Type1 != int32(b3_separationEdges)); !v18 {
 					b3InternalAssert(tls, __ccgo_ts+11387, __ccgo_ts+10532, int32FromInt32(1925))
@@ -18900,7 +18900,7 @@ _16:
 		}
 		if done != 0 {
 			v1 = worldPointA
-			v13 = (*TOIInput)(unsafe.Pointer(input)).ProxyA.Radius
+			v13 = (*cTOIInput)(unsafe.Pointer(input)).ProxyA.Radius
 			v2 = worldNormal
 			v3 = Vec3{
 				X: v1.X + float32(v13*v2.X),
@@ -18912,7 +18912,7 @@ _16:
 			// Averaged hit point
 			pA3 = v3
 			v5 = worldPointB
-			v14 = -(*TOIInput)(unsafe.Pointer(input)).ProxyB.Radius
+			v14 = -(*cTOIInput)(unsafe.Pointer(input)).ProxyB.Radius
 			v6 = worldNormal
 			v7 = Vec3{
 				X: v5.X + float32(v14*v6.X),
@@ -33434,7 +33434,7 @@ _5:
 				if !(i < (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Count) {
 					break
 				}
-				if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer(uintptr(unsafe.Pointer((*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)))).TriangleCount); !v1 {
+				if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer((*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)).TriangleCount); !v1 {
 					b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+22185, int32FromInt32(90))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
@@ -33933,7 +33933,7 @@ _177:
 			Cache:         *(*b3ContactCache)(unsafe.Add(nil, contactCache+uintptr(i1)*16)),
 		}
 		if (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) {
-			if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer(uintptr(unsafe.Pointer((*(*Mesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)))).TriangleCount); !v1 {
+			if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer((*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)).TriangleCount); !v1 {
 				b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+22185, int32FromInt32(165))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
@@ -37174,7 +37174,7 @@ type _WorldOverlapContext struct {
 	World       uintptr
 	Fcn         uintptr
 	Filter      QueryFilter
-	Proxy       ShapeProxy
+	Proxy       cShapeProxy
 	Origin      Pos
 	UserContext uintptr
 }
@@ -37498,7 +37498,7 @@ type _WorldShapeCastContext struct {
 	Filter      QueryFilter
 	Fraction    float32
 	Origin      Pos
-	Input       ShapeCastInput
+	Input       cShapeCastInput
 	UserContext uintptr
 }
 
@@ -37522,7 +37522,7 @@ type _WorldMoverCastContext struct {
 	Filter      QueryFilter
 	Fraction    float32
 	Origin      Pos
-	Input       ShapeCastInput
+	Input       cShapeCastInput
 	UserContext uintptr
 }
 
@@ -37538,7 +37538,7 @@ func _MoverCastCallback(tls *_Stack, input uintptr, proxyId int32, userData uint
 	var v1 bool
 	var v7 WorldTransform
 	var v8 Pos
-	var _ /* localInput at bp+56 */ ShapeCastInput
+	var _ /* localInput at bp+56 */ cShapeCastInput
 	var _ /* queryFilter at bp+24 */ QueryFilter
 	var _ /* shapeFilter at bp+0 */ Filter
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = body, id, output, r, shape, shapeId, shouldCollide, transform, world, worldContext, v1, v2, v3, v4, v7, v8, v9
@@ -37573,8 +37573,8 @@ _5:
 		}
 	}
 	// Rebuild from the origin relative input, taking only the advancing fraction from the tree
-	*(*ShapeCastInput)(unsafe.Add(nil, bp+56)) = (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Input
-	(*(*ShapeCastInput)(unsafe.Add(nil, bp+56))).MaxFraction = (*BoxCastInput)(unsafe.Pointer(input)).MaxFraction
+	*(*cShapeCastInput)(unsafe.Add(nil, bp+56)) = (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Input
+	(*(*cShapeCastInput)(unsafe.Add(nil, bp+56))).MaxFraction = (*BoxCastInput)(unsafe.Pointer(input)).MaxFraction
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
 		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(3327))
 	}
@@ -37658,7 +37658,7 @@ func _ExplosionCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 	var v8 Quat
 	var v5 Pos
 	var _ /* cache at bp+80 */ SimplexCache
-	var _ /* input at bp+16 */ DistanceInput
+	var _ /* input at bp+16 */ cDistanceInput
 	var _ /* localPosition at bp+0 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = area, b5, body, bodySim, c, closestPoint, d, direction, explosionContext, falloff, impulse, lengthSquared, localIndex, magnitude, output, r, radius, s, scale, set, shape, shapeId, state, t1, t11, t2, t21, t3, t31, u, world, xf, v1, v10, v11, v111, v12, v14, v15, v16, v17, v19, v2, v20, v21, v23, v25, v26, v27, v28, v3, v30, v31, v32, v34, v35, v37, v38, v4, v40, v41, v42, v48, v49, v5, v50, v51, v6, v8, v9
 	_ = uint64FromInt64(4)
@@ -37740,13 +37740,13 @@ _7:
 	// Re-center the explosion into the shape local frame so distance and direction stay precise
 	// far from the origin. Everything below runs in that near-origin frame.
 	*(*Vec3)(unsafe.Add(nil, bp)) = v6
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = b3MakeShapeProxy(tls, shape)
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(bp)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyA = b3MakeShapeProxy(tls, shape)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).ProxyB = cShapeProxy{
+		Points: bp,
 		Count:  int32(1),
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).Transform = b3Transform_identity
-	(*(*DistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).Transform = b3Transform_identity
+	(*(*cDistanceInput)(unsafe.Add(nil, bp+16))).UseRadii = boolUint8(true1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+80)) = SimplexCache{}
 	output = b3ShapeDistance(tls, bp+16, bp+80, uintptrFromInt32(0), 0)
 	radius = (*_ExplosionContext)(unsafe.Pointer(explosionContext)).Radius
@@ -39871,7 +39871,7 @@ const _B3_HEIGHT_FIELD_VERSION3 = 10250727093210466552
 const _B3_HULL_VERSION5 = 7718670396882167283
 const _B3_MESH_VERSION5 = 12298092536310311671
 
-func b3MakeLocalProxy(tls *_Stack, proxy uintptr, transform Transform, buffer uintptr) (r ShapeProxy) {
+func b3MakeLocalProxy(tls *_Stack, proxy uintptr, transform Transform, buffer uintptr) (r cShapeProxy) {
 	var R, v33, v41 Matrix3
 	var b5, c, t1, t2, t3, v11, v13, v14, v16, v17, v18, v2, v20, v22, v24, v25, v3, v42, v43, v45, v46, v47, v6, v7, v8, v9 Vec3
 	var count, i, v35, v36, v37, v39 int32
@@ -39979,7 +39979,7 @@ _31:
 	goto _34
 _34:
 	R = v33
-	v35 = (*ShapeProxy)(unsafe.Pointer(proxy)).Count
+	v35 = (*cShapeProxy)(unsafe.Pointer(proxy)).Count
 	v36 = int32(_B3_MAX_HULL_VERTICES)
 	if v35 < v36 {
 		v39 = v35
@@ -39996,7 +39996,7 @@ _38:
 			break
 		}
 		v41 = R
-		v42 = *(*Vec3)(unsafe.Add(nil, uintptr(unsafe.Pointer((*ShapeProxy)(unsafe.Pointer(proxy)).Points))+uintptr(i)*12))
+		v42 = *(*Vec3)(unsafe.Add(nil, (*cShapeProxy)(unsafe.Pointer(proxy)).Points+uintptr(i)*12))
 		b5 = Vec3{
 			X: float32(v41.Cx.X*v42.X) + float32(v41.Cy.X*v42.Y) + float32(v41.Cz.X*v42.Z),
 			Y: float32(v41.Cx.Y*v42.X) + float32(v41.Cy.Y*v42.Y) + float32(v41.Cz.Y*v42.Z),
@@ -40020,10 +40020,10 @@ _38:
 		;
 		i = i + 1
 	}
-	return ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(buffer)),
+	return cShapeProxy{
+		Points: buffer,
 		Count:  count,
-		Radius: (*ShapeProxy)(unsafe.Pointer(proxy)).Radius,
+		Radius: (*cShapeProxy)(unsafe.Pointer(proxy)).Radius,
 	}
 }
 
@@ -40076,7 +40076,7 @@ func b3ResetProxy(tls *_Stack, world uintptr, shape uintptr, wakeBodies uint8, d
 }
 
 type b3MeshImpactContext struct {
-	ToiInput            TOIInput
+	ToiInput            cTOIInput
 	ToiOutput           TOIOutput
 	LocalCentroidB      Vec3
 	MeshLocalCentroidB1 Vec3
@@ -40086,7 +40086,7 @@ type b3MeshImpactContext struct {
 }
 
 type b3CompoundImpactContext struct {
-	ToiInput          TOIInput
+	ToiInput          cTOIInput
 	ToiOutput         TOIOutput
 	CompoundTransform Transform
 	LocalSweepBoundsB AABB
@@ -44058,14 +44058,14 @@ func b3OverlapSphere(tls *_Stack, shape uintptr, shapeTransform Transform, proxy
 	var q1, v29, v30, v49, v7 Quat
 	var v14, v25, v36, v41, v47 float32
 	var _ /* cache at bp+64 */ SimplexCache
-	var _ /* input at bp+0 */ DistanceInput
+	var _ /* input at bp+0 */ cDistanceInput
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, out, output, q1, t1, t11, t2, t21, t3, t31, v1, v10, v11, v13, v14, v15, v16, v18, v19, v2, v20, v22, v24, v25, v26, v27, v29, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v49, v5, v51, v7, v8, v9
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyA = ShapeProxy{
-		Points: (*Vec3)(unsafe.Pointer(shape)),
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyA = cShapeProxy{
+		Points: shape,
 		Count:  int32(1),
 		Radius: (*Sphere)(unsafe.Pointer(shape)).Radius,
 	}
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*ShapeProxy)(unsafe.Add(nil, proxy))
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).ProxyB = *(*cShapeProxy)(unsafe.Add(nil, proxy))
 	v1 = shapeTransform
 	v2 = b3Transform_identity
 	v3 = v2.P
@@ -44171,8 +44171,8 @@ _50:
 	v51 = out
 	goto _52
 _52:
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).Transform = v51
-	(*(*DistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).Transform = v51
+	(*(*cDistanceInput)(unsafe.Add(nil, bp))).UseRadii = boolUint8(true1 != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp+64)) = SimplexCache{}
 	output = b3ShapeDistance(tls, bp, bp+64, uintptrFromInt32(0), 0)
 	return boolUint8(output.Distance < float32(float32FromFloat32(0.1)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls))))
