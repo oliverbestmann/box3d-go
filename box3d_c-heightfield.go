@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -1915,11 +1917,11 @@ func b3QueryHeightField(tls *_Stack, heightField uintptr, bounds AABB, __ccgo_fp
 				quadIndex = row*((*HeightFieldData)(unsafe.Pointer(heightField)).ColumnCount-int32(1)) + column
 				triangleIndex = int32(2) * quadIndex
 				if (*HeightFieldData)(unsafe.Pointer(heightField)).Clockwise != 0 {
-					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_fcn})))(tls, point11, point12, point21, triangleIndex, context)
-					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_fcn})))(tls, point22, point21, point12, triangleIndex+int32(1), context)
+					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(funcPtr(__ccgo_fp_fcn)))(tls, point11, point12, point21, triangleIndex, context)
+					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(funcPtr(__ccgo_fp_fcn)))(tls, point22, point21, point12, triangleIndex+int32(1), context)
 				} else {
-					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_fcn})))(tls, point11, point21, point12, triangleIndex, context)
-					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_fcn})))(tls, point22, point12, point21, triangleIndex+int32(1), context)
+					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(funcPtr(__ccgo_fp_fcn)))(tls, point11, point21, point12, triangleIndex, context)
+					(*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(funcPtr(__ccgo_fp_fcn)))(tls, point22, point12, point21, triangleIndex+int32(1), context)
 				}
 			}
 			goto _2

@@ -1,4 +1,4 @@
-//go:build !(goexperiment.simd && go1.27 && (arm64 || (amd64 && amd64.v3) || wasm))
+//go:build !(goexperiment.simd && go1.27 && (arm64 || (amd64 && amd64.v3) || wasm)) && !(arm || (tinygo && wasm))
 
 package b3
 

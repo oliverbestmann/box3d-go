@@ -13,7 +13,6 @@ import (
 
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
-	"github.com/dave/dst/dstutil"
 )
 
 // The public Go API must not contain a uintptr, it is too easy to pass Go memory to box3d that
@@ -89,9 +88,6 @@ const (
 	// unexport fields that the Go API sets, like the points in Body.CreateChain
 	unexport fieldChange = iota + 1
 
-	// toUint64 turns a void* that box3d never reads into an opaque number
-	toUint64
-
 	// toPointer turns a uintptr into a Go pointer in the public type, see pointerFields and addMirrors
 	toPointer
 )
@@ -102,13 +98,9 @@ var apiFields = map[string]map[string]fieldChange{
 		"FrictionCallback": unexport, "RestitutionCallback": unexport,
 		"EnqueueTask": unexport, "FinishTask": unexport, "UserTaskContext": unexport,
 		"CreateDebugShape": unexport, "DestroyDebugShape": unexport, "UserDebugShapeContext": unexport,
-		"UserData": toUint64,
 	},
-	"BodyDef":         {"Name": unexport, "UserData": toUint64},
-	"ShapeDef":        {"Name": unexport, "UserData": toUint64, "Materials": toPointer},
-	"JointDef":        {"UserData": toUint64},
-	"BodyMoveEvent":   {"UserData": toUint64},
-	"JointEvent":      {"UserData": toUint64},
+	"BodyDef":         {"Name": unexport},
+	"ShapeDef":        {"Name": unexport, "Materials": toPointer},
 	"QueryFilter":     {"Name": unexport},
 	"ShapeProxy":      {"Points": toPointer},
 	"MeshDef":         {"Vertices": unexport, "Stride": unexport, "Indices": unexport, "MaterialIndices": unexport, "VertexCount": unexport, "TriangleCount": unexport},
@@ -208,79 +200,6 @@ func fixApiFields(root *dst.File) map[string]string {
 			changes[node] = fields[field]
 		}
 	}
-
-	// isRetyped reports whether expr selects a field with a new Go type
-	isRetyped := func(expr dst.Expr) bool {
-		sel, ok := expr.(*dst.SelectorExpr)
-		return ok && changes[sel.Sel] == toUint64
-	}
-
-	// toGo converts a uintptr of the C code to the Go type of field
-	toGo := func(expr dst.Expr) dst.Expr {
-		return &dst.CallExpr{Fun: dst.NewIdent("uint64"), Args: []dst.Expr{expr}}
-	}
-
-	// toC converts the field back to the uintptr of the C code
-	toC := func(sel *dst.SelectorExpr) dst.Expr {
-		return &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{sel}}
-	}
-
-	// selectors that are written to, all other uses read the field
-	written := map[*dst.SelectorExpr]bool{}
-
-	dstutil.Apply(root, func(c *dstutil.Cursor) bool {
-		switch node := c.Node().(type) {
-		case *dst.AssignStmt:
-			for idx, lhs := range node.Lhs {
-				if !isRetyped(lhs) {
-					continue
-				}
-
-				if node.Tok != token.ASSIGN || len(node.Lhs) != len(node.Rhs) {
-					panic("unexpected assignment to a retyped field")
-				}
-
-				sel := lhs.(*dst.SelectorExpr)
-				written[sel] = true
-				node.Rhs[idx] = toGo(node.Rhs[idx])
-			}
-
-		case *dst.KeyValueExpr:
-			if key, ok := node.Key.(*dst.Ident); ok && changes[key] == toUint64 {
-				node.Value = toGo(node.Value)
-			}
-
-		case *dst.UnaryExpr:
-			if node.Op == token.AND && isRetyped(node.X) {
-				panic("address of a retyped field")
-			}
-
-		case *dst.IncDecStmt:
-			if isRetyped(node.X) {
-				panic("increment of a retyped field")
-			}
-		}
-
-		return true
-	}, func(c *dstutil.Cursor) bool {
-		switch node := c.Node().(type) {
-		case *dst.SelectorExpr:
-			if isRetyped(node) && !written[node] {
-				c.Replace(toC(node))
-			}
-
-		case *dst.Field:
-			if len(node.Names) == 0 {
-				break
-			}
-
-			if changes[node.Names[0]] == toUint64 {
-				node.Type = dst.NewIdent("uint64")
-			}
-		}
-
-		return true
-	})
 
 	for ident, change := range changes {
 		if change == unexport {

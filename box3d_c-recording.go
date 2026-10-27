@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -775,7 +777,7 @@ func b3RecOverlapTrampoline(tls *_Stack, id ShapeId, ctx uintptr) (r uint8) {
 	_, _, _ = ret, w, v1
 	w = ctx
 	if *(*uintptr)(unsafe.Pointer(w)) != uintptrFromInt32(0) {
-		v1 = int32FromUint8((*(*func(*_Stack, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn.OverlapFcn})))(tls, id, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext))
+		v1 = int32FromUint8((*(*func(*_Stack, ShapeId, uintptr) uint8)(funcPtr((*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn.OverlapFcn)))(tls, id, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext))
 	} else {
 		v1 = int32(true1)
 	}
@@ -793,7 +795,7 @@ func b3RecCastTrampoline(tls *_Stack, id ShapeId, point Pos, normal Vec3, fracti
 	var w uintptr
 	_, _ = ret, w
 	w = ctx
-	ret = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{*(*uintptr)(unsafe.Pointer(&(*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn))})))(tls, id, point, normal, fraction, userMaterialId, triangleIndex, childIndex, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext)
+	ret = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(funcPtr(*(*uintptr)(unsafe.Pointer(&(*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn)))))(tls, id, point, normal, fraction, userMaterialId, triangleIndex, childIndex, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext)
 	b3RecW_SHAPEID(tls, w+16, id)
 	b3RecW_POSITION(tls, w+16, point)
 	b3RecW_VEC3(tls, w+16, normal)
@@ -816,7 +818,7 @@ func b3RecPlaneTrampoline(tls *_Stack, id ShapeId, planes uintptr, planeCount in
 	var w uintptr
 	_, _, _ = i, ret, w
 	w = ctx
-	ret = (*(*func(*_Stack, ShapeId, uintptr, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{*(*uintptr)(unsafe.Pointer(&(*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn))})))(tls, id, planes, planeCount, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext)
+	ret = (*(*func(*_Stack, ShapeId, uintptr, int32, uintptr) uint8)(funcPtr(*(*uintptr)(unsafe.Pointer(&(*b3RecQueryWriter)(unsafe.Pointer(w)).UserFcn)))))(tls, id, planes, planeCount, (*b3RecQueryWriter)(unsafe.Pointer(w)).UserContext)
 	b3RecW_SHAPEID(tls, w+16, id)
 	b3RecW_I32(tls, w+16, planeCount)
 	i = 0
@@ -4747,7 +4749,7 @@ func b3RecR_BODYDEF(tls *_Stack, rdr uintptr) (r BodyDef) {
 	def.IsEnabled = b3RecR_BOOL(tls, rdr)
 	def.AllowFastRotation = b3RecR_BOOL(tls, rdr)
 	def.EnableContactRecycling = b3RecR_BOOL(tls, rdr)
-	def.UserData = uint64(uintptrFromInt32(0))
+	def.UserData = uint64(0)
 	return def
 }
 
@@ -4804,7 +4806,7 @@ func b3RecR_SHAPEDEF(tls *_Stack, rdr uintptr) (r cShapeDef) {
 	def.InvokeContactCreation = b3RecR_BOOL(tls, rdr)
 	def.UpdateBodyMass = b3RecR_BOOL(tls, rdr)
 	def.EnableSpeculativeContact = b3RecR_BOOL(tls, rdr)
-	def.UserData = uint64(uintptrFromInt32(0))
+	def.UserData = uint64(0)
 	return def
 }
 
@@ -4823,7 +4825,7 @@ func b3RecR_JointBase(tls *_Stack, rdr uintptr, base uintptr) {
 	(*JointDef)(unsafe.Pointer(base)).ConstraintDampingRatio = b3RecR_F32(tls, rdr)
 	(*JointDef)(unsafe.Pointer(base)).DrawScale = b3RecR_F32(tls, rdr)
 	(*JointDef)(unsafe.Pointer(base)).CollideConnected = b3RecR_BOOL(tls, rdr)
-	(*JointDef)(unsafe.Pointer(base)).UserData = uint64(uintptrFromInt32(0))
+	(*JointDef)(unsafe.Pointer(base)).UserData = uint64(0)
 }
 
 func b3RecR_PARALLELJOINTDEF(tls *_Stack, rdr uintptr) (r ParallelJointDef) {
@@ -9373,7 +9375,7 @@ func b3RecDrawHitBounds(tls *_Stack, player uintptr, q uintptr, draw uintptr, co
 		if int32FromUint8(b3Shape_IsValid(tls, id)) == false1 {
 			goto _1
 		}
-		(*(*func(*_Stack, AABB, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn})))(tls, b3Shape_GetAABB(tls, id), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, AABB, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn)))(tls, b3Shape_GetAABB(tls, id), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		goto _1
 	_1:
 		;
@@ -9404,11 +9406,11 @@ func b3RecDrawProxy(tls *_Stack, draw uintptr, basePos Pos, q uintptr, color Hex
 		p1 = v3
 		if (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius > float32FromFloat32(0) {
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSphereFcn != 0 {
-				(*(*func(*_Stack, Pos, float32, HexColor, float32, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSphereFcn})))(tls, p1, (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius, color, float32FromFloat32(0.5), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, float32, HexColor, float32, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSphereFcn)))(tls, p1, (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius, color, float32FromFloat32(0.5), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 		} else {
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn != 0 {
-				(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p1, float32FromFloat32(10), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p1, float32FromFloat32(10), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 		}
 	} else {
@@ -9434,7 +9436,7 @@ func b3RecDrawProxy(tls *_Stack, draw uintptr, basePos Pos, q uintptr, color Hex
 				goto _12
 			_12:
 				p2 = v7
-				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn})))(tls, p11, p2, (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius, color, float32FromFloat32(0.5), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn)))(tls, p11, p2, (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyRadius, color, float32FromFloat32(0.5), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 		} else {
 			if (*b3RecDrawQuery)(unsafe.Pointer(q)).ProxyCount >= int32(2) && (*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn != 0 {
@@ -9452,7 +9454,7 @@ func b3RecDrawProxy(tls *_Stack, draw uintptr, basePos Pos, q uintptr, color Hex
 					}
 					goto _17
 				_17:
-					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, v3, float32FromFloat32(6), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, v3, float32FromFloat32(6), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 					goto _13
 				_13:
 					;
@@ -9512,7 +9514,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 		_5:
 			end = v4
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn != 0 {
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, origin, end, b3RecQuerySelColor(tls, selected, int32(b3_colorYellow)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, origin, end, b3RecQuerySelColor(tls, selected, int32(b3_colorYellow)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			hi = (*b3RecDrawQuery)(unsafe.Pointer(q)).HitStart
 			for {
@@ -9521,7 +9523,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 				}
 				h = (*b3RecPlayer)(unsafe.Pointer(player)).FrameHits + uintptr(hi)*112
 				if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn != 0 {
-					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h)).Point, float32FromFloat32(4), b3RecQuerySelColor(tls, selected, int32(b3_colorYellow)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h)).Point, float32FromFloat32(4), b3RecQuerySelColor(tls, selected, int32(b3_colorYellow)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 				if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn != 0 {
 					v7 = float32FromFloat32(0.2)
@@ -9542,7 +9544,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 					}
 					goto _14
 				_14:
-					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h)).Point, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorYellowGreen)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h)).Point, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorYellowGreen)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 				goto _6
 			_6:
@@ -9561,7 +9563,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 				}
 				goto _18
 			_18:
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, (*b3RecDrawQuery)(unsafe.Pointer(q)).Origin, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, (*b3RecDrawQuery)(unsafe.Pointer(q)).Origin, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			b3RecDrawProxy(tls, draw, (*b3RecDrawQuery)(unsafe.Pointer(q)).Origin, q, b3RecQuerySelColor(tls, selected, int32(b3_colorLightGreen)))
 			hi1 = (*b3RecDrawQuery)(unsafe.Pointer(q)).HitStart
@@ -9571,7 +9573,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 				}
 				h1 = (*b3RecPlayer)(unsafe.Pointer(player)).FrameHits + uintptr(hi1)*112
 				if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn != 0 {
-					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h1)).Point, float32FromFloat32(4), b3RecQuerySelColor(tls, selected, int32(b3_colorSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h1)).Point, float32FromFloat32(4), b3RecQuerySelColor(tls, selected, int32(b3_colorSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 				if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn != 0 {
 					v7 = float32FromFloat32(0.2)
@@ -9592,7 +9594,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 					}
 					goto _27
 				_27:
-					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h1)).Point, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorLightSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, (*b3RecRecordedHit)(unsafe.Pointer(h1)).Point, v4, b3RecQuerySelColor(tls, selected, int32(b3_colorLightSkyBlue)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 				if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSphereFcn != 0 {
 					v7 = (*b3RecRecordedHit)(unsafe.Pointer(h1)).Fraction
@@ -9644,7 +9646,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 			c2 = v13
 			c = int32(b3_colorLightSkyBlue)
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn != 0 {
-				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn})))(tls, c11, c2, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, b3RecQuerySelColor(tls, selected, c), float32FromFloat32(0.6), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn)))(tls, c11, c2, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, b3RecQuerySelColor(tls, selected, c), float32FromFloat32(0.6), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				if (*b3RecDrawQuery)(unsafe.Pointer(q)).CastFraction > float32FromFloat32(0.01) {
 					v7 = (*b3RecDrawQuery)(unsafe.Pointer(q)).CastFraction
 					v3 = (*b3RecDrawQuery)(unsafe.Pointer(q)).Translation
@@ -9676,7 +9678,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 					goto _55
 				_55:
 					c2 = v4
-					(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn})))(tls, c11, c2, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, c, float32FromFloat32(0.3), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn)))(tls, c11, c2, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, c, float32FromFloat32(0.3), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
 		case int32(_B3_RECQ_COLLIDE_MOVER):
@@ -9702,7 +9704,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 			c21 = v13
 			c1 = int32(b3_colorTan)
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn != 0 {
-				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn})))(tls, c12, c21, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, b3RecQuerySelColor(tls, selected, c1), float32FromFloat32(0.6), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, float32, HexColor, float32, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawCapsuleFcn)))(tls, c12, c21, (*b3RecDrawQuery)(unsafe.Pointer(q)).Mover.Radius, b3RecQuerySelColor(tls, selected, c1), float32FromFloat32(0.6), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			hi2 = (*b3RecDrawQuery)(unsafe.Pointer(q)).HitStart
 			for {
@@ -9739,7 +9741,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 					}
 					goto _76
 				_76:
-					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, point, v13, b3RecQuerySelColor(tls, selected, int32(b3_colorOrange)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, point, v13, b3RecQuerySelColor(tls, selected, int32(b3_colorOrange)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 				goto _64
 			_64:
@@ -9748,7 +9750,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 			}
 		case int32(_B3_RECQ_OVERLAP_AABB):
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn != 0 {
-				(*(*func(*_Stack, AABB, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn})))(tls, (*b3RecDrawQuery)(unsafe.Pointer(q)).Aabb, b3RecQuerySelColor(tls, selected, int32(b3_colorLimeGreen)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, AABB, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn)))(tls, (*b3RecDrawQuery)(unsafe.Pointer(q)).Aabb, b3RecQuerySelColor(tls, selected, int32(b3_colorLimeGreen)), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			b3RecDrawHitBounds(tls, player, q, draw, b3RecQuerySelColor(tls, selected, int32(b3_colorMagenta)))
 		case int32(_B3_RECQ_OVERLAP_SHAPE):
@@ -9942,7 +9944,7 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 					labelPos = v26
 				}
 			}
-			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, labelPos, bp, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, labelPos, bp, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 		goto _1
 	_1:

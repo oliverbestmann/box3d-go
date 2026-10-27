@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -649,7 +651,7 @@ _136:
 	(*b3World)(unsafe.Pointer(world)).EnableContinuous = (*WorldDef)(unsafe.Pointer(def)).EnableContinuous
 	(*b3World)(unsafe.Pointer(world)).EnableSpeculative = boolUint8(true1 != 0)
 	(*b3World)(unsafe.Pointer(world)).UserTreeTask = uintptrFromInt32(0)
-	(*b3World)(unsafe.Pointer(world)).UserData = uintptr((*WorldDef)(unsafe.Pointer(def)).UserData)
+	(*b3World)(unsafe.Pointer(world)).UserData = (*WorldDef)(unsafe.Pointer(def)).UserData
 	if (*WorldDef)(unsafe.Pointer(def)).WorkerCount > uint32(0) && (*WorldDef)(unsafe.Pointer(def)).enqueueTask != uintptrFromInt32(0) && (*WorldDef)(unsafe.Pointer(def)).finishTask != uintptrFromInt32(0) {
 		// External task system
 		v6 = int32FromUint32((*WorldDef)(unsafe.Pointer(def)).WorkerCount)
@@ -1176,7 +1178,7 @@ _51:
 	}
 	// Finish the tree task in case b3Solve didn't finish it
 	if (*b3World)(unsafe.Pointer(world)).UserTreeTask != 0 {
-		(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).FinishTaskFcn})))(tls, (*b3World)(unsafe.Pointer(world)).UserTreeTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
+		(*(*func(*_Stack, uintptr, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).FinishTaskFcn)))(tls, (*b3World)(unsafe.Pointer(world)).UserTreeTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
 		(*b3World)(unsafe.Pointer(world)).UserTreeTask = uintptrFromInt32(0)
 		*(*int32)(unsafe.Add(nil, world+4992)) -= int32(1)
 		b3ValidateNoMoved(tls, world+800)
@@ -1513,7 +1515,7 @@ _9:
 				p2 = v38
 				name = b3FindName(tls, world+4336, (*b3Body)(unsafe.Pointer(body)).NameId)
 				if name != uintptrFromInt32(0) {
-					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p2, name, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p2, name, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawMass != 0 {
@@ -1521,7 +1523,7 @@ _9:
 					P: (*b3BodySim)(unsafe.Pointer(bodySim)).Center,
 					Q: (*b3BodySim)(unsafe.Pointer(bodySim)).Transform.Q,
 				}
-				(*(*func(*_Stack, WorldTransform, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawTransformFcn})))(tls, transform1, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, WorldTransform, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawTransformFcn)))(tls, transform1, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				if (*b3Body)(unsafe.Pointer(body)).Type1 == int32(b3_dynamicBody) {
 					offset1 = Vec3{
 						X: float32FromFloat32(0.05),
@@ -1583,7 +1585,7 @@ _9:
 				_64:
 					p3 = v38
 					__builtin_snprintf(tls, bp+16, uint64(32), __ccgo_ts+25005, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).Mass)))
-					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p3, bp+16, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p3, bp+16, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawSleep != 0 {
@@ -1618,7 +1620,7 @@ _9:
 						color = colors[index]
 					}
 					center = (*b3BodySim)(unsafe.Pointer(bodySim)).Center
-					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, center, float32FromFloat32(10), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, center, float32FromFloat32(10), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 					offset2 = Vec3{
 						X: float32FromFloat32(0.1),
 						Y: float32FromFloat32(0.1),
@@ -1635,7 +1637,7 @@ _9:
 				_75:
 					p4 = v63
 					__builtin_snprintf(tls, bp+48, uint64(32), __ccgo_ts+25010, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).SleepVelocity)))
-					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p4, bp+48, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p4, bp+48, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
 			if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawJoints != 0 {
@@ -1807,9 +1809,9 @@ _9:
 									goto _119
 								_119:
 									p21 = v63
-									(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p11, p21, int32(b3_colorLightGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+									(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p11, p21, int32(b3_colorLightGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 									__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25226, vaList(bp+184, float64(float32FromFloat32(100)*(*ManifoldPoint)(unsafe.Pointer(mp)).Separation)))
-									(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+									(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 								} else {
 									if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawContactForces != 0 {
 										if (*b3World)(unsafe.Pointer(world)).Inv_dt > float32FromFloat32(0) {
@@ -1840,13 +1842,13 @@ _9:
 										goto _128
 									_128:
 										p22 = v63
-										(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p12, p22, impulseColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+										(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p12, p22, impulseColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 										__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25234, vaList(bp+184, float64(force)))
-										(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p12, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+										(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p12, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 									} else {
 										if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawContactFeatures != 0 {
 											__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25241, vaList(bp+184, (*ManifoldPoint)(unsafe.Pointer(mp)).FeatureId))
-											(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+											(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 										}
 									}
 								}
@@ -1858,23 +1860,23 @@ _9:
 									}
 									// graph color
 									pointSize = v23
-									(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p5, pointSize, graphColors[(*b3Contact)(unsafe.Pointer(contact)).ColorIndex], (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+									(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p5, pointSize, graphColors[(*b3Contact)(unsafe.Pointer(contact)).ColorIndex], (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 									// g_draw.DrawString(point->position, "%d", point->color);
 								} else {
 									if int32FromUint8((*ManifoldPoint)(unsafe.Pointer(mp)).Persisted) == false1 {
 										// Add
-										(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p5, float32FromFloat32(20), addColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+										(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p5, float32FromFloat32(20), addColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 									} else {
 										if (*ManifoldPoint)(unsafe.Pointer(mp)).Separation > speculativeDistance {
 											// Speculative
-											(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p5, float32FromFloat32(10), farColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+											(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p5, float32FromFloat32(10), farColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 										} else {
 											if (*ManifoldPoint)(unsafe.Pointer(mp)).Separation > float32FromFloat32(0) {
 												// Speculative
-												(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p5, float32FromFloat32(10), speculativeColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+												(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p5, float32FromFloat32(10), speculativeColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 											} else {
 												// Persist
-												(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p5, float32FromFloat32(10), persistColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+												(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p5, float32FromFloat32(10), persistColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 											}
 										}
 									}
@@ -1941,8 +1943,8 @@ _9:
 								goto _150
 							_150:
 								p23 = v74
-								(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p13, p23, frictionColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-								(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p13, float32FromFloat32(5), frictionColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+								(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p13, p23, frictionColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+								(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p13, float32FromFloat32(5), frictionColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 								v23 = float32(float32FromFloat32(0.05) * lengthScale)
 								v17 = normal
 								v18 = Vec3{
@@ -1972,7 +1974,7 @@ _9:
 								goto _161
 							_161:
 								__builtin_snprintf(tls, bp+112, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25005, vaList(bp+184, float64(v23)))
-								(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p13, bp+112, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+								(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p13, bp+112, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 							}
 							goto _91
 						_91:
@@ -2136,7 +2138,7 @@ _9:
 						b8 = b8 + 1
 					}
 					if shapeCount > 0 {
-						(*(*func(*_Stack, AABB, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn})))(tls, aabb, int32(b3_colorOrangeRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+						(*(*func(*_Stack, AABB, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn)))(tls, aabb, int32(b3_colorOrangeRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 					}
 					v77 = world + 4608
 					v12 = uint32FromInt32(islandId)
@@ -2177,7 +2179,7 @@ _9:
 			}
 			point = points1 + uintptr(j)*24
 			p6 = (*b3DebugPoint)(unsafe.Pointer(point)).P
-			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p6, float32FromFloat32(5), (*b3DebugPoint)(unsafe.Pointer(point)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p6, float32FromFloat32(5), (*b3DebugPoint)(unsafe.Pointer(point)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			__builtin_snprintf(tls, bp+144, uint64(32), __ccgo_ts+25316, vaList(bp+184, (*b3DebugPoint)(unsafe.Pointer(point)).Label, float64((*b3DebugPoint)(unsafe.Pointer(point)).Value)))
 			v38 = p6
 			v17 = offset3
@@ -2189,7 +2191,7 @@ _9:
 			goto _227
 		_227:
 			ps = v63
-			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, ps, bp+144, (*b3DebugPoint)(unsafe.Pointer(point)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, ps, bp+144, (*b3DebugPoint)(unsafe.Pointer(point)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			goto _223
 		_223:
 			;
@@ -2205,8 +2207,8 @@ _9:
 			line = lines + uintptr(j1)*32
 			p14 = (*b3DebugLine)(unsafe.Pointer(line)).P1
 			p24 = (*b3DebugLine)(unsafe.Pointer(line)).P2
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p14, p24, (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p14, float32FromFloat32(10), (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p14, p24, (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p14, float32FromFloat32(10), (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			__builtin_snprintf(tls, bp+144, uint64(32), __ccgo_ts+13748, vaList(bp+184, (*b3DebugLine)(unsafe.Pointer(line)).Label))
 			v38 = p14
 			v17 = offset3
@@ -2218,7 +2220,7 @@ _9:
 			goto _232
 		_232:
 			ps1 = v63
-			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, ps1, bp+144, (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, ps1, bp+144, (*b3DebugLine)(unsafe.Pointer(line)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			goto _228
 		_228:
 			;
@@ -2977,14 +2979,14 @@ func b3World_GetMaxCapacity(tls *_Stack, worldId WorldId) (r Capacity) {
 	return (*b3World)(unsafe.Pointer(world)).MaxCapacity
 }
 
-func b3World_SetUserData(tls *_Stack, worldId WorldId, userData uintptr) {
+func b3World_SetUserData(tls *_Stack, worldId WorldId, userData uint64) {
 	var world uintptr
 	_ = world
 	world = b3GetWorldFromId(tls, worldId)
 	(*b3World)(unsafe.Pointer(world)).UserData = userData
 }
 
-func b3World_GetUserData(tls *_Stack, worldId WorldId) (r uintptr) {
+func b3World_GetUserData(tls *_Stack, worldId WorldId) (r uint64) {
 	var world uintptr
 	_ = world
 	world = b3GetWorldFromId(tls, worldId)
@@ -5244,7 +5246,7 @@ func b3SerializeWorld(tls *_Stack, world uintptr, buf uintptr, rec uintptr) (r i
 			break
 		}
 		*(*b3Body)(unsafe.Add(nil, bp1+16)) = *(*b3Body)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Bodies.Data+uintptr(i1)*96))
-		(*(*b3Body)(unsafe.Add(nil, bp1+16))).UserData = uintptrFromInt32(0)
+		(*(*b3Body)(unsafe.Add(nil, bp1+16))).UserData = uint64(0)
 		b3SnapW_Bytes(tls, buf, bp1+16, int32(96))
 		goto _2
 	_2:
@@ -5268,7 +5270,7 @@ func b3SerializeWorld(tls *_Stack, world uintptr, buf uintptr, rec uintptr) (r i
 			break
 		}
 		*(*b3Joint)(unsafe.Add(nil, bp1+112)) = *(*b3Joint)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Joints.Data+uintptr(i2)*72))
-		(*(*b3Joint)(unsafe.Add(nil, bp1+112))).UserData = uintptrFromInt32(0)
+		(*(*b3Joint)(unsafe.Add(nil, bp1+112))).UserData = uint64(0)
 		b3SnapW_Bytes(tls, buf, bp1+112, int32(72))
 		goto _3
 	_3:

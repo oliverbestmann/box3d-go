@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -2764,18 +2766,18 @@ _58:
 	_74:
 		pMax = v73
 		if (*b3DistanceJoint)(unsafe.Pointer(joint)).MinLength > float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)) {
-			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pMin, float32FromFloat32(6), int32(b3_colorLightGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pMin, float32FromFloat32(6), int32(b3_colorLightGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 		if (*b3DistanceJoint)(unsafe.Pointer(joint)).MaxLength < float32(float32FromFloat32(100000)*b3GetLengthUnitsPerMeter(tls)) {
-			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pMax, float32FromFloat32(6), int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pMax, float32FromFloat32(6), int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 		if (*b3DistanceJoint)(unsafe.Pointer(joint)).MinLength > float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)) && (*b3DistanceJoint)(unsafe.Pointer(joint)).MaxLength < float32(float32FromFloat32(100000)*b3GetLengthUnitsPerMeter(tls)) {
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, pMin, pMax, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pMin, pMax, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 	}
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, pA, pB, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pA, float32FromFloat32(4), int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pB, float32FromFloat32(4), int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, pB, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pA, float32FromFloat32(4), int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pB, float32FromFloat32(4), int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	if (*b3DistanceJoint)(unsafe.Pointer(joint)).Hertz > float32FromFloat32(0) && (*b3DistanceJoint)(unsafe.Pointer(joint)).EnableSpring != 0 {
 		v10 = (*b3DistanceJoint)(unsafe.Pointer(joint)).Length
 		v4 = axis
@@ -2796,7 +2798,7 @@ _58:
 		goto _82
 	_82:
 		pRest = v50
-		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pRest, float32FromFloat32(4), int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pRest, float32FromFloat32(4), int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 }
 
@@ -3181,7 +3183,7 @@ _9:
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(jointId)*72
 	(*b3Joint)(unsafe.Pointer(joint)).JointId = jointId
-	(*b3Joint)(unsafe.Pointer(joint)).UserData = uintptr((*JointDef)(unsafe.Pointer(def)).UserData)
+	(*b3Joint)(unsafe.Pointer(joint)).UserData = (*JointDef)(unsafe.Pointer(def)).UserData
 	v13 = joint + 64
 	*(*uint16_t)(unsafe.Pointer(v13)) = uint16_t(int32(*(*uint16_t)(unsafe.Pointer(v13))) + int32FromInt32(1))
 	(*b3Joint)(unsafe.Pointer(joint)).SetIndex = -int32(1)
@@ -4485,7 +4487,7 @@ func b3Joint_GetCollideConnected(tls *_Stack, jointId JointId) (r uint8) {
 	return (*b3Joint)(unsafe.Pointer(joint)).CollideConnected
 }
 
-func b3Joint_SetUserData(tls *_Stack, jointId JointId, userData uintptr) {
+func b3Joint_SetUserData(tls *_Stack, jointId JointId, userData uint64) {
 	var joint, world uintptr
 	_, _ = joint, world
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -4493,7 +4495,7 @@ func b3Joint_SetUserData(tls *_Stack, jointId JointId, userData uintptr) {
 	(*b3Joint)(unsafe.Pointer(joint)).UserData = userData
 }
 
-func b3Joint_GetUserData(tls *_Stack, jointId JointId) (r uintptr) {
+func b3Joint_GetUserData(tls *_Stack, jointId JointId) (r uint64) {
 	var joint, world uintptr
 	_, _ = joint, world
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -6067,11 +6069,11 @@ _56:
 	case int32(b3_distanceJoint):
 		b3DrawDistanceJoint(tls, draw, jointSim, transformA, transformB)
 	case int32(b3_filterJoint):
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, pA, pB, int32(b3_colorGold), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, pB, int32(b3_colorGold), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	case int32(b3_motorJoint):
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, pA, pB, int32(b3_colorPlum), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pA, float32FromFloat32(8), int32(b3_colorYellowGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, pB, float32FromFloat32(8), int32(b3_colorPlum), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, pB, int32(b3_colorPlum), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pA, float32FromFloat32(8), int32(b3_colorYellowGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pB, float32FromFloat32(8), int32(b3_colorPlum), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	case int32(b3_prismaticJoint):
 		b3DrawPrismaticJoint(tls, draw, jointSim, transformA, transformB, scale)
 	case int32(b3_revoluteJoint):
@@ -6083,9 +6085,9 @@ _56:
 	case int32(b3_wheelJoint):
 		b3DrawWheelJoint(tls, draw, jointSim, transformA, transformB, scale)
 	default:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, transformA.P, pA, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, pA, pB, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, transformB.P, pB, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, transformA.P, pA, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, pB, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, transformB.P, pB, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		break
 	}
 	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawGraphColors != 0 {
@@ -6127,7 +6129,7 @@ _56:
 			goto _62
 		_62:
 			p2 = v58
-			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p2, float32FromFloat32(5), graphColors[colorIndex], (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p2, float32FromFloat32(5), graphColors[colorIndex], (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 	}
 	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawJointExtras != 0 {
@@ -6162,7 +6164,7 @@ _56:
 		}
 		goto _75
 	_75:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p3, v61, int32(b3_colorAzure), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p3, v61, int32(b3_colorAzure), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		v5 = force
 		v6 = v5
 		v7 = v5
@@ -6182,7 +6184,7 @@ _56:
 		goto _85
 	_85:
 		__builtin_snprintf(tls, bp, uint64(64), __ccgo_ts+20772, vaList(bp+72, float64(v11), float64(v36)))
-		(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn})))(tls, p3, bp, int32(b3_colorAzure), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p3, bp, int32(b3_colorAzure), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 }
 
@@ -10390,7 +10392,7 @@ _74:
 	}
 	goto _78
 _78:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v1 = transformB
 	v2 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB
 	v3 = v1.Q
@@ -10555,7 +10557,7 @@ _152:
 	}
 	goto _156
 _156:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameB.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameB.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 }
 
 func b3Joint_IsValid(tls *_Stack, id JointId) (r uint8) {
@@ -14972,7 +14974,7 @@ _103:
 	}
 	goto _107
 _107:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v106, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v106, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v10 = s2
 	v5 = perpZ
 	v6 = Vec3{
@@ -14991,7 +14993,7 @@ _111:
 	}
 	goto _115
 _115:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v106, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v106, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	joint = base + 184
 	if (*b3PrismaticJoint)(unsafe.Pointer(joint)).EnableLimit != 0 {
 		v10 = (*b3PrismaticJoint)(unsafe.Pointer(joint)).LowerTranslation
@@ -15032,9 +15034,9 @@ _115:
 		goto _131
 	_131:
 		p2 = v114
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p1, p2, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p1, float32FromFloat32(10), int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, p2, float32FromFloat32(10), int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p1, p2, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p1, float32FromFloat32(10), int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p2, float32FromFloat32(10), int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	} else {
 		v10 = float32(-float32FromFloat32(0.5) * scale)
 		v5 = axis
@@ -15074,9 +15076,9 @@ _115:
 		goto _147
 	_147:
 		p21 = v114
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, p11, p21, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p11, p21, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
-	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, frameB.P, float32FromFloat32(8), int32(b3_colorViolet), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, frameB.P, float32FromFloat32(8), int32(b3_colorViolet), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 }
 
 func b3RecMakeJointId(tls *_Stack, rdr uintptr, recorded JointId) (r JointId) {
@@ -18433,7 +18435,7 @@ _74:
 	}
 	goto _78
 _78:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v3 = frameA.Q
 	v5 = b3Vec3_axisY
 	v6 = v3.V
@@ -18496,7 +18498,7 @@ _104:
 	}
 	goto _108
 _108:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v3 = frameA.Q
 	v5 = b3Vec3_axisZ
 	v6 = v3.V
@@ -18559,7 +18561,7 @@ _134:
 	}
 	goto _138
 _138:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v1 = transformB
 	v2 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB
 	v3 = v1.Q
@@ -18821,7 +18823,7 @@ _186:
 				}
 				goto _249
 			_249:
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			if index == int32(16)-int32FromInt32(1) {
 				v1 = frameA
@@ -18877,7 +18879,7 @@ _186:
 				}
 				goto _274
 			_274:
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v75, frameA.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v75, frameA.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			v1 = frameA
 			v3 = v1.Q
@@ -18985,7 +18987,7 @@ _186:
 			}
 			goto _324
 		_324:
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			goto _216
 		_216:
 			;
@@ -19072,7 +19074,7 @@ _186:
 		}
 		goto _358
 	_358:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v75, int32(b3_colorYellow), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v75, int32(b3_colorYellow), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 }
 
@@ -22838,7 +22840,7 @@ _74:
 	}
 	goto _78
 _78:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v3 = frameA.Q
 	v5 = b3Vec3_axisY
 	v6 = v3.V
@@ -22901,7 +22903,7 @@ _104:
 	}
 	goto _108
 _108:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v3 = frameA.Q
 	v5 = b3Vec3_axisZ
 	v6 = v3.V
@@ -22964,7 +22966,7 @@ _134:
 	}
 	goto _138
 _138:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v77, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	v1 = transformB
 	v2 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB
 	v3 = v1.Q
@@ -23130,7 +23132,7 @@ _212:
 	}
 	goto _216
 _216:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameB.P, v77, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameB.P, v77, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	joint = base + 184
 	// Twist limit
 	if (*b3SphericalJoint)(unsafe.Pointer(joint)).EnableTwistLimit != 0 {
@@ -23290,7 +23292,7 @@ _216:
 				}
 				goto _279
 			_279:
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			if index == int32(16)-int32FromInt32(1) {
 				v1 = frameA
@@ -23346,7 +23348,7 @@ _216:
 				}
 				goto _304
 			_304:
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v75, frameA.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v75, frameA.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			v1 = frameA
 			v3 = v1.Q
@@ -23454,7 +23456,7 @@ _216:
 			}
 			goto _354
 		_354:
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			goto _246
 		_246:
 			;
@@ -23541,7 +23543,7 @@ _216:
 		}
 		goto _388
 	_388:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v75, int32(b3_colorYellow), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v75, int32(b3_colorYellow), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 	// Swing limit
 	if (*b3SphericalJoint)(unsafe.Pointer(joint)).EnableConeLimit != 0 {
@@ -23642,7 +23644,7 @@ _216:
 			}
 			goto _426
 		_426:
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, v75, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			v1 = frameA
 			v3 = v1.Q
 			v5 = vertex11
@@ -23749,7 +23751,7 @@ _216:
 			}
 			goto _476
 		_476:
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v75, v77, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			goto _393
 		_393:
 			;
@@ -25790,8 +25792,8 @@ _96:
 		Y: float32(float32FromFloat32(0.05) * scale),
 		Z: float32(float32FromFloat32(0.025) * scale),
 	}
-	(*(*func(*_Stack, Vec3, WorldTransform, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoxFcn})))(tls, extents, frameA, int32(b3_colorDarkOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-	(*(*func(*_Stack, Vec3, WorldTransform, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoxFcn})))(tls, extents, frameB, int32(b3_colorDarkCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Vec3, WorldTransform, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoxFcn)))(tls, extents, frameA, int32(b3_colorDarkOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Vec3, WorldTransform, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoxFcn)))(tls, extents, frameB, int32(b3_colorDarkCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 }
 
 /**@}*/ // contact
@@ -30834,7 +30836,7 @@ _100:
 	goto _103
 _103:
 	matrixB = v102
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frameA.P, frameB.P, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frameA.P, frameB.P, int32(b3_colorBlue), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	if (*b3WheelJoint)(unsafe.Pointer(joint)).EnableSuspensionLimit != 0 {
 		v11 = (*b3WheelJoint)(unsafe.Pointer(joint)).LowerSuspensionLimit
 		v6 = matrixA.Cx
@@ -30875,7 +30877,7 @@ _103:
 	_119:
 		upper = v118
 		perp = matrixA.Cy
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, lower, upper, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, lower, upper, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		v11 = float32(-float32FromFloat32(0.1) * scale)
 		v6 = perp
 		v7 = Vec3{
@@ -30912,7 +30914,7 @@ _103:
 		}
 		goto _135
 	_135:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v110, v118, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v110, v118, int32(b3_colorGreen), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		v11 = float32(-float32FromFloat32(0.1) * scale)
 		v6 = perp
 		v7 = Vec3{
@@ -30949,7 +30951,7 @@ _103:
 		}
 		goto _151
 	_151:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v110, v118, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v110, v118, int32(b3_colorRed), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	} else {
 		v11 = float32(-float32FromFloat32(1) * scale)
 		v6 = matrixA.Cx
@@ -30987,7 +30989,7 @@ _103:
 		}
 		goto _167
 	_167:
-		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v110, v118, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v110, v118, int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 	if (*b3WheelJoint)(unsafe.Pointer(joint)).EnableSteering != 0 && (*b3WheelJoint)(unsafe.Pointer(joint)).EnableSteeringLimit != 0 {
 		// b3Quat quatA = frameA.q;
@@ -31134,12 +31136,12 @@ _103:
 		_221:
 			vertex2 = v108
 			if index == 0 {
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, frame.P, vertex1, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frame.P, vertex1, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
 			if index == sliceCount-int32(1) {
-				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, vertex2, frame.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, vertex2, frame.P, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			}
-			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, vertex1, vertex2, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+			(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, vertex1, vertex2, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 			vertex1 = vertex2
 			goto _193
 		_193:
@@ -31183,7 +31185,7 @@ _233:
 	}
 	goto _237
 _237:
-	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn})))(tls, v110, v118, int32(b3_colorMagenta), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, frameA.P, float32FromFloat32(5), int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn})))(tls, frameB.P, float32FromFloat32(5), int32(b3_colorDimGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v110, v118, int32(b3_colorMagenta), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, frameA.P, float32FromFloat32(5), int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, frameB.P, float32FromFloat32(5), int32(b3_colorDimGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 }

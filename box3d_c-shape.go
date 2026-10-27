@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -4220,7 +4222,7 @@ _10:
 		}
 		goto _25
 	_25:
-		fraction = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{(*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, v24, output.Normal, output.Fraction, userMaterialId, triangleIndex, childIndex, (*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).UserContext)
+		fraction = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(funcPtr((*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, v24, output.Normal, output.Fraction, userMaterialId, triangleIndex, childIndex, (*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).UserContext)
 		// The user may return -1 to skip this shape
 		if float32FromFloat32(0) <= fraction && fraction <= float32FromFloat32(1) {
 			(*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).Fraction = fraction
@@ -4639,8 +4641,8 @@ func b3CreateShapeInternal(tls *_Stack, world uintptr, body uintptr, bodyTransfo
 	(*b3Shape)(unsafe.Pointer(shape)).Density = (*cShapeDef)(unsafe.Pointer(def)).Density
 	(*b3Shape)(unsafe.Pointer(shape)).ExplosionScale = (*cShapeDef)(unsafe.Pointer(def)).ExplosionScale
 	(*b3Shape)(unsafe.Pointer(shape)).Filter = (*cShapeDef)(unsafe.Pointer(def)).Filter
-	(*b3Shape)(unsafe.Pointer(shape)).UserData = uintptr((*cShapeDef)(unsafe.Pointer(def)).UserData)
-	(*b3Shape)(unsafe.Pointer(shape)).UserShape = uintptrFromInt32(0)
+	(*b3Shape)(unsafe.Pointer(shape)).UserData = (*cShapeDef)(unsafe.Pointer(def)).UserData
+	(*b3Shape)(unsafe.Pointer(shape)).UserShape = uint64(0)
 	(*b3Shape)(unsafe.Pointer(shape)).Flags = uint8(0)
 	v3 = shape + 174
 	if (*cShapeDef)(unsafe.Pointer(def)).EnableSensorEvents != 0 {
@@ -6711,9 +6713,9 @@ func b3DestroyShapeAllocationForShapeChange(tls *_Stack, world uintptr, shape ui
 	default:
 		break
 	}
-	if (*b3Shape)(unsafe.Pointer(shape)).UserShape != uintptrFromInt32(0) {
-		(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).DestroyDebugShape})))(tls, (*b3Shape)(unsafe.Pointer(shape)).UserShape, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
-		(*b3Shape)(unsafe.Pointer(shape)).UserShape = uintptrFromInt32(0)
+	if (*b3Shape)(unsafe.Pointer(shape)).UserShape != uint64(0) {
+		(*(*func(*_Stack, uint64, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).DestroyDebugShape)))(tls, (*b3Shape)(unsafe.Pointer(shape)).UserShape, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+		(*b3Shape)(unsafe.Pointer(shape)).UserShape = uint64(0)
 	}
 }
 
@@ -6792,7 +6794,7 @@ func b3Shape_GetWorld(tls *_Stack, shapeId ShapeId) (r WorldId) {
 	}
 }
 
-func b3Shape_SetUserData(tls *_Stack, shapeId ShapeId, userData uintptr) {
+func b3Shape_SetUserData(tls *_Stack, shapeId ShapeId, userData uint64) {
 	var shape, world uintptr
 	_, _ = shape, world
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -6800,7 +6802,7 @@ func b3Shape_SetUserData(tls *_Stack, shapeId ShapeId, userData uintptr) {
 	(*b3Shape)(unsafe.Pointer(shape)).UserData = userData
 }
 
-func b3Shape_GetUserData(tls *_Stack, shapeId ShapeId) (r uintptr) {
+func b3Shape_GetUserData(tls *_Stack, shapeId ShapeId) (r uint64) {
 	var shape, world uintptr
 	_, _ = shape, world
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -10497,7 +10499,7 @@ func b3DefaultShapeDef(tls *_Stack) (r cShapeDef) {
 	return def
 }
 
-func b3EmptyDrawShape(tls *_Stack, userShape uintptr, transform WorldTransform, color HexColor, context uintptr) {
+func b3EmptyDrawShape(tls *_Stack, userShape uint64, transform WorldTransform, color HexColor, context uintptr) {
 	_ = uint64FromInt64(4)
 }
 
@@ -10529,8 +10531,8 @@ func b3SerShapes(tls *_Stack, buf uintptr, world uintptr, rec uintptr) {
 		isLive = boolUint8((*(*b3Shape)(unsafe.Add(nil, bp))).Id == i)
 		// Null out pointer fields before writing the raw struct
 		(*(*b3Shape)(unsafe.Add(nil, bp))).Materials = uintptrFromInt32(0)
-		(*(*b3Shape)(unsafe.Add(nil, bp))).UserData = uintptrFromInt32(0)
-		(*(*b3Shape)(unsafe.Add(nil, bp))).UserShape = uintptrFromInt32(0)
+		(*(*b3Shape)(unsafe.Add(nil, bp))).UserData = uint64(0)
+		(*(*b3Shape)(unsafe.Add(nil, bp))).UserShape = uint64(0)
 		// Zero the geometry union so free-slot images have deterministic bytes
 		if !(isLive != 0) {
 			memset(tls, bp+176, 0, uint64(28))
@@ -10597,9 +10599,10 @@ func b3DesShapes(tls *_Stack, r uintptr, world uintptr, rdr uintptr) {
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
 	var count, geoKind, i, i1, i2, matCount, newSize, oldShapeCount, oldSize int32
-	var dst, old, savedGeneration, savedUserShape, slot, slot1, slot2, slot3, v2 uintptr
+	var dst, old, savedGeneration, savedUserShape, slot, slot1, slot2, slot3 uintptr
 	var gid, gid1, gid2, gid3 uint32_t
 	var isLive, oldLive uint8
+	var v2 uint64
 	var _ /* scale at bp+0 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = count, dst, geoKind, gid, gid1, gid2, gid3, i, i1, i2, isLive, matCount, newSize, old, oldLive, oldShapeCount, oldSize, savedGeneration, savedUserShape, slot, slot1, slot2, slot3, v2
 	count = b3SnapR_I32(tls, r)
@@ -10631,9 +10634,9 @@ func b3DesShapes(tls *_Stack, r uintptr, world uintptr, rdr uintptr) {
 			if oldLive != 0 {
 				v2 = (*b3Shape)(unsafe.Pointer(old)).UserShape
 			} else {
-				v2 = uintptrFromInt32(0)
+				v2 = uint64(0)
 			}
-			*(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i)*8)) = v2
+			*(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i)*8)) = v2
 			*(*uint16_t)(unsafe.Add(nil, savedGeneration+uintptr(i)*2)) = (*b3Shape)(unsafe.Pointer(old)).Generation
 			goto _1
 		_1:
@@ -10658,15 +10661,15 @@ func b3DesShapes(tls *_Stack, r uintptr, world uintptr, rdr uintptr) {
 		b3SnapR_Bytes(tls, r, dst, int32(208))
 		// Pointer fields were written as NULL; set them cleanly
 		(*b3Shape)(unsafe.Pointer(dst)).Materials = uintptrFromInt32(0)
-		(*b3Shape)(unsafe.Pointer(dst)).UserData = uintptrFromInt32(0)
-		(*b3Shape)(unsafe.Pointer(dst)).UserShape = uintptrFromInt32(0)
+		(*b3Shape)(unsafe.Pointer(dst)).UserData = uint64(0)
+		(*b3Shape)(unsafe.Pointer(dst)).UserShape = uint64(0)
 		memset(tls, dst+176, 0, uint64(28))
 		isLive = boolUint8((*b3Shape)(unsafe.Pointer(dst)).Id == i1)
 		// Carry the renderer handle over when the same shape still occupies this slot. Consumed
 		// handles are nulled so the teardown sweep only releases the ones that vanished.
-		if isLive != 0 && i1 < oldShapeCount && savedUserShape != uintptrFromInt32(0) && *(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8)) != uintptrFromInt32(0) && int32FromUint16(*(*uint16_t)(unsafe.Add(nil, savedGeneration+uintptr(i1)*2))) == int32FromUint16((*b3Shape)(unsafe.Pointer(dst)).Generation) {
-			(*b3Shape)(unsafe.Pointer(dst)).UserShape = *(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8))
-			*(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8)) = uintptrFromInt32(0)
+		if isLive != 0 && i1 < oldShapeCount && savedUserShape != uintptrFromInt32(0) && *(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8)) != uint64(0) && int32FromUint16(*(*uint16_t)(unsafe.Add(nil, savedGeneration+uintptr(i1)*2))) == int32FromUint16((*b3Shape)(unsafe.Pointer(dst)).Generation) {
+			(*b3Shape)(unsafe.Pointer(dst)).UserShape = *(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8))
+			*(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i1)*8)) = uint64(0)
 		}
 		// Serializer writes: matCount, matData, geoKind, geoData
 		matCount = b3SnapR_I32(tls, r)
@@ -10767,8 +10770,8 @@ func b3DesShapes(tls *_Stack, r uintptr, world uintptr, rdr uintptr) {
 			if !(i2 < oldShapeCount) {
 				break
 			}
-			if *(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i2)*8)) != uintptrFromInt32(0) && (*b3World)(unsafe.Pointer(world)).DestroyDebugShape != uintptrFromInt32(0) {
-				(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).DestroyDebugShape})))(tls, *(*uintptr)(unsafe.Add(nil, savedUserShape+uintptr(i2)*8)), (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+			if *(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i2)*8)) != uint64(0) && (*b3World)(unsafe.Pointer(world)).DestroyDebugShape != uintptrFromInt32(0) {
+				(*(*func(*_Stack, uint64, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).DestroyDebugShape)))(tls, *(*uint64_t)(unsafe.Add(nil, savedUserShape+uintptr(i2)*8)), (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			}
 			goto _4
 		_4:

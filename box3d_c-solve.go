@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -3174,7 +3176,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	splitIslandTask = uintptrFromInt32(0)
 	if (*b3World)(unsafe.Pointer(world)).SplitIslandId != -int32(1) {
 		if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
-			splitIslandTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn})))(tls, __ccgo_fp(b3SplitIslandTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+33076)
+			splitIslandTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3SplitIslandTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+33076)
 			*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 			if splitIslandTask == uintptrFromInt32(0) {
 				v1 = 0
@@ -3282,7 +3284,7 @@ _39:
 		(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].WorkerIndex = i7
 		if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
 			__builtin_snprintf(tls, bp+2600, uint64(16), __ccgo_ts+33265, vaList(bp+2648, i7))
-			(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].UserTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn})))(tls, __ccgo_fp(b3SolverTask), bp+1824+uintptr(i7)*24, (*b3World)(unsafe.Pointer(world)).UserTaskContext, bp+2600)
+			(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].UserTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3SolverTask), bp+1824+uintptr(i7)*24, (*b3World)(unsafe.Pointer(world)).UserTaskContext, bp+2600)
 			*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 			if (*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].UserTask == uintptrFromInt32(0) {
 				v1 = 0
@@ -3316,7 +3318,7 @@ _39:
 			break
 		}
 		if (*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i8].UserTask != uintptrFromInt32(0) {
-			(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).FinishTaskFcn})))(tls, (*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i8].UserTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
+			(*(*func(*_Stack, uintptr, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).FinishTaskFcn)))(tls, (*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i8].UserTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
 			*(*int32)(unsafe.Add(nil, world+4992)) -= int32(1)
 		}
 		goto _43
@@ -3326,7 +3328,7 @@ _39:
 	}
 	// Finish island split
 	if splitIslandTask != uintptrFromInt32(0) {
-		(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).FinishTaskFcn})))(tls, splitIslandTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
+		(*(*func(*_Stack, uintptr, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).FinishTaskFcn)))(tls, splitIslandTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
 		*(*int32)(unsafe.Add(nil, world+4992)) -= int32(1)
 	}
 	(*b3World)(unsafe.Pointer(world)).SplitIslandId = -int32(1)
@@ -3352,7 +3354,7 @@ _39:
 	// Finish the user tree task that was queued earlier in the time step. This must be complete before touching the
 	// broad-phase.
 	if (*b3World)(unsafe.Pointer(world)).UserTreeTask != uintptrFromInt32(0) {
-		(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).FinishTaskFcn})))(tls, (*b3World)(unsafe.Pointer(world)).UserTreeTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
+		(*(*func(*_Stack, uintptr, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).FinishTaskFcn)))(tls, (*b3World)(unsafe.Pointer(world)).UserTreeTask, (*b3World)(unsafe.Pointer(world)).UserTaskContext)
 		(*b3World)(unsafe.Pointer(world)).UserTreeTask = uintptrFromInt32(0)
 		*(*int32)(unsafe.Add(nil, world+4992)) -= int32(1)
 	}
@@ -3419,7 +3421,7 @@ _39:
 					World0:     worldIndex0,
 					Generation: (*b3Joint)(unsafe.Pointer(joint)).Generation,
 				},
-				UserData: uint64((*b3Joint)(unsafe.Pointer(joint)).UserData),
+				UserData: (*b3Joint)(unsafe.Pointer(joint)).UserData,
 			}
 			if (*b3World)(unsafe.Pointer(world)).JointEvents.Count >= (*b3World)(unsafe.Pointer(world)).JointEvents.Capacity {
 				oldSize1 = int32FromUint64(uint64FromInt32((*b3World)(unsafe.Pointer(world)).JointEvents.Capacity) * uint64(16))

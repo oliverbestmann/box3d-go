@@ -16,9 +16,9 @@ type (
 	meshQueryCallback         = func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8
 	assertCallback            = func(*_Stack, uintptr, uintptr, int32) int32
 	logCallback               = func(*_Stack, uintptr)
-	createDebugShapeCallback  = func(*_Stack, uintptr, uintptr) uintptr
-	destroyDebugShapeCallback = func(*_Stack, uintptr, uintptr)
-	drawShapeCallback         = func(*_Stack, uintptr, WorldTransform, HexColor, uintptr)
+	createDebugShapeCallback  = func(*_Stack, uintptr, uintptr) uint64
+	destroyDebugShapeCallback = func(*_Stack, uint64, uintptr)
+	drawShapeCallback         = func(*_Stack, uint64, WorldTransform, HexColor, uintptr)
 	drawSegmentCallback       = func(*_Stack, Pos, Pos, HexColor, uintptr)
 	drawTransformCallback     = func(*_Stack, WorldTransform, uintptr)
 	drawPointCallback         = func(*_Stack, Pos, float32, HexColor, uintptr)

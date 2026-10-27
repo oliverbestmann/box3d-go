@@ -116,7 +116,7 @@ func BenchmarkUpstream(b *testing.B) {
 }
 
 // malloc is used by the translated benchmarks of box3d's shared/benchmarks.c
-func malloc(tls *_Stack, size uint64) uintptr {
+func malloc(tls *_Stack, size size_t) uintptr {
 	return __builtin_aligned_alloc(tls, 16, size)
 }
 

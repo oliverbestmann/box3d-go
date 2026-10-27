@@ -68,7 +68,7 @@ func __builtin_ctzll(_ *_Stack, value uint64) int32 {
 	return int32(bits.TrailingZeros64(value))
 }
 
-func __builtin_aligned_alloc(tls *_Stack, align, size uint64) uintptr {
+func __builtin_aligned_alloc(tls *_Stack, align, size size_t) uintptr {
 	buf := unsafe.Pointer(unsafe.SliceData(make([]byte, size+align)))
 	addr := uintptr(buf)
 
@@ -177,7 +177,8 @@ func clock_gettime(tls *_Stack, clk clockid_t, ts uintptr) (r int32) {
 	now := time.Now()
 
 	(*timespec)(unsafe.Pointer(ts)).Tv_sec = now.Unix()
-	(*timespec)(unsafe.Pointer(ts)).Tv_nsec = int64(now.Nanosecond())
+	// C long is pointer sized on Linux
+	(*timespec)(unsafe.Pointer(ts)).Tv_nsec = intptr_t(now.Nanosecond())
 
 	return 0
 }
@@ -299,11 +300,11 @@ func fread(tls *_Stack, ptr uintptr, size, n size_t, f uintptr) size_t {
 	panic("fread: not implemented")
 }
 
-func fseek(tls *_Stack, f uintptr, offset int64, whence int32) int32 {
+func fseek(tls *_Stack, f uintptr, offset intptr_t, whence int32) int32 {
 	panic("fseek: not implemented")
 }
 
-func ftell(tls *_Stack, f uintptr) int64 {
+func ftell(tls *_Stack, f uintptr) intptr_t {
 	panic("ftell: not implemented")
 }
 

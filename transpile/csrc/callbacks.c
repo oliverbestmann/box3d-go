@@ -21,10 +21,10 @@ bool b3go_MoverFilterFcn( b3ShapeId shapeId, void* context ) { return 0; }
 bool b3go_MeshQueryFcn( b3Vec3 a, b3Vec3 b, b3Vec3 c, int triangleIndex, void* context ) { return 0; }
 int b3go_AssertFcn( const char* condition, const char* fileName, int lineNumber ) { return 0; }
 void b3go_LogFcn( const char* message ) {}
-void* b3go_CreateDebugShapeCallback( const b3DebugShape* debugShape, void* userContext ) { return 0; }
-void b3go_DestroyDebugShapeCallback( void* userShape, void* userContext ) {}
+uint64_t b3go_CreateDebugShapeCallback( const b3DebugShape* debugShape, void* userContext ) { return 0; }
+void b3go_DestroyDebugShapeCallback( uint64_t userShape, void* userContext ) {}
 
-void b3go_DrawShapeFcn( void* userShape, b3WorldTransform transform, b3HexColor color, void* context ) {}
+void b3go_DrawShapeFcn( uint64_t userShape, b3WorldTransform transform, b3HexColor color, void* context ) {}
 void b3go_DrawSegmentFcn( b3Pos p1, b3Pos p2, b3HexColor color, void* context ) {}
 void b3go_DrawTransformFcn( b3WorldTransform transform, void* context ) {}
 void b3go_DrawPointFcn( b3Pos p, float size, b3HexColor color, void* context ) {}

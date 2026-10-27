@@ -1,3 +1,5 @@
+//go:build !tinygo
+
 package b3
 
 import (

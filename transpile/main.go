@@ -54,18 +54,36 @@ var PREDEF_THREADS = `
 
 const PKGNAME = "b3"
 
-// rawOutput keeps the unprocessed ccgo output for -no-transpile.
-// The go tool ignores directories starting with an underscore.
-const rawOutput = "_build/box3d_c.go"
+// arch32 are the targets with 32-bit pointers that use the C data model of linux/arm.
+// TinyGo aligns 64-bit values to 8 bytes on wasm, like C on arm.
+const arch32 = "arm || (tinygo && wasm)"
+
+// The generated files only build for the data model they were translated for, the files
+// for 32-bit targets have a suffix.
+var archConstraint, fileSuffix string
 
 func main() {
 	var noTranspile bool
+	var goarch string
 
 	flag.BoolVar(&noTranspile, "no-transpile", false, "do not transpile the c sources")
+	flag.StringVar(&goarch, "goarch", runtime.GOARCH, "amd64 or arm64 for 64-bit targets, arm for 32-bit targets")
 	flag.Parse()
 
 	goos := runtime.GOOS
-	goarch := runtime.GOARCH
+
+	switch goarch {
+	case "amd64", "arm64":
+		archConstraint = "!(" + arch32 + ")"
+	case "arm":
+		archConstraint, fileSuffix = arch32, "_32"
+	default:
+		panic("unsupported goarch: " + goarch)
+	}
+
+	// rawOutput keeps the unprocessed ccgo output for -no-transpile.
+	// The go tool ignores directories starting with an underscore.
+	rawOutput := "_build/box3d_c" + fileSuffix + ".go"
 
 	files, err := filepath.Glob("../box3d-c/src/*.c")
 	must(err)
@@ -110,6 +128,10 @@ func main() {
 	gofs, err := filepath.Glob("../box3d_c*.go")
 	must(err)
 	for _, gof := range gofs {
+		if strings.HasSuffix(strings.TrimSuffix(strings.TrimSuffix(gof, ".go"), "_test"), "_32") != (fileSuffix != "") {
+			continue
+		}
+
 		must(os.Remove(gof))
 	}
 
@@ -143,6 +165,7 @@ func main() {
 	root = dstutil.Apply(root, nil, removeModernC())
 	root = dstutil.Apply(root, nil, hideSupportFuncs())
 	root = dstutil.Apply(root, nil, fixQSortInvocation())
+	root = dstutil.Apply(root, nil, useFuncPtr())
 	root = dstutil.Apply(root, nil, useApiTypes(api.ExposedTypes))
 	root = dstutil.Apply(root, nil, forwardDefaultAssertFcnToGo())
 	dst.Inspect(root, renameApiTypes(api.ExposedTypes))
@@ -167,32 +190,51 @@ func main() {
 	})
 
 	scenes := extractScenes(root.(*dst.File))
-	writeSource("../"+sceneFile, &dst.File{
+	writeGenerated(sceneFile, "", &dst.File{
 		Name:  dst.NewIdent(PKGNAME),
 		Decls: withImport(scenes, "unsafe"),
 	})
 
 	// the scalar wide float math, simd*.go replaces it with archsimd
-	writeSource("../box3d_c-floatw.go", &dst.File{
+	writeGenerated("box3d_c-floatw.go", "!("+simdBuildTag+")", &dst.File{
 		Name:  dst.NewIdent(PKGNAME),
 		Decls: withImport(extractDecls(root, floatWDecls), "unsafe"),
-		Decs: dst.FileDecorations{NodeDecs: dst.NodeDecs{
-			Start: dst.Decorations{"//go:build !(" + simdBuildTag + ")", "\n"},
-		}},
 	})
 
 	for idx := range extracted {
 		root = dstutil.Apply(root, nil, extractInit(&extracted[idx].Decls, extracted[idx].Pattern))
 	}
 
-	writeSource("../box3d_c.go", root.(*dst.File))
+	writeGenerated("box3d_c.go", "", root.(*dst.File))
 
 	for _, ex := range extracted {
-		writeSource("../"+ex.Name, &dst.File{
+		writeGenerated(ex.Name, "", &dst.File{
 			Name:  dst.NewIdent(PKGNAME),
 			Decls: withImport(ex.Decls, "unsafe", "reflect"),
 		})
 	}
+}
+
+// writeGenerated writes a file of the translated code for the data model of the target. The
+// constraint further limits the build if not empty.
+func writeGenerated(name, constraint string, file *dst.File) {
+	if constraint != "" {
+		constraint = "(" + constraint + ") && "
+	}
+
+	file.Decs.Start = append(dst.Decorations{"//go:build " + constraint + "(" + archConstraint + ")", "\n"}, file.Decs.Start...)
+
+	base, test := strings.CutSuffix(name, "_test.go")
+	if !test {
+		base = strings.TrimSuffix(name, ".go")
+	}
+
+	ext := ".go"
+	if test {
+		ext = "_test.go"
+	}
+
+	writeSource("../"+base+fileSuffix+ext, file)
 }
 
 func hideConsts(root dst.Node) {
@@ -706,13 +748,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 
 					arg = &dst.SelectorExpr{X: dst.NewIdent(stackName), Sel: dst.NewIdent("Addr")}
 				} else if isUintptr(param.Type) {
-					// box3d never reads user data, it is an opaque number in Go
-					if api.PointerTypes[decl.Name.Name][paramIdx].CType != "void" || name.Name != "userData" {
-						panic(fmt.Sprintf("%s: parameter %s must not be a uintptr in the Go API", decl.Name.Name, name.Name))
-					}
-
-					paramType = dst.NewIdent("uint64")
-					arg = &dst.CallExpr{Fun: dst.NewIdent("uintptr"), Args: []dst.Expr{arg}}
+					panic(fmt.Sprintf("%s: parameter %s must not be a uintptr in the Go API", decl.Name.Name, name.Name))
 				}
 
 				if classType := getClassTypeById(identOf(paramType)); classType != nil {
@@ -775,12 +811,7 @@ func createWrappers(decls *[]dst.Decl, api API) Visitor {
 					ty = dst.NewIdent("string")
 					result = &dst.CallExpr{Fun: dst.NewIdent("toString"), Args: []dst.Expr{call}}
 				} else if isUintptr(ty) {
-					if !strings.HasSuffix(decl.Name.Name, "_GetUserData") {
-						panic(fmt.Sprintf("%s: result must not be a uintptr in the Go API", decl.Name.Name))
-					}
-
-					ty = dst.NewIdent("uint64")
-					result = &dst.CallExpr{Fun: dst.NewIdent("uint64"), Args: []dst.Expr{call}}
+					panic(fmt.Sprintf("%s: result must not be a uintptr in the Go API", decl.Name.Name))
 				}
 
 				wrapTy := getClassTypeById(identOf(ty))
@@ -979,6 +1010,39 @@ func fixQSortInvocation() dstutil.ApplyFunc {
 			}
 		}
 
+		return true
+	}
+}
+
+// useFuncPtr replaces unsafe.Pointer(&struct{ uintptr }{fp}), which ccgo uses to call a C
+// function pointer, with funcPtr(fp). A func value is two words in TinyGo, see funcptr.go.
+func useFuncPtr() dstutil.ApplyFunc {
+	return func(cursor *dstutil.Cursor) bool {
+		call, ok := cursor.Node().(*dst.CallExpr)
+		if !ok || len(call.Args) != 1 {
+			return true
+		}
+
+		if sel, ok := call.Fun.(*dst.SelectorExpr); !ok || identOf(sel.X) != "unsafe" || sel.Sel.Name != "Pointer" {
+			return true
+		}
+
+		addr, ok := call.Args[0].(*dst.UnaryExpr)
+		if !ok || addr.Op != token.AND {
+			return true
+		}
+
+		lit, ok := addr.X.(*dst.CompositeLit)
+		if !ok || len(lit.Elts) != 1 {
+			return true
+		}
+
+		st, ok := lit.Type.(*dst.StructType)
+		if !ok || len(st.Fields.List) != 1 || len(st.Fields.List[0].Names) != 0 || identOf(st.Fields.List[0].Type) != "uintptr" {
+			return true
+		}
+
+		cursor.Replace(&dst.CallExpr{Fun: dst.NewIdent("funcPtr"), Args: []dst.Expr{lit.Elts[0]}})
 		return true
 	}
 }

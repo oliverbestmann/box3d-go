@@ -151,8 +151,8 @@ func (b Body) SetName(name string) {
 	b3Body_SetName(theStack, b.Id, nameStack.Addr)
 }
 func (b Body) GetName() (r string)         { r = toString(b3Body_GetName(theStack, b.Id)); return }
-func (b Body) SetUserData(userData uint64) { b3Body_SetUserData(theStack, b.Id, uintptr(userData)) }
-func (b Body) GetUserData() (r uint64)     { r = uint64(b3Body_GetUserData(theStack, b.Id)); return }
+func (b Body) SetUserData(userData uint64) { b3Body_SetUserData(theStack, b.Id, userData) }
+func (b Body) GetUserData() (r uint64)     { r = b3Body_GetUserData(theStack, b.Id); return }
 func (b Body) GetMass() (r float32)        { r = b3Body_GetMass(theStack, b.Id); return }
 func (b Body) GetLocalRotationalInertia() (r Matrix3) {
 	r = b3Body_GetLocalRotationalInertia(theStack, b.Id)
@@ -678,8 +678,8 @@ func (b Joint) GetCollideConnected() (r uint8) {
 	r = b3Joint_GetCollideConnected(theStack, b.Id)
 	return
 }
-func (b Joint) SetUserData(userData uint64)  { b3Joint_SetUserData(theStack, b.Id, uintptr(userData)) }
-func (b Joint) GetUserData() (r uint64)      { r = uint64(b3Joint_GetUserData(theStack, b.Id)); return }
+func (b Joint) SetUserData(userData uint64)  { b3Joint_SetUserData(theStack, b.Id, userData) }
+func (b Joint) GetUserData() (r uint64)      { r = b3Joint_GetUserData(theStack, b.Id); return }
 func (b Joint) WakeBodies()                  { b3Joint_WakeBodies(theStack, b.Id) }
 func (b Joint) IsAwake() (r uint8)           { r = b3Joint_IsAwake(theStack, b.Id); return }
 func (b Joint) GetConstraintForce() (r Vec3) { r = b3Joint_GetConstraintForce(theStack, b.Id); return }
@@ -981,8 +981,8 @@ func (b World) GetIsotropicInertiaTolerance() (r float32) {
 }
 func (b World) GetProfile() (r Profile)      { r = b3World_GetProfile(theStack, b.Id); return }
 func (b World) GetMaxCapacity() (r Capacity) { r = b3World_GetMaxCapacity(theStack, b.Id); return }
-func (b World) SetUserData(userData uint64)  { b3World_SetUserData(theStack, b.Id, uintptr(userData)) }
-func (b World) GetUserData() (r uint64)      { r = uint64(b3World_GetUserData(theStack, b.Id)); return }
+func (b World) SetUserData(userData uint64)  { b3World_SetUserData(theStack, b.Id, userData) }
+func (b World) GetUserData() (r uint64)      { r = b3World_GetUserData(theStack, b.Id); return }
 func (b World) SetWorkerCount(count int32)   { b3World_SetWorkerCount(theStack, b.Id, count) }
 func (b World) GetWorkerCount() (r int32)    { r = b3World_GetWorkerCount(theStack, b.Id); return }
 func (b World) GetCounters() (r Counters)    { r = b3World_GetCounters(theStack, b.Id); return }
@@ -1215,8 +1215,8 @@ func (b Body) CreateBakedCompoundShape(def ShapeDef, compound *CompoundData) (r 
 func (b Shape) DestroyShape(updateBodyMass uint8) { b3DestroyShape(theStack, b.Id, updateBodyMass) }
 func (b Shape) GetBody() (r Body)                 { r.Id = b3Shape_GetBody(theStack, b.Id); return }
 func (b Shape) GetWorld() (r World)               { r.Id = b3Shape_GetWorld(theStack, b.Id); return }
-func (b Shape) SetUserData(userData uint64)       { b3Shape_SetUserData(theStack, b.Id, uintptr(userData)) }
-func (b Shape) GetUserData() (r uint64)           { r = uint64(b3Shape_GetUserData(theStack, b.Id)); return }
+func (b Shape) SetUserData(userData uint64)       { b3Shape_SetUserData(theStack, b.Id, userData) }
+func (b Shape) GetUserData() (r uint64)           { r = b3Shape_GetUserData(theStack, b.Id); return }
 func (b Shape) SetName(name string) {
 	nameStack := theStack.toCString(name)
 	defer nameStack.Free()

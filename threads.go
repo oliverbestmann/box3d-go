@@ -3,7 +3,6 @@ package b3
 import (
 	"sync"
 	"sync/atomic"
-	"unsafe"
 )
 
 // Threading primitives of box3d (src/core.h), used by its built-in task scheduler and the
@@ -86,8 +85,7 @@ func __builtin_b3SignalSemaphore(_ *_Stack, h uintptr) {
 }
 
 func __builtin_b3CreateThread(_ *_Stack, function, context, _ uintptr) uintptr {
-	type functionPtr struct{ uintptr }
-	fn := *(*threadFunction)(unsafe.Pointer(&functionPtr{function}))
+	fn := *(*threadFunction)(funcPtr(function))
 
 	done := make(chan struct{})
 

@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -320,7 +322,7 @@ _8:
 				World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 				Generation: (*b3Shape)(unsafe.Pointer(otherShape)).Generation,
 			}
-			shouldCollide = (*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{customFilterFcn})))(tls, idA, idB, (*b3World)(unsafe.Pointer((*b3SensorQueryContext)(unsafe.Pointer(queryContext)).World)).CustomFilterContext)
+			shouldCollide = (*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(funcPtr(customFilterFcn)))(tls, idA, idB, (*b3World)(unsafe.Pointer((*b3SensorQueryContext)(unsafe.Pointer(queryContext)).World)).CustomFilterContext)
 			if int32FromUint8(shouldCollide) == false1 {
 				return boolUint8(true1 != 0)
 			}

@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -535,7 +537,7 @@ _29:
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(bodyId)*96
-	(*b3Body)(unsafe.Pointer(body)).UserData = uintptr((*BodyDef)(unsafe.Pointer(def)).UserData)
+	(*b3Body)(unsafe.Pointer(body)).UserData = (*BodyDef)(unsafe.Pointer(def)).UserData
 	(*b3Body)(unsafe.Pointer(body)).SetIndex = setId
 	(*b3Body)(unsafe.Pointer(body)).LocalIndex = (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Count - int32(1)
 	v13 = body + 92
@@ -4243,7 +4245,7 @@ _2:
 	return v1
 }
 
-func b3Body_SetUserData(tls *_Stack, bodyId BodyId, userData uintptr) {
+func b3Body_SetUserData(tls *_Stack, bodyId BodyId, userData uint64) {
 	var body, world uintptr
 	_, _ = body, world
 	world = b3GetWorld(tls, int32FromUint16(bodyId.World0))
@@ -4251,7 +4253,7 @@ func b3Body_SetUserData(tls *_Stack, bodyId BodyId, userData uintptr) {
 	(*b3Body)(unsafe.Pointer(body)).UserData = userData
 }
 
-func b3Body_GetUserData(tls *_Stack, bodyId BodyId) (r uintptr) {
+func b3Body_GetUserData(tls *_Stack, bodyId BodyId) (r uint64) {
 	var body, world uintptr
 	_, _ = body, world
 	world = b3GetWorld(tls, int32FromUint16(bodyId.World0))

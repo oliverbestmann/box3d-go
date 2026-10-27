@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -3459,7 +3461,7 @@ _76:
 					_110:
 						c = v93
 					}
-					result = (*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_fcn})))(tls, a8, b8, c, triangleIndex, context)
+					result = (*(*func(*_Stack, Vec3, Vec3, Vec3, int32, uintptr) uint8)(funcPtr(__ccgo_fp_fcn)))(tls, a8, b8, c, triangleIndex, context)
 					if int32FromUint8(result) == false1 {
 						return
 					}

@@ -27,7 +27,7 @@ func TestThreadSignalAndJoin(t *testing.T) {
 	defer __builtin_b3DestroySemaphore(nil, sem)
 
 	var value int
-	worker := threadFunction(func(_ *_Stack, _ uintptr) {
+	var worker any = threadFunction(func(_ *_Stack, _ uintptr) {
 		value = 99
 		__builtin_b3SignalSemaphore(nil, sem)
 	})
@@ -48,7 +48,7 @@ func TestThreadMutex(t *testing.T) {
 	defer __builtin_b3DestroyMutex(nil, mutex)
 
 	var sum int
-	worker := threadFunction(func(_ *_Stack, _ uintptr) {
+	var worker any = threadFunction(func(_ *_Stack, _ uintptr) {
 		for range 1000 {
 			__builtin_b3LockMutex(nil, mutex)
 			sum++

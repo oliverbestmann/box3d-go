@@ -119,17 +119,17 @@ func (b World) Draw(draw DebugDraw, maskBits uint64) {
 }
 
 // box3d asks for a user shape once per shape and passes it to DrawShapeFcn. The user shape is
-// the shape id, the ids are 8 bytes like a uintptr on the 64-bit platforms that ccgo targets.
-var _ [unsafe.Sizeof(uintptr(0)) - unsafe.Sizeof(ShapeId{})]byte
+// the 8 byte shape id, box3d.patch makes user shapes 64-bit.
+var _ [unsafe.Sizeof(uint64(0)) - unsafe.Sizeof(ShapeId{})]byte
 
-func cbCreateDebugShape(_ *_Stack, debugShape uintptr, _ uintptr) uintptr {
+func cbCreateDebugShape(_ *_Stack, debugShape uintptr, _ uintptr) uint64 {
 	// never 0, Index1 starts at 1
-	return *(*uintptr)(unsafe.Pointer(&(*b3DebugShape)(unsafe.Pointer(debugShape)).ShapeId))
+	return *(*uint64)(unsafe.Pointer(&(*b3DebugShape)(unsafe.Pointer(debugShape)).ShapeId))
 }
 
-func cbDestroyDebugShape(_ *_Stack, _ uintptr, _ uintptr) {}
+func cbDestroyDebugShape(_ *_Stack, _ uint64, _ uintptr) {}
 
-func cbDrawShape(_ *_Stack, userShape uintptr, transform WorldTransform, color HexColor, context uintptr) {
+func cbDrawShape(_ *_Stack, userShape uint64, transform WorldTransform, color HexColor, context uintptr) {
 	ctx := handleOf[*DebugDraw](context)
 	if ctx.DrawShape != nil {
 		ctx.DrawShape(Shape{Id: *(*ShapeId)(unsafe.Pointer(&userShape))}, transform, color)

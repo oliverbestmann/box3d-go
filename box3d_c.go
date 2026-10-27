@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 // Code generated for linux/arm64 by 'ccgo -verify-types --package-name b3 -D BOX3D_DISABLE_SIMD -D NDEBUG -D B3_ENABLE_ASSERT --predef \n#include <stdbool.h>\n#include <stdint.h>\nbool __builtin___atomic_compare_exchange_n(int32_t *ptr, int32_t *expected, int32_t desired, bool weak, int32_t success_memorder, int32_t failure_memorder);\n --predef \n#include <stddef.h>\n#define aligned_alloc __builtin_aligned_alloc\nextern void* __builtin_aligned_alloc(size_t align, size_t size);\n --predef \n#define b3CreateMutex __builtin_b3CreateMutex\n#define b3DestroyMutex __builtin_b3DestroyMutex\n#define b3LockMutex __builtin_b3LockMutex\n#define b3UnlockMutex __builtin_b3UnlockMutex\n#define b3CreateSemaphore __builtin_b3CreateSemaphore\n#define b3DestroySemaphore __builtin_b3DestroySemaphore\n#define b3WaitSemaphore __builtin_b3WaitSemaphore\n#define b3SignalSemaphore __builtin_b3SignalSemaphore\n#define b3CreateThread __builtin_b3CreateThread\n#define b3JoinThread __builtin_b3JoinThread\n --prefix-field ｆ -o _build/box3d_c.go -I ../box3d-c/include/ -I ../box3d-c/shared/ ../box3d-c/src/aabb.c ../box3d-c/src/arena_allocator.c ../box3d-c/src/bitset.c ../box3d-c/src/block_allocator.c ../box3d-c/src/body.c ../box3d-c/src/broad_phase.c ../box3d-c/src/capsule.c ../box3d-c/src/compound.c ../box3d-c/src/constraint_graph.c ../box3d-c/src/contact.c ../box3d-c/src/contact_solver.c ../box3d-c/src/convex_manifold.c ../box3d-c/src/core.c ../box3d-c/src/distance.c ../box3d-c/src/distance_joint.c ../box3d-c/src/dynamic_tree.c ../box3d-c/src/height_field.c ../box3d-c/src/hull.c ../box3d-c/src/id_pool.c ../box3d-c/src/island.c ../box3d-c/src/joint.c ../box3d-c/src/manifold.c ../box3d-c/src/math_functions.c ../box3d-c/src/mesh.c ../box3d-c/src/mesh_contact.c ../box3d-c/src/motor_joint.c ../box3d-c/src/mover.c ../box3d-c/src/name_cache.c ../box3d-c/src/parallel_for.c ../box3d-c/src/parallel_joint.c ../box3d-c/src/physics_world.c ../box3d-c/src/prismatic_joint.c ../box3d-c/src/recording.c ../box3d-c/src/replay.c ../box3d-c/src/revolute_joint.c ../box3d-c/src/scheduler.c ../box3d-c/src/sensor.c ../box3d-c/src/shape.c ../box3d-c/src/simd.c ../box3d-c/src/solver.c ../box3d-c/src/solver_set.c ../box3d-c/src/sphere.c ../box3d-c/src/spherical_joint.c ../box3d-c/src/statics.c ../box3d-c/src/table.c ../box3d-c/src/timer.c ../box3d-c/src/triangle_manifold.c ../box3d-c/src/types.c ../box3d-c/src/weld_joint.c ../box3d-c/src/wheel_joint.c ../box3d-c/src/wide4.c ../box3d-c/src/wide8.c ../box3d-c/src/world_snapshot.c csrc/callbacks.c _build/inline.c ../box3d-c/shared/determinism.c ../box3d-c/shared/human.c ../box3d-c/shared/stability.c ../box3d-c/shared/benchmarks.c csrc/scenes.c', DO NOT EDIT.
 
 package b3
@@ -2904,8 +2906,8 @@ type b3Shape struct {
 	Material       SurfaceMaterial
 	Materials      uintptr
 	Filter         Filter
-	UserData       uintptr
-	UserShape      uintptr
+	UserData       uint64
+	UserShape      uint64
 	NameId         uint32
 	Generation     uint16
 	Flags          uint8
@@ -2992,7 +2994,7 @@ type b3World struct {
 	UserTaskContext              uintptr
 	UserTreeTask                 uintptr
 	Scheduler                    uintptr
-	UserData                     uintptr
+	UserData                     uint64
 	Recording                    uintptr
 	Inv_h                        float32
 	Inv_dt                       float32
@@ -3286,7 +3288,7 @@ type b3StepContext struct {
 }
 
 type b3Body struct {
-	UserData       uintptr
+	UserData       uint64
 	SetIndex       int32
 	LocalIndex     int32
 	HeadContactKey int32
@@ -3316,7 +3318,7 @@ type b3IslandSim struct {
 }
 
 type b3Joint struct {
-	UserData         uintptr
+	UserData         uint64
 	SetIndex         int32
 	ColorIndex       int32
 	LocalIndex       int32
@@ -5755,7 +5757,7 @@ _6:
 				World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 				Generation: (*b3Shape)(unsafe.Pointer(shapeB)).Generation,
 			}
-			if int32FromUint8((*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{customFilterFcn})))(tls, idA, idB, (*b3World)(unsafe.Pointer(world)).CustomFilterContext)) == false1 {
+			if int32FromUint8((*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(funcPtr(customFilterFcn)))(tls, idA, idB, (*b3World)(unsafe.Pointer(world)).CustomFilterContext)) == false1 {
 				return boolUint8(false1 != 0)
 			}
 		}
@@ -6242,7 +6244,7 @@ func b3EnqueueTreeUpdate(tls *_Stack, world uintptr) {
 	var v1 int32
 	_ = v1
 	if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
-		(*b3World)(unsafe.Pointer(world)).UserTreeTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn})))(tls, __ccgo_fp(b3UpdateTreesTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+5039)
+		(*b3World)(unsafe.Pointer(world)).UserTreeTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3UpdateTreesTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+5039)
 		*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 		if (*b3World)(unsafe.Pointer(world)).UserTreeTask == uintptrFromInt32(0) {
 			v1 = 0
@@ -7414,7 +7416,7 @@ func _TreeQueryCallbackFcn(tls *_Stack, proxyId int32, userData uint64, treeCont
 	_ = context
 	_ = uint64FromInt64(4)
 	context = treeContext
-	return (*(*func(*_Stack, uintptr, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*b3CompoundQueryContext)(unsafe.Pointer(context)).Fcn})))(tls, (*b3CompoundQueryContext)(unsafe.Pointer(context)).Compound, int32FromUint64(userData), (*b3CompoundQueryContext)(unsafe.Pointer(context)).UserContext)
+	return (*(*func(*_Stack, uintptr, int32, uintptr) uint8)(funcPtr((*b3CompoundQueryContext)(unsafe.Pointer(context)).Fcn)))(tls, (*b3CompoundQueryContext)(unsafe.Pointer(context)).Compound, int32FromUint64(userData), (*b3CompoundQueryContext)(unsafe.Pointer(context)).UserContext)
 }
 
 type __ccgo_fp__Xb3QueryCompound_2 = func(*_Stack, uintptr, int32, uintptr) uint8
@@ -8694,8 +8696,8 @@ _9:
 _13:
 	materialB = v12
 	// Keep these updated in case the values on the shapes are modified
-	(*b3Contact)(unsafe.Pointer(contact)).Friction = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world1)).FrictionCallback})))(tls, (*SurfaceMaterial)(unsafe.Pointer(materialA)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialA)).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
-	(*b3Contact)(unsafe.Pointer(contact)).Restitution = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world1)).RestitutionCallback})))(tls, (*SurfaceMaterial)(unsafe.Pointer(materialA)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialA)).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+	(*b3Contact)(unsafe.Pointer(contact)).Friction = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world1)).FrictionCallback)))(tls, (*SurfaceMaterial)(unsafe.Pointer(materialA)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialA)).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+	(*b3Contact)(unsafe.Pointer(contact)).Restitution = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world1)).RestitutionCallback)))(tls, (*SurfaceMaterial)(unsafe.Pointer(materialA)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialA)).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
 	if (*SurfaceMaterial)(unsafe.Pointer(materialA)).RollingResistance > float32FromFloat32(0) || (*SurfaceMaterial)(unsafe.Pointer(materialB)).RollingResistance > float32FromFloat32(0) {
 		typeA = (*b3Shape)(unsafe.Pointer(shapeA)).Type1
 		typeB = (*b3Shape)(unsafe.Pointer(shapeB)).Type1
@@ -8871,7 +8873,7 @@ _72:
 		// this call assumes thread safety
 		point = v75
 		normal = (*(*Manifold)(unsafe.Add(nil, (*b3Contact)(unsafe.Pointer(contact)).Manifolds))).Normal
-		touching = (*(*func(*_Stack, ShapeId, ShapeId, Pos, Vec3, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world1)).PreSolveFcn})))(tls, shapeIdA, shapeIdB, point, normal, (*b3World)(unsafe.Pointer(world1)).PreSolveContext)
+		touching = (*(*func(*_Stack, ShapeId, ShapeId, Pos, Vec3, uintptr) uint8)(funcPtr((*b3World)(unsafe.Pointer(world1)).PreSolveFcn)))(tls, shapeIdA, shapeIdB, point, normal, (*b3World)(unsafe.Pointer(world1)).PreSolveContext)
 		if int32FromUint8(touching) == false1 {
 			// disable contact
 			v7 = world1
@@ -13285,7 +13287,7 @@ func b3SetAssertFcn(tls *_Stack, __ccgo_fp_assertFcn uintptr) {
 func b3InternalAssert(tls *_Stack, condition uintptr, fileName uintptr, lineNumber int32) (r int32) {
 	var result int32
 	_ = result
-	result = (*(*func(*_Stack, uintptr, uintptr, int32) int32)(unsafe.Pointer(&struct{ uintptr }{b3AssertHandler})))(tls, condition, fileName, lineNumber)
+	result = (*(*func(*_Stack, uintptr, uintptr, int32) int32)(funcPtr(b3AssertHandler)))(tls, condition, fileName, lineNumber)
 	if result != 0 {
 		__builtin_trap(tls)
 	}
@@ -13318,7 +13320,7 @@ func b3Log(tls *_Stack, format uintptr, va uintptr) {
 	_ = args
 	args = va
 	__builtin_vsnprintf(tls, bp, uint64(512), format, args)
-	(*(*func(*_Stack, uintptr))(unsafe.Pointer(&struct{ uintptr }{b3LogHandler})))(tls, bp)
+	(*(*func(*_Stack, uintptr))(funcPtr(b3LogHandler)))(tls, bp)
 	_ = args
 }
 
@@ -13363,7 +13365,7 @@ _1:
 	// https://en.cppreference.com/w/c/memory/aligned_alloc
 	alignedSize = size - uint64(1) | uint64FromInt32(int32FromInt32(_B3_ALIGNMENT)-int32FromInt32(1)) + uint64(1)
 	if b3_allocFcn != uintptrFromInt32(0) {
-		ptr = (*(*func(*_Stack, size_t, int32) uintptr)(unsafe.Pointer(&struct{ uintptr }{b3_allocFcn})))(tls, alignedSize, int32(_B3_ALIGNMENT))
+		ptr = (*(*func(*_Stack, size_t, int32) uintptr)(funcPtr(b3_allocFcn)))(tls, alignedSize, int32(_B3_ALIGNMENT))
 		if v2 = !!(ptr != uintptrFromInt32(0)); !v2 {
 			b3InternalAssert(tls, __ccgo_ts+10446, __ccgo_ts+10346, int32FromInt32(154))
 		}
@@ -13400,7 +13402,7 @@ func b3Free(tls *_Stack, mem uintptr, size size_t) {
 			v1 = uint64(0)
 		}
 		alignedSize = v1
-		(*(*func(*_Stack, uintptr, size_t))(unsafe.Pointer(&struct{ uintptr }{b3_freeFcn})))(tls, mem, alignedSize)
+		(*(*func(*_Stack, uintptr, size_t))(funcPtr(b3_freeFcn)))(tls, mem, alignedSize)
 	} else {
 		free(tls, mem)
 	}
@@ -20424,7 +20426,7 @@ _5:
 					}
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
-				proceed = (*(*func(*_Stack, int32, uint64, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_callback})))(tls, proxyId, userData, context)
+				proceed = (*(*func(*_Stack, int32, uint64, uintptr) uint8)(funcPtr(__ccgo_fp_callback)))(tls, proxyId, userData, context)
 				result.LeafVisits += int32(1)
 				if int32FromUint8(proceed) == false1 {
 					return result
@@ -20630,7 +20632,7 @@ _4:
 				userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 			}
 			// callback to user code with minimum distance squared so far and proxy id
-			dd = (*(*func(*_Stack, float32, int32, uint64, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_callback})))(tls, minSqr, proxyId, userData, context)
+			dd = (*(*func(*_Stack, float32, int32, uint64, uintptr) float32)(funcPtr(__ccgo_fp_callback)))(tls, minSqr, proxyId, userData, context)
 			if dd < minSqr {
 				minSqr = dd
 			}
@@ -21115,7 +21117,7 @@ _54:
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
 				(*(*RayCastInput)(unsafe.Add(nil, bp+48))).MaxFraction = maxFraction
-				value = (*(*func(*_Stack, uintptr, int32, uint64, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_callback})))(tls, bp+48, proxyId, userData, context)
+				value = (*(*func(*_Stack, uintptr, int32, uint64, uintptr) float32)(funcPtr(__ccgo_fp_callback)))(tls, bp+48, proxyId, userData, context)
 				result.LeafVisits += int32(1)
 				// The user may return -1 to indicate this shape should be skipped
 				if value == float32FromFloat32(0) {
@@ -21771,7 +21773,7 @@ _86:
 					userData = (*b3TreeProxy)(unsafe.Pointer(proxy)).UserData
 				}
 				(*(*BoxCastInput)(unsafe.Add(nil, bp+60))).MaxFraction = maxFraction
-				value = (*(*func(*_Stack, uintptr, int32, uint64, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_callback})))(tls, bp+60, proxyId, userData, context)
+				value = (*(*func(*_Stack, uintptr, int32, uint64, uintptr) float32)(funcPtr(__ccgo_fp_callback)))(tls, bp+60, proxyId, userData, context)
 				result.LeafVisits += int32(1)
 				if value == float32FromFloat32(0) {
 					// The client has terminated the cast.
@@ -36274,7 +36276,7 @@ func b3ParallelForTrampoline(tls *_Stack, taskContext uintptr) {
 		if end > itemCount {
 			end = itemCount
 		}
-		(*(*func(*_Stack, int32, int32, int32, uintptr))(unsafe.Pointer(&struct{ uintptr }{callback})))(tls, start, end, workerIndex, context)
+		(*(*func(*_Stack, int32, int32, int32, uintptr))(funcPtr(callback)))(tls, start, end, workerIndex, context)
 		goto _1
 	_1:
 	}
@@ -36347,7 +36349,7 @@ func b3ParallelFor(tls *_Stack, world uintptr, __ccgo_fp_callback uintptr, itemC
 		(*(*[32]b3ParallelForTask)(unsafe.Add(nil, bp+32)))[i].Shared = bp
 		(*(*[32]b3ParallelForTask)(unsafe.Add(nil, bp+32)))[i].WorkerIndex = i
 		if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
-			handles[i] = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn})))(tls, __ccgo_fp(b3ParallelForTrampoline), bp+32+uintptr(i)*16, (*b3World)(unsafe.Pointer(world)).UserTaskContext, name)
+			handles[i] = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3ParallelForTrampoline), bp+32+uintptr(i)*16, (*b3World)(unsafe.Pointer(world)).UserTaskContext, name)
 			*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 		} else {
 			handles[i] = uintptrFromInt32(0)
@@ -36364,7 +36366,7 @@ func b3ParallelFor(tls *_Stack, world uintptr, __ccgo_fp_callback uintptr, itemC
 			break
 		}
 		if handles[i1] != uintptrFromInt32(0) {
-			(*(*func(*_Stack, uintptr, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).FinishTaskFcn})))(tls, handles[i1], (*b3World)(unsafe.Pointer(world)).UserTaskContext)
+			(*(*func(*_Stack, uintptr, uintptr))(funcPtr((*b3World)(unsafe.Pointer(world)).FinishTaskFcn)))(tls, handles[i1], (*b3World)(unsafe.Pointer(world)).UserTaskContext)
 		}
 		goto _7
 	_7:
@@ -36697,7 +36699,7 @@ type imaxdiv_t struct {
 
 func b3DefaultAddTaskFcn(tls *_Stack, __ccgo_fp_task uintptr, taskContext uintptr, userContext uintptr, name uintptr) (r uintptr) {
 	_ = uint64FromInt64(4)
-	(*(*func(*_Stack, uintptr))(unsafe.Pointer(&struct{ uintptr }{__ccgo_fp_task})))(tls, taskContext)
+	(*(*func(*_Stack, uintptr))(funcPtr(__ccgo_fp_task)))(tls, taskContext)
 	return uintptrFromInt32(0)
 }
 
@@ -37039,7 +37041,7 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 		_12:
 			color = int32FromUint32(v4)
 		}
-		if (*b3Shape)(unsafe.Pointer(shape1)).UserShape == uintptrFromInt32(0) && (*b3World)(unsafe.Pointer(world)).CreateDebugShape != uintptrFromInt32(0) {
+		if (*b3Shape)(unsafe.Pointer(shape1)).UserShape == uint64(0) && (*b3World)(unsafe.Pointer(world)).CreateDebugShape != uintptrFromInt32(0) {
 			*(*b3DebugShape)(unsafe.Pointer(bp)) = b3DebugShape{}
 			*(*int32)(unsafe.Pointer(bp)) = 0
 			(*(*b3DebugShape)(unsafe.Add(nil, bp))).ShapeId = ShapeId{
@@ -37051,22 +37053,22 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 			switch (*b3Shape)(unsafe.Pointer(shape1)).Type1 {
 			case int32(b3_capsuleShape):
 				(*(*b3DebugShape)(unsafe.Add(nil, bp))).ｆ__ccgo2_16.Capsule = shape1 + 176
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			case int32(b3_compoundShape):
 				*(*uintptr)(unsafe.Add(unsafe.Pointer(&*(*b3DebugShape)(unsafe.Add(nil, bp))), 16)) = *(*uintptr)(unsafe.Add(unsafe.Pointer(shape1), 176))
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			case int32(b3_heightShape):
 				*(*uintptr)(unsafe.Add(unsafe.Pointer(&*(*b3DebugShape)(unsafe.Add(nil, bp))), 16)) = *(*uintptr)(unsafe.Add(unsafe.Pointer(shape1), 176))
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			case int32(b3_hullShape):
 				*(*uintptr)(unsafe.Add(unsafe.Pointer(&*(*b3DebugShape)(unsafe.Add(nil, bp))), 16)) = *(*uintptr)(unsafe.Add(unsafe.Pointer(shape1), 176))
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			case int32(b3_meshShape):
 				*(*uintptr)(unsafe.Add(unsafe.Pointer(&*(*b3DebugShape)(unsafe.Add(nil, bp))), 16)) = shape1 + 176
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			case int32(b3_sphereShape):
 				*(*uintptr)(unsafe.Add(unsafe.Pointer(&*(*b3DebugShape)(unsafe.Add(nil, bp))), 16)) = shape1 + 176
-				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uintptr)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).CreateDebugShape})))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
+				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			default:
 				if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
 					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+23730, int32FromInt32(1352))
@@ -37075,12 +37077,12 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 				break
 			}
 		}
-		if (*b3Shape)(unsafe.Pointer(shape1)).UserShape != uintptrFromInt32(0) {
-			(*(*func(*_Stack, uintptr, WorldTransform, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawShapeFcn})))(tls, (*b3Shape)(unsafe.Pointer(shape1)).UserShape, (*b3BodySim)(unsafe.Pointer(bodySim)).Transform, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		if (*b3Shape)(unsafe.Pointer(shape1)).UserShape != uint64(0) {
+			(*(*func(*_Stack, uint64, WorldTransform, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawShapeFcn)))(tls, (*b3Shape)(unsafe.Pointer(shape1)).UserShape, (*b3BodySim)(unsafe.Pointer(bodySim)).Transform, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 	}
 	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawBounds != 0 {
-		(*(*func(*_Stack, AABB, HexColor, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn})))(tls, *(*AABB)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).FatAABBs.Data+uintptr(shapeId)*24)), int32(b3_colorGold), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		(*(*func(*_Stack, AABB, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawBoundsFcn)))(tls, *(*AABB)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).FatAABBs.Data+uintptr(shapeId)*24)), int32(b3_colorGold), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 	return boolUint8(true1 != 0)
 }
@@ -37160,7 +37162,7 @@ _5:
 		World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 		Generation: (*b3Shape)(unsafe.Pointer(shape)).Generation,
 	}
-	result = (*(*func(*_Stack, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*_WorldQueryContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, (*_WorldQueryContext)(unsafe.Pointer(worldContext)).UserContext)
+	result = (*(*func(*_Stack, ShapeId, uintptr) uint8)(funcPtr((*_WorldQueryContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, (*_WorldQueryContext)(unsafe.Pointer(worldContext)).UserContext)
 	return result
 }
 
@@ -37239,7 +37241,7 @@ _10:
 		World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 		Generation: (*b3Shape)(unsafe.Pointer(shape)).Generation,
 	}
-	result = (*(*func(*_Stack, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*_WorldOverlapContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, (*_WorldOverlapContext)(unsafe.Pointer(worldContext)).UserContext)
+	result = (*(*func(*_Stack, ShapeId, uintptr) uint8)(funcPtr((*_WorldOverlapContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, (*_WorldOverlapContext)(unsafe.Pointer(worldContext)).UserContext)
 	return result
 }
 
@@ -37318,7 +37320,7 @@ _10:
 			World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 			Generation: (*b3Shape)(unsafe.Pointer(shape)).Generation,
 		}
-		return (*(*func(*_Stack, ShapeId, uintptr, int32, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*_WorldMoverContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, bp+56, count, (*_WorldMoverContext)(unsafe.Pointer(worldContext)).UserContext)
+		return (*(*func(*_Stack, ShapeId, uintptr, int32, uintptr) uint8)(funcPtr((*_WorldMoverContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, bp+56, count, (*_WorldMoverContext)(unsafe.Pointer(worldContext)).UserContext)
 	}
 	return boolUint8(true1 != 0)
 }
@@ -37446,7 +37448,7 @@ _10:
 		userMaterialId = (*(*SurfaceMaterial)(unsafe.Add(nil, v3+uintptr(materialIndex)*40))).UserMaterialId
 		triangleIndex = output.TriangleIndex
 		childIndex = output.ChildIndex
-		fraction = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(unsafe.Pointer(&struct{ uintptr }{(*_WorldRayCastContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, point, output.Normal, output.Fraction, userMaterialId, triangleIndex, childIndex, (*_WorldRayCastContext)(unsafe.Pointer(worldContext)).UserContext)
+		fraction = (*(*func(*_Stack, ShapeId, Pos, Vec3, float32, uint64, int32, int32, uintptr) float32)(funcPtr((*_WorldRayCastContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, point, output.Normal, output.Fraction, userMaterialId, triangleIndex, childIndex, (*_WorldRayCastContext)(unsafe.Pointer(worldContext)).UserContext)
 		// The user may return -1 to skip this shape
 		if float32FromFloat32(0) <= fraction && fraction <= float32FromFloat32(1) {
 			(*_WorldRayCastContext)(unsafe.Pointer(worldContext)).Fraction = fraction
@@ -37567,7 +37569,7 @@ _5:
 			World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 			Generation: (*b3Shape)(unsafe.Pointer(shape)).Generation,
 		}
-		shouldCollide = (*(*func(*_Stack, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Fcn})))(tls, id, (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).UserContext)
+		shouldCollide = (*(*func(*_Stack, ShapeId, uintptr) uint8)(funcPtr((*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Fcn)))(tls, id, (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).UserContext)
 		if int32FromUint8(shouldCollide) == false1 {
 			return (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Fraction
 		}
@@ -39615,9 +39617,9 @@ func b3DestroyPlayer(tls *_Stack, player uintptr) {
 	b3Free(tls, player, uint64(1400))
 }
 
-type __ccgo_fp__Xb3RecPlayer_SetDebugShapeCallbacks_1 = func(*_Stack, uintptr, uintptr) uintptr
+type __ccgo_fp__Xb3RecPlayer_SetDebugShapeCallbacks_1 = func(*_Stack, uintptr, uintptr) uint64
 
-type __ccgo_fp__Xb3RecPlayer_SetDebugShapeCallbacks_2 = func(*_Stack, uintptr, uintptr)
+type __ccgo_fp__Xb3RecPlayer_SetDebugShapeCallbacks_2 = func(*_Stack, uint64, uintptr)
 
 const _B3_REC_MAGIC2 = "0x43523342u"
 const _INT32_MAX2 = 0x7fffffff
@@ -39687,7 +39689,7 @@ _2:
 		if int32FromUint8(v7) == false1 {
 			goto _3
 		}
-		(*(*func(*_Stack, uintptr))(unsafe.Pointer(&struct{ uintptr }{(*b3SchedulerTask)(unsafe.Pointer(task)).Callback})))(tls, (*b3SchedulerTask)(unsafe.Pointer(task)).TaskContext)
+		(*(*func(*_Stack, uintptr))(funcPtr((*b3SchedulerTask)(unsafe.Pointer(task)).Callback)))(tls, (*b3SchedulerTask)(unsafe.Pointer(task)).TaskContext)
 		atomicStoreNInt32(task+16, int32(b3_schedulerComplete), int32FromInt32(__ATOMIC_SEQ_CST))
 		return boolUint8(true1 != 0)
 	_3:
@@ -42202,7 +42204,7 @@ _6:
 				World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
 				Generation: (*b3Shape)(unsafe.Pointer(fastShape)).Generation,
 			}
-			canCollide = (*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{customFilterFcn})))(tls, idA, idB, (*b3World)(unsafe.Pointer(world)).CustomFilterContext)
+			canCollide = (*(*func(*_Stack, ShapeId, ShapeId, uintptr) uint8)(funcPtr(customFilterFcn)))(tls, idA, idB, (*b3World)(unsafe.Pointer(world)).CustomFilterContext)
 			if int32FromUint8(canCollide) == false1 {
 				return boolUint8(true1 != 0)
 			}
@@ -42277,7 +42279,7 @@ _21:
 				goto _25
 			_25:
 				point = v12
-				didHit = (*(*func(*_Stack, ShapeId, ShapeId, Pos, Vec3, uintptr) uint8)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world)).PreSolveFcn})))(tls, shapeIdA, shapeIdB, point, output.Normal, (*b3World)(unsafe.Pointer(world)).PreSolveContext)
+				didHit = (*(*func(*_Stack, ShapeId, ShapeId, Pos, Vec3, uintptr) uint8)(funcPtr((*b3World)(unsafe.Pointer(world)).PreSolveFcn)))(tls, shapeIdA, shapeIdB, point, output.Normal, (*b3World)(unsafe.Pointer(world)).PreSolveContext)
 			}
 			if didHit != 0 {
 				(*b3ContinuousContext)(unsafe.Pointer(continuousContext)).Fraction = output.Fraction
@@ -42772,7 +42774,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 		body = bodies + uintptr((*b3BodySim)(unsafe.Pointer(sim)).BodyId)*96
 		(*b3Body)(unsafe.Pointer(body)).BodyMoveIndex = simIndex
 		(*b3Body)(unsafe.Pointer(body)).SleepVelocity = sleepVelocity
-		(*(*BodyMoveEvent)(unsafe.Add(nil, moveEvents+uintptr(simIndex)*48))).UserData = uint64((*b3Body)(unsafe.Pointer(body)).UserData)
+		(*(*BodyMoveEvent)(unsafe.Add(nil, moveEvents+uintptr(simIndex)*48))).UserData = (*b3Body)(unsafe.Pointer(body)).UserData
 		(*(*BodyMoveEvent)(unsafe.Add(nil, moveEvents+uintptr(simIndex)*48))).Transform = (*b3BodySim)(unsafe.Pointer(sim)).Transform
 		(*(*BodyMoveEvent)(unsafe.Add(nil, moveEvents+uintptr(simIndex)*48))).BodyId = BodyId{
 			Index1:     (*b3BodySim)(unsafe.Pointer(sim)).BodyId + int32(1),
@@ -49737,7 +49739,7 @@ func b3DeserializeIntoShell(tls *_Stack, data uintptr, size int32, world uintptr
 				break
 			}
 			b3SnapR_Bytes(tls, r, (*b3World)(unsafe.Pointer(world)).Bodies.Data+uintptr(i2)*96, int32(96))
-			(*(*b3Body)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Bodies.Data+uintptr(i2)*96))).UserData = uintptrFromInt32(0)
+			(*(*b3Body)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Bodies.Data+uintptr(i2)*96))).UserData = uint64(0)
 			goto _3
 		_3:
 			;
@@ -49798,7 +49800,7 @@ func b3DeserializeIntoShell(tls *_Stack, data uintptr, size int32, world uintptr
 				break
 			}
 			b3SnapR_Bytes(tls, r, (*b3World)(unsafe.Pointer(world)).Joints.Data+uintptr(i3)*72, int32(72))
-			(*(*b3Joint)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Joints.Data+uintptr(i3)*72))).UserData = uintptrFromInt32(0)
+			(*(*b3Joint)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Joints.Data+uintptr(i3)*72))).UserData = uint64(0)
 			goto _4
 		_4:
 			;
@@ -50090,14 +50092,14 @@ func b3go_AssertFcn(tls *_Stack, condition uintptr, fileName uintptr, lineNumber
 func b3go_LogFcn(tls *_Stack, message uintptr) {
 }
 
-func b3go_CreateDebugShapeCallback(tls *_Stack, debugShape uintptr, userContext uintptr) (r uintptr) {
-	return uintptr(0)
+func b3go_CreateDebugShapeCallback(tls *_Stack, debugShape uintptr, userContext uintptr) (r uint64) {
+	return uint64(0)
 }
 
-func b3go_DestroyDebugShapeCallback(tls *_Stack, userShape uintptr, userContext uintptr) {
+func b3go_DestroyDebugShapeCallback(tls *_Stack, userShape uint64, userContext uintptr) {
 }
 
-func b3go_DrawShapeFcn(tls *_Stack, userShape uintptr, transform WorldTransform, color HexColor, context uintptr) {
+func b3go_DrawShapeFcn(tls *_Stack, userShape uint64, transform WorldTransform, color HexColor, context uintptr) {
 }
 
 func b3go_DrawSegmentFcn(tls *_Stack, p1 Pos, p2 Pos, color HexColor, context uintptr) {

@@ -89,7 +89,7 @@ func TestCallbackPanicKeepsStackUsable(t *testing.T) {
 }
 
 func TestCopyToStackAsRejectsSizeMismatch(t *testing.T) {
-	assert.Panics(t, func() { copyToStackAs[Vec3](theStack, ShapeProxy{}) })
+	assert.Panics(t, func() { copyToStackAs[Vec3](theStack, Mesh{}) })
 	theStack.CheckEmpty()
 }
 

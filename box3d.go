@@ -157,7 +157,7 @@ type OverlapResult func(shape Shape) bool
 // OverlapAABB calls fcn for every shape that potentially overlaps the aabb.
 // Return false to stop the query.
 func (b World) OverlapAABB(aabb AABB, filter QueryFilter, fcn OverlapResult) TreeStats {
-	fn := worldOverlapCallback(fcn)
+	var fn any = worldOverlapCallback(fcn)
 	defer runtime.KeepAlive(fn)
 
 	return b3World_OverlapAABB(theStack, b.Id, aabb, filter, __ccgo_fp(fn), 0)
@@ -166,7 +166,7 @@ func (b World) OverlapAABB(aabb AABB, filter QueryFilter, fcn OverlapResult) Tre
 // OverlapShape calls fcn for every shape that overlaps the proxy. The proxy is relative to origin.
 // Return false to stop the query.
 func (b World) OverlapShape(origin Pos, proxy ShapeProxy, filter QueryFilter, fcn OverlapResult) TreeStats {
-	fn := worldOverlapCallback(fcn)
+	var fn any = worldOverlapCallback(fcn)
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(proxy)
 
@@ -194,7 +194,7 @@ type CastResult func(shape Shape, point Pos, normal Vec3, fraction float32, user
 
 // CastRay calls fcn for every shape hit by the ray, in no particular order.
 func (b World) CastRay(origin Pos, translation Vec3, filter QueryFilter, fcn CastResult) TreeStats {
-	fn := worldCastCallback(fcn)
+	var fn any = worldCastCallback(fcn)
 	defer runtime.KeepAlive(fn)
 
 	return b3World_CastRay(theStack, b.Id, origin, translation, filter, __ccgo_fp(fn), 0)
@@ -203,7 +203,7 @@ func (b World) CastRay(origin Pos, translation Vec3, filter QueryFilter, fcn Cas
 // CastShape calls fcn for every shape hit by the moving proxy, in no particular order.
 // The proxy is relative to origin.
 func (b World) CastShape(origin Pos, proxy ShapeProxy, translation Vec3, filter QueryFilter, fcn CastResult) TreeStats {
-	fn := worldCastCallback(fcn)
+	var fn any = worldCastCallback(fcn)
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(proxy)
 
@@ -232,7 +232,7 @@ type MoverFilter func(shape Shape) bool
 func (b World) CastMover(origin Pos, mover Capsule, translation Vec3, filter QueryFilter, fcn MoverFilter) float32 {
 	var fp uintptr
 	if fcn != nil {
-		fn := moverFilterCallback(func(_ *_Stack, shapeId ShapeId, _ uintptr) uint8 {
+		var fn any = moverFilterCallback(func(_ *_Stack, shapeId ShapeId, _ uintptr) uint8 {
 			return boolUint8(fcn(Shape{Id: shapeId}))
 		})
 
@@ -256,7 +256,7 @@ type PlaneResultFn func(shape Shape, planes []PlaneResult) bool
 // CollideMover calls fcn with the collision planes between the mover capsule and the world,
 // for use with SolvePlanes. The mover and the planes are relative to origin.
 func (b World) CollideMover(origin Pos, mover Capsule, filter QueryFilter, fcn PlaneResultFn) {
-	fn := planeResultCallback(func(_ *_Stack, shapeId ShapeId, planes uintptr, planeCount int32, _ uintptr) uint8 {
+	var fn any = planeResultCallback(func(_ *_Stack, shapeId ShapeId, planes uintptr, planeCount int32, _ uintptr) uint8 {
 		return boolUint8(fcn(Shape{Id: shapeId}, unsafe.Slice((*PlaneResult)(unsafe.Pointer(planes)), planeCount)))
 	})
 
@@ -645,7 +645,7 @@ func meshQueryCallbackOf(fcn MeshQuery) meshQueryCallback {
 
 // QueryMesh calls fcn for every triangle of the mesh that overlaps bounds.
 func QueryMesh(mesh Mesh, bounds AABB, fcn MeshQuery) {
-	fn := meshQueryCallbackOf(fcn)
+	var fn any = meshQueryCallbackOf(fcn)
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(mesh)
 
@@ -657,7 +657,7 @@ func QueryMesh(mesh Mesh, bounds AABB, fcn MeshQuery) {
 
 // QueryHeightField calls fcn for every triangle of the height field that overlaps bounds.
 func QueryHeightField(heightField *HeightFieldData, bounds AABB, fcn MeshQuery) {
-	fn := meshQueryCallbackOf(fcn)
+	var fn any = meshQueryCallbackOf(fcn)
 	defer runtime.KeepAlive(fn)
 	defer runtime.KeepAlive(heightField)
 

@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -5833,8 +5835,8 @@ _307:
 			_321:
 				materialIndex = v67
 				material = *(*SurfaceMaterial)(unsafe.Add(nil, materialsA+uintptr(materialIndex)*40))
-				friction = friction + (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world2)).FrictionCallback})))(tls, material.Friction, material.UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
-				restitution = restitution + (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world2)).RestitutionCallback})))(tls, material.Restitution, material.UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+				friction = friction + (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world2)).FrictionCallback)))(tls, material.Friction, material.UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+				restitution = restitution + (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world2)).RestitutionCallback)))(tls, material.Restitution, material.UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
 				v19 = tangentVelocityA
 				v20 = material.TangentVelocity
 				v21 = Vec3{
@@ -5881,8 +5883,8 @@ _307:
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	} else {
 		// Keep these updated in case the values on the shapes are modified
-		(*b3Contact)(unsafe.Pointer(contact)).Friction = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world2)).FrictionCallback})))(tls, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).Friction, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
-		(*b3Contact)(unsafe.Pointer(contact)).Restitution = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(unsafe.Pointer(&struct{ uintptr }{(*b3World)(unsafe.Pointer(world2)).RestitutionCallback})))(tls, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).Restitution, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+		(*b3Contact)(unsafe.Pointer(contact)).Friction = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world2)).FrictionCallback)))(tls, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).Friction, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Friction, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
+		(*b3Contact)(unsafe.Pointer(contact)).Restitution = (*(*func(*_Stack, float32, uint64, float32, uint64) float32)(funcPtr((*b3World)(unsafe.Pointer(world2)).RestitutionCallback)))(tls, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).Restitution, (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).UserMaterialId, (*SurfaceMaterial)(unsafe.Pointer(materialB)).Restitution, (*SurfaceMaterial)(unsafe.Pointer(materialB)).UserMaterialId)
 		tangentVelocityA = (*(*SurfaceMaterial)(unsafe.Add(nil, materialsA))).TangentVelocity
 	}
 	v17 = xfA.Q

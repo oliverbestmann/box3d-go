@@ -1,3 +1,5 @@
+//go:build !(arm || (tinygo && wasm))
+
 package b3
 
 import (
@@ -2594,7 +2596,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -3161,7 +3163,7 @@ func init() {
 	}
 	var v59 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v59), uintptr(16); g != e {
@@ -3717,7 +3719,7 @@ func init() {
 	}
 	var v72 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -5910,7 +5912,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -6105,7 +6107,7 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -6231,13 +6233,13 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v110), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v110), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v110.UserData), uintptr(8); g != e {
@@ -6249,41 +6251,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v110.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v110.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v110.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v110.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v110.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v111 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v111), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v111), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v111.UserData), uintptr(8); g != e {
@@ -6295,31 +6297,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v111.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v111.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v112 struct {
@@ -13437,7 +13439,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -14047,8 +14049,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -15472,7 +15474,7 @@ func init() {
 	}
 	var v160 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v160), uintptr(16); g != e {
@@ -18011,7 +18013,7 @@ func init() {
 	}
 	var v187 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -21207,7 +21209,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -22810,7 +22812,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -23101,7 +23103,7 @@ func init() {
 		panic(g)
 	}
 	var v259 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -23227,7 +23229,53 @@ func init() {
 		panic(g)
 	}
 	var v260 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v260), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v260.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v260.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v260.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v260.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v260.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v261 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -23241,119 +23289,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v260), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v261), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v261.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v261.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v261.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v261.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v261.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v261.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v261.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v261.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v261.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v261.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v261.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v261.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v261.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v261.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v261.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v261.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v261.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v261 struct {
-		UserData       uintptr
+	var v262 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -23378,224 +23426,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v261), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v261.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v261.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v262 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v262), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v262), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v262.UserData), uintptr(8); g != e {
@@ -23607,41 +23438,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v262.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v262.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v262.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v262.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v262.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v262.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v262.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v262.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v262.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v262.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v262.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v262.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v262.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v262.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v262.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v262.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v263 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v263), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v263), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v263.UserData), uintptr(8); g != e {
@@ -23653,31 +23655,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v263.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v263.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v263.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v263.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v263.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v263.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v263.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v263.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v263.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v263.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v263.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v263.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v263.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v263.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v264 struct {
@@ -30010,7 +30012,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -30458,8 +30460,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -30874,7 +30876,7 @@ func init() {
 	}
 	var v101 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v101), uintptr(16); g != e {
@@ -31670,7 +31672,7 @@ func init() {
 	}
 	var v119 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -34037,7 +34039,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -35640,7 +35642,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -35835,7 +35837,7 @@ func init() {
 		panic(g)
 	}
 	var v173 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -35961,7 +35963,53 @@ func init() {
 		panic(g)
 	}
 	var v174 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v174), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v175 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -35986,224 +36034,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v174), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v174.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v174.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v175 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v175), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v175), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v175.UserData), uintptr(8); g != e {
@@ -36215,41 +36046,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v175.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v175.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v175.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v175.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v175.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v175.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v175.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v175.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v175.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v176 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v176), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v176), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v176.UserData), uintptr(8); g != e {
@@ -36261,31 +36263,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v176.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v176.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v176.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v176.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v176.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v176.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v176.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v176.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v176.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v176.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v176.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v176.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v176.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v176.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v177 struct {
@@ -40418,7 +40420,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -40830,8 +40832,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -41210,7 +41212,7 @@ func init() {
 	}
 	var v60 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v60), uintptr(16); g != e {
@@ -41766,7 +41768,7 @@ func init() {
 	}
 	var v73 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -43959,7 +43961,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -44154,7 +44156,7 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -44280,13 +44282,13 @@ func init() {
 		panic(g)
 	}
 	var v111 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v111), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v111), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v111.UserData), uintptr(8); g != e {
@@ -44298,41 +44300,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v111.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v111.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v111.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v111.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v111.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v111.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v111.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v112 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v112), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v112), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v112.UserData), uintptr(8); g != e {
@@ -44344,31 +44346,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v112.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v112.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v112.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v112.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v112.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v112.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v112.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v113 struct {
@@ -48684,7 +48686,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -49122,8 +49124,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -49502,7 +49504,7 @@ func init() {
 	}
 	var v71 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v71), uintptr(16); g != e {
@@ -50154,7 +50156,7 @@ func init() {
 	}
 	var v87 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -52551,7 +52553,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -52746,7 +52748,7 @@ func init() {
 		panic(g)
 	}
 	var v130 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -52872,13 +52874,13 @@ func init() {
 		panic(g)
 	}
 	var v131 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v131), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v131), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v131.UserData), uintptr(8); g != e {
@@ -52890,41 +52892,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v131.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v131.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v131.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v131.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v131.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v131.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v131.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v132 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v132), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v132), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v132.UserData), uintptr(8); g != e {
@@ -52936,31 +52938,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v132.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v132.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v132.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v132.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v132.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v132.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v132.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v133 struct {
@@ -58241,7 +58243,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -59173,7 +59175,7 @@ func init() {
 	}
 	var v92 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v92), uintptr(16); g != e {
@@ -61525,7 +61527,7 @@ func init() {
 	}
 	var v116 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -64071,7 +64073,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -65674,7 +65676,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -65869,7 +65871,7 @@ func init() {
 		panic(g)
 	}
 	var v168 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -65995,7 +65997,53 @@ func init() {
 		panic(g)
 	}
 	var v169 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v169), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v170 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -66009,119 +66057,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v169), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v170), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v170.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v170.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v170.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v170.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v170.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v170.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v170.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v170.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v170.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v170.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v170.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v170.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v170.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v170.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v170.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v170 struct {
-		UserData       uintptr
+	var v171 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -66146,224 +66194,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v170), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v170.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v170.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v171 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v171), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v171), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v171.UserData), uintptr(8); g != e {
@@ -66375,41 +66206,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v171.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v171.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v171.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v171.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v171.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v171.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v171.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v171.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v171.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v171.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v171.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v171.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v171.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v171.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v171.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v171.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v172 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v172), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v172), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v172.UserData), uintptr(8); g != e {
@@ -66421,31 +66423,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v172.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v172.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v172.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v172.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v172.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v172.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v172.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v172.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v172.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v172.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v173 struct {
@@ -71860,7 +71862,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -72308,8 +72310,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -72776,7 +72778,7 @@ func init() {
 	}
 	var v97 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v97), uintptr(16); g != e {
@@ -73572,7 +73574,7 @@ func init() {
 	}
 	var v115 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -76056,7 +76058,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -77685,7 +77687,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -77976,7 +77978,7 @@ func init() {
 		panic(g)
 	}
 	var v172 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -78102,7 +78104,53 @@ func init() {
 		panic(g)
 	}
 	var v173 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v173), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v173.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v173.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v173.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v173.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v174 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -78127,224 +78175,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v173), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v174 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v174), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v174), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v174.UserData), uintptr(8); g != e {
@@ -78356,41 +78187,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v174.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v174.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v174.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v174.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v175 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v175), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v175), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v175.UserData), uintptr(8); g != e {
@@ -78402,31 +78404,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v175.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v175.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v176 struct {
@@ -83873,7 +83875,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -84512,7 +84514,7 @@ func init() {
 	}
 	var v93 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v93), uintptr(16); g != e {
@@ -85308,7 +85310,7 @@ func init() {
 	}
 	var v111 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -87820,7 +87822,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -89423,7 +89425,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -89618,7 +89620,7 @@ func init() {
 		panic(g)
 	}
 	var v164 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -89744,7 +89746,53 @@ func init() {
 		panic(g)
 	}
 	var v165 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v165), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v166 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -89769,224 +89817,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v165), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v165.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v165.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v166 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v166), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v166), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v166.UserData), uintptr(8); g != e {
@@ -89998,41 +89829,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v166.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v166.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v166.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v166.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v166.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v166.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v166.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v167 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v167), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v167), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v167.UserData), uintptr(8); g != e {
@@ -90044,31 +90046,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v167.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v167.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v167.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v167.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v167.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v167.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v167.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v168 struct {
@@ -94201,7 +94203,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -94613,8 +94615,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -94993,7 +94995,7 @@ func init() {
 	}
 	var v70 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v70), uintptr(16); g != e {
@@ -95549,7 +95551,7 @@ func init() {
 	}
 	var v83 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -97834,7 +97836,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -98029,7 +98031,7 @@ func init() {
 		panic(g)
 	}
 	var v122 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -98155,13 +98157,13 @@ func init() {
 		panic(g)
 	}
 	var v123 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v123), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v123), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v123.UserData), uintptr(8); g != e {
@@ -98173,41 +98175,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v123.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v123.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v123.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v123.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v123.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v123.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v123.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v123.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v123.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v123.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v123.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v123.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v123.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v123.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v124 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v124), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v124), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v124.UserData), uintptr(8); g != e {
@@ -98219,31 +98221,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v124.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v124.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v124.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v124.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v124.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v124.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v124.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v125 struct {
@@ -102796,7 +102798,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -103363,7 +103365,7 @@ func init() {
 	}
 	var v63 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v63), uintptr(16); g != e {
@@ -103919,7 +103921,7 @@ func init() {
 	}
 	var v76 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -106188,7 +106190,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -106383,7 +106385,7 @@ func init() {
 		panic(g)
 	}
 	var v114 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -106509,13 +106511,13 @@ func init() {
 		panic(g)
 	}
 	var v115 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v115), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v115), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v115.UserData), uintptr(8); g != e {
@@ -106527,41 +106529,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v115.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v115.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v115.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v115.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v115.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v115.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v115.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v116 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v116), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v116), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v116.UserData), uintptr(8); g != e {
@@ -106573,31 +106575,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v116.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v116.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v116.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v116.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v116.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v116.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v116.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v117 struct {
@@ -112899,7 +112901,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -114611,7 +114613,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -117150,7 +117152,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -120218,7 +120220,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -121821,7 +121823,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -122112,7 +122114,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -122238,7 +122240,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -122252,119 +122300,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -122389,224 +122437,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -122618,41 +122449,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -122664,31 +122666,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -127687,7 +127689,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -128254,7 +128256,7 @@ func init() {
 	}
 	var v70 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v70), uintptr(16); g != e {
@@ -128810,7 +128812,7 @@ func init() {
 	}
 	var v83 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -131167,7 +131169,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -131362,7 +131364,7 @@ func init() {
 		panic(g)
 	}
 	var v124 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -131488,13 +131490,13 @@ func init() {
 		panic(g)
 	}
 	var v125 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v125), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v125), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v125.UserData), uintptr(8); g != e {
@@ -131506,41 +131508,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v125.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v125.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v125.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v125.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v125.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v125.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v125.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v126 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v126), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v126), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v126.UserData), uintptr(8); g != e {
@@ -131552,31 +131554,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v126.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v126.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v126.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v126.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v126.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v126.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v126.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v126.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v126.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v126.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v126.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v126.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v126.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v126.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v127 struct {
@@ -136877,7 +136879,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -137325,8 +137327,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -137741,7 +137743,7 @@ func init() {
 	}
 	var v97 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v97), uintptr(16); g != e {
@@ -138537,7 +138539,7 @@ func init() {
 	}
 	var v115 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -140853,7 +140855,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -142456,7 +142458,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -142651,7 +142653,7 @@ func init() {
 		panic(g)
 	}
 	var v167 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -142777,7 +142779,53 @@ func init() {
 		panic(g)
 	}
 	var v168 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v168), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v168.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v168.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v168.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v168.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v168.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v169 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -142802,224 +142850,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v168), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v168.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v168.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v169 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v169), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v169), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v169.UserData), uintptr(8); g != e {
@@ -143031,41 +142862,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v169.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v169.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v169.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v169.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v169.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v169.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v169.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v169.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v169.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v169.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v169.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v169.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v169.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v169.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v170 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v170), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v170), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v170.UserData), uintptr(8); g != e {
@@ -143077,31 +143079,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v170.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v170.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v170.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v170.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v170.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v170.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v170.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v170.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v170.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v170.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v170.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v171 struct {
@@ -147481,7 +147483,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -147893,8 +147895,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -148273,7 +148275,7 @@ func init() {
 	}
 	var v71 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v71), uintptr(16); g != e {
@@ -149071,7 +149073,7 @@ func init() {
 	}
 	var v88 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -151732,7 +151734,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -151927,7 +151929,7 @@ func init() {
 		panic(g)
 	}
 	var v130 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -152053,13 +152055,13 @@ func init() {
 		panic(g)
 	}
 	var v131 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v131), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v131), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v131.UserData), uintptr(8); g != e {
@@ -152071,41 +152073,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v131.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v131.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v131.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v131.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v131.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v131.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v131.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v131.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v131.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v131.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v132 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v132), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v132), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v132.UserData), uintptr(8); g != e {
@@ -152117,31 +152119,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v132.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v132.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v132.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v132.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v132.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v132.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v132.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v133 struct {
@@ -157645,7 +157647,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -158629,7 +158631,7 @@ func init() {
 	}
 	var v94 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v94), uintptr(16); g != e {
@@ -160981,7 +160983,7 @@ func init() {
 	}
 	var v118 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -163603,7 +163605,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -165206,7 +165208,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -165401,7 +165403,7 @@ func init() {
 		panic(g)
 	}
 	var v171 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -165527,7 +165529,53 @@ func init() {
 		panic(g)
 	}
 	var v172 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v172), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v173 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -165541,119 +165589,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v172), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v173), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v173.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v173.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v173.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v173.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v173.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v173.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v173.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v173.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v173.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v173.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v173.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v173.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v173 struct {
-		UserData       uintptr
+	var v174 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -165678,224 +165726,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v173), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v174 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v174), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v174), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v174.UserData), uintptr(8); g != e {
@@ -165907,41 +165738,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v174.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v174.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v174.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v174.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v175 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v175), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v175), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v175.UserData), uintptr(8); g != e {
@@ -165953,31 +165955,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v175.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v175.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v176 struct {
@@ -172349,7 +172351,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -172913,8 +172915,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -174364,7 +174366,7 @@ func init() {
 	}
 	var v159 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v159), uintptr(16); g != e {
@@ -176903,7 +176905,7 @@ func init() {
 	}
 	var v186 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -180047,7 +180049,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -181650,7 +181652,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -181941,7 +181943,7 @@ func init() {
 		panic(g)
 	}
 	var v256 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -182067,7 +182069,53 @@ func init() {
 		panic(g)
 	}
 	var v257 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v257), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v257.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v257.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v257.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v257.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v257.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v258 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -182081,119 +182129,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v257), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v258), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v258.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v258.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v258.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v258.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v258.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v258.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v258.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v258.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v258.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v258.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v258.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v258.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v258.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v258.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v257.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v258.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v258.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v257.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v258.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v258 struct {
-		UserData       uintptr
+	var v259 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -182218,224 +182266,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v258), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v258.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v258.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v259 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v259), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v259), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v259.UserData), uintptr(8); g != e {
@@ -182447,41 +182278,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v259.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v259.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v259.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v259.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v259.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v259.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v259.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v259.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v259.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v259.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v259.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v259.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v259.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v259.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v259.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v259.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v260 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v260), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v260), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v260.UserData), uintptr(8); g != e {
@@ -182493,31 +182495,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v260.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v260.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v260.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v260.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v260.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v260.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v260.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v260.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v260.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v260.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v260.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v260.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v261 struct {
@@ -187498,7 +187500,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -187910,8 +187912,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -188290,7 +188292,7 @@ func init() {
 	}
 	var v62 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v62), uintptr(16); g != e {
@@ -188846,7 +188848,7 @@ func init() {
 	}
 	var v75 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -191131,7 +191133,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -191326,7 +191328,7 @@ func init() {
 		panic(g)
 	}
 	var v114 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -191452,13 +191454,13 @@ func init() {
 		panic(g)
 	}
 	var v115 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v115), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v115), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v115.UserData), uintptr(8); g != e {
@@ -191470,41 +191472,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v115.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v115.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v115.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v115.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v115.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v115.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v115.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v116 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v116), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v116), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v116.UserData), uintptr(8); g != e {
@@ -191516,31 +191518,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v116.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v116.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v116.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v116.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v116.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v116.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v116.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v116.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v116.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v116.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v117 struct {
@@ -195502,7 +195504,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -196069,7 +196071,7 @@ func init() {
 	}
 	var v59 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v59), uintptr(16); g != e {
@@ -196625,7 +196627,7 @@ func init() {
 	}
 	var v72 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -198818,7 +198820,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -199013,7 +199015,7 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -199139,13 +199141,13 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v110), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v110), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v110.UserData), uintptr(8); g != e {
@@ -199157,41 +199159,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v110.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v110.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v110.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v110.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v110.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v111 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v111), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v111), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v111.UserData), uintptr(8); g != e {
@@ -199203,31 +199205,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v111.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v111.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v112 struct {
@@ -203399,7 +203401,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -203811,8 +203813,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -204191,7 +204193,7 @@ func init() {
 	}
 	var v74 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v74), uintptr(16); g != e {
@@ -204863,7 +204865,7 @@ func init() {
 	}
 	var v90 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -207258,7 +207260,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -207453,7 +207455,7 @@ func init() {
 		panic(g)
 	}
 	var v131 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -207579,13 +207581,13 @@ func init() {
 		panic(g)
 	}
 	var v132 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v132), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v132), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v132.UserData), uintptr(8); g != e {
@@ -207597,41 +207599,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v132.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v132.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v132.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v132.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v132.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v132.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v132.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v132.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v132.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v132.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v133 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v133), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v133), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v133.UserData), uintptr(8); g != e {
@@ -207643,31 +207645,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v133.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v133.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v133.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v133.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v133.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v133.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v133.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v133.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v133.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v133.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v133.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v133.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v133.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v133.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v134 struct {
@@ -213195,7 +213197,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -213643,8 +213645,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -214095,7 +214097,7 @@ func init() {
 	}
 	var v105 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v105), uintptr(16); g != e {
@@ -214923,7 +214925,7 @@ func init() {
 	}
 	var v125 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -217382,7 +217384,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -218799,7 +218801,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -218994,7 +218996,7 @@ func init() {
 		panic(g)
 	}
 	var v180 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -219120,13 +219122,13 @@ func init() {
 		panic(g)
 	}
 	var v181 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v181), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v181), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v181.UserData), uintptr(8); g != e {
@@ -219138,41 +219140,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v181.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v181.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v181.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v181.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v181.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v181.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v181.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v181.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v181.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v181.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v181.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v181.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v181.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v181.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v182 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v182), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v182), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v182.UserData), uintptr(8); g != e {
@@ -219184,31 +219186,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v182.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v182.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v182.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v182.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v182.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v182.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v182.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v182.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v182.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v182.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v182.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v182.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v182.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v182.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v183 struct {
@@ -225599,7 +225601,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -227311,7 +227313,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -229850,7 +229852,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -232918,7 +232920,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -234521,7 +234523,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -234812,7 +234814,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -234938,7 +234940,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -234952,119 +235000,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -235089,224 +235137,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -235318,41 +235149,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -235364,31 +235366,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -240307,7 +240309,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -240874,7 +240876,7 @@ func init() {
 	}
 	var v59 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v59), uintptr(16); g != e {
@@ -241430,7 +241432,7 @@ func init() {
 	}
 	var v72 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -243623,7 +243625,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -243818,7 +243820,7 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -243944,13 +243946,13 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v110), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v110), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v110.UserData), uintptr(8); g != e {
@@ -243962,41 +243964,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v110.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v110.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v110.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v110.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v110.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v111 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v111), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v111), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v111.UserData), uintptr(8); g != e {
@@ -244008,31 +244010,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v111.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v111.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v111.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v112 struct {
@@ -249066,7 +249068,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -250449,7 +250451,7 @@ func init() {
 	}
 	var v122 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v122), uintptr(16); g != e {
@@ -251236,7 +251238,7 @@ func init() {
 	}
 	var v139 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -253893,7 +253895,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -254088,7 +254090,7 @@ func init() {
 		panic(g)
 	}
 	var v191 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -254214,13 +254216,13 @@ func init() {
 		panic(g)
 	}
 	var v192 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v192), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v192), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v192.UserData), uintptr(8); g != e {
@@ -254232,41 +254234,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v192.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v192.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v192.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v192.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v192.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v192.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v192.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v192.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v192.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v192.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v192.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v192.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v192.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v192.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v193 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v193), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v193), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v193.UserData), uintptr(8); g != e {
@@ -254278,31 +254280,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v193.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v193.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v193.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v193.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v193.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v193.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v193.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v193.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v193.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v193.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v194 struct {
@@ -260388,7 +260390,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -261027,7 +261029,7 @@ func init() {
 	}
 	var v88 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v88), uintptr(16); g != e {
@@ -261721,7 +261723,7 @@ func init() {
 	}
 	var v104 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -264057,7 +264059,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -265474,7 +265476,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -265669,7 +265671,7 @@ func init() {
 		panic(g)
 	}
 	var v155 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -265795,13 +265797,13 @@ func init() {
 		panic(g)
 	}
 	var v156 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v156), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v156), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v156.UserData), uintptr(8); g != e {
@@ -265813,41 +265815,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v156.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v156.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v156.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v156.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v156.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v156.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v156.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v156.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v156.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v156.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v156.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v156.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v156.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v156.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v157 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v157), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v157), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v157.UserData), uintptr(8); g != e {
@@ -265859,31 +265861,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v157.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v157.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v157.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v157.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v157.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v157.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v157.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v157.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v157.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v157.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v157.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v157.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v157.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v157.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v158 struct {
@@ -272145,7 +272147,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -273857,7 +273859,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -276396,7 +276398,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -279464,7 +279466,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -281067,7 +281069,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -281358,7 +281360,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -281484,7 +281486,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -281498,119 +281546,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -281635,224 +281683,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -281864,41 +281695,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -281910,31 +281912,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -289370,7 +289372,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -289980,8 +289982,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -291405,7 +291407,7 @@ func init() {
 	}
 	var v169 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v169), uintptr(16); g != e {
@@ -294014,7 +294016,7 @@ func init() {
 	}
 	var v198 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -297285,7 +297287,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -298888,7 +298890,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -299179,7 +299181,7 @@ func init() {
 		panic(g)
 	}
 	var v273 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -299305,7 +299307,53 @@ func init() {
 		panic(g)
 	}
 	var v274 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v274), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v274.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v274.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v274.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v274.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v274.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v275 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -299319,119 +299367,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v274), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v275), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v275.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v275.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v275.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v275.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v275.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v275.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v275.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v275.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v275.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v275.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v275.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v275.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v275.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v275.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v274.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v275.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v275.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v274.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v275.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v275 struct {
-		UserData       uintptr
+	var v276 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -299456,224 +299504,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v275), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v275.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v275.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v276 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v276), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v276), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v276.UserData), uintptr(8); g != e {
@@ -299685,41 +299516,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v276.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v276.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v276.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v276.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v276.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v276.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v276.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v276.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v276.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v276.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v276.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v276.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v276.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v276.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v276.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v276.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v277 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v277), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v277), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v277.UserData), uintptr(8); g != e {
@@ -299731,31 +299733,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v277.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v277.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v277.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v277.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v277.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v277.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v277.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v277.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v277.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v277.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v277.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v277.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v277.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v277.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v278 struct {
@@ -307493,7 +307495,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -309205,7 +309207,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -311744,7 +311746,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -314812,7 +314814,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -316415,7 +316417,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -316706,7 +316708,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -316832,7 +316834,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -316846,119 +316894,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -316983,224 +317031,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -317212,41 +317043,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -317258,31 +317260,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -325226,7 +325228,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -326857,7 +326859,7 @@ func init() {
 	}
 	var v158 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v158), uintptr(16); g != e {
@@ -328076,7 +328078,7 @@ func init() {
 	}
 	var v182 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -330892,7 +330894,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -332495,7 +332497,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -332786,7 +332788,7 @@ func init() {
 		panic(g)
 	}
 	var v251 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -332912,7 +332914,53 @@ func init() {
 		panic(g)
 	}
 	var v252 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v252), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v253 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -332937,224 +332985,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v253 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v253), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -333166,41 +332997,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v253.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v253.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v253.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v253.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v254), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v254), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v254.UserData), uintptr(8); g != e {
@@ -333212,31 +333214,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v254.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v254.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v254.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v254.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v254.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v254.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v254.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v255 struct {
@@ -341106,7 +341108,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -342737,7 +342739,7 @@ func init() {
 	}
 	var v157 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v157), uintptr(16); g != e {
@@ -343956,7 +343958,7 @@ func init() {
 	}
 	var v181 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -346843,7 +346845,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -348446,7 +348448,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -348737,7 +348739,7 @@ func init() {
 		panic(g)
 	}
 	var v252 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -348863,7 +348865,53 @@ func init() {
 		panic(g)
 	}
 	var v253 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v254 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -348888,224 +348936,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v253), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v254 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v254), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v254), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v254.UserData), uintptr(8); g != e {
@@ -349117,41 +348948,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v254.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v254.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v254.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v254.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v254.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v254.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v254.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v255 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v255), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v255), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v255.UserData), uintptr(8); g != e {
@@ -349163,31 +349165,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v255.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v255.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v255.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v255.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v255.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v255.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v255.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v256 struct {
@@ -356388,7 +356390,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -358100,7 +358102,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -360639,7 +360641,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -363707,7 +363709,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -365310,7 +365312,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -365601,7 +365603,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -365727,7 +365729,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -365741,119 +365789,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -365878,224 +365926,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -366107,41 +365938,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -366153,31 +366155,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -372721,7 +372723,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -373215,8 +373217,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -373631,7 +373633,7 @@ func init() {
 	}
 	var v92 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v92), uintptr(16); g != e {
@@ -374427,7 +374429,7 @@ func init() {
 	}
 	var v110 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -376799,7 +376801,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -378402,7 +378404,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -378597,7 +378599,7 @@ func init() {
 		panic(g)
 	}
 	var v165 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -378723,7 +378725,53 @@ func init() {
 		panic(g)
 	}
 	var v166 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v166), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v166.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v166.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v167 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -378748,224 +378796,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v166), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v166.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v166.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v167 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v167), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v167), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v167.UserData), uintptr(8); g != e {
@@ -378977,41 +378808,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v167.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v167.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v167.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v167.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v167.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v167.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v167.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v167.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v167.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v167.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v167.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v167.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v168 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v168), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v168), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v168.UserData), uintptr(8); g != e {
@@ -379023,31 +379025,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v168.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v168.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v168.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v168.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v168.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v168.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v168.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v168.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v168.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v168.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v168.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v168.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v168.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v168.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v169 struct {
@@ -385590,7 +385592,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -386084,8 +386086,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -387280,7 +387282,7 @@ func init() {
 	}
 	var v158 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v158), uintptr(16); g != e {
@@ -388263,7 +388265,7 @@ func init() {
 	}
 	var v179 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -391133,7 +391135,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -392878,7 +392880,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -393169,7 +393171,7 @@ func init() {
 		panic(g)
 	}
 	var v252 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -393295,7 +393297,53 @@ func init() {
 		panic(g)
 	}
 	var v253 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v254 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -393320,224 +393368,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v253), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v253.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v253.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v254 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v254), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v254), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v254.UserData), uintptr(8); g != e {
@@ -393549,41 +393380,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v254.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v254.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v254.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v254.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v254.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v254.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v254.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v254.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v254.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v254.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v254.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v254.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v255 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v255), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v255), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v255.UserData), uintptr(8); g != e {
@@ -393595,31 +393597,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v255.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v255.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v255.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v255.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v255.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v255.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v255.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v255.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v255.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v255.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v256 struct {
@@ -398586,7 +398588,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -399153,7 +399155,7 @@ func init() {
 	}
 	var v60 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v60), uintptr(16); g != e {
@@ -399683,7 +399685,7 @@ func init() {
 	}
 	var v72 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -401814,7 +401816,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -402009,7 +402011,7 @@ func init() {
 		panic(g)
 	}
 	var v107 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -402135,13 +402137,13 @@ func init() {
 		panic(g)
 	}
 	var v108 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v108), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v108), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v108.UserData), uintptr(8); g != e {
@@ -402153,41 +402155,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v108.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v108.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v108.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v108.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v108.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v108.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v108.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v108.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v108.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v108.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v108.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v108.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v108.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v108.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v109 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v109), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v109), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v109.UserData), uintptr(8); g != e {
@@ -402199,31 +402201,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v109.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v109.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v109.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v109.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v109.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v109.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v109.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v110 struct {
@@ -407723,7 +407725,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -408333,8 +408335,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -408978,7 +408980,7 @@ func init() {
 	}
 	var v109 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v109), uintptr(16); g != e {
@@ -411330,7 +411332,7 @@ func init() {
 	}
 	var v133 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -414318,7 +414320,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -415921,7 +415923,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -416116,7 +416118,7 @@ func init() {
 		panic(g)
 	}
 	var v192 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -416242,7 +416244,53 @@ func init() {
 		panic(g)
 	}
 	var v193 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v193), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v193.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v193.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v193.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v193.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v193.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v194 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -416256,119 +416304,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v193), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v194), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v194.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v194.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v194.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v194.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v194.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v194.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v194.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v194.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v194.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v194.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v194.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v194.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v194.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v194.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v193.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v194.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v194.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v193.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v194.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v194 struct {
-		UserData       uintptr
+	var v195 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -416393,224 +416441,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v194), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v194.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v194.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v195 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v195), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v195), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v195.UserData), uintptr(8); g != e {
@@ -416622,41 +416453,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v195.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v195.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v195.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v195.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v195.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v195.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v195.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v195.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v195.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v195.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v195.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v195.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v195.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v195.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v195.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v195.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v196 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v196), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v196), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v196.UserData), uintptr(8); g != e {
@@ -416668,31 +416670,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v196.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v196.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v196.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v196.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v196.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v196.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v196.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v196.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v196.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v196.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v196.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v196.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v196.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v196.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v197 struct {
@@ -422153,7 +422155,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -423137,7 +423139,7 @@ func init() {
 	}
 	var v94 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v94), uintptr(16); g != e {
@@ -425489,7 +425491,7 @@ func init() {
 	}
 	var v118 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -428111,7 +428113,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -429714,7 +429716,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -429909,7 +429911,7 @@ func init() {
 		panic(g)
 	}
 	var v171 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -430035,7 +430037,53 @@ func init() {
 		panic(g)
 	}
 	var v172 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v172), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v172.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v172.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v173 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -430049,119 +430097,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v172), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v173), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v173.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v173.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v173.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v173.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v173.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v173.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v173.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v173.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v173.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v173.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v173.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v172.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v173.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v173.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v172.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v173.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v173 struct {
-		UserData       uintptr
+	var v174 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -430186,224 +430234,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v173), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v173.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v173.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v174 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v174), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v174), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v174.UserData), uintptr(8); g != e {
@@ -430415,41 +430246,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v174.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v174.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v174.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v174.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v174.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v174.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v174.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v174.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v174.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v175 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v175), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v175), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v175.UserData), uintptr(8); g != e {
@@ -430461,31 +430463,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v175.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v175.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v175.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v175.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v175.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v175.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v176 struct {
@@ -434465,7 +434467,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -434877,8 +434879,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -435257,7 +435259,7 @@ func init() {
 	}
 	var v60 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v60), uintptr(16); g != e {
@@ -435813,7 +435815,7 @@ func init() {
 	}
 	var v73 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -438006,7 +438008,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -438201,7 +438203,7 @@ func init() {
 		panic(g)
 	}
 	var v110 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -438327,13 +438329,13 @@ func init() {
 		panic(g)
 	}
 	var v111 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v111), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v111), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v111.UserData), uintptr(8); g != e {
@@ -438345,41 +438347,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v111.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v111.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v111.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v111.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v111.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v111.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v111.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v111.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v111.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v111.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v112 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v112), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v112), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v112.UserData), uintptr(8); g != e {
@@ -438391,31 +438393,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v112.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v112.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v112.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v112.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v112.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v112.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v112.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v112.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v112.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v112.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v113 struct {
@@ -444729,7 +444731,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -446441,7 +446443,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -448980,7 +448982,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -452048,7 +452050,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -453651,7 +453653,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -453942,7 +453944,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -454068,7 +454070,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -454082,119 +454130,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -454219,224 +454267,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -454448,41 +454279,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -454494,31 +454496,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -460802,7 +460804,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -461441,7 +461443,7 @@ func init() {
 	}
 	var v92 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v92), uintptr(16); g != e {
@@ -462237,7 +462239,7 @@ func init() {
 	}
 	var v110 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -464599,7 +464601,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -466202,7 +466204,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -466397,7 +466399,7 @@ func init() {
 		panic(g)
 	}
 	var v163 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -466523,7 +466525,53 @@ func init() {
 		panic(g)
 	}
 	var v164 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v164), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v164.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v164.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v164.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v164.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v164.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v165 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -466548,224 +466596,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v164), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v164.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v164.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v165 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v165), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v165), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v165.UserData), uintptr(8); g != e {
@@ -466777,41 +466608,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v165.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v165.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v165.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v165.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v165.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v165.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v165.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v165.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v165.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v165.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v165.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v165.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v165.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v165.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v165.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v165.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v166 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v166), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v166), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v166.UserData), uintptr(8); g != e {
@@ -466823,31 +466825,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v166.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v166.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v166.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v166.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v166.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v166.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v166.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v166.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v166.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v166.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v167 struct {
@@ -471780,7 +471782,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -472192,8 +472194,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -472572,7 +472574,7 @@ func init() {
 	}
 	var v75 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v75), uintptr(16); g != e {
@@ -473250,7 +473252,7 @@ func init() {
 	}
 	var v90 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -475865,7 +475867,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -476060,7 +476062,7 @@ func init() {
 		panic(g)
 	}
 	var v133 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -476186,13 +476188,13 @@ func init() {
 		panic(g)
 	}
 	var v134 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v134), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v134), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v134.UserData), uintptr(8); g != e {
@@ -476204,41 +476206,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v134.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v134.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v134.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v134.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v134.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v134.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v134.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v134.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v134.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v134.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v134.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v134.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v134.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v134.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v135 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v135), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v135), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v135.UserData), uintptr(8); g != e {
@@ -476250,31 +476252,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v135.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v135.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v135.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v135.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v135.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v135.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v135.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v135.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v135.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v135.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v135.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v135.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v135.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v135.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v136 struct {
@@ -480308,7 +480310,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -480875,7 +480877,7 @@ func init() {
 	}
 	var v57 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v57), uintptr(16); g != e {
@@ -481405,7 +481407,7 @@ func init() {
 	}
 	var v69 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -483536,7 +483538,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -483731,7 +483733,7 @@ func init() {
 		panic(g)
 	}
 	var v104 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -483857,13 +483859,13 @@ func init() {
 		panic(g)
 	}
 	var v105 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v105), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v105), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v105.UserData), uintptr(8); g != e {
@@ -483875,41 +483877,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v105.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v105.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v105.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v105.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v105.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v105.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v105.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v105.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v105.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v105.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v105.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v105.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v105.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v105.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v106 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v106), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v106), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v106.UserData), uintptr(8); g != e {
@@ -483921,31 +483923,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v106.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v106.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v106.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v106.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v106.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v106.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v106.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v106.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v106.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v106.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v106.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v106.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v106.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v106.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v107 struct {
@@ -490191,7 +490193,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -491903,7 +491905,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -494442,7 +494444,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -497510,7 +497512,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -499113,7 +499115,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -499404,7 +499406,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -499530,7 +499532,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -499544,119 +499592,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -499681,224 +499729,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -499910,41 +499741,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -499956,31 +499958,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -507251,7 +507253,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -508963,7 +508965,7 @@ func init() {
 	}
 	var v153 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v153), uintptr(16); g != e {
@@ -511502,7 +511504,7 @@ func init() {
 	}
 	var v180 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -514570,7 +514572,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -516173,7 +516175,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -516464,7 +516466,7 @@ func init() {
 		panic(g)
 	}
 	var v249 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -516590,7 +516592,53 @@ func init() {
 		panic(g)
 	}
 	var v250 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v250), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v250.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v250.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v251 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -516604,119 +516652,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v250), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v251), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v251.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v250.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v251.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v250.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v251.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v251 struct {
-		UserData       uintptr
+	var v252 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -516741,224 +516789,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v251), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v251.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v251.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v252 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v252), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v252), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v252.UserData), uintptr(8); g != e {
@@ -516970,41 +516801,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v252.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v252.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v252.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v252.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v252.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v252.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v252.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v252.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v252.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v253 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v253), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v253), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v253.UserData), uintptr(8); g != e {
@@ -517016,31 +517018,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v253.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v253.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v253.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v253.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v253.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v253.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v254 struct {
@@ -523996,7 +523998,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -524444,8 +524446,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -524986,7 +524988,7 @@ func init() {
 	}
 	var v110 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v110), uintptr(16); g != e {
@@ -525852,7 +525854,7 @@ func init() {
 	}
 	var v130 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -528506,7 +528508,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -530109,7 +530111,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -530304,7 +530306,7 @@ func init() {
 		panic(g)
 	}
 	var v187 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -530430,7 +530432,53 @@ func init() {
 		panic(g)
 	}
 	var v188 struct {
-		UserData       uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v188), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v188.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v188.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v188.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v188.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v188.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v189 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -530455,224 +530503,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v188), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v188.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v188.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v189 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v189), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v189), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v189.UserData), uintptr(8); g != e {
@@ -530684,41 +530515,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v189.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v189.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v189.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v189.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v189.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v189.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v189.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v189.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v189.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v189.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v189.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v189.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v189.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v189.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v189.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v189.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v190 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v190), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v190), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v190.UserData), uintptr(8); g != e {
@@ -530730,31 +530732,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v190.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v190.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v190.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v190.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v190.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v190.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v190.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v190.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v190.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v190.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v190.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v190.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v190.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v190.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v191 struct {
@@ -538280,7 +538282,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -538890,8 +538892,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -539115,8 +539117,8 @@ func init() {
 		Material       SurfaceMaterial
 		Materials      uintptr
 		Filter         Filter
-		UserData       uintptr
-		UserShape      uintptr
+		UserData       uint64
+		UserShape      uint64
 		NameId         uint32
 		Generation     uint16
 		Flags          uint8
@@ -540752,7 +540754,7 @@ func init() {
 	}
 	var v174 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v174), uintptr(16); g != e {
@@ -543601,7 +543603,7 @@ func init() {
 	}
 	var v206 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -547119,7 +547121,7 @@ func init() {
 		UserTaskContext              uintptr
 		UserTreeTask                 uintptr
 		Scheduler                    uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		Recording                    uintptr
 		Inv_h                        float32
 		Inv_dt                       float32
@@ -548748,7 +548750,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -549039,7 +549041,7 @@ func init() {
 		panic(g)
 	}
 	var v282 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -549165,7 +549167,53 @@ func init() {
 		panic(g)
 	}
 	var v283 struct {
-		UserData         uintptr
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
+	}
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v283), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v283.UserData), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.UserData), uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.UserData)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v283.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.CategoryBits), uintptr(8); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.CategoryBits)%8, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v283.Node), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.Node), uintptr(16); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.Node)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v283.Next), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.Next), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v283.Next)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	var v284 struct {
+		UserData         uint64
 		SetIndex         int32
 		ColorIndex       int32
 		LocalIndex       int32
@@ -549179,119 +549227,119 @@ func init() {
 		CollideConnected uint8
 	}
 	// struct "b3Joint"
-	if g, e := unsafe.Sizeof(v283), uintptr(72); g != e {
+	if g, e := unsafe.Sizeof(v284), uintptr(72); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.UserData), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v284.UserData), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.UserData), uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.UserData), uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.UserData)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.SetIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.SetIndex), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v284.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.SetIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.ColorIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.ColorIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.ColorIndex), uintptr(12); g != e {
+	if g, e := unsafe.Offsetof(v284.ColorIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.ColorIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.ColorIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.LocalIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.LocalIndex), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v284.LocalIndex), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.LocalIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.Edges), uintptr(24); g != e {
+	if g, e := unsafe.Sizeof(v284.Edges), uintptr(24); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Edges), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v284.Edges), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Edges)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.Edges)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.JointId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.JointId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.JointId), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v284.JointId), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.JointId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.JointId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.IslandId), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.IslandId), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.IslandId), uintptr(48); g != e {
+	if g, e := unsafe.Offsetof(v284.IslandId), uintptr(48); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.IslandId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.IslandId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.IslandIndex), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.IslandIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.IslandIndex), uintptr(52); g != e {
+	if g, e := unsafe.Offsetof(v284.IslandIndex), uintptr(52); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.IslandIndex)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.IslandIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.DrawScale), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.DrawScale), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.DrawScale), uintptr(56); g != e {
+	if g, e := unsafe.Offsetof(v284.DrawScale), uintptr(56); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.DrawScale)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.DrawScale)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.Type1), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v284.Type1), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Type1), uintptr(60); g != e {
+	if g, e := unsafe.Offsetof(v284.Type1), uintptr(60); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Type1)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.Type1)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.Generation), uintptr(2); g != e {
+	if g, e := unsafe.Sizeof(v284.Generation), uintptr(2); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Generation), uintptr(64); g != e {
+	if g, e := unsafe.Offsetof(v284.Generation), uintptr(64); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.Generation)%2, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v283.CollideConnected), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v284.CollideConnected), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.CollideConnected), uintptr(66); g != e {
+	if g, e := unsafe.Offsetof(v284.CollideConnected), uintptr(66); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v283.CollideConnected)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v284.CollideConnected)%1, uintptr(0); g != e {
 		panic(g)
 	}
-	var v284 struct {
-		UserData       uintptr
+	var v285 struct {
+		UserData       uint64
 		SetIndex       int32
 		LocalIndex     int32
 		HeadContactKey int32
@@ -549316,224 +549364,7 @@ func init() {
 		Generation     uint16
 	}
 	// struct "b3Body"
-	if g, e := unsafe.Sizeof(v284), uintptr(96); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.UserData), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.UserData), uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.UserData)%8, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.SetIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SetIndex), uintptr(8); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SetIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.LocalIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.LocalIndex), uintptr(12); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.LocalIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.HeadContactKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadContactKey), uintptr(16); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadContactKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.ContactCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.ContactCount), uintptr(20); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.ContactCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.HeadShapeId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadShapeId), uintptr(24); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadShapeId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.ShapeCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.ShapeCount), uintptr(28); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.ShapeCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.HeadChainId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadChainId), uintptr(32); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadChainId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.HeadJointKey), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadJointKey), uintptr(36); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.HeadJointKey)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.JointCount), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.JointCount), uintptr(40); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.JointCount)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.IslandId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.IslandId), uintptr(44); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.IslandId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.IslandIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.IslandIndex), uintptr(48); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.IslandIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.SleepThreshold), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepThreshold), uintptr(52); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepThreshold)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.SleepTime), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepTime), uintptr(56); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepTime)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.SleepVelocity), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepVelocity), uintptr(60); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SleepVelocity)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.SafetyFactor), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SafetyFactor), uintptr(64); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.SafetyFactor)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.Mass), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Mass), uintptr(68); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Mass)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.BodyMoveIndex), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.BodyMoveIndex), uintptr(72); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.BodyMoveIndex)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.Id), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Id), uintptr(76); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Id)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.Flags), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Flags), uintptr(80); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Flags)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.NameId), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.NameId), uintptr(84); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.NameId)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.Type1), uintptr(4); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Type1), uintptr(88); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Type1)%4, uintptr(0); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Sizeof(v284.Generation), uintptr(2); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Generation), uintptr(92); g != e {
-		panic(g)
-	}
-	if g, e := unsafe.Offsetof(v284.Generation)%2, uintptr(0); g != e {
-		panic(g)
-	}
-	var v285 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
-	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v285), uintptr(48); g != e {
+	if g, e := unsafe.Sizeof(v285), uintptr(96); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v285.UserData), uintptr(8); g != e {
@@ -549545,41 +549376,212 @@ func init() {
 	if g, e := unsafe.Offsetof(v285.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v285.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v285.SetIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v285.SetIndex), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v285.SetIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v285.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v285.LocalIndex), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v285.LocalIndex), uintptr(12); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v285.LocalIndex)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v285.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v285.HeadContactKey), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v285.HeadContactKey), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v285.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v285.HeadContactKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.ContactCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.ContactCount), uintptr(20); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.ContactCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.HeadShapeId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadShapeId), uintptr(24); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadShapeId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.ShapeCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.ShapeCount), uintptr(28); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.ShapeCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.HeadChainId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadChainId), uintptr(32); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadChainId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.HeadJointKey), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadJointKey), uintptr(36); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.HeadJointKey)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.JointCount), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.JointCount), uintptr(40); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.JointCount)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.IslandId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.IslandId), uintptr(44); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.IslandId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.IslandIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.IslandIndex), uintptr(48); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.IslandIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.SleepThreshold), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepThreshold), uintptr(52); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepThreshold)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.SleepTime), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepTime), uintptr(56); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepTime)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.SleepVelocity), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepVelocity), uintptr(60); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SleepVelocity)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.SafetyFactor), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SafetyFactor), uintptr(64); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.SafetyFactor)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.Mass), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Mass), uintptr(68); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Mass)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.BodyMoveIndex), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.BodyMoveIndex), uintptr(72); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.BodyMoveIndex)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.Id), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Id), uintptr(76); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Id)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.Flags), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Flags), uintptr(80); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Flags)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.NameId), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.NameId), uintptr(84); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.NameId)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.Type1), uintptr(4); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Type1), uintptr(88); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Type1)%4, uintptr(0); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Sizeof(v285.Generation), uintptr(2); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Generation), uintptr(92); g != e {
+		panic(g)
+	}
+	if g, e := unsafe.Offsetof(v285.Generation)%2, uintptr(0); g != e {
 		panic(g)
 	}
 	var v286 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v286), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v286), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v286.UserData), uintptr(8); g != e {
@@ -549591,31 +549593,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v286.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v286.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v286.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v286.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v286.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v286.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v286.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v286.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v286.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v286.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v286.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v286.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v286.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v286.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v287 struct {
@@ -554642,7 +554644,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -555209,7 +555211,7 @@ func init() {
 	}
 	var v58 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v58), uintptr(16); g != e {
@@ -555739,7 +555741,7 @@ func init() {
 	}
 	var v70 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -557952,7 +557954,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -558243,7 +558245,7 @@ func init() {
 		panic(g)
 	}
 	var v108 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -558369,13 +558371,13 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v109), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v109), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v109.UserData), uintptr(8); g != e {
@@ -558387,41 +558389,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v109.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v109.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v109.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v109.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v109.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v109.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v109.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v110 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v110), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v110), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v110.UserData), uintptr(8); g != e {
@@ -558433,31 +558435,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v110.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v110.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v110.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v110.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v110.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v110.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v110.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v111 struct {
@@ -562387,7 +562389,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -562954,7 +562956,7 @@ func init() {
 	}
 	var v58 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v58), uintptr(16); g != e {
@@ -563484,7 +563486,7 @@ func init() {
 	}
 	var v70 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -565697,7 +565699,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -565988,7 +565990,7 @@ func init() {
 		panic(g)
 	}
 	var v108 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -566114,13 +566116,13 @@ func init() {
 		panic(g)
 	}
 	var v109 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v109), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v109), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v109.UserData), uintptr(8); g != e {
@@ -566132,41 +566134,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v109.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v109.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v109.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v109.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v109.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v109.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v109.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v109.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v109.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v109.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v110 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v110), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v110), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v110.UserData), uintptr(8); g != e {
@@ -566178,31 +566180,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v110.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v110.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v110.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v110.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v110.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v110.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v110.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v110.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v110.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v110.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v111 struct {
@@ -570470,7 +570472,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -571037,7 +571039,7 @@ func init() {
 	}
 	var v71 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v71), uintptr(16); g != e {
@@ -571567,7 +571569,7 @@ func init() {
 	}
 	var v83 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -573830,7 +573832,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -574121,7 +574123,7 @@ func init() {
 		panic(g)
 	}
 	var v123 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -574247,13 +574249,13 @@ func init() {
 		panic(g)
 	}
 	var v124 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v124), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v124), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v124.UserData), uintptr(8); g != e {
@@ -574265,41 +574267,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v124.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v124.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v124.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v124.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v124.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v124.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v124.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v124.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v124.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v124.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v125 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v125), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v125), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v125.UserData), uintptr(8); g != e {
@@ -574311,31 +574313,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v125.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v125.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v125.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v125.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v125.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v125.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v125.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v125.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v125.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v125.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v126 struct {
@@ -578253,7 +578255,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -578794,7 +578796,7 @@ func init() {
 	}
 	var v63 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v63), uintptr(16); g != e {
@@ -579268,7 +579270,7 @@ func init() {
 	}
 	var v75 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -581481,7 +581483,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -581772,7 +581774,7 @@ func init() {
 		panic(g)
 	}
 	var v113 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -581898,13 +581900,13 @@ func init() {
 		panic(g)
 	}
 	var v114 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v114), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v114), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v114.UserData), uintptr(8); g != e {
@@ -581916,41 +581918,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v114.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v114.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v114.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v114.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v114.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v114.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v114.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v115 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v115), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v115), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v115.UserData), uintptr(8); g != e {
@@ -581962,31 +581964,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v115.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v115.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v115.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v115.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v115.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v115.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v115.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v115.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v115.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v115.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v116 struct {
@@ -585784,7 +585786,7 @@ func init() {
 		EnqueueTask                  uintptr
 		FinishTask                   uintptr
 		UserTaskContext              uintptr
-		UserData                     uintptr
+		UserData                     uint64
 		CreateDebugShape             uintptr
 		DestroyDebugShape            uintptr
 		UserDebugShapeContext        uintptr
@@ -586351,7 +586353,7 @@ func init() {
 	}
 	var v59 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v59), uintptr(16); g != e {
@@ -586825,7 +586827,7 @@ func init() {
 	}
 	var v72 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -589088,7 +589090,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -589379,7 +589381,7 @@ func init() {
 		panic(g)
 	}
 	var v112 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -589505,13 +589507,13 @@ func init() {
 		panic(g)
 	}
 	var v113 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v113), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v113), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v113.UserData), uintptr(8); g != e {
@@ -589523,41 +589525,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v113.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v113.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v113.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v113.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v113.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v113.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v113.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v113.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v113.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v113.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v113.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v113.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v113.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v113.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v114 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v114), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v114), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v114.UserData), uintptr(8); g != e {
@@ -589569,31 +589571,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v114.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v114.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v114.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v114.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v114.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v114.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v114.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v114.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v114.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v114.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v115 struct {
@@ -593950,7 +593952,7 @@ func init() {
 	}
 	var v72 struct {
 		JointId  JointId
-		UserData uintptr
+		UserData uint64
 	}
 	// struct "b3JointEvent"
 	if g, e := unsafe.Sizeof(v72), uintptr(16); g != e {
@@ -594495,7 +594497,7 @@ func init() {
 	}
 	var v85 struct {
 		Name                     uintptr
-		UserData                 uintptr
+		UserData                 uint64
 		Materials                uintptr
 		MaterialCount            int32
 		BaseMaterial             SurfaceMaterial
@@ -596866,7 +596868,7 @@ func init() {
 		SleepThreshold         float32
 		SafetyFactor           float32
 		Name                   uintptr
-		UserData               uintptr
+		UserData               uint64
 		MotionLocks            MotionLocks
 		EnableSleep            uint8
 		IsAwake                uint8
@@ -597157,7 +597159,7 @@ func init() {
 		panic(g)
 	}
 	var v128 struct {
-		UserData               uintptr
+		UserData               uint64
 		BodyIdA                BodyId
 		BodyIdB                BodyId
 		LocalFrameA            Transform
@@ -597283,13 +597285,13 @@ func init() {
 		panic(g)
 	}
 	var v129 struct {
-		UserData   uintptr
-		Transform  WorldTransform
-		BodyId     BodyId
-		FellAsleep uint8
+		UserData     uint64
+		CategoryBits uint64
+		Node         int32
+		Next         int32
 	}
-	// struct "b3BodyMoveEvent"
-	if g, e := unsafe.Sizeof(v129), uintptr(48); g != e {
+	// struct "b3TreeProxy"
+	if g, e := unsafe.Sizeof(v129), uintptr(24); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v129.UserData), uintptr(8); g != e {
@@ -597301,41 +597303,41 @@ func init() {
 	if g, e := unsafe.Offsetof(v129.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v129.Transform), uintptr(28); g != e {
+	if g, e := unsafe.Sizeof(v129.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.Transform), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v129.CategoryBits), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.Transform)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v129.CategoryBits)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v129.BodyId), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v129.Node), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.BodyId), uintptr(36); g != e {
+	if g, e := unsafe.Offsetof(v129.Node), uintptr(16); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.BodyId)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v129.Node)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v129.FellAsleep), uintptr(1); g != e {
+	if g, e := unsafe.Sizeof(v129.Next), uintptr(4); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.FellAsleep), uintptr(44); g != e {
+	if g, e := unsafe.Offsetof(v129.Next), uintptr(20); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v129.FellAsleep)%1, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v129.Next)%4, uintptr(0); g != e {
 		panic(g)
 	}
 	var v130 struct {
-		UserData     uint64
-		CategoryBits uint64
-		Node         int32
-		Next         int32
+		UserData   uint64
+		Transform  WorldTransform
+		BodyId     BodyId
+		FellAsleep uint8
 	}
-	// struct "b3TreeProxy"
-	if g, e := unsafe.Sizeof(v130), uintptr(24); g != e {
+	// struct "b3BodyMoveEvent"
+	if g, e := unsafe.Sizeof(v130), uintptr(48); g != e {
 		panic(g)
 	}
 	if g, e := unsafe.Sizeof(v130.UserData), uintptr(8); g != e {
@@ -597347,31 +597349,31 @@ func init() {
 	if g, e := unsafe.Offsetof(v130.UserData)%8, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v130.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Sizeof(v130.Transform), uintptr(28); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.CategoryBits), uintptr(8); g != e {
+	if g, e := unsafe.Offsetof(v130.Transform), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.CategoryBits)%8, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v130.Transform)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v130.Node), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v130.BodyId), uintptr(8); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.Node), uintptr(16); g != e {
+	if g, e := unsafe.Offsetof(v130.BodyId), uintptr(36); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.Node)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v130.BodyId)%4, uintptr(0); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Sizeof(v130.Next), uintptr(4); g != e {
+	if g, e := unsafe.Sizeof(v130.FellAsleep), uintptr(1); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.Next), uintptr(20); g != e {
+	if g, e := unsafe.Offsetof(v130.FellAsleep), uintptr(44); g != e {
 		panic(g)
 	}
-	if g, e := unsafe.Offsetof(v130.Next)%4, uintptr(0); g != e {
+	if g, e := unsafe.Offsetof(v130.FellAsleep)%1, uintptr(0); g != e {
 		panic(g)
 	}
 	var v131 struct {
