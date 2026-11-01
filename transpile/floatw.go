@@ -21,7 +21,7 @@ var floatWDecls = []string{
 	"b3FloatW4",
 	"b3ZeroW4", "b3SplatW4", "b3SetW4", "b3LoadW4", "b3StoreW4", "b3NegW4", "b3AbsW4",
 	"b3AddW4", "b3SubW4", "b3MulW4", "b3DivW4", "b3SqrtW4", "b3MulAddW4", "b3MinW4", "b3MaxW4",
-	"b3SymClampW4", "b3AndW4", "b3OrW4", "b3AndNotW4", "b3SoftMaskW4", "b3GreaterThanW4",
+	"b3AndW4", "b3OrW4", "b3AndNotW4", "b3SoftMaskW4", "b3GreaterThanW4",
 	"b3LessThanW4", "b3EqualsW4", "b3AllZeroW4", "b3AnyTrueW4", "b3MoveMaskW4", "b3BlendW4",
 	"b3EmbedIndexW4", "b3MinIndexW4", "b3TransposeW4",
 	"b3GatherBodies", "b3ScatterBodies",

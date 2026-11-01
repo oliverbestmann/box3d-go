@@ -40,7 +40,10 @@ func readInlineFuncs() []inlineFunc {
 		for _, match := range reInline.FindAllStringSubmatch(string(src), -1) {
 			fn := inlineFunc{Result: match[1], Name: match[2], HasPointer: strings.Contains(match[0], "*")}
 			if match[3] != "void" && match[3] != "" {
-				fn.Params = strings.Split(match[3], ", ")
+				// upstream wraps long parameter lists
+				for param := range strings.SplitSeq(match[3], ",") {
+					fn.Params = append(fn.Params, strings.Join(strings.Fields(param), " "))
+				}
 			}
 
 			funcs = append(funcs, fn)

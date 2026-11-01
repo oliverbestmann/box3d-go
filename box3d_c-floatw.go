@@ -210,64 +210,6 @@ func b3MaxW4(tls *_Stack, a b3FloatW4, b b3FloatW4) (r1 b3FloatW4) {
 	return r
 }
 
-// C documentation
-//
-//	// clamp a to [-b, b]
-func b3SymClampW4(tls *_Stack, a b3FloatW4, b b3FloatW4) (r1 b3FloatW4) {
-	var r b3FloatW4
-	var v1 float32
-	_, _ = r, v1
-	if a.X <= b.X {
-		v1 = a.X
-	} else {
-		v1 = b.X
-	}
-	r.X = v1
-	if a.Y <= b.Y {
-		v1 = a.Y
-	} else {
-		v1 = b.Y
-	}
-	r.Y = v1
-	if a.Z <= b.Z {
-		v1 = a.Z
-	} else {
-		v1 = b.Z
-	}
-	r.Z = v1
-	if a.W <= b.W {
-		v1 = a.W
-	} else {
-		v1 = b.W
-	}
-	r.W = v1
-	if r.X <= -b.X {
-		v1 = -b.X
-	} else {
-		v1 = r.X
-	}
-	r.X = v1
-	if r.Y <= -b.Y {
-		v1 = -b.Y
-	} else {
-		v1 = r.Y
-	}
-	r.Y = v1
-	if r.Z <= -b.Z {
-		v1 = -b.Z
-	} else {
-		v1 = r.Z
-	}
-	r.Z = v1
-	if r.W <= -b.W {
-		v1 = -b.W
-	} else {
-		v1 = r.W
-	}
-	r.W = v1
-	return r
-}
-
 // Logical operations on the scalar path are 0/1 float values. Not bit-wise like SIMD.
 
 func b3AndW4(tls *_Stack, a b3FloatW4, b b3FloatW4) (r1 b3FloatW4) {

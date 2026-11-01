@@ -230,7 +230,7 @@ _56:
 		return b3OverlapSphere(tls, sensorShape+176, b3Transform_identity, bp+1536)
 	default:
 		if v88 = bool(!!(int32FromInt32(false1) != 0)); !v88 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28327, int32FromInt32(71))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29041, int32FromInt32(71))
 		}
 		_ = v88 || bool(int32FromInt32(0) != 0)
 		return boolUint8(false1 != 0)
@@ -275,7 +275,7 @@ func b3SensorQueryCallback(tls *_Stack, proxyId int32, userData uint64, context 
 	}
 	world = (*b3SensorQueryContext)(unsafe.Pointer(queryContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+28327, int32FromInt32(108))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+29041, int32FromInt32(108))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	otherShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -391,12 +391,12 @@ func b3SensorTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex int
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = _n, blockIndex, body, count1, count2, i, i1, newCapacity, newSize, oldSize, overlapCount, overlapData, queryBounds, r, req, s1, s2, sensor, sensorIndex, sensorShape, taskContext, temp, transform, trees, uniqueCount, world, v1, v11, v12, v13, v2, v6, v8, v9
 	world = context
 	if v1 = !!(workerIndex < (*b3World)(unsafe.Pointer(world)).WorkerCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28351, __ccgo_ts+28327, int32FromInt32(185))
+		b3InternalAssert(tls, __ccgo_ts+29065, __ccgo_ts+29041, int32FromInt32(185))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	taskContext = (*b3World)(unsafe.Pointer(world)).SensorTaskContexts.Data + uintptr(workerIndex)*12
 	if v1 = !!(startIndex < endIndex); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24350, __ccgo_ts+28327, int32FromInt32(188))
+		b3InternalAssert(tls, __ccgo_ts+24826, __ccgo_ts+29041, int32FromInt32(188))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	trees = world + 536
@@ -406,12 +406,12 @@ func b3SensorTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex int
 			break
 		}
 		if v1 = !!(0 <= sensorIndex && sensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+28389, __ccgo_ts+28327, int32FromInt32(193))
+			b3InternalAssert(tls, __ccgo_ts+29103, __ccgo_ts+29041, int32FromInt32(193))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr(sensorIndex)*40
 		if v2 = !!(0 <= (*b3Sensor)(unsafe.Pointer(sensor)).ShapeId && (*b3Sensor)(unsafe.Pointer(sensor)).ShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+28456, __ccgo_ts+28327, int32FromInt32(194))
+			b3InternalAssert(tls, __ccgo_ts+29170, __ccgo_ts+29041, int32FromInt32(194))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		sensorShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Sensor)(unsafe.Pointer(sensor)).ShapeId)*208
@@ -440,7 +440,7 @@ func b3SensorTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex int
 		// Clear the hits
 		(*b3Sensor)(unsafe.Pointer(sensor)).Hits.Count = 0
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(sensorShape)).BodyId && (*b3Shape)(unsafe.Pointer(sensorShape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+28530, __ccgo_ts+28327, int32FromInt32(208))
+			b3InternalAssert(tls, __ccgo_ts+29244, __ccgo_ts+29041, int32FromInt32(208))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(sensorShape)).BodyId)*96
@@ -478,7 +478,7 @@ func b3SensorTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex int
 			Transform:   transform,
 		}
 		if v1 = !!((*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex == sensorIndex); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+28612, __ccgo_ts+28327, int32FromInt32(229))
+			b3InternalAssert(tls, __ccgo_ts+29326, __ccgo_ts+29041, int32FromInt32(229))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		queryBounds = (*b3Shape)(unsafe.Pointer(sensorShape)).Aabb
@@ -567,7 +567,7 @@ func b3OverlapSensors(tls *_Stack, world uintptr) {
 		return
 	}
 	if v1 = !!((*b3World)(unsafe.Pointer(world)).WorkerCount > int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24678, __ccgo_ts+28327, int32FromInt32(289))
+		b3InternalAssert(tls, __ccgo_ts+25154, __ccgo_ts+29041, int32FromInt32(289))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	i = 0
@@ -583,7 +583,7 @@ func b3OverlapSensors(tls *_Stack, world uintptr) {
 	}
 	// Parallel-for sensors overlaps
 	minRange = int32(16)
-	b3ParallelFor(tls, world, __ccgo_fp(b3SensorTask), sensorCount, minRange, world, __ccgo_ts+28652)
+	b3ParallelFor(tls, world, __ccgo_fp(b3SensorTask), sensorCount, minRange, world, __ccgo_ts+29366)
 	bitSet = (*b3World)(unsafe.Pointer(world)).SensorTaskContexts.Data
 	i1 = int32(1)
 	for {
@@ -613,12 +613,12 @@ func b3OverlapSensors(tls *_Stack, world uintptr) {
 			ctz = v5
 			sensorIndex = int32FromUint32(uint32FromInt32(64)*k + ctz)
 			if v1 = !!(0 <= sensorIndex && sensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+28389, __ccgo_ts+28327, int32FromInt32(323))
+				b3InternalAssert(tls, __ccgo_ts+29103, __ccgo_ts+29041, int32FromInt32(323))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr(sensorIndex)*40
 			if v7 = !!(0 <= (*b3Sensor)(unsafe.Pointer(sensor)).ShapeId && (*b3Sensor)(unsafe.Pointer(sensor)).ShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v7 {
-				b3InternalAssert(tls, __ccgo_ts+28456, __ccgo_ts+28327, int32FromInt32(324))
+				b3InternalAssert(tls, __ccgo_ts+29170, __ccgo_ts+29041, int32FromInt32(324))
 			}
 			_ = v7 || bool(int32FromInt32(0) != 0)
 			sensorShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Sensor)(unsafe.Pointer(sensor)).ShapeId)*208
@@ -839,7 +839,7 @@ func b3DestroySensor(tls *_Stack, world uintptr, sensorShape uintptr) {
 	var v1, v10, v13 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = event, i, movedIndex, movedSensor, newCapacity, newSize, oldSize, otherSensorShape, ref, sensor, v1, v10, v13, v3, v4, v5, v6, v8
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex && (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28660, __ccgo_ts+28327, int32FromInt32(416))
+		b3InternalAssert(tls, __ccgo_ts+29374, __ccgo_ts+29041, int32FromInt32(416))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex)*40
@@ -915,13 +915,13 @@ _12:
 	movedIndex = v8
 	if movedIndex != -int32(1) {
 		if v10 = !!(0 <= (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex && (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v10 {
-			b3InternalAssert(tls, __ccgo_ts+28660, __ccgo_ts+28327, int32FromInt32(447))
+			b3InternalAssert(tls, __ccgo_ts+29374, __ccgo_ts+29041, int32FromInt32(447))
 		}
 		_ = v10 || bool(int32FromInt32(0) != 0)
 		// Fixup moved sensor
 		movedSensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex)*40
 		if v13 = !!(0 <= (*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId && (*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v13 {
-			b3InternalAssert(tls, __ccgo_ts+28753, __ccgo_ts+28327, int32FromInt32(448))
+			b3InternalAssert(tls, __ccgo_ts+29467, __ccgo_ts+29041, int32FromInt32(448))
 		}
 		_ = v13 || bool(int32FromInt32(0) != 0)
 		otherSensorShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId)*208

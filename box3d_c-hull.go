@@ -7904,7 +7904,7 @@ func b3AddHullToDatabase(tls *_Stack, world uintptr, src uintptr) (r uintptr) {
 	}
 	clone = b3CloneHull(tls, src)
 	if v1 = !!(clone != uintptrFromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23716, __ccgo_ts+23730, int32FromInt32(55))
+		b3InternalAssert(tls, __ccgo_ts+24192, __ccgo_ts+24206, int32FromInt32(55))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Start with reference count of 1.
@@ -7937,7 +7937,7 @@ func b3RemoveHullFromDatabase(tls *_Stack, world uintptr, data uintptr) {
 	database = (*b3World)(unsafe.Pointer(world)).HullDatabase
 	itr1 = b3HullMap_get(tls, database, data)
 	if v1 = !!(int32FromUint8(b3HullMap_is_end(tls, itr1)) == int32FromInt32(false1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23761, __ccgo_ts+23730, int32FromInt32(84))
+		b3InternalAssert(tls, __ccgo_ts+24237, __ccgo_ts+24206, int32FromInt32(84))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v3 = itr1.Data + 8
@@ -8117,7 +8117,7 @@ _9:
 		edge = hullEdges + uintptr(i)*4
 		twin = hullEdges + uintptr(i)*4 + uintptr(1)*4
 		if v11 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge)).Twin) == i+int32(1) && int32FromUint8((*HullHalfEdge)(unsafe.Pointer(twin)).Twin) == i); !v11 {
-			b3InternalAssert(tls, __ccgo_ts+36492, __ccgo_ts+36372, int32FromInt32(621))
+			b3InternalAssert(tls, __ccgo_ts+37206, __ccgo_ts+37086, int32FromInt32(621))
 		}
 		_ = v11 || bool(int32FromInt32(0) != 0)
 		hullPoint = *(*Vec3)(unsafe.Add(nil, hullPoints+uintptr((*HullHalfEdge)(unsafe.Pointer(edge)).Origin)*12))

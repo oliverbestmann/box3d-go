@@ -19,22 +19,22 @@ func b3GetUnlockedWorldFromId(tls *_Stack, id WorldId) (r uintptr) {
 	var v1 bool
 	_, _ = world, v1
 	if v1 = !!(int32(1) <= int32FromUint16(id.Index1) && int32FromUint16(id.Index1) <= int32(_B3_MAX_WORLDS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23794, __ccgo_ts+23730, int32FromInt32(97))
+		b3InternalAssert(tls, __ccgo_ts+24270, __ccgo_ts+24206, int32FromInt32(97))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = uintptr(unsafe.Pointer(&b3_worlds)) + uintptr(int32FromUint16(id.Index1)-int32FromInt32(1))*5008
 	if v1 = !!(int32FromUint16(id.Index1) == int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId)+int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23839, __ccgo_ts+23730, int32FromInt32(99))
+		b3InternalAssert(tls, __ccgo_ts+24315, __ccgo_ts+24206, int32FromInt32(99))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(int32FromUint16(id.Generation) == int32FromUint16((*b3World)(unsafe.Pointer(world)).Generation)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23871, __ccgo_ts+23730, int32FromInt32(100))
+		b3InternalAssert(tls, __ccgo_ts+24347, __ccgo_ts+24206, int32FromInt32(100))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// A world accessed from an id should not be locked
 	if (*b3World)(unsafe.Pointer(world)).Locked != 0 {
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+23730, int32FromInt32(105))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+24206, int32FromInt32(105))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return uintptrFromInt32(0)
@@ -47,16 +47,16 @@ func b3GetWorldFromId(tls *_Stack, id WorldId) (r uintptr) {
 	var v1 bool
 	_, _ = world, v1
 	if v1 = !!(int32(1) <= int32FromUint16(id.Index1) && int32FromUint16(id.Index1) <= int32(_B3_MAX_WORLDS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23794, __ccgo_ts+23730, int32FromInt32(113))
+		b3InternalAssert(tls, __ccgo_ts+24270, __ccgo_ts+24206, int32FromInt32(113))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = uintptr(unsafe.Pointer(&b3_worlds)) + uintptr(int32FromUint16(id.Index1)-int32FromInt32(1))*5008
 	if v1 = !!(int32FromUint16(id.Index1) == int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId)+int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23839, __ccgo_ts+23730, int32FromInt32(115))
+		b3InternalAssert(tls, __ccgo_ts+24315, __ccgo_ts+24206, int32FromInt32(115))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(int32FromUint16(id.Generation) == int32FromUint16((*b3World)(unsafe.Pointer(world)).Generation)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23871, __ccgo_ts+23730, int32FromInt32(116))
+		b3InternalAssert(tls, __ccgo_ts+24347, __ccgo_ts+24206, int32FromInt32(116))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return world
@@ -67,12 +67,12 @@ func b3GetWorld(tls *_Stack, index int32) (r uintptr) {
 	var v1 bool
 	_, _ = world, v1
 	if v1 = !!(0 <= index && index < int32(_B3_MAX_WORLDS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23906, __ccgo_ts+23730, int32FromInt32(122))
+		b3InternalAssert(tls, __ccgo_ts+24382, __ccgo_ts+24206, int32FromInt32(122))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = uintptr(unsafe.Pointer(&b3_worlds)) + uintptr(index)*5008
 	if v1 = !!(int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId) == index); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23942, __ccgo_ts+23730, int32FromInt32(124))
+		b3InternalAssert(tls, __ccgo_ts+24418, __ccgo_ts+24206, int32FromInt32(124))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return world
@@ -83,17 +83,17 @@ func b3GetUnlockedWorld(tls *_Stack, index int32) (r uintptr) {
 	var v1 bool
 	_, _ = world, v1
 	if v1 = !!(0 <= index && index < int32(_B3_MAX_WORLDS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23906, __ccgo_ts+23730, int32FromInt32(130))
+		b3InternalAssert(tls, __ccgo_ts+24382, __ccgo_ts+24206, int32FromInt32(130))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = uintptr(unsafe.Pointer(&b3_worlds)) + uintptr(index)*5008
 	if v1 = !!(int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId) == index); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23942, __ccgo_ts+23730, int32FromInt32(132))
+		b3InternalAssert(tls, __ccgo_ts+24418, __ccgo_ts+24206, int32FromInt32(132))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*b3World)(unsafe.Pointer(world)).Locked != 0 {
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+23730, int32FromInt32(135))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+24206, int32FromInt32(135))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return uintptrFromInt32(0)
@@ -112,15 +112,15 @@ func b3CreateWorld(tls *_Stack, def uintptr) (r WorldId) {
 	var v132, v133, v134, v135, v137, v138 float32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyCapacity, i, newCapacity, newCapacity1, newCapacity2, newSize, newSize1, newSize10, newSize11, newSize12, newSize13, newSize14, newSize15, newSize16, newSize17, newSize18, newSize19, newSize2, newSize20, newSize21, newSize22, newSize23, newSize24, newSize3, newSize4, newSize5, newSize6, newSize7, newSize8, newSize9, oldCount, oldSize, oldSize1, oldSize10, oldSize11, oldSize12, oldSize13, oldSize14, oldSize15, oldSize16, oldSize17, oldSize18, oldSize19, oldSize2, oldSize20, oldSize21, oldSize22, oldSize23, oldSize24, oldSize3, oldSize4, oldSize5, oldSize6, oldSize7, oldSize8, oldSize9, revision, set, shapeCapacity, world, worldId, v1, v10, v12, v13, v132, v133, v134, v135, v137, v138, v14, v15, v20, v6, v8, v9
 	if v1 = !!((*WorldDef)(unsafe.Pointer(def)).InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1223, __ccgo_ts+23730, int32FromInt32(212))
+		b3InternalAssert(tls, __ccgo_ts+1223, __ccgo_ts+24206, int32FromInt32(212))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)) <= float32(float32FromFloat32(1)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)))); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23966, __ccgo_ts+23730, int32FromInt32(214))
+		b3InternalAssert(tls, __ccgo_ts+24442, __ccgo_ts+24206, int32FromInt32(214))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32(float32FromFloat32(1)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls))) < float32(float32FromFloat32(4)*float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)))); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24004, __ccgo_ts+23730, int32FromInt32(215))
+		b3InternalAssert(tls, __ccgo_ts+24480, __ccgo_ts+24206, int32FromInt32(215))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	worldId = -int32(1)
@@ -139,9 +139,9 @@ func b3CreateWorld(tls *_Stack, def uintptr) (r WorldId) {
 		i = i + 1
 	}
 	if worldId == -int32(1) {
-		b3Log(tls, __ccgo_ts+24050, vaList(bp+8, int32(_B3_MAX_WORLDS)))
+		b3Log(tls, __ccgo_ts+24526, vaList(bp+8, int32(_B3_MAX_WORLDS)))
 		if v1 = !!(worldId != -int32FromInt32(1)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+24082, __ccgo_ts+23730, int32FromInt32(230))
+			b3InternalAssert(tls, __ccgo_ts+24558, __ccgo_ts+24206, int32FromInt32(230))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return WorldId{}
@@ -264,7 +264,7 @@ _24:
 		(*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_staticSet)*88))).BodySims.Capacity = v9
 	}
 	if v1 = !!((*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_staticSet)*88))).SetIndex == int32(b3_staticSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24107, __ccgo_ts+23730, int32FromInt32(277))
+		b3InternalAssert(tls, __ccgo_ts+24583, __ccgo_ts+24206, int32FromInt32(277))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// disabled set
@@ -286,7 +286,7 @@ _24:
 	*(*int32)(unsafe.Pointer(v20)) = *(*int32)(unsafe.Pointer(v20)) + 1
 	*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(v6)*88)) = set
 	if v1 = !!((*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_disabledSet)*88))).SetIndex == int32(b3_disabledSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24169, __ccgo_ts+23730, int32FromInt32(282))
+		b3InternalAssert(tls, __ccgo_ts+24645, __ccgo_ts+24206, int32FromInt32(282))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// awake set
@@ -416,7 +416,7 @@ _77:
 		(*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_awakeSet)*88))).ContactIndices.Capacity = v9
 	}
 	if v1 = !!((*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_awakeSet)*88))).SetIndex == int32(b3_awakeSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24235, __ccgo_ts+23730, int32FromInt32(290))
+		b3InternalAssert(tls, __ccgo_ts+24711, __ccgo_ts+24206, int32FromInt32(290))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	(*b3World)(unsafe.Pointer(world)).ShapeIdPool = b3CreateIdPool(tls)
@@ -843,7 +843,7 @@ _1:
 	}
 	// Destroying every shape above released all hull references, so the database is empty.
 	if v5 = !!(b3HullMap_size(tls, (*b3World)(unsafe.Pointer(world)).HullDatabase) == uint64FromInt32(0)); !v5 {
-		b3InternalAssert(tls, __ccgo_ts+24295, __ccgo_ts+23730, int32FromInt32(484))
+		b3InternalAssert(tls, __ccgo_ts+24771, __ccgo_ts+24206, int32FromInt32(484))
 	}
 	_ = v5 || bool(int32FromInt32(0) != 0)
 	b3HullMap_cleanup(tls, (*b3World)(unsafe.Pointer(world)).HullDatabase)
@@ -1086,7 +1086,7 @@ _31:
 	b3UpdateBroadPhasePairs(tls, world)
 	(*b3World)(unsafe.Pointer(world)).Profile.Pairs = b3GetMilliseconds(tls, pairTicks)
 	if v33 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v33 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+23730, int32FromInt32(1102))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+24206, int32FromInt32(1104))
 	}
 	_ = v33 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
@@ -1189,14 +1189,14 @@ _51:
 	(*b3World)(unsafe.Pointer(world)).Profile.Sensors = b3GetMilliseconds(tls, sensorTicks)
 	(*b3World)(unsafe.Pointer(world)).Profile.Step = b3GetMilliseconds(tls, stepTicks)
 	if v33 = !!((*b3World)(unsafe.Pointer(world)).Stack.Allocation == int32FromInt32(0)); !v33 {
-		b3InternalAssert(tls, __ccgo_ts+24820, __ccgo_ts+23730, int32FromInt32(1167))
+		b3InternalAssert(tls, __ccgo_ts+25296, __ccgo_ts+24206, int32FromInt32(1169))
 	}
 	_ = v33 || bool(int32FromInt32(0) != 0)
 	// Ensure stack is large enough
 	b3GrowStack(tls, world)
 	// Make sure all tasks that were started were also finished
 	if v33 = !!((*b3World)(unsafe.Pointer(world)).ActiveTaskCount == int32FromInt32(0)); !v33 {
-		b3InternalAssert(tls, __ccgo_ts+24849, __ccgo_ts+23730, int32FromInt32(1173))
+		b3InternalAssert(tls, __ccgo_ts+25325, __ccgo_ts+24206, int32FromInt32(1175))
 	}
 	_ = v33 || bool(int32FromInt32(0) != 0)
 	// Swap end event array buffers
@@ -1357,7 +1357,7 @@ func b3World_Draw(tls *_Stack, worldId WorldId, draw uintptr, maskBits uint64) {
 		return
 	}
 	if v1 = !!(b3IsValidAABB(tls, (*b3DebugDraw)(unsafe.Pointer(draw)).DrawingBounds) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24968, __ccgo_ts+23730, int32FromInt32(1379))
+		b3InternalAssert(tls, __ccgo_ts+25444, __ccgo_ts+24206, int32FromInt32(1381))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	lengthScale = b3GetLengthUnitsPerMeter(tls)
@@ -1444,7 +1444,7 @@ _9:
 			ctz = v12
 			bodyId = int32FromUint32(uint32FromInt32(64)*wordIndex + ctz)
 			if v1 = !!(0 <= bodyId && bodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+23730, int32FromInt32(1427))
+				b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+24206, int32FromInt32(1429))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(bodyId)*96
@@ -1584,7 +1584,7 @@ _9:
 					goto _64
 				_64:
 					p3 = v38
-					__builtin_snprintf(tls, bp+16, uint64(32), __ccgo_ts+25005, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).Mass)))
+					__builtin_snprintf(tls, bp+16, uint64(32), __ccgo_ts+25481, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).Mass)))
 					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p3, bp+16, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
@@ -1636,7 +1636,7 @@ _9:
 					goto _75
 				_75:
 					p4 = v63
-					__builtin_snprintf(tls, bp+48, uint64(32), __ccgo_ts+25010, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).SleepVelocity)))
+					__builtin_snprintf(tls, bp+48, uint64(32), __ccgo_ts+25486, vaList(bp+184, float64((*b3Body)(unsafe.Pointer(body)).SleepVelocity)))
 					(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p4, bp+48, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 				}
 			}
@@ -1646,7 +1646,7 @@ _9:
 					jointId = jointKey >> int32(1)
 					edgeIndex = jointKey & int32(1)
 					if v1 = !!(0 <= jointId && jointId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+23730, int32FromInt32(1492))
+						b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+24206, int32FromInt32(1494))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(jointId)*72
@@ -1682,7 +1682,7 @@ _9:
 					contactId = contactKey >> int32(1)
 					edgeIndex1 = contactKey & int32(1)
 					if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+23730, int32FromInt32(1513))
+						b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+24206, int32FromInt32(1515))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*216
@@ -1703,13 +1703,13 @@ _9:
 				_88:
 					if int32FromUint8(v79) == false1 {
 						if v1 = !!(0 <= (*(*b3ContactEdge)(unsafe.Add(nil, contact+12))).BodyId && (*(*b3ContactEdge)(unsafe.Add(nil, contact+12))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-							b3InternalAssert(tls, __ccgo_ts+25017, __ccgo_ts+23730, int32FromInt32(1524))
+							b3InternalAssert(tls, __ccgo_ts+25493, __ccgo_ts+24206, int32FromInt32(1526))
 						}
 						_ = v1 || bool(int32FromInt32(0) != 0)
 						bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3ContactEdge)(unsafe.Add(nil, contact+12))).BodyId)*96
 						bodySimA = b3GetBodySim(tls, world, bodyA)
 						if v14 = !!(0 <= (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+1*12))).BodyId && (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+1*12))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v14 {
-							b3InternalAssert(tls, __ccgo_ts+25109, __ccgo_ts+23730, int32FromInt32(1526))
+							b3InternalAssert(tls, __ccgo_ts+25585, __ccgo_ts+24206, int32FromInt32(1528))
 						}
 						_ = v14 || bool(int32FromInt32(0) != 0)
 						bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3ContactEdge)(unsafe.Add(nil, contact+12+1*12))).BodyId)*96
@@ -1721,7 +1721,7 @@ _9:
 							}
 							manifold = (*b3Contact)(unsafe.Pointer(contact)).Manifolds + uintptr(manifoldIndex)*268
 							if v76 = !!((*Manifold)(unsafe.Pointer(manifold)).PointCount > int32FromInt32(0)); !v76 {
-								b3InternalAssert(tls, __ccgo_ts+25201, __ccgo_ts+23730, int32FromInt32(1532))
+								b3InternalAssert(tls, __ccgo_ts+25677, __ccgo_ts+24206, int32FromInt32(1534))
 							}
 							_ = v76 || bool(int32FromInt32(0) != 0)
 							normal = (*Manifold)(unsafe.Pointer(manifold)).Normal
@@ -1810,7 +1810,7 @@ _9:
 								_119:
 									p21 = v63
 									(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p11, p21, int32(b3_colorLightGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-									__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25226, vaList(bp+184, float64(float32FromFloat32(100)*(*ManifoldPoint)(unsafe.Pointer(mp)).Separation)))
+									__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25702, vaList(bp+184, float64(float32FromFloat32(100)*(*ManifoldPoint)(unsafe.Pointer(mp)).Separation)))
 									(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 								} else {
 									if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawContactForces != 0 {
@@ -1843,11 +1843,11 @@ _9:
 									_128:
 										p22 = v63
 										(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p12, p22, impulseColor, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-										__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25234, vaList(bp+184, float64(force)))
+										__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25710, vaList(bp+184, float64(force)))
 										(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p12, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 									} else {
 										if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawContactFeatures != 0 {
-											__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25241, vaList(bp+184, (*ManifoldPoint)(unsafe.Pointer(mp)).FeatureId))
+											__builtin_snprintf(tls, bp+80, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25717, vaList(bp+184, (*ManifoldPoint)(unsafe.Pointer(mp)).FeatureId))
 											(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p5, bp+80, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 										}
 									}
@@ -1973,7 +1973,7 @@ _9:
 								v23 = sqrtf(tls, v34)
 								goto _161
 							_161:
-								__builtin_snprintf(tls, bp+112, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25005, vaList(bp+184, float64(v23)))
+								__builtin_snprintf(tls, bp+112, uint64FromInt32(int32FromUint64(uint64FromInt64(32)/uint64FromInt64(1))), __ccgo_ts+25481, vaList(bp+184, float64(v23)))
 								(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p13, bp+112, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 							}
 							goto _91
@@ -2032,14 +2032,14 @@ _9:
 						}
 						islandBodyId = *(*int32)(unsafe.Add(nil, (*b3Island)(unsafe.Pointer(island)).Bodies.Data+uintptr(b8)*4))
 						if v1 = !!(0 <= islandBodyId && islandBodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-							b3InternalAssert(tls, __ccgo_ts+25248, __ccgo_ts+23730, int32FromInt32(1657))
+							b3InternalAssert(tls, __ccgo_ts+25724, __ccgo_ts+24206, int32FromInt32(1659))
 						}
 						_ = v1 || bool(int32FromInt32(0) != 0)
 						islandBody = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(islandBodyId)*96
 						shapeId = (*b3Body)(unsafe.Pointer(islandBody)).HeadShapeId
 						for shapeId != -int32(1) {
 							if v14 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v14 {
-								b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(1661))
+								b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(1663))
 							}
 							_ = v14 || bool(int32FromInt32(0) != 0)
 							shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -2180,7 +2180,7 @@ _9:
 			point = points1 + uintptr(j)*24
 			p6 = (*b3DebugPoint)(unsafe.Pointer(point)).P
 			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p6, float32FromFloat32(5), (*b3DebugPoint)(unsafe.Pointer(point)).Color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
-			__builtin_snprintf(tls, bp+144, uint64(32), __ccgo_ts+25316, vaList(bp+184, (*b3DebugPoint)(unsafe.Pointer(point)).Label, float64((*b3DebugPoint)(unsafe.Pointer(point)).Value)))
+			__builtin_snprintf(tls, bp+144, uint64(32), __ccgo_ts+25792, vaList(bp+184, (*b3DebugPoint)(unsafe.Pointer(point)).Label, float64((*b3DebugPoint)(unsafe.Pointer(point)).Value)))
 			v38 = p6
 			v17 = offset3
 			v63 = Pos{
@@ -2482,7 +2482,7 @@ func b3World_EnableSleeping(tls *_Stack, worldId WorldId, flag uint8) {
 				break
 			}
 			if v2 = !!(0 <= i && i < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+25388, __ccgo_ts+23730, int32FromInt32(2001))
+				b3InternalAssert(tls, __ccgo_ts+25864, __ccgo_ts+24206, int32FromInt32(2003))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(i)*88
@@ -2556,7 +2556,7 @@ func b3World_GetAwakeBodyCount(tls *_Stack, worldId WorldId) (r int32) {
 		return 0
 	}
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+23730, int32FromInt32(2053))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+24206, int32FromInt32(2055))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
@@ -2839,7 +2839,7 @@ func b3World_SetContactRecycleDistance(tls *_Stack, worldId WorldId, recycleDist
 	_, _, _, _, _, _, _, _ = world, v1, v2, v3, v4, v5, v7, v8
 	world = b3GetWorldFromId(tls, worldId)
 	if v1 = !!(int32FromUint8((*b3World)(unsafe.Pointer(world)).Locked) == int32FromInt32(false1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1916, __ccgo_ts+23730, int32FromInt32(2181))
+		b3InternalAssert(tls, __ccgo_ts+1916, __ccgo_ts+24206, int32FromInt32(2183))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*b3World)(unsafe.Pointer(world)).Locked != 0 {
@@ -2886,7 +2886,7 @@ func b3World_SetMaximumLinearSpeed(tls *_Stack, worldId WorldId, maximumLinearSp
 	var _ /* recArgs at bp+0 */ b3RecArgs_WorldSetMaximumLinearSpeed
 	_, _ = world, v1
 	if v1 = !!(b3IsValidFloat(tls, maximumLinearSpeed) != 0 && maximumLinearSpeed > float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+25438, __ccgo_ts+23730, int32FromInt32(2200))
+		b3InternalAssert(tls, __ccgo_ts+25914, __ccgo_ts+24206, int32FromInt32(2202))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -2919,7 +2919,7 @@ func b3World_SetIsotropicInertiaTolerance(tls *_Stack, worldId WorldId, toleranc
 	var _ /* recArgs at bp+0 */ b3RecArgs_WorldSetIsotropicInertiaTolerance
 	_, _, _, _, _, _, _, _ = world, v1, v2, v3, v4, v5, v7, v8
 	if v1 = !!(b3IsValidFloat(tls, tolerance) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+25504, __ccgo_ts+23730, int32FromInt32(2221))
+		b3InternalAssert(tls, __ccgo_ts+25980, __ccgo_ts+24206, int32FromInt32(2223))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3128,13 +3128,13 @@ _18:
 	shapeIdBytes = v17
 	total = total + (uint64FromInt32(bodyIdBytes) + uint64FromInt32(solverSetIdBytes) + uint64FromInt32(jointIdBytes) + uint64FromInt32(contactIdBytes) + uint64FromInt32(islandIdBytes) + uint64FromInt32(shapeIdBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25532, 0)
-		b3Log(tls, __ccgo_ts+25541, vaList(bp+8, bodyIdBytes))
-		b3Log(tls, __ccgo_ts+25554, vaList(bp+8, solverSetIdBytes))
-		b3Log(tls, __ccgo_ts+25573, vaList(bp+8, jointIdBytes))
-		b3Log(tls, __ccgo_ts+25587, vaList(bp+8, contactIdBytes))
-		b3Log(tls, __ccgo_ts+25603, vaList(bp+8, islandIdBytes))
-		b3Log(tls, __ccgo_ts+25618, vaList(bp+8, shapeIdBytes))
+		b3Log(tls, __ccgo_ts+26008, 0)
+		b3Log(tls, __ccgo_ts+26017, vaList(bp+8, bodyIdBytes))
+		b3Log(tls, __ccgo_ts+26030, vaList(bp+8, solverSetIdBytes))
+		b3Log(tls, __ccgo_ts+26049, vaList(bp+8, jointIdBytes))
+		b3Log(tls, __ccgo_ts+26063, vaList(bp+8, contactIdBytes))
+		b3Log(tls, __ccgo_ts+26079, vaList(bp+8, islandIdBytes))
+		b3Log(tls, __ccgo_ts+26094, vaList(bp+8, shapeIdBytes))
 	}
 	// Islands own per-island body/contact/joint link arrays
 	islandLinkBytes = 0
@@ -3162,15 +3162,15 @@ _18:
 	sensorArrayBytes = (*b3World)(unsafe.Pointer(world)).Sensors.Capacity * int32FromInt64(56)
 	total = total + (uint64FromInt32(bodyArrayBytes) + uint64FromInt32(solverSetArrayBytes) + uint64FromInt32(jointArrayBytes) + uint64FromInt32(contactArrayBytes) + uint64FromInt32(islandArrayBytes) + uint64FromInt32(islandLinkBytes) + uint64FromInt32(shapeArrayBytes) + uint64FromInt32(sensorArrayBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25632, 0)
-		b3Log(tls, __ccgo_ts+25645, vaList(bp+8, bodyArrayBytes))
-		b3Log(tls, __ccgo_ts+25656, vaList(bp+8, solverSetArrayBytes))
-		b3Log(tls, __ccgo_ts+25672, vaList(bp+8, jointArrayBytes))
-		b3Log(tls, __ccgo_ts+25683, vaList(bp+8, contactArrayBytes))
-		b3Log(tls, __ccgo_ts+25696, vaList(bp+8, islandArrayBytes))
-		b3Log(tls, __ccgo_ts+25708, vaList(bp+8, islandLinkBytes))
-		b3Log(tls, __ccgo_ts+25725, vaList(bp+8, shapeArrayBytes))
-		b3Log(tls, __ccgo_ts+25736, vaList(bp+8, sensorArrayBytes))
+		b3Log(tls, __ccgo_ts+26108, 0)
+		b3Log(tls, __ccgo_ts+26121, vaList(bp+8, bodyArrayBytes))
+		b3Log(tls, __ccgo_ts+26132, vaList(bp+8, solverSetArrayBytes))
+		b3Log(tls, __ccgo_ts+26148, vaList(bp+8, jointArrayBytes))
+		b3Log(tls, __ccgo_ts+26159, vaList(bp+8, contactArrayBytes))
+		b3Log(tls, __ccgo_ts+26172, vaList(bp+8, islandArrayBytes))
+		b3Log(tls, __ccgo_ts+26184, vaList(bp+8, islandLinkBytes))
+		b3Log(tls, __ccgo_ts+26201, vaList(bp+8, shapeArrayBytes))
+		b3Log(tls, __ccgo_ts+26212, vaList(bp+8, sensorArrayBytes))
 	}
 	// Sensors own overlap tracking arrays. The sensor array is dense.
 	sensorOverlapBytes = 0
@@ -3190,8 +3190,8 @@ _18:
 	}
 	total = total + uint64FromInt32(sensorOverlapBytes)
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25748, 0)
-		b3Log(tls, __ccgo_ts+25761, vaList(bp+8, sensorOverlapBytes))
+		b3Log(tls, __ccgo_ts+26224, 0)
+		b3Log(tls, __ccgo_ts+26237, vaList(bp+8, sensorOverlapBytes))
 	}
 	// Shared hull database. The map owns a combined bucket and metadata allocation
 	// plus the small map struct. Each stored key is an owned clone sized by byteCount.
@@ -3213,9 +3213,9 @@ _18:
 	}
 	total = total + (hullMapBytes + hullDataBytes)
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25781, 0)
-		b3Log(tls, __ccgo_ts+25787, vaList(bp+8, int32FromUint64(hullMapBytes), hullCount, hullBucketCount))
-		b3Log(tls, __ccgo_ts+25809, vaList(bp+8, int32FromUint64(hullDataBytes)))
+		b3Log(tls, __ccgo_ts+26257, 0)
+		b3Log(tls, __ccgo_ts+26263, vaList(bp+8, int32FromUint64(hullMapBytes), hullCount, hullBucketCount))
+		b3Log(tls, __ccgo_ts+26285, vaList(bp+8, int32FromUint64(hullDataBytes)))
 	}
 	// broad-phase
 	staticTreeBytes = b3DynamicTree_GetByteCount(tls, world+800+uintptr(b3_staticBody)*112)
@@ -3225,11 +3225,11 @@ _18:
 	pairSetBytes = b3GetHashSetBytes(tls, pairSet)
 	total = total + (uint64FromInt32(staticTreeBytes) + uint64FromInt32(kinematicTreeBytes) + uint64FromInt32(dynamicTreeBytes) + uint64FromInt32(pairSetBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25823, 0)
-		b3Log(tls, __ccgo_ts+25835, vaList(bp+8, staticTreeBytes))
-		b3Log(tls, __ccgo_ts+25851, vaList(bp+8, kinematicTreeBytes))
-		b3Log(tls, __ccgo_ts+25870, vaList(bp+8, dynamicTreeBytes))
-		b3Log(tls, __ccgo_ts+25887, vaList(bp+8, pairSetBytes, (*b3HashSet)(unsafe.Pointer(pairSet)).Count, (*b3HashSet)(unsafe.Pointer(pairSet)).Capacity))
+		b3Log(tls, __ccgo_ts+26299, 0)
+		b3Log(tls, __ccgo_ts+26311, vaList(bp+8, staticTreeBytes))
+		b3Log(tls, __ccgo_ts+26327, vaList(bp+8, kinematicTreeBytes))
+		b3Log(tls, __ccgo_ts+26346, vaList(bp+8, dynamicTreeBytes))
+		b3Log(tls, __ccgo_ts+26363, vaList(bp+8, pairSetBytes, (*b3HashSet)(unsafe.Pointer(pairSet)).Count, (*b3HashSet)(unsafe.Pointer(pairSet)).Capacity))
 	}
 	// Manifold block allocators, one per manifold point count
 	manifoldArrayBytes = (*b3World)(unsafe.Pointer(world)).ManifoldAllocators.Capacity * int32FromInt64(40)
@@ -3249,9 +3249,9 @@ _18:
 	}
 	total = total + (uint64FromInt32(manifoldArrayBytes) + uint64FromInt32(manifoldBlockBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25908, 0)
-		b3Log(tls, __ccgo_ts+25928, vaList(bp+8, manifoldArrayBytes))
-		b3Log(tls, __ccgo_ts+25948, vaList(bp+8, manifoldBlockBytes))
+		b3Log(tls, __ccgo_ts+26384, 0)
+		b3Log(tls, __ccgo_ts+26404, vaList(bp+8, manifoldArrayBytes))
+		b3Log(tls, __ccgo_ts+26424, vaList(bp+8, manifoldBlockBytes))
 	}
 	// solver sets
 	bodySimCapacity = 0
@@ -3286,12 +3286,12 @@ _18:
 	setIslandSimBytes = islandSimCapacity * int32FromInt64(4)
 	total = total + (uint64FromInt32(setBodySimBytes) + uint64FromInt32(setBodyStateBytes) + uint64FromInt32(setJointSimBytes) + uint64FromInt32(setContactSimBytes) + uint64FromInt32(setIslandSimBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+25959, 0)
-		b3Log(tls, __ccgo_ts+25971, vaList(bp+8, setBodySimBytes))
-		b3Log(tls, __ccgo_ts+25984, vaList(bp+8, setBodyStateBytes))
-		b3Log(tls, __ccgo_ts+25999, vaList(bp+8, setJointSimBytes))
-		b3Log(tls, __ccgo_ts+26013, vaList(bp+8, setContactSimBytes))
-		b3Log(tls, __ccgo_ts+26029, vaList(bp+8, setIslandSimBytes))
+		b3Log(tls, __ccgo_ts+26435, 0)
+		b3Log(tls, __ccgo_ts+26447, vaList(bp+8, setBodySimBytes))
+		b3Log(tls, __ccgo_ts+26460, vaList(bp+8, setBodyStateBytes))
+		b3Log(tls, __ccgo_ts+26475, vaList(bp+8, setJointSimBytes))
+		b3Log(tls, __ccgo_ts+26489, vaList(bp+8, setContactSimBytes))
+		b3Log(tls, __ccgo_ts+26505, vaList(bp+8, setIslandSimBytes))
 	}
 	// constraint graph
 	bodyBitSetBytes = 0
@@ -3316,10 +3316,10 @@ _18:
 	}
 	total = total + (uint64FromInt32(bodyBitSetBytes) + uint64FromInt32(graphJointSimBytes) + uint64FromInt32(graphContactBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+26044, 0)
-		b3Log(tls, __ccgo_ts+26061, vaList(bp+8, bodyBitSetBytes))
-		b3Log(tls, __ccgo_ts+25999, vaList(bp+8, graphJointSimBytes))
-		b3Log(tls, __ccgo_ts+26013, vaList(bp+8, graphContactBytes))
+		b3Log(tls, __ccgo_ts+26520, 0)
+		b3Log(tls, __ccgo_ts+26537, vaList(bp+8, bodyBitSetBytes))
+		b3Log(tls, __ccgo_ts+26475, vaList(bp+8, graphJointSimBytes))
+		b3Log(tls, __ccgo_ts+26489, vaList(bp+8, graphContactBytes))
 	}
 	// Per worker task storage and its bit sets
 	taskContextBytes = (*b3World)(unsafe.Pointer(world)).TaskContexts.Capacity * int32FromInt64(3848)
@@ -3370,9 +3370,9 @@ _18:
 	}
 	total = total + (uint64FromInt32(taskContextBytes) + uint64FromInt32(sensorTaskContextBytes))
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+26079, 0)
-		b3Log(tls, __ccgo_ts+26093, vaList(bp+8, taskContextBytes))
-		b3Log(tls, __ccgo_ts+26104, vaList(bp+8, sensorTaskContextBytes))
+		b3Log(tls, __ccgo_ts+26555, 0)
+		b3Log(tls, __ccgo_ts+26569, vaList(bp+8, taskContextBytes))
+		b3Log(tls, __ccgo_ts+26580, vaList(bp+8, sensorTaskContextBytes))
 	}
 	// Double buffered event arrays
 	eventBytes = 0
@@ -3387,7 +3387,7 @@ _18:
 	eventBytes = eventBytes + (*b3World)(unsafe.Pointer(world)).JointEvents.Capacity*int32FromInt64(16)
 	total = total + uint64FromInt32(eventBytes)
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+26115, vaList(bp+8, eventBytes))
+		b3Log(tls, __ccgo_ts+26591, vaList(bp+8, eventBytes))
 	}
 	// Debug draw bit sets
 	debugBytes = 0
@@ -3409,13 +3409,13 @@ _46:
 	debugBytes = debugBytes + v2
 	total = total + uint64FromInt32(debugBytes)
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+26126, vaList(bp+8, debugBytes))
+		b3Log(tls, __ccgo_ts+26602, vaList(bp+8, debugBytes))
 	}
 	// stack allocator
 	total = total + uint64FromInt32((*b3World)(unsafe.Pointer(world)).Stack.Capacity)
 	if log != 0 {
-		b3Log(tls, __ccgo_ts+26141, vaList(bp+8, (*b3World)(unsafe.Pointer(world)).Stack.Capacity))
-		b3Log(tls, __ccgo_ts+26161, vaList(bp+8, uint32(total/uint64FromInt32(1024))))
+		b3Log(tls, __ccgo_ts+26617, vaList(bp+8, (*b3World)(unsafe.Pointer(world)).Stack.Capacity))
+		b3Log(tls, __ccgo_ts+26637, vaList(bp+8, uint32(total/uint64FromInt32(1024))))
 	}
 	return total
 }
@@ -3576,7 +3576,7 @@ func b3World_OverlapAABB(tls *_Stack, worldId WorldId, aabb AABB, filter QueryFi
 		return treeStats
 	}
 	if v1 = !!(b3IsValidAABB(tls, aabb) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26174, __ccgo_ts+23730, int32FromInt32(2724))
+		b3InternalAssert(tls, __ccgo_ts+26650, __ccgo_ts+24206, int32FromInt32(2726))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*b3RecQueryWriter)(unsafe.Pointer(bp)) = b3RecQueryWriter{}
@@ -3638,7 +3638,7 @@ func b3World_OverlapShape(tls *_Stack, worldId WorldId, origin1 Pos, proxy uintp
 		return treeStats
 	}
 	if v1 = !!(b3IsValidPosition(tls, origin1) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(2814))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(2816))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*b3RecQueryWriter)(unsafe.Pointer(bp)) = b3RecQueryWriter{}
@@ -3865,7 +3865,7 @@ func b3World_CollideMover(tls *_Stack, worldId WorldId, origin1 Pos, mover uintp
 		return
 	}
 	if v1 = !!(b3IsValidPosition(tls, origin1) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(2911))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(2913))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*b3RecQueryWriter)(unsafe.Pointer(bp)) = b3RecQueryWriter{}
@@ -4058,11 +4058,11 @@ func b3World_CastRay(tls *_Stack, worldId WorldId, origin Pos, translation Vec3,
 		return treeStats
 	}
 	if v1 = !!(b3IsValidPosition(tls, origin) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(3022))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(3024))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, translation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26262, __ccgo_ts+23730, int32FromInt32(3023))
+		b3InternalAssert(tls, __ccgo_ts+26738, __ccgo_ts+24206, int32FromInt32(3025))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*b3RecQueryWriter)(unsafe.Pointer(bp)) = b3RecQueryWriter{}
@@ -4146,11 +4146,11 @@ func b3World_CastRayClosest(tls *_Stack, worldId WorldId, origin Pos, translatio
 		return *(*RayResult)(unsafe.Add(nil, bp))
 	}
 	if v1 = !!(b3IsValidPosition(tls, origin) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(3102))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(3104))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, translation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26262, __ccgo_ts+23730, int32FromInt32(3103))
+		b3InternalAssert(tls, __ccgo_ts+26738, __ccgo_ts+24206, int32FromInt32(3105))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v3 = origin
@@ -4229,11 +4229,11 @@ func b3World_CastShape(tls *_Stack, worldId WorldId, origin1 Pos, proxy uintptr,
 		return treeStats
 	}
 	if v1 = !!(b3IsValidPosition(tls, origin1) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(3222))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(3224))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, translation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26262, __ccgo_ts+23730, int32FromInt32(3223))
+		b3InternalAssert(tls, __ccgo_ts+26738, __ccgo_ts+24206, int32FromInt32(3225))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*b3RecQueryWriter)(unsafe.Pointer(bp)) = b3RecQueryWriter{}
@@ -4469,11 +4469,11 @@ func b3World_CastMover(tls *_Stack, worldId WorldId, origin1 Pos, mover uintptr,
 	var _ /* worldContext at bp+64 */ _WorldMoverCastContext
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a6, i, i1, out, r, world, v1, v10, v12, v13, v14, v16, v17, v18, v19, v21, v22, v23, v24, v26, v27, v28, v29, v3, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v43, v45, v46, v47, v48, v5, v50, v51, v52, v54, v56, v57, v58, v60, v62, v64, v66, v68, v70, v8, v9
 	if v1 = !!(b3IsValidPosition(tls, origin1) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+23730, int32FromInt32(3344))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+24206, int32FromInt32(3346))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, translation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26262, __ccgo_ts+23730, int32FromInt32(3345))
+		b3InternalAssert(tls, __ccgo_ts+26738, __ccgo_ts+24206, int32FromInt32(3347))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -4773,19 +4773,19 @@ func b3World_Explode(tls *_Stack, worldId WorldId, explosionDef uintptr) {
 	falloff = (*ExplosionDef)(unsafe.Pointer(explosionDef)).Falloff
 	impulsePerArea = (*ExplosionDef)(unsafe.Pointer(explosionDef)).ImpulsePerArea
 	if v1 = !!(b3IsValidPosition(tls, position) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+2667, __ccgo_ts+23730, int32FromInt32(3553))
+		b3InternalAssert(tls, __ccgo_ts+2667, __ccgo_ts+24206, int32FromInt32(3555))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, radius) != 0 && radius >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26320, __ccgo_ts+23730, int32FromInt32(3554))
+		b3InternalAssert(tls, __ccgo_ts+26796, __ccgo_ts+24206, int32FromInt32(3556))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, falloff) != 0 && falloff >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26363, __ccgo_ts+23730, int32FromInt32(3555))
+		b3InternalAssert(tls, __ccgo_ts+26839, __ccgo_ts+24206, int32FromInt32(3557))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, impulsePerArea) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26408, __ccgo_ts+23730, int32FromInt32(3556))
+		b3InternalAssert(tls, __ccgo_ts+26884, __ccgo_ts+24206, int32FromInt32(3558))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)

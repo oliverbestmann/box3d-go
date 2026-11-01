@@ -3604,7 +3604,7 @@ _10:
 _7:
 	;
 	if v12 = !!(v6 != 0); !v12 {
-		b3InternalAssert(tls, __ccgo_ts+21073, __ccgo_ts+21094, int32FromInt32(313))
+		b3InternalAssert(tls, __ccgo_ts+21466, __ccgo_ts+21487, int32FromInt32(313))
 	}
 	_ = v12 || bool(int32FromInt32(0) != 0)
 	v11 = v2
@@ -3628,7 +3628,7 @@ _22:
 _19:
 	;
 	if v12 = !!(v6 != 0); !v12 {
-		b3InternalAssert(tls, __ccgo_ts+21126, __ccgo_ts+21094, int32FromInt32(314))
+		b3InternalAssert(tls, __ccgo_ts+21519, __ccgo_ts+21487, int32FromInt32(314))
 	}
 	_ = v12 || bool(int32FromInt32(0) != 0)
 	v11 = v1
@@ -4155,14 +4155,14 @@ func b3ComputeMeshManifolds(tls *_Stack, world2 uintptr, workerIndex int32, cont
 	var _ /* z at bp+1144 */ [3][4]float32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, acceptedManifoldCount, acceptedManifolds, addedEdge1, addedEdge2, addedEdge3, addedVertex1, addedVertex2, addedVertex3, aligned, allocator, allocator1, allocator2, allowClustering, am, ap, ax, ay, az, b10, baseIndex, bestDot, bestIndex, c, cache, cluster, clusterCount, clusterIndex, clusterIndex1, clusterMemberships, clusterNormal, clusterPointCount, clusterPoints, clusterThreshold, clusters, cm, cm1, cm2, consumed, context, cosManifoldAngle, cosNormalAngle, cosTriangleAngle, cp, cullMask, currentCount, cxx, cxy, cxz, cyx, cyy, cyz, czx, czy, czz, d, dot, enableSpeculative, feature, flags, friction, hullB, hullBounds, hullLowerX, hullLowerY, hullLowerZ, hullMargin, hullSpeculativeDistance, hullUpperX, hullUpperY, hullUpperZ, i, i1, i2, i3, i4, i5, i6, i7, i8, i9, index, index1, index2, index3, invCount, j, j1, j2, j3, j4, k, k1, k2, keepMask, lane, lane1, lane2, laneCount, lengthSquared, linearSlop, lowerX, lowerY, lowerZ, m1, m2, manifold, manifold1, manifold2, manifold3, manifoldBuffer, manifoldCount, manifoldNormal, manifoldPointCount, manifolds, marginW, matchedManifold, material, materialB, materialIndex, materialIndices, materialsA, matrixB, meshContact, meshFlipped, meshScale, meshTriangle, meshTriangles, meshVertices, minSeparation, newCapacity, newSize, normal, normalMatchTolerance, offsetA, oldManifoldCount, oldManifolds, oldPointCount, oldPt, oldSize, pointBuffer, pointBufferCapacity, pointCapacity, pointCount, pointCount1, pointOffset, px, py, pz, q2, q_i, q_i1, q_j, q_j1, q_l, q_m, q_r, q_sp, q_st, radiusB, reducedCount, relativeMatrix, restOffset, restitution, s, sampleCount, scale, separated, shouldCollide, source, survivor, survivorCount, survivorIndex, survivorIndices, survivorVertices, t1, t11, t12, t2, t21, t22, t3, t31, t32, tangentVelocityA, tangentVelocityB, target, tentativeManifoldCount, tentativeManifolds, tentativeTriangle, tentativeTriangle1, tentativeTriangleCount, tentativeTriangles, tmp, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8, totalPointCount, transformAtoB, triangle, triangle2, triangleCaches, triangleCount, triangleFlags, triangleFlags1, triangleIndex1, triangleIndex2, triangleIndex3, triangleNormal, triangles, u, upperX, upperY, upperZ, vertices, vertices1, vx, vy, vz, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v11, v119, v12, v13, v15, v16, v160, v17, v18, v19, v20, v21, v23, v24, v25, v26, v269, v270, v28, v29, v297, v3, v30, v31, v33, v34, v35, v37, v39, v4, v40, v41, v42, v43, v45, v46, v47, v48, v5, v50, v51, v52, v54, v56, v57, v58, v59, v61, v63, v64, v66, v67, v68, v7, v70, v71, v72, v74, v75, v77, v8, v81, v9, v90, v92
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) || (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_heightShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22122, __ccgo_ts+22185, int32FromInt32(532))
+		b3InternalAssert(tls, __ccgo_ts+22515, __ccgo_ts+22578, int32FromInt32(532))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	_ = uint32FromInt64(4)
 	_ = uint32FromInt64(4)
 	_ = uint32FromInt64(4)
 	if v1 = !!(0 <= workerIndex && workerIndex < (*b3World)(unsafe.Pointer(world2)).TaskContexts.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22536, __ccgo_ts+22185, int32FromInt32(537))
+		b3InternalAssert(tls, __ccgo_ts+22929, __ccgo_ts+22578, int32FromInt32(537))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	context = (*b3World)(unsafe.Pointer(world2)).TaskContexts.Data + uintptr(workerIndex)*3812
@@ -4600,7 +4600,7 @@ _83:
 				*(*Vec3)(unsafe.Add(nil, bp+852+2*48+uintptr(lane)*12)) = v21
 			} else {
 				if v1 = !!((*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_heightShape)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+22372, __ccgo_ts+22185, int32FromInt32(642))
+					b3InternalAssert(tls, __ccgo_ts+22765, __ccgo_ts+22578, int32FromInt32(642))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				*(*b3Triangle)(unsafe.Add(nil, bp+996)) = b3GetHeightFieldTriangle(tls, *(*uintptr)(unsafe.Add(unsafe.Pointer(shapeA), 176)), triangleIndex1)
@@ -4709,7 +4709,7 @@ _83:
 			v3 = shapeA + 176
 			v4 = triangleIndex2
 			if v1 = !!(0 <= v4 && v4 < (*MeshData)(unsafe.Pointer((*cMesh)(unsafe.Pointer(v3)).Data)).TriangleCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+22608, __ccgo_ts+22672, int32FromInt32(143))
+				b3InternalAssert(tls, __ccgo_ts+23001, __ccgo_ts+23065, int32FromInt32(143))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			v5 = (*cMesh)(unsafe.Pointer(v3)).Data
@@ -4826,7 +4826,7 @@ _83:
 			triangle2 = v160
 		} else {
 			if v1 = !!((*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_heightShape)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+22372, __ccgo_ts+22185, int32FromInt32(728))
+				b3InternalAssert(tls, __ccgo_ts+22765, __ccgo_ts+22578, int32FromInt32(728))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			triangle2 = b3GetHeightFieldTriangle(tls, *(*uintptr)(unsafe.Add(unsafe.Pointer(shapeA), 176)), triangleIndex2)
@@ -4854,7 +4854,7 @@ _83:
 			b3CollideTriangleAndSphere(tls, manifold, pointCapacity, vertices1, shapeB+176)
 		default:
 			if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22185, int32FromInt32(765))
+				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22578, int32FromInt32(765))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			return boolUint8(false1 != 0)
@@ -4862,7 +4862,7 @@ _83:
 		manifoldPointCount = (*LocalManifold)(unsafe.Pointer(manifold)).PointCount
 		if manifoldPointCount > 0 {
 			if v1 = !!((*LocalManifold)(unsafe.Pointer(manifold)).Feature != int32(b3_featureNone)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+22695, __ccgo_ts+22185, int32FromInt32(773))
+				b3InternalAssert(tls, __ccgo_ts+23088, __ccgo_ts+22578, int32FromInt32(773))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			manifoldCount = manifoldCount + int32(1)
@@ -5013,15 +5013,15 @@ _83:
 		survivorIndex = survivorIndex + 1
 	}
 	if v1 = !!(acceptedManifoldCount <= triangleCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22731, __ccgo_ts+22185, int32FromInt32(846))
+		b3InternalAssert(tls, __ccgo_ts+23124, __ccgo_ts+22578, int32FromInt32(846))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(tentativeManifoldCount <= triangleCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22770, __ccgo_ts+22185, int32FromInt32(847))
+		b3InternalAssert(tls, __ccgo_ts+23163, __ccgo_ts+22578, int32FromInt32(847))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(tentativeTriangleCount <= triangleCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22810, __ccgo_ts+22185, int32FromInt32(848))
+		b3InternalAssert(tls, __ccgo_ts+23203, __ccgo_ts+22578, int32FromInt32(848))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*b3Shape)(unsafe.Pointer(shapeB)).Type1 == int32(b3_sphereShape) {
@@ -5156,7 +5156,7 @@ _83:
 				fallthrough
 			case int32(b3_featureTriangleFace):
 				if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22185, int32FromInt32(886))
+					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22578, int32FromInt32(886))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 			case int32(b3_featureEdge1):
@@ -5173,7 +5173,7 @@ _83:
 				shouldCollide = addedVertex3
 			default:
 				if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22185, int32FromInt32(914))
+					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+22578, int32FromInt32(914))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				break
@@ -5227,7 +5227,7 @@ _83:
 		}
 	}
 	if v1 = !!(acceptedManifoldCount <= triangleCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22731, __ccgo_ts+22185, int32FromInt32(967))
+		b3InternalAssert(tls, __ccgo_ts+23124, __ccgo_ts+22578, int32FromInt32(967))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if acceptedManifoldCount == 0 {
@@ -5404,7 +5404,7 @@ _237:
 			goto _239
 		}
 		if v1 = !!(0 <= clusterIndex1 && clusterIndex1 < clusterCount); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+22850, __ccgo_ts+22185, int32FromInt32(1087))
+			b3InternalAssert(tls, __ccgo_ts+23243, __ccgo_ts+22578, int32FromInt32(1087))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		am = *(*uintptr)(unsafe.Add(nil, acceptedManifolds+uintptr(i6)*4))
@@ -5415,7 +5415,7 @@ _237:
 				break
 			}
 			if v1 = !!((*b3Cluster)(unsafe.Pointer(cm)).PointCount < (*b3Cluster)(unsafe.Pointer(cm)).PointCapacity); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+22899, __ccgo_ts+22185, int32FromInt32(1093))
+				b3InternalAssert(tls, __ccgo_ts+23292, __ccgo_ts+22578, int32FromInt32(1093))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			ap = (*LocalManifold)(unsafe.Pointer(am)).points + uintptr(j1)*24
@@ -5443,7 +5443,7 @@ _237:
 		}
 		cm1 = clusters + uintptr(i7)*36
 		if v1 = !!((*b3Cluster)(unsafe.Pointer(cm1)).PointCount == (*b3Cluster)(unsafe.Pointer(cm1)).PointCapacity); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+22934, __ccgo_ts+22185, int32FromInt32(1109))
+			b3InternalAssert(tls, __ccgo_ts+23327, __ccgo_ts+22578, int32FromInt32(1109))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		reducedCount = b3ReduceCluster(tls, (*b3Cluster)(unsafe.Pointer(cm1)).Points, (*b3Cluster)(unsafe.Pointer(cm1)).PointCount, (*b3Cluster)(unsafe.Pointer(cm1)).TriangleNormal, *(*b3Arena)(unsafe.Add(nil, bp+52)))
@@ -5621,7 +5621,7 @@ _272:
 		cm2 = clusters + uintptr(i8)*36
 		pointCount = (*b3Cluster)(unsafe.Pointer(cm2)).PointCount
 		if v1 = !!(0 < pointCount && pointCount <= int32(_B3_MAX_MANIFOLD_POINTS)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+22970, __ccgo_ts+22185, int32FromInt32(1151))
+			b3InternalAssert(tls, __ccgo_ts+23363, __ccgo_ts+22578, int32FromInt32(1151))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		manifold2 = (*b3Contact)(unsafe.Pointer(contact)).Manifolds + uintptr(i8)*268
@@ -5874,11 +5874,11 @@ _307:
 			tangentVelocityA = v20
 		}
 		if v1 = !!(b3IsValidFloat(tls, (*b3Contact)(unsafe.Pointer(contact)).Friction) != 0 && (*b3Contact)(unsafe.Pointer(contact)).Friction >= float32FromFloat32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+23025, __ccgo_ts+22185, int32FromInt32(1284))
+			b3InternalAssert(tls, __ccgo_ts+23418, __ccgo_ts+22578, int32FromInt32(1284))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!(b3IsValidFloat(tls, (*b3Contact)(unsafe.Pointer(contact)).Restitution) != 0 && (*b3Contact)(unsafe.Pointer(contact)).Restitution >= float32FromFloat32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+23090, __ccgo_ts+22185, int32FromInt32(1285))
+			b3InternalAssert(tls, __ccgo_ts+23483, __ccgo_ts+22578, int32FromInt32(1285))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	} else {
@@ -6408,11 +6408,11 @@ func b3ComputeBlockCount(tls *_Stack, itemCount int32, minSize int32, maxBlockCo
 	}
 	dim.Count = (itemCount + dim.Size - int32(1)) / dim.Size
 	if v1 = !!(dim.Count >= int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31747, __ccgo_ts+31095, int32FromInt32(927))
+		b3InternalAssert(tls, __ccgo_ts+32461, __ccgo_ts+31809, int32FromInt32(927))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(dim.Size*dim.Count >= itemCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31762, __ccgo_ts+31095, int32FromInt32(928))
+		b3InternalAssert(tls, __ccgo_ts+32476, __ccgo_ts+31809, int32FromInt32(928))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return dim

@@ -1364,6 +1364,8 @@ var classTypes = []ClassTypes{
 	{Name: "SphericalJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3SphericalJoint_"},
 	{Name: "WeldJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3WeldJoint_"},
 	{Name: "WheelJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3WheelJoint_"},
+	{Name: "MoverJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3MoverJoint_"},
+	{Name: "PogoJoint", Extends: "Joint", IdType: "JointId", FnPrefix: "b3PogoJoint_"},
 }
 
 func getClassTypeById(idType string) *ClassTypes {

@@ -1213,7 +1213,7 @@ func _CreateHuman(tls *_Stack, human uintptr, worldId WorldId, position Pos, fri
 	skinColor = skinColors[groupIndex%int32(4)]
 	bone = human + uintptr(bone_pelvis)*140
 	(*_Bone)(unsafe.Pointer(bone)).ParentIndex = -int32(1)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37571
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38285
 	(*_Bone)(unsafe.Pointer(bone)).ReferenceFrame = Transform{
 		P: Vec3{
 			Y: float32FromFloat32(0.996219),
@@ -1260,7 +1260,7 @@ _6:
 	b3CreateCapsuleShape(tls, (*_Bone)(unsafe.Pointer(bone)).BodyId, bp+104, bp+216)
 	bone1 = human + uintptr(bone_spine_01)*140
 	(*_Bone)(unsafe.Pointer(bone1)).ParentIndex = int32(bone_pelvis)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37578
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38292
 	(*_Bone)(unsafe.Pointer(bone1)).ReferenceFrame = Transform{
 		P: Vec3{
 			Y: float32FromFloat32(1.017288),
@@ -1335,7 +1335,7 @@ _11:
 	}
 	bone2 = human + uintptr(bone_spine_03)*140
 	(*_Bone)(unsafe.Pointer(bone2)).ParentIndex = int32(bone_spine_01)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37587
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38301
 	(*_Bone)(unsafe.Pointer(bone2)).ReferenceFrame = Transform{
 		P: Vec3{
 			Y: float32FromFloat32(1.267766),
@@ -1410,7 +1410,7 @@ _16:
 	}
 	bone3 = human + uintptr(bone_neck)*140
 	(*_Bone)(unsafe.Pointer(bone3)).ParentIndex = int32(bone_spine_03)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37596
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38310
 	(*_Bone)(unsafe.Pointer(bone3)).ReferenceFrame = Transform{
 		P: Vec3{
 			Y: float32FromFloat32(1.498783),
@@ -1486,7 +1486,7 @@ _21:
 	}
 	bone4 = human + uintptr(bone_thigh_l)*140
 	(*_Bone)(unsafe.Pointer(bone4)).ParentIndex = int32(bone_pelvis)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37604
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38318
 	(*_Bone)(unsafe.Pointer(bone4)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: float32FromFloat32(0.092175),
@@ -1568,7 +1568,7 @@ _26:
 	}
 	bone5 = human + uintptr(bone_calf_l)*140
 	(*_Bone)(unsafe.Pointer(bone5)).ParentIndex = int32(bone_thigh_l)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37612
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38326
 	(*_Bone)(unsafe.Pointer(bone5)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: float32FromFloat32(0.11872),
@@ -1664,7 +1664,7 @@ _31:
 	}
 	bone6 = human + uintptr(bone_thigh_r)*140
 	(*_Bone)(unsafe.Pointer(bone6)).ParentIndex = int32(bone_pelvis)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37619
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38333
 	(*_Bone)(unsafe.Pointer(bone6)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: -float32FromFloat32(0.092175),
@@ -1746,7 +1746,7 @@ _36:
 	}
 	bone7 = human + uintptr(bone_calf_r)*140
 	(*_Bone)(unsafe.Pointer(bone7)).ParentIndex = int32(bone_thigh_r)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37627
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38341
 	(*_Bone)(unsafe.Pointer(bone7)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: -float32FromFloat32(0.11872),
@@ -1843,7 +1843,7 @@ _41:
 	}
 	bone8 = human + uintptr(bone_upper_arm_l)*140
 	(*_Bone)(unsafe.Pointer(bone8)).ParentIndex = int32(bone_spine_03)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37634
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38348
 	(*_Bone)(unsafe.Pointer(bone8)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: float32FromFloat32(0.185817),
@@ -1928,7 +1928,7 @@ _46:
 	(*_Bone)(unsafe.Pointer(bone8)).JointFriction = float32FromFloat32(0.8)
 	bone9 = human + uintptr(bone_lower_arm_l)*140
 	(*_Bone)(unsafe.Pointer(bone9)).ParentIndex = int32(bone_upper_arm_l)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37645
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38359
 	(*_Bone)(unsafe.Pointer(bone9)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: float32FromFloat32(0.347683),
@@ -2011,7 +2011,7 @@ _51:
 	(*_Bone)(unsafe.Pointer(bone9)).JointFriction = float32FromFloat32(0.06)
 	bone10 = human + uintptr(bone_upper_arm_r)*140
 	(*_Bone)(unsafe.Pointer(bone10)).ParentIndex = int32(bone_spine_03)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37656
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38370
 	(*_Bone)(unsafe.Pointer(bone10)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: -float32FromFloat32(0.185817),
@@ -2096,7 +2096,7 @@ _56:
 	(*_Bone)(unsafe.Pointer(bone10)).JointFriction = float32FromFloat32(0.8)
 	bone11 = human + uintptr(bone_lower_arm_r)*140
 	(*_Bone)(unsafe.Pointer(bone11)).ParentIndex = int32(bone_upper_arm_r)
-	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 37667
+	(*(*BodyDef)(unsafe.Add(nil, bp))).name = __ccgo_ts + 38381
 	(*_Bone)(unsafe.Pointer(bone11)).ReferenceFrame = Transform{
 		P: Vec3{
 			X: -float32FromFloat32(0.347683),
@@ -3696,7 +3696,7 @@ _11:
 _8:
 	;
 	if v13 = !!(v7 != 0); !v13 {
-		b3InternalAssert(tls, __ccgo_ts+37548, __ccgo_ts+6355, int32FromInt32(520))
+		b3InternalAssert(tls, __ccgo_ts+38262, __ccgo_ts+6355, int32FromInt32(520))
 	}
 	_ = v13 || bool(int32FromInt32(0) != 0)
 	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*angle))
@@ -3734,7 +3734,7 @@ _26:
 _23:
 	;
 	if v28 = !!(v22 != 0); !v28 {
-		b3InternalAssert(tls, __ccgo_ts+37548, __ccgo_ts+6355, int32FromInt32(520))
+		b3InternalAssert(tls, __ccgo_ts+38262, __ccgo_ts+6355, int32FromInt32(520))
 	}
 	_ = v28 || bool(int32FromInt32(0) != 0)
 	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*float32(float32FromFloat32(0.1)*angle)))
@@ -4215,7 +4215,7 @@ _11:
 _8:
 	;
 	if v13 = !!(v7 != 0); !v13 {
-		b3InternalAssert(tls, __ccgo_ts+37548, __ccgo_ts+6355, int32FromInt32(520))
+		b3InternalAssert(tls, __ccgo_ts+38262, __ccgo_ts+6355, int32FromInt32(520))
 	}
 	_ = v13 || bool(int32FromInt32(0) != 0)
 	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*tilt))
@@ -5368,7 +5368,7 @@ _13:
 _10:
 	;
 	if v15 = !!(v9 != 0); !v15 {
-		b3InternalAssert(tls, __ccgo_ts+37548, __ccgo_ts+6355, int32FromInt32(520))
+		b3InternalAssert(tls, __ccgo_ts+38262, __ccgo_ts+6355, int32FromInt32(520))
 	}
 	_ = v15 || bool(int32FromInt32(0) != 0)
 	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*float32(-float32FromFloat32(1.15)*float32FromFloat32(3.14159265359))))

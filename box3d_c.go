@@ -1,6 +1,6 @@
 //go:build !(arm || (tinygo && wasm))
 
-// Code generated for linux/arm64 by 'ccgo -verify-types --package-name b3 -D BOX3D_DISABLE_SIMD -D NDEBUG -D B3_ENABLE_ASSERT --predef \n#include <stdbool.h>\n#include <stdint.h>\nbool __builtin___atomic_compare_exchange_n(int32_t *ptr, int32_t *expected, int32_t desired, bool weak, int32_t success_memorder, int32_t failure_memorder);\n --predef \n#include <stddef.h>\n#define aligned_alloc __builtin_aligned_alloc\nextern void* __builtin_aligned_alloc(size_t align, size_t size);\n --predef \n#define b3CreateMutex __builtin_b3CreateMutex\n#define b3DestroyMutex __builtin_b3DestroyMutex\n#define b3LockMutex __builtin_b3LockMutex\n#define b3UnlockMutex __builtin_b3UnlockMutex\n#define b3CreateSemaphore __builtin_b3CreateSemaphore\n#define b3DestroySemaphore __builtin_b3DestroySemaphore\n#define b3WaitSemaphore __builtin_b3WaitSemaphore\n#define b3SignalSemaphore __builtin_b3SignalSemaphore\n#define b3CreateThread __builtin_b3CreateThread\n#define b3JoinThread __builtin_b3JoinThread\n --prefix-field ｆ -o _build/box3d_c.go -I ../box3d-c/include/ -I ../box3d-c/shared/ ../box3d-c/src/aabb.c ../box3d-c/src/arena_allocator.c ../box3d-c/src/bitset.c ../box3d-c/src/block_allocator.c ../box3d-c/src/body.c ../box3d-c/src/broad_phase.c ../box3d-c/src/capsule.c ../box3d-c/src/compound.c ../box3d-c/src/constraint_graph.c ../box3d-c/src/contact.c ../box3d-c/src/contact_solver.c ../box3d-c/src/convex_manifold.c ../box3d-c/src/core.c ../box3d-c/src/distance.c ../box3d-c/src/distance_joint.c ../box3d-c/src/dynamic_tree.c ../box3d-c/src/height_field.c ../box3d-c/src/hull.c ../box3d-c/src/id_pool.c ../box3d-c/src/island.c ../box3d-c/src/joint.c ../box3d-c/src/manifold.c ../box3d-c/src/math_functions.c ../box3d-c/src/mesh.c ../box3d-c/src/mesh_contact.c ../box3d-c/src/motor_joint.c ../box3d-c/src/mover.c ../box3d-c/src/name_cache.c ../box3d-c/src/parallel_for.c ../box3d-c/src/parallel_joint.c ../box3d-c/src/physics_world.c ../box3d-c/src/prismatic_joint.c ../box3d-c/src/recording.c ../box3d-c/src/replay.c ../box3d-c/src/revolute_joint.c ../box3d-c/src/scheduler.c ../box3d-c/src/sensor.c ../box3d-c/src/shape.c ../box3d-c/src/simd.c ../box3d-c/src/solver.c ../box3d-c/src/solver_set.c ../box3d-c/src/sphere.c ../box3d-c/src/spherical_joint.c ../box3d-c/src/statics.c ../box3d-c/src/table.c ../box3d-c/src/timer.c ../box3d-c/src/triangle_manifold.c ../box3d-c/src/types.c ../box3d-c/src/weld_joint.c ../box3d-c/src/wheel_joint.c ../box3d-c/src/wide4.c ../box3d-c/src/wide8.c ../box3d-c/src/world_snapshot.c csrc/callbacks.c _build/inline.c ../box3d-c/shared/determinism.c ../box3d-c/shared/human.c ../box3d-c/shared/stability.c ../box3d-c/shared/benchmarks.c csrc/scenes.c', DO NOT EDIT.
+// Code generated for linux/arm64 by 'ccgo -verify-types --package-name b3 -D BOX3D_DISABLE_SIMD -D NDEBUG -D B3_ENABLE_ASSERT --predef \n#include <stdbool.h>\n#include <stdint.h>\nbool __builtin___atomic_compare_exchange_n(int32_t *ptr, int32_t *expected, int32_t desired, bool weak, int32_t success_memorder, int32_t failure_memorder);\n --predef \n#include <stddef.h>\n#define aligned_alloc __builtin_aligned_alloc\nextern void* __builtin_aligned_alloc(size_t align, size_t size);\n --predef \n#define b3CreateMutex __builtin_b3CreateMutex\n#define b3DestroyMutex __builtin_b3DestroyMutex\n#define b3LockMutex __builtin_b3LockMutex\n#define b3UnlockMutex __builtin_b3UnlockMutex\n#define b3CreateSemaphore __builtin_b3CreateSemaphore\n#define b3DestroySemaphore __builtin_b3DestroySemaphore\n#define b3WaitSemaphore __builtin_b3WaitSemaphore\n#define b3SignalSemaphore __builtin_b3SignalSemaphore\n#define b3CreateThread __builtin_b3CreateThread\n#define b3JoinThread __builtin_b3JoinThread\n --prefix-field ｆ -o _build/box3d_c.go -I ../box3d-c/include/ -I ../box3d-c/shared/ ../box3d-c/src/aabb.c ../box3d-c/src/arena_allocator.c ../box3d-c/src/bitset.c ../box3d-c/src/block_allocator.c ../box3d-c/src/body.c ../box3d-c/src/broad_phase.c ../box3d-c/src/capsule.c ../box3d-c/src/compound.c ../box3d-c/src/constraint_graph.c ../box3d-c/src/contact.c ../box3d-c/src/contact_solver.c ../box3d-c/src/convex_manifold.c ../box3d-c/src/core.c ../box3d-c/src/distance.c ../box3d-c/src/distance_joint.c ../box3d-c/src/dynamic_tree.c ../box3d-c/src/height_field.c ../box3d-c/src/hull.c ../box3d-c/src/id_pool.c ../box3d-c/src/island.c ../box3d-c/src/joint.c ../box3d-c/src/manifold.c ../box3d-c/src/math_functions.c ../box3d-c/src/mesh.c ../box3d-c/src/mesh_contact.c ../box3d-c/src/motor_joint.c ../box3d-c/src/mover.c ../box3d-c/src/mover_joint.c ../box3d-c/src/name_cache.c ../box3d-c/src/parallel_for.c ../box3d-c/src/parallel_joint.c ../box3d-c/src/physics_world.c ../box3d-c/src/pogo_joint.c ../box3d-c/src/prismatic_joint.c ../box3d-c/src/recording.c ../box3d-c/src/replay.c ../box3d-c/src/revolute_joint.c ../box3d-c/src/scheduler.c ../box3d-c/src/sensor.c ../box3d-c/src/shape.c ../box3d-c/src/simd.c ../box3d-c/src/solver.c ../box3d-c/src/solver_set.c ../box3d-c/src/sphere.c ../box3d-c/src/spherical_joint.c ../box3d-c/src/statics.c ../box3d-c/src/table.c ../box3d-c/src/timer.c ../box3d-c/src/triangle_manifold.c ../box3d-c/src/types.c ../box3d-c/src/weld_joint.c ../box3d-c/src/wheel_joint.c ../box3d-c/src/wide4.c ../box3d-c/src/wide8.c ../box3d-c/src/world_snapshot.c csrc/callbacks.c _build/inline.c ../box3d-c/shared/determinism.c ../box3d-c/shared/human.c ../box3d-c/shared/stability.c ../box3d-c/shared/benchmarks.c csrc/scenes.c', DO NOT EDIT.
 
 package b3
 
@@ -934,6 +934,8 @@ const b3_revoluteJoint = 5
 const b3_sphericalJoint = 6
 const b3_weldJoint = 7
 const b3_wheelJoint = 8
+const b3_moverJoint = 9
+const b3_pogoJoint = 10
 
 type JointDef struct {
 	UserData               uint64
@@ -978,6 +980,24 @@ type MotorJointDef struct {
 	AngularHertz        float32
 	AngularDampingRatio float32
 	MaxSpringTorque     float32
+}
+
+type MoverJointDef struct {
+	Base           JointDef
+	LinearVelocity Vec3
+	MaxForce       float32
+}
+
+type PogoJointDef struct {
+	Base                JointDef
+	Normal              Vec3
+	Hertz               float32
+	DampingRatio        float32
+	RestLength          float32
+	MaxTensionForce     float32
+	MaxCompressionForce float32
+	Impulse             float32
+	Velocity            float32
 }
 
 type FilterJointDef struct {
@@ -2855,7 +2875,7 @@ const _B3_MAX_QUERY_NAME_LENGTH = 64
 const _B3_NULL_NAME = "0u"
 const _B3_REC_MAGIC = "0x43523342u"
 const _B3_REC_VERSION_MAJOR = 6
-const _B3_REC_VERSION_MINOR = 9
+const _B3_REC_VERSION_MINOR = 10
 const _B3_ROOT_NODE = 0
 const _B3_SNAP_FNV_INIT = "14695981039346656037ull"
 const _B3_SNAP_FNV_PRIME = 1099511628211
@@ -3157,14 +3177,16 @@ type b3JointSim struct {
 	FixedRotation          uint8
 	ｆ__ccgo16_184          struct {
 		MotorJoint     [0]b3MotorJoint
+		MoverJoint     [0]b3MoverJoint
 		ParallelJoint  [0]b3ParallelJoint
+		PogoJoint      [0]b3PogoJoint
 		RevoluteJoint  [0]b3RevoluteJoint
 		SphericalJoint [0]b3SphericalJoint
 		PrismaticJoint [0]b3PrismaticJoint
 		WeldJoint      [0]b3WeldJoint
 		WheelJoint     [0]b3WheelJoint
 		DistanceJoint  b3DistanceJoint
-		ｆ__ccgo_pad8   [144]byte
+		ｆ__ccgo_pad10  [144]byte
 	}
 }
 
@@ -3708,6 +3730,34 @@ type b3MotorJoint struct {
 	AngularMass            Matrix3
 }
 
+type b3MoverJoint struct {
+	LinearVelocity Vec3
+	MaxForce       float32
+	AxisX          Vec3
+	AxisZ          Vec3
+	Impulse        Vec2
+	IndexA         int32
+	IndexB         int32
+	LinearMass     float32
+}
+
+type b3PogoJoint struct {
+	Normal              Vec3
+	RestLength          float32
+	Hertz               float32
+	DampingRatio        float32
+	MaxTensionForce     float32
+	MaxCompressionForce float32
+	Impulse             float32
+	IndexA              int32
+	IndexB              int32
+	FrameA              Transform
+	FrameB              Transform
+	DeltaCenter         Vec3
+	LinearMass          float32
+	Velocity            float32
+}
+
 type b3ParallelJoint struct {
 	Hertz        float32
 	DampingRatio float32
@@ -4036,6 +4086,10 @@ type b3RecCType_WELDJOINTDEF = WeldJointDef
 
 type b3RecCType_WHEELJOINTDEF = WheelJointDef
 
+type b3RecCType_MOVERJOINTDEF = MoverJointDef
+
+type b3RecCType_POGOJOINTDEF = PogoJointDef
+
 // Codegen pass 1a: arg structs. Generated here so call sites (body.c, shape.c, etc.) can see them.
 // SPDX-FileCopyrightText: 2026 Erin Catto
 // SPDX-License-Identifier: MIT
@@ -4054,6 +4108,7 @@ type b3RecCType_WHEELJOINTDEF = WheelJointDef
 //   0x40-0x4F  shape create/destroy
 //   0x50-0x6F  shape mutators
 //   0x80       step
+//   0x81-0x8F  mover and pogo joints
 //   0x90-0xE7  joints (create, generic, per-type)
 //   0xE8-0xEF  spatial queries
 //   0xF0-0xFF  markers
@@ -4929,6 +4984,62 @@ type b3RecArgs_WheelJointSetTargetSteeringAngle struct {
 
 // C documentation
 //
+//	// Mover joint
+type b3RecArgs_CreateMoverJoint struct {
+	World b3RecCType_WORLDID
+	Def   b3RecCType_MOVERJOINTDEF
+}
+
+type b3RecArgs_MoverJointSetLinearVelocity struct {
+	Joint    b3RecCType_JOINTID
+	Velocity b3RecCType_VEC3
+}
+
+type b3RecArgs_MoverJointSetMaxVelocityForce struct {
+	Joint    b3RecCType_JOINTID
+	MaxForce b3RecCType_F32
+}
+
+// C documentation
+//
+//	// Pogo joint
+type b3RecArgs_CreatePogoJoint struct {
+	World b3RecCType_WORLDID
+	Def   b3RecCType_POGOJOINTDEF
+}
+
+type b3RecArgs_PogoJointSetRestLength struct {
+	Joint  b3RecCType_JOINTID
+	Length b3RecCType_F32
+}
+
+type b3RecArgs_PogoJointSetSpringHertz struct {
+	Joint b3RecCType_JOINTID
+	Hertz b3RecCType_F32
+}
+
+type b3RecArgs_PogoJointSetSpringDampingRatio struct {
+	Joint        b3RecCType_JOINTID
+	DampingRatio b3RecCType_F32
+}
+
+type b3RecArgs_PogoJointSetMaxTensionForce struct {
+	Joint b3RecCType_JOINTID
+	Force b3RecCType_F32
+}
+
+type b3RecArgs_PogoJointSetMaxCompressionForce struct {
+	Joint b3RecCType_JOINTID
+	Force b3RecCType_F32
+}
+
+type b3RecArgs_PogoJointSetNormal struct {
+	Joint  b3RecCType_JOINTID
+	Normal b3RecCType_VEC3
+}
+
+// C documentation
+//
 //	// Spatial queries. Inputs flow through the manifest (reader side). The hit tail and result are
 //	// hand-written in recording.c / recording_replay.c since they are variable length.
 type b3RecArgs_QueryOverlapAABB struct {
@@ -5020,6 +5131,7 @@ const
 //   0x40-0x4F  shape create/destroy
 //   0x50-0x6F  shape mutators
 //   0x80       step
+//   0x81-0x8F  mover and pogo joints
 //   0x90-0xE7  joints (create, generic, per-type)
 //   0xE8-0xEF  spatial queries
 //   0xF0-0xFF  markers
@@ -5229,6 +5341,22 @@ const b3_recOpWheelJointSetMaxSteeringTorque = 228
 const b3_recOpWheelJointEnableSteeringLimit = 229
 const b3_recOpWheelJointSetSteeringLimits = 230
 const b3_recOpWheelJointSetTargetSteeringAngle = 231
+const
+
+// Mover joint
+b3_recOpCreateMoverJoint = 129
+const b3_recOpMoverJointSetLinearVelocity = 130
+const b3_recOpMoverJointSetMaxVelocityForce = 131
+const
+
+// Pogo joint
+b3_recOpCreatePogoJoint = 132
+const b3_recOpPogoJointSetRestLength = 133
+const b3_recOpPogoJointSetSpringHertz = 134
+const b3_recOpPogoJointSetSpringDampingRatio = 135
+const b3_recOpPogoJointSetMaxTensionForce = 136
+const b3_recOpPogoJointSetMaxCompressionForce = 137
+const b3_recOpPogoJointSetNormal = 138
 const
 
 // Spatial queries. Inputs flow through the manifest (reader side). The hit tail and result are
@@ -26092,7 +26220,7 @@ func b3DestroyContactsBetweenBodies(tls *_Stack, world uintptr, bodyA uintptr, b
 		contactId = contactKey >> int32(1)
 		edgeIndex = contactKey & int32(1)
 		if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+18299, int32FromInt32(178))
+			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+18299, int32FromInt32(193))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*216
@@ -26142,7 +26270,7 @@ func b3FindIncidentFace(tls *_Stack, hull4 uintptr, refNormal Vec3, vertexIndex 
 	var v1 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = axis, edge, edgeIndex, edgeOrigin, edgeProjection, edges, lengthSquared, minEdge, minEdgeIndex, minEdgeProjection, minFaceIndex1, minFaceIndex2, minPlane1, minPlane2, minTwin, planes, points, s, twin, twinOrigin, u, vertex, vertices, v1, v11, v12, v16, v17, v18, v2, v20, v21, v23, v24, v25, v27, v28, v3, v30, v33, v5, v6, v8, v9
 	if v1 = !!(0 <= vertexIndex && vertexIndex < (*HullData)(unsafe.Pointer(hull4)).VertexCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20787, __ccgo_ts+20839, int32FromInt32(20))
+		b3InternalAssert(tls, __ccgo_ts+21180, __ccgo_ts+21232, int32FromInt32(20))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v2 = hull4
@@ -26185,14 +26313,14 @@ _13:
 	minEdgeProjection = float32FromFloat32(3.4028234663852886e+38)
 	vertex = vertices + uintptr(vertexIndex)
 	if v1 = !!(vertex != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20865, __ccgo_ts+20839, int32FromInt32(31))
+		b3InternalAssert(tls, __ccgo_ts+21258, __ccgo_ts+21232, int32FromInt32(31))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	edgeIndex = int32FromUint8((*HullVertex)(unsafe.Pointer(vertex)).Edge)
 	edge = edges + uintptr(edgeIndex)*4
 	edgeOrigin = *(*Vec3)(unsafe.Add(nil, points+uintptr((*HullHalfEdge)(unsafe.Pointer(edge)).Origin)*12))
 	if v1 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge)).Origin) == vertexIndex); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20872, __ccgo_ts+20839, int32FromInt32(36))
+		b3InternalAssert(tls, __ccgo_ts+21265, __ccgo_ts+21232, int32FromInt32(36))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	for cond := true; cond; cond = edge != edges+uintptr((*HullVertex)(unsafe.Pointer(vertex)).Edge)*4 {
@@ -26245,12 +26373,12 @@ _13:
 		edgeIndex = int32FromUint8((*HullHalfEdge)(unsafe.Pointer(twin)).Next)
 		edge = edges + uintptr(edgeIndex)*4
 		if v1 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge)).Origin) == vertexIndex); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20872, __ccgo_ts+20839, int32FromInt32(53))
+			b3InternalAssert(tls, __ccgo_ts+21265, __ccgo_ts+21232, int32FromInt32(53))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	}
 	if v1 = !!(minEdgeIndex >= int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20900, __ccgo_ts+20839, int32FromInt32(56))
+		b3InternalAssert(tls, __ccgo_ts+21293, __ccgo_ts+21232, int32FromInt32(56))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	minEdge = edges + uintptr(minEdgeIndex)*4
@@ -26282,11 +26410,11 @@ func b3MakeFeaturePair(tls *_Stack, owner1 b3FeatureOwner1, index1 int32, owner2
 	var v1 bool
 	_, _ = pair, v1
 	if v1 = !!(0 <= index1 && index1 <= int32(_UINT8_MAX3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20918, __ccgo_ts+20839, int32FromInt32(71))
+		b3InternalAssert(tls, __ccgo_ts+21311, __ccgo_ts+21232, int32FromInt32(71))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= index2 && index2 <= int32(_UINT8_MAX3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20953, __ccgo_ts+20839, int32FromInt32(72))
+		b3InternalAssert(tls, __ccgo_ts+21346, __ccgo_ts+21232, int32FromInt32(72))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	pair.Index1 = uint8FromInt32(index1)
@@ -26313,11 +26441,11 @@ func b3FlipPair(tls *_Stack, _pair FeaturePair) (r FeaturePair) {
 	var _ /* B3_SWAP_TEMP at bp+5 */ [1]uint8
 	_ = v1
 	if v1 = !!(int32FromUint8((*(*FeaturePair)(unsafe.Add(nil, bp))).Owner1) == 0 || int32FromUint8((*(*FeaturePair)(unsafe.Add(nil, bp))).Owner1) == int32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20988, __ccgo_ts+20839, int32FromInt32(90))
+		b3InternalAssert(tls, __ccgo_ts+21381, __ccgo_ts+21232, int32FromInt32(90))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(int32FromUint8((*(*FeaturePair)(unsafe.Add(nil, bp))).Owner2) == 0 || int32FromUint8((*(*FeaturePair)(unsafe.Add(nil, bp))).Owner2) == int32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21025, __ccgo_ts+20839, int32FromInt32(91))
+		b3InternalAssert(tls, __ccgo_ts+21418, __ccgo_ts+21232, int32FromInt32(91))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	memcpy(tls, bp+4, bp, uint64(1))
@@ -26340,7 +26468,7 @@ func b3ClipPolygon(tls *_Stack, out uintptr, polygon uintptr, count int32, clipP
 	var v10, v2 Plane
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = distance1, distance2, fraction, fraction1, index, outCount, position, position1, vertex, vertex1, vertex11, vertex2, v1, v10, v11, v13, v14, v15, v17, v18, v2, v3, v5, v6, v7
 	if v1 = !!(count >= int32FromInt32(3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21062, __ccgo_ts+20839, int32FromInt32(133))
+		b3InternalAssert(tls, __ccgo_ts+21455, __ccgo_ts+21232, int32FromInt32(133))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	vertex11 = *(*b3ClipVertex)(unsafe.Add(nil, polygon+uintptr(count-int32(1))*20))
@@ -27997,7 +28125,7 @@ func b3GetLeftChildWrite(tls *_Stack, node uintptr) (r uintptr) {
 	_ = v1
 	// The left child follows its parent.
 	if v1 = !!!(b3IsLeaf(tls, node) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21147, __ccgo_ts+21165, int32FromInt32(47))
+		b3InternalAssert(tls, __ccgo_ts+21540, __ccgo_ts+21558, int32FromInt32(47))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return node + uintptr(1)*32
@@ -28008,7 +28136,7 @@ func b3GetLeftChild(tls *_Stack, node uintptr) (r uintptr) {
 	_ = v1
 	// The left child follows its parent.
 	if v1 = !!!(b3IsLeaf(tls, node) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21147, __ccgo_ts+21165, int32FromInt32(54))
+		b3InternalAssert(tls, __ccgo_ts+21540, __ccgo_ts+21558, int32FromInt32(54))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return node + uintptr(1)*32
@@ -28019,7 +28147,7 @@ func b3GetRightChildWrite(tls *_Stack, node uintptr) (r uintptr) {
 	_ = v1
 	// We store the offset of the right child relative to its parent
 	if v1 = !!!(b3IsLeaf(tls, node) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21147, __ccgo_ts+21165, int32FromInt32(61))
+		b3InternalAssert(tls, __ccgo_ts+21540, __ccgo_ts+21558, int32FromInt32(61))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return node + uintptr(int32(*(*uint32)(unsafe.Pointer(node + 12 + 0))&0xfffffffc>>2))*32
@@ -28030,7 +28158,7 @@ func b3GetRightChild(tls *_Stack, node uintptr) (r uintptr) {
 	_ = v1
 	// We store the offset of the right child relative to its parent
 	if v1 = !!!(b3IsLeaf(tls, node) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21147, __ccgo_ts+21165, int32FromInt32(68))
+		b3InternalAssert(tls, __ccgo_ts+21540, __ccgo_ts+21558, int32FromInt32(68))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return node + uintptr(int32(*(*uint32)(unsafe.Pointer(node + 12 + 0))&0xfffffffc>>2))*32
@@ -28490,7 +28618,7 @@ _19:
 _10:
 	;
 	if v61 = !!((*b3SpatialHash)(unsafe.Pointer(h)).CellSize > float32FromFloat32(0)); !v61 {
-		b3InternalAssert(tls, __ccgo_ts+21187, __ccgo_ts+21165, int32FromInt32(376))
+		b3InternalAssert(tls, __ccgo_ts+21580, __ccgo_ts+21558, int32FromInt32(376))
 	}
 	_ = v61 || bool(int32FromInt32(0) != 0)
 }
@@ -28551,7 +28679,7 @@ func b3SpatialHash_FindDuplicate(tls *_Stack, h uintptr, currentIndex int32) (r 
 	var _ /* new_table at bp+32 */ b3VertexMap
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = allocation, baseX, baseY, baseZ, bucket1, bucket2, bucket3, candidate, cellSize, currentKey, displacement2, displacement4, displacement6, dx, dy, dz, existingIndex, hash1, hash2, hashfrag, hashfrag1, home_bucket2, home_bucket3, home_bucket4, it, it1, itr1, itr2, itr3, itr4, itr5, itr6, itr7, key4, linear_dispacement, newCapacity, newCapacity1, newSize, newSize1, next, node, node1, node2, nodeIndex, nodeIndex1, oldSize, oldSize1, other, prev, prev1, stride, tolerance, vertex, x, y, z, v1, v10, v100, v101, v103, v104, v106, v107, v108, v109, v111, v112, v113, v116, v117, v118, v12, v120, v121, v124, v126, v127, v128, v130, v131, v132, v133, v135, v137, v139, v14, v142, v143, v145, v147, v151, v153, v154, v156, v157, v16, v161, v162, v164, v165, v166, v167, v169, v170, v173, v174, v175, v178, v18, v19, v190, v192, v193, v195, v196, v197, v201, v206, v207, v21, v210, v216, v218, v22, v24, v25, v27, v28, v29, v30, v31, v32, v34, v36, v38, v40, v42, v43, v45, v46, v48, v49, v5, v51, v53, v54, v56, v57, v58, v59, v6, v60, v62, v64, v65, v67, v68, v69, v7, v72, v73, v75, v76, v77, v78, v8, v80, v81, v82, v84, v85, v86, v88, v89, v91, v92, v97, v99
 	if v1 = !!(currentIndex < (*b3SpatialHash)(unsafe.Pointer(h)).VertexCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21206, __ccgo_ts+21165, int32FromInt32(389))
+		b3InternalAssert(tls, __ccgo_ts+21599, __ccgo_ts+21558, int32FromInt32(389))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	stride = (*b3SpatialHash)(unsafe.Pointer(h)).Stride
@@ -28654,11 +28782,11 @@ func b3SpatialHash_FindDuplicate(tls *_Stack, h uintptr, currentIndex int32) (r 
 						node = *(*b3VertexNode)(unsafe.Add(nil, (*b3SpatialHash)(unsafe.Pointer(h)).Nodes.Data+uintptr(nodeIndex)*8))
 						existingIndex = node.VertexIndex
 						if v18 = !!(existingIndex < currentIndex); !v18 {
-							b3InternalAssert(tls, __ccgo_ts+21236, __ccgo_ts+21165, int32FromInt32(428))
+							b3InternalAssert(tls, __ccgo_ts+21629, __ccgo_ts+21558, int32FromInt32(428))
 						}
 						_ = v18 || bool(int32FromInt32(0) != 0)
 						if v1 = !!(existingIndex < (*b3SpatialHash)(unsafe.Pointer(h)).VertexCount); !v1 {
-							b3InternalAssert(tls, __ccgo_ts+21265, __ccgo_ts+21165, int32FromInt32(429))
+							b3InternalAssert(tls, __ccgo_ts+21658, __ccgo_ts+21558, int32FromInt32(429))
 						}
 						_ = v1 || bool(int32FromInt32(0) != 0)
 						other = b3GetStridedVertex(tls, (*b3SpatialHash)(unsafe.Pointer(h)).Vertices, existingIndex, stride)
@@ -29401,7 +29529,7 @@ func b3WeldVertices(tls *_Stack, data uintptr, tolerance float32) (r int32) {
 		}
 		srcIndex = *(*int32_t)(unsafe.Add(nil, (*b3WeldData)(unsafe.Pointer(data)).SrcIndices+uintptr(i1)*4))
 		if v3 = !!(0 <= srcIndex && srcIndex < vertexCount); !v3 {
-			b3InternalAssert(tls, __ccgo_ts+21296, __ccgo_ts+21165, int32FromInt32(530))
+			b3InternalAssert(tls, __ccgo_ts+21689, __ccgo_ts+21558, int32FromInt32(530))
 		}
 		_ = v3 || bool(int32FromInt32(0) != 0)
 		*(*int32_t)(unsafe.Add(nil, (*b3WeldData)(unsafe.Pointer(data)).DstIndices+uintptr(i1)*4)) = *(*int32)(unsafe.Add(nil, vertexMapping.Data+uintptr(srcIndex)*4))
@@ -29662,7 +29790,7 @@ func b3SplitBinnedSah(tls *_Stack, count int32, primitives uintptr) (r b3Split) 
 		_72:
 			index1 = int32(float32(factor * (v12 - v14)))
 			if v73 = !!(0 <= index1 && index1 < int32(_B3_BIN_COUNT)); !v73 {
-				b3InternalAssert(tls, __ccgo_ts+21336, __ccgo_ts+21165, int32FromInt32(612))
+				b3InternalAssert(tls, __ccgo_ts+21729, __ccgo_ts+21558, int32FromInt32(612))
 			}
 			_ = v73 || bool(int32FromInt32(0) != 0)
 			buckets[index1].Count = buckets[index1].Count + 1
@@ -29962,7 +30090,7 @@ func b3SplitBinnedSah(tls *_Stack, count int32, primitives uintptr) (r b3Split) 
 				k1 = k1 + 1
 			}
 			if v73 = !!(leftCount+rightCount == count); !v73 {
-				b3InternalAssert(tls, __ccgo_ts+21371, __ccgo_ts+21165, int32FromInt32(637))
+				b3InternalAssert(tls, __ccgo_ts+21764, __ccgo_ts+21558, int32FromInt32(637))
 			}
 			_ = v73 || bool(int32FromInt32(0) != 0)
 			if leftCount > 0 && rightCount > 0 {
@@ -30074,7 +30202,7 @@ func b3SplitBinnedSah(tls *_Stack, count int32, primitives uintptr) (r b3Split) 
 			i4 = i4 + 1
 		}
 		if v73 = !!(splitIndex == split.Index); !v73 {
-			b3InternalAssert(tls, __ccgo_ts+21403, __ccgo_ts+21165, int32FromInt32(677))
+			b3InternalAssert(tls, __ccgo_ts+21796, __ccgo_ts+21558, int32FromInt32(677))
 		}
 		_ = v73 || bool(int32FromInt32(0) != 0)
 	}
@@ -30429,7 +30557,7 @@ func b3SplitMedian(tls *_Stack, count int32, primitives uintptr) (r b3Split) {
 	var v1 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, d, i, i1, i11, i2, i21, leftBounds, lowerBound, out, pivot, pivot1, pivot2, rightBounds, split, temp, temp1, temp2, upperBound, v1, v11, v12, v13, v14, v16, v17, v18, v19, v21, v22, v23, v24, v26, v27, v28, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v5, v56, v57, v7, v8, v9, v96
 	if v1 = !!(count > int32FromInt32(2)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21429, __ccgo_ts+21165, int32FromInt32(715))
+		b3InternalAssert(tls, __ccgo_ts+21822, __ccgo_ts+21558, int32FromInt32(715))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	lowerBound = (*(*b3Primitive)(unsafe.Add(nil, primitives))).Center
@@ -30621,11 +30749,11 @@ _52:
 		}
 	}
 	if v1 = !!(i11 == i21); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+12474, __ccgo_ts+21165, int32FromInt32(826))
+		b3InternalAssert(tls, __ccgo_ts+12474, __ccgo_ts+21558, int32FromInt32(826))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= i11 && i11 < count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21439, __ccgo_ts+21165, int32FromInt32(827))
+		b3InternalAssert(tls, __ccgo_ts+21832, __ccgo_ts+21558, int32FromInt32(827))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if i11 == 0 || i11 == count-int32(1) {
@@ -31028,7 +31156,7 @@ func b3BuildRecursive(tls *_Stack, nodes uintptr, count1 int32, primitives uintp
 		*(*int32)(unsafe.Add(nil, height)) = v58 + int32(1)
 		_ = uint64FromInt64(4)
 		if v65 = !!(leftIndex-index1 == int32(1) && rightIndex-index1 > int32(1)); !v65 {
-			b3InternalAssert(tls, __ccgo_ts+21461, __ccgo_ts+21165, int32FromInt32(933))
+			b3InternalAssert(tls, __ccgo_ts+21854, __ccgo_ts+21558, int32FromInt32(933))
 		}
 		_ = v65 || bool(int32FromInt32(0) != 0)
 		v2 = split.LeftBounds
@@ -31118,7 +31246,7 @@ func b3BuildRecursive(tls *_Stack, nodes uintptr, count1 int32, primitives uintp
 	_107:
 		aabb = v42
 		if v65 = !!(0 <= index1 && index1 < (*b3DynamicArray_b3MeshNode)(unsafe.Pointer(nodes)).Count); !v65 {
-			b3InternalAssert(tls, __ccgo_ts+21510, __ccgo_ts+21165, int32FromInt32(936))
+			b3InternalAssert(tls, __ccgo_ts+21903, __ccgo_ts+21558, int32FromInt32(936))
 		}
 		_ = v65 || bool(int32FromInt32(0) != 0)
 		node = (*b3DynamicArray_b3MeshNode)(unsafe.Pointer(nodes)).Data + uintptr(index1)*32
@@ -32953,7 +33081,7 @@ _326:
 		} else {
 			otherIndex = (*b3EdgeMap_bucket)(unsafe.Pointer(itr8.Data)).Val
 			if v109 = !!(otherIndex < i1); !v109 {
-				b3InternalAssert(tls, __ccgo_ts+21679, __ccgo_ts+21165, int32FromInt32(1139))
+				b3InternalAssert(tls, __ccgo_ts+22072, __ccgo_ts+21558, int32FromInt32(1139))
 			}
 			_ = v109 || bool(int32FromInt32(0) != 0)
 			base = edges + uintptr(otherIndex)*20
@@ -32998,11 +33126,11 @@ _526:
 			goto _533
 		}
 		if v109 = !!(int32FromUint8((*b3MeshEdge)(unsafe.Pointer(edge1)).TriangleEdgeIndex1) < int32FromInt32(3)); !v109 {
-			b3InternalAssert(tls, __ccgo_ts+21694, __ccgo_ts+21165, int32FromInt32(1162))
+			b3InternalAssert(tls, __ccgo_ts+22087, __ccgo_ts+21558, int32FromInt32(1162))
 		}
 		_ = v109 || bool(int32FromInt32(0) != 0)
 		if v109 = !!(int32FromUint8((*b3MeshEdge)(unsafe.Pointer(edge1)).TriangleEdgeIndex2) < int32FromInt32(3)); !v109 {
-			b3InternalAssert(tls, __ccgo_ts+21723, __ccgo_ts+21165, int32FromInt32(1163))
+			b3InternalAssert(tls, __ccgo_ts+22116, __ccgo_ts+21558, int32FromInt32(1163))
 		}
 		_ = v109 || bool(int32FromInt32(0) != 0)
 		triangle1 = triangles + uintptr((*b3MeshEdge)(unsafe.Pointer(edge1)).Triangle1)*12
@@ -33022,7 +33150,7 @@ _526:
 			opposite = j2
 		default:
 			if v109 = bool(!!(int32FromInt32(false1) != 0)); !v109 {
-				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+21165, int32FromInt32(1191))
+				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+21558, int32FromInt32(1191))
 			}
 			_ = v109 || bool(int32FromInt32(0) != 0)
 		}
@@ -33407,7 +33535,7 @@ func b3RefreshCache(tls *_Stack, contact uintptr, shapeA uintptr, xfA WorldTrans
 	var v4 uint8
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aligned, b5, c, center, contactCache, extension, extent, i, i1, index1, index2, localBounds, m2, meshContact, meshTransform, newSize, oldSize, out, out1, out2, r, radius, rv, t11, t12, t21, t22, t3, t31, triangleCapacity, triangleCount, triangleIndices, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v100, v101, v102, v104, v105, v107, v108, v109, v111, v112, v113, v115, v116, v117, v119, v12, v120, v122, v123, v124, v126, v127, v128, v13, v130, v131, v132, v134, v135, v137, v138, v139, v14, v141, v142, v143, v145, v146, v149, v151, v152, v153, v155, v156, v157, v159, v16, v160, v161, v17, v18, v2, v20, v21, v22, v24, v25, v26, v28, v29, v3, v30, v31, v32, v34, v35, v36, v37, v39, v4, v40, v41, v43, v45, v46, v47, v48, v50, v51, v53, v55, v56, v57, v58, v60, v61, v62, v64, v65, v66, v68, v69, v70, v71, v72, v73, v75, v76, v77, v78, v8, v80, v81, v82, v84, v86, v87, v88, v89, v9, v91, v93, v94, v95, v97, v98
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) || (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_heightShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+22122, __ccgo_ts+22185, int32FromInt32(79))
+		b3InternalAssert(tls, __ccgo_ts+22515, __ccgo_ts+22578, int32FromInt32(79))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	meshContact = contact + 152
@@ -33437,7 +33565,7 @@ _5:
 					break
 				}
 				if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer((*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)).TriangleCount); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+22185, int32FromInt32(90))
+					b3InternalAssert(tls, __ccgo_ts+22608, __ccgo_ts+22578, int32FromInt32(90))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				goto _6
@@ -33867,14 +33995,14 @@ _172:
 		triangleCount = b3QueryMeshTriangles(tls, triangleIndices, triangleCapacity, shapeA+176, localBounds)
 	} else {
 		if v1 = !!((*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_heightShape)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+22372, __ccgo_ts+22185, int32FromInt32(119))
+			b3InternalAssert(tls, __ccgo_ts+22765, __ccgo_ts+22578, int32FromInt32(119))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		triangleCount = b3QueryHeightFieldTriangles(tls, triangleIndices, triangleCapacity, *(*uintptr)(unsafe.Add(unsafe.Pointer(shapeA), 176)), localBounds)
 	}
 	if triangleCount == triangleCapacity {
 		if int32FromUint8(s_once) == false1 {
-			b3Log(tls, __ccgo_ts+22403, vaList(bp+32, triangleCapacity))
+			b3Log(tls, __ccgo_ts+22796, vaList(bp+32, triangleCapacity))
 			s_once = boolUint8(true1 != 0)
 		}
 	}
@@ -33936,7 +34064,7 @@ _177:
 		}
 		if (*b3Shape)(unsafe.Pointer(shapeA)).Type1 == int32(b3_meshShape) {
 			if v1 = !!(0 <= (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex && (*(*b3TriangleCache)(unsafe.Add(nil, (*(*b3MeshContact)(unsafe.Add(unsafe.Pointer(contact), 152))).TriangleCache.Data+uintptr(i1)*20))).TriangleIndex < (*MeshData)(unsafe.Pointer((*(*cMesh)(unsafe.Add(unsafe.Pointer(shapeA), 176))).Data)).TriangleCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+22185, int32FromInt32(165))
+				b3InternalAssert(tls, __ccgo_ts+22608, __ccgo_ts+22578, int32FromInt32(165))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 		}
@@ -34527,7 +34655,7 @@ _14:
 	hull = pts
 	count2 = b3CullPoints(tls, pts, count1)
 	if v28 = !!(count2 <= int32FromInt32(_B3_MAX_MANIFOLD_POINTS)); !v28 {
-		b3InternalAssert(tls, __ccgo_ts+22474, __ccgo_ts+22185, int32FromInt32(505))
+		b3InternalAssert(tls, __ccgo_ts+22867, __ccgo_ts+22578, int32FromInt32(505))
 	}
 	_ = v28 || bool(int32FromInt32(0) != 0)
 	i1 = 0
@@ -34537,7 +34665,7 @@ _14:
 		}
 		index = (*(*Point2D)(unsafe.Add(nil, hull+uintptr(i1)*16))).OriginalIndex
 		if v28 = !!(0 <= index && index < count1); !v28 {
-			b3InternalAssert(tls, __ccgo_ts+22507, __ccgo_ts+22185, int32FromInt32(511))
+			b3InternalAssert(tls, __ccgo_ts+22900, __ccgo_ts+22578, int32FromInt32(511))
 		}
 		_ = v28 || bool(int32FromInt32(0) != 0)
 		(*(*[4]LocalManifoldPoint)(unsafe.Add(nil, bp+24)))[i1] = *(*LocalManifoldPoint)(unsafe.Add(nil, points+uintptr(index)*24))
@@ -34608,6 +34736,154 @@ func b3ClipVector(tls *_Stack, vector Vec3, planes uintptr, count int32) (r Vec3
 		planeIndex = planeIndex + 1
 	}
 	return v
+}
+
+func b3LerpColor(tls *_Stack, a1 HexColor, b1 HexColor, t float32) (r HexColor) {
+	var c, result uint32_t
+	var ca, cb, v2, v3 float32
+	var shift int32
+	_, _, _, _, _, _, _ = c, ca, cb, result, shift, v2, v3
+	result = uint32(0)
+	shift = 0
+	for {
+		if !(shift < int32(24)) {
+			break
+		}
+		ca = float32(uint32FromInt32(a1) >> shift & uint32FromInt32(0xFF))
+		cb = float32(uint32FromInt32(b1) >> shift & uint32FromInt32(0xFF))
+		v2 = t
+		v3 = float32((float32FromFloat32(1)-v2)*ca) + float32(v2*cb)
+		goto _4
+	_4:
+		c = uint32(v3 + float32FromFloat32(0.5))
+		result = result | c<<shift
+		goto _1
+	_1:
+		;
+		shift = shift + int32(8)
+	}
+	return int32FromUint32(result)
+}
+
+func b3DrawArrow(tls *_Stack, draw uintptr, a7 Pos, b5 Pos, planeNormal Vec3, size float32, color HexColor) {
+	var backFromTip, c, dir, perp, shaft, sideStep, u, v12, v13, v14, v16, v17, v20, v21, v24, v25, v27, v28, v29, v3, v32, v5, v8, v9 Vec3
+	var headLen, lengthSquared, s, shaftLen, v10, v6 float32
+	var tip1, tip2, v1, v2, v31, v33 Pos
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = backFromTip, c, dir, headLen, lengthSquared, perp, s, shaft, shaftLen, sideStep, tip1, tip2, u, v1, v10, v12, v13, v14, v16, v17, v2, v20, v21, v24, v25, v27, v28, v29, v3, v31, v32, v33, v5, v6, v8, v9
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, a7, b5, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	v1 = b5
+	v2 = a7
+	v3 = Vec3{
+		X: v1.X - v2.X,
+		Y: v1.Y - v2.Y,
+		Z: v1.Z - v2.Z,
+	}
+	goto _4
+_4:
+	shaft = v3
+	v5 = shaft
+	v8 = v5
+	v9 = v5
+	v10 = float32(v8.X*v9.X) + float32(v8.Y*v9.Y) + float32(v8.Z*v9.Z)
+	goto _11
+_11:
+	v6 = sqrtf(tls, v10)
+	goto _7
+_7:
+	shaftLen = v6
+	if shaftLen < float32FromFloat32(1e-06) {
+		return
+	}
+	dir = Vec3{
+		X: shaft.X / shaftLen,
+		Y: shaft.Y / shaftLen,
+		Z: shaft.Z / shaftLen,
+	}
+	headLen = size
+	v3 = planeNormal
+	v5 = dir
+	c.X = float32(v3.Y*v5.Z) - float32(v3.Z*v5.Y)
+	c.Y = float32(v3.Z*v5.X) - float32(v3.X*v5.Z)
+	c.Z = float32(v3.X*v5.Y) - float32(v3.Y*v5.X)
+	v8 = c
+	goto _15
+_15:
+	v9 = v8
+	lengthSquared = float32(v9.X*v9.X) + float32(v9.Y*v9.Y) + float32(v9.Z*v9.Z)
+	if lengthSquared > float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)) {
+		s = float32FromFloat32(1) / sqrtf(tls, lengthSquared)
+		u = Vec3{
+			X: float32(s * v9.X),
+			Y: float32(s * v9.Y),
+			Z: float32(s * v9.Z),
+		}
+		v12 = u
+		goto _18
+	}
+	v12 = Vec3{}
+	goto _18
+_18:
+	perp = v12
+	v6 = -headLen
+	v13 = dir
+	v14 = Vec3{
+		X: float32(v6 * v13.X),
+		Y: float32(v6 * v13.Y),
+		Z: float32(v6 * v13.Z),
+	}
+	goto _22
+_22:
+	backFromTip = v14
+	v10 = float32(headLen * float32FromFloat32(0.5))
+	v16 = perp
+	v17 = Vec3{
+		X: float32(v10 * v16.X),
+		Y: float32(v10 * v16.Y),
+		Z: float32(v10 * v16.Z),
+	}
+	goto _26
+_26:
+	sideStep = v17
+	v20 = backFromTip
+	v21 = sideStep
+	v24 = Vec3{
+		X: v20.X + v21.X,
+		Y: v20.Y + v21.Y,
+		Z: v20.Z + v21.Z,
+	}
+	goto _30
+_30:
+	v1 = b5
+	v25 = v24
+	v2 = Pos{
+		X: v1.X + v25.X,
+		Y: v1.Y + v25.Y,
+		Z: v1.Z + v25.Z,
+	}
+	goto _34
+_34:
+	tip1 = v2
+	v27 = backFromTip
+	v28 = sideStep
+	v29 = Vec3{
+		X: v27.X - v28.X,
+		Y: v27.Y - v28.Y,
+		Z: v27.Z - v28.Z,
+	}
+	goto _38
+_38:
+	v31 = b5
+	v32 = v29
+	v33 = Pos{
+		X: v31.X + v32.X,
+		Y: v31.Y + v32.Y,
+		Z: v31.Z + v32.Z,
+	}
+	goto _42
+_42:
+	tip2 = v33
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, b5, tip1, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, b5, tip2, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 }
 
 const _B3_NULL_NAME1 = 0
@@ -34832,7 +35108,7 @@ _23:
 	if int32FromUint8(v22) == false1 {
 		if strcmp(tls, (*(*b3NameEntry)(unsafe.Add(nil, (*b3NameCache)(unsafe.Pointer(cache)).Entries.Data+uintptr((*b3NameMap_bucket)(unsafe.Pointer(itr8.Data)).Val)*16))).Name, name) != 0 {
 			// Different name, same hash
-			b3Log(tls, __ccgo_ts+23218, vaList(bp+80, name))
+			b3Log(tls, __ccgo_ts+23881, vaList(bp+80, name))
 		}
 		return id
 	}
@@ -35479,7 +35755,7 @@ _22:
 	if int32FromUint8(v21) == false1 {
 		index = (*b3NameMap_bucket)(unsafe.Pointer(itr3.Data)).Val
 		if v23 = !!(0 <= index && index < (*b3NameCache)(unsafe.Pointer(cache)).Entries.Count); !v23 {
-			b3InternalAssert(tls, __ccgo_ts+23239, __ccgo_ts+23294, int32FromInt32(118))
+			b3InternalAssert(tls, __ccgo_ts+23902, __ccgo_ts+23957, int32FromInt32(118))
 		}
 		_ = v23 || bool(int32FromInt32(0) != 0)
 		entry = (*b3NameCache)(unsafe.Pointer(cache)).Entries.Data + uintptr(index)*16
@@ -36297,12 +36573,12 @@ func b3ParallelFor(tls *_Stack, world uintptr, __ccgo_fp_callback uintptr, itemC
 		return
 	}
 	if v1 = !!(minRange > int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23322, __ccgo_ts+23335, int32FromInt32(72))
+		b3InternalAssert(tls, __ccgo_ts+23985, __ccgo_ts+23998, int32FromInt32(72))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	workerCount = (*b3World)(unsafe.Pointer(world)).WorkerCount
 	if v1 = !!(0 < workerCount && workerCount <= int32(_B3_MAX_WORKERS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23365, __ccgo_ts+23335, int32FromInt32(75))
+		b3InternalAssert(tls, __ccgo_ts+24028, __ccgo_ts+23998, int32FromInt32(75))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Target multiple blocks per worker to reduce thread stalls.
@@ -36321,11 +36597,11 @@ func b3ParallelFor(tls *_Stack, world uintptr, __ccgo_fp_callback uintptr, itemC
 		blockCount = (itemCount + blockSize - int32(1)) / blockSize
 	}
 	if v1 = !!(blockCount >= int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23414, __ccgo_ts+23335, int32FromInt32(98))
+		b3InternalAssert(tls, __ccgo_ts+24077, __ccgo_ts+23998, int32FromInt32(98))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(blockSize*blockCount >= itemCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23430, __ccgo_ts+23335, int32FromInt32(99))
+		b3InternalAssert(tls, __ccgo_ts+24093, __ccgo_ts+23998, int32FromInt32(99))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if workerCount < blockCount {
@@ -36845,11 +37121,11 @@ func b3AddNonTouchingContact(tls *_Stack, world uintptr, contact uintptr) {
 	var v1 bool
 	_, _, _, _, _, _, _ = newCapacity, newSize, oldSize, set, v1, v3, v5
 	if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+23730, int32FromInt32(799))
+		b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+24206, int32FromInt32(801))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+23730, int32FromInt32(800))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+24206, int32FromInt32(802))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
@@ -36879,7 +37155,7 @@ func b3RemoveNonTouchingContact(tls *_Stack, world uintptr, setIndex int32, loca
 	var v1, v10, v6, v9 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _ = movedContact, movedContactIndex, movedIndex, set, v1, v10, v2, v3, v4, v5, v6, v7, v9
 	if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+23730, int32FromInt32(808))
+		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+24206, int32FromInt32(810))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
@@ -36904,20 +37180,20 @@ _8:
 	if movedIndex != -int32(1) {
 		movedContactIndex = *(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(set)).ContactIndices.Data+uintptr(localIndex)*4))
 		if v9 = !!(0 <= movedContactIndex && movedContactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v9 {
-			b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+23730, int32FromInt32(813))
+			b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+24206, int32FromInt32(815))
 		}
 		_ = v9 || bool(int32FromInt32(0) != 0)
 		movedContact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(movedContactIndex)*216
 		if v10 = !!((*b3Contact)(unsafe.Pointer(movedContact)).SetIndex == setIndex); !v10 {
-			b3InternalAssert(tls, __ccgo_ts+24601, __ccgo_ts+23730, int32FromInt32(814))
+			b3InternalAssert(tls, __ccgo_ts+25077, __ccgo_ts+24206, int32FromInt32(816))
 		}
 		_ = v10 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(movedContact)).ColorIndex == -int32FromInt32(1)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+24636, __ccgo_ts+23730, int32FromInt32(815))
+			b3InternalAssert(tls, __ccgo_ts+25112, __ccgo_ts+24206, int32FromInt32(817))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex == movedIndex); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+6977, __ccgo_ts+23730, int32FromInt32(816))
+			b3InternalAssert(tls, __ccgo_ts+6977, __ccgo_ts+24206, int32FromInt32(818))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		(*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex = localIndex
@@ -36946,12 +37222,12 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 	world = (*_DrawContext)(unsafe.Pointer(drawContext)).World
 	draw = (*_DrawContext)(unsafe.Pointer(drawContext)).Draw
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(1227))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(1229))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape1 = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
 	if v2 = !!((*b3Shape)(unsafe.Pointer(shape1)).Id == shapeId); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+24877, __ccgo_ts+23730, int32FromInt32(1228))
+		b3InternalAssert(tls, __ccgo_ts+25353, __ccgo_ts+24206, int32FromInt32(1230))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	v3 = world + 4560
@@ -36964,7 +37240,7 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 	*(*uint64_t)(unsafe.Add(nil, (*b3BitSet)(unsafe.Pointer(v3)).Bits+uintptr(blockIndex)*8)) |= uint64FromInt32(1) << (v4 % uint32FromInt32(64))
 	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawShapes != 0 {
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape1)).BodyId && (*b3Shape)(unsafe.Pointer(shape1)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(1234))
+			b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(1236))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape1)).BodyId)*96
@@ -37071,7 +37347,7 @@ func _DrawQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 				(*b3Shape)(unsafe.Pointer(shape1)).UserShape = (*(*func(*_Stack, uintptr, uintptr) uint64)(funcPtr((*b3World)(unsafe.Pointer(world)).CreateDebugShape)))(tls, bp, (*b3World)(unsafe.Pointer(world)).UserDebugShapeContext)
 			default:
 				if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+23730, int32FromInt32(1352))
+					b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+24206, int32FromInt32(1354))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				break
@@ -37110,7 +37386,7 @@ func b3Contact_IsValid(tls *_Stack, id ContactId) (r uint8) {
 		return boolUint8(false1 != 0)
 	}
 	if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ContactId == contactId); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+9493, __ccgo_ts+23730, int32FromInt32(1974))
+		b3InternalAssert(tls, __ccgo_ts+9493, __ccgo_ts+24206, int32FromInt32(1976))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return boolUint8(id.Generation == (*b3Contact)(unsafe.Pointer(contact)).Generation)
@@ -37143,7 +37419,7 @@ func _TreeQueryCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 	worldContext = context
 	world = (*_WorldQueryContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(2699))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(2701))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37200,7 +37476,7 @@ func b3TreeOverlapCallback(tls *_Stack, proxyId int32, userData uint64, context 
 	worldContext = context
 	world = (*_WorldOverlapContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(2778))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(2780))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37215,7 +37491,7 @@ _5:
 		return boolUint8(true1 != 0)
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(2789))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(2791))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Re-center on the query origin so the overlap test stays in float precision far from the origin
@@ -37280,7 +37556,7 @@ func _TreeCollideCallback(tls *_Stack, proxyId int32, userData uint64, context u
 	worldContext = context
 	world = (*_WorldMoverContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(2873))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(2875))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37295,7 +37571,7 @@ _5:
 		return boolUint8(true1 != 0)
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(2884))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(2886))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Re-center on the query origin, the mover and the resulting planes are origin relative
@@ -37364,7 +37640,7 @@ func _RayCastCallback(tls *_Stack, input uintptr, proxyId int32, userData uint64
 	worldContext = context
 	world = (*_WorldRayCastContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(2968))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(2970))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape1 = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37379,7 +37655,7 @@ _5:
 		return (*RayCastInput)(unsafe.Pointer(input)).MaxFraction
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape1)).BodyId && (*b3Shape)(unsafe.Pointer(shape1)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(2977))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(2979))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape1)).BodyId)*96
@@ -37401,7 +37677,7 @@ _10:
 	output = b3RayCastShape(tls, shape1, transform, bp+56)
 	if output.Hit != 0 {
 		if v1 = !!(output.Fraction <= (*RayCastInput)(unsafe.Pointer(input)).MaxFraction); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+26224, __ccgo_ts+23730, int32FromInt32(2987))
+			b3InternalAssert(tls, __ccgo_ts+26700, __ccgo_ts+24206, int32FromInt32(2989))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		id = ShapeId{
@@ -37549,7 +37825,7 @@ func _MoverCastCallback(tls *_Stack, input uintptr, proxyId int32, userData uint
 	worldContext = context
 	world = (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(3303))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(3305))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37578,7 +37854,7 @@ _5:
 	*(*cShapeCastInput)(unsafe.Add(nil, bp+56)) = (*_WorldMoverCastContext)(unsafe.Pointer(worldContext)).Input
 	(*(*cShapeCastInput)(unsafe.Add(nil, bp+56))).MaxFraction = (*BoxCastInput)(unsafe.Pointer(input)).MaxFraction
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(3327))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(3329))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Re-center on the query origin so the per-shape cast stays in float precision far from the origin
@@ -37668,7 +37944,7 @@ func _ExplosionCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 	explosionContext = context
 	world = (*_ExplosionContext)(unsafe.Pointer(explosionContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(3467))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(3469))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -37676,12 +37952,12 @@ func _ExplosionCallback(tls *_Stack, proxyId int32, userData uint64, context uin
 		return boolUint8(true1 != 0)
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(3473))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(3475))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
 	if v2 = !!((*b3Body)(unsafe.Pointer(body)).Type1 == int32(b3_dynamicBody)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+26291, __ccgo_ts+23730, int32FromInt32(3474))
+		b3InternalAssert(tls, __ccgo_ts+26767, __ccgo_ts+24206, int32FromInt32(3476))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	xf = b3GetBodyTransformQuick(tls, world, body)
@@ -37879,17 +38155,17 @@ _72:
 	impulse = v30
 	localIndex = (*b3Body)(unsafe.Pointer(body)).LocalIndex
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+23730, int32FromInt32(3533))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+24206, int32FromInt32(3535))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
 	if v2 = !!(0 <= localIndex && localIndex < (*b3SolverSet)(unsafe.Pointer(set)).BodyStates.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+2951, __ccgo_ts+23730, int32FromInt32(3534))
+		b3InternalAssert(tls, __ccgo_ts+2951, __ccgo_ts+24206, int32FromInt32(3536))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	state = (*b3SolverSet)(unsafe.Pointer(set)).BodyStates.Data + uintptr(localIndex)*64
 	if v3 = !!(0 <= localIndex && localIndex < (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+3017, __ccgo_ts+23730, int32FromInt32(3535))
+		b3InternalAssert(tls, __ccgo_ts+3017, __ccgo_ts+24206, int32FromInt32(3537))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySim = (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Data + uintptr(localIndex)*252
@@ -38206,7 +38482,7 @@ func b3RegistryPush(tls *_Stack, reg uintptr, map1 uintptr, itr7 b3GeometryHashM
 	var _ /* new_table at bp+32 */ b3GeometryHashMap
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = allocation, bucket1, bucket2, candidate, copy1, displacement2, displacement4, entry, hash1, hashfrag, home_bucket2, home_bucket3, id, itr1, itr2, itr3, itr4, itr5, itr6, linear_dispacement, newCapacity, newSize, next, oldCapacity, oldSize, prev, prev1, v1, v10, v100, v101, v103, v104, v105, v106, v107, v109, v111, v112, v114, v115, v116, v117, v119, v12, v120, v122, v123, v124, v125, v127, v128, v129, v13, v131, v132, v133, v135, v136, v138, v139, v14, v140, v142, v144, v146, v147, v148, v15, v150, v151, v153, v154, v156, v158, v16, v160, v161, v164, v165, v167, v168, v17, v170, v171, v174, v176, v179, v18, v181, v2, v20, v22, v23, v25, v26, v27, v28, v3, v30, v31, v33, v34, v35, v36, v38, v39, v4, v40, v42, v43, v44, v46, v47, v49, v5, v50, v51, v53, v55, v57, v58, v59, v6, v61, v62, v64, v65, v66, v67, v69, v7, v70, v71, v72, v74, v75, v76, v78, v79, v81, v82, v84, v85, v86, v88, v89, v9, v90, v91, v93, v95, v97
 	if v1 = !!(byteCount > int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26814, __ccgo_ts+26741, int32FromInt32(767))
+		b3InternalAssert(tls, __ccgo_ts+27528, __ccgo_ts+27455, int32FromInt32(791))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	copy1 = b3Alloc(tls, uint64FromInt32(byteCount))
@@ -39389,31 +39665,31 @@ func b3CreatePlayer(tls *_Stack, data uintptr, size int32, workerCount int32) (r
 	var _ /* hdr at bp+0 */ b3RecHeader
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = copy1, headerEnd, headerEnd64, player, registryEnd, registryEnd64, replayWorld, snapSize, snapStart, worldId, v1, v2, v4, v5, v7, v9
 	if data == uintptrFromInt32(0) || size < int32FromInt64(48) {
-		printf(tls, __ccgo_ts+27611, 0)
+		printf(tls, __ccgo_ts+28325, 0)
 		return uintptrFromInt32(0)
 	}
 	memcpy(tls, bp, data, uint64(48))
 	if (*(*b3RecHeader)(unsafe.Add(nil, bp))).Magic != uint32(0x43523342) {
-		printf(tls, __ccgo_ts+27652, vaList(bp+56, (*(*b3RecHeader)(unsafe.Add(nil, bp))).Magic))
+		printf(tls, __ccgo_ts+28366, vaList(bp+56, (*(*b3RecHeader)(unsafe.Add(nil, bp))).Magic))
 		return uintptrFromInt32(0)
 	}
 	// Only the major version is breaking. Minor bumps are additive op-stream changes that keep the
 	// header shape, and the dispatcher skips opcodes it doesn't know, so a minor mismatch still loads.
 	if int32FromUint16((*(*b3RecHeader)(unsafe.Add(nil, bp))).VersionMajor) != int32(_B3_REC_VERSION_MAJOR) {
-		printf(tls, __ccgo_ts+27690, vaList(bp+56, int32FromUint16((*(*b3RecHeader)(unsafe.Add(nil, bp))).VersionMajor), int32FromUint16((*(*b3RecHeader)(unsafe.Add(nil, bp))).VersionMinor), int32(_B3_REC_VERSION_MAJOR), int32(_B3_REC_VERSION_MINOR)))
+		printf(tls, __ccgo_ts+28404, vaList(bp+56, int32FromUint16((*(*b3RecHeader)(unsafe.Add(nil, bp))).VersionMajor), int32FromUint16((*(*b3RecHeader)(unsafe.Add(nil, bp))).VersionMinor), int32(_B3_REC_VERSION_MAJOR), int32(_B3_REC_VERSION_MINOR)))
 		return uintptrFromInt32(0)
 	}
 	if int32FromUint8((*(*b3RecHeader)(unsafe.Add(nil, bp))).PointerWidth) != int32FromUint8(uint8FromInt64(8)) {
-		printf(tls, __ccgo_ts+27743, vaList(bp+56, int32FromUint8((*(*b3RecHeader)(unsafe.Add(nil, bp))).PointerWidth), uint32FromInt64(8)))
+		printf(tls, __ccgo_ts+28457, vaList(bp+56, int32FromUint8((*(*b3RecHeader)(unsafe.Add(nil, bp))).PointerWidth), uint32FromInt64(8)))
 		return uintptrFromInt32(0)
 	}
 	if int32FromUint8((*(*b3RecHeader)(unsafe.Add(nil, bp))).BigEndian) != 0 {
-		printf(tls, __ccgo_ts+27796, 0)
+		printf(tls, __ccgo_ts+28510, 0)
 		return uintptrFromInt32(0)
 	}
 	// Every recording is snapshot-seeded: the seed blob sits between the header and the op stream.
 	if (*(*b3RecHeader)(unsafe.Add(nil, bp))).SnapshotSize == uint64(0) {
-		printf(tls, __ccgo_ts+27852, 0)
+		printf(tls, __ccgo_ts+28566, 0)
 		return uintptrFromInt32(0)
 	}
 	// snapshotSize and registryOffset are 64-bit and come from the file. Validate in 64-bit so a
@@ -39426,7 +39702,7 @@ func b3CreatePlayer(tls *_Stack, data uintptr, size int32, workerCount int32) (r
 	}
 	registryEnd64 = v1
 	if headerEnd64 < uint64(48) || headerEnd64 > registryEnd64 || registryEnd64 > uint64FromInt32(size) {
-		printf(tls, __ccgo_ts+27895, 0)
+		printf(tls, __ccgo_ts+28609, 0)
 		return uintptrFromInt32(0)
 	}
 	headerEnd = int32FromUint64(headerEnd64)
@@ -39484,7 +39760,7 @@ func b3CreatePlayer(tls *_Stack, data uintptr, size int32, workerCount int32) (r
 	snapSize = int32FromUint64((*(*b3RecHeader)(unsafe.Add(nil, bp))).SnapshotSize)
 	replayWorld = b3GetWorldFromId(tls, worldId)
 	if int32FromUint8(b3DeserializeIntoShell(tls, copy1+uintptr(snapStart), snapSize, replayWorld, player+168)) == false1 {
-		printf(tls, __ccgo_ts+27932, 0)
+		printf(tls, __ccgo_ts+28646, 0)
 		b3DestroyWorld(tls, worldId)
 		b3RecFreeSlots(tls, (*b3RecPlayer)(unsafe.Pointer(player)).Rdr.Slots, (*b3RecPlayer)(unsafe.Pointer(player)).Rdr.SlotCount)
 		if (*b3RecPlayer)(unsafe.Pointer(player)).Rdr.Tags != uintptrFromInt32(0) {
@@ -39731,7 +40007,7 @@ func b3CreateScheduler(tls *_Stack, workerCount int32) (r uintptr) {
 	var _ /* name at bp+0 */ [16]uint8
 	_, _, _, _ = i, scheduler, threadCount, v1
 	if v1 = !!(0 < workerCount && workerCount <= int32(_B3_MAX_WORKERS)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23365, __ccgo_ts+28258, int32FromInt32(105))
+		b3InternalAssert(tls, __ccgo_ts+24028, __ccgo_ts+28972, int32FromInt32(105))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	scheduler = b3Alloc(tls, uint64(6944))
@@ -39751,7 +40027,7 @@ func b3CreateScheduler(tls *_Stack, workerCount int32) (r uintptr) {
 		}
 		(*(*b3SchedulerWorkerContext)(unsafe.Add(nil, scheduler+256+uintptr(i)*16))).Scheduler = scheduler
 		(*(*b3SchedulerWorkerContext)(unsafe.Add(nil, scheduler+256+uintptr(i)*16))).ThreadIndex = i + int32(1)
-		__builtin_snprintf(tls, bp, uint64(16), __ccgo_ts+28285, vaList(bp+24, i+int32(1)))
+		__builtin_snprintf(tls, bp, uint64(16), __ccgo_ts+28999, vaList(bp+24, i+int32(1)))
 		*(*uintptr)(unsafe.Add(nil, scheduler+uintptr(i)*8)) = __builtin_b3CreateThread(tls, __ccgo_fp(b3SchedulerWorkerMain), scheduler+256+uintptr(i)*16, bp)
 		goto _2
 	_2:
@@ -39811,7 +40087,7 @@ func b3SchedulerEnqueueTask(tls *_Stack, __ccgo_fp_task uintptr, taskContext uin
 _2:
 	slot = v1
 	if v3 = !!(slot < int32FromInt32(_B3_MAX_TASKS)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+28303, __ccgo_ts+28258, int32FromInt32(163))
+		b3InternalAssert(tls, __ccgo_ts+29017, __ccgo_ts+28972, int32FromInt32(163))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	schedulerTask = scheduler + 776 + uintptr(slot)*24
@@ -40038,7 +40314,7 @@ func b3ResetProxy(tls *_Stack, world uintptr, shape uintptr, wakeBodies uint8, d
 	var v1, v2 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _ = body, contact, contactId, contactKey, edgeIndex, fatAABB, forcePairCreation, proxyType, proxyType1, shapeId, transform, v1, v2
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28881, int32FromInt32(1354))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29595, int32FromInt32(1354))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -40049,7 +40325,7 @@ func b3ResetProxy(tls *_Stack, world uintptr, shape uintptr, wakeBodies uint8, d
 		contactId = contactKey >> int32(1)
 		edgeIndex = contactKey & int32(1)
 		if v2 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+28881, int32FromInt32(1365))
+			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+29595, int32FromInt32(1365))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*216
@@ -40336,7 +40612,7 @@ func b3SetSIMDWidth(tls *_Stack, width int32) {
 	var v1 bool
 	_ = v1
 	if v1 = !!(width == 0 || width == int32(4) || width == int32(8)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30958, __ccgo_ts+30997, int32FromInt32(107))
+		b3InternalAssert(tls, __ccgo_ts+31672, __ccgo_ts+31711, int32FromInt32(107))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if width == int32(8) && b3DetectSIMDWidth(tls) != int32(8) {
@@ -42130,7 +42406,7 @@ func b3ContinuousQueryCallback(tls *_Stack, proxyId int32, userData uint64, cont
 	fastShape = (*b3ContinuousContext)(unsafe.Pointer(continuousContext)).FastShape
 	fastBodySim = (*b3ContinuousContext)(unsafe.Pointer(continuousContext)).FastBodySim
 	if v1 = !!((*b3Shape)(unsafe.Pointer(fastShape)).SensorIndex == -int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31197, __ccgo_ts+31091, int32FromInt32(353))
+		b3InternalAssert(tls, __ccgo_ts+31911, __ccgo_ts+31805, int32FromInt32(353))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Skip same shape
@@ -42139,7 +42415,7 @@ func b3ContinuousQueryCallback(tls *_Stack, proxyId int32, userData uint64, cont
 	}
 	world = (*b3ContinuousContext)(unsafe.Pointer(continuousContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31091, int32FromInt32(362))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31805, int32FromInt32(362))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -42167,13 +42443,13 @@ _6:
 		return boolUint8(true1 != 0)
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+31091, int32FromInt32(384))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+31805, int32FromInt32(384))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
 	bodySim1 = b3GetBodySim(tls, world, body)
 	if v2 = !!((*b3Body)(unsafe.Pointer(body)).Type1 == int32(b3_staticBody) || (*b3BodySim)(unsafe.Pointer(fastBodySim)).Flags&uint32(b3_isBullet) != 0); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+31237, __ccgo_ts+31091, int32FromInt32(387))
+		b3InternalAssert(tls, __ccgo_ts+31951, __ccgo_ts+31805, int32FromInt32(387))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	// Skip bullets
@@ -42181,7 +42457,7 @@ _6:
 		return boolUint8(true1 != 0)
 	}
 	if v1 = !!(0 <= (*b3BodySim)(unsafe.Pointer(fastBodySim)).BodyId && (*b3BodySim)(unsafe.Pointer(fastBodySim)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31305, __ccgo_ts+31091, int32FromInt32(396))
+		b3InternalAssert(tls, __ccgo_ts+32019, __ccgo_ts+31805, int32FromInt32(396))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Skip filtered bodies
@@ -42350,7 +42626,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 	sims = (*b3StepContext)(unsafe.Pointer(stepContext)).Sims
 	states = (*b3StepContext)(unsafe.Pointer(stepContext)).States
 	if v1 = !!(endIndex <= (*b3World)(unsafe.Pointer(world)).BodyMoveEvents.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31611, __ccgo_ts+31091, int32FromInt32(710))
+		b3InternalAssert(tls, __ccgo_ts+32325, __ccgo_ts+31805, int32FromInt32(710))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	enableSleep = (*b3World)(unsafe.Pointer(world)).EnableSleep
@@ -42465,7 +42741,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 		if int32FromUint8(b3IsValidVec3(tls, v3)) == false1 || int32FromUint8(b3IsValidVec3(tls, w)) == false1 {
 			name = b3FindName(tls, world+4336, (*(*b3Body)(unsafe.Add(nil, bodies+uintptr((*b3BodySim)(unsafe.Pointer(sim)).BodyId)*96))).NameId)
 			if name == uintptrFromInt32(0) {
-				v49 = __ccgo_ts + 31651
+				v49 = __ccgo_ts + 32365
 			} else {
 				v49 = name
 			}
@@ -42473,14 +42749,14 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 			goto _48
 		_48:
 			name1 = v47
-			b3Log(tls, __ccgo_ts+31656, vaList(bp+8, name1))
+			b3Log(tls, __ccgo_ts+32370, vaList(bp+8, name1))
 		}
 		if v1 = !!(b3IsValidVec3(tls, v3) != 0); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31669, __ccgo_ts+31091, int32FromInt32(742))
+			b3InternalAssert(tls, __ccgo_ts+32383, __ccgo_ts+31805, int32FromInt32(742))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!(b3IsValidVec3(tls, w) != 0); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31688, __ccgo_ts+31091, int32FromInt32(743))
+			b3InternalAssert(tls, __ccgo_ts+32402, __ccgo_ts+31805, int32FromInt32(743))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		v52 = (*b3BodySim)(unsafe.Pointer(sim)).Center
@@ -42788,7 +43064,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 		// If you hit this then it means you deferred mass computation but never called b3Body_ApplyMassFromShapes
 		// or b3Body_SetMassData.
 		if v1 = !!((*b3Body)(unsafe.Pointer(body)).Flags&uint32(b3_dirtyMass) == uint32FromInt32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31707, __ccgo_ts+31091, int32FromInt32(784))
+			b3InternalAssert(tls, __ccgo_ts+32421, __ccgo_ts+31805, int32FromInt32(784))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// Clear the transient flags (fast, speed capped, had TOI). These flags are conditionally set
@@ -42966,7 +43242,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 	_230:
 		(*b3BodySim)(unsafe.Pointer(sim)).InvInertiaWorld = v229
 		if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(body)).IslandId && (*b3Body)(unsafe.Pointer(body)).IslandId < (*b3World)(unsafe.Pointer(world)).Islands.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+4030, __ccgo_ts+31091, int32FromInt32(839))
+			b3InternalAssert(tls, __ccgo_ts+4030, __ccgo_ts+31805, int32FromInt32(839))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// Any single body in an island can keep it awake
@@ -43002,7 +43278,7 @@ func b3FinalizeBodiesTask(tls *_Stack, startIndex int32, endIndex int32, workerI
 			shapeId = (*b3Body)(unsafe.Pointer(body)).HeadShapeId
 			for shapeId != -int32(1) {
 				if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31091, int32FromInt32(869))
+					b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31805, int32FromInt32(869))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -43092,14 +43368,14 @@ func b3InitBlocks(tls *_Stack, blocks uintptr, dim b3BlockDim, itemCount int32, 
 		return
 	}
 	if v1 = !!(itemCount >= dim.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31792, __ccgo_ts+31091, int32FromInt32(943))
+		b3InternalAssert(tls, __ccgo_ts+32506, __ccgo_ts+31805, int32FromInt32(943))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Compute the number of elements per block
 	blockSize = dim.Size
 	// Simulation too big
 	if v1 = !!(blockSize <= int32FromInt32(_UINT16_MAX9)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31815, __ccgo_ts+31091, int32FromInt32(949))
+		b3InternalAssert(tls, __ccgo_ts+32529, __ccgo_ts+31805, int32FromInt32(949))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	i = 0
@@ -43277,7 +43553,7 @@ func b3ExecuteStage(tls *_Stack, stage uintptr, context uintptr, previousSyncInd
 		return
 	}
 	if v1 = !!(0 <= startIndex && startIndex < blockCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31839, __ccgo_ts+31091, int32FromInt32(1116))
+		b3InternalAssert(tls, __ccgo_ts+32553, __ccgo_ts+31805, int32FromInt32(1116))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	blockIndex = startIndex
@@ -43293,7 +43569,7 @@ func b3ExecuteStage(tls *_Stack, stage uintptr, context uintptr, previousSyncInd
 	_5:
 		if v4 != 0 {
 			if v1 = !!(completedCount < blockCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+31882, __ccgo_ts+31091, int32FromInt32(1123))
+				b3InternalAssert(tls, __ccgo_ts+32596, __ccgo_ts+31805, int32FromInt32(1123))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			// Pass the descriptor by value -- the wrapping b3SyncBlock holds the atomic
@@ -43333,7 +43609,7 @@ func b3ExecuteMainStage(tls *_Stack, stage uintptr, context uintptr, syncBits ui
 		atomicStoreNUint32(context+272, syncBits, int32FromInt32(__ATOMIC_SEQ_CST))
 		syncIndex = int32FromUint32(syncBits >> int32FromInt32(16) & uint32(0xFFFF))
 		if v1 = !!(syncIndex > int32FromInt32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31910, __ccgo_ts+31091, int32FromInt32(1161))
+			b3InternalAssert(tls, __ccgo_ts+32624, __ccgo_ts+31805, int32FromInt32(1161))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		previousSyncIndex = syncIndex - int32(1)
@@ -43365,12 +43641,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 	var v1, v2, v6 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = awakeBodyIndex, awakeJointSim, awakeSet, awakeSim, blockIndex, body, bodyId, color, color1, colorIndex, colorIndex1, contact, contact1, contactId, contactId1, contactKey, disabledSet, edgeIndex, i, i1, i2, island, islandIndex, joint, jointId, localIndex, localIndex1, localIndex2, moveEvent, movedBody, movedContact, movedContact1, movedContact2, movedContactId, movedContactId1, movedContactIndex, movedId, movedId1, movedIndex, movedIndex1, movedIsland, movedIslandId, movedIslandIndex, movedIslandSim, movedJoint, movedJointSim, movedLocalIndex, movedLocalIndex1, movedLocalIndex2, movedSim, newCapacity, newCapacity1, newCapacity2, newCapacity3, newSize, newSize1, newSize2, newSize3, newSize4, newSize5, newSize6, oldCapacity, oldSize, oldSize1, oldSize2, oldSize3, oldSize4, oldSize5, oldSize6, otherBody, otherBodyId, otherEdgeIndex, set, sleepBodyIndex, sleepBodySim, sleepContactIndex, sleepIsland, sleepJointIndex, sleepJointSim, sleepSet, sleepSetId, v1, v19, v2, v20, v21, v22, v24, v3, v4, v5, v6, v69
 	if v1 = !!(0 <= islandId && islandId < (*b3World)(unsafe.Pointer(world)).Islands.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1108, __ccgo_ts+33755, int32FromInt32(180))
+		b3InternalAssert(tls, __ccgo_ts+1108, __ccgo_ts+34469, int32FromInt32(180))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	island = (*b3World)(unsafe.Pointer(world)).Islands.Data + uintptr(islandId)*64
 	if v2 = !!((*b3Island)(unsafe.Pointer(island)).SetIndex == int32(b3_awakeSet)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+34453, __ccgo_ts+33755, int32FromInt32(181))
+		b3InternalAssert(tls, __ccgo_ts+35167, __ccgo_ts+34469, int32FromInt32(181))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	// Cannot put an island to sleep while it has a pending split and more than one body.
@@ -43405,24 +43681,24 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 		*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(v3)*88)) = set
 	}
 	if v1 = !!(0 <= sleepSetId && sleepSetId < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+34485, __ccgo_ts+33755, int32FromInt32(203))
+		b3InternalAssert(tls, __ccgo_ts+35199, __ccgo_ts+34469, int32FromInt32(203))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	sleepSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(sleepSetId)*88
 	*(*b3SolverSet)(unsafe.Add(nil, sleepSet)) = b3SolverSet{}
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+33755, int32FromInt32(207))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+34469, int32FromInt32(207))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// grab awake set after creating the sleep set because the solver set array may have been resized
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
 	if v2 = !!(bool(0 <= int32(b3_disabledSet)) && int32(b3_disabledSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+33755, int32FromInt32(208))
+		b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+34469, int32FromInt32(208))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	disabledSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_disabledSet))*88
 	if v6 = !!(0 <= (*b3Island)(unsafe.Pointer(island)).LocalIndex && (*b3Island)(unsafe.Pointer(island)).LocalIndex < (*b3SolverSet)(unsafe.Pointer(awakeSet)).IslandSims.Count); !v6 {
-		b3InternalAssert(tls, __ccgo_ts+34553, __ccgo_ts+33755, int32FromInt32(209))
+		b3InternalAssert(tls, __ccgo_ts+35267, __ccgo_ts+34469, int32FromInt32(209))
 	}
 	_ = v6 || bool(int32FromInt32(0) != 0)
 	(*b3SolverSet)(unsafe.Pointer(sleepSet)).SetIndex = sleepSetId
@@ -43453,36 +43729,36 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 		}
 		bodyId = *(*int32)(unsafe.Add(nil, (*b3Island)(unsafe.Pointer(island)).Bodies.Data+uintptr(i)*4))
 		if v1 = !!(0 <= bodyId && bodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+33755, int32FromInt32(222))
+			b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+34469, int32FromInt32(222))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(bodyId)*96
 		if v2 = !!((*b3Body)(unsafe.Pointer(body)).SetIndex == int32(b3_awakeSet)); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+2822, __ccgo_ts+33755, int32FromInt32(223))
+			b3InternalAssert(tls, __ccgo_ts+2822, __ccgo_ts+34469, int32FromInt32(223))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Body)(unsafe.Pointer(body)).IslandId == islandId); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34628, __ccgo_ts+33755, int32FromInt32(224))
+			b3InternalAssert(tls, __ccgo_ts+35342, __ccgo_ts+34469, int32FromInt32(224))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Body)(unsafe.Pointer(body)).IslandIndex == i); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34655, __ccgo_ts+33755, int32FromInt32(225))
+			b3InternalAssert(tls, __ccgo_ts+35369, __ccgo_ts+34469, int32FromInt32(225))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// Update the body move event to indicate this body fell asleep
 		// It could happen the body is forced asleep before it ever moves.
 		if (*b3Body)(unsafe.Pointer(body)).BodyMoveIndex != -int32(1) {
 			if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(body)).BodyMoveIndex && (*b3Body)(unsafe.Pointer(body)).BodyMoveIndex < (*b3World)(unsafe.Pointer(world)).BodyMoveEvents.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+34678, __ccgo_ts+33755, int32FromInt32(231))
+				b3InternalAssert(tls, __ccgo_ts+35392, __ccgo_ts+34469, int32FromInt32(231))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			moveEvent = (*b3World)(unsafe.Pointer(world)).BodyMoveEvents.Data + uintptr((*b3Body)(unsafe.Pointer(body)).BodyMoveIndex)*48
 			if v2 = !!((*BodyMoveEvent)(unsafe.Pointer(moveEvent)).BodyId.Index1-int32FromInt32(1) == bodyId); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+34768, __ccgo_ts+33755, int32FromInt32(232))
+				b3InternalAssert(tls, __ccgo_ts+35482, __ccgo_ts+34469, int32FromInt32(232))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(int32FromUint16((*BodyMoveEvent)(unsafe.Pointer(moveEvent)).BodyId.Generation) == int32FromUint16((*b3Body)(unsafe.Pointer(body)).Generation)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+34807, __ccgo_ts+33755, int32FromInt32(233))
+				b3InternalAssert(tls, __ccgo_ts+35521, __ccgo_ts+34469, int32FromInt32(233))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			(*BodyMoveEvent)(unsafe.Pointer(moveEvent)).FellAsleep = boolUint8(true1 != 0)
@@ -43490,7 +43766,7 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 		}
 		awakeBodyIndex = (*b3Body)(unsafe.Pointer(body)).LocalIndex
 		if v1 = !!(0 <= awakeBodyIndex && awakeBodyIndex < (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34856, __ccgo_ts+33755, int32FromInt32(239))
+			b3InternalAssert(tls, __ccgo_ts+35570, __ccgo_ts+34469, int32FromInt32(239))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		awakeSim = (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Data + uintptr(awakeBodyIndex)*252
@@ -43544,12 +43820,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 			movedSim = (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Data + uintptr(awakeBodyIndex)*252
 			movedId = (*b3BodySim)(unsafe.Pointer(movedSim)).BodyId
 			if v2 = !!(0 <= movedId && movedId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+2198, __ccgo_ts+33755, int32FromInt32(252))
+				b3InternalAssert(tls, __ccgo_ts+2198, __ccgo_ts+34469, int32FromInt32(252))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			movedBody = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(movedId)*96
 			if v6 = !!((*b3Body)(unsafe.Pointer(movedBody)).LocalIndex == movedIndex); !v6 {
-				b3InternalAssert(tls, __ccgo_ts+2256, __ccgo_ts+33755, int32FromInt32(253))
+				b3InternalAssert(tls, __ccgo_ts+2256, __ccgo_ts+34469, int32FromInt32(253))
 			}
 			_ = v6 || bool(int32FromInt32(0) != 0)
 			(*b3Body)(unsafe.Pointer(movedBody)).LocalIndex = awakeBodyIndex
@@ -43585,19 +43861,19 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 			contactId = contactKey >> int32(1)
 			edgeIndex = contactKey & int32(1)
 			if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+33755, int32FromInt32(276))
+				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+34469, int32FromInt32(276))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*216
 			if v2 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet)); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+33755, int32FromInt32(278))
+				b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+34469, int32FromInt32(278))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			contactKey = (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+uintptr(edgeIndex)*12))).NextKey
 			if (*b3Contact)(unsafe.Pointer(contact)).ColorIndex != -int32(1) {
 				// contact is touching and will be moved separately
 				if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_contactTouchingFlag) != uint32FromInt32(0)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+16794, __ccgo_ts+33755, int32FromInt32(285))
+					b3InternalAssert(tls, __ccgo_ts+16794, __ccgo_ts+34469, int32FromInt32(285))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				continue
@@ -43612,7 +43888,7 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 			otherEdgeIndex = edgeIndex ^ int32(1)
 			otherBodyId = (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+uintptr(otherEdgeIndex)*12))).BodyId
 			if v1 = !!(0 <= otherBodyId && otherBodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+3689, __ccgo_ts+33755, int32FromInt32(302))
+				b3InternalAssert(tls, __ccgo_ts+3689, __ccgo_ts+34469, int32FromInt32(302))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			otherBody = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(otherBodyId)*96
@@ -43621,15 +43897,15 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 			}
 			localIndex = (*b3Contact)(unsafe.Pointer(contact)).LocalIndex
 			if v1 = !!(*(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(awakeSet)).ContactIndices.Data+uintptr(localIndex)*4)) == contactId); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+34933, __ccgo_ts+33755, int32FromInt32(309))
+				b3InternalAssert(tls, __ccgo_ts+35647, __ccgo_ts+34469, int32FromInt32(309))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == int32FromInt32(0)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+24792, __ccgo_ts+33755, int32FromInt32(311))
+				b3InternalAssert(tls, __ccgo_ts+25268, __ccgo_ts+34469, int32FromInt32(311))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_contactTouchingFlag) == uint32FromInt32(0)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+34988, __ccgo_ts+33755, int32FromInt32(312))
+				b3InternalAssert(tls, __ccgo_ts+35702, __ccgo_ts+34469, int32FromInt32(312))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			// Move the non-touching contact to the disabled set.
@@ -43674,12 +43950,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 				// fix moved element
 				movedContactIndex = *(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(awakeSet)).ContactIndices.Data+uintptr(localIndex)*4))
 				if v2 = !!(0 <= movedContactIndex && movedContactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+33755, int32FromInt32(326))
+					b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+34469, int32FromInt32(326))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				movedContact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(movedContactIndex)*216
 				if v6 = !!((*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex == movedLocalIndex); !v6 {
-					b3InternalAssert(tls, __ccgo_ts+34112, __ccgo_ts+33755, int32FromInt32(327))
+					b3InternalAssert(tls, __ccgo_ts+34826, __ccgo_ts+34469, int32FromInt32(327))
 				}
 				_ = v6 || bool(int32FromInt32(0) != 0)
 				(*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex = localIndex
@@ -43699,25 +43975,25 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 		}
 		contactId1 = (*(*b3ContactLink)(unsafe.Add(nil, (*b3Island)(unsafe.Pointer(island)).Contacts.Data+uintptr(i1)*12))).ContactId
 		if v1 = !!(0 <= contactId1 && contactId1 < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+33755, int32FromInt32(340))
+			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+34469, int32FromInt32(340))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact1 = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId1)*216
 		if v2 = !!((*b3Contact)(unsafe.Pointer(contact1)).SetIndex == int32(b3_awakeSet)); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+33755, int32FromInt32(341))
+			b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+34469, int32FromInt32(341))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(contact1)).IslandId == islandId); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35037, __ccgo_ts+33755, int32FromInt32(342))
+			b3InternalAssert(tls, __ccgo_ts+35751, __ccgo_ts+34469, int32FromInt32(342))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(contact1)).IslandIndex == i1); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35067, __ccgo_ts+33755, int32FromInt32(343))
+			b3InternalAssert(tls, __ccgo_ts+35781, __ccgo_ts+34469, int32FromInt32(343))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		colorIndex = (*b3Contact)(unsafe.Pointer(contact1)).ColorIndex
 		if v1 = !!(0 <= colorIndex && colorIndex < int32(_B3_GRAPH_COLOR_COUNT)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+33755, int32FromInt32(345))
+			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+34469, int32FromInt32(345))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		color = world + 1160 + uintptr(colorIndex)*120
@@ -43783,12 +44059,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 				// fix moved element
 				movedContactId = (*(*b3ContactSpec)(unsafe.Add(nil, (*b3GraphColor)(unsafe.Pointer(color)).Contacts.Data+uintptr(localIndex1)*12))).ContactId
 				if v2 = !!(0 <= movedContactId && movedContactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+6826, __ccgo_ts+33755, int32FromInt32(368))
+					b3InternalAssert(tls, __ccgo_ts+6826, __ccgo_ts+34469, int32FromInt32(368))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				movedContact1 = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(movedContactId)*216
 				if v6 = !!((*b3Contact)(unsafe.Pointer(movedContact1)).LocalIndex == movedLocalIndex1); !v6 {
-					b3InternalAssert(tls, __ccgo_ts+34112, __ccgo_ts+33755, int32FromInt32(369))
+					b3InternalAssert(tls, __ccgo_ts+34826, __ccgo_ts+34469, int32FromInt32(369))
 				}
 				_ = v6 || bool(int32FromInt32(0) != 0)
 				(*b3Contact)(unsafe.Pointer(movedContact1)).LocalIndex = localIndex1
@@ -43816,12 +44092,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 				// fix moved element
 				movedContactId1 = *(*int32)(unsafe.Add(nil, (*b3GraphColor)(unsafe.Pointer(color)).ConvexContacts.Data+uintptr(localIndex1)*4))
 				if v2 = !!(0 <= movedContactId1 && movedContactId1 < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+6826, __ccgo_ts+33755, int32FromInt32(380))
+					b3InternalAssert(tls, __ccgo_ts+6826, __ccgo_ts+34469, int32FromInt32(380))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				movedContact2 = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(movedContactId1)*216
 				if v6 = !!((*b3Contact)(unsafe.Pointer(movedContact2)).LocalIndex == movedLocalIndex2); !v6 {
-					b3InternalAssert(tls, __ccgo_ts+34112, __ccgo_ts+33755, int32FromInt32(381))
+					b3InternalAssert(tls, __ccgo_ts+34826, __ccgo_ts+34469, int32FromInt32(381))
 				}
 				_ = v6 || bool(int32FromInt32(0) != 0)
 				(*b3Contact)(unsafe.Pointer(movedContact2)).LocalIndex = localIndex1
@@ -43864,31 +44140,31 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 		}
 		jointId = (*(*b3JointLink)(unsafe.Add(nil, (*b3Island)(unsafe.Pointer(island)).Joints.Data+uintptr(i2)*12))).JointId
 		if v1 = !!(0 <= jointId && jointId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+33755, int32FromInt32(400))
+			b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+34469, int32FromInt32(400))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(jointId)*72
 		if v2 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex == int32(b3_awakeSet)); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+33312, __ccgo_ts+33755, int32FromInt32(401))
+			b3InternalAssert(tls, __ccgo_ts+34026, __ccgo_ts+34469, int32FromInt32(401))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).IslandId == islandId); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35093, __ccgo_ts+33755, int32FromInt32(402))
+			b3InternalAssert(tls, __ccgo_ts+35807, __ccgo_ts+34469, int32FromInt32(402))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).IslandIndex == i2); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35121, __ccgo_ts+33755, int32FromInt32(403))
+			b3InternalAssert(tls, __ccgo_ts+35835, __ccgo_ts+34469, int32FromInt32(403))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		colorIndex1 = (*b3Joint)(unsafe.Pointer(joint)).ColorIndex
 		localIndex2 = (*b3Joint)(unsafe.Pointer(joint)).LocalIndex
 		if v1 = !!(0 <= colorIndex1 && colorIndex1 < int32(_B3_GRAPH_COLOR_COUNT)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+33755, int32FromInt32(407))
+			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+34469, int32FromInt32(407))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		color1 = world + 1160 + uintptr(colorIndex1)*120
 		if v1 = !!(0 <= localIndex2 && localIndex2 < (*b3GraphColor)(unsafe.Pointer(color1)).JointSims.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35145, __ccgo_ts+33755, int32FromInt32(411))
+			b3InternalAssert(tls, __ccgo_ts+35859, __ccgo_ts+34469, int32FromInt32(411))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		awakeJointSim = (*b3GraphColor)(unsafe.Pointer(color1)).JointSims.Data + uintptr(localIndex2)*444
@@ -43961,12 +44237,12 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 			movedJointSim = (*b3GraphColor)(unsafe.Pointer(color1)).JointSims.Data + uintptr(localIndex2)*444
 			movedId1 = (*b3JointSim)(unsafe.Pointer(movedJointSim)).JointId
 			if v2 = !!(0 <= movedId1 && movedId1 < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+33755, int32FromInt32(430))
+				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+34469, int32FromInt32(430))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			movedJoint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(movedId1)*72
 			if v6 = !!((*b3Joint)(unsafe.Pointer(movedJoint)).LocalIndex == movedIndex1); !v6 {
-				b3InternalAssert(tls, __ccgo_ts+7196, __ccgo_ts+33755, int32FromInt32(431))
+				b3InternalAssert(tls, __ccgo_ts+7196, __ccgo_ts+34469, int32FromInt32(431))
 			}
 			_ = v6 || bool(int32FromInt32(0) != 0)
 			(*b3Joint)(unsafe.Pointer(movedJoint)).LocalIndex = localIndex2
@@ -43981,7 +44257,7 @@ func b3TrySleepIsland(tls *_Stack, world uintptr, islandId int32) {
 	}
 	// move island struct
 	if v1 = !!((*b3Island)(unsafe.Pointer(island)).SetIndex == int32(b3_awakeSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+34453, __ccgo_ts+33755, int32FromInt32(443))
+		b3InternalAssert(tls, __ccgo_ts+35167, __ccgo_ts+34469, int32FromInt32(443))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	islandIndex = (*b3Island)(unsafe.Pointer(island)).LocalIndex
@@ -44033,12 +44309,12 @@ _150:
 		movedIslandSim = (*b3SolverSet)(unsafe.Pointer(awakeSet)).IslandSims.Data + uintptr(islandIndex)*4
 		movedIslandId = (*b3IslandSim)(unsafe.Pointer(movedIslandSim)).IslandId
 		if v2 = !!(0 <= movedIslandId && movedIslandId < (*b3World)(unsafe.Pointer(world)).Islands.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+35212, __ccgo_ts+33755, int32FromInt32(455))
+			b3InternalAssert(tls, __ccgo_ts+35926, __ccgo_ts+34469, int32FromInt32(455))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		movedIsland = (*b3World)(unsafe.Pointer(world)).Islands.Data + uintptr(movedIslandId)*64
 		if v6 = !!((*b3Island)(unsafe.Pointer(movedIsland)).LocalIndex == movedIslandIndex); !v6 {
-			b3InternalAssert(tls, __ccgo_ts+35283, __ccgo_ts+33755, int32FromInt32(456))
+			b3InternalAssert(tls, __ccgo_ts+35997, __ccgo_ts+34469, int32FromInt32(456))
 		}
 		_ = v6 || bool(int32FromInt32(0) != 0)
 		(*b3Island)(unsafe.Pointer(movedIsland)).LocalIndex = islandIndex
@@ -44195,7 +44471,7 @@ func b3RayCastSphere(tls *_Stack, shape uintptr, input uintptr) (r1 CastOutput) 
 	var _ /* length at bp+0 */ float32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, cc, d, fraction, h, hitPoint, lengthSquared, lengthSquared1, output, p, r, rr, s, s1, s3, t, u, u1, v1, v10, v11, v13, v15, v18, v2, v3, v4, v6, v7, v8
 	if v1 = !!(b3IsValidRay(tls, input) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+5200, __ccgo_ts+35873, int32FromInt32(64))
+		b3InternalAssert(tls, __ccgo_ts+5200, __ccgo_ts+36587, int32FromInt32(64))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	output = CastOutput{}
@@ -44304,7 +44580,7 @@ _33:
 	hitPoint = v4
 	output.Fraction = fraction / *(*float32)(unsafe.Add(nil, bp))
 	if output.Fraction > (*RayCastInput)(unsafe.Pointer(input)).MaxFraction {
-		b3Log(tls, __ccgo_ts+35897, vaList(bp+16, float64((*RayCastInput)(unsafe.Pointer(input)).MaxFraction), float64(output.Fraction)))
+		b3Log(tls, __ccgo_ts+36611, vaList(bp+16, float64((*RayCastInput)(unsafe.Pointer(input)).MaxFraction), float64(output.Fraction)))
 		output.Fraction = (*RayCastInput)(unsafe.Pointer(input)).MaxFraction
 	}
 	v2 = hitPoint
@@ -44738,7 +45014,7 @@ func b3AddKeyHaveCapacity(tls *_Stack, set uintptr, key uint64, hash uint32) {
 	index = b3FindSlot(tls, set, key, hash)
 	items = (*b3HashSet)(unsafe.Pointer(set)).Items
 	if v1 = !!((*(*b3SetItem)(unsafe.Add(nil, items+uintptr(index)*16))).Hash == uint32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36158, __ccgo_ts+36181, int32FromInt32(75))
+		b3InternalAssert(tls, __ccgo_ts+36872, __ccgo_ts+36895, int32FromInt32(75))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	(*(*b3SetItem)(unsafe.Add(nil, items+uintptr(index)*16))).Key = key
@@ -44778,7 +45054,7 @@ func b3GrowTable(tls *_Stack, set uintptr) {
 		i = i + 1
 	}
 	if v2 = !!((*b3HashSet)(unsafe.Pointer(set)).Count == oldCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+36204, __ccgo_ts+36181, int32FromInt32(109))
+		b3InternalAssert(tls, __ccgo_ts+36918, __ccgo_ts+36895, int32FromInt32(109))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	b3Free(tls, oldItems, uint64(oldCapacity)*uint64(16))
@@ -44792,7 +45068,7 @@ func b3ContainsKey(tls *_Stack, set uintptr, key1 uint64) (r uint8) {
 	_, _, _, _, _ = h, hash, index, v1, v2
 	// key of zero is a sentinel
 	if v1 = !!(key1 != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36227, __ccgo_ts+36181, int32FromInt32(117))
+		b3InternalAssert(tls, __ccgo_ts+36941, __ccgo_ts+36895, int32FromInt32(117))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	h = key1
@@ -44819,7 +45095,7 @@ func b3ContainsHashedKey(tls *_Stack, set uintptr, key1 uint64, hash uint32) (r 
 	var v2 uint32_t
 	_, _, _, _ = h, index, v1, v2
 	if v1 = !!(key1 != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36227, __ccgo_ts+36181, int32FromInt32(126))
+		b3InternalAssert(tls, __ccgo_ts+36941, __ccgo_ts+36895, int32FromInt32(126))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	h = key1
@@ -44833,7 +45109,7 @@ func b3ContainsHashedKey(tls *_Stack, set uintptr, key1 uint64, hash uint32) (r 
 _3:
 	;
 	if v1 = !!(hash == v2); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36236, __ccgo_ts+36181, int32FromInt32(127))
+		b3InternalAssert(tls, __ccgo_ts+36950, __ccgo_ts+36895, int32FromInt32(127))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	index = b3FindSlot(tls, set, key1, hash)
@@ -44852,7 +45128,7 @@ func b3AddKey(tls *_Stack, set uintptr, key1 uint64) (r uint8) {
 	_, _, _, _, _ = h, hash, index, v1, v2
 	// key of zero is a sentinel
 	if v1 = !!(key1 != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36227, __ccgo_ts+36181, int32FromInt32(140))
+		b3InternalAssert(tls, __ccgo_ts+36941, __ccgo_ts+36895, int32FromInt32(140))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	h = key1
@@ -44866,14 +45142,14 @@ func b3AddKey(tls *_Stack, set uintptr, key1 uint64) (r uint8) {
 _3:
 	hash = v2
 	if v1 = !!(hash != uint32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36261, __ccgo_ts+36181, int32FromInt32(143))
+		b3InternalAssert(tls, __ccgo_ts+36975, __ccgo_ts+36895, int32FromInt32(143))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	index = b3FindSlot(tls, set, key1, hash)
 	if (*(*b3SetItem)(unsafe.Add(nil, (*b3HashSet)(unsafe.Pointer(set)).Items+uintptr(index)*16))).Hash != uint32(0) {
 		// Already in set
 		if v1 = !!((*(*b3SetItem)(unsafe.Add(nil, (*b3HashSet)(unsafe.Pointer(set)).Items+uintptr(index)*16))).Hash == hash && (*(*b3SetItem)(unsafe.Add(nil, (*b3HashSet)(unsafe.Pointer(set)).Items+uintptr(index)*16))).Key == key1); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+36271, __ccgo_ts+36181, int32FromInt32(149))
+			b3InternalAssert(tls, __ccgo_ts+36985, __ccgo_ts+36895, int32FromInt32(149))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return boolUint8(true1 != 0)
@@ -44915,7 +45191,7 @@ _2:
 	(*(*b3SetItem)(unsafe.Add(nil, items+uintptr(i)*16))).Key = uint64(0)
 	(*(*b3SetItem)(unsafe.Add(nil, items+uintptr(i)*16))).Hash = uint32(0)
 	if v3 = !!((*b3HashSet)(unsafe.Pointer(set)).Count > uint32FromInt32(0)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+36334, __ccgo_ts+36181, int32FromInt32(178))
+		b3InternalAssert(tls, __ccgo_ts+37048, __ccgo_ts+36895, int32FromInt32(178))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	*(*uint32_t)(unsafe.Add(nil, set+12)) -= uint32(1)
@@ -45265,7 +45541,7 @@ func b3GetTriangleFeature(tls *_Stack, cache uintptr) (r TriangleFeature) {
 	_, _, _, _ = count, i, mask, v1
 	count = int32FromUint16((*SimplexCache)(unsafe.Pointer(cache)).Count)
 	if v1 = !!(0 < count && count < int32(4)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36349, __ccgo_ts+36372, int32FromInt32(40))
+		b3InternalAssert(tls, __ccgo_ts+37063, __ccgo_ts+37086, int32FromInt32(40))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Bit i set means triangle vertex i participates in the simplex.
@@ -45276,7 +45552,7 @@ func b3GetTriangleFeature(tls *_Stack, cache uintptr) (r TriangleFeature) {
 			break
 		}
 		if v1 = !!(int32FromUint8(*(*uint8_t)(unsafe.Add(nil, cache+6+uintptr(i)))) < int32FromInt32(3)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+36407, __ccgo_ts+36372, int32FromInt32(46))
+			b3InternalAssert(tls, __ccgo_ts+37121, __ccgo_ts+37086, int32FromInt32(46))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		mask = mask | int32(1)<<*(*uint8_t)(unsafe.Add(nil, cache+6+uintptr(i)))
@@ -45667,7 +45943,7 @@ func b3BuildTriangleAndCapsuleFaceContact(tls *_Stack, manifold uintptr, triangl
 	var _ /* segment at bp+0 */ [2]b3ClipVertex
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = distance1, distance2, havePoints, point1, point2, pt, radius, speculativeDistance, v1, v10, v12, v13, v14, v16, v18, v2, v3, v5, v6, v7, v9
 	if v1 = !!((*LocalManifold)(unsafe.Pointer(manifold)).PointCount == int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36428, __ccgo_ts+36372, int32FromInt32(266))
+		b3InternalAssert(tls, __ccgo_ts+37142, __ccgo_ts+37086, int32FromInt32(266))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	(*(*[2]b3ClipVertex)(unsafe.Add(nil, bp)))[0].Position = (*Capsule)(unsafe.Pointer(capsule)).Center1
@@ -45750,7 +46026,7 @@ func b3BuildTriangleAndCapsuleEdgeContact(tls *_Stack, manifold uintptr, triangl
 	var v11 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a7, b5, c, c1, capsuleEdge, edgesFeatures, lengthSquared, normal, p1, p2, point, pt, result, s, separation, sideNormal, squaredTolerance, triangleEdge, u, v1, v2, vs, v11, v10, v111, v12, v14, v15, v17, v18, v19, v21, v211, v22, v23, v25, v26, v3, v4, v6, v7, v8
 	if v11 = !!(0 <= query.IndexA && query.IndexA < int32(3)); !v11 {
-		b3InternalAssert(tls, __ccgo_ts+36454, __ccgo_ts+36372, int32FromInt32(314))
+		b3InternalAssert(tls, __ccgo_ts+37168, __ccgo_ts+37086, int32FromInt32(314))
 	}
 	_ = v11 || bool(int32FromInt32(0) != 0)
 	p1 = (*Capsule)(unsafe.Pointer(capsule)).Center1
@@ -46061,7 +46337,7 @@ func b3DefaultDebugDraw(tls *_Stack) (r b3DebugDraw) {
 		},
 	}
 	draw.JointScale = float32FromFloat32(1)
-	draw.ForceScale = float32FromFloat32(1)
+	draw.ForceScale = float32FromFloat32(0.001)
 	return draw
 }
 
@@ -47334,12 +47610,12 @@ func b3PrepareContacts_ConvexW4(tls *_Stack, block b3SolverBlock, context uintpt
 				contactIndex = int32(_B3_SIMD_WIDTH)*localWideIndex + lane
 				if contactIndex < colorContactCount {
 					if v9 = !!(0 <= *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) && *(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)) < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v9 {
-						b3InternalAssert(tls, __ccgo_ts+36940, __ccgo_ts+37034, int32FromInt32(933))
+						b3InternalAssert(tls, __ccgo_ts+37654, __ccgo_ts+37748, int32FromInt32(933))
 					}
 					_ = v9 || bool(int32FromInt32(0) != 0)
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(*(*int32)(unsafe.Add(nil, contactIds+uintptr(contactIndex)*4)))*216
 					if v9 = !!((*b3Contact)(unsafe.Pointer((*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane])).ManifoldCount == int32FromInt32(1)); !v9 {
-						b3InternalAssert(tls, __ccgo_ts+37073, __ccgo_ts+37034, int32FromInt32(934))
+						b3InternalAssert(tls, __ccgo_ts+37787, __ccgo_ts+37748, int32FromInt32(934))
 					}
 					_ = v9 || bool(int32FromInt32(0) != 0)
 				} else {
@@ -47425,16 +47701,16 @@ func b3PrepareContacts_MeshWideW4(tls *_Stack, block b3SolverBlock, context uint
 				if contactIndex < colorContactCount {
 					spec = specs + uintptr(*(*int32)(unsafe.Add(nil, order+uintptr(contactIndex)*4)))*12
 					if v9 = !!(0 <= (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId && (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v9 {
-						b3InternalAssert(tls, __ccgo_ts+37108, __ccgo_ts+37034, int32FromInt32(1000))
+						b3InternalAssert(tls, __ccgo_ts+37822, __ccgo_ts+37748, int32FromInt32(1000))
 					}
 					_ = v9 || bool(int32FromInt32(0) != 0)
 					contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr((*b3ContactSpec)(unsafe.Pointer(spec)).ContactId)*216
 					if v10 = !!((*b3Contact)(unsafe.Pointer(contact)).ContactId == (*b3ContactSpec)(unsafe.Pointer(spec)).ContactId); !v10 {
-						b3InternalAssert(tls, __ccgo_ts+37184, __ccgo_ts+37034, int32FromInt32(1001))
+						b3InternalAssert(tls, __ccgo_ts+37898, __ccgo_ts+37748, int32FromInt32(1001))
 					}
 					_ = v10 || bool(int32FromInt32(0) != 0)
 					if v9 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == int32FromUint16((*b3ContactSpec)(unsafe.Pointer(spec)).ManifoldCount)); !v9 {
-						b3InternalAssert(tls, __ccgo_ts+37222, __ccgo_ts+37034, int32FromInt32(1002))
+						b3InternalAssert(tls, __ccgo_ts+37936, __ccgo_ts+37748, int32FromInt32(1002))
 					}
 					_ = v9 || bool(int32FromInt32(0) != 0)
 					(*(*[4]uintptr)(unsafe.Add(nil, bp)))[lane] = contact
@@ -48278,7 +48554,7 @@ func b3StoreImpulsesW(tls *_Stack, block b3SolverBlock, context uintptr, workerI
 			}
 			laneManifoldCount = v2
 			if v7 = !!(laneManifoldCount == (*b3Contact)(unsafe.Pointer(contact1)).ManifoldCount && laneManifoldCount <= manifoldCount); !v7 {
-				b3InternalAssert(tls, __ccgo_ts+37268, __ccgo_ts+37034, int32FromInt32(1511))
+				b3InternalAssert(tls, __ccgo_ts+37982, __ccgo_ts+37748, int32FromInt32(1511))
 			}
 			_ = v7 || bool(int32FromInt32(0) != 0)
 			manifoldIndex = 0
@@ -48315,7 +48591,7 @@ func b3StoreImpulsesW(tls *_Stack, block b3SolverBlock, context uintptr, workerI
 				}
 				pointCount = (*Manifold)(unsafe.Pointer(m)).PointCount
 				if v7 = !!(pointCount <= (*b3ContactManifoldWide)(unsafe.Pointer(cm)).PointCount); !v7 {
-					b3InternalAssert(tls, __ccgo_ts+37350, __ccgo_ts+37034, int32FromInt32(1546))
+					b3InternalAssert(tls, __ccgo_ts+38064, __ccgo_ts+37748, int32FromInt32(1546))
 				}
 				_ = v7 || bool(int32FromInt32(0) != 0)
 				pointIndex = 0
@@ -49631,17 +49907,17 @@ func b3DeserializeIntoShell(tls *_Stack, data uintptr, size int32, world uintptr
 	}
 	memcpy(tls, bp1, data, uint64(16))
 	if (*(*b3SnapHeader)(unsafe.Add(nil, bp1))).Magic != uint32(0x33534E42) || (*(*b3SnapHeader)(unsafe.Add(nil, bp1))).Version != uint32(11) {
-		printf(tls, __ccgo_ts+37411, 0)
+		printf(tls, __ccgo_ts+38125, 0)
 		return boolUint8(false1 != 0)
 	}
 	imageDouble = boolUint8((*(*b3SnapHeader)(unsafe.Add(nil, bp1))).Flags&uint32(0x2) != uint32(0))
 	buildDouble = boolUint8(false1 != 0)
 	if int32FromUint8(imageDouble) != int32FromUint8(buildDouble) {
-		printf(tls, __ccgo_ts+37454, 0)
+		printf(tls, __ccgo_ts+38168, 0)
 		return boolUint8(false1 != 0)
 	}
 	if (*(*b3SnapHeader)(unsafe.Add(nil, bp1))).LayoutHash != b3ComputeLayoutHash(tls) {
-		printf(tls, __ccgo_ts+37498, 0)
+		printf(tls, __ccgo_ts+38212, 0)
 		return boolUint8(false1 != 0)
 	}
 	r = bp1 + 16
@@ -51393,7 +51669,7 @@ _11:
 _8:
 	;
 	if v13 = !!(v7 != 0); !v13 {
-		b3InternalAssert(tls, __ccgo_ts+37544, __ccgo_ts+6355, int32FromInt32(520))
+		b3InternalAssert(tls, __ccgo_ts+38258, __ccgo_ts+6355, int32FromInt32(520))
 	}
 	_ = v13 || bool(int32FromInt32(0) != 0)
 	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(0.5)*radians1))
@@ -51461,7 +51737,7 @@ func b3go_inline_b3GetTwistAngle(tls *_Stack, q1 Quat) (r float32) {
 	twist = v2
 	twist = float32(twist * float32FromFloat32(2))
 	if v3 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+		b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	v4 = twist
@@ -51480,7 +51756,7 @@ func b3go_inline_b3GetSwingAngle(tls *_Stack, q1 Quat) (r float32) {
 	y = sqrtf(tls, float32(v1.V.X*v1.V.X)+float32(v1.V.Y*v1.V.Y))
 	swing = float32(float32FromFloat32(2) * b3Atan2(tls, y, x))
 	if v2 = !!(float32FromFloat32(0) <= swing && swing <= float32FromFloat32(3.14159265359)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+20740, __ccgo_ts+6355, int32FromInt32(572))
+		b3InternalAssert(tls, __ccgo_ts+21133, __ccgo_ts+6355, int32FromInt32(572))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	v3 = swing
@@ -53971,6 +54247,17 @@ _3:
 	return v2
 }
 
+func b3go_inline_b3SpringDamper(tls *_Stack, hertz1 float32, dampingRatio1 float32, position1 float32, velocity1 float32, timeStep1 float32) (r float32) {
+	var omega, omegaH, v1 float32
+	_, _, _ = omega, omegaH, v1
+	omega = float32(float32(float32FromFloat32(2)*float32FromFloat32(3.14159265359)) * hertz1)
+	omegaH = float32(omega * timeStep1)
+	v1 = (velocity1 - float32(float32(omega*omegaH)*position1)) / (float32FromFloat32(1) + float32(float32(float32FromFloat32(2)*dampingRatio1)*omegaH) + float32(omegaH*omegaH))
+	goto _2
+_2:
+	return v1
+}
+
 func b3go_inline_b3MakeDebugColor(tls *_Stack, rgb1 HexColor, material1 DebugMaterial) (r uint32) {
 	var v1 uint32_t
 	_ = v1
@@ -54154,4 +54441,4 @@ var b3_zeroV = b3V32{}
 
 var __ccgo_ts = (*reflect.StringHeader)(unsafe.Pointer(&__ccgo_ts1)).Data
 
-var __ccgo_ts1 = "capacity >= 0\x00../box3d-c/src/arena_allocator.c\x00false\x00( (uintptr_t)entry.data & ( B3_ALIGNMENT - 1 ) ) == 0\x00entryCount > 0\x00mem == entry->data\x00stack->allocation == 0\x00blockCount > bitSet->blockCount\x00../box3d-c/src/bitset.c\x00bitSet->bits != NULL\x00setA->blockCount == setB->blockCount\x00elementSize >= (int)sizeof( void* )\x00../box3d-c/src/block_allocator.c\x00allocator != NULL\x00element != NULL\x00allocator->allocationCount > 0\x00( (uintptr_t)element & ( B3_BLOCK_ALIGNMENT - 1 ) ) == 0\x00b3Body_IsValid( bodyId )\x00../box3d-c/src/body.c\x000 <= ( bodyId.index1 - 1 ) && ( bodyId.index1 - 1 ) < ( world->bodies ).count\x000 <= ( body->setIndex ) && ( body->setIndex ) < ( world->solverSets ).count\x000 <= ( body->localIndex ) && ( body->localIndex ) < ( set->bodySims ).count\x000 <= ( bodyId ) && ( bodyId ) < ( world->bodies ).count\x000 <= ( b3_awakeSet ) && ( b3_awakeSet ) < ( world->solverSets ).count\x000 <= ( body->localIndex ) && ( body->localIndex ) < ( set->bodyStates ).count\x000 <= ( contactId ) && ( contactId ) < ( world->contacts ).count\x00body->islandId == B3_NULL_INDEX\x00setIndex != b3_disabledSet\x00body->islandIndex == B3_NULL_INDEX\x000 <= ( islandId ) && ( islandId ) < ( world->islands ).count\x00island->contacts.count == 0\x00island->joints.count == 0\x00def->internalValue == B3_SECRET_COOKIE\x00b3IsValidPosition( def->position )\x00b3IsValidQuat( def->rotation )\x00b3IsValidVec3( def->linearVelocity )\x00b3IsValidVec3( def->angularVelocity )\x00b3IsValidFloat( def->linearDamping ) && def->linearDamping >= 0.0f\x00b3IsValidFloat( def->angularDamping ) && def->angularDamping >= 0.0f\x00b3IsValidFloat( def->sleepThreshold ) && def->sleepThreshold >= 0.0f\x00b3IsValidFloat( def->safetyFactor ) && def->safetyFactor >= 0.0f\x00b3IsValidFloat( def->gravityScale )\x00world->solverSets.data[setId].setIndex == B3_NULL_INDEX\x000 <= setId && setId < world->solverSets.count\x000 <= ( setId ) && ( setId ) < ( world->solverSets ).count\x00world->bodies.data[bodyId].id == B3_NULL_INDEX\x00world->locked == false\x000 <= ( jointId ) && ( jointId ) < ( world->joints ).count\x000 <= ( shapeId ) && ( shapeId ) < ( world->shapes ).count\x00world->compoundShapeCount > 0\x00Array index out of bounds\x000 <= index && index < *count && \"Array index out of bounds\"\x00../box3d-c/src/container.h\x000 <= ( movedId ) && ( movedId ) < ( world->bodies ).count\x00movedBody->localIndex == movedIndex\x00result == movedIndex\x000 <= ( contact->shapeIdA ) && ( contact->shapeIdA ) < ( world->shapes ).count\x000 <= ( contact->shapeIdB ) && ( contact->shapeIdB ) < ( world->shapes ).count\x00index <= capacity\x000 <= ( body->headShapeId ) && ( body->headShapeId ) < ( world->shapes ).count\x000 <= ( shape->nextShapeId ) && ( shape->nextShapeId ) < ( world->shapes ).count\x00mass data\x00det >= 0.0f\x00b3IsValidPosition( position )\x00b3IsValidQuat( rotation )\x00b3IsValidVec3( linearVelocity )\x00b3IsValidVec3( angularVelocity )\x00b3IsValidWorldTransform( target )\x00body->setIndex == b3_awakeSet\x00b3IsValidVec3( force )\x00b3IsValidVec3( torque )\x00b3IsValidVec3( impulse )\x00b3IsValidPosition( point )\x000 <= ( localIndex ) && ( localIndex ) < ( set->bodyStates ).count\x000 <= ( localIndex ) && ( localIndex ) < ( set->bodySims ).count\x000 <= ( id ) && ( id ) < ( world->bodies ).count\x00body->generation == bodyId.generation\x000 <= ( b3_staticSet ) && ( b3_staticSet ) < ( world->solverSets ).count\x000 <= ( joint->edges[0].bodyId ) && ( joint->edges[0].bodyId ) < ( world->bodies ).count\x000 <= ( joint->edges[1].bodyId ) && ( joint->edges[1].bodyId ) < ( world->bodies ).count\x000 <= ( joint->setIndex ) && ( joint->setIndex ) < ( world->solverSets ).count\x00joint->setIndex == b3_staticSet\x00bodyA->setIndex == b3_staticSet || bodyA->setIndex == b3_awakeSet\x00bodyB->setIndex == b3_staticSet || bodyB->setIndex == b3_awakeSet\x00shape->type != b3_compoundShape\x000 <= ( otherBodyId ) && ( otherBodyId ) < ( world->bodies ).count\x00\x00b3IsValidFloat( massData.mass ) && massData.mass >= 0.0f\x00b3IsValidMatrix3( massData.inertia )\x00b3IsValidVec3( massData.center )\x00b3IsValidFloat( linearDamping ) && linearDamping >= 0.0f\x00b3IsValidFloat( angularDamping ) && angularDamping >= 0.0f\x00b3IsValidFloat( gravityScale )\x000 <= ( body->islandId ) && ( body->islandId ) < ( world->islands ).count\x00b3IsValidFloat( safetyFactor ) && safetyFactor >= 0.0f\x000 <= ( b3_disabledSet ) && ( b3_disabledSet ) < ( world->solverSets ).count\x00joint->setIndex == set->setIndex || set->setIndex == b3_staticSet || joint->setIndex == b3_staticSet\x00joint->setIndex == b3_disabledSet\x00joint->islandId == B3_NULL_INDEX\x000 <= ( jointSetId ) && ( jointSetId ) < ( world->solverSets ).count\x000 <= proxyType && proxyType < b3_bodyTypeCount\x00../box3d-c/src/broad_phase.c\x000 <= ( shapeIdA ) && ( shapeIdA ) < ( world->shapes ).count\x000 <= ( shapeIdB ) && ( shapeIdB ) < ( world->shapes ).count\x000 <= ( bodyIdA ) && ( bodyIdA ) < ( world->bodies ).count\x000 <= ( bodyIdB ) && ( bodyIdB ) < ( world->bodies ).count\x000 <= ( compoundShapeId ) && ( compoundShapeId ) < ( world->shapes ).count\x000 <= ( otherShapeId ) && ( otherShapeId ) < ( world->shapes ).count\x00otherProxyKey != B3_NULL_INDEX\x00compoundB == false\x00stackCount < B3_TREE_STACK_SIZE\x00*stackCount < B3_TREE_STACK_SIZE\x00rebuild tree\x00moved pairs\x00staticSeedCount <= B3_CROSS_SEED_COUNT\x00kinematicSeedCount <= B3_CROSS_SEED_COUNT\x00cross pairs\x00self pairs\x00pair keys\x00keyCount == pairCount\x00b3IsValidRay( input )\x00../box3d-c/src/capsule.c\x000 <= index && index < compound->capsuleCount && compound->capsuleOffset > 0\x00../box3d-c/src/compound.c\x000 <= index && index < compound->hullCount && compound->hullOffset > 0\x00hullOffset >= compound->hullOffset + compound->hullCount * sizeof( b3HullInstance )\x000 <= index && index < compound->meshCount && compound->meshOffset > 0\x00meshOffset >= compound->meshOffset + compound->meshCount * sizeof( b3HullInstance )\x000 <= index && index < compound->sphereCount && compound->sphereOffset > 0\x00compound->capsuleOffset > 0\x00compound->hullOffset > 0\x000 <= childIndex && childIndex < compound->sphereCount\x00compound->sphereOffset > 0\x00material->padding == 0\x00mat1->padding == 0 && mat2->padding == 0\x00def->meshes[i].materialCount > 0\x00meshData->materialCount == meshDef->materialCount\x00materialCount <= materialCapacity\x00materialCount <= UINT16_MAX\x00tree.proxyCount > 0\x00materialCount > 0\x000 <= sharedIndex && sharedIndex < sharedHullCount\x000 <= sharedIndex && sharedIndex < sharedMeshCount\x000 < proxy->count && proxy->count <= B3_MAX_SHAPE_CAST_POINTS\x000 <= output.materialIndex && output.materialIndex < child.materialCount\x00count > 0\x00../box3d-c/include/box3d/math_functions.h\x00capacity > 0\x000 <= planes[i].materialIndex && planes[i].materialIndex < child.materialCount\x000 <= index && index < B3_GRAPH_COLOR_COUNT\x00../box3d-c/src/constraint_graph.c\x00i != B3_OVERFLOW_INDEX || color->bodySet.bits == NULL\x00contact->manifoldCount > 0\x00contact->flags & b3_contactTouchingFlag\x00typeA == b3_dynamicBody || typeB == b3_dynamicBody\x00contact->manifoldCount < UINT16_MAX\x000 <= colorIndex && colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( movedContactId ) && ( movedContactId ) < ( world->contacts ).count\x00movedContact->setIndex == b3_awakeSet\x00movedContact->colorIndex == colorIndex\x00movedContact->localIndex == movedIndex\x00( movedContact->flags & b3_simMeshContact ) == 0\x000 <= ( movedId ) && ( movedId ) < ( world->joints ).count\x00movedJoint->setIndex == b3_awakeSet\x00movedJoint->colorIndex == colorIndex\x00movedJoint->localIndex == movedIndex\x000 <= ( id ) && ( id ) < ( world->contacts ).count\x00../box3d-c/src/contact.c\x00contact->contactId == id && contact->generation == contactId.generation\x000 <= type1 && type1 < b3_shapeTypeCount\x000 <= type2 && type2 < b3_shapeTypeCount\x000 <= typeA && typeA < b3_shapeTypeCount\x000 <= typeB && typeB < b3_shapeTypeCount\x000 <= ( shapeA->bodyId ) && ( shapeA->bodyId ) < ( world->bodies ).count\x000 <= ( shapeB->bodyId ) && ( shapeB->bodyId ) < ( world->bodies ).count\x00bodyA->setIndex != b3_disabledSet && bodyB->setIndex != b3_disabledSet\x00bodyA->setIndex != b3_staticSet || bodyB->setIndex != b3_staticSet\x000 <= ( setIndex ) && ( setIndex ) < ( world->solverSets ).count\x00shapeB->type == b3_sphereShape || shapeB->type == b3_capsuleShape || shapeB->type == b3_hullShape\x00shapeA->sensorIndex == B3_NULL_INDEX && shapeB->sensorIndex == B3_NULL_INDEX\x000 <= ( headContactKey >> 1 ) && ( headContactKey >> 1 ) < ( world->contacts ).count\x000 <= ( index ) && ( index ) < ( world->manifoldAllocators ).count\x00../box3d-c/src/physics_world.h\x000 <= ( edgeA->prevKey >> 1 ) && ( edgeA->prevKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeA->nextKey >> 1 ) && ( edgeA->nextKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeB->prevKey >> 1 ) && ( edgeB->prevKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeB->nextKey >> 1 ) && ( edgeB->nextKey >> 1 ) < ( world->contacts ).count\x00contact->setIndex == b3_awakeSet\x00contact->setIndex != b3_awakeSet || ( contact->flags & b3_contactTouchingFlag ) == 0\x000 <= ( contact->setIndex ) && ( contact->setIndex ) < ( world->solverSets ).count\x000 <= ( movedContactIndex ) && ( movedContactIndex ) < ( world->contacts ).count\x00typeB == b3_sphereShape\x00typeB == b3_capsuleShape\x00typeA == b3_hullShape\x00typeB == b3_hullShape\x000 < geomManifold.pointCount && geomManifold.pointCount <= B3_MAX_MANIFOLD_POINTS\x00contact->manifolds == NULL && contact->manifoldCount == 0\x00contact->manifoldCount == 1\x00shapeB->type != b3_compoundShape\x000 <= child.materialIndices[0] && child.materialIndices[0] < shapeA->materialCount\x00( touching == true && contact->manifoldCount > 0 ) || ( touching == false && contact->manifoldCount == 0 )\x00child.type == b3_sphereShape\x00block.blockType == b3_overflowBlock\x00../box3d-c/src/contact_solver.c\x000 <= localIndex && localIndex < spans[colorIndex].count\x00contact->contactId == contactId\x00contact != NULL\x00manifoldCount == contact->manifoldCount\x00count == manifold->pointCount\x00blockIndex < bitSet->blockCount\x00../box3d-c/src/bitset.h\x00color->contacts.count <= UINT16_MAX\x00edge->twin == index + 1 && twin->twin == index\x00../box3d-c/src/convex_manifold.c\x000.0f <= alpha && alpha <= 1.0f\x00bestIndex >= 0\x000 <= bestIndex && bestIndex < count\x00bestIndex != B3_NULL_INDEX\x00edges[edgeIndex].face == incFace\x00pointCount <= B3_MAX_CLIP_POINTS\x00cache->indexA < hullA->faceCount\x00cache->indexB < hullB->faceCount\x00edge1->twin == indexA + 1 && twin1->twin == indexA\x00edge2->twin == indexB + 1 && twin2->twin == indexB\x00axisQuery.separatedFeature == b3_edgePairAxis\x000 <= edgeQuery.indexA && edgeQuery.indexA < hullA->edgeCount\x000 <= edgeQuery.indexB && edgeQuery.indexB < hullB->edgeCount\x00b3IsValidFloat( lengthUnits ) && lengthUnits > 0.0f\x00../box3d-c/src/core.c\x00BOX3D ASSERTION: %s, %s, line %d\n\x00assertFcn != NULL\x00Box3D: %s\n\x00logFcn != NULL\x00ptr != NULL\x00( (uintptr_t)ptr & ( B3_ALIGNMENT - 1 ) ) == 0\x00newSize > oldSize\x00size > 0\x00../box3d-c/src/distance.c\x00points != NULL\x001 <= count && count <= 4\x00Should never get here!\x00!\"Should never get here!\"\x00simplex->count == 2\x00simplex->count == 3\x00simplex->count == 4\x00cache->count <= B3_MAX_SIMPLEX_VERTICES\x000 <= index1 && index1 < proxyA->count\x000 <= index2 && index2 < proxyB->count\x00backup.count != 0\x00target > tolerance\x00pointA[%d] = {%.9f, %.9f, %.9f}\x00radiusA = %.9f\x00pointB[%d] = {%.9f, %.9f, %.9f}\x00radiusB = %.9f\x00transform = {{%.9f, %.9f, %.9f}, {{%.9f, %.9f, %.9f}, %.9f}\x00t = {%.9f, %.9f, %.9f}\x00maxFraction = %.9f, canEncroach = %d\x00distanceOutput.distance > 0.0f\x00b3IsNormalized( distanceOutput.normal )\x001 <= vertexCount && vertexCount <= 3\x001 <= cache.count && cache.count <= 3\x00uniqueCountA == 2 && uniqueCountB == 2\x00indexA[0] != indexA[1]\x00indexB[0] != indexB[1]\x00axis.x != 0.0f || axis.y != 0.0f || axis.z != 0.0f\x00fcn->type == b3_separationEdges\x00function.type != b3_separationEdges\x00output.state != b3_toiStateUnknown\x00output.fraction >= 0.0f\x00lowerForce <= upperForce\x00../box3d-c/src/distance_joint.c\x00base->type == b3_distanceJoint\x000 <= ( idA ) && ( idA ) < ( world->bodies ).count\x000 <= ( idB ) && ( idB ) < ( world->bodies ).count\x00bodyA->setIndex == b3_awakeSet || bodyB->setIndex == b3_awakeSet\x000 <= ( bodyA->setIndex ) && ( bodyA->setIndex ) < ( world->solverSets ).count\x000 <= ( bodyB->setIndex ) && ( bodyB->setIndex ) < ( world->solverSets ).count\x000 <= ( localIndexA ) && ( localIndexA ) < ( setA->bodySims ).count\x000 <= ( localIndexB ) && ( localIndexB ) < ( setB->bodySims ).count\x00( pair & 1 ) == 0 && 2 <= pair && pair < tree->nodeEnd\x00../box3d-c/src/dynamic_tree.c\x00tree->proxyCount == tree->proxyCapacity\x000 <= proxyId && proxyId < tree->proxyCapacity\x000 < tree->proxyCount\x00lowerCost1 < FLT_MAX\x00lowerCost2 < FLT_MAX\x00b3IsLeaf( A ) == false\x000 <= leaf && leaf < tree->nodeEnd\x00b3IsLeaf( nodes + leaf ) && b3GetProxyId( nodes + leaf ) == proxyId\x00b3IsLeaf( node )\x00stackCount < B3_TREE_STACK_SIZE - 1\x00stackCount + 2 <= B3_TREE_STACK_SIZE\x00i1 == i2\x00pair + 2 <= tree->nodeCapacity\x00top < B3_TREE_STACK_SIZE - 1\x000 < leafCount && leafCount <= proxyCount\x00stackCount + 3 <= B3_TREE_STACK_SIZE\x00wb\x00rb\x00heightCount >= 4\x00../box3d-c/src/height_field.c\x00data->globalMinimumHeight <= data->globalMaximumHeight\x000 <= topCellIndex && topCellIndex < cellCount\x00i21 == index11\x00i22 == index12\x000 <= bottomCellIndex && bottomCellIndex < cellCount\x00i11 == index21\x00i12 == index22\x000 <= leftCellIndex && leftCellIndex < cellCount\x00i12 == index11\x00i22 == index21\x000 <= rightCellIndex && rightCellIndex < cellCount\x00i11 == index12\x00i21 == index22\x000 <= flags1 && flags1 <= UINT8_MAX\x000 <= flags2 && flags2 <= UINT8_MAX\x00triangleIndex == triangleCount\x000 <= row && row < hf->rowCount - 1 && 0 <= column && column < hf->columnCount - 1\x000 <= triangleIndex\x00triangleIndex < 2 * ( heightField->columnCount - 1 ) * ( heightField->rowCount - 1 )\x00quadIndex == cellIndex\x00b3GetHeightFieldMaterialIndices( heightField )[cellIndex] != B3_HEIGHT_FIELD_HOLE\x00absClampedDelta.x > 0.0f\x00absClampedDelta.z > 0.0f\x00cellIndex < cellCount\x000 <= alpha && alpha <= 1.0f\x00cellIndex < ( shape->rowCount - 1 ) * ( shape->columnCount - 1 )\x00cellIndex < ( heightField->rowCount - 1 ) * ( heightField->columnCount - 1 )\x00w\x00%d %d\n\x00%.9f %.9f %.9f\n\x00%.9f %.9f\n\x00%d\n\x00%.9f\n\x00r\x00%d %d\x00%f %f %f\x00%f %f\x00%d\x00%f\x00!b3QHList_Contains( node ) && b3QHList_Contains( where )\x00../box3d-c/src/hull.c\x00b3QHList_Contains( node )\x00b->vertexCount < b->vertexCapacity\x00b->edgeCount < b->edgeCapacity\x00b->faceCount < b->faceCapacity\x00abLengthSqr > 0.0f\x00face != twin->face\x00edge->face == face\x00edge != twin\x00face1 != face2\x00edge1 != edge2\x00twin->twin == edge\x00b->minRadius < b->minOutside + 3.0f * FLT_EPSILON\x00B3_LIST_EMPTY( &face->conflictListHead.link )\x00top < b->horizonStackCapacity\x00b->horizonCount < b->horizonCapacity\x00edge->twin->twin == edge\x00b->coneCount < b->coneCapacity\x00prev != next\x00prev->face == next->face\x00twin->face->mark != B3_MARK_DELETE\x00b->mergedFacesCount < b->mergedFacesCapacity\x00b->mergedFaces[i]->mark == B3_MARK_DELETE\x00B3_LIST_EMPTY( head )\x00edgePrev->twin == twinNext\x00twinNext->twin == edgePrev\x00edgePrev->face != twinNext->face\x00edgeNext->twin == twinPrev\x00twinPrev->twin == edgeNext\x00edgeNext->face != twinPrev->face\x00bestEdge != NULL\x00maxFace->mark == B3_MARK_VISIBLE\x00B3_LIST_EMPTY( &b->orphanedList.link )\x00b->horizonCount >= 3\x00b->coneCount >= 3\x000 <= bestIndex && bestIndex < vertexCount\x00height > 0.0f\x00radius > 0.0f\x003 <= sides && sides <= 32\x00hull->vertexCount == pointCount\x00hull->edgeCount == 6 * sides\x00hull->faceCount == sides + 2\x00radius1 > 0.0f\x00radius2 > 0.0f\x004 <= slices && slices <= 32\x00hull->edgeCount == 6 * slices\x00hull->faceCount == slices + 2\x00vertexCount > 0\x00edge1 != edge3\x00edge1->origin < hull->vertexCount\x00edge2->origin < hull->vertexCount\x00edge3->origin < hull->vertexCount\x00hull final vertex count of %d exceeds limit of %d\x00hull final face count of %d exceeds limit of %d\x00hull final half edge count of %d exceeds limit of %d\x00vertexCount < B3_HULL_MAX_COUNT\x00faceCount < B3_HULL_MAX_COUNT\x00edgeCount + 1 < B3_HULL_MAX_COUNT\x000 <= edge->next->finalIndex && edge->next->finalIndex <= UINT8_MAX\x000 <= edge->twin->finalIndex && edge->twin->finalIndex <= UINT8_MAX\x000 <= edge->face->finalIndex && edge->face->finalIndex <= UINT8_MAX\x000 <= edge->origin->finalIndex && edge->origin->finalIndex <= UINT8_MAX\x000 <= face->edge->finalIndex && face->edge->finalIndex <= UINT8_MAX\x00prevEdgeIndex != B3_NULL_INDEX\x00startEdge->face == i\x00startEdge->origin < vertexCount\x00twin->twin == currentEdgeIndex\x00area > 0.0f\x00b3IsValidTransform( transform )\x00b3IsValidFloat( minHalfWidth ) && minHalfWidth > 0.0f\x00target >= 3\x000 < ( pool->freeArray ).count\x00../box3d-c/src/id_pool.c\x00pool->nextIndex > 0\x000 <= id && id < pool->nextIndex\x00setIndex == b3_awakeSet || setIndex >= b3_firstSleepingSet\x00../box3d-c/src/island.c\x00world->islands.data[islandId].setIndex == B3_NULL_INDEX\x000 <= ( island->setIndex ) && ( island->setIndex ) < ( world->solverSets ).count\x000 <= localIndex && localIndex <= lastIndex\x00islandIdB != B3_NULL_INDEX\x00islandIdA != B3_NULL_INDEX\x000 <= ( islandIdA ) && ( islandIdA ) < ( world->islands ).count\x000 <= ( islandIdB ) && ( islandIdB ) < ( world->islands ).count\x000 <= ( link->contactId ) && ( link->contactId ) < ( world->contacts ).count\x000 <= ( link->jointId ) && ( link->jointId ) < ( world->joints ).count\x00contact->islandId == B3_NULL_INDEX\x00contact->islandIndex == B3_NULL_INDEX\x00( contact->flags & b3_contactTouchingFlag ) != 0\x00bodyA->setIndex != b3_staticSet || islandIdA == B3_NULL_INDEX\x00bodyB->setIndex != b3_staticSet || islandIdB == B3_NULL_INDEX\x00islandIdA != B3_NULL_INDEX || islandIdB != B3_NULL_INDEX\x00contact->islandId != B3_NULL_INDEX\x000 <= removeIndex && removeIndex < island->contacts.count\x00island->contacts.data[removeIndex].contactId == contact->contactId\x000 <= ( movedLink->contactId ) && ( movedLink->contactId ) < ( world->contacts ).count\x00movedContact->islandIndex == movedIndex\x00joint->islandIndex == B3_NULL_INDEX\x00bodyA->type == b3_dynamicBody || bodyB->type == b3_dynamicBody\x000 <= removeIndex && removeIndex < island->joints.count\x00island->joints.data[removeIndex].jointId == joint->jointId\x000 <= ( movedLink->jointId ) && ( movedLink->jointId ) < ( world->joints ).count\x00movedJoint->islandIndex == movedIndex\x000 <= ( baseId ) && ( baseId ) < ( world->islands ).count\x00baseIsland->constraintRemoveCount > 0\x00baseIsland->setIndex == b3_awakeSet\x00parents\x00contact counts\x00joint counts\x00ranks\x00root map\x00component body counts\x00component contact counts\x00component joint counts\x00islandCount == componentCount\x00island ids\x000 <= ( newIslandId ) && ( newIslandId ) < ( world->islands ).count\x000 <= ( link->bodyIdA ) && ( link->bodyIdA ) < ( world->bodies ).count\x000 <= ( link->bodyIdB ) && ( link->bodyIdB ) < ( world->bodies ).count\x000 <= ( targetIslandId ) && ( targetIslandId ) < ( world->islands ).count\x00world->splitIslandId != B3_NULL_INDEX\x000 <= ( id ) && ( id ) < ( world->joints ).count\x00../box3d-c/src/joint.c\x00joint->jointId == id && joint->generation == jointId.generation\x000 <= joint->colorIndex && joint->colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( color->jointSims ).count\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( set->jointSims ).count\x00joint->type == type\x00jointSim->type == type\x00b3IsValidTransform( def->localFrameA )\x00b3IsValidTransform( def->localFrameB )\x00world->worldId == def->bodyIdA.world0\x00world->worldId == def->bodyIdB.world0\x00B3_ID_EQUALS( def->bodyIdA, def->bodyIdB ) == false\x000 <= ( bodyA->headJointKey >> 1 ) && ( bodyA->headJointKey >> 1 ) < ( world->joints ).count\x000 <= ( bodyB->headJointKey >> 1 ) && ( bodyB->headJointKey >> 1 ) < ( world->joints ).count\x00bodyA->setIndex >= b3_firstSleepingSet || bodyB->setIndex >= b3_firstSleepingSet\x00bodyA->setIndex == bodyB->setIndex\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( mergedSet->jointSims ).count\x00joint->setIndex == setIndex\x00b3IsValidFloat( def->forceThreshold ) && def->forceThreshold >= 0.0f\x00b3IsValidFloat( def->torqueThreshold ) && def->torqueThreshold >= 0.0f\x00jointSim->jointId == jointId\x00jointSim->bodyIdA == bodyIdA\x00jointSim->bodyIdB == bodyIdB\x00b3IsValidFloat( hertz ) && hertz >= 0.0f\x00b3IsValidFloat( dampingRatio ) && dampingRatio >= 0.0f\x00b3IsValidFloat( threshold ) && threshold >= 0.0f\x00def->base.internalValue == B3_SECRET_COOKIE\x00b3IsValidFloat( def->length ) && def->length > 0.0f\x00def->lowerSpringForce <= def->upperSpringForce\x00b3IsValidFloat( def->hertz ) && def->hertz >= 0.0f\x00b3IsValidFloat( def->dampingRatio ) && def->dampingRatio >= 0.0f\x00b3IsValidFloat( def->maxTorque ) && def->maxTorque >= 0.0f\x00def->lowerTranslation <= def->upperTranslation\x000.0f <= def->coneAngle && def->coneAngle <= 0.99f * B3_PI\x00b3IsValidQuat( def->targetRotation )\x000.0f <= def->angularHertz\x000.0f <= def->angularDampingRatio\x000.0f <= def->linearHertz\x000.0f <= def->linearDampingRatio\x00def->lowerSuspensionLimit <= def->upperSuspensionLimit\x000 <= ( edgeA->prevKey >> 1 ) && ( edgeA->prevKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeA->nextKey >> 1 ) && ( edgeA->nextKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeB->prevKey >> 1 ) && ( edgeB->prevKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeB->nextKey >> 1 ) && ( edgeB->nextKey >> 1 ) < ( world->joints ).count\x00joint->setIndex > b3_disabledSet\x00joint->setIndex <= b3_disabledSet\x00b3IsValidTransform( localFrame )\x00-B3_PI <= twist && twist <= B3_PI\x000.0f <= swing && swing <= B3_PI\x00f = %g, t = %g\x000 <= vertexIndex && vertexIndex < hull->vertexCount\x00../box3d-c/src/manifold.c\x00vertex\x00edge->origin == vertexIndex\x00minEdgeIndex >= 0\x000 <= index1 && index1 <= UINT8_MAX\x000 <= index2 && index2 <= UINT8_MAX\x00pair.owner1 == 0 || pair.owner1 == 1\x00pair.owner2 == 0 || pair.owner2 == 1\x00count >= 3\x00b3IsNormalized( v1 )\x00../box3d-c/src/math_functions.c\x00b3IsNormalized( v2 )\x00!b3IsLeaf( node )\x00../box3d-c/src/mesh.c\x00h->cellSize > 0.0f\x00currentIndex < h->vertexCount\x00existingIndex < currentIndex\x00existingIndex < h->vertexCount\x000 <= srcIndex && srcIndex < vertexCount\x000 <= index && index < B3_BIN_COUNT\x00leftCount + rightCount == count\x00splitIndex == split.index\x00count > 2\x000 <= i1 && i1 < count\x00leftIndex - index == 1 && rightIndex - index > 1\x000 <= ( index ) && ( index ) < ( *nodes ).count\x00offset == tempTriangles.count\x00tempTriangles.count == mesh->triangleCount\x00tempMaterialIndices.count == mesh->triangleCount\x00otherIndex < i\x00edge->triangleEdgeIndex1 < 3\x00edge->triangleEdgeIndex2 < 3\x000 <= materialCount && materialCount <= UINT8_MAX\x00index == vertexCount\x00index1 < vertexCount\x00index2 < vertexCount\x00index3 < vertexCount\x00index4 < vertexCount\x00index == 3 * triangleCount\x00vertexCount <= def->vertexCount\x000 <= index1 && index1 < vertexCount\x000 <= index2 && index2 < vertexCount\x000 <= index3 && index3 < vertexCount\x00proxy->count > 0\x00count <= B3_MESH_STACK_SIZE - 1\x00shapeA->type == b3_meshShape || shapeA->type == b3_heightShape\x00../box3d-c/src/mesh_contact.c\x000 <= contact->meshContact.triangleCache.data[i].triangleIndex && contact->meshContact.triangleCache.data[i].triangleIndex < shapeA->mesh.data->triangleCount\x00shapeA->type == b3_heightShape\x00WARNING: complex mesh detected, triangle buffer capacity of %d reached\x00count2 <= B3_MAX_MANIFOLD_POINTS\x000 <= index && index < count1\x000 <= ( workerIndex ) && ( workerIndex ) < ( world->taskContexts ).count\x000 <= triangleIndex && triangleIndex < mesh->data->triangleCount\x00../box3d-c/src/shape.h\x00manifold->feature != b3_featureNone\x00acceptedManifoldCount <= triangleCount\x00tentativeManifoldCount <= triangleCount\x00tentativeTriangleCount <= triangleCount\x000 <= clusterIndex && clusterIndex < clusterCount\x00cm->pointCount < cm->pointCapacity\x00cm->pointCount == cm->pointCapacity\x000 < pointCount && pointCount <= B3_MAX_MANIFOLD_POINTS\x00b3IsValidFloat( contact->friction ) && contact->friction >= 0.0f\x00b3IsValidFloat( contact->restitution ) && contact->restitution >= 0.0f\x00base->type == b3_motorJoint\x00../box3d-c/src/motor_joint.c\x00Hash collision on %s\x000 <= ( index ) && ( index ) < ( cache->entries ).count\x00../box3d-c/src/name_cache.c\x00minRange > 0\x00../box3d-c/src/parallel_for.c\x000 < workerCount && workerCount <= B3_MAX_WORKERS\x00blockCount >= 1\x00blockSize * blockCount >= itemCount\x00../box3d-c/src/parallel_joint.c\x00b3IsValidFloat( maxForce ) && maxForce >= 0.0f\x00base->type == b3_parallelJoint\x000 <= ( base->bodyIdA ) && ( base->bodyIdA ) < ( world->bodies ).count\x000 <= ( base->bodyIdB ) && ( base->bodyIdB ) < ( world->bodies ).count\x00clone != NULL\x00../box3d-c/src/physics_world.c\x00b3HullMap_is_end( itr ) == false\x001 <= id.index1 && id.index1 <= B3_MAX_WORLDS\x00id.index1 == world->worldId + 1\x00id.generation == world->generation\x000 <= index && index < B3_MAX_WORLDS\x00world->worldId == index\x00B3_LINEAR_SLOP <= B3_MESH_REST_OFFSET\x00B3_MESH_REST_OFFSET < B3_SPECULATIVE_DISTANCE\x00B3_MAX_WORLDS of %d exceeded!!!\x00worldId != B3_NULL_INDEX\x00world->solverSets.data[b3_staticSet].setIndex == b3_staticSet\x00world->solverSets.data[b3_disabledSet].setIndex == b3_disabledSet\x00world->solverSets.data[b3_awakeSet].setIndex == b3_awakeSet\x00b3HullMap_size( (b3HullMap*)world->hullDatabase ) == 0\x00startIndex < endIndex\x00contactIndex < world->contacts.count\x00contact->colorIndex != B3_NULL_INDEX\x000 <= contact->colorIndex && contact->colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( contact->localIndex ) && ( contact->localIndex ) < ( color->contacts ).count\x00movedContact->setIndex == setIndex\x00movedContact->colorIndex == B3_NULL_INDEX\x00world->workerCount > 0\x00contact indices\x00contactIndex == touchingCount\x00collide\x00contact->colorIndex == B3_NULL_INDEX\x00contact->manifoldCount == 0\x00world->stack.allocation == 0\x00world->activeTaskCount == 0\x00shape->id == shapeId\x000 <= ( shape->bodyId ) && ( shape->bodyId ) < ( world->bodies ).count\x00b3IsValidAABB( draw->drawingBounds )\x00%.2f\x00  %.3f\x000 <= ( contact->edges[0].bodyId ) && ( contact->edges[0].bodyId ) < ( world->bodies ).count\x000 <= ( contact->edges[1].bodyId ) && ( contact->edges[1].bodyId ) < ( world->bodies ).count\x00manifold->pointCount > 0\x00   %.2f\x00  %.1f\x00   %#X\x000 <= ( islandBodyId ) && ( islandBodyId ) < ( world->bodies ).count\x00   %d, %.2f\x00body->localIndex != B3_NULL_INDEX\x00joint->jointId == jointId\x000 <= ( i ) && ( i ) < ( world->solverSets ).count\x00b3IsValidFloat( maximumLinearSpeed ) && maximumLinearSpeed > 0.0f\x00b3IsValidFloat( tolerance )\x00id pools\x00body ids: %d\x00solver set ids: %d\x00joint ids: %d\x00contact ids: %d\x00island ids: %d\x00shape ids: %d\x00world arrays\x00bodies: %d\x00solver sets: %d\x00joints: %d\x00contacts: %d\x00islands: %d\x00island links: %d\x00shapes: %d\x00sensors: %d\x00owned arrays\x00sensor overlaps: %d\x00hulls\x00database: %d (%d, %d)\x00hull data: %d\x00broad-phase\x00static tree: %d\x00kinematic tree: %d\x00dynamic tree: %d\x00pairSet: %d (%d, %d)\x00manifold allocators\x00allocator array: %d\x00blocks: %d\x00solver sets\x00body sim: %d\x00body state: %d\x00joint sim: %d\x00contact sim: %d\x00island sim: %d\x00constraint graph\x00body bit sets: %d\x00task contexts\x00worker: %d\x00sensor: %d\x00events: %d\x00debug draw: %d\x00stack allocator: %d\x00total: %u KB\x00b3IsValidAABB( aabb )\x00b3IsValidPosition( origin )\x00output.fraction <= input->maxFraction\x00b3IsValidVec3( translation )\x00body->type == b3_dynamicBody\x00b3IsValidFloat( radius ) && radius >= 0.0f\x00b3IsValidFloat( falloff ) && falloff >= 0.0f\x00b3IsValidFloat( impulsePerArea )\x00b3IsValidFloat( lower ) && b3IsValidFloat( upper )\x00../box3d-c/src/prismatic_joint.c\x00b3IsValidFloat( targetTranslation )\x00b3IsValidFloat( motorSpeed )\x00base->type == b3_prismaticJoint\x00b3IsValidVec3( vA )\x00b3IsValidVec3( wA )\x00b3IsValidVec3( vB )\x00b3IsValidVec3( wB )\x00offset >= 0 && offset + 4 <= buf->size\x00../box3d-c/src/recording.c\x00payloadSize >= 0 && payloadSize < ( 1 << 24 )\x00byteCount > 0\x00b3ReplayFile: %s id mismatch (rec index1=%d gen=%u, got index1=%d gen=%u)\n\x00body\x00shape\x00joint\x00b3ReplayFile: hull geometryId %u is invalid\n\x00b3ReplayFile: mesh geometryId %u is invalid\n\x00b3ReplayFile: heightfield geometryId %u is invalid\n\x00b3ReplayFile: compound geometryId %u is invalid\n\x00b3ReplayFile: StateHash mismatch (recorded=0x%lx, computed=0x%lx)\n\x00b3ReplayFile: unknown opcode 0x%02X, skipping %u bytes\n\x00b3ReplayFile: registry block out of bounds\n\x00b3ReplayFile: registry too small\n\x00b3ReplayFile: registry count out of range\n\x00b3ReplayFile: registry truncated at entry %u\n\x00has an invalid byte count\x00bytes out of bounds\x00is not a valid compound\x00b3ReplayFile: registry entry %u %s\n\x00id == (uint32_t)i\x00../box3d-c/src/replay.c\x00player->keyframeRec->registry.entries.count == regCountBefore\x00b3RecPlayer_Create: recording too small\n\x00b3RecPlayer_Create: bad magic 0x%08X\n\x00b3RecPlayer_Create: version mismatch %u.%u vs %u.%u\n\x00b3RecPlayer_Create: pointer width mismatch %u vs %u\n\x00b3RecPlayer_Create: big-endian recording not supported\n\x00b3RecPlayer_Create: missing snapshot seed\n\x00b3RecPlayer_Create: corrupt offsets\n\x00b3RecPlayer_Create: snapshot deserialization failed\n\x00player->atPreStep == false\x00%.40s (%lu)\x00%.40s\x00#%lu\x00b3IsValidFloat( lowerLimitRadians ) && b3IsValidFloat( upperLimitRadians )\x00../box3d-c/src/revolute_joint.c\x00b3IsValidFloat( targetRadians ) && -B3_PI <= targetRadians && targetRadians <= B3_PI\x00base->type == b3_revoluteJoint\x00../box3d-c/src/scheduler.c\x00box3d_worker_%02d\x00slot < B3_MAX_TASKS\x00../box3d-c/src/sensor.c\x00(int)workerIndex < world->workerCount\x000 <= ( sensorIndex ) && ( sensorIndex ) < ( world->sensors ).count\x000 <= ( sensor->shapeId ) && ( sensor->shapeId ) < ( world->shapes ).count\x000 <= ( sensorShape->bodyId ) && ( sensorShape->bodyId ) < ( world->bodies ).count\x00sensorShape->sensorIndex == sensorIndex\x00sensors\x000 <= ( sensorShape->sensorIndex ) && ( sensorShape->sensorIndex ) < ( world->sensors ).count\x000 <= ( movedSensor->shapeId ) && ( movedSensor->shapeId ) < ( world->shapes ).count\x000 <= ( id ) && ( id ) < ( world->shapes ).count\x00../box3d-c/src/shape.c\x00shape->id == id && shape->generation == shapeId.generation\x00world->shapes.data[shapeId].id == B3_NULL_INDEX\x00world->fatAABBs.count == world->shapes.count\x00body->type == b3_staticBody\x00def->isSensor == false\x00b3IsValidFloat( def->density ) && def->density >= 0.0f\x00b3IsValidFloat( def->baseMaterial.friction ) && def->baseMaterial.friction >= 0.0f\x00b3IsValidFloat( def->baseMaterial.restitution ) && def->baseMaterial.restitution >= 0.0f\x00hull->version == B3_HULL_VERSION\x00hull->hash != 0\x000 <= ( shapeId.index1 - 1 ) && ( shapeId.index1 - 1 ) < ( world->shapes ).count\x00mesh->version == B3_MESH_VERSION\x00mesh->hash != 0\x00heightField->version == B3_HEIGHT_FIELD_VERSION\x00heightField->hash != 0\x00compound->version == B3_COMPOUND_VERSION\x000 <= ( shape->prevShapeId ) && ( shape->prevShapeId ) < ( world->shapes ).count\x000 <= ( shape->sensorIndex ) && ( shape->sensorIndex ) < ( world->sensors ).count\x000.0f <= time && time <= 1.0f\x00shape->proxyKey == B3_NULL_INDEX\x00B3_PROXY_TYPE( shape->proxyKey ) < b3_bodyTypeCount\x00shape->materialCount > 0\x00b3IsValidFloat( density ) && density >= 0.0f\x00b3IsValidFloat( friction ) && friction >= 0.0f\x00b3IsValidFloat( restitution ) && restitution >= 0.0f\x00b3IsValidFloat( surfaceMaterial.friction ) && surfaceMaterial.friction >= 0.0f\x00b3IsValidFloat( surfaceMaterial.restitution ) && surfaceMaterial.restitution >= 0.0f\x00b3IsValidFloat( surfaceMaterial.rollingResistance ) && surfaceMaterial.rollingResistance >= 0.0f\x00b3IsValidVec3( surfaceMaterial.tangentVelocity )\x000 <= index && index < shape->materialCount\x00shape->type == b3_sphereShape\x00shape->type == b3_capsuleShape\x00shape->type == b3_hullShape\x00shape->type == b3_meshShape\x00shape->type == b3_heightShape\x00shape->type == b3_compoundShape\x00b3IsValidVec3( scale )\x00meshData != NULL && b3IsValidMesh( meshData )\x00edge1->origin < shape->hull->vertexCount\x00edge2->origin < shape->hull->vertexCount\x00edge3->origin < shape->hull->vertexCount\x00shapeB->type != b3_compoundShape && shapeB->type != b3_meshShape && shapeB->type != b3_heightShape\x000 <= meshMaterialIndex && meshMaterialIndex < child.materialCount\x00width == 0 || width == 4 || width == 8\x00../box3d-c/src/simd.c\x000 <= index - colorStart && index - colorStart < spans[colorIndex].count\x00../box3d-c/src/solver.c\x000 <= block.startIndex && block.startIndex + block.count <= color->jointSims.count\x00fastShape->sensorIndex == B3_NULL_INDEX\x00body->type == b3_staticBody || ( fastBodySim->flags & b3_isBullet )\x000 <= ( fastBodySim->bodyId ) && ( fastBodySim->bodyId ) < ( world->bodies ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( awakeSet->bodySims ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( awakeSet->bodyStates ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( world->bodyMoveEvents ).count\x00endIndex <= world->bodyMoveEvents.count\x00NULL\x00unstable: %s\x00b3IsValidVec3( v )\x00b3IsValidVec3( w )\x00( body->flags & b3_dirtyMass ) == 0\x00dim.count >= 1\x00dim.size * dim.count >= itemCount\x00itemCount >= dim.count\x00blockSize <= UINT16_MAX\x000 <= startIndex && startIndex < blockCount\x00completedCount < blockCount\x00syncIndex > 0\x00stages[stageIndex].type == b3_stagePrepareJoints\x00stages[stageIndex].type == b3_stagePrepareWideContacts\x00stages[stageIndex].type == b3_stagePrepareContacts\x00stages[iterationStageIndex].type == b3_stageIntegrateVelocities\x00stages[iterationStageIndex].type == b3_stageWarmStart\x00stages[iterationStageIndex].type == b3_stageSolve\x00stages[iterationStageIndex].type == b3_stageIntegratePositions\x00stages[iterationStageIndex].type == b3_stageRelax\x00stages[iterationStageIndex].type == b3_stageRestitution\x00stages[stageIndex].type == b3_stageStoreWideImpulses\x00stages[stageIndex].type == b3_stageStoreImpulses\x00stageIndex == context->stageCount\x00stageIndex < context->stageCount\x000 <= ( workerIndex ) && ( workerIndex ) < ( stepContext->world->taskContexts ).count\x00startIndex <= endIndex\x00bullet bodies\x00wide contacts\x00mesh lane order\x00mesh manifold starts\x00mesh buckets\x00orderBase == meshContactCount\x00groupBase == meshGroupCount\x00wide mesh constraints\x00overflow contacts\x00overflow manifolds\x00wideBase == wideContactCount\x00contactBase == meshContactCount\x00meshGroupBase == meshGroupCount\x00jointBase == jointCount\x00stages\x00body blocks\x00convex blocks\x00mesh blocks\x00joint blocks\x00graph blocks\x00split\x00(ptrdiff_t)( baseGraphBlock - graphBlocks ) == graphBlockCount\x00(int)( stage - stages ) == stageCount\x00workerCount <= B3_MAX_WORKERS\x000 <= ( i ) && ( i ) < ( world->taskContexts ).count\x00solve[%d]\x00ccd\x00jointId < world->joints.capacity\x00joint->setIndex == b3_awakeSet\x00world->contactHitEvents.count == 0\x00contact->setIndex == b3_awakeSet && contact->colorIndex != B3_NULL_INDEX\x00bullets\x000 <= bodyId && bodyId < world->bodies.count\x00workerCount == world->taskContexts.count\x000 <= ( hit.sensorId ) && ( hit.sensorId ) < ( world->shapes ).count\x000 <= ( hit.visitorId ) && ( hit.visitorId ) < ( world->shapes ).count\x00world->splitIslandId == B3_NULL_INDEX\x00taskContext->splitSleepTime > 0.0f\x00../box3d-c/src/solver_set.c\x00setIndex >= b3_firstSleepingSet\x00body->setIndex == setIndex\x00contact->setIndex == b3_awakeSet || contact->setIndex == setIndex\x000 <= localIndex && localIndex < disabledSet->contactIndices.count\x00disabledSet->contactIndices.data[localIndex] == contactId\x00( contact->flags & b3_contactTouchingFlag ) == 0 && contact->manifoldCount == 0\x00movedContact->localIndex == movedLocalIndex\x000 <= ( contactIndex ) && ( contactIndex ) < ( world->contacts ).count\x00contact->flags & b3_simTouchingFlag\x00contact->setIndex == setIndex\x000 <= ( jointSim->jointId ) && ( jointSim->jointId ) < ( world->joints ).count\x000 <= ( islandSrc->islandId ) && ( islandSrc->islandId ) < ( world->islands ).count\x00island->setIndex == b3_awakeSet\x000 <= ( sleepSetId ) && ( sleepSetId ) < ( world->solverSets ).count\x000 <= island->localIndex && island->localIndex < awakeSet->islandSims.count\x00body->islandId == islandId\x00body->islandIndex == i\x000 <= ( body->bodyMoveIndex ) && ( body->bodyMoveIndex ) < ( world->bodyMoveEvents ).count\x00moveEvent->bodyId.index1 - 1 == bodyId\x00moveEvent->bodyId.generation == body->generation\x000 <= ( awakeBodyIndex ) && ( awakeBodyIndex ) < ( awakeSet->bodySims ).count\x00awakeSet->contactIndices.data[localIndex] == contactId\x00( contact->flags & b3_contactTouchingFlag ) == 0\x00contact->islandId == islandId\x00contact->islandIndex == i\x00joint->islandId == islandId\x00joint->islandIndex == i\x000 <= ( localIndex ) && ( localIndex ) < ( color->jointSims ).count\x000 <= ( movedIslandId ) && ( movedIslandId ) < ( world->islands ).count\x00movedIsland->localIndex == movedIslandIndex\x00setId1 >= b3_firstSleepingSet\x00setId2 >= b3_firstSleepingSet\x000 <= ( setId1 ) && ( setId1 ) < ( world->solverSets ).count\x000 <= ( setId2 ) && ( setId2 ) < ( world->solverSets ).count\x00body->setIndex == setId2\x00contact->setIndex == setId2\x000 <= ( jointSrc->jointId ) && ( jointSrc->jointId ) < ( world->joints ).count\x00joint->setIndex == setId2\x00body->headContactKey == B3_NULL_INDEX\x000 <= ( sourceIndex ) && ( sourceIndex ) < ( sourceSet->bodySims ).count\x00colorIndex == B3_NULL_INDEX\x000 <= ( localIndex ) && ( localIndex ) < ( sourceSet->jointSims ).count\x00../box3d-c/src/sphere.c\x00sphere input fraction = %g, output fraction = %g\x00b3IsValidFloat( angleRadians ) && 0 <= angleRadians && angleRadians <= 0.5f * B3_PI\x00../box3d-c/src/spherical_joint.c\x00b3IsValidQuat( targetRotation )\x00b3IsValidVec3( motorVelocity )\x00base->type == b3_sphericalJoint\x00items[index].hash == 0\x00../box3d-c/src/table.c\x00set->count == oldCount\x00key != 0\x00hash == b3KeyHash( key )\x00hash != 0\x00set->items[index].hash == hash && set->items[index].key == key\x00set->count > 0\x000 < count && count < 4\x00../box3d-c/src/triangle_manifold.c\x00cache->indexA[i] < 3\x00manifold->pointCount == 0\x000 <= query.indexA && query.indexA < 3\x00edge->twin == i + 1 && twin->twin == i\x00pointCount >= 3\x00pointCount <= 2 * B3_MAX_CLIP_POINTS\x00cache->indexA == 0\x00cache->indexA < 3\x00cache->indexB < hullB->edgeCount - 1\x00cache->type == b3_invalidAxis\x000 <= edgeQuery.indexA && edgeQuery.indexA < 3\x000 < simplexCache.count && simplexCache.count <= 3\x00../box3d-c/src/weld_joint.c\x00base->type == b3_weldJoint\x00lower <= upper\x00../box3d-c/src/wheel_joint.c\x00lowerRadians <= upperRadians\x00base->type == b3_wheelJoint\x000 <= ( contactIds[contactIndex] ) && ( contactIds[contactIndex] ) < ( world->contacts ).count\x00../box3d-c/src/contact_solver_wide.inl\x00contacts[lane]->manifoldCount == 1\x000 <= ( spec->contactId ) && ( spec->contactId ) < ( world->contacts ).count\x00contact->contactId == spec->contactId\x00contact->manifoldCount == spec->manifoldCount\x00laneManifoldCount == contact->manifoldCount && laneManifoldCount <= manifoldCount\x00pointCount <= cm->pointCount\x00../box3d-c/src/world_snapshot.c\x00b3DeserializeIntoShell: bad magic/version\n\x00b3DeserializeIntoShell: precision mismatch\n\x00b3DeserializeIntoShell: layout hash mismatch\n\x00b3IsNormalized( axis )\x00pelvis\x00spine_01\x00spine_03\x00neck_01\x00thigh_l\x00calf_l\x00thigh_r\x00calf_r\x00upperarm_l\x00lowerarm_l\x00upperarm_r\x00lowerarm_r\x00"
+var __ccgo_ts1 = "capacity >= 0\x00../box3d-c/src/arena_allocator.c\x00false\x00( (uintptr_t)entry.data & ( B3_ALIGNMENT - 1 ) ) == 0\x00entryCount > 0\x00mem == entry->data\x00stack->allocation == 0\x00blockCount > bitSet->blockCount\x00../box3d-c/src/bitset.c\x00bitSet->bits != NULL\x00setA->blockCount == setB->blockCount\x00elementSize >= (int)sizeof( void* )\x00../box3d-c/src/block_allocator.c\x00allocator != NULL\x00element != NULL\x00allocator->allocationCount > 0\x00( (uintptr_t)element & ( B3_BLOCK_ALIGNMENT - 1 ) ) == 0\x00b3Body_IsValid( bodyId )\x00../box3d-c/src/body.c\x000 <= ( bodyId.index1 - 1 ) && ( bodyId.index1 - 1 ) < ( world->bodies ).count\x000 <= ( body->setIndex ) && ( body->setIndex ) < ( world->solverSets ).count\x000 <= ( body->localIndex ) && ( body->localIndex ) < ( set->bodySims ).count\x000 <= ( bodyId ) && ( bodyId ) < ( world->bodies ).count\x000 <= ( b3_awakeSet ) && ( b3_awakeSet ) < ( world->solverSets ).count\x000 <= ( body->localIndex ) && ( body->localIndex ) < ( set->bodyStates ).count\x000 <= ( contactId ) && ( contactId ) < ( world->contacts ).count\x00body->islandId == B3_NULL_INDEX\x00setIndex != b3_disabledSet\x00body->islandIndex == B3_NULL_INDEX\x000 <= ( islandId ) && ( islandId ) < ( world->islands ).count\x00island->contacts.count == 0\x00island->joints.count == 0\x00def->internalValue == B3_SECRET_COOKIE\x00b3IsValidPosition( def->position )\x00b3IsValidQuat( def->rotation )\x00b3IsValidVec3( def->linearVelocity )\x00b3IsValidVec3( def->angularVelocity )\x00b3IsValidFloat( def->linearDamping ) && def->linearDamping >= 0.0f\x00b3IsValidFloat( def->angularDamping ) && def->angularDamping >= 0.0f\x00b3IsValidFloat( def->sleepThreshold ) && def->sleepThreshold >= 0.0f\x00b3IsValidFloat( def->safetyFactor ) && def->safetyFactor >= 0.0f\x00b3IsValidFloat( def->gravityScale )\x00world->solverSets.data[setId].setIndex == B3_NULL_INDEX\x000 <= setId && setId < world->solverSets.count\x000 <= ( setId ) && ( setId ) < ( world->solverSets ).count\x00world->bodies.data[bodyId].id == B3_NULL_INDEX\x00world->locked == false\x000 <= ( jointId ) && ( jointId ) < ( world->joints ).count\x000 <= ( shapeId ) && ( shapeId ) < ( world->shapes ).count\x00world->compoundShapeCount > 0\x00Array index out of bounds\x000 <= index && index < *count && \"Array index out of bounds\"\x00../box3d-c/src/container.h\x000 <= ( movedId ) && ( movedId ) < ( world->bodies ).count\x00movedBody->localIndex == movedIndex\x00result == movedIndex\x000 <= ( contact->shapeIdA ) && ( contact->shapeIdA ) < ( world->shapes ).count\x000 <= ( contact->shapeIdB ) && ( contact->shapeIdB ) < ( world->shapes ).count\x00index <= capacity\x000 <= ( body->headShapeId ) && ( body->headShapeId ) < ( world->shapes ).count\x000 <= ( shape->nextShapeId ) && ( shape->nextShapeId ) < ( world->shapes ).count\x00mass data\x00det >= 0.0f\x00b3IsValidPosition( position )\x00b3IsValidQuat( rotation )\x00b3IsValidVec3( linearVelocity )\x00b3IsValidVec3( angularVelocity )\x00b3IsValidWorldTransform( target )\x00body->setIndex == b3_awakeSet\x00b3IsValidVec3( force )\x00b3IsValidVec3( torque )\x00b3IsValidVec3( impulse )\x00b3IsValidPosition( point )\x000 <= ( localIndex ) && ( localIndex ) < ( set->bodyStates ).count\x000 <= ( localIndex ) && ( localIndex ) < ( set->bodySims ).count\x000 <= ( id ) && ( id ) < ( world->bodies ).count\x00body->generation == bodyId.generation\x000 <= ( b3_staticSet ) && ( b3_staticSet ) < ( world->solverSets ).count\x000 <= ( joint->edges[0].bodyId ) && ( joint->edges[0].bodyId ) < ( world->bodies ).count\x000 <= ( joint->edges[1].bodyId ) && ( joint->edges[1].bodyId ) < ( world->bodies ).count\x000 <= ( joint->setIndex ) && ( joint->setIndex ) < ( world->solverSets ).count\x00joint->setIndex == b3_staticSet\x00bodyA->setIndex == b3_staticSet || bodyA->setIndex == b3_awakeSet\x00bodyB->setIndex == b3_staticSet || bodyB->setIndex == b3_awakeSet\x00shape->type != b3_compoundShape\x000 <= ( otherBodyId ) && ( otherBodyId ) < ( world->bodies ).count\x00\x00b3IsValidFloat( massData.mass ) && massData.mass >= 0.0f\x00b3IsValidMatrix3( massData.inertia )\x00b3IsValidVec3( massData.center )\x00b3IsValidFloat( linearDamping ) && linearDamping >= 0.0f\x00b3IsValidFloat( angularDamping ) && angularDamping >= 0.0f\x00b3IsValidFloat( gravityScale )\x000 <= ( body->islandId ) && ( body->islandId ) < ( world->islands ).count\x00b3IsValidFloat( safetyFactor ) && safetyFactor >= 0.0f\x000 <= ( b3_disabledSet ) && ( b3_disabledSet ) < ( world->solverSets ).count\x00joint->setIndex == set->setIndex || set->setIndex == b3_staticSet || joint->setIndex == b3_staticSet\x00joint->setIndex == b3_disabledSet\x00joint->islandId == B3_NULL_INDEX\x000 <= ( jointSetId ) && ( jointSetId ) < ( world->solverSets ).count\x000 <= proxyType && proxyType < b3_bodyTypeCount\x00../box3d-c/src/broad_phase.c\x000 <= ( shapeIdA ) && ( shapeIdA ) < ( world->shapes ).count\x000 <= ( shapeIdB ) && ( shapeIdB ) < ( world->shapes ).count\x000 <= ( bodyIdA ) && ( bodyIdA ) < ( world->bodies ).count\x000 <= ( bodyIdB ) && ( bodyIdB ) < ( world->bodies ).count\x000 <= ( compoundShapeId ) && ( compoundShapeId ) < ( world->shapes ).count\x000 <= ( otherShapeId ) && ( otherShapeId ) < ( world->shapes ).count\x00otherProxyKey != B3_NULL_INDEX\x00compoundB == false\x00stackCount < B3_TREE_STACK_SIZE\x00*stackCount < B3_TREE_STACK_SIZE\x00rebuild tree\x00moved pairs\x00staticSeedCount <= B3_CROSS_SEED_COUNT\x00kinematicSeedCount <= B3_CROSS_SEED_COUNT\x00cross pairs\x00self pairs\x00pair keys\x00keyCount == pairCount\x00b3IsValidRay( input )\x00../box3d-c/src/capsule.c\x000 <= index && index < compound->capsuleCount && compound->capsuleOffset > 0\x00../box3d-c/src/compound.c\x000 <= index && index < compound->hullCount && compound->hullOffset > 0\x00hullOffset >= compound->hullOffset + compound->hullCount * sizeof( b3HullInstance )\x000 <= index && index < compound->meshCount && compound->meshOffset > 0\x00meshOffset >= compound->meshOffset + compound->meshCount * sizeof( b3HullInstance )\x000 <= index && index < compound->sphereCount && compound->sphereOffset > 0\x00compound->capsuleOffset > 0\x00compound->hullOffset > 0\x000 <= childIndex && childIndex < compound->sphereCount\x00compound->sphereOffset > 0\x00material->padding == 0\x00mat1->padding == 0 && mat2->padding == 0\x00def->meshes[i].materialCount > 0\x00meshData->materialCount == meshDef->materialCount\x00materialCount <= materialCapacity\x00materialCount <= UINT16_MAX\x00tree.proxyCount > 0\x00materialCount > 0\x000 <= sharedIndex && sharedIndex < sharedHullCount\x000 <= sharedIndex && sharedIndex < sharedMeshCount\x000 < proxy->count && proxy->count <= B3_MAX_SHAPE_CAST_POINTS\x000 <= output.materialIndex && output.materialIndex < child.materialCount\x00count > 0\x00../box3d-c/include/box3d/math_functions.h\x00capacity > 0\x000 <= planes[i].materialIndex && planes[i].materialIndex < child.materialCount\x000 <= index && index < B3_GRAPH_COLOR_COUNT\x00../box3d-c/src/constraint_graph.c\x00i != B3_OVERFLOW_INDEX || color->bodySet.bits == NULL\x00contact->manifoldCount > 0\x00contact->flags & b3_contactTouchingFlag\x00typeA == b3_dynamicBody || typeB == b3_dynamicBody\x00contact->manifoldCount < UINT16_MAX\x000 <= colorIndex && colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( movedContactId ) && ( movedContactId ) < ( world->contacts ).count\x00movedContact->setIndex == b3_awakeSet\x00movedContact->colorIndex == colorIndex\x00movedContact->localIndex == movedIndex\x00( movedContact->flags & b3_simMeshContact ) == 0\x000 <= ( movedId ) && ( movedId ) < ( world->joints ).count\x00movedJoint->setIndex == b3_awakeSet\x00movedJoint->colorIndex == colorIndex\x00movedJoint->localIndex == movedIndex\x000 <= ( id ) && ( id ) < ( world->contacts ).count\x00../box3d-c/src/contact.c\x00contact->contactId == id && contact->generation == contactId.generation\x000 <= type1 && type1 < b3_shapeTypeCount\x000 <= type2 && type2 < b3_shapeTypeCount\x000 <= typeA && typeA < b3_shapeTypeCount\x000 <= typeB && typeB < b3_shapeTypeCount\x000 <= ( shapeA->bodyId ) && ( shapeA->bodyId ) < ( world->bodies ).count\x000 <= ( shapeB->bodyId ) && ( shapeB->bodyId ) < ( world->bodies ).count\x00bodyA->setIndex != b3_disabledSet && bodyB->setIndex != b3_disabledSet\x00bodyA->setIndex != b3_staticSet || bodyB->setIndex != b3_staticSet\x000 <= ( setIndex ) && ( setIndex ) < ( world->solverSets ).count\x00shapeB->type == b3_sphereShape || shapeB->type == b3_capsuleShape || shapeB->type == b3_hullShape\x00shapeA->sensorIndex == B3_NULL_INDEX && shapeB->sensorIndex == B3_NULL_INDEX\x000 <= ( headContactKey >> 1 ) && ( headContactKey >> 1 ) < ( world->contacts ).count\x000 <= ( index ) && ( index ) < ( world->manifoldAllocators ).count\x00../box3d-c/src/physics_world.h\x000 <= ( edgeA->prevKey >> 1 ) && ( edgeA->prevKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeA->nextKey >> 1 ) && ( edgeA->nextKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeB->prevKey >> 1 ) && ( edgeB->prevKey >> 1 ) < ( world->contacts ).count\x000 <= ( edgeB->nextKey >> 1 ) && ( edgeB->nextKey >> 1 ) < ( world->contacts ).count\x00contact->setIndex == b3_awakeSet\x00contact->setIndex != b3_awakeSet || ( contact->flags & b3_contactTouchingFlag ) == 0\x000 <= ( contact->setIndex ) && ( contact->setIndex ) < ( world->solverSets ).count\x000 <= ( movedContactIndex ) && ( movedContactIndex ) < ( world->contacts ).count\x00typeB == b3_sphereShape\x00typeB == b3_capsuleShape\x00typeA == b3_hullShape\x00typeB == b3_hullShape\x000 < geomManifold.pointCount && geomManifold.pointCount <= B3_MAX_MANIFOLD_POINTS\x00contact->manifolds == NULL && contact->manifoldCount == 0\x00contact->manifoldCount == 1\x00shapeB->type != b3_compoundShape\x000 <= child.materialIndices[0] && child.materialIndices[0] < shapeA->materialCount\x00( touching == true && contact->manifoldCount > 0 ) || ( touching == false && contact->manifoldCount == 0 )\x00child.type == b3_sphereShape\x00block.blockType == b3_overflowBlock\x00../box3d-c/src/contact_solver.c\x000 <= localIndex && localIndex < spans[colorIndex].count\x00contact->contactId == contactId\x00contact != NULL\x00manifoldCount == contact->manifoldCount\x00count == manifold->pointCount\x00blockIndex < bitSet->blockCount\x00../box3d-c/src/bitset.h\x00color->contacts.count <= UINT16_MAX\x00edge->twin == index + 1 && twin->twin == index\x00../box3d-c/src/convex_manifold.c\x000.0f <= alpha && alpha <= 1.0f\x00bestIndex >= 0\x000 <= bestIndex && bestIndex < count\x00bestIndex != B3_NULL_INDEX\x00edges[edgeIndex].face == incFace\x00pointCount <= B3_MAX_CLIP_POINTS\x00cache->indexA < hullA->faceCount\x00cache->indexB < hullB->faceCount\x00edge1->twin == indexA + 1 && twin1->twin == indexA\x00edge2->twin == indexB + 1 && twin2->twin == indexB\x00axisQuery.separatedFeature == b3_edgePairAxis\x000 <= edgeQuery.indexA && edgeQuery.indexA < hullA->edgeCount\x000 <= edgeQuery.indexB && edgeQuery.indexB < hullB->edgeCount\x00b3IsValidFloat( lengthUnits ) && lengthUnits > 0.0f\x00../box3d-c/src/core.c\x00BOX3D ASSERTION: %s, %s, line %d\n\x00assertFcn != NULL\x00Box3D: %s\n\x00logFcn != NULL\x00ptr != NULL\x00( (uintptr_t)ptr & ( B3_ALIGNMENT - 1 ) ) == 0\x00newSize > oldSize\x00size > 0\x00../box3d-c/src/distance.c\x00points != NULL\x001 <= count && count <= 4\x00Should never get here!\x00!\"Should never get here!\"\x00simplex->count == 2\x00simplex->count == 3\x00simplex->count == 4\x00cache->count <= B3_MAX_SIMPLEX_VERTICES\x000 <= index1 && index1 < proxyA->count\x000 <= index2 && index2 < proxyB->count\x00backup.count != 0\x00target > tolerance\x00pointA[%d] = {%.9f, %.9f, %.9f}\x00radiusA = %.9f\x00pointB[%d] = {%.9f, %.9f, %.9f}\x00radiusB = %.9f\x00transform = {{%.9f, %.9f, %.9f}, {{%.9f, %.9f, %.9f}, %.9f}\x00t = {%.9f, %.9f, %.9f}\x00maxFraction = %.9f, canEncroach = %d\x00distanceOutput.distance > 0.0f\x00b3IsNormalized( distanceOutput.normal )\x001 <= vertexCount && vertexCount <= 3\x001 <= cache.count && cache.count <= 3\x00uniqueCountA == 2 && uniqueCountB == 2\x00indexA[0] != indexA[1]\x00indexB[0] != indexB[1]\x00axis.x != 0.0f || axis.y != 0.0f || axis.z != 0.0f\x00fcn->type == b3_separationEdges\x00function.type != b3_separationEdges\x00output.state != b3_toiStateUnknown\x00output.fraction >= 0.0f\x00lowerForce <= upperForce\x00../box3d-c/src/distance_joint.c\x00base->type == b3_distanceJoint\x000 <= ( idA ) && ( idA ) < ( world->bodies ).count\x000 <= ( idB ) && ( idB ) < ( world->bodies ).count\x00bodyA->setIndex == b3_awakeSet || bodyB->setIndex == b3_awakeSet\x000 <= ( bodyA->setIndex ) && ( bodyA->setIndex ) < ( world->solverSets ).count\x000 <= ( bodyB->setIndex ) && ( bodyB->setIndex ) < ( world->solverSets ).count\x000 <= ( localIndexA ) && ( localIndexA ) < ( setA->bodySims ).count\x000 <= ( localIndexB ) && ( localIndexB ) < ( setB->bodySims ).count\x00( pair & 1 ) == 0 && 2 <= pair && pair < tree->nodeEnd\x00../box3d-c/src/dynamic_tree.c\x00tree->proxyCount == tree->proxyCapacity\x000 <= proxyId && proxyId < tree->proxyCapacity\x000 < tree->proxyCount\x00lowerCost1 < FLT_MAX\x00lowerCost2 < FLT_MAX\x00b3IsLeaf( A ) == false\x000 <= leaf && leaf < tree->nodeEnd\x00b3IsLeaf( nodes + leaf ) && b3GetProxyId( nodes + leaf ) == proxyId\x00b3IsLeaf( node )\x00stackCount < B3_TREE_STACK_SIZE - 1\x00stackCount + 2 <= B3_TREE_STACK_SIZE\x00i1 == i2\x00pair + 2 <= tree->nodeCapacity\x00top < B3_TREE_STACK_SIZE - 1\x000 < leafCount && leafCount <= proxyCount\x00stackCount + 3 <= B3_TREE_STACK_SIZE\x00wb\x00rb\x00heightCount >= 4\x00../box3d-c/src/height_field.c\x00data->globalMinimumHeight <= data->globalMaximumHeight\x000 <= topCellIndex && topCellIndex < cellCount\x00i21 == index11\x00i22 == index12\x000 <= bottomCellIndex && bottomCellIndex < cellCount\x00i11 == index21\x00i12 == index22\x000 <= leftCellIndex && leftCellIndex < cellCount\x00i12 == index11\x00i22 == index21\x000 <= rightCellIndex && rightCellIndex < cellCount\x00i11 == index12\x00i21 == index22\x000 <= flags1 && flags1 <= UINT8_MAX\x000 <= flags2 && flags2 <= UINT8_MAX\x00triangleIndex == triangleCount\x000 <= row && row < hf->rowCount - 1 && 0 <= column && column < hf->columnCount - 1\x000 <= triangleIndex\x00triangleIndex < 2 * ( heightField->columnCount - 1 ) * ( heightField->rowCount - 1 )\x00quadIndex == cellIndex\x00b3GetHeightFieldMaterialIndices( heightField )[cellIndex] != B3_HEIGHT_FIELD_HOLE\x00absClampedDelta.x > 0.0f\x00absClampedDelta.z > 0.0f\x00cellIndex < cellCount\x000 <= alpha && alpha <= 1.0f\x00cellIndex < ( shape->rowCount - 1 ) * ( shape->columnCount - 1 )\x00cellIndex < ( heightField->rowCount - 1 ) * ( heightField->columnCount - 1 )\x00w\x00%d %d\n\x00%.9f %.9f %.9f\n\x00%.9f %.9f\n\x00%d\n\x00%.9f\n\x00r\x00%d %d\x00%f %f %f\x00%f %f\x00%d\x00%f\x00!b3QHList_Contains( node ) && b3QHList_Contains( where )\x00../box3d-c/src/hull.c\x00b3QHList_Contains( node )\x00b->vertexCount < b->vertexCapacity\x00b->edgeCount < b->edgeCapacity\x00b->faceCount < b->faceCapacity\x00abLengthSqr > 0.0f\x00face != twin->face\x00edge->face == face\x00edge != twin\x00face1 != face2\x00edge1 != edge2\x00twin->twin == edge\x00b->minRadius < b->minOutside + 3.0f * FLT_EPSILON\x00B3_LIST_EMPTY( &face->conflictListHead.link )\x00top < b->horizonStackCapacity\x00b->horizonCount < b->horizonCapacity\x00edge->twin->twin == edge\x00b->coneCount < b->coneCapacity\x00prev != next\x00prev->face == next->face\x00twin->face->mark != B3_MARK_DELETE\x00b->mergedFacesCount < b->mergedFacesCapacity\x00b->mergedFaces[i]->mark == B3_MARK_DELETE\x00B3_LIST_EMPTY( head )\x00edgePrev->twin == twinNext\x00twinNext->twin == edgePrev\x00edgePrev->face != twinNext->face\x00edgeNext->twin == twinPrev\x00twinPrev->twin == edgeNext\x00edgeNext->face != twinPrev->face\x00bestEdge != NULL\x00maxFace->mark == B3_MARK_VISIBLE\x00B3_LIST_EMPTY( &b->orphanedList.link )\x00b->horizonCount >= 3\x00b->coneCount >= 3\x000 <= bestIndex && bestIndex < vertexCount\x00height > 0.0f\x00radius > 0.0f\x003 <= sides && sides <= 32\x00hull->vertexCount == pointCount\x00hull->edgeCount == 6 * sides\x00hull->faceCount == sides + 2\x00radius1 > 0.0f\x00radius2 > 0.0f\x004 <= slices && slices <= 32\x00hull->edgeCount == 6 * slices\x00hull->faceCount == slices + 2\x00vertexCount > 0\x00edge1 != edge3\x00edge1->origin < hull->vertexCount\x00edge2->origin < hull->vertexCount\x00edge3->origin < hull->vertexCount\x00hull final vertex count of %d exceeds limit of %d\x00hull final face count of %d exceeds limit of %d\x00hull final half edge count of %d exceeds limit of %d\x00vertexCount < B3_HULL_MAX_COUNT\x00faceCount < B3_HULL_MAX_COUNT\x00edgeCount + 1 < B3_HULL_MAX_COUNT\x000 <= edge->next->finalIndex && edge->next->finalIndex <= UINT8_MAX\x000 <= edge->twin->finalIndex && edge->twin->finalIndex <= UINT8_MAX\x000 <= edge->face->finalIndex && edge->face->finalIndex <= UINT8_MAX\x000 <= edge->origin->finalIndex && edge->origin->finalIndex <= UINT8_MAX\x000 <= face->edge->finalIndex && face->edge->finalIndex <= UINT8_MAX\x00prevEdgeIndex != B3_NULL_INDEX\x00startEdge->face == i\x00startEdge->origin < vertexCount\x00twin->twin == currentEdgeIndex\x00area > 0.0f\x00b3IsValidTransform( transform )\x00b3IsValidFloat( minHalfWidth ) && minHalfWidth > 0.0f\x00target >= 3\x000 < ( pool->freeArray ).count\x00../box3d-c/src/id_pool.c\x00pool->nextIndex > 0\x000 <= id && id < pool->nextIndex\x00setIndex == b3_awakeSet || setIndex >= b3_firstSleepingSet\x00../box3d-c/src/island.c\x00world->islands.data[islandId].setIndex == B3_NULL_INDEX\x000 <= ( island->setIndex ) && ( island->setIndex ) < ( world->solverSets ).count\x000 <= localIndex && localIndex <= lastIndex\x00islandIdB != B3_NULL_INDEX\x00islandIdA != B3_NULL_INDEX\x000 <= ( islandIdA ) && ( islandIdA ) < ( world->islands ).count\x000 <= ( islandIdB ) && ( islandIdB ) < ( world->islands ).count\x000 <= ( link->contactId ) && ( link->contactId ) < ( world->contacts ).count\x000 <= ( link->jointId ) && ( link->jointId ) < ( world->joints ).count\x00contact->islandId == B3_NULL_INDEX\x00contact->islandIndex == B3_NULL_INDEX\x00( contact->flags & b3_contactTouchingFlag ) != 0\x00bodyA->setIndex != b3_staticSet || islandIdA == B3_NULL_INDEX\x00bodyB->setIndex != b3_staticSet || islandIdB == B3_NULL_INDEX\x00islandIdA != B3_NULL_INDEX || islandIdB != B3_NULL_INDEX\x00contact->islandId != B3_NULL_INDEX\x000 <= removeIndex && removeIndex < island->contacts.count\x00island->contacts.data[removeIndex].contactId == contact->contactId\x000 <= ( movedLink->contactId ) && ( movedLink->contactId ) < ( world->contacts ).count\x00movedContact->islandIndex == movedIndex\x00joint->islandIndex == B3_NULL_INDEX\x00bodyA->type == b3_dynamicBody || bodyB->type == b3_dynamicBody\x000 <= removeIndex && removeIndex < island->joints.count\x00island->joints.data[removeIndex].jointId == joint->jointId\x000 <= ( movedLink->jointId ) && ( movedLink->jointId ) < ( world->joints ).count\x00movedJoint->islandIndex == movedIndex\x000 <= ( baseId ) && ( baseId ) < ( world->islands ).count\x00baseIsland->constraintRemoveCount > 0\x00baseIsland->setIndex == b3_awakeSet\x00parents\x00contact counts\x00joint counts\x00ranks\x00root map\x00component body counts\x00component contact counts\x00component joint counts\x00islandCount == componentCount\x00island ids\x000 <= ( newIslandId ) && ( newIslandId ) < ( world->islands ).count\x000 <= ( link->bodyIdA ) && ( link->bodyIdA ) < ( world->bodies ).count\x000 <= ( link->bodyIdB ) && ( link->bodyIdB ) < ( world->bodies ).count\x000 <= ( targetIslandId ) && ( targetIslandId ) < ( world->islands ).count\x00world->splitIslandId != B3_NULL_INDEX\x000 <= ( id ) && ( id ) < ( world->joints ).count\x00../box3d-c/src/joint.c\x00joint->jointId == id && joint->generation == jointId.generation\x000 <= joint->colorIndex && joint->colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( color->jointSims ).count\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( set->jointSims ).count\x00joint->type == type\x00jointSim->type == type\x00b3IsValidTransform( def->localFrameA )\x00b3IsValidTransform( def->localFrameB )\x00world->worldId == def->bodyIdA.world0\x00world->worldId == def->bodyIdB.world0\x00B3_ID_EQUALS( def->bodyIdA, def->bodyIdB ) == false\x000 <= ( bodyA->headJointKey >> 1 ) && ( bodyA->headJointKey >> 1 ) < ( world->joints ).count\x000 <= ( bodyB->headJointKey >> 1 ) && ( bodyB->headJointKey >> 1 ) < ( world->joints ).count\x00bodyA->setIndex >= b3_firstSleepingSet || bodyB->setIndex >= b3_firstSleepingSet\x00bodyA->setIndex == bodyB->setIndex\x000 <= ( joint->localIndex ) && ( joint->localIndex ) < ( mergedSet->jointSims ).count\x00joint->setIndex == setIndex\x00b3IsValidFloat( def->forceThreshold ) && def->forceThreshold >= 0.0f\x00b3IsValidFloat( def->torqueThreshold ) && def->torqueThreshold >= 0.0f\x00jointSim->jointId == jointId\x00jointSim->bodyIdA == bodyIdA\x00jointSim->bodyIdB == bodyIdB\x00b3IsValidFloat( hertz ) && hertz >= 0.0f\x00b3IsValidFloat( dampingRatio ) && dampingRatio >= 0.0f\x00b3IsValidFloat( threshold ) && threshold >= 0.0f\x00def->base.internalValue == B3_SECRET_COOKIE\x00b3IsValidFloat( def->length ) && def->length > 0.0f\x00def->lowerSpringForce <= def->upperSpringForce\x00b3IsValidFloat( def->maxForce ) && def->maxForce >= 0.0f\x00b3IsValidVec3( def->normal ) && b3IsNormalized( def->normal )\x00b3IsValidFloat( def->restLength ) && def->restLength >= 0.0f\x00b3IsValidFloat( def->hertz ) && def->hertz >= 0.0f\x00b3IsValidFloat( def->dampingRatio ) && def->dampingRatio >= 0.0f\x00b3IsValidFloat( def->maxTensionForce ) && def->maxTensionForce >= 0.0f\x00b3IsValidFloat( def->maxCompressionForce ) && def->maxCompressionForce >= 0.0f\x00b3IsValidFloat( def->impulse )\x00b3IsValidFloat( def->velocity )\x00b3IsValidFloat( def->maxTorque ) && def->maxTorque >= 0.0f\x00def->lowerTranslation <= def->upperTranslation\x000.0f <= def->coneAngle && def->coneAngle <= 0.99f * B3_PI\x00b3IsValidQuat( def->targetRotation )\x000.0f <= def->angularHertz\x000.0f <= def->angularDampingRatio\x000.0f <= def->linearHertz\x000.0f <= def->linearDampingRatio\x00def->lowerSuspensionLimit <= def->upperSuspensionLimit\x000 <= ( edgeA->prevKey >> 1 ) && ( edgeA->prevKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeA->nextKey >> 1 ) && ( edgeA->nextKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeB->prevKey >> 1 ) && ( edgeB->prevKey >> 1 ) < ( world->joints ).count\x000 <= ( edgeB->nextKey >> 1 ) && ( edgeB->nextKey >> 1 ) < ( world->joints ).count\x00joint->setIndex > b3_disabledSet\x00joint->setIndex <= b3_disabledSet\x00b3IsValidTransform( localFrame )\x00-B3_PI <= twist && twist <= B3_PI\x000.0f <= swing && swing <= B3_PI\x00f = %g, t = %g\x000 <= vertexIndex && vertexIndex < hull->vertexCount\x00../box3d-c/src/manifold.c\x00vertex\x00edge->origin == vertexIndex\x00minEdgeIndex >= 0\x000 <= index1 && index1 <= UINT8_MAX\x000 <= index2 && index2 <= UINT8_MAX\x00pair.owner1 == 0 || pair.owner1 == 1\x00pair.owner2 == 0 || pair.owner2 == 1\x00count >= 3\x00b3IsNormalized( v1 )\x00../box3d-c/src/math_functions.c\x00b3IsNormalized( v2 )\x00!b3IsLeaf( node )\x00../box3d-c/src/mesh.c\x00h->cellSize > 0.0f\x00currentIndex < h->vertexCount\x00existingIndex < currentIndex\x00existingIndex < h->vertexCount\x000 <= srcIndex && srcIndex < vertexCount\x000 <= index && index < B3_BIN_COUNT\x00leftCount + rightCount == count\x00splitIndex == split.index\x00count > 2\x000 <= i1 && i1 < count\x00leftIndex - index == 1 && rightIndex - index > 1\x000 <= ( index ) && ( index ) < ( *nodes ).count\x00offset == tempTriangles.count\x00tempTriangles.count == mesh->triangleCount\x00tempMaterialIndices.count == mesh->triangleCount\x00otherIndex < i\x00edge->triangleEdgeIndex1 < 3\x00edge->triangleEdgeIndex2 < 3\x000 <= materialCount && materialCount <= UINT8_MAX\x00index == vertexCount\x00index1 < vertexCount\x00index2 < vertexCount\x00index3 < vertexCount\x00index4 < vertexCount\x00index == 3 * triangleCount\x00vertexCount <= def->vertexCount\x000 <= index1 && index1 < vertexCount\x000 <= index2 && index2 < vertexCount\x000 <= index3 && index3 < vertexCount\x00proxy->count > 0\x00count <= B3_MESH_STACK_SIZE - 1\x00shapeA->type == b3_meshShape || shapeA->type == b3_heightShape\x00../box3d-c/src/mesh_contact.c\x000 <= contact->meshContact.triangleCache.data[i].triangleIndex && contact->meshContact.triangleCache.data[i].triangleIndex < shapeA->mesh.data->triangleCount\x00shapeA->type == b3_heightShape\x00WARNING: complex mesh detected, triangle buffer capacity of %d reached\x00count2 <= B3_MAX_MANIFOLD_POINTS\x000 <= index && index < count1\x000 <= ( workerIndex ) && ( workerIndex ) < ( world->taskContexts ).count\x000 <= triangleIndex && triangleIndex < mesh->data->triangleCount\x00../box3d-c/src/shape.h\x00manifold->feature != b3_featureNone\x00acceptedManifoldCount <= triangleCount\x00tentativeManifoldCount <= triangleCount\x00tentativeTriangleCount <= triangleCount\x000 <= clusterIndex && clusterIndex < clusterCount\x00cm->pointCount < cm->pointCapacity\x00cm->pointCount == cm->pointCapacity\x000 < pointCount && pointCount <= B3_MAX_MANIFOLD_POINTS\x00b3IsValidFloat( contact->friction ) && contact->friction >= 0.0f\x00b3IsValidFloat( contact->restitution ) && contact->restitution >= 0.0f\x00base->type == b3_motorJoint\x00../box3d-c/src/motor_joint.c\x00b3IsValidVec3( velocity )\x00../box3d-c/src/mover_joint.c\x00b3IsValidFloat( maxForce ) && maxForce >= 0.0f\x00base->type == b3_moverJoint\x000 <= ( base->bodyIdA ) && ( base->bodyIdA ) < ( world->bodies ).count\x000 <= ( base->bodyIdB ) && ( base->bodyIdB ) < ( world->bodies ).count\x00Hash collision on %s\x000 <= ( index ) && ( index ) < ( cache->entries ).count\x00../box3d-c/src/name_cache.c\x00minRange > 0\x00../box3d-c/src/parallel_for.c\x000 < workerCount && workerCount <= B3_MAX_WORKERS\x00blockCount >= 1\x00blockSize * blockCount >= itemCount\x00../box3d-c/src/parallel_joint.c\x00base->type == b3_parallelJoint\x00clone != NULL\x00../box3d-c/src/physics_world.c\x00b3HullMap_is_end( itr ) == false\x001 <= id.index1 && id.index1 <= B3_MAX_WORLDS\x00id.index1 == world->worldId + 1\x00id.generation == world->generation\x000 <= index && index < B3_MAX_WORLDS\x00world->worldId == index\x00B3_LINEAR_SLOP <= B3_MESH_REST_OFFSET\x00B3_MESH_REST_OFFSET < B3_SPECULATIVE_DISTANCE\x00B3_MAX_WORLDS of %d exceeded!!!\x00worldId != B3_NULL_INDEX\x00world->solverSets.data[b3_staticSet].setIndex == b3_staticSet\x00world->solverSets.data[b3_disabledSet].setIndex == b3_disabledSet\x00world->solverSets.data[b3_awakeSet].setIndex == b3_awakeSet\x00b3HullMap_size( (b3HullMap*)world->hullDatabase ) == 0\x00startIndex < endIndex\x00contactIndex < world->contacts.count\x00contact->colorIndex != B3_NULL_INDEX\x000 <= contact->colorIndex && contact->colorIndex < B3_GRAPH_COLOR_COUNT\x000 <= ( contact->localIndex ) && ( contact->localIndex ) < ( color->contacts ).count\x00movedContact->setIndex == setIndex\x00movedContact->colorIndex == B3_NULL_INDEX\x00world->workerCount > 0\x00contact indices\x00contactIndex == touchingCount\x00collide\x00contact->colorIndex == B3_NULL_INDEX\x00contact->manifoldCount == 0\x00world->stack.allocation == 0\x00world->activeTaskCount == 0\x00shape->id == shapeId\x000 <= ( shape->bodyId ) && ( shape->bodyId ) < ( world->bodies ).count\x00b3IsValidAABB( draw->drawingBounds )\x00%.2f\x00  %.3f\x000 <= ( contact->edges[0].bodyId ) && ( contact->edges[0].bodyId ) < ( world->bodies ).count\x000 <= ( contact->edges[1].bodyId ) && ( contact->edges[1].bodyId ) < ( world->bodies ).count\x00manifold->pointCount > 0\x00   %.2f\x00  %.1f\x00   %#X\x000 <= ( islandBodyId ) && ( islandBodyId ) < ( world->bodies ).count\x00   %d, %.2f\x00body->localIndex != B3_NULL_INDEX\x00joint->jointId == jointId\x000 <= ( i ) && ( i ) < ( world->solverSets ).count\x00b3IsValidFloat( maximumLinearSpeed ) && maximumLinearSpeed > 0.0f\x00b3IsValidFloat( tolerance )\x00id pools\x00body ids: %d\x00solver set ids: %d\x00joint ids: %d\x00contact ids: %d\x00island ids: %d\x00shape ids: %d\x00world arrays\x00bodies: %d\x00solver sets: %d\x00joints: %d\x00contacts: %d\x00islands: %d\x00island links: %d\x00shapes: %d\x00sensors: %d\x00owned arrays\x00sensor overlaps: %d\x00hulls\x00database: %d (%d, %d)\x00hull data: %d\x00broad-phase\x00static tree: %d\x00kinematic tree: %d\x00dynamic tree: %d\x00pairSet: %d (%d, %d)\x00manifold allocators\x00allocator array: %d\x00blocks: %d\x00solver sets\x00body sim: %d\x00body state: %d\x00joint sim: %d\x00contact sim: %d\x00island sim: %d\x00constraint graph\x00body bit sets: %d\x00task contexts\x00worker: %d\x00sensor: %d\x00events: %d\x00debug draw: %d\x00stack allocator: %d\x00total: %u KB\x00b3IsValidAABB( aabb )\x00b3IsValidPosition( origin )\x00output.fraction <= input->maxFraction\x00b3IsValidVec3( translation )\x00body->type == b3_dynamicBody\x00b3IsValidFloat( radius ) && radius >= 0.0f\x00b3IsValidFloat( falloff ) && falloff >= 0.0f\x00b3IsValidFloat( impulsePerArea )\x00b3IsValidFloat( length ) && length >= 0.0f\x00../box3d-c/src/pogo_joint.c\x00b3IsValidFloat( force ) && force >= 0.0f\x00b3IsValidVec3( normal ) && b3IsNormalized( normal )\x00base->type == b3_pogoJoint\x00length = %.3f, rest = %.3f, f = %.1f, v = %.3f\x00b3IsValidFloat( lower ) && b3IsValidFloat( upper )\x00../box3d-c/src/prismatic_joint.c\x00b3IsValidFloat( targetTranslation )\x00b3IsValidFloat( motorSpeed )\x00base->type == b3_prismaticJoint\x00b3IsValidVec3( vA )\x00b3IsValidVec3( wA )\x00b3IsValidVec3( vB )\x00b3IsValidVec3( wB )\x00offset >= 0 && offset + 4 <= buf->size\x00../box3d-c/src/recording.c\x00payloadSize >= 0 && payloadSize < ( 1 << 24 )\x00byteCount > 0\x00b3ReplayFile: %s id mismatch (rec index1=%d gen=%u, got index1=%d gen=%u)\n\x00body\x00shape\x00joint\x00b3ReplayFile: hull geometryId %u is invalid\n\x00b3ReplayFile: mesh geometryId %u is invalid\n\x00b3ReplayFile: heightfield geometryId %u is invalid\n\x00b3ReplayFile: compound geometryId %u is invalid\n\x00b3ReplayFile: StateHash mismatch (recorded=0x%lx, computed=0x%lx)\n\x00b3ReplayFile: unknown opcode 0x%02X, skipping %u bytes\n\x00b3ReplayFile: registry block out of bounds\n\x00b3ReplayFile: registry too small\n\x00b3ReplayFile: registry count out of range\n\x00b3ReplayFile: registry truncated at entry %u\n\x00has an invalid byte count\x00bytes out of bounds\x00is not a valid compound\x00b3ReplayFile: registry entry %u %s\n\x00id == (uint32_t)i\x00../box3d-c/src/replay.c\x00player->keyframeRec->registry.entries.count == regCountBefore\x00b3RecPlayer_Create: recording too small\n\x00b3RecPlayer_Create: bad magic 0x%08X\n\x00b3RecPlayer_Create: version mismatch %u.%u vs %u.%u\n\x00b3RecPlayer_Create: pointer width mismatch %u vs %u\n\x00b3RecPlayer_Create: big-endian recording not supported\n\x00b3RecPlayer_Create: missing snapshot seed\n\x00b3RecPlayer_Create: corrupt offsets\n\x00b3RecPlayer_Create: snapshot deserialization failed\n\x00player->atPreStep == false\x00%.40s (%lu)\x00%.40s\x00#%lu\x00b3IsValidFloat( lowerLimitRadians ) && b3IsValidFloat( upperLimitRadians )\x00../box3d-c/src/revolute_joint.c\x00b3IsValidFloat( targetRadians ) && -B3_PI <= targetRadians && targetRadians <= B3_PI\x00base->type == b3_revoluteJoint\x00../box3d-c/src/scheduler.c\x00box3d_worker_%02d\x00slot < B3_MAX_TASKS\x00../box3d-c/src/sensor.c\x00(int)workerIndex < world->workerCount\x000 <= ( sensorIndex ) && ( sensorIndex ) < ( world->sensors ).count\x000 <= ( sensor->shapeId ) && ( sensor->shapeId ) < ( world->shapes ).count\x000 <= ( sensorShape->bodyId ) && ( sensorShape->bodyId ) < ( world->bodies ).count\x00sensorShape->sensorIndex == sensorIndex\x00sensors\x000 <= ( sensorShape->sensorIndex ) && ( sensorShape->sensorIndex ) < ( world->sensors ).count\x000 <= ( movedSensor->shapeId ) && ( movedSensor->shapeId ) < ( world->shapes ).count\x000 <= ( id ) && ( id ) < ( world->shapes ).count\x00../box3d-c/src/shape.c\x00shape->id == id && shape->generation == shapeId.generation\x00world->shapes.data[shapeId].id == B3_NULL_INDEX\x00world->fatAABBs.count == world->shapes.count\x00body->type == b3_staticBody\x00def->isSensor == false\x00b3IsValidFloat( def->density ) && def->density >= 0.0f\x00b3IsValidFloat( def->baseMaterial.friction ) && def->baseMaterial.friction >= 0.0f\x00b3IsValidFloat( def->baseMaterial.restitution ) && def->baseMaterial.restitution >= 0.0f\x00hull->version == B3_HULL_VERSION\x00hull->hash != 0\x000 <= ( shapeId.index1 - 1 ) && ( shapeId.index1 - 1 ) < ( world->shapes ).count\x00mesh->version == B3_MESH_VERSION\x00mesh->hash != 0\x00heightField->version == B3_HEIGHT_FIELD_VERSION\x00heightField->hash != 0\x00compound->version == B3_COMPOUND_VERSION\x000 <= ( shape->prevShapeId ) && ( shape->prevShapeId ) < ( world->shapes ).count\x000 <= ( shape->sensorIndex ) && ( shape->sensorIndex ) < ( world->sensors ).count\x000.0f <= time && time <= 1.0f\x00shape->proxyKey == B3_NULL_INDEX\x00B3_PROXY_TYPE( shape->proxyKey ) < b3_bodyTypeCount\x00shape->materialCount > 0\x00b3IsValidFloat( density ) && density >= 0.0f\x00b3IsValidFloat( friction ) && friction >= 0.0f\x00b3IsValidFloat( restitution ) && restitution >= 0.0f\x00b3IsValidFloat( surfaceMaterial.friction ) && surfaceMaterial.friction >= 0.0f\x00b3IsValidFloat( surfaceMaterial.restitution ) && surfaceMaterial.restitution >= 0.0f\x00b3IsValidFloat( surfaceMaterial.rollingResistance ) && surfaceMaterial.rollingResistance >= 0.0f\x00b3IsValidVec3( surfaceMaterial.tangentVelocity )\x000 <= index && index < shape->materialCount\x00shape->type == b3_sphereShape\x00shape->type == b3_capsuleShape\x00shape->type == b3_hullShape\x00shape->type == b3_meshShape\x00shape->type == b3_heightShape\x00shape->type == b3_compoundShape\x00b3IsValidVec3( scale )\x00meshData != NULL && b3IsValidMesh( meshData )\x00edge1->origin < shape->hull->vertexCount\x00edge2->origin < shape->hull->vertexCount\x00edge3->origin < shape->hull->vertexCount\x00shapeB->type != b3_compoundShape && shapeB->type != b3_meshShape && shapeB->type != b3_heightShape\x000 <= meshMaterialIndex && meshMaterialIndex < child.materialCount\x00width == 0 || width == 4 || width == 8\x00../box3d-c/src/simd.c\x000 <= index - colorStart && index - colorStart < spans[colorIndex].count\x00../box3d-c/src/solver.c\x000 <= block.startIndex && block.startIndex + block.count <= color->jointSims.count\x00fastShape->sensorIndex == B3_NULL_INDEX\x00body->type == b3_staticBody || ( fastBodySim->flags & b3_isBullet )\x000 <= ( fastBodySim->bodyId ) && ( fastBodySim->bodyId ) < ( world->bodies ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( awakeSet->bodySims ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( awakeSet->bodyStates ).count\x000 <= ( bodySimIndex ) && ( bodySimIndex ) < ( world->bodyMoveEvents ).count\x00endIndex <= world->bodyMoveEvents.count\x00NULL\x00unstable: %s\x00b3IsValidVec3( v )\x00b3IsValidVec3( w )\x00( body->flags & b3_dirtyMass ) == 0\x00dim.count >= 1\x00dim.size * dim.count >= itemCount\x00itemCount >= dim.count\x00blockSize <= UINT16_MAX\x000 <= startIndex && startIndex < blockCount\x00completedCount < blockCount\x00syncIndex > 0\x00stages[stageIndex].type == b3_stagePrepareJoints\x00stages[stageIndex].type == b3_stagePrepareWideContacts\x00stages[stageIndex].type == b3_stagePrepareContacts\x00stages[iterationStageIndex].type == b3_stageIntegrateVelocities\x00stages[iterationStageIndex].type == b3_stageWarmStart\x00stages[iterationStageIndex].type == b3_stageSolve\x00stages[iterationStageIndex].type == b3_stageIntegratePositions\x00stages[iterationStageIndex].type == b3_stageRelax\x00stages[iterationStageIndex].type == b3_stageRestitution\x00stages[stageIndex].type == b3_stageStoreWideImpulses\x00stages[stageIndex].type == b3_stageStoreImpulses\x00stageIndex == context->stageCount\x00stageIndex < context->stageCount\x000 <= ( workerIndex ) && ( workerIndex ) < ( stepContext->world->taskContexts ).count\x00startIndex <= endIndex\x00bullet bodies\x00wide contacts\x00mesh lane order\x00mesh manifold starts\x00mesh buckets\x00orderBase == meshContactCount\x00groupBase == meshGroupCount\x00wide mesh constraints\x00overflow contacts\x00overflow manifolds\x00wideBase == wideContactCount\x00contactBase == meshContactCount\x00meshGroupBase == meshGroupCount\x00jointBase == jointCount\x00stages\x00body blocks\x00convex blocks\x00mesh blocks\x00joint blocks\x00graph blocks\x00split\x00(ptrdiff_t)( baseGraphBlock - graphBlocks ) == graphBlockCount\x00(int)( stage - stages ) == stageCount\x00workerCount <= B3_MAX_WORKERS\x000 <= ( i ) && ( i ) < ( world->taskContexts ).count\x00solve[%d]\x00ccd\x00jointId < world->joints.capacity\x00joint->setIndex == b3_awakeSet\x00world->contactHitEvents.count == 0\x00contact->setIndex == b3_awakeSet && contact->colorIndex != B3_NULL_INDEX\x00bullets\x000 <= bodyId && bodyId < world->bodies.count\x00workerCount == world->taskContexts.count\x000 <= ( hit.sensorId ) && ( hit.sensorId ) < ( world->shapes ).count\x000 <= ( hit.visitorId ) && ( hit.visitorId ) < ( world->shapes ).count\x00world->splitIslandId == B3_NULL_INDEX\x00taskContext->splitSleepTime > 0.0f\x00../box3d-c/src/solver_set.c\x00setIndex >= b3_firstSleepingSet\x00body->setIndex == setIndex\x00contact->setIndex == b3_awakeSet || contact->setIndex == setIndex\x000 <= localIndex && localIndex < disabledSet->contactIndices.count\x00disabledSet->contactIndices.data[localIndex] == contactId\x00( contact->flags & b3_contactTouchingFlag ) == 0 && contact->manifoldCount == 0\x00movedContact->localIndex == movedLocalIndex\x000 <= ( contactIndex ) && ( contactIndex ) < ( world->contacts ).count\x00contact->flags & b3_simTouchingFlag\x00contact->setIndex == setIndex\x000 <= ( jointSim->jointId ) && ( jointSim->jointId ) < ( world->joints ).count\x000 <= ( islandSrc->islandId ) && ( islandSrc->islandId ) < ( world->islands ).count\x00island->setIndex == b3_awakeSet\x000 <= ( sleepSetId ) && ( sleepSetId ) < ( world->solverSets ).count\x000 <= island->localIndex && island->localIndex < awakeSet->islandSims.count\x00body->islandId == islandId\x00body->islandIndex == i\x000 <= ( body->bodyMoveIndex ) && ( body->bodyMoveIndex ) < ( world->bodyMoveEvents ).count\x00moveEvent->bodyId.index1 - 1 == bodyId\x00moveEvent->bodyId.generation == body->generation\x000 <= ( awakeBodyIndex ) && ( awakeBodyIndex ) < ( awakeSet->bodySims ).count\x00awakeSet->contactIndices.data[localIndex] == contactId\x00( contact->flags & b3_contactTouchingFlag ) == 0\x00contact->islandId == islandId\x00contact->islandIndex == i\x00joint->islandId == islandId\x00joint->islandIndex == i\x000 <= ( localIndex ) && ( localIndex ) < ( color->jointSims ).count\x000 <= ( movedIslandId ) && ( movedIslandId ) < ( world->islands ).count\x00movedIsland->localIndex == movedIslandIndex\x00setId1 >= b3_firstSleepingSet\x00setId2 >= b3_firstSleepingSet\x000 <= ( setId1 ) && ( setId1 ) < ( world->solverSets ).count\x000 <= ( setId2 ) && ( setId2 ) < ( world->solverSets ).count\x00body->setIndex == setId2\x00contact->setIndex == setId2\x000 <= ( jointSrc->jointId ) && ( jointSrc->jointId ) < ( world->joints ).count\x00joint->setIndex == setId2\x00body->headContactKey == B3_NULL_INDEX\x000 <= ( sourceIndex ) && ( sourceIndex ) < ( sourceSet->bodySims ).count\x00colorIndex == B3_NULL_INDEX\x000 <= ( localIndex ) && ( localIndex ) < ( sourceSet->jointSims ).count\x00../box3d-c/src/sphere.c\x00sphere input fraction = %g, output fraction = %g\x00b3IsValidFloat( angleRadians ) && 0 <= angleRadians && angleRadians <= 0.5f * B3_PI\x00../box3d-c/src/spherical_joint.c\x00b3IsValidQuat( targetRotation )\x00b3IsValidVec3( motorVelocity )\x00base->type == b3_sphericalJoint\x00items[index].hash == 0\x00../box3d-c/src/table.c\x00set->count == oldCount\x00key != 0\x00hash == b3KeyHash( key )\x00hash != 0\x00set->items[index].hash == hash && set->items[index].key == key\x00set->count > 0\x000 < count && count < 4\x00../box3d-c/src/triangle_manifold.c\x00cache->indexA[i] < 3\x00manifold->pointCount == 0\x000 <= query.indexA && query.indexA < 3\x00edge->twin == i + 1 && twin->twin == i\x00pointCount >= 3\x00pointCount <= 2 * B3_MAX_CLIP_POINTS\x00cache->indexA == 0\x00cache->indexA < 3\x00cache->indexB < hullB->edgeCount - 1\x00cache->type == b3_invalidAxis\x000 <= edgeQuery.indexA && edgeQuery.indexA < 3\x000 < simplexCache.count && simplexCache.count <= 3\x00../box3d-c/src/weld_joint.c\x00base->type == b3_weldJoint\x00lower <= upper\x00../box3d-c/src/wheel_joint.c\x00lowerRadians <= upperRadians\x00base->type == b3_wheelJoint\x000 <= ( contactIds[contactIndex] ) && ( contactIds[contactIndex] ) < ( world->contacts ).count\x00../box3d-c/src/contact_solver_wide.inl\x00contacts[lane]->manifoldCount == 1\x000 <= ( spec->contactId ) && ( spec->contactId ) < ( world->contacts ).count\x00contact->contactId == spec->contactId\x00contact->manifoldCount == spec->manifoldCount\x00laneManifoldCount == contact->manifoldCount && laneManifoldCount <= manifoldCount\x00pointCount <= cm->pointCount\x00../box3d-c/src/world_snapshot.c\x00b3DeserializeIntoShell: bad magic/version\n\x00b3DeserializeIntoShell: precision mismatch\n\x00b3DeserializeIntoShell: layout hash mismatch\n\x00b3IsNormalized( axis )\x00pelvis\x00spine_01\x00spine_03\x00neck_01\x00thigh_l\x00calf_l\x00thigh_r\x00calf_r\x00upperarm_l\x00lowerarm_l\x00upperarm_r\x00lowerarm_r\x00"

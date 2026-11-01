@@ -16,7 +16,7 @@ Box3D has no release yet, so this port is built from a commit of its main branch
 
 | box3d-go | Box3D               |
 |----------|---------------------|
-| main     | `f36d061` (2026-10-20) |
+| main     | `3362633` (2026-10-24) |
 
 ## API
 

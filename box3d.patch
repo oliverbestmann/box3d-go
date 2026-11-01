@@ -1,8 +1,8 @@
 diff --git a/include/box3d/box3d.h b/include/box3d/box3d.h
-index 54d0baf..22ef01b 100644
+index d9f5fdf..e60ff0b 100644
 --- a/include/box3d/box3d.h
 +++ b/include/box3d/box3d.h
-@@ -245,10 +245,10 @@ B3_API b3Counters b3World_GetCounters( b3WorldId worldId );
+@@ -259,10 +259,10 @@ B3_API b3Counters b3World_GetCounters( b3WorldId worldId );
  B3_API b3Capacity b3World_GetMaxCapacity( b3WorldId worldId );
  
  /// Set the user data pointer.
@@ -15,7 +15,7 @@ index 54d0baf..22ef01b 100644
  
  /// Set the friction callback. Passing NULL resets to default.
  B3_API void b3World_SetFrictionCallback( b3WorldId worldId, b3FrictionCallback* callback );
-@@ -534,10 +534,10 @@ B3_API void b3Body_SetName( b3BodyId bodyId, const char* name );
+@@ -554,10 +554,10 @@ B3_API void b3Body_SetName( b3BodyId bodyId, const char* name );
  B3_API const char* b3Body_GetName( b3BodyId bodyId );
  
  /// Set the user data for a body
@@ -28,16 +28,16 @@ index 54d0baf..22ef01b 100644
  
  /// Get the world position of a body. This is the location of the body origin.
  B3_API b3Pos b3Body_GetPosition( b3BodyId bodyId );
-@@ -882,7 +882,7 @@ B3_API b3ShapeId b3CreateHeightFieldShape( b3BodyId bodyId, const b3ShapeDef* de
+@@ -920,7 +920,7 @@ B3_API b3ShapeId b3CreateHeightFieldShape( b3BodyId bodyId, const b3ShapeDef* de
  /// Baked compound shapes are only allowed on static bodies.
  /// Note: runtime compounds are achieved by adding multiple shapes to a body.
  /// Runtime compounds can be dynamic and/or kinematic.
--B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, b3ShapeDef* def, const b3CompoundData* compound );
-+B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, const b3ShapeDef* def, const b3CompoundData* compound );
+-B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, b3ShapeDef* def,
++B3_API b3ShapeId b3CreateBakedCompoundShape( b3BodyId bodyId, const b3ShapeDef* def,
+ 											 const b3CompoundData* compound );
  
- /// Destroy a shape. You may defer the body mass update which can improve performance if several shapes on a
- ///	body are destroyed at once.
-@@ -911,11 +911,11 @@ B3_API void b3Shape_SetName( b3ShapeId shapeId, const char* name );
+ /// Destroy a shape. You may defer the body mass update which can improve performance if several
+@@ -951,11 +951,11 @@ B3_API void b3Shape_SetName( b3ShapeId shapeId, const char* name );
  B3_API const char* b3Shape_GetName( b3ShapeId shapeId );
  
  /// Set the user data for a shape
@@ -51,7 +51,7 @@ index 54d0baf..22ef01b 100644
  
  /// Set the mass density of a shape, usually in kg/m^3.
  /// This will optionally update the mass properties on the parent body.
-@@ -1122,10 +1122,10 @@ B3_API void b3Joint_SetCollideConnected( b3JointId jointId, bool shouldCollide )
+@@ -1170,10 +1170,10 @@ B3_API void b3Joint_SetCollideConnected( b3JointId jointId, bool shouldCollide )
  B3_API bool b3Joint_GetCollideConnected( b3JointId jointId );
  
  /// Set the user data on a joint
@@ -86,7 +86,7 @@ index 9f05e12..32b1468 100644
  /// Macro to determine if any id is null.
  #define B3_IS_NULL( id ) ( ( id ).index1 == 0 )
 diff --git a/include/box3d/math_functions.h b/include/box3d/math_functions.h
-index a12f250..5fd6d89 100644
+index 8f81d93..2a9310b 100644
 --- a/include/box3d/math_functions.h
 +++ b/include/box3d/math_functions.h
 @@ -115,27 +115,19 @@ typedef struct b3Plane
@@ -129,21 +129,21 @@ index a12f250..5fd6d89 100644
  /// @return the minimum of two integers.
  B3_INLINE int b3MinInt( int a, int b )
 diff --git a/include/box3d/types.h b/include/box3d/types.h
-index 2cbbbeb..d0b1334 100644
+index 20fd0ce..a01cbde 100644
 --- a/include/box3d/types.h
 +++ b/include/box3d/types.h
-@@ -45,8 +45,8 @@ typedef struct b3DebugShape b3DebugShape;
- /// The user needs to be able to create debug draw shapes for multi-pass rendering to work efficiently.
- /// These user shapes are created and destroyed via callback so they can be bound to shape lifetime and scaling updates.
+@@ -50,8 +50,8 @@ typedef struct b3DebugShape b3DebugShape;
+ /// efficiently. These user shapes are created and destroyed via callback so they can be bound to
+ /// shape lifetime and scaling updates.
  /// @ingroup debug_draw
 -typedef void* b3CreateDebugShapeCallback( const b3DebugShape* debugShape, void* userContext );
 -typedef void b3DestroyDebugShapeCallback( void* userShape, void* userContext );
 +typedef uint64_t b3CreateDebugShapeCallback( const b3DebugShape* debugShape, void* userContext );
 +typedef void b3DestroyDebugShapeCallback( uint64_t userShape, void* userContext );
  
- /// Optional friction mixing callback. This intentionally provides no context objects because this is called
- /// from a worker thread.
-@@ -207,7 +207,7 @@ typedef struct b3WorldDef
+ /// Optional friction mixing callback. This intentionally provides no context objects because this
+ /// is called from a worker thread.
+@@ -219,7 +219,7 @@ typedef struct b3WorldDef
  	void* userTaskContext;
  
  	/// User data associated with a world
@@ -152,7 +152,7 @@ index 2cbbbeb..d0b1334 100644
  
  	/// Used to create debug draw shapes. This is called when a shape is
  	/// first drawn using b3DebugDraw.
-@@ -325,7 +325,7 @@ typedef struct b3BodyDef
+@@ -339,7 +339,7 @@ typedef struct b3BodyDef
  	const char* name;
  
  	/// Use this to store application specific body data.
@@ -161,16 +161,16 @@ index 2cbbbeb..d0b1334 100644
  
  	/// Motions locks to restrict linear and angular movement
  	b3MotionLocks motionLocks;
-@@ -481,7 +481,7 @@ typedef struct b3ShapeDef
+@@ -497,7 +497,7 @@ typedef struct b3ShapeDef
  	const char* name;
  
  	/// Use this to store application specific shape data.
 -	void* userData;
 +	uint64_t userData;
  
- 	/// Surface material used on mesh shapes per triangle. Ignored for convex shapes. Ignored for compound shapes.
- 	b3SurfaceMaterial* materials;
-@@ -638,7 +638,7 @@ typedef enum b3JointType
+ 	/// Surface material used on mesh shapes per triangle. Ignored for convex shapes. Ignored for
+ 	/// compound shapes.
+@@ -664,7 +664,7 @@ typedef enum b3JointType
  typedef struct b3JointDef
  {
  	/// User data pointer
@@ -179,7 +179,7 @@ index 2cbbbeb..d0b1334 100644
  
  	/// The first attached body
  	b3BodyId bodyIdA;
-@@ -1233,7 +1233,7 @@ typedef struct b3ContactEvents
+@@ -1318,7 +1318,7 @@ typedef struct b3ContactEvents
  typedef struct b3BodyMoveEvent
  {
  	/// The body user data.
@@ -188,7 +188,7 @@ index 2cbbbeb..d0b1334 100644
  
  	/// The body transform.
  	b3WorldTransform transform;
-@@ -1265,7 +1265,7 @@ typedef struct b3JointEvent
+@@ -1350,7 +1350,7 @@ typedef struct b3JointEvent
  	b3JointId jointId;
  
  	/// The user data from the joint for convenience
@@ -197,7 +197,7 @@ index 2cbbbeb..d0b1334 100644
  } b3JointEvent;
  
  /// Joint events are buffered in the world and are available
-@@ -1552,7 +1552,7 @@ typedef struct b3SimplexCache
+@@ -1640,7 +1640,7 @@ typedef struct b3SimplexCache
  
  } b3SimplexCache;
  
@@ -206,15 +206,15 @@ index 2cbbbeb..d0b1334 100644
  
  /// Input parameters for b3ShapeCast
  typedef struct b3ShapeCastPairInput
-@@ -3062,7 +3062,7 @@ typedef struct b3DebugDraw
- 	/// Draws a user shape. The userShape pointer is owned by the application and is known to Box3D as
- 	/// an opaque pointer returned from b3CreateDebugShapeCallback. When this is called the drawn shape has
- 	/// passed a culling test against drawingBounds below.
--	void ( *DrawShapeFcn )( void* userShape, b3WorldTransform transform, b3HexColor color, void* context );
-+	void ( *DrawShapeFcn )( uint64_t userShape, b3WorldTransform transform, b3HexColor color, void* context );
+@@ -3157,7 +3157,7 @@ typedef struct b3DebugDraw
+ 	/// Draws a user shape. The userShape pointer is owned by the application and is known to Box3D
+ 	/// as an opaque pointer returned from b3CreateDebugShapeCallback. When this is called the drawn
+ 	/// shape has passed a culling test against drawingBounds below.
+-	void ( *DrawShapeFcn )( void* userShape, b3WorldTransform transform, b3HexColor color,
++	void ( *DrawShapeFcn )( uint64_t userShape, b3WorldTransform transform, b3HexColor color,
+ 							void* context );
  
  	/// Draw a line segment.
- 	void ( *DrawSegmentFcn )( b3Pos p1, b3Pos p2, b3HexColor color, void* context );
 diff --git a/shared/human.c b/shared/human.c
 index 1e37931..67e5a47 100644
 --- a/shared/human.c
@@ -290,10 +290,10 @@ index 1f685b3..3670854 100644
  } b3ContactManifoldWide;
  
 diff --git a/src/joint.c b/src/joint.c
-index 068a29d..fe45018 100644
+index fa01bb5..41632fd 100644
 --- a/src/joint.c
 +++ b/src/joint.c
-@@ -972,14 +972,14 @@ bool b3Joint_GetCollideConnected( b3JointId jointId )
+@@ -1051,14 +1051,14 @@ bool b3Joint_GetCollideConnected( b3JointId jointId )
  	return joint->collideConnected;
  }
  
@@ -311,7 +311,7 @@ index 068a29d..fe45018 100644
  	b3World* world = b3GetWorld( jointId.world0 );
  	b3Joint* joint = b3GetJointFullId( world, jointId );
 diff --git a/src/joint.h b/src/joint.h
-index 9a8c347..b4a0ee3 100644
+index 45da807..07c272b 100644
 --- a/src/joint.h
 +++ b/src/joint.h
 @@ -27,7 +27,7 @@ typedef struct b3JointEdge
@@ -350,10 +350,10 @@ index b272bdc..36b8a69 100644
  typedef struct b3Matrix2
  {
 diff --git a/src/physics_world.c b/src/physics_world.c
-index 192cfdb..9811e59 100644
+index ce86343..2ad3e70 100644
 --- a/src/physics_world.c
 +++ b/src/physics_world.c
-@@ -1312,7 +1312,7 @@ static bool DrawQueryCallback( int proxyId, uint64_t userData, void* context )
+@@ -1314,7 +1314,7 @@ static bool DrawQueryCallback( int proxyId, uint64_t userData, void* context )
  			color = (b3HexColor)b3MakeDebugColor( rgb, material );
  		}
  
@@ -362,7 +362,7 @@ index 192cfdb..9811e59 100644
  		{
  			b3DebugShape debugShape = { 0 };
  			debugShape.shapeId = (b3ShapeId){
-@@ -1354,7 +1354,7 @@ static bool DrawQueryCallback( int proxyId, uint64_t userData, void* context )
+@@ -1356,7 +1356,7 @@ static bool DrawQueryCallback( int proxyId, uint64_t userData, void* context )
  			}
  		}
  
@@ -371,7 +371,7 @@ index 192cfdb..9811e59 100644
  		{
  			draw->DrawShapeFcn( shape->userShape, bodySim->transform, color, draw->context );
  		}
-@@ -2257,13 +2257,13 @@ b3Capacity b3World_GetMaxCapacity( b3WorldId worldId )
+@@ -2259,13 +2259,13 @@ b3Capacity b3World_GetMaxCapacity( b3WorldId worldId )
  	return world->maxCapacity;
  }
  
@@ -414,7 +414,7 @@ index 88de4bc..4c35a71 100644
     #ifdef RAPIDHASH_PROTECTED
     *A^=(uint64_t)r; *B^=(uint64_t)(r>>64);
 diff --git a/src/replay.c b/src/replay.c
-index 38bda1a..b426bca 100644
+index 78b73df..8ddfcbd 100644
 --- a/src/replay.c
 +++ b/src/replay.c
 @@ -438,7 +438,7 @@ b3BodyDef b3RecR_BODYDEF( b3RecReader* rdr )
@@ -529,7 +529,7 @@ index e10b9ed..aae25b5 100644
  static inline b3V32 b3AddV( b3V32 a, b3V32 b )
  {
 diff --git a/src/simd_scalar.h b/src/simd_scalar.h
-index 56cb045..0e0c22f 100644
+index 8ae1b85..5794455 100644
 --- a/src/simd_scalar.h
 +++ b/src/simd_scalar.h
 @@ -10,6 +10,15 @@
@@ -548,7 +548,7 @@ index 56cb045..0e0c22f 100644
  // scalar math
  typedef struct b3FloatW4
  {
-@@ -287,7 +296,12 @@ B3_FORCE_INLINE void b3StoreAABBV( b3AABB* aabb, b3AABBV value, bool condition )
+@@ -272,7 +281,12 @@ B3_FORCE_INLINE void b3StoreAABBV( b3AABB* aabb, b3AABBV value, bool condition )
  	}
  }
  
@@ -562,14 +562,14 @@ index 56cb045..0e0c22f 100644
  									b3FloatW4* c2, b3FloatW4* c3 )
  {
  	b3FloatW4 t0 = (b3FloatW4){ r0.x, r2.x, r0.y, r2.y };
-@@ -299,3 +313,5 @@ B3_FORCE_INLINE void b3TransposeW4( b3FloatW4 r0, b3FloatW4 r1, b3FloatW4 r2, b3
+@@ -284,3 +298,5 @@ B3_FORCE_INLINE void b3TransposeW4( b3FloatW4 r0, b3FloatW4 r1, b3FloatW4 r2, b3
  	*c2 = (b3FloatW4){ t2.x, t3.x, t2.y, t3.y };
  	*c3 = (b3FloatW4){ t2.z, t3.z, t2.w, t3.w };
  }
 +
 +#endif
 diff --git a/src/simd_wide.h b/src/simd_wide.h
-index fe0bb9c..6536256 100644
+index f7c8879..ecf4a30 100644
 --- a/src/simd_wide.h
 +++ b/src/simd_wide.h
 @@ -21,7 +21,12 @@
@@ -679,7 +679,7 @@ index 3fb46f7..36d857c 100644
  
  #include <mach/mach_time.h>
 diff --git a/src/types.c b/src/types.c
-index 9caab0a..cd67434 100644
+index f5e1ad3..511689b 100644
 --- a/src/types.c
 +++ b/src/types.c
 @@ -85,7 +85,7 @@ b3ShapeDef b3DefaultShapeDef( void )

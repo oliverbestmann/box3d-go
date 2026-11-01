@@ -50,6 +50,12 @@ type WeldJoint struct {
 type WheelJoint struct {
 	Joint
 }
+type MoverJoint struct {
+	Joint
+}
+type PogoJoint struct {
+	Joint
+}
 
 func (b World) CreateBody(def BodyDef) (r Body) {
 	defer runtime.KeepAlive(def)
@@ -568,6 +574,8 @@ func MakeScaledBoxHull(halfWidths Vec3, transform Transform, postScale Vec3) (r 
 func DefaultParallelJointDef() (r ParallelJointDef) { r = b3DefaultParallelJointDef(theStack); return }
 func DefaultDistanceJointDef() (r DistanceJointDef) { r = b3DefaultDistanceJointDef(theStack); return }
 func DefaultMotorJointDef() (r MotorJointDef)       { r = b3DefaultMotorJointDef(theStack); return }
+func DefaultMoverJointDef() (r MoverJointDef)       { r = b3DefaultMoverJointDef(theStack); return }
+func DefaultPogoJointDef() (r PogoJointDef)         { r = b3DefaultPogoJointDef(theStack); return }
 func DefaultFilterJointDef() (r FilterJointDef)     { r = b3DefaultFilterJointDef(theStack); return }
 func DefaultPrismaticJointDef() (r PrismaticJointDef) {
 	r = b3DefaultPrismaticJointDef(theStack)
@@ -607,6 +615,20 @@ func (b World) CreateMotorJoint(def MotorJointDef) (r MotorJoint) {
 	defStack := copyToStack(theStack, def)
 	defer defStack.Free()
 	r.Id = b3CreateMotorJoint(theStack, b.Id, defStack.Addr)
+	return
+}
+func (b World) CreateMoverJoint(def MoverJointDef) (r MoverJoint) {
+	defer runtime.KeepAlive(def)
+	defStack := copyToStack(theStack, def)
+	defer defStack.Free()
+	r.Id = b3CreateMoverJoint(theStack, b.Id, defStack.Addr)
+	return
+}
+func (b World) CreatePogoJoint(def PogoJointDef) (r PogoJoint) {
+	defer runtime.KeepAlive(def)
+	defStack := copyToStack(theStack, def)
+	defer defStack.Free()
+	r.Id = b3CreatePogoJoint(theStack, b.Id, defStack.Addr)
 	return
 }
 func (b World) CreateFilterJoint(def FilterJointDef) (r FilterJoint) {
@@ -881,6 +903,20 @@ func (b MotorJoint) GetMaxSpringTorque() (r float32) {
 	r = b3MotorJoint_GetMaxSpringTorque(theStack, b.Id)
 	return
 }
+func (b MoverJoint) SetLinearVelocity(velocity Vec3) {
+	b3MoverJoint_SetLinearVelocity(theStack, b.Id, velocity)
+}
+func (b MoverJoint) GetLinearVelocity() (r Vec3) {
+	r = b3MoverJoint_GetLinearVelocity(theStack, b.Id)
+	return
+}
+func (b MoverJoint) SetMaxVelocityForce(maxForce float32) {
+	b3MoverJoint_SetMaxVelocityForce(theStack, b.Id, maxForce)
+}
+func (b MoverJoint) GetMaxVelocityForce() (r float32) {
+	r = b3MoverJoint_GetMaxVelocityForce(theStack, b.Id)
+	return
+}
 func (b ParallelJoint) SetSpringHertz(hertz float32) {
 	b3ParallelJoint_SetSpringHertz(theStack, b.Id, hertz)
 }
@@ -998,7 +1034,46 @@ func (b World) Explode(explosionDef ExplosionDef) {
 	defer explosionDefStack.Free()
 	b3World_Explode(theStack, b.Id, explosionDefStack.Addr)
 }
-func (b World) EnableSpeculative(flag uint8) { b3World_EnableSpeculative(theStack, b.Id, flag) }
+func (b World) EnableSpeculative(flag uint8)     { b3World_EnableSpeculative(theStack, b.Id, flag) }
+func (b PogoJoint) SetRestLength(length float32) { b3PogoJoint_SetRestLength(theStack, b.Id, length) }
+func (b PogoJoint) GetRestLength() (r float32)   { r = b3PogoJoint_GetRestLength(theStack, b.Id); return }
+func (b PogoJoint) SetSpringHertz(hertz float32) { b3PogoJoint_SetSpringHertz(theStack, b.Id, hertz) }
+func (b PogoJoint) GetSpringHertz() (r float32) {
+	r = b3PogoJoint_GetSpringHertz(theStack, b.Id)
+	return
+}
+func (b PogoJoint) SetSpringDampingRatio(dampingRatio float32) {
+	b3PogoJoint_SetSpringDampingRatio(theStack, b.Id, dampingRatio)
+}
+func (b PogoJoint) GetSpringDampingRatio() (r float32) {
+	r = b3PogoJoint_GetSpringDampingRatio(theStack, b.Id)
+	return
+}
+func (b PogoJoint) SetMaxTensionForce(force float32) {
+	b3PogoJoint_SetMaxTensionForce(theStack, b.Id, force)
+}
+func (b PogoJoint) GetMaxTensionForce() (r float32) {
+	r = b3PogoJoint_GetMaxTensionForce(theStack, b.Id)
+	return
+}
+func (b PogoJoint) SetMaxCompressionForce(force float32) {
+	b3PogoJoint_SetMaxCompressionForce(theStack, b.Id, force)
+}
+func (b PogoJoint) GetMaxCompressionForce() (r float32) {
+	r = b3PogoJoint_GetMaxCompressionForce(theStack, b.Id)
+	return
+}
+func (b PogoJoint) SetNormal(normal Vec3) { b3PogoJoint_SetNormal(theStack, b.Id, normal) }
+func (b PogoJoint) GetNormal() (r Vec3)   { r = b3PogoJoint_GetNormal(theStack, b.Id); return }
+func (b PogoJoint) GetCurrentLength() (r1 float32) {
+	r1 = b3PogoJoint_GetCurrentLength(theStack, b.Id)
+	return
+}
+func (b PogoJoint) GetImpulse() (r float32) { r = b3PogoJoint_GetImpulse(theStack, b.Id); return }
+func (b PogoJoint) GetCurrentSpeed() (r float32) {
+	r = b3PogoJoint_GetCurrentSpeed(theStack, b.Id)
+	return
+}
 func (b PrismaticJoint) EnableLimit(enableLimit uint8) {
 	b3PrismaticJoint_EnableLimit(theStack, b.Id, enableLimit)
 }
@@ -1836,6 +1911,10 @@ func ClosestPointToAABB(point1 Vec3, a3 AABB) (r Vec3) {
 	r = b3go_inline_b3ClosestPointToAABB(theStack, point1, a3)
 	return
 }
+func SpringDamper(hertz1 float32, dampingRatio1 float32, position1 float32, velocity1 float32, timeStep1 float32) (r float32) {
+	r = b3go_inline_b3SpringDamper(theStack, hertz1, dampingRatio1, position1, velocity1, timeStep1)
+	return
+}
 func MakeDebugColor(rgb1 HexColor, material1 DebugMaterial) (r uint32) {
 	r = b3go_inline_b3MakeDebugColor(theStack, rgb1, material1)
 	return
@@ -1859,6 +1938,8 @@ const JointTypeRevolute JointType = b3_revoluteJoint
 const JointTypeSpherical JointType = b3_sphericalJoint
 const JointTypeWeld JointType = b3_weldJoint
 const JointTypeWheel JointType = b3_wheelJoint
+const JointTypeMover JointType = b3_moverJoint
+const JointTypePogo JointType = b3_pogoJoint
 const ToiStateUnknown TOIState = b3_toiStateUnknown
 const ToiStateFailed TOIState = b3_toiStateFailed
 const ToiStateOverlapped TOIState = b3_toiStateOverlapped

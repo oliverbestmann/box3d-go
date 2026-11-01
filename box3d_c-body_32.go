@@ -5748,17 +5748,17 @@ _2:
 		return staticSims - uintptr(encodedIndex)*252 - uintptr(2)*252
 	}
 	if v3 = !!(0 <= bodyId && bodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+23730, int32FromInt32(579))
+		b3InternalAssert(tls, __ccgo_ts+746, __ccgo_ts+24206, int32FromInt32(579))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(bodyId)*96
 	if v4 = !!(0 <= (*b3Body)(unsafe.Pointer(body)).SetIndex && (*b3Body)(unsafe.Pointer(body)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+594, __ccgo_ts+23730, int32FromInt32(580))
+		b3InternalAssert(tls, __ccgo_ts+594, __ccgo_ts+24206, int32FromInt32(580))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(body)).SetIndex)*64
 	if v5 = !!(0 <= (*b3Body)(unsafe.Pointer(body)).LocalIndex && (*b3Body)(unsafe.Pointer(body)).LocalIndex < (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Count); !v5 {
-		b3InternalAssert(tls, __ccgo_ts+670, __ccgo_ts+23730, int32FromInt32(581))
+		b3InternalAssert(tls, __ccgo_ts+670, __ccgo_ts+24206, int32FromInt32(581))
 	}
 	_ = v5 || bool(int32FromInt32(0) != 0)
 	return (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Data + uintptr((*b3Body)(unsafe.Pointer(body)).LocalIndex)*252
@@ -5787,7 +5787,7 @@ func b3Body_IsValid(tls *_Stack, id BodyId) (r uint8) {
 		return boolUint8(false1 != 0)
 	}
 	if v1 = !!((*b3Body)(unsafe.Pointer(body)).LocalIndex != -int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+25328, __ccgo_ts+23730, int32FromInt32(1872))
+		b3InternalAssert(tls, __ccgo_ts+25804, __ccgo_ts+24206, int32FromInt32(1874))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if int32FromUint16((*b3Body)(unsafe.Pointer(body)).Generation) != int32FromUint16(id.Generation) {
@@ -5809,7 +5809,7 @@ func b3RecMakeBodyId(tls *_Stack, rdr uintptr, recorded BodyId) (r BodyId) {
 }
 
 func b3RecCheckBodyId(tls *_Stack, rdr uintptr, got BodyId, rec BodyId) {
-	b3RecCheckId(tls, rdr, __ccgo_ts+26903, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
+	b3RecCheckId(tls, rdr, __ccgo_ts+27617, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
 }
 
 // C documentation
@@ -5893,12 +5893,12 @@ func b3BulletBodyTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex
 	_, _, _, _, _, _ = i, simIndex, stepContext, taskContext, v1, v2
 	stepContext = context
 	if v1 = !!(0 <= workerIndex && workerIndex < (*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(stepContext)).World)).TaskContexts.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+32589, __ccgo_ts+31095, int32FromInt32(1446))
+		b3InternalAssert(tls, __ccgo_ts+33303, __ccgo_ts+31809, int32FromInt32(1446))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	taskContext = (*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(stepContext)).World)).TaskContexts.Data + uintptr(workerIndex)*3812
 	if v2 = !!(startIndex <= endIndex); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32674, __ccgo_ts+31095, int32FromInt32(1448))
+		b3InternalAssert(tls, __ccgo_ts+33388, __ccgo_ts+31809, int32FromInt32(1448))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	i = startIndex
@@ -5921,7 +5921,7 @@ func b3TransferBody(tls *_Stack, world uintptr, targetSet uintptr, sourceSet uin
 	var v1, v16, v2 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = movedBody, movedId, movedIndex, movedSim, newCapacity, newSize, oldCapacity, oldSize, sourceIndex, sourceSim, state, targetIndex, targetSim, v1, v10, v11, v16, v2, v3, v4, v5, v6, v7, v8
 	if v1 = !!((*b3Body)(unsafe.Pointer(body)).HeadContactKey == -int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35668, __ccgo_ts+33759, int32FromInt32(569))
+		b3InternalAssert(tls, __ccgo_ts+36382, __ccgo_ts+34473, int32FromInt32(569))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if targetSet == sourceSet {
@@ -5929,7 +5929,7 @@ func b3TransferBody(tls *_Stack, world uintptr, targetSet uintptr, sourceSet uin
 	}
 	sourceIndex = (*b3Body)(unsafe.Pointer(body)).LocalIndex
 	if v1 = !!(0 <= sourceIndex && sourceIndex < (*b3SolverSet)(unsafe.Pointer(sourceSet)).BodySims.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35706, __ccgo_ts+33759, int32FromInt32(577))
+		b3InternalAssert(tls, __ccgo_ts+36420, __ccgo_ts+34473, int32FromInt32(577))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	sourceSim = (*b3SolverSet)(unsafe.Pointer(sourceSet)).BodySims.Data + uintptr(sourceIndex)*252
@@ -5986,12 +5986,12 @@ _18:
 		movedSim = (*b3SolverSet)(unsafe.Pointer(sourceSet)).BodySims.Data + uintptr(sourceIndex)*252
 		movedId = (*b3BodySim)(unsafe.Pointer(movedSim)).BodyId
 		if v2 = !!(0 <= movedId && movedId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+2198, __ccgo_ts+33759, int32FromInt32(594))
+			b3InternalAssert(tls, __ccgo_ts+2198, __ccgo_ts+34473, int32FromInt32(594))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		movedBody = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(movedId)*96
 		if v16 = !!((*b3Body)(unsafe.Pointer(movedBody)).LocalIndex == movedIndex); !v16 {
-			b3InternalAssert(tls, __ccgo_ts+2256, __ccgo_ts+33759, int32FromInt32(595))
+			b3InternalAssert(tls, __ccgo_ts+2256, __ccgo_ts+34473, int32FromInt32(595))
 		}
 		_ = v16 || bool(int32FromInt32(0) != 0)
 		(*b3Body)(unsafe.Pointer(movedBody)).LocalIndex = sourceIndex

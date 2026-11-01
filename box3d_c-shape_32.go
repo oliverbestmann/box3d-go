@@ -4058,7 +4058,7 @@ _165:
 			_424:
 				if v1 > float32FromFloat32(0) {
 					if v7 = !!(count1 <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v7 {
-						b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2212))
+						b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2212))
 					}
 					_ = v7 || bool(int32FromInt32(0) != 0)
 					v5 = count1
@@ -4067,7 +4067,7 @@ _165:
 					node = b3GetLeftChild(tls, node)
 				} else {
 					if v7 = !!(count1 <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v7 {
-						b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2218))
+						b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2218))
 					}
 					_ = v7 || bool(int32FromInt32(0) != 0)
 					v5 = count1
@@ -4111,7 +4111,7 @@ func b3Shape_IsValid(tls *_Stack, id ShapeId) (r uint8) {
 		return boolUint8(false1 != 0)
 	}
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Id == shapeId); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24877, __ccgo_ts+23730, int32FromInt32(1910))
+		b3InternalAssert(tls, __ccgo_ts+25353, __ccgo_ts+24206, int32FromInt32(1912))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return boolUint8(int32FromUint16(id.Generation) == int32FromUint16((*b3Shape)(unsafe.Pointer(shape)).Generation))
@@ -4141,7 +4141,7 @@ func b3ShapeCastCallback(tls *_Stack, input uintptr, proxyId int32, userData uin
 	worldContext = context
 	world = (*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).World
 	if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+23730, int32FromInt32(3168))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+24206, int32FromInt32(3170))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape1 = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -4160,7 +4160,7 @@ _5:
 	*(*cShapeCastInput)(unsafe.Add(nil, bp+56)) = (*_WorldShapeCastContext)(unsafe.Pointer(worldContext)).Input
 	(*(*cShapeCastInput)(unsafe.Add(nil, bp+56))).MaxFraction = (*BoxCastInput)(unsafe.Pointer(input)).MaxFraction
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape1)).BodyId && (*b3Shape)(unsafe.Pointer(shape1)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+23730, int32FromInt32(3183))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+24206, int32FromInt32(3185))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Re-center on the query origin so the per-shape cast stays in float precision far from the origin
@@ -4242,7 +4242,7 @@ func b3RecMakeShapeId(tls *_Stack, rdr uintptr, recorded ShapeId) (r ShapeId) {
 }
 
 func b3RecCheckShapeId(tls *_Stack, rdr uintptr, got ShapeId, rec ShapeId) {
-	b3RecCheckId(tls, rdr, __ccgo_ts+26908, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
+	b3RecCheckId(tls, rdr, __ccgo_ts+27622, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
 }
 
 /**@}*/ // contact
@@ -4254,12 +4254,12 @@ func b3GetShape(tls *_Stack, world uintptr, shapeId ShapeId) (r uintptr) {
 	_, _, _, _ = id, shape, v1, v2
 	id = shapeId.Index1 - int32(1)
 	if v1 = !!(0 <= id && id < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28837, __ccgo_ts+28885, int32FromInt32(22))
+		b3InternalAssert(tls, __ccgo_ts+29551, __ccgo_ts+29599, int32FromInt32(22))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(id)*208
 	if v2 = !!((*b3Shape)(unsafe.Pointer(shape)).Id == id && int32FromUint16((*b3Shape)(unsafe.Pointer(shape)).Generation) == int32FromUint16(shapeId.Generation)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+28908, __ccgo_ts+28885, int32FromInt32(23))
+		b3InternalAssert(tls, __ccgo_ts+29622, __ccgo_ts+29599, int32FromInt32(23))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	return shape
@@ -4463,16 +4463,16 @@ func b3CreateShapeInternal(tls *_Stack, world uintptr, body uintptr, bodyTransfo
 		*(*AABB)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).FatAABBs.Data+uintptr(v1)*24)) = AABB{}
 	} else {
 		if v7 = !!((*(*b3Shape)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Shapes.Data+uintptr(shapeId)*208))).Id == -int32FromInt32(1)); !v7 {
-			b3InternalAssert(tls, __ccgo_ts+28967, __ccgo_ts+28885, int32FromInt32(105))
+			b3InternalAssert(tls, __ccgo_ts+29681, __ccgo_ts+29599, int32FromInt32(105))
 		}
 		_ = v7 || bool(int32FromInt32(0) != 0)
 	}
 	if v7 = !!((*b3World)(unsafe.Pointer(world)).FatAABBs.Count == (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v7 {
-		b3InternalAssert(tls, __ccgo_ts+29015, __ccgo_ts+28885, int32FromInt32(108))
+		b3InternalAssert(tls, __ccgo_ts+29729, __ccgo_ts+29599, int32FromInt32(108))
 	}
 	_ = v7 || bool(int32FromInt32(0) != 0)
 	if v7 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v7 {
-		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+28885, int32FromInt32(110))
+		b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+29599, int32FromInt32(110))
 	}
 	_ = v7 || bool(int32FromInt32(0) != 0)
 	shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -4482,11 +4482,11 @@ func b3CreateShapeInternal(tls *_Stack, world uintptr, body uintptr, bodyTransfo
 	case int32(b3_compoundShape):
 		// Compounds must be a static and not a sensor
 		if v7 = !!((*b3Body)(unsafe.Pointer(body)).Type1 == int32(b3_staticBody)); !v7 {
-			b3InternalAssert(tls, __ccgo_ts+29060, __ccgo_ts+28885, int32FromInt32(120))
+			b3InternalAssert(tls, __ccgo_ts+29774, __ccgo_ts+29599, int32FromInt32(120))
 		}
 		_ = v7 || bool(int32FromInt32(0) != 0)
 		if v7 = !!(int32FromUint8((*cShapeDef)(unsafe.Pointer(def)).IsSensor) == int32FromInt32(false1)); !v7 {
-			b3InternalAssert(tls, __ccgo_ts+29088, __ccgo_ts+28885, int32FromInt32(121))
+			b3InternalAssert(tls, __ccgo_ts+29802, __ccgo_ts+29599, int32FromInt32(121))
 		}
 		_ = v7 || bool(int32FromInt32(0) != 0)
 		*(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)) = geometry
@@ -4630,7 +4630,7 @@ func b3CreateShapeInternal(tls *_Stack, world uintptr, body uintptr, bodyTransfo
 		*(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)) = geometry
 	default:
 		if v7 = bool(!!(int32FromInt32(false1) != 0)); !v7 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(162))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(162))
 		}
 		_ = v7 || bool(int32FromInt32(0) != 0)
 		break
@@ -4734,7 +4734,7 @@ func b3CreateShapeInternal(tls *_Stack, world uintptr, body uintptr, bodyTransfo
 	// Add to shape doubly linked list
 	if (*b3Body)(unsafe.Pointer(body)).HeadShapeId != -int32(1) {
 		if v7 = !!(0 <= (*b3Body)(unsafe.Pointer(body)).HeadShapeId && (*b3Body)(unsafe.Pointer(body)).HeadShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v7 {
-			b3InternalAssert(tls, __ccgo_ts+2487, __ccgo_ts+28885, int32FromInt32(225))
+			b3InternalAssert(tls, __ccgo_ts+2487, __ccgo_ts+29599, int32FromInt32(225))
 		}
 		_ = v7 || bool(int32FromInt32(0) != 0)
 		headShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Body)(unsafe.Pointer(body)).HeadShapeId)*208
@@ -4794,19 +4794,19 @@ func b3CreateShape(tls *_Stack, bodyId BodyId, def uintptr, geometry uintptr, sh
 	var v1 bool
 	_, _, _, _, _, _ = body, bodyTransform, id, shape, world, v1
 	if v1 = !!((*cShapeDef)(unsafe.Pointer(def)).InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1223, __ccgo_ts+28885, int32FromInt32(256))
+		b3InternalAssert(tls, __ccgo_ts+1223, __ccgo_ts+29599, int32FromInt32(256))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*cShapeDef)(unsafe.Pointer(def)).Density) != 0 && (*cShapeDef)(unsafe.Pointer(def)).Density >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29111, __ccgo_ts+28885, int32FromInt32(257))
+		b3InternalAssert(tls, __ccgo_ts+29825, __ccgo_ts+29599, int32FromInt32(257))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*cShapeDef)(unsafe.Pointer(def)).BaseMaterial.Friction) != 0 && (*cShapeDef)(unsafe.Pointer(def)).BaseMaterial.Friction >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29166, __ccgo_ts+28885, int32FromInt32(258))
+		b3InternalAssert(tls, __ccgo_ts+29880, __ccgo_ts+29599, int32FromInt32(258))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*cShapeDef)(unsafe.Pointer(def)).BaseMaterial.Restitution) != 0 && (*cShapeDef)(unsafe.Pointer(def)).BaseMaterial.Restitution >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29249, __ccgo_ts+28885, int32FromInt32(259))
+		b3InternalAssert(tls, __ccgo_ts+29963, __ccgo_ts+29599, int32FromInt32(259))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorld(tls, int32FromUint16(bodyId.World0))
@@ -4815,7 +4815,7 @@ func b3CreateShape(tls *_Stack, bodyId BodyId, def uintptr, geometry uintptr, sh
 	}
 	if (*b3World)(unsafe.Pointer(world)).Shapes.Count == int32FromInt32(1)<<int32FromInt32(_B3_SHAPE_POWER) && (*b3World)(unsafe.Pointer(world)).ShapeIdPool.FreeArray.Count == 0 {
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(269))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(269))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return b3_nullShapeId
@@ -4946,11 +4946,11 @@ func b3CreateHullShape(tls *_Stack, bodyId BodyId, def uintptr, hull uintptr) (r
 	var _ /* createArgs at bp+0 */ b3RecArgs_CreateHullShape
 	_, _, _, _ = geometryId, shapeId, world, v1
 	if v1 = !!((*HullData)(unsafe.Pointer(hull)).Version == uint64FromUint64(0x6B1E39D4A87C25F3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29338, __ccgo_ts+28885, int32FromInt32(353))
+		b3InternalAssert(tls, __ccgo_ts+30052, __ccgo_ts+29599, int32FromInt32(353))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*HullData)(unsafe.Pointer(hull)).Hash != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29371, __ccgo_ts+28885, int32FromInt32(354))
+		b3InternalAssert(tls, __ccgo_ts+30085, __ccgo_ts+29599, int32FromInt32(354))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*HullData)(unsafe.Pointer(hull)).Version != uint64(0x6B1E39D4A87C25F3) {
@@ -4982,11 +4982,11 @@ func b3CreateTransformedHullShape(tls *_Stack, bodyId BodyId, def uintptr, hull 
 	var _ /* createArgs at bp+0 */ b3RecArgs_CreateHullShape
 	_, _, _, _, _ = geometryId, shape, shapeId, world, v1
 	if v1 = !!((*HullData)(unsafe.Pointer(hull)).Version == uint64FromUint64(0x6B1E39D4A87C25F3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29338, __ccgo_ts+28885, int32FromInt32(379))
+		b3InternalAssert(tls, __ccgo_ts+30052, __ccgo_ts+29599, int32FromInt32(379))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*HullData)(unsafe.Pointer(hull)).Hash != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29371, __ccgo_ts+28885, int32FromInt32(380))
+		b3InternalAssert(tls, __ccgo_ts+30085, __ccgo_ts+29599, int32FromInt32(380))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*HullData)(unsafe.Pointer(hull)).Version != uint64(0x6B1E39D4A87C25F3) {
@@ -4997,7 +4997,7 @@ func b3CreateTransformedHullShape(tls *_Stack, bodyId BodyId, def uintptr, hull 
 		world = b3GetUnlockedWorld(tls, int32FromUint16(bodyId.World0))
 		if world != uintptrFromInt32(0) && (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
 			if v1 = !!(0 <= shapeId.Index1-int32(1) && shapeId.Index1-int32(1) < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+29387, __ccgo_ts+28885, int32FromInt32(396))
+				b3InternalAssert(tls, __ccgo_ts+30101, __ccgo_ts+29599, int32FromInt32(396))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			// The transform and scale are baked into fresh hull data at create time. Record the baked hull
@@ -5026,11 +5026,11 @@ func b3CreateMeshShape(tls *_Stack, bodyId BodyId, def uintptr, mesh uintptr, sc
 	var _ /* createArgs at bp+0 */ b3RecArgs_CreateMeshShape
 	_, _, _, _ = geometryId, shapeId, world, v1
 	if v1 = !!((*MeshData)(unsafe.Pointer(mesh)).Version == uint64FromUint64(0xAAAB9A00F1A8AAF7)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29467, __ccgo_ts+28885, int32FromInt32(408))
+		b3InternalAssert(tls, __ccgo_ts+30181, __ccgo_ts+29599, int32FromInt32(408))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*MeshData)(unsafe.Pointer(mesh)).Hash != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29500, __ccgo_ts+28885, int32FromInt32(409))
+		b3InternalAssert(tls, __ccgo_ts+30214, __ccgo_ts+29599, int32FromInt32(409))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*MeshData)(unsafe.Pointer(mesh)).Version != uint64(0xAAAB9A00F1A8AAF7) {
@@ -5063,11 +5063,11 @@ func b3CreateHeightFieldShape(tls *_Stack, bodyId BodyId, def uintptr, heightFie
 	var _ /* createArgs at bp+0 */ b3RecArgs_CreateHeightFieldShape
 	_, _, _, _ = geometryId, shapeId, world, v1
 	if v1 = !!((*HeightFieldData)(unsafe.Pointer(heightField)).Version == uint64FromUint64(0x8E41E5FB084848F8)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29516, __ccgo_ts+28885, int32FromInt32(432))
+		b3InternalAssert(tls, __ccgo_ts+30230, __ccgo_ts+29599, int32FromInt32(432))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*HeightFieldData)(unsafe.Pointer(heightField)).Hash != uint64FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29564, __ccgo_ts+28885, int32FromInt32(433))
+		b3InternalAssert(tls, __ccgo_ts+30278, __ccgo_ts+29599, int32FromInt32(433))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*HeightFieldData)(unsafe.Pointer(heightField)).Version != uint64(0x8E41E5FB084848F8) {
@@ -5099,7 +5099,7 @@ func b3CreateBakedCompoundShape(tls *_Stack, bodyId BodyId, def uintptr, compoun
 	var _ /* createArgs at bp+0 */ b3RecArgs_CreateCompoundShape
 	_, _, _, _ = geometryId, shapeId, world, v1
 	if v1 = !!((*CompoundData)(unsafe.Pointer(compound)).Version == uint64FromUint64(0x9E4B17D3A25C68F1)^uint64FromUint64(0xAAAB9A00F1A8AAF7)^uint64FromUint64(0x6B1E39D4A87C25F3)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29587, __ccgo_ts+28885, int32FromInt32(456))
+		b3InternalAssert(tls, __ccgo_ts+30301, __ccgo_ts+29599, int32FromInt32(456))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*CompoundData)(unsafe.Pointer(compound)).Version != uint64FromUint64(0x9E4B17D3A25C68F1)^uint64FromUint64(0xAAAB9A00F1A8AAF7)^uint64FromUint64(0x6B1E39D4A87C25F3) {
@@ -5133,7 +5133,7 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 	shapeId = (*b3Shape)(unsafe.Pointer(shape)).Id
 	if (*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_compoundShape) {
 		if v1 = !!((*b3World)(unsafe.Pointer(world)).CompoundShapeCount > int32FromInt32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+2055, __ccgo_ts+28885, int32FromInt32(484))
+			b3InternalAssert(tls, __ccgo_ts+2055, __ccgo_ts+29599, int32FromInt32(484))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		*(*int32)(unsafe.Add(nil, world+2812)) -= int32(1)
@@ -5141,7 +5141,7 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 	// Remove the shape from the body's doubly linked list.
 	if (*b3Shape)(unsafe.Pointer(shape)).PrevShapeId != -int32(1) {
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).PrevShapeId && (*b3Shape)(unsafe.Pointer(shape)).PrevShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+29628, __ccgo_ts+28885, int32FromInt32(491))
+			b3InternalAssert(tls, __ccgo_ts+30342, __ccgo_ts+29599, int32FromInt32(491))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		prevShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).PrevShapeId)*208
@@ -5149,7 +5149,7 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 	}
 	if (*b3Shape)(unsafe.Pointer(shape)).NextShapeId != -int32(1) {
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).NextShapeId && (*b3Shape)(unsafe.Pointer(shape)).NextShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+2565, __ccgo_ts+28885, int32FromInt32(497))
+			b3InternalAssert(tls, __ccgo_ts+2565, __ccgo_ts+29599, int32FromInt32(497))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		nextShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).NextShapeId)*208
@@ -5167,7 +5167,7 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 		contactId = contactKey >> int32(1)
 		edgeIndex = contactKey & int32(1)
 		if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+28885, int32FromInt32(518))
+			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+29599, int32FromInt32(518))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*204
@@ -5178,7 +5178,7 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 	}
 	if (*b3Shape)(unsafe.Pointer(shape)).SensorIndex != -int32(1) {
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).SensorIndex && (*b3Shape)(unsafe.Pointer(shape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+29708, __ccgo_ts+28885, int32FromInt32(529))
+			b3InternalAssert(tls, __ccgo_ts+30422, __ccgo_ts+29599, int32FromInt32(529))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).SensorIndex)*40
@@ -5254,13 +5254,13 @@ func b3DestroyShapeInternal(tls *_Stack, world uintptr, shape uintptr, body uint
 		movedIndex = v12
 		if movedIndex != -int32(1) {
 			if v2 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).SensorIndex && (*b3Shape)(unsafe.Pointer(shape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+29708, __ccgo_ts+28885, int32FromInt32(560))
+				b3InternalAssert(tls, __ccgo_ts+30422, __ccgo_ts+29599, int32FromInt32(560))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			// Fixup moved sensor
 			movedSensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).SensorIndex)*40
 			if v3 = !!(0 <= (*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId && (*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+28753, __ccgo_ts+28885, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+29467, __ccgo_ts+29599, int32FromInt32(561))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			otherSensorShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Sensor)(unsafe.Pointer(movedSensor)).ShapeId)*208
@@ -5299,7 +5299,7 @@ func b3DestroyShape(tls *_Stack, shapeId ShapeId, updateBodyMass uint8) {
 	// need to wake bodies because this might be a static body
 	wakeBodies = boolUint8(true1 != 0)
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(593))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(593))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -5329,7 +5329,7 @@ func b3ComputeShapeAABB(tls *_Stack, shape uintptr, transform Transform) (r AABB
 		return b3ComputeSphereAABB(tls, shape+176, transform)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(628))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(628))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		empty = AABB{
@@ -5381,7 +5381,7 @@ func b3ComputeSweptShapeAABB(tls *_Stack, shape uintptr, sweep uintptr, time flo
 	var v20, v9 float32
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = c, t1, t2, t3, xf1, xf2, v1, v10, v11, v13, v14, v15, v17, v19, v2, v20, v21, v22, v24, v25, v26, v3, v4, v5, v6, v8, v9
 	if v1 = !!(float32FromFloat32(0) <= time && time <= float32FromFloat32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29789, __ccgo_ts+28885, int32FromInt32(657))
+		b3InternalAssert(tls, __ccgo_ts+30503, __ccgo_ts+29599, int32FromInt32(657))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v2 = (*Sweep)(unsafe.Pointer(sweep)).Q1
@@ -5451,7 +5451,7 @@ _27:
 		return b3ComputeSweptSphereAABB(tls, shape+176, xf1, xf2)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(673))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(673))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return AABB{
@@ -6670,7 +6670,7 @@ func b3OverlapShape(tls *_Stack, shape uintptr, transform Transform, proxy uintp
 		return b3OverlapSphere(tls, shape+176, transform, proxy)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(961))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(961))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return boolUint8(false1 != 0)
@@ -6682,7 +6682,7 @@ func b3CreateShapeProxy(tls *_Stack, world uintptr, shape uintptr, type1 BodyTyp
 	var v1 bool
 	_, _ = fatAABB, v1
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).ProxyKey == -int32FromInt32(1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29818, __ccgo_ts+28885, int32FromInt32(1023))
+		b3InternalAssert(tls, __ccgo_ts+30532, __ccgo_ts+29599, int32FromInt32(1023))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	fatAABB = (*b3World)(unsafe.Pointer(world)).FatAABBs.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).Id)*24
@@ -6690,7 +6690,7 @@ func b3CreateShapeProxy(tls *_Stack, world uintptr, shape uintptr, type1 BodyTyp
 	// Create proxies in the broad-phase.
 	(*b3Shape)(unsafe.Pointer(shape)).ProxyKey = b3BroadPhase_CreateProxy(tls, world+536, type1, *(*AABB)(unsafe.Add(nil, fatAABB)), (*b3Shape)(unsafe.Pointer(shape)).Filter.CategoryBits, (*b3Shape)(unsafe.Pointer(shape)).Id, forcePairCreation)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).ProxyKey&int32FromInt32(3) < int32(b3_bodyTypeCount)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29851, __ccgo_ts+28885, int32FromInt32(1031))
+		b3InternalAssert(tls, __ccgo_ts+30565, __ccgo_ts+29599, int32FromInt32(1031))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 }
@@ -6725,7 +6725,7 @@ func b3DestroyShapeAllocations(tls *_Stack, world uintptr, shape uintptr) {
 	b3DestroyShapeAllocationForShapeChange(tls, world, shape)
 	if (*b3Shape)(unsafe.Pointer(shape)).Materials != uintptrFromInt32(0) {
 		if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).MaterialCount > int32FromInt32(0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+29903, __ccgo_ts+28885, int32FromInt32(1070))
+			b3InternalAssert(tls, __ccgo_ts+30617, __ccgo_ts+29599, int32FromInt32(1070))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		b3Free(tls, (*b3Shape)(unsafe.Pointer(shape)).Materials, uint32(uint32FromInt32((*b3Shape)(unsafe.Pointer(shape)).MaterialCount)*uint32(40)))
@@ -6769,7 +6769,7 @@ func b3MakeShapeProxy(tls *_Stack, shape uintptr) (r cShapeProxy) {
 		}
 	default:
 		if v4 = bool(!!(int32FromInt32(false1) != 0)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(1098))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(1098))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		return cShapeProxy{}
@@ -6870,11 +6870,11 @@ func b3Shape_RayCast(tls *_Stack, shapeId ShapeId, origin Pos, translation Vec3)
 	var _ /* input at bp+0 */ RayCastInput
 	_, _, _, _, _, _, _, _, _, _, _, _ = local, output, r, shape, transform, world, v1, v3, v4, v5, v7, v8
 	if v1 = !!(b3IsValidPosition(tls, origin) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26196, __ccgo_ts+28885, int32FromInt32(1196))
+		b3InternalAssert(tls, __ccgo_ts+26672, __ccgo_ts+29599, int32FromInt32(1196))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, translation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26262, __ccgo_ts+28885, int32FromInt32(1197))
+		b3InternalAssert(tls, __ccgo_ts+26738, __ccgo_ts+29599, int32FromInt32(1197))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -6928,7 +6928,7 @@ func b3Shape_SetDensity(tls *_Stack, shapeId ShapeId, density float32, updateBod
 	var _ /* recArgs at bp+0 */ b3RecArgs_ShapeSetDensity
 	_, _, _, _ = body, shape, world, v1
 	if v1 = !!(b3IsValidFloat(tls, density) != 0 && density >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29928, __ccgo_ts+28885, int32FromInt32(1225))
+		b3InternalAssert(tls, __ccgo_ts+30642, __ccgo_ts+29599, int32FromInt32(1225))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorld(tls, int32FromUint16(shapeId.World0))
@@ -6951,7 +6951,7 @@ func b3Shape_SetDensity(tls *_Stack, shapeId ShapeId, density float32, updateBod
 	(*b3Shape)(unsafe.Pointer(shape)).Density = density
 	if int32FromUint8(updateBodyMass) == int32(true1) {
 		if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(1246))
+			b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(1246))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -6975,7 +6975,7 @@ func b3Shape_SetFriction(tls *_Stack, shapeId ShapeId, friction float32) {
 	var _ /* recArgs at bp+0 */ b3RecArgs_ShapeSetFriction
 	_, _, _, _, _, _ = shape1, world, v1, v3, v4, v6
 	if v1 = !!(b3IsValidFloat(tls, friction) != 0 && friction >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29973, __ccgo_ts+28885, int32FromInt32(1260))
+		b3InternalAssert(tls, __ccgo_ts+30687, __ccgo_ts+29599, int32FromInt32(1260))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -6988,7 +6988,7 @@ func b3Shape_SetFriction(tls *_Stack, shapeId ShapeId, friction float32) {
 	}
 	shape1 = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape1)).Type1 != int32(b3_compoundShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+28885, int32FromInt32(1264))
+		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+29599, int32FromInt32(1264))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v3 = shape1
@@ -7028,7 +7028,7 @@ func b3Shape_SetRestitution(tls *_Stack, shapeId ShapeId, restitution float32) {
 	var _ /* recArgs at bp+0 */ b3RecArgs_ShapeSetRestitution
 	_, _, _, _, _, _ = shape1, world, v1, v3, v4, v6
 	if v1 = !!(b3IsValidFloat(tls, restitution) != 0 && restitution >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30020, __ccgo_ts+28885, int32FromInt32(1277))
+		b3InternalAssert(tls, __ccgo_ts+30734, __ccgo_ts+29599, int32FromInt32(1277))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -7041,7 +7041,7 @@ func b3Shape_SetRestitution(tls *_Stack, shapeId ShapeId, restitution float32) {
 	}
 	shape1 = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape1)).Type1 != int32(b3_compoundShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+28885, int32FromInt32(1281))
+		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+29599, int32FromInt32(1281))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v3 = shape1
@@ -7081,19 +7081,19 @@ func b3Shape_SetSurfaceMaterial(tls *_Stack, shapeId ShapeId, surfaceMaterial Su
 	var _ /* recArgs at bp+0 */ b3RecArgs_ShapeSetSurfaceMaterial
 	_, _, _, _, _, _ = shape1, world, v1, v6, v7, v9
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.Friction) != 0 && surfaceMaterial.Friction >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30073, __ccgo_ts+28885, int32FromInt32(1294))
+		b3InternalAssert(tls, __ccgo_ts+30787, __ccgo_ts+29599, int32FromInt32(1294))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.Restitution) != 0 && surfaceMaterial.Restitution >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30152, __ccgo_ts+28885, int32FromInt32(1295))
+		b3InternalAssert(tls, __ccgo_ts+30866, __ccgo_ts+29599, int32FromInt32(1295))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.RollingResistance) != 0 && surfaceMaterial.RollingResistance >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30237, __ccgo_ts+28885, int32FromInt32(1296))
+		b3InternalAssert(tls, __ccgo_ts+30951, __ccgo_ts+29599, int32FromInt32(1296))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, surfaceMaterial.TangentVelocity) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30334, __ccgo_ts+28885, int32FromInt32(1297))
+		b3InternalAssert(tls, __ccgo_ts+31048, __ccgo_ts+29599, int32FromInt32(1297))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
@@ -7106,7 +7106,7 @@ func b3Shape_SetSurfaceMaterial(tls *_Stack, shapeId ShapeId, surfaceMaterial Su
 	}
 	shape1 = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape1)).Type1 != int32(b3_compoundShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+28885, int32FromInt32(1302))
+		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+29599, int32FromInt32(1302))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v6 = shape1
@@ -7154,29 +7154,29 @@ func b3Shape_SetMeshMaterial(tls *_Stack, shapeId ShapeId, surfaceMaterial Surfa
 	var _ /* recArgs at bp+0 */ b3RecArgs_ShapeSetMeshMaterial
 	_, _, _, _, _, _ = shape1, world, v1, v10, v7, v8
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.Friction) != 0 && surfaceMaterial.Friction >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30073, __ccgo_ts+28885, int32FromInt32(1322))
+		b3InternalAssert(tls, __ccgo_ts+30787, __ccgo_ts+29599, int32FromInt32(1322))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.Restitution) != 0 && surfaceMaterial.Restitution >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30152, __ccgo_ts+28885, int32FromInt32(1323))
+		b3InternalAssert(tls, __ccgo_ts+30866, __ccgo_ts+29599, int32FromInt32(1323))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, surfaceMaterial.RollingResistance) != 0 && surfaceMaterial.RollingResistance >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30237, __ccgo_ts+28885, int32FromInt32(1324))
+		b3InternalAssert(tls, __ccgo_ts+30951, __ccgo_ts+29599, int32FromInt32(1324))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidVec3(tls, surfaceMaterial.TangentVelocity) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30334, __ccgo_ts+28885, int32FromInt32(1325))
+		b3InternalAssert(tls, __ccgo_ts+31048, __ccgo_ts+29599, int32FromInt32(1325))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape1 = b3GetShape(tls, world, shapeId)
 	if v1 = !!(0 <= index && index < (*b3Shape)(unsafe.Pointer(shape1)).MaterialCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30383, __ccgo_ts+28885, int32FromInt32(1330))
+		b3InternalAssert(tls, __ccgo_ts+31097, __ccgo_ts+29599, int32FromInt32(1330))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape1)).Type1 != int32(b3_compoundShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+28885, int32FromInt32(1331))
+		b3InternalAssert(tls, __ccgo_ts+3657, __ccgo_ts+29599, int32FromInt32(1331))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
@@ -7206,7 +7206,7 @@ func b3Shape_GetMeshSurfaceMaterial(tls *_Stack, shapeId ShapeId, index int32) (
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape1 = b3GetShape(tls, world, shapeId)
 	if v1 = !!(0 <= index && index < (*b3Shape)(unsafe.Pointer(shape1)).MaterialCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30383, __ccgo_ts+28885, int32FromInt32(1341))
+		b3InternalAssert(tls, __ccgo_ts+31097, __ccgo_ts+29599, int32FromInt32(1341))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	v2 = shape1
@@ -7421,7 +7421,7 @@ func b3Shape_GetSphere(tls *_Stack, shapeId ShapeId) (r Sphere) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_sphereShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30426, __ccgo_ts+28885, int32FromInt32(1534))
+		b3InternalAssert(tls, __ccgo_ts+31140, __ccgo_ts+29599, int32FromInt32(1534))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return *(*Sphere)(unsafe.Add(unsafe.Pointer(shape), 176))
@@ -7434,7 +7434,7 @@ func b3Shape_GetCapsule(tls *_Stack, shapeId ShapeId) (r Capsule) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_capsuleShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30456, __ccgo_ts+28885, int32FromInt32(1542))
+		b3InternalAssert(tls, __ccgo_ts+31170, __ccgo_ts+29599, int32FromInt32(1542))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return (*b3Shape)(unsafe.Pointer(shape)).ｆ__ccgo21_176.Capsule
@@ -7447,7 +7447,7 @@ func b3Shape_GetHull(tls *_Stack, shapeId ShapeId) (r uintptr) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_hullShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30487, __ccgo_ts+28885, int32FromInt32(1550))
+		b3InternalAssert(tls, __ccgo_ts+31201, __ccgo_ts+29599, int32FromInt32(1550))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return *(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176))
@@ -7460,7 +7460,7 @@ func b3Shape_GetMesh(tls *_Stack, shapeId ShapeId) (r cMesh) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_meshShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30515, __ccgo_ts+28885, int32FromInt32(1558))
+		b3InternalAssert(tls, __ccgo_ts+31229, __ccgo_ts+29599, int32FromInt32(1558))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return *(*cMesh)(unsafe.Add(unsafe.Pointer(shape), 176))
@@ -7473,7 +7473,7 @@ func b3Shape_GetHeightField(tls *_Stack, shapeId ShapeId) (r uintptr) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_heightShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30543, __ccgo_ts+28885, int32FromInt32(1566))
+		b3InternalAssert(tls, __ccgo_ts+31257, __ccgo_ts+29599, int32FromInt32(1566))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return *(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176))
@@ -7486,7 +7486,7 @@ func b3Shape_GetCompound(tls *_Stack, shapeId ShapeId) (r uintptr) {
 	world = b3GetWorld(tls, int32FromUint16(shapeId.World0))
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!((*b3Shape)(unsafe.Pointer(shape)).Type1 == int32(b3_compoundShape)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30573, __ccgo_ts+28885, int32FromInt32(1574))
+		b3InternalAssert(tls, __ccgo_ts+31287, __ccgo_ts+29599, int32FromInt32(1574))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return *(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176))
@@ -7609,11 +7609,11 @@ func b3Shape_SetMesh(tls *_Stack, shapeId ShapeId, meshData uintptr, scale Vec3)
 	var _ /* setArgs at bp+0 */ b3RecArgs_ShapeSetMesh
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = absScale, destroyProxy, geometryId, minScale, safeScale, shape, wakeBodies, world, v1, v10, v11, v12, v14, v15, v16, v18, v19, v20, v22, v23, v24, v25, v26, v27, v29, v3, v30, v31, v33, v34, v35, v36, v38, v39, v4, v40, v41, v43, v44, v45, v46, v48, v5, v7, v8
 	if v1 = !!(b3IsValidVec3(tls, scale) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30605, __ccgo_ts+28885, int32FromInt32(1685))
+		b3InternalAssert(tls, __ccgo_ts+31319, __ccgo_ts+29599, int32FromInt32(1685))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(meshData != uintptrFromInt32(0) && b3IsValidMesh(tls, meshData) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+30628, __ccgo_ts+28885, int32FromInt32(1686))
+		b3InternalAssert(tls, __ccgo_ts+31342, __ccgo_ts+29599, int32FromInt32(1686))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorld(tls, int32FromUint16(shapeId.World0))
@@ -7773,7 +7773,7 @@ func b3Shape_GetContactCapacity(tls *_Stack, shapeId ShapeId) (r int32) {
 		return 0
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(1734))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(1734))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -7795,7 +7795,7 @@ func b3Shape_GetContactData(tls *_Stack, shapeId ShapeId, contactData uintptr, c
 		return 0
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(1754))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(1754))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -7805,7 +7805,7 @@ func b3Shape_GetContactData(tls *_Stack, shapeId ShapeId, contactData uintptr, c
 		contactId = contactKey >> int32(1)
 		edgeIndex = contactKey & int32(1)
 		if v2 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+28885, int32FromInt32(1762))
+			b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+29599, int32FromInt32(1762))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*204
@@ -7835,7 +7835,7 @@ func b3Shape_GetContactData(tls *_Stack, shapeId ShapeId, contactData uintptr, c
 		contactKey = (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+uintptr(edgeIndex)*12))).NextKey
 	}
 	if v1 = !!(index <= capacity); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+2469, __ccgo_ts+28885, int32FromInt32(1782))
+		b3InternalAssert(tls, __ccgo_ts+2469, __ccgo_ts+29599, int32FromInt32(1782))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return index
@@ -7854,7 +7854,7 @@ func b3Shape_GetSensorCapacity(tls *_Stack, shapeId ShapeId) (r int32) {
 		return 0
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).SensorIndex && (*b3Shape)(unsafe.Pointer(shape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29708, __ccgo_ts+28885, int32FromInt32(1801))
+		b3InternalAssert(tls, __ccgo_ts+30422, __ccgo_ts+29599, int32FromInt32(1801))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).SensorIndex)*40
@@ -7876,7 +7876,7 @@ func b3Shape_GetSensorData(tls *_Stack, shapeId ShapeId, visitorIds uintptr, cap
 		return 0
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).SensorIndex && (*b3Shape)(unsafe.Pointer(shape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+29708, __ccgo_ts+28885, int32FromInt32(1819))
+		b3InternalAssert(tls, __ccgo_ts+30422, __ccgo_ts+29599, int32FromInt32(1819))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).SensorIndex)*40
@@ -7955,7 +7955,7 @@ func b3Shape_GetClosestPoint(tls *_Stack, shapeId ShapeId, _target Vec3) (r1 Vec
 	}
 	shape = b3GetShape(tls, world, shapeId)
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(1870))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(1870))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -8194,7 +8194,7 @@ func b3Shape_ApplyWind(tls *_Stack, shapeId ShapeId, wind Vec3, drag float32, li
 		return
 	}
 	if v1 = !!(0 <= (*b3Shape)(unsafe.Pointer(shape)).BodyId && (*b3Shape)(unsafe.Pointer(shape)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24898, __ccgo_ts+28885, int32FromInt32(1911))
+		b3InternalAssert(tls, __ccgo_ts+25374, __ccgo_ts+29599, int32FromInt32(1911))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	body = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shape)).BodyId)*96
@@ -8213,7 +8213,7 @@ func b3Shape_ApplyWind(tls *_Stack, shapeId ShapeId, wind Vec3, drag float32, li
 		b3WakeBodyWithLock(tls, world, body)
 	}
 	if v1 = !!((*b3Body)(unsafe.Pointer(body)).SetIndex == int32(b3_awakeSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+2822, __ccgo_ts+28885, int32FromInt32(1936))
+		b3InternalAssert(tls, __ccgo_ts+2822, __ccgo_ts+29599, int32FromInt32(1936))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	state = b3GetBodyState(tls, world, body)
@@ -8742,15 +8742,15 @@ _6:
 			edge2 = edges + uintptr((*HullHalfEdge)(unsafe.Pointer(edge1)).Next)*4
 			edge3 = edges + uintptr((*HullHalfEdge)(unsafe.Pointer(edge2)).Next)*4
 			if v1 = !!(edge1 != edge3); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+15098, __ccgo_ts+28885, int32FromInt32(2020))
+				b3InternalAssert(tls, __ccgo_ts+15098, __ccgo_ts+29599, int32FromInt32(2020))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge1)).Origin) < (*HullData)(unsafe.Pointer(*(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)))).VertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+30674, __ccgo_ts+28885, int32FromInt32(2021))
+				b3InternalAssert(tls, __ccgo_ts+31388, __ccgo_ts+29599, int32FromInt32(2021))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge2)).Origin) < (*HullData)(unsafe.Pointer(*(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)))).VertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+30715, __ccgo_ts+28885, int32FromInt32(2022))
+				b3InternalAssert(tls, __ccgo_ts+31429, __ccgo_ts+29599, int32FromInt32(2022))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			localPoint1 = *(*Vec3)(unsafe.Add(nil, points+uintptr((*HullHalfEdge)(unsafe.Pointer(edge1)).Origin)*12))
@@ -8790,7 +8790,7 @@ _6:
 			normal1 = v14
 			for cond := true; cond; cond = edge1 != edge3 {
 				if v1 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge3)).Origin) < (*HullData)(unsafe.Pointer(*(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)))).VertexCount); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+30756, __ccgo_ts+28885, int32FromInt32(2032))
+					b3InternalAssert(tls, __ccgo_ts+31470, __ccgo_ts+29599, int32FromInt32(2032))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				localPoint3 = *(*Vec3)(unsafe.Add(nil, points+uintptr((*HullHalfEdge)(unsafe.Pointer(edge3)).Origin)*12))
@@ -10255,7 +10255,7 @@ func b3ShapeTimeOfImpact(tls *_Stack, shapeA uintptr, shapeB uintptr, sweepA uin
 		return (*(*b3MeshImpactContext)(unsafe.Add(nil, bp+284))).ToiOutput
 	}
 	if v503 = !!((*b3Shape)(unsafe.Pointer(shapeB)).Type1 != int32(b3_compoundShape) && (*b3Shape)(unsafe.Pointer(shapeB)).Type1 != int32(b3_meshShape) && (*b3Shape)(unsafe.Pointer(shapeB)).Type1 != int32(b3_heightShape)); !v503 {
-		b3InternalAssert(tls, __ccgo_ts+30797, __ccgo_ts+28885, int32FromInt32(2367))
+		b3InternalAssert(tls, __ccgo_ts+31511, __ccgo_ts+29599, int32FromInt32(2367))
 	}
 	_ = v503 || bool(int32FromInt32(0) != 0)
 	(*(*cTOIInput)(unsafe.Add(nil, bp+544))).ProxyA = b3MakeShapeProxy(tls, shapeA)
@@ -10320,7 +10320,7 @@ func b3GetShapeUserMaterialId(tls *_Stack, shape1 uintptr, childIndex int32, tri
 					}
 					meshMaterialIndex = v7
 					if v8 = !!(0 <= meshMaterialIndex && meshMaterialIndex < child.MaterialCount); !v8 {
-						b3InternalAssert(tls, __ccgo_ts+30896, __ccgo_ts+28885, int32FromInt32(2430))
+						b3InternalAssert(tls, __ccgo_ts+31610, __ccgo_ts+29599, int32FromInt32(2430))
 					}
 					_ = v8 || bool(int32FromInt32(0) != 0)
 					materialIndex = int32FromUint16(*(*uint16_t)(unsafe.Add(nil, child.MaterialIndices+uintptr(meshMaterialIndex)*2)))
@@ -10582,7 +10582,7 @@ func b3SerShapes(tls *_Stack, buf uintptr, world uintptr, rec uintptr) {
 			// A live shape must have a known geometry type. Fail loudly rather than emit a shape
 			// with no geometry that would silently lose its collision on restore.
 			if v2 = bool(!!(int32FromInt32(false1) != 0)); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+37383, int32FromInt32(633))
+				b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+38097, int32FromInt32(633))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			b3SnapW_I32(tls, buf, -int32(1))

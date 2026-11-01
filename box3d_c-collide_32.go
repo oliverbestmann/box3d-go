@@ -3862,7 +3862,7 @@ _87:
 			} else {
 				// Recurse
 				if v4 = !!(count <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v4 {
-					b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2354))
+					b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2354))
 				}
 				_ = v4 || bool(int32FromInt32(0) != 0)
 				v161 = count
@@ -3907,7 +3907,7 @@ func b3CollideTask(tls *_Stack, startIndex int32, endIndex int32, workerIndex in
 	awakeSims = (*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_awakeSet)*64))).BodySims.Data
 	staticSims = (*(*b3SolverSet)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).SolverSets.Data+uintptr(b3_staticSet)*64))).BodySims.Data
 	if v1 = !!(startIndex < endIndex); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24350, __ccgo_ts+23730, int32FromInt32(599))
+		b3InternalAssert(tls, __ccgo_ts+24826, __ccgo_ts+24206, int32FromInt32(599))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	recycleDistance = (*b3World)(unsafe.Pointer(world)).ContactRecycleDistance
@@ -3935,7 +3935,7 @@ _5:
 		}
 		contactIndex = *(*int32)(unsafe.Add(nil, contactIndices+uintptr(i)*4))
 		if v1 = !!(contactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+24372, __ccgo_ts+23730, int32FromInt32(616))
+			b3InternalAssert(tls, __ccgo_ts+24848, __ccgo_ts+24206, int32FromInt32(616))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact = contacts + uintptr(contactIndex)*204
@@ -3967,6 +3967,7 @@ _5:
 		wasTouching = uint8(boolUint32((*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_simTouchingFlag) != 0))
 		transformA = (*b3BodySim)(unsafe.Pointer(bodySimA)).Transform
 		transformB = (*b3BodySim)(unsafe.Pointer(bodySimB)).Transform
+		// This is really just needed for mesh collision to prevent tunneling.
 		isFast = boolUint8(((*b3BodySim)(unsafe.Pointer(bodySimA)).Flags|(*b3BodySim)(unsafe.Pointer(bodySimB)).Flags)&uint32(b3_isFast) != uint32(0))
 		if wasTouching != 0 {
 			v2 = recycleDistance
@@ -4693,16 +4694,16 @@ _5:
 		// Update the mesh contact spec
 		if int32FromUint8(touching) == int32(true1) && int32FromUint8(wasTouching) == int32(true1) && (*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_simMeshContact) != 0 {
 			if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ColorIndex != -int32FromInt32(1)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+24409, __ccgo_ts+23730, int32FromInt32(758))
+				b3InternalAssert(tls, __ccgo_ts+24885, __ccgo_ts+24206, int32FromInt32(760))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(0 <= (*b3Contact)(unsafe.Pointer(contact)).ColorIndex && (*b3Contact)(unsafe.Pointer(contact)).ColorIndex < int32(_B3_GRAPH_COLOR_COUNT)); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+24446, __ccgo_ts+23730, int32FromInt32(759))
+				b3InternalAssert(tls, __ccgo_ts+24922, __ccgo_ts+24206, int32FromInt32(761))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			color = graph + uintptr((*b3Contact)(unsafe.Pointer(contact)).ColorIndex)*76
 			if v1 = !!(0 <= (*b3Contact)(unsafe.Pointer(contact)).LocalIndex && (*b3Contact)(unsafe.Pointer(contact)).LocalIndex < (*b3GraphColor)(unsafe.Pointer(color)).Contacts.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+24517, __ccgo_ts+23730, int32FromInt32(761))
+				b3InternalAssert(tls, __ccgo_ts+24993, __ccgo_ts+24206, int32FromInt32(763))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			spec = (*b3GraphColor)(unsafe.Pointer(color)).Contacts.Data + uintptr((*b3Contact)(unsafe.Pointer(contact)).LocalIndex)*12
@@ -4785,7 +4786,7 @@ func b3Collide(tls *_Stack, context uintptr) {
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = awakeSet, bitSet, bits, bodyIdA, bodyIdB, color, colorIndex, contact, contactCount, contactFullId, contactId, contactIdCapacity, contactIndex, contactIndices, count, ctz, endEventArrayIndex, event, event1, flags, graphColors, i, i1, i2, i3, i4, isMeshContact, j, j1, j2, k, localIndex, minRange, newCapacity, newCapacity1, newSize, newSize1, nonTouchingCount, nonTouchingIndices, oldLocalIndex, oldSize, oldSize1, satMultiplier, shapeA, shapeB, shapeIdA, shapeIdB, shapes, taskContext, touchingCount, world, worldId, v1, v16, v23, v3, v8
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!((*b3World)(unsafe.Pointer(world)).WorkerCount > int32FromInt32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24678, __ccgo_ts+23730, int32FromInt32(826))
+		b3InternalAssert(tls, __ccgo_ts+25154, __ccgo_ts+24206, int32FromInt32(828))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Gather contacts from all the graph colors into a single array for easier parallel-for
@@ -4803,7 +4804,7 @@ func b3Collide(tls *_Stack, context uintptr) {
 		i = i + 1
 	}
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+23730, int32FromInt32(839))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+24206, int32FromInt32(841))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*64
@@ -4812,7 +4813,7 @@ func b3Collide(tls *_Stack, context uintptr) {
 	if contactCount == 0 {
 		return
 	}
-	contactIndices = b3StackAlloc(tls, world, int32FromUint32(uint32FromInt32(contactCount)*uint32(4)), __ccgo_ts+24701)
+	contactIndices = b3StackAlloc(tls, world, int32FromUint32(uint32FromInt32(contactCount)*uint32(4)), __ccgo_ts+25177)
 	contactIndex = 0
 	i1 = 0
 	for {
@@ -4852,7 +4853,7 @@ func b3Collide(tls *_Stack, context uintptr) {
 		i1 = i1 + 1
 	}
 	if v1 = !!(contactIndex == touchingCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+24717, __ccgo_ts+23730, int32FromInt32(871))
+		b3InternalAssert(tls, __ccgo_ts+25193, __ccgo_ts+24206, int32FromInt32(873))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if nonTouchingCount > 0 {
@@ -4883,7 +4884,7 @@ _9:
 	}
 	// Task should take at least 40us on a 4GHz CPU (10K cycles)
 	minRange = int32(20)
-	b3ParallelFor(tls, world, __ccgo_fp(b3CollideTask), contactCount, minRange, context, __ccgo_ts+24747)
+	b3ParallelFor(tls, world, __ccgo_fp(b3CollideTask), contactCount, minRange, context, __ccgo_ts+25223)
 	b3StackFree(tls, world, contactIndices)
 	(*b3StepContext)(unsafe.Pointer(context)).AwakeContactIndices = uintptrFromInt32(0)
 	contactIndices = uintptrFromInt32(0)
@@ -4955,12 +4956,12 @@ _9:
 			ctz = v16
 			contactId = int32FromUint32(uint32FromInt32(64)*k + ctz)
 			if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+23730, int32FromInt32(947))
+				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+24206, int32FromInt32(949))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*204
 			if v3 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet)); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+23730, int32FromInt32(948))
+				b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+24206, int32FromInt32(950))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			shapeA = shapes + uintptr((*b3Contact)(unsafe.Pointer(contact)).ShapeIdA)*208
@@ -4988,7 +4989,7 @@ _9:
 			} else {
 				if flags&uint32(b3_simStartedTouching) != 0 {
 					if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).IslandId == -int32FromInt32(1)); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+16721, __ccgo_ts+23730, int32FromInt32(970))
+						b3InternalAssert(tls, __ccgo_ts+16721, __ccgo_ts+24206, int32FromInt32(972))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					if flags&uint32(b3_contactEnableContactEvents) != 0 {
@@ -5015,11 +5016,11 @@ _9:
 						*(*ContactBeginTouchEvent)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).ContactBeginEvents.Data+uintptr(v8)*28)) = event
 					}
 					if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount > int32FromInt32(0)); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+6619, __ccgo_ts+23730, int32FromInt32(978))
+						b3InternalAssert(tls, __ccgo_ts+6619, __ccgo_ts+24206, int32FromInt32(980))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet)); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+23730, int32FromInt32(979))
+						b3InternalAssert(tls, __ccgo_ts+8578, __ccgo_ts+24206, int32FromInt32(981))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					// Link first because this wakes colliding bodies and ensures the body sims
@@ -5029,7 +5030,7 @@ _9:
 					b3LinkContact(tls, world, contact)
 					// Make sure these didn't change
 					if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ColorIndex == -int32FromInt32(1)); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+24755, __ccgo_ts+23730, int32FromInt32(988))
+						b3InternalAssert(tls, __ccgo_ts+25231, __ccgo_ts+24206, int32FromInt32(990))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					// Contact sim pointer may have become orphaned due to awake set growth,
@@ -5065,7 +5066,7 @@ _9:
 							*(*ContactEndTouchEvent)(unsafe.Add(nil, (*(*b3DynamicArray_b3ContactEndTouchEvent)(unsafe.Add(nil, world+2932+uintptr(endEventArrayIndex)*12))).Data+uintptr(v8)*28)) = event1
 						}
 						if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == int32FromInt32(0)); !v1 {
-							b3InternalAssert(tls, __ccgo_ts+24792, __ccgo_ts+23730, int32FromInt32(1009))
+							b3InternalAssert(tls, __ccgo_ts+25268, __ccgo_ts+24206, int32FromInt32(1011))
 						}
 						_ = v1 || bool(int32FromInt32(0) != 0)
 						// Cache these here for the remove below
@@ -5240,7 +5241,7 @@ _32:
 		planeCount = b3CollideMoverAndHeightField(tls, planes, planeCapacity, *(*uintptr)(unsafe.Add(unsafe.Pointer(shape), 176)), bp)
 	default:
 		if v59 = bool(!!(int32FromInt32(false1) != 0)); !v59 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(1007))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(1007))
 		}
 		_ = v59 || bool(int32FromInt32(0) != 0)
 		break
@@ -6184,7 +6185,7 @@ _29:
 		clipPlane = v13
 		pointCount = b3ClipPolygon(tls, *(*uintptr)(unsafe.Add(nil, bp+2564)), *(*uintptr)(unsafe.Add(nil, bp+2560)), pointCount, clipPlane, edgeIndex, refPlane)
 		if v52 = !!(pointCount <= int32FromInt32(_B3_MAX_CLIP_POINTS)); !v52 {
-			b3InternalAssert(tls, __ccgo_ts+9925, __ccgo_ts+36376, int32FromInt32(727))
+			b3InternalAssert(tls, __ccgo_ts+9925, __ccgo_ts+37090, int32FromInt32(727))
 		}
 		_ = v52 || bool(int32FromInt32(0) != 0)
 		if pointCount < int32(3) {
@@ -6354,7 +6355,7 @@ _9:
 		hullEdgeIndex = nextEdgeIndex
 	}
 	if v17 = !!(pointCount >= int32FromInt32(3)); !v17 {
-		b3InternalAssert(tls, __ccgo_ts+36535, __ccgo_ts+36376, int32FromInt32(828))
+		b3InternalAssert(tls, __ccgo_ts+37249, __ccgo_ts+37090, int32FromInt32(828))
 	}
 	_ = v17 || bool(int32FromInt32(0) != 0)
 	// Clip incident face against side planes of reference face (triangle)
@@ -6415,7 +6416,7 @@ _9:
 		clipPlane = v10
 		pointCount = b3ClipPolygon(tls, *(*uintptr)(unsafe.Add(nil, bp+5124)), *(*uintptr)(unsafe.Add(nil, bp+5120)), pointCount, clipPlane, i, refPlane)
 		if v17 = !!(pointCount <= int32FromInt32(2)*int32FromInt32(_B3_MAX_CLIP_POINTS)); !v17 {
-			b3InternalAssert(tls, __ccgo_ts+36551, __ccgo_ts+36376, int32FromInt32(845))
+			b3InternalAssert(tls, __ccgo_ts+37265, __ccgo_ts+37090, int32FromInt32(845))
 		}
 		_ = v17 || bool(int32FromInt32(0) != 0)
 		memcpy(tls, bp+5128, bp+5124, uint32(4))
@@ -6547,7 +6548,7 @@ _10:
 	if capacity == 0 || result.Fraction1 < float32FromFloat32(0) || float32FromFloat32(1) < result.Fraction1 || result.Fraction2 < float32FromFloat32(0) || float32FromFloat32(1) < result.Fraction2 {
 		// Invalid edge pair, no points generated
 		if v11 = !!((*LocalManifold)(unsafe.Pointer(manifold)).PointCount == int32FromInt32(0)); !v11 {
-			b3InternalAssert(tls, __ccgo_ts+36432, __ccgo_ts+36376, int32FromInt32(931))
+			b3InternalAssert(tls, __ccgo_ts+37146, __ccgo_ts+37090, int32FromInt32(931))
 		}
 		_ = v11 || bool(int32FromInt32(0) != 0)
 		*(*b3SATCache)(unsafe.Add(nil, cache)) = b3SATCache{}
@@ -6807,7 +6808,7 @@ _54:
 	switch int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).Type1) {
 	case int32(b3_faceAxisA):
 		if v56 = !!(int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexA) == int32FromInt32(0)); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+36588, __ccgo_ts+36376, int32FromInt32(1021))
+			b3InternalAssert(tls, __ccgo_ts+37302, __ccgo_ts+37090, int32FromInt32(1021))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		v11 = trianglePlane.Normal
@@ -6862,7 +6863,7 @@ _54:
 		*(*b3SATCache)(unsafe.Add(nil, cache)) = b3SATCache{}
 	case int32(b3_faceAxisB):
 		if v56 = !!(int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexB) < (*HullData)(unsafe.Pointer(hullB)).FaceCount); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+9991, __ccgo_ts+36376, int32FromInt32(1058))
+			b3InternalAssert(tls, __ccgo_ts+9991, __ccgo_ts+37090, int32FromInt32(1058))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		plane2 = *(*Plane)(unsafe.Add(nil, hullPlanes+uintptr((*b3SATCache)(unsafe.Pointer(cache)).IndexB)*16))
@@ -6953,21 +6954,21 @@ _54:
 		*(*b3SATCache)(unsafe.Add(nil, cache)) = b3SATCache{}
 	case int32(b3_edgePairAxis):
 		if v56 = !!(int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexA) < int32FromInt32(3)); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+36607, __ccgo_ts+36376, int32FromInt32(1121))
+			b3InternalAssert(tls, __ccgo_ts+37321, __ccgo_ts+37090, int32FromInt32(1121))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		indexA = int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexA)
 		triPoint = trianglePoints[indexA]
 		triEdge = triangleEdges[indexA]
 		if v56 = !!(int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexB) < (*HullData)(unsafe.Pointer(hullB)).EdgeCount-int32FromInt32(1)); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+36625, __ccgo_ts+36376, int32FromInt32(1127))
+			b3InternalAssert(tls, __ccgo_ts+37339, __ccgo_ts+37090, int32FromInt32(1127))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		indexB = int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).IndexB)
 		edge2 = edges + uintptr(indexB)*4
 		twin2 = edges + uintptr(indexB)*4 + uintptr(1)*4
 		if v56 = !!(int32FromUint8((*HullHalfEdge)(unsafe.Pointer(edge2)).Twin) == indexB+int32(1) && int32FromUint8((*HullHalfEdge)(unsafe.Pointer(twin2)).Twin) == indexB); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+10075, __ccgo_ts+36376, int32FromInt32(1132))
+			b3InternalAssert(tls, __ccgo_ts+10075, __ccgo_ts+37090, int32FromInt32(1132))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		hullPoint = *(*Vec3)(unsafe.Add(nil, hullPoints+uintptr((*HullHalfEdge)(unsafe.Pointer(edge2)).Origin)*12))
@@ -7131,7 +7132,7 @@ _54:
 		return
 	default:
 		if v56 = !!(int32FromUint8((*b3SATCache)(unsafe.Pointer(cache)).Type1) == int32(b3_invalidAxis)); !v56 {
-			b3InternalAssert(tls, __ccgo_ts+36662, __ccgo_ts+36376, int32FromInt32(1226))
+			b3InternalAssert(tls, __ccgo_ts+37376, __ccgo_ts+37090, int32FromInt32(1226))
 		}
 		_ = v56 || bool(int32FromInt32(0) != 0)
 		break
@@ -7196,7 +7197,7 @@ _152:
 		maxFaceSeparation = v28
 		if (*LocalManifold)(unsafe.Pointer(manifold)).PointCount == 0 && edgeQuery1.Separation > maxFaceSeparation || (*LocalManifold)(unsafe.Pointer(manifold)).PointCount == int32(1) && edgeQuery1.Separation > clipSeparation+linearSlop {
 			if v56 = !!(0 <= edgeQuery1.IndexA && edgeQuery1.IndexA < int32(3)); !v56 {
-				b3InternalAssert(tls, __ccgo_ts+36692, __ccgo_ts+36376, int32FromInt32(1291))
+				b3InternalAssert(tls, __ccgo_ts+37406, __ccgo_ts+37090, int32FromInt32(1291))
 			}
 			_ = v56 || bool(int32FromInt32(0) != 0)
 			trianglePoint1 = trianglePoints[edgeQuery1.IndexA]
@@ -7228,7 +7229,7 @@ _152:
 		output = b3ShapeDistance(tls, bp+156, bp+212, uintptrFromInt32(0), 0)
 		if output.Distance > float32FromFloat32(0) {
 			if v56 = !!(0 < int32FromUint16((*(*SimplexCache)(unsafe.Add(nil, bp+212))).Count) && int32FromUint16((*(*SimplexCache)(unsafe.Add(nil, bp+212))).Count) <= int32(3)); !v56 {
-				b3InternalAssert(tls, __ccgo_ts+36738, __ccgo_ts+36376, int32FromInt32(1319))
+				b3InternalAssert(tls, __ccgo_ts+37452, __ccgo_ts+37090, int32FromInt32(1319))
 			}
 			_ = v56 || bool(int32FromInt32(0) != 0)
 			(*LocalManifold)(unsafe.Pointer(manifold)).PointCount = int32(1)

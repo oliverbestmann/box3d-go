@@ -5947,7 +5947,7 @@ func b3CompoundTimeOfImpactFcn(tls *_Stack, compound uintptr, childIndex int32, 
 		output = b3TimeOfImpact(tls, toiContext)
 	default:
 		if v373 = bool(!!(int32FromInt32(false1) != 0)); !v373 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+28885, int32FromInt32(2257))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+29599, int32FromInt32(2257))
 		}
 		_ = v373 || bool(int32FromInt32(0) != 0)
 		break

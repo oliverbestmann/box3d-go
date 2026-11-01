@@ -400,3 +400,65 @@ func abs(x float32) float32 {
 
 	return x
 }
+
+// TestMoverAndPogoJoint builds the core of upstream's dynamic mover: a capsule with locked
+// rotation that a pogo joint holds above the ground and a mover joint drives along x.
+func TestMoverAndPogoJoint(t *testing.T) {
+	world := CreateWorld(DefaultWorldDef())
+	defer world.DestroyWorld()
+
+	ground := world.CreateBody(DefaultBodyDef())
+	groundBox := MakeOffsetBoxHull(50, 1, 50, Vec3{Y: -1})
+	ground.CreateHullShape(DefaultShapeDef(), &groundBox.Base)
+
+	bodyDef := DefaultBodyDef()
+	bodyDef.Type1 = DynamicBody
+	bodyDef.Position = Pos{Y: 1.5}
+	bodyDef.MotionLocks = MotionLocks{AngularX: 1, AngularY: 1, AngularZ: 1}
+	bodyDef.EnableSleep = 0
+	mover := world.CreateBody(bodyDef)
+
+	capsule := Capsule{Center1: Vec3{Y: -0.5}, Center2: Vec3{Y: 0.5}, Radius: 0.3}
+	shapeDef := DefaultShapeDef()
+	shapeDef.Density = 200
+	shapeDef.BaseMaterial.Friction = 0
+	mover.CreateCapsuleShape(shapeDef, capsule)
+
+	moverDef := DefaultMoverJointDef()
+	moverDef.Base.BodyIdA = ground.Id
+	moverDef.Base.BodyIdB = mover.Id
+	moverDef.Base.CollideConnected = 1
+	moverDef.LinearVelocity = Vec3{X: 2}
+	moverDef.MaxForce = 6000
+	moverJoint := world.CreateMoverJoint(moverDef)
+	assert.Equal(t, moverJoint, moverJoint.Joint.AsMoverJoint())
+	assert.Equal(t, Vec3{X: 2}, moverJoint.GetLinearVelocity())
+
+	// the pogo runs from the bottom of the capsule to the ground, 0.9 long at rest
+	pogoDef := DefaultPogoJointDef()
+	pogoDef.Base.BodyIdA = ground.Id
+	pogoDef.Base.BodyIdB = mover.Id
+	pogoDef.Base.LocalFrameA.Q = QuatIdentity
+	pogoDef.Base.LocalFrameB = Transform{P: Vec3{Y: -0.8}, Q: QuatIdentity}
+	pogoDef.Base.CollideConnected = 1
+	pogoDef.Normal = Vec3{Y: 1}
+	pogoDef.RestLength = 0.9
+	pogoDef.Hertz = 3
+	pogoDef.DampingRatio = 0.8
+	weight := mover.GetMass() * 10
+	pogoDef.MaxCompressionForce = 100 * weight
+	pogoDef.MaxTensionForce = 100 * weight
+	pogo := world.CreatePogoJoint(pogoDef)
+	assert.Equal(t, pogo, pogo.Joint.AsPogoJoint())
+	assert.Panics(t, func() { pogo.Joint.AsMoverJoint() })
+
+	for range 120 {
+		world.Step(1.0/60.0, 4)
+	}
+
+	// the pogo holds the capsule above the ground, the mover drives it at 2 m/s
+	assert.InDelta(t, 0.9, pogo.GetCurrentLength(), 0.05)
+	assert.InDelta(t, 1.7, mover.GetPosition().Y, 0.05)
+	assert.InDelta(t, 2, mover.GetLinearVelocity().X, 0.05)
+	assert.Positive(t, mover.GetPosition().X)
+}

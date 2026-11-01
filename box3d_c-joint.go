@@ -2993,6 +2993,23 @@ func b3DefaultMotorJointDef(tls *_Stack) (r MotorJointDef) {
 	return def
 }
 
+func b3DefaultMoverJointDef(tls *_Stack) (r MoverJointDef) {
+	var def MoverJointDef
+	_ = def
+	def = MoverJointDef{}
+	def.Base = b3DefaultJointDef(tls)
+	return def
+}
+
+func b3DefaultPogoJointDef(tls *_Stack) (r PogoJointDef) {
+	var def PogoJointDef
+	_ = def
+	def = PogoJointDef{}
+	def.Base = b3DefaultJointDef(tls)
+	def.Normal = b3Vec3_axisY
+	return def
+}
+
 func b3DefaultFilterJointDef(tls *_Stack) (r FilterJointDef) {
 	var def FilterJointDef
 	_ = def
@@ -3054,12 +3071,12 @@ func b3GetJointFullId(tls *_Stack, world uintptr, jointId JointId) (r uintptr) {
 	_, _, _, _ = id, joint, v1, v2
 	id = jointId.Index1 - int32(1)
 	if v1 = !!(0 <= id && id < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18251, __ccgo_ts+18299, int32FromInt32(123))
+		b3InternalAssert(tls, __ccgo_ts+18251, __ccgo_ts+18299, int32FromInt32(138))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(id)*72
 	if v2 = !!((*b3Joint)(unsafe.Pointer(joint)).JointId == id && int32FromUint16((*b3Joint)(unsafe.Pointer(joint)).Generation) == int32FromUint16(jointId.Generation)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+18322, __ccgo_ts+18299, int32FromInt32(124))
+		b3InternalAssert(tls, __ccgo_ts+18322, __ccgo_ts+18299, int32FromInt32(139))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	return joint
@@ -3071,23 +3088,23 @@ func b3GetJointSim(tls *_Stack, world uintptr, joint uintptr) (r uintptr) {
 	_, _, _, _ = color, set, v1, v2
 	if (*b3Joint)(unsafe.Pointer(joint)).SetIndex == int32(b3_awakeSet) {
 		if v1 = !!(0 <= (*b3Joint)(unsafe.Pointer(joint)).ColorIndex && (*b3Joint)(unsafe.Pointer(joint)).ColorIndex < int32(_B3_GRAPH_COLOR_COUNT)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+18386, __ccgo_ts+18299, int32FromInt32(132))
+			b3InternalAssert(tls, __ccgo_ts+18386, __ccgo_ts+18299, int32FromInt32(147))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		color = world + 1160 + uintptr((*b3Joint)(unsafe.Pointer(joint)).ColorIndex)*120
 		if v1 = !!(0 <= (*b3Joint)(unsafe.Pointer(joint)).LocalIndex && (*b3Joint)(unsafe.Pointer(joint)).LocalIndex < (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+18453, __ccgo_ts+18299, int32FromInt32(134))
+			b3InternalAssert(tls, __ccgo_ts+18453, __ccgo_ts+18299, int32FromInt32(149))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Data + uintptr((*b3Joint)(unsafe.Pointer(joint)).LocalIndex)*444
 	}
 	if v1 = !!(0 <= (*b3Joint)(unsafe.Pointer(joint)).SetIndex && (*b3Joint)(unsafe.Pointer(joint)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3415, __ccgo_ts+18299, int32FromInt32(137))
+		b3InternalAssert(tls, __ccgo_ts+3415, __ccgo_ts+18299, int32FromInt32(152))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Joint)(unsafe.Pointer(joint)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Joint)(unsafe.Pointer(joint)).LocalIndex && (*b3Joint)(unsafe.Pointer(joint)).LocalIndex < (*b3SolverSet)(unsafe.Pointer(set)).JointSims.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+18534, __ccgo_ts+18299, int32FromInt32(138))
+		b3InternalAssert(tls, __ccgo_ts+18534, __ccgo_ts+18299, int32FromInt32(153))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	return (*b3SolverSet)(unsafe.Pointer(set)).JointSims.Data + uintptr((*b3Joint)(unsafe.Pointer(joint)).LocalIndex)*444
@@ -3101,12 +3118,12 @@ func b3GetJointSimCheckType(tls *_Stack, jointId JointId, type1 JointType) (r ui
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
 	joint = b3GetJointFullId(tls, world, jointId)
 	if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).Type1 == type1); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18613, __ccgo_ts+18299, int32FromInt32(146))
+		b3InternalAssert(tls, __ccgo_ts+18613, __ccgo_ts+18299, int32FromInt32(161))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	jointSim = b3GetJointSim(tls, world, joint)
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(jointSim)).Type1 == type1); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18633, __ccgo_ts+18299, int32FromInt32(148))
+		b3InternalAssert(tls, __ccgo_ts+18633, __ccgo_ts+18299, int32FromInt32(163))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return jointSim
@@ -3118,23 +3135,23 @@ func b3CreateJoint(tls *_Stack, world uintptr, def uintptr, type1 JointType) (r 
 	var v1, v2 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyA, bodyB, bodyIdA, bodyIdB, edgeA, edgeB, joint, jointA, jointB, jointId, jointSim, keyA, keyB, maxSetIndex, mergedSet, newCapacity, newCapacity1, newSize, newSize1, oldCapacity, oldSize, oldSize1, set, set1, set2, setIndex, v1, v10, v11, v13, v15, v19, v2, v20, v21, v6, v7, v8
 	if v1 = !!(b3IsValidTransform(tls, (*JointDef)(unsafe.Pointer(def)).LocalFrameA) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18656, __ccgo_ts+18299, int32FromInt32(200))
+		b3InternalAssert(tls, __ccgo_ts+18656, __ccgo_ts+18299, int32FromInt32(215))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidTransform(tls, (*JointDef)(unsafe.Pointer(def)).LocalFrameB) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18695, __ccgo_ts+18299, int32FromInt32(201))
+		b3InternalAssert(tls, __ccgo_ts+18695, __ccgo_ts+18299, int32FromInt32(216))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId) == int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdA.World0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18734, __ccgo_ts+18299, int32FromInt32(202))
+		b3InternalAssert(tls, __ccgo_ts+18734, __ccgo_ts+18299, int32FromInt32(217))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(int32FromUint16((*b3World)(unsafe.Pointer(world)).WorldId) == int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdB.World0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18772, __ccgo_ts+18299, int32FromInt32(203))
+		b3InternalAssert(tls, __ccgo_ts+18772, __ccgo_ts+18299, int32FromInt32(218))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(boolInt32((*JointDef)(unsafe.Pointer(def)).BodyIdA.Index1 == (*JointDef)(unsafe.Pointer(def)).BodyIdB.Index1 && int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdA.World0) == int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdB.World0) && int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdA.Generation) == int32FromUint16((*JointDef)(unsafe.Pointer(def)).BodyIdB.Generation)) == int32FromInt32(false1)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+18810, __ccgo_ts+18299, int32FromInt32(204))
+		b3InternalAssert(tls, __ccgo_ts+18810, __ccgo_ts+18299, int32FromInt32(219))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = b3GetBodyFullId(tls, world, (*JointDef)(unsafe.Pointer(def)).BodyIdA)
@@ -3178,7 +3195,7 @@ _9:
 		*(*b3Joint)(unsafe.Add(nil, (*b3World)(unsafe.Pointer(world)).Joints.Data+uintptr(v6)*72)) = b3Joint{}
 	}
 	if v1 = !!(0 <= jointId && jointId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+18299, int32FromInt32(227))
+		b3InternalAssert(tls, __ccgo_ts+1939, __ccgo_ts+18299, int32FromInt32(242))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(jointId)*72
@@ -3201,7 +3218,7 @@ _9:
 	keyA = jointId<<int32(1) | 0
 	if (*b3Body)(unsafe.Pointer(bodyA)).HeadJointKey != -int32(1) {
 		if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).HeadJointKey>>int32(1) && (*b3Body)(unsafe.Pointer(bodyA)).HeadJointKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+18862, __ccgo_ts+18299, int32FromInt32(248))
+			b3InternalAssert(tls, __ccgo_ts+18862, __ccgo_ts+18299, int32FromInt32(263))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		jointA = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).HeadJointKey>>int32FromInt32(1))*72
@@ -3217,7 +3234,7 @@ _9:
 	keyB = jointId<<int32(1) | int32(1)
 	if (*b3Body)(unsafe.Pointer(bodyB)).HeadJointKey != -int32(1) {
 		if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).HeadJointKey>>int32(1) && (*b3Body)(unsafe.Pointer(bodyB)).HeadJointKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+18954, __ccgo_ts+18299, int32FromInt32(263))
+			b3InternalAssert(tls, __ccgo_ts+18954, __ccgo_ts+18299, int32FromInt32(278))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		jointB = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).HeadJointKey>>int32FromInt32(1))*72
@@ -3228,7 +3245,7 @@ _9:
 	*(*int32)(unsafe.Add(nil, bodyB+40)) += int32(1)
 	if (*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_disabledSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_disabledSet) {
 		if v1 = !!(bool(0 <= int32(b3_disabledSet)) && int32(b3_disabledSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+18299, int32FromInt32(275))
+			b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+18299, int32FromInt32(290))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// if either body is disabled, create in disabled set
@@ -3266,7 +3283,7 @@ _9:
 	} else {
 		if (*b3Body)(unsafe.Pointer(bodyA)).Type1 != int32(b3_dynamicBody) && (*b3Body)(unsafe.Pointer(bodyB)).Type1 != int32(b3_dynamicBody) {
 			if v1 = !!(bool(0 <= int32(b3_staticSet)) && int32(b3_staticSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+3167, __ccgo_ts+18299, int32FromInt32(289))
+				b3InternalAssert(tls, __ccgo_ts+3167, __ccgo_ts+18299, int32FromInt32(304))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			// joint is not attached to a dynamic body
@@ -3315,17 +3332,17 @@ _9:
 			} else {
 				// joint connected between sleeping and/or static bodies
 				if v1 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex >= int32(b3_firstSleepingSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex >= int32(b3_firstSleepingSet)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+19046, __ccgo_ts+18299, int32FromInt32(318))
+					b3InternalAssert(tls, __ccgo_ts+19046, __ccgo_ts+18299, int32FromInt32(333))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				if v1 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex != int32(b3_staticSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex != int32(b3_staticSet)); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+7755, __ccgo_ts+18299, int32FromInt32(319))
+					b3InternalAssert(tls, __ccgo_ts+7755, __ccgo_ts+18299, int32FromInt32(335))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				// joint should go into the sleeping set (not static set)
 				setIndex = maxSetIndex
 				if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(324))
+					b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(340))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				set2 = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
@@ -3363,25 +3380,25 @@ _9:
 					// merge sleeping sets
 					b3MergeSolverSets(tls, world, (*b3Body)(unsafe.Pointer(bodyA)).SetIndex, (*b3Body)(unsafe.Pointer(bodyB)).SetIndex)
 					if v1 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == (*b3Body)(unsafe.Pointer(bodyB)).SetIndex); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+19127, __ccgo_ts+18299, int32FromInt32(340))
+						b3InternalAssert(tls, __ccgo_ts+19127, __ccgo_ts+18299, int32FromInt32(356))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					// fix potentially invalid set index
 					setIndex = (*b3Body)(unsafe.Pointer(bodyA)).SetIndex
 					if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(345))
+						b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(361))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					mergedSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
 					// Careful! The joint sim pointer was orphaned by the set merge.
 					if v2 = !!(0 <= (*b3Joint)(unsafe.Pointer(joint)).LocalIndex && (*b3Joint)(unsafe.Pointer(joint)).LocalIndex < (*b3SolverSet)(unsafe.Pointer(mergedSet)).JointSims.Count); !v2 {
-						b3InternalAssert(tls, __ccgo_ts+19162, __ccgo_ts+18299, int32FromInt32(348))
+						b3InternalAssert(tls, __ccgo_ts+19162, __ccgo_ts+18299, int32FromInt32(364))
 					}
 					_ = v2 || bool(int32FromInt32(0) != 0)
 					jointSim = (*b3SolverSet)(unsafe.Pointer(mergedSet)).JointSims.Data + uintptr((*b3Joint)(unsafe.Pointer(joint)).LocalIndex)*444
 				}
 				if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex == setIndex); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+19247, __ccgo_ts+18299, int32FromInt32(351))
+					b3InternalAssert(tls, __ccgo_ts+19247, __ccgo_ts+18299, int32FromInt32(367))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 			}
@@ -3396,25 +3413,25 @@ _9:
 		MassScale: float32FromFloat32(1),
 	}
 	if v1 = !!(b3IsValidFloat(tls, (*JointDef)(unsafe.Pointer(def)).ForceThreshold) != 0 && (*JointDef)(unsafe.Pointer(def)).ForceThreshold >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19275, __ccgo_ts+18299, int32FromInt32(365))
+		b3InternalAssert(tls, __ccgo_ts+19275, __ccgo_ts+18299, int32FromInt32(381))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*JointDef)(unsafe.Pointer(def)).TorqueThreshold) != 0 && (*JointDef)(unsafe.Pointer(def)).TorqueThreshold >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19344, __ccgo_ts+18299, int32FromInt32(366))
+		b3InternalAssert(tls, __ccgo_ts+19344, __ccgo_ts+18299, int32FromInt32(382))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	(*b3JointSim)(unsafe.Pointer(jointSim)).ForceThreshold = (*JointDef)(unsafe.Pointer(def)).ForceThreshold
 	(*b3JointSim)(unsafe.Pointer(jointSim)).TorqueThreshold = (*JointDef)(unsafe.Pointer(def)).TorqueThreshold
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(jointSim)).JointId == jointId); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19415, __ccgo_ts+18299, int32FromInt32(371))
+		b3InternalAssert(tls, __ccgo_ts+19415, __ccgo_ts+18299, int32FromInt32(387))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(jointSim)).BodyIdA == bodyIdA); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19444, __ccgo_ts+18299, int32FromInt32(372))
+		b3InternalAssert(tls, __ccgo_ts+19444, __ccgo_ts+18299, int32FromInt32(388))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(jointSim)).BodyIdB == bodyIdB); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19473, __ccgo_ts+18299, int32FromInt32(373))
+		b3InternalAssert(tls, __ccgo_ts+19473, __ccgo_ts+18299, int32FromInt32(389))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if (*b3Joint)(unsafe.Pointer(joint)).SetIndex > int32(b3_disabledSet) {
@@ -3436,11 +3453,11 @@ func b3Joint_SetConstraintTuning(tls *_Stack, jointId JointId, hertz float32, da
 	var _ /* recArgs at bp+0 */ b3RecArgs_JointSetConstraintTuning
 	_, _, _, _ = base, joint, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+18299, int32FromInt32(388))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+18299, int32FromInt32(404))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+18299, int32FromInt32(389))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+18299, int32FromInt32(405))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -3476,7 +3493,7 @@ func b3Joint_SetForceThreshold(tls *_Stack, jointId JointId, threshold float32) 
 	var _ /* recArgs at bp+0 */ b3RecArgs_JointSetForceThreshold
 	_, _, _, _ = base, joint, world, v1
 	if v1 = !!(b3IsValidFloat(tls, threshold) != 0 && threshold >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19598, __ccgo_ts+18299, int32FromInt32(410))
+		b3InternalAssert(tls, __ccgo_ts+19598, __ccgo_ts+18299, int32FromInt32(426))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -3509,7 +3526,7 @@ func b3Joint_SetTorqueThreshold(tls *_Stack, jointId JointId, threshold float32)
 	var _ /* recArgs at bp+0 */ b3RecArgs_JointSetTorqueThreshold
 	_, _, _, _ = base, joint, world, v1
 	if v1 = !!(b3IsValidFloat(tls, threshold) != 0 && threshold >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19598, __ccgo_ts+18299, int32FromInt32(429))
+		b3InternalAssert(tls, __ccgo_ts+19598, __ccgo_ts+18299, int32FromInt32(445))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -3545,7 +3562,7 @@ func b3CreateDistanceJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateDistanceJoint
 	_, _, _, _, _, _, _, _, _ = joint, jointId, pair, world, v1, v4, v5, v6, v8
 	if v1 = !!((*DistanceJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(448))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(464))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3553,11 +3570,11 @@ func b3CreateDistanceJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId
 		return JointId{}
 	}
 	if v1 = !!(b3IsValidFloat(tls, (*DistanceJointDef)(unsafe.Pointer(def)).Length) != 0 && (*DistanceJointDef)(unsafe.Pointer(def)).Length > float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19691, __ccgo_ts+18299, int32FromInt32(455))
+		b3InternalAssert(tls, __ccgo_ts+19691, __ccgo_ts+18299, int32FromInt32(471))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*DistanceJointDef)(unsafe.Pointer(def)).LowerSpringForce <= (*DistanceJointDef)(unsafe.Pointer(def)).UpperSpringForce); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19743, __ccgo_ts+18299, int32FromInt32(456))
+		b3InternalAssert(tls, __ccgo_ts+19743, __ccgo_ts+18299, int32FromInt32(472))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	pair = b3CreateJoint(tls, world, def, int32(b3_distanceJoint))
@@ -3634,7 +3651,7 @@ func b3CreateMotorJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateMotorJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*MotorJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(487))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(503))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3669,6 +3686,150 @@ func b3CreateMotorJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
 	return jointId
 }
 
+func b3CreateMoverJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
+	bp := tls.Alloc(144)
+	defer tls.Free(144)
+	var joint, world uintptr
+	var jointId JointId
+	var pair b3JointPair
+	var v1 bool
+	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateMoverJoint
+	_, _, _, _, _ = joint, jointId, pair, world, v1
+	if v1 = !!((*MoverJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(532))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidVec3(tls, (*MoverJointDef)(unsafe.Pointer(def)).LinearVelocity) != 0); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+1328, __ccgo_ts+18299, int32FromInt32(533))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*MoverJointDef)(unsafe.Pointer(def)).MaxForce) != 0 && (*MoverJointDef)(unsafe.Pointer(def)).MaxForce >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19790, __ccgo_ts+18299, int32FromInt32(534))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	world = b3GetUnlockedWorldFromId(tls, worldId)
+	if world == uintptrFromInt32(0) {
+		return JointId{}
+	}
+	pair = b3CreateJoint(tls, world, def, int32(b3_moverJoint))
+	joint = pair.JointSim
+	*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184)) = b3MoverJoint{}
+	(*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).LinearVelocity = (*MoverJointDef)(unsafe.Pointer(def)).LinearVelocity
+	(*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxForce = (*MoverJointDef)(unsafe.Pointer(def)).MaxForce
+	jointId = JointId{
+		Index1:     (*b3JointSim)(unsafe.Pointer(joint)).JointId + int32(1),
+		World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
+		Generation: (*b3Joint)(unsafe.Pointer(pair.Joint)).Generation,
+	}
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_CreateMoverJoint)(unsafe.Add(nil, bp)) = b3RecArgs_CreateMoverJoint{
+			World: worldId,
+			Def:   *(*MoverJointDef)(unsafe.Add(nil, def)),
+		}
+		b3RecWriteRet_CreateMoverJoint(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp, jointId)
+	}
+	return jointId
+}
+
+func b3CreatePogoJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
+	bp := tls.Alloc(160)
+	defer tls.Free(160)
+	var aa, v10, v12, v5, v9 float32
+	var joint, world uintptr
+	var jointId JointId
+	var pair b3JointPair
+	var v1, v13 bool
+	var v2, v3, v4 Vec3
+	var v7 uint8
+	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreatePogoJoint
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, joint, jointId, pair, world, v1, v10, v12, v13, v2, v3, v4, v5, v7, v9
+	if v1 = !!((*PogoJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(556))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = b3IsValidVec3(tls, (*PogoJointDef)(unsafe.Pointer(def)).Normal) != 0; v1 {
+		v2 = (*PogoJointDef)(unsafe.Pointer(def)).Normal
+		v3 = v2
+		v4 = v2
+		v5 = float32(v3.X*v4.X) + float32(v3.Y*v4.Y) + float32(v3.Z*v4.Z)
+		goto _6
+	_6:
+		aa = v5
+		v9 = float32FromFloat32(1) - aa
+		if v9 < float32FromInt32(0) {
+			v12 = -v9
+		} else {
+			v12 = v9
+		}
+		v10 = v12
+		goto _11
+	_11:
+		v7 = boolUint8(v10 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+		goto _8
+	_8:
+	}
+	if v13 = !!(v1 && v7 != 0); !v13 {
+		b3InternalAssert(tls, __ccgo_ts+19847, __ccgo_ts+18299, int32FromInt32(557))
+	}
+	_ = v13 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).RestLength) != 0 && (*PogoJointDef)(unsafe.Pointer(def)).RestLength >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19909, __ccgo_ts+18299, int32FromInt32(558))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).Hertz) != 0 && (*PogoJointDef)(unsafe.Pointer(def)).Hertz >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19970, __ccgo_ts+18299, int32FromInt32(559))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).DampingRatio) != 0 && (*PogoJointDef)(unsafe.Pointer(def)).DampingRatio >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+20021, __ccgo_ts+18299, int32FromInt32(560))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).MaxTensionForce) != 0 && (*PogoJointDef)(unsafe.Pointer(def)).MaxTensionForce >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+20086, __ccgo_ts+18299, int32FromInt32(561))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).MaxCompressionForce) != 0 && (*PogoJointDef)(unsafe.Pointer(def)).MaxCompressionForce >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+20157, __ccgo_ts+18299, int32FromInt32(562))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).Impulse) != 0); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+20236, __ccgo_ts+18299, int32FromInt32(563))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(b3IsValidFloat(tls, (*PogoJointDef)(unsafe.Pointer(def)).Velocity) != 0); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+20267, __ccgo_ts+18299, int32FromInt32(564))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	world = b3GetUnlockedWorldFromId(tls, worldId)
+	if world == uintptrFromInt32(0) {
+		return JointId{}
+	}
+	pair = b3CreateJoint(tls, world, def, int32(b3_pogoJoint))
+	joint = pair.JointSim
+	*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184)) = b3PogoJoint{}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Normal = (*PogoJointDef)(unsafe.Pointer(def)).Normal
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).RestLength = (*PogoJointDef)(unsafe.Pointer(def)).RestLength
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Hertz = (*PogoJointDef)(unsafe.Pointer(def)).Hertz
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).DampingRatio = (*PogoJointDef)(unsafe.Pointer(def)).DampingRatio
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxTensionForce = (*PogoJointDef)(unsafe.Pointer(def)).MaxTensionForce
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxCompressionForce = (*PogoJointDef)(unsafe.Pointer(def)).MaxCompressionForce
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Impulse = (*PogoJointDef)(unsafe.Pointer(def)).Impulse
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Velocity = (*PogoJointDef)(unsafe.Pointer(def)).Velocity
+	jointId = JointId{
+		Index1:     (*b3JointSim)(unsafe.Pointer(joint)).JointId + int32(1),
+		World0:     (*b3World)(unsafe.Pointer(world)).WorldId,
+		Generation: (*b3Joint)(unsafe.Pointer(pair.Joint)).Generation,
+	}
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_CreatePogoJoint)(unsafe.Add(nil, bp)) = b3RecArgs_CreatePogoJoint{
+			World: worldId,
+			Def:   *(*PogoJointDef)(unsafe.Add(nil, def)),
+		}
+		b3RecWriteRet_CreatePogoJoint(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp, jointId)
+	}
+	return jointId
+}
+
 func b3CreateFilterJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
 	bp := tls.Alloc(128)
 	defer tls.Free(128)
@@ -3679,7 +3840,7 @@ func b3CreateFilterJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) 
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateFilterJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*FilterJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(516))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(592))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3713,7 +3874,7 @@ func b3CreateParallelJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateParallelJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*ParallelJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(534))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(610))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3721,15 +3882,15 @@ func b3CreateParallelJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId
 		return JointId{}
 	}
 	if v1 = !!(b3IsValidFloat(tls, (*ParallelJointDef)(unsafe.Pointer(def)).Hertz) != 0 && (*ParallelJointDef)(unsafe.Pointer(def)).Hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19790, __ccgo_ts+18299, int32FromInt32(541))
+		b3InternalAssert(tls, __ccgo_ts+19970, __ccgo_ts+18299, int32FromInt32(617))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*ParallelJointDef)(unsafe.Pointer(def)).DampingRatio) != 0 && (*ParallelJointDef)(unsafe.Pointer(def)).DampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19841, __ccgo_ts+18299, int32FromInt32(542))
+		b3InternalAssert(tls, __ccgo_ts+20021, __ccgo_ts+18299, int32FromInt32(618))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidFloat(tls, (*ParallelJointDef)(unsafe.Pointer(def)).MaxTorque) != 0 && (*ParallelJointDef)(unsafe.Pointer(def)).MaxTorque >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19906, __ccgo_ts+18299, int32FromInt32(543))
+		b3InternalAssert(tls, __ccgo_ts+20299, __ccgo_ts+18299, int32FromInt32(619))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	pair = b3CreateJoint(tls, world, def, int32(b3_parallelJoint))
@@ -3763,11 +3924,11 @@ func b3CreatePrismaticJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointI
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreatePrismaticJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*PrismaticJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(561))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(637))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*PrismaticJointDef)(unsafe.Pointer(def)).LowerTranslation <= (*PrismaticJointDef)(unsafe.Pointer(def)).UpperTranslation); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19965, __ccgo_ts+18299, int32FromInt32(562))
+		b3InternalAssert(tls, __ccgo_ts+20358, __ccgo_ts+18299, int32FromInt32(638))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3813,7 +3974,7 @@ func b3CreateRevoluteJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateRevoluteJoint
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = joint, jointId, lowerAngle, pair, upperAngle, world, v1, v10, v11, v13, v14, v15, v16, v18, v2, v3, v4, v5, v7, v8, v9
 	if v1 = !!((*RevoluteJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(593))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(669))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -3929,15 +4090,15 @@ func b3CreateSphericalJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointI
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateSphericalJoint
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = joint, jointId, lowerAngle, pair, upperAngle, world, v1, v10, v11, v12, v13, v15, v16, v17, v18, v20, v4, v5, v6, v7, v9
 	if v1 = !!((*SphericalJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(628))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(704))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32FromFloat32(0) <= (*SphericalJointDef)(unsafe.Pointer(def)).ConeAngle && (*SphericalJointDef)(unsafe.Pointer(def)).ConeAngle <= float32(float32FromFloat32(0.99)*float32FromFloat32(3.14159265359))); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20012, __ccgo_ts+18299, int32FromInt32(629))
+		b3InternalAssert(tls, __ccgo_ts+20405, __ccgo_ts+18299, int32FromInt32(705))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(b3IsValidQuat(tls, (*SphericalJointDef)(unsafe.Pointer(def)).TargetRotation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20070, __ccgo_ts+18299, int32FromInt32(630))
+		b3InternalAssert(tls, __ccgo_ts+20463, __ccgo_ts+18299, int32FromInt32(706))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -4054,23 +4215,23 @@ func b3CreateWeldJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateWeldJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*WeldJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(667))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(745))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32FromFloat32(0) <= (*WeldJointDef)(unsafe.Pointer(def)).AngularHertz); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20107, __ccgo_ts+18299, int32FromInt32(668))
+		b3InternalAssert(tls, __ccgo_ts+20500, __ccgo_ts+18299, int32FromInt32(746))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32FromFloat32(0) <= (*WeldJointDef)(unsafe.Pointer(def)).AngularDampingRatio); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20133, __ccgo_ts+18299, int32FromInt32(669))
+		b3InternalAssert(tls, __ccgo_ts+20526, __ccgo_ts+18299, int32FromInt32(747))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32FromFloat32(0) <= (*WeldJointDef)(unsafe.Pointer(def)).LinearHertz); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20166, __ccgo_ts+18299, int32FromInt32(670))
+		b3InternalAssert(tls, __ccgo_ts+20559, __ccgo_ts+18299, int32FromInt32(748))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(float32FromFloat32(0) <= (*WeldJointDef)(unsafe.Pointer(def)).LinearDampingRatio); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20191, __ccgo_ts+18299, int32FromInt32(671))
+		b3InternalAssert(tls, __ccgo_ts+20584, __ccgo_ts+18299, int32FromInt32(749))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -4109,11 +4270,11 @@ func b3CreateWheelJoint(tls *_Stack, worldId WorldId, def uintptr) (r JointId) {
 	var _ /* recCreateArgs at bp+0 */ b3RecArgs_CreateWheelJoint
 	_, _, _, _, _ = joint, jointId, pair, world, v1
 	if v1 = !!((*WheelJointDef)(unsafe.Pointer(def)).Base.InternalValue == int32FromInt32(_B3_SECRET_COOKIE)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(696))
+		b3InternalAssert(tls, __ccgo_ts+19647, __ccgo_ts+18299, int32FromInt32(774))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!((*WheelJointDef)(unsafe.Pointer(def)).LowerSuspensionLimit <= (*WheelJointDef)(unsafe.Pointer(def)).UpperSuspensionLimit); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20223, __ccgo_ts+18299, int32FromInt32(697))
+		b3InternalAssert(tls, __ccgo_ts+20616, __ccgo_ts+18299, int32FromInt32(775))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetUnlockedWorldFromId(tls, worldId)
@@ -4166,19 +4327,19 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 	idA = (*b3JointEdge)(unsafe.Pointer(edgeA)).BodyId
 	idB = (*b3JointEdge)(unsafe.Pointer(edgeB)).BodyId
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+18299, int32FromInt32(743))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+18299, int32FromInt32(821))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+18299, int32FromInt32(744))
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+18299, int32FromInt32(822))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
 	// Remove from body A
 	if (*b3JointEdge)(unsafe.Pointer(edgeA)).PrevKey != -int32(1) {
 		if v3 = !!(0 <= (*b3JointEdge)(unsafe.Pointer(edgeA)).PrevKey>>int32(1) && (*b3JointEdge)(unsafe.Pointer(edgeA)).PrevKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v3 {
-			b3InternalAssert(tls, __ccgo_ts+20278, __ccgo_ts+18299, int32FromInt32(749))
+			b3InternalAssert(tls, __ccgo_ts+20671, __ccgo_ts+18299, int32FromInt32(827))
 		}
 		_ = v3 || bool(int32FromInt32(0) != 0)
 		prevJoint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointEdge)(unsafe.Pointer(edgeA)).PrevKey>>int32FromInt32(1))*72
@@ -4187,7 +4348,7 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 	}
 	if (*b3JointEdge)(unsafe.Pointer(edgeA)).NextKey != -int32(1) {
 		if v1 = !!(0 <= (*b3JointEdge)(unsafe.Pointer(edgeA)).NextKey>>int32(1) && (*b3JointEdge)(unsafe.Pointer(edgeA)).NextKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20360, __ccgo_ts+18299, int32FromInt32(756))
+			b3InternalAssert(tls, __ccgo_ts+20753, __ccgo_ts+18299, int32FromInt32(834))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		nextJoint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointEdge)(unsafe.Pointer(edgeA)).NextKey>>int32FromInt32(1))*72
@@ -4202,7 +4363,7 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 	// Remove from body B
 	if (*b3JointEdge)(unsafe.Pointer(edgeB)).PrevKey != -int32(1) {
 		if v1 = !!(0 <= (*b3JointEdge)(unsafe.Pointer(edgeB)).PrevKey>>int32(1) && (*b3JointEdge)(unsafe.Pointer(edgeB)).PrevKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20442, __ccgo_ts+18299, int32FromInt32(772))
+			b3InternalAssert(tls, __ccgo_ts+20835, __ccgo_ts+18299, int32FromInt32(850))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		prevJoint1 = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointEdge)(unsafe.Pointer(edgeB)).PrevKey>>int32FromInt32(1))*72
@@ -4211,7 +4372,7 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 	}
 	if (*b3JointEdge)(unsafe.Pointer(edgeB)).NextKey != -int32(1) {
 		if v1 = !!(0 <= (*b3JointEdge)(unsafe.Pointer(edgeB)).NextKey>>int32(1) && (*b3JointEdge)(unsafe.Pointer(edgeB)).NextKey>>int32(1) < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20524, __ccgo_ts+18299, int32FromInt32(779))
+			b3InternalAssert(tls, __ccgo_ts+20917, __ccgo_ts+18299, int32FromInt32(857))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		nextJoint1 = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointEdge)(unsafe.Pointer(edgeB)).NextKey>>int32FromInt32(1))*72
@@ -4225,13 +4386,13 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 	*(*int32)(unsafe.Add(nil, bodyB+40)) -= int32(1)
 	if (*b3Joint)(unsafe.Pointer(joint)).IslandId != -int32(1) {
 		if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex > int32(b3_disabledSet)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20606, __ccgo_ts+18299, int32FromInt32(794))
+			b3InternalAssert(tls, __ccgo_ts+20999, __ccgo_ts+18299, int32FromInt32(872))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		b3UnlinkJoint(tls, world, joint)
 	} else {
 		if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex <= int32(b3_disabledSet)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+20639, __ccgo_ts+18299, int32FromInt32(799))
+			b3InternalAssert(tls, __ccgo_ts+21032, __ccgo_ts+18299, int32FromInt32(877))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	}
@@ -4242,7 +4403,7 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 		b3RemoveJointFromGraph(tls, world, (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId, (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId, (*b3Joint)(unsafe.Pointer(joint)).ColorIndex, localIndex)
 	} else {
 		if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(812))
+			b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+18299, int32FromInt32(891))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
@@ -4269,12 +4430,12 @@ func b3DestroyJointInternal(tls *_Stack, world uintptr, joint uintptr, wakeBodie
 			movedJointSim = (*b3SolverSet)(unsafe.Pointer(set)).JointSims.Data + uintptr(localIndex)*444
 			movedId = (*b3JointSim)(unsafe.Pointer(movedJointSim)).JointId
 			if v3 = !!(0 <= movedId && movedId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+18299, int32FromInt32(819))
+				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+18299, int32FromInt32(898))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			movedJoint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(movedId)*72
 			if v4 = !!((*b3Joint)(unsafe.Pointer(movedJoint)).LocalIndex == movedIndex); !v4 {
-				b3InternalAssert(tls, __ccgo_ts+7196, __ccgo_ts+18299, int32FromInt32(820))
+				b3InternalAssert(tls, __ccgo_ts+7196, __ccgo_ts+18299, int32FromInt32(899))
 			}
 			_ = v4 || bool(int32FromInt32(0) != 0)
 			(*b3Joint)(unsafe.Pointer(movedJoint)).LocalIndex = localIndex
@@ -4356,7 +4517,7 @@ func b3Joint_SetLocalFrameA(tls *_Stack, jointId JointId, localFrame Transform) 
 	var _ /* recArgs at bp+0 */ b3RecArgs_JointSetLocalFrameA
 	_, _, _, _ = joint, jointSim, world, v1
 	if v1 = !!(b3IsValidTransform(tls, localFrame) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20673, __ccgo_ts+18299, int32FromInt32(885))
+		b3InternalAssert(tls, __ccgo_ts+21066, __ccgo_ts+18299, int32FromInt32(964))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -4389,7 +4550,7 @@ func b3Joint_SetLocalFrameB(tls *_Stack, jointId JointId, localFrame Transform) 
 	var _ /* recArgs at bp+0 */ b3RecArgs_JointSetLocalFrameB
 	_, _, _, _ = joint, jointSim, world, v1
 	if v1 = !!(b3IsValidTransform(tls, localFrame) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+20673, __ccgo_ts+18299, int32FromInt32(904))
+		b3InternalAssert(tls, __ccgo_ts+21066, __ccgo_ts+18299, int32FromInt32(983))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -4440,12 +4601,12 @@ func b3Joint_SetCollideConnected(tls *_Stack, jointId JointId, shouldCollide uin
 	}
 	(*b3Joint)(unsafe.Pointer(joint)).CollideConnected = shouldCollide
 	if v1 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(939))
+		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(1018))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId)*96
 	if v2 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(940))
+		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(1019))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId)*96
@@ -4462,7 +4623,7 @@ func b3Joint_SetCollideConnected(tls *_Stack, jointId JointId, shouldCollide uin
 		shapeId = v3
 		for shapeId != -int32(1) {
 			if v4 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v4 {
-				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+18299, int32FromInt32(952))
+				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+18299, int32FromInt32(1031))
 			}
 			_ = v4 || bool(int32FromInt32(0) != 0)
 			shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -4523,12 +4684,12 @@ func b3Joint_WakeBodies(tls *_Stack, jointId JointId) {
 	(*b3World)(unsafe.Pointer(world)).Locked = boolUint8(true1 != 0)
 	joint = b3GetJointFullId(tls, world, jointId)
 	if v1 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(1002))
+		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(1081))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId)*96
 	if v2 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(1003))
+		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(1082))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId)*96
@@ -4549,11 +4710,11 @@ func b3Joint_IsAwake(tls *_Stack, jointId JointId) (r uint8) {
 func b3GetJointReaction(tls *_Stack, world uintptr, sim uintptr, invTimeStep float32, force uintptr, torque uintptr) {
 	var angularImpulse, axialImpulse, lengthSquared, linearImpulse, s, v11, v17, v2, v21, v28, v32, v35, v39, v6, v8, v9 float32
 	var c, coneAxis, impulse, impulse1, impulse2, impulse3, swingAxis, t1, t11, t2, t21, t3, t31, twistAxis, u, v1, v100, v102, v104, v105, v107, v108, v114, v115, v116, v117, v119, v12, v121, v122, v124, v125, v13, v14, v16, v19, v20, v23, v24, v25, v27, v30, v31, v34, v37, v38, v4, v41, v44, v45, v48, v5, v51, v52, v55, v58, v59, v62, v65, v66, v71, v72, v73, v75, v77, v78, v80, v82, v83, v85, v86, v93, v94, v95, v97, v99 Vec3
-	var joint, joint1, joint2, joint3, joint4, joint5, joint6, joint7 uintptr
-	var perpImpulse Vec2
+	var joint, joint1, joint2, joint3, joint4, joint5, joint6, joint7, joint8, joint9 uintptr
+	var perpImpulse, v203, v206, v207 Vec2
 	var q1, qA, qB, v111, v113, v135, v69, v70, v89, v91, v92 Quat
 	var xfA, xfB WorldTransform
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, axialImpulse, c, coneAxis, impulse, impulse1, impulse2, impulse3, joint, joint1, joint2, joint3, joint4, joint5, joint6, joint7, lengthSquared, linearImpulse, perpImpulse, q1, qA, qB, s, swingAxis, t1, t11, t2, t21, t3, t31, twistAxis, u, xfA, xfB, v1, v100, v102, v104, v105, v107, v108, v11, v111, v113, v114, v115, v116, v117, v119, v12, v121, v122, v124, v125, v13, v135, v14, v16, v17, v19, v2, v20, v21, v23, v24, v25, v27, v28, v30, v31, v32, v34, v35, v37, v38, v39, v4, v41, v44, v45, v48, v5, v51, v52, v55, v58, v59, v6, v62, v65, v66, v69, v70, v71, v72, v73, v75, v77, v78, v8, v80, v82, v83, v85, v86, v89, v9, v91, v92, v93, v94, v95, v97, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, axialImpulse, c, coneAxis, impulse, impulse1, impulse2, impulse3, joint, joint1, joint2, joint3, joint4, joint5, joint6, joint7, joint8, joint9, lengthSquared, linearImpulse, perpImpulse, q1, qA, qB, s, swingAxis, t1, t11, t2, t21, t3, t31, twistAxis, u, xfA, xfB, v1, v100, v102, v104, v105, v107, v108, v11, v111, v113, v114, v115, v116, v117, v119, v12, v121, v122, v124, v125, v13, v135, v14, v16, v17, v19, v2, v20, v203, v206, v207, v21, v23, v24, v25, v27, v28, v30, v31, v32, v34, v35, v37, v38, v39, v4, v41, v44, v45, v48, v5, v51, v52, v55, v58, v59, v6, v62, v65, v66, v69, v70, v71, v72, v73, v75, v77, v78, v8, v80, v82, v83, v85, v86, v89, v9, v91, v92, v93, v94, v95, v97, v99
 	linearImpulse = float32FromFloat32(0)
 	angularImpulse = float32FromFloat32(0)
 	switch (*b3JointSim)(unsafe.Pointer(sim)).Type1 {
@@ -4981,6 +5142,30 @@ func b3GetJointReaction(tls *_Stack, world uintptr, sim uintptr, invTimeStep flo
 		goto _201
 	_201:
 		angularImpulse = v6
+	case int32(b3_moverJoint):
+		joint8 = sim + 184
+		v203 = (*b3MoverJoint)(unsafe.Pointer(joint8)).Impulse
+		v206 = v203
+		v207 = v203
+		v6 = float32(v206.X*v207.X) + float32(v206.Y*v207.Y)
+		goto _209
+	_209:
+		v2 = sqrtf(tls, v6)
+		goto _205
+	_205:
+		linearImpulse = v2
+	case int32(b3_pogoJoint):
+		joint9 = sim + 184
+		v2 = (*b3PogoJoint)(unsafe.Pointer(joint9)).Impulse
+		if v2 < float32FromInt32(0) {
+			v8 = -v2
+		} else {
+			v8 = v2
+		}
+		v6 = v8
+		goto _212
+	_212:
+		linearImpulse = v6
 	default:
 		break
 	}
@@ -5012,9 +5197,13 @@ func b3GetJointConstraintForce(tls *_Stack, world uintptr, joint uintptr) (r Vec
 		return b3GetWeldJointForce(tls, world, base)
 	case int32(b3_wheelJoint):
 		return b3GetWheelJointForce(tls, world, base)
+	case int32(b3_moverJoint):
+		return b3GetMoverJointForce(tls, world, base)
+	case int32(b3_pogoJoint):
+		return b3GetPogoJointForce(tls, world, base)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1165))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1271))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return b3Vec3_zero
@@ -5045,9 +5234,13 @@ func b3GetJointConstraintTorque(tls *_Stack, world uintptr, joint uintptr) (r Ve
 		return b3GetWeldJointTorque(tls, world, base)
 	case int32(b3_wheelJoint):
 		return b3GetWheelJointTorque(tls, world, base)
+	case int32(b3_moverJoint):
+		fallthrough
+	case int32(b3_pogoJoint):
+		return b3Vec3_zero
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1204))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1314))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		return b3Vec3_zero
@@ -5240,6 +5433,10 @@ _54:
 	_64:
 		return v20
 	case int32(b3_motorJoint):
+		return float32FromFloat32(0)
+	case int32(b3_moverJoint):
+		return float32FromFloat32(0)
+	case int32(b3_pogoJoint):
 		return float32FromFloat32(0)
 	case int32(b3_filterJoint):
 		return float32FromFloat32(0)
@@ -5500,7 +5697,7 @@ _54:
 		return sqrtf(tls, float32(perpendicularSeparation1*perpendicularSeparation1)+float32(limitSeparation1*limitSeparation1))
 	default:
 		if v167 = bool(!!(int32FromInt32(false1) != 0)); !v167 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1342))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1460))
 		}
 		_ = v167 || bool(int32FromInt32(0) != 0)
 		return float32FromFloat32(0)
@@ -5580,6 +5777,10 @@ _22:
 		return float32FromFloat32(0)
 	case int32(b3_motorJoint):
 		return float32FromFloat32(0)
+	case int32(b3_moverJoint):
+		return float32FromFloat32(0)
+	case int32(b3_pogoJoint):
+		return float32FromFloat32(0)
 	case int32(b3_filterJoint):
 		return float32FromFloat32(0)
 	case int32(b3_prismaticJoint):
@@ -5601,7 +5802,7 @@ _22:
 			twist = v8
 			twist = float32(twist * float32FromFloat32(2))
 			if v31 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v31 {
-				b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 			}
 			_ = v31 || bool(int32FromInt32(0) != 0)
 			v13 = twist
@@ -5642,7 +5843,7 @@ _22:
 			y = sqrtf(tls, float32(v1.V.X*v1.V.X)+float32(v1.V.Y*v1.V.Y))
 			swing = float32(float32FromFloat32(2) * b3Atan2(tls, y, x))
 			if v31 = !!(float32FromFloat32(0) <= swing && swing <= float32FromFloat32(3.14159265359)); !v31 {
-				b3InternalAssert(tls, __ccgo_ts+20740, __ccgo_ts+6355, int32FromInt32(572))
+				b3InternalAssert(tls, __ccgo_ts+21133, __ccgo_ts+6355, int32FromInt32(572))
 			}
 			_ = v31 || bool(int32FromInt32(0) != 0)
 			v8 = swing
@@ -5671,7 +5872,7 @@ _22:
 			twist = v8
 			twist = float32(twist * float32FromFloat32(2))
 			if v31 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v31 {
-				b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 			}
 			_ = v31 || bool(int32FromInt32(0) != 0)
 			v13 = twist
@@ -5716,13 +5917,13 @@ _22:
 	case int32(b3_wheelJoint):
 		// todo
 		if v31 = bool(!!(int32FromInt32(false1) != 0)); !v31 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1434))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1558))
 		}
 		_ = v31 || bool(int32FromInt32(0) != 0)
 		return float32FromFloat32(0)
 	default:
 		if v31 = bool(!!(int32FromInt32(false1) != 0)); !v31 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1438))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1562))
 		}
 		_ = v31 || bool(int32FromInt32(0) != 0)
 		return float32FromFloat32(0)
@@ -5782,9 +5983,13 @@ _9:
 		b3PrepareWeldJoint(tls, joint, context)
 	case int32(b3_wheelJoint):
 		b3PrepareWheelJoint(tls, joint, context)
+	case int32(b3_moverJoint):
+		b3PrepareMoverJoint(tls, joint, context)
+	case int32(b3_pogoJoint):
+		b3PreparePogoJoint(tls, joint, context)
 	default:
 		if v10 = bool(!!(int32FromInt32(false1) != 0)); !v10 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1526))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1658))
 		}
 		_ = v10 || bool(int32FromInt32(0) != 0)
 	}
@@ -5811,9 +6016,13 @@ func b3WarmStartJoint(tls *_Stack, joint uintptr, context uintptr) {
 		b3WarmStartWeldJoint(tls, joint, context)
 	case int32(b3_wheelJoint):
 		b3WarmStartWheelJoint(tls, joint, context)
+	case int32(b3_moverJoint):
+		b3WarmStartMoverJoint(tls, joint, context)
+	case int32(b3_pogoJoint):
+		b3WarmStartPogoJoint(tls, joint, context)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1570))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1710))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	}
@@ -5841,9 +6050,13 @@ func b3SolveJoint(tls *_Stack, joint uintptr, context uintptr, useBias uint8) {
 		b3SolveWeldJoint(tls, joint, context, useBias)
 	case int32(b3_wheelJoint):
 		b3SolveWheelJoint(tls, joint, context, useBias)
+	case int32(b3_moverJoint):
+		b3SolveMoverJoint(tls, joint, context)
+	case int32(b3_pogoJoint):
+		b3SolvePogoJoint(tls, joint, context, useBias)
 	default:
 		if v1 = bool(!!(int32FromInt32(false1) != 0)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1616))
+			b3InternalAssert(tls, __ccgo_ts+47, __ccgo_ts+18299, int32FromInt32(1764))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 	}
@@ -5928,12 +6141,12 @@ func b3DrawJoint(tls *_Stack, draw uintptr, world uintptr, joint uintptr) {
 	var _ /* buffer at bp+0 */ [64]uint8
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyA, bodyB, c, color, colorIndex, force, graphColors, jointSim, p2, p3, pA, pB, r, scale, t11, t2, t3, torque, transformA, transformB, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v28, v29, v3, v30, v31, v32, v33, v35, v36, v37, v38, v4, v40, v41, v42, v44, v46, v47, v48, v49, v5, v51, v53, v54, v55, v57, v58, v59, v6, v61, v7, v8
 	if v1 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(1673))
+		b3InternalAssert(tls, __ccgo_ts+3239, __ccgo_ts+18299, int32FromInt32(1821))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20))).BodyId)*96
 	if v2 = !!(0 <= (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId && (*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(1674))
+		b3InternalAssert(tls, __ccgo_ts+3327, __ccgo_ts+18299, int32FromInt32(1822))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*(*b3JointEdge)(unsafe.Add(nil, joint+20+1*12))).BodyId)*96
@@ -6084,6 +6297,10 @@ _56:
 		b3DrawWeldJoint(tls, draw, jointSim, transformA, transformB, scale)
 	case int32(b3_wheelJoint):
 		b3DrawWheelJoint(tls, draw, jointSim, transformA, transformB, scale)
+	case int32(b3_moverJoint):
+		b3DrawMoverJoint(tls, draw, world, jointSim, transformA, transformB)
+	case int32(b3_pogoJoint):
+		b3DrawPogoJoint(tls, draw, world, jointSim, transformA, transformB, scale)
 	default:
 		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, transformA.P, pA, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, pB, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
@@ -6132,7 +6349,7 @@ _56:
 			(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, p2, float32FromFloat32(5), graphColors[colorIndex], (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 		}
 	}
-	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawJointExtras != 0 {
+	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawJointExtras != 0 && (*b3Joint)(unsafe.Pointer(joint)).Type1 != int32(b3_moverJoint) && (*b3Joint)(unsafe.Pointer(joint)).Type1 != int32(b3_pogoJoint) {
 		force = b3GetJointConstraintForce(tls, world, joint)
 		torque = b3GetJointConstraintTorque(tls, world, joint)
 		v26 = pA
@@ -6146,7 +6363,7 @@ _56:
 		goto _67
 	_67:
 		p3 = v58
-		v22 = float32FromFloat32(0.001)
+		v22 = (*b3DebugDraw)(unsafe.Pointer(draw)).ForceScale
 		v5 = force
 		v6 = Vec3{
 			X: float32(v22 * v5.X),
@@ -6183,7 +6400,7 @@ _56:
 		v36 = sqrtf(tls, v47)
 		goto _85
 	_85:
-		__builtin_snprintf(tls, bp, uint64(64), __ccgo_ts+20772, vaList(bp+72, float64(v11), float64(v36)))
+		__builtin_snprintf(tls, bp, uint64(64), __ccgo_ts+21165, vaList(bp+72, float64(v11), float64(v36)))
 		(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, p3, bp, int32(b3_colorAzure), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	}
 }
@@ -6539,7 +6756,7 @@ func b3PrepareMotorJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v128 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, bodyA, bodyB, bodySimA, bodySimB, c, det, idA, idB, invDet, invInertiaSum, joint, localIndexA, localIndexB, omega, out, out1, q1, setA, setB, t1, t11, t2, t21, t3, t31, world, v1, v10, v11, v122, v123, v128, v13, v134, v14, v16, v17, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v50, v53, v59, v70, v81, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_motorJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23161, __ccgo_ts+23189, int32FromInt32(183))
+		b3InternalAssert(tls, __ccgo_ts+23554, __ccgo_ts+23582, int32FromInt32(183))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// chase body id to the solver set where the body lives
@@ -6547,38 +6764,38 @@ func b3PrepareMotorJoint(tls *_Stack, base uintptr, context uintptr) {
 	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+23189, int32FromInt32(191))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+23582, int32FromInt32(191))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+23189, int32FromInt32(192))
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+23582, int32FromInt32(192))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+23189, int32FromInt32(194))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+23582, int32FromInt32(194))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+23189, int32FromInt32(196))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+23582, int32FromInt32(196))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+23189, int32FromInt32(197))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+23582, int32FromInt32(197))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+23189, int32FromInt32(202))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+23582, int32FromInt32(202))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+23189, int32FromInt32(203))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+23582, int32FromInt32(203))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -7017,7 +7234,7 @@ func b3WarmStartMotorJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, b5, c, iA, iB, joint, linearImpulse, mA, mB, rA, rB, stateA, stateB, t1, t2, t3, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v59, v6, v69, v7, v8
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_motorJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23161, __ccgo_ts+23189, int32FromInt32(242))
+		b3InternalAssert(tls, __ccgo_ts+23554, __ccgo_ts+23582, int32FromInt32(242))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -7259,7 +7476,7 @@ func b3SolveMotorJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = axy, axz, ay, az, b10, b7, b8, b9, bias, bias1, bxy, bxz, by, bz, c, c1, c2, cdot, cdot1, cdot2, cdot3, cxx, cxy, cxz, cyy, cyz, czz, dcA, dcB, deltaRotation, det, diff, iA1, iB1, impulse, impulse1, impulse2, impulse3, impulseScale, impulseScale1, invDet, joint, kxx, kxy, kxz, kyy, kyz, kzz, lengthSquared, m1, mA1, mB1, massScale, massScale1, maxImpulse, maxImpulse1, maxImpulse2, maxImpulse3, oldImpulse, oldImpulse1, oldImpulse2, oldImpulse3, product, q1, q2, quatA, quatB, rA1, rB1, relQ, s, s4, stateA, stateB, t1, t11, t12, t2, t21, t22, t3, t31, t32, targetQuat, u, vA, vB, wA, wB, v1, v10, v100, v101, v102, v104, v105, v106, v107, v109, v11, v110, v111, v115, v117, v118, v119, v12, v122, v123, v124, v125, v127, v128, v129, v13, v130, v132, v133, v134, v136, v138, v139, v140, v141, v143, v144, v146, v147, v148, v15, v150, v151, v152, v154, v155, v156, v158, v159, v16, v160, v163, v164, v166, v168, v169, v17, v171, v172, v173, v175, v178, v179, v18, v182, v183, v185, v186, v187, v189, v190, v191, v193, v194, v195, v198, v199, v2, v20, v201, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v5, v50, v52, v53, v55, v56, v57, v58, v59, v6, v61, v62, v63, v64, v66, v67, v68, v69, v7, v71, v72, v73, v75, v77, v78, v8, v81, v86, v87, v88, v95, v96, v97, v99
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_motorJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23161, __ccgo_ts+23189, int32FromInt32(271))
+		b3InternalAssert(tls, __ccgo_ts+23554, __ccgo_ts+23582, int32FromInt32(271))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA1 = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -8766,6 +8983,891 @@ _292:
 
 /**@}*/ // contact
 
+func b3MoverJoint_SetLinearVelocity(tls *_Stack, jointId JointId, velocity Vec3) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_MoverJointSetLinearVelocity
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidVec3(tls, velocity) != 0); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23611, __ccgo_ts+23637, int32FromInt32(19))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Add(nil, bp)) = b3RecArgs_MoverJointSetLinearVelocity{
+			Joint:    jointId,
+			Velocity: velocity,
+		}
+		b3RecWrite_MoverJointSetLinearVelocity(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_moverJoint))
+	(*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).LinearVelocity = velocity
+}
+
+func b3MoverJoint_GetLinearVelocity(tls *_Stack, jointId JointId) (r Vec3) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_moverJoint))
+	return (*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).LinearVelocity
+}
+
+func b3MoverJoint_SetMaxVelocityForce(tls *_Stack, jointId JointId, maxForce float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_MoverJointSetMaxVelocityForce
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, maxForce) != 0 && maxForce >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23666, __ccgo_ts+23637, int32FromInt32(34))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Add(nil, bp)) = b3RecArgs_MoverJointSetMaxVelocityForce{
+			Joint:    jointId,
+			MaxForce: maxForce,
+		}
+		b3RecWrite_MoverJointSetMaxVelocityForce(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_moverJoint))
+	(*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxForce = maxForce
+}
+
+func b3MoverJoint_GetMaxVelocityForce(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_moverJoint))
+	return (*(*b3MoverJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxForce
+}
+
+func b3GetMoverJointForce(tls *_Stack, world uintptr, base uintptr) (r Vec3) {
+	var P, d, v2, v4, v5, v8, v9 Vec3
+	var joint uintptr
+	var v1, v3, v7 float32
+	_, _, _, _, _, _, _, _, _, _, _ = P, d, joint, v1, v2, v3, v4, v5, v7, v8, v9
+	joint = base + 184
+	v1 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.X
+	v2 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisX
+	v3 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.Y
+	v4 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisZ
+	d = Vec3{
+		X: float32(v1*v2.X) + float32(v3*v4.X),
+		Y: float32(v1*v2.Y) + float32(v3*v4.Y),
+		Z: float32(v1*v2.Z) + float32(v3*v4.Z),
+	}
+	v5 = d
+	goto _6
+_6:
+	P = v5
+	v7 = (*b3World)(unsafe.Pointer(world)).Inv_h
+	v8 = P
+	v9 = Vec3{
+		X: float32(v7 * v8.X),
+		Y: float32(v7 * v8.Y),
+		Z: float32(v7 * v8.Z),
+	}
+	goto _10
+_10:
+	return v9
+}
+
+func b3PrepareMoverJoint(tls *_Stack, base uintptr, context uintptr) {
+	var bodyA, bodyB, bodySimA, bodySimB, joint, setA, setB, world uintptr
+	var c, t1, t2, t3, v13, v14, v15, v17, v19, v20, v22, v24, v25, v27, v28 Vec3
+	var idA, idB, localIndexA, localIndexB, v9 int32
+	var k, mA, mB, xw, xx, xy, xz, yw, yy, yz, zw, zz, v18, v23, v29 float32
+	var matrixB, v34 Matrix3
+	var q, quatB, v11, v12, v31, v33 Quat
+	var v1, v2, v3, v4 bool
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyA, bodyB, bodySimA, bodySimB, c, idA, idB, joint, k, localIndexA, localIndexB, mA, mB, matrixB, q, quatB, setA, setB, t1, t2, t3, world, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v11, v12, v13, v14, v15, v17, v18, v19, v2, v20, v22, v23, v24, v25, v27, v28, v29, v3, v31, v33, v34, v4, v9
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_moverJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23713, __ccgo_ts+23637, int32FromInt32(56))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	idA = (*b3JointSim)(unsafe.Pointer(base)).BodyIdA
+	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
+	world = (*b3StepContext)(unsafe.Pointer(context)).World
+	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+23637, int32FromInt32(63))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
+	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+23637, int32FromInt32(64))
+	}
+	_ = v2 || bool(int32FromInt32(0) != 0)
+	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
+	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+23637, int32FromInt32(66))
+	}
+	_ = v3 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+23637, int32FromInt32(68))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
+	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+23637, int32FromInt32(69))
+	}
+	_ = v2 || bool(int32FromInt32(0) != 0)
+	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
+	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
+	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
+	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+23637, int32FromInt32(74))
+	}
+	_ = v3 || bool(int32FromInt32(0) != 0)
+	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
+	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+23637, int32FromInt32(75))
+	}
+	_ = v4 || bool(int32FromInt32(0) != 0)
+	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
+	mA = (*b3BodySim)(unsafe.Pointer(bodySimA)).InvMass
+	mB = (*b3BodySim)(unsafe.Pointer(bodySimB)).InvMass
+	(*b3JointSim)(unsafe.Pointer(base)).InvMassA = mA
+	(*b3JointSim)(unsafe.Pointer(base)).InvMassB = mB
+	(*b3JointSim)(unsafe.Pointer(base)).InvIA = b3Mat3_zero
+	(*b3JointSim)(unsafe.Pointer(base)).InvIB = b3Mat3_zero
+	joint = base + 184
+	if (*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) {
+		v9 = localIndexA
+	} else {
+		v9 = -int32(1)
+	}
+	(*b3MoverJoint)(unsafe.Pointer(joint)).IndexA = v9
+	if (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet) {
+		v9 = localIndexB
+	} else {
+		v9 = -int32(1)
+	}
+	(*b3MoverJoint)(unsafe.Pointer(joint)).IndexB = v9
+	v11 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Transform.Q
+	v12 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB.Q
+	v13 = v11.V
+	v14 = v12.V
+	c.X = float32(v13.Y*v14.Z) - float32(v13.Z*v14.Y)
+	c.Y = float32(v13.Z*v14.X) - float32(v13.X*v14.Z)
+	c.Z = float32(v13.X*v14.Y) - float32(v13.Y*v14.X)
+	v15 = c
+	goto _16
+_16:
+	t1 = v15
+	v17 = t1
+	v18 = v11.S
+	v19 = v12.V
+	v20 = Vec3{
+		X: v17.X + float32(v18*v19.X),
+		Y: v17.Y + float32(v18*v19.Y),
+		Z: v17.Z + float32(v18*v19.Z),
+	}
+	goto _21
+_21:
+	t2 = v20
+	v22 = t2
+	v23 = v12.S
+	v24 = v11.V
+	v25 = Vec3{
+		X: v22.X + float32(v23*v24.X),
+		Y: v22.Y + float32(v23*v24.Y),
+		Z: v22.Z + float32(v23*v24.Z),
+	}
+	goto _26
+_26:
+	t3 = v25
+	v27 = v11.V
+	v28 = v12.V
+	v29 = float32(v27.X*v28.X) + float32(v27.Y*v28.Y) + float32(v27.Z*v28.Z)
+	goto _30
+_30:
+	q = Quat{
+		V: t3,
+		S: float32(v11.S*v12.S) - v29,
+	}
+	v31 = q
+	goto _32
+_32:
+	quatB = v31
+	v33 = quatB
+	xx = float32(v33.V.X * v33.V.X)
+	yy = float32(v33.V.Y * v33.V.Y)
+	zz = float32(v33.V.Z * v33.V.Z)
+	xy = float32(v33.V.X * v33.V.Y)
+	xz = float32(v33.V.X * v33.V.Z)
+	xw = float32(v33.V.X * v33.S)
+	yz = float32(v33.V.Y * v33.V.Z)
+	yw = float32(v33.V.Y * v33.S)
+	zw = float32(v33.V.Z * v33.S)
+	v34 = Matrix3{
+		Cx: Vec3{
+			X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+			Y: float32(float32FromFloat32(2) * (xy + zw)),
+			Z: float32(float32FromFloat32(2) * (xz - yw)),
+		},
+		Cy: Vec3{
+			X: float32(float32FromFloat32(2) * (xy - zw)),
+			Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+			Z: float32(float32FromFloat32(2) * (yz + xw)),
+		},
+		Cz: Vec3{
+			X: float32(float32FromFloat32(2) * (xz + yw)),
+			Y: float32(float32FromFloat32(2) * (yz - xw)),
+			Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+		},
+	}
+	goto _35
+_35:
+	matrixB = v34
+	(*b3MoverJoint)(unsafe.Pointer(joint)).AxisX = matrixB.Cx
+	(*b3MoverJoint)(unsafe.Pointer(joint)).AxisZ = matrixB.Cz
+	k = mA + mB
+	if k > float32FromFloat32(0) {
+		v18 = float32FromFloat32(1) / k
+	} else {
+		v18 = float32FromFloat32(0)
+	}
+	(*b3MoverJoint)(unsafe.Pointer(joint)).LinearMass = v18
+	if int32FromUint8((*b3StepContext)(unsafe.Pointer(context)).EnableWarmStarting) == false1 {
+		(*b3MoverJoint)(unsafe.Pointer(joint)).Impulse = Vec2{}
+	}
+}
+
+func b3WarmStartMoverJoint(tls *_Stack, base uintptr, context uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var P, d, v10, v12, v13, v5, v7, v8 Vec3
+	var joint, stateA, stateB, v2, v3 uintptr
+	var mA, mB, v11, v4, v6 float32
+	var v1 bool
+	var _ /* dummyState at bp+0 */ b3BodyState
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, d, joint, mA, mB, stateA, stateB, v1, v10, v11, v12, v13, v2, v3, v4, v5, v6, v7, v8
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_moverJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23713, __ccgo_ts+23637, int32FromInt32(105))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
+	mB = (*b3JointSim)(unsafe.Pointer(base)).InvMassB
+	joint = base + 184
+	// dummy state for static bodies
+	*(*b3BodyState)(unsafe.Add(nil, bp)) = b3_identityBodyState
+	if (*b3MoverJoint)(unsafe.Pointer(joint)).IndexA == -int32(1) {
+		v2 = bp
+	} else {
+		v2 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3MoverJoint)(unsafe.Pointer(joint)).IndexA)*64
+	}
+	stateA = v2
+	if (*b3MoverJoint)(unsafe.Pointer(joint)).IndexB == -int32(1) {
+		v3 = bp
+	} else {
+		v3 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3MoverJoint)(unsafe.Pointer(joint)).IndexB)*64
+	}
+	stateB = v3
+	v4 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.X
+	v5 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisX
+	v6 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.Y
+	v7 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisZ
+	d = Vec3{
+		X: float32(v4*v5.X) + float32(v6*v7.X),
+		Y: float32(v4*v5.Y) + float32(v6*v7.Y),
+		Z: float32(v4*v5.Z) + float32(v6*v7.Z),
+	}
+	v8 = d
+	goto _9
+_9:
+	P = v8
+	if (*b3BodyState)(unsafe.Pointer(stateA)).Flags&uint32(b3_dynamicFlag) != 0 {
+		v10 = (*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity
+		v11 = mA
+		v12 = P
+		v13 = Vec3{
+			X: v10.X - float32(v11*v12.X),
+			Y: v10.Y - float32(v11*v12.Y),
+			Z: v10.Z - float32(v11*v12.Z),
+		}
+		goto _14
+	_14:
+		(*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity = v13
+	}
+	if (*b3BodyState)(unsafe.Pointer(stateB)).Flags&uint32(b3_dynamicFlag) != 0 {
+		v5 = (*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity
+		v4 = mB
+		v7 = P
+		v8 = Vec3{
+			X: v5.X + float32(v4*v7.X),
+			Y: v5.Y + float32(v4*v7.Y),
+			Z: v5.Z + float32(v4*v7.Z),
+		}
+		goto _19
+	_19:
+		(*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity = v8
+	}
+}
+
+func b3SolveMoverJoint(tls *_Stack, base uintptr, context uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var P, d, vA, vB, vr, v10, v12, v13, v16, v17, v4, v5, v6, v8, v9 Vec3
+	var c, c1, cdot, deltaImpulse, newImpulse, v21, v22, v24, v25 Vec2
+	var joint, stateA, stateB, v2, v3 uintptr
+	var lengthSquared, mA, mB, maxForce, maxImpulse, scale, v14, v18, v20, v26 float32
+	var v1 bool
+	var _ /* dummyState at bp+0 */ b3BodyState
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, c, c1, cdot, d, deltaImpulse, joint, lengthSquared, mA, mB, maxForce, maxImpulse, newImpulse, scale, stateA, stateB, vA, vB, vr, v1, v10, v12, v13, v14, v16, v17, v18, v2, v20, v21, v22, v24, v25, v26, v3, v4, v5, v6, v8, v9
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_moverJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23713, __ccgo_ts+23637, int32FromInt32(134))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
+	mB = (*b3JointSim)(unsafe.Pointer(base)).InvMassB
+	// dummy state for static bodies
+	*(*b3BodyState)(unsafe.Add(nil, bp)) = b3_identityBodyState
+	joint = base + 184
+	if (*b3MoverJoint)(unsafe.Pointer(joint)).IndexA == -int32(1) {
+		v2 = bp
+	} else {
+		v2 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3MoverJoint)(unsafe.Pointer(joint)).IndexA)*64
+	}
+	stateA = v2
+	if (*b3MoverJoint)(unsafe.Pointer(joint)).IndexB == -int32(1) {
+		v3 = bp
+	} else {
+		v3 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3MoverJoint)(unsafe.Pointer(joint)).IndexB)*64
+	}
+	stateB = v3
+	vA = (*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity
+	vB = (*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity
+	maxForce = (*b3MoverJoint)(unsafe.Pointer(joint)).MaxForce
+	v4 = vB
+	v5 = vA
+	v6 = Vec3{
+		X: v4.X - v5.X,
+		Y: v4.Y - v5.Y,
+		Z: v4.Z - v5.Z,
+	}
+	goto _7
+_7:
+	v8 = v6
+	v9 = (*b3MoverJoint)(unsafe.Pointer(joint)).LinearVelocity
+	v10 = Vec3{
+		X: v8.X - v9.X,
+		Y: v8.Y - v9.Y,
+		Z: v8.Z - v9.Z,
+	}
+	goto _11
+_11:
+	vr = v10
+	v12 = vr
+	v13 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisX
+	v14 = float32(v12.X*v13.X) + float32(v12.Y*v13.Y) + float32(v12.Z*v13.Z)
+	goto _15
+_15:
+	v16 = vr
+	v17 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisZ
+	v18 = float32(v16.X*v17.X) + float32(v16.Y*v17.Y) + float32(v16.Z*v17.Z)
+	goto _19
+_19:
+	cdot = Vec2{
+		X: v14,
+		Y: v18,
+	}
+	v20 = -(*b3MoverJoint)(unsafe.Pointer(joint)).LinearMass
+	v21 = cdot
+	c1 = Vec2{
+		X: float32(v20 * v21.X),
+		Y: float32(v20 * v21.Y),
+	}
+	v22 = c1
+	goto _23
+_23:
+	deltaImpulse = v22
+	newImpulse = Vec2{
+		X: (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.X + deltaImpulse.X,
+		Y: (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.Y + deltaImpulse.Y,
+	}
+	maxImpulse = float32((*b3StepContext)(unsafe.Pointer(context)).H * maxForce)
+	v24 = newImpulse
+	v25 = newImpulse
+	v26 = float32(v24.X*v25.X) + float32(v24.Y*v25.Y)
+	goto _27
+_27:
+	lengthSquared = v26
+	if lengthSquared > float32(maxImpulse*maxImpulse) {
+		scale = maxImpulse / sqrtf(tls, lengthSquared)
+		newImpulse.X = float32(newImpulse.X * scale)
+		newImpulse.Y = float32(newImpulse.Y * scale)
+	}
+	v21 = newImpulse
+	v22 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse
+	c = Vec2{
+		X: v21.X - v22.X,
+		Y: v21.Y - v22.Y,
+	}
+	v24 = c
+	goto _31
+_31:
+	deltaImpulse = v24
+	(*b3MoverJoint)(unsafe.Pointer(joint)).Impulse = newImpulse
+	v14 = deltaImpulse.X
+	v4 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisX
+	v18 = deltaImpulse.Y
+	v5 = (*b3MoverJoint)(unsafe.Pointer(joint)).AxisZ
+	d = Vec3{
+		X: float32(v14*v4.X) + float32(v18*v5.X),
+		Y: float32(v14*v4.Y) + float32(v18*v5.Y),
+		Z: float32(v14*v4.Z) + float32(v18*v5.Z),
+	}
+	v6 = d
+	goto _37
+_37:
+	P = v6
+	v8 = vA
+	v20 = mA
+	v9 = P
+	v10 = Vec3{
+		X: v8.X - float32(v20*v9.X),
+		Y: v8.Y - float32(v20*v9.Y),
+		Z: v8.Z - float32(v20*v9.Z),
+	}
+	goto _42
+_42:
+	vA = v10
+	v4 = vB
+	v14 = mB
+	v5 = P
+	v6 = Vec3{
+		X: v4.X + float32(v14*v5.X),
+		Y: v4.Y + float32(v14*v5.Y),
+		Z: v4.Z + float32(v14*v5.Z),
+	}
+	goto _47
+_47:
+	vB = v6
+	if (*b3BodyState)(unsafe.Pointer(stateA)).Flags&uint32(b3_dynamicFlag) != 0 {
+		(*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity = vA
+	}
+	if (*b3BodyState)(unsafe.Pointer(stateB)).Flags&uint32(b3_dynamicFlag) != 0 {
+		(*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity = vB
+	}
+}
+
+func b3DrawMoverJoint(tls *_Stack, draw uintptr, world uintptr, base uintptr, transformA WorldTransform, transformB WorldTransform) {
+	var C, frameB, v2, v48 WorldTransform
+	var axisX, axisZ, c, d, dir, force, r, rx, rz, t11, t12, t2, t21, t3, t31, u, vA, vB, velocityError, v10, v12, v13, v15, v17, v18, v20, v21, v27, v28, v29, v30, v32, v34, v35, v37, v38, v39, v41, v43, v45, v46, v55, v56, v57, v58, v59, v6, v61, v62, v63, v65, v66, v69, v7, v70, v73, v74, v77, v78, v8 Vec3
+	var bodyA, bodyB, joint, stateA, stateB uintptr
+	var color b3HexColor1
+	var cs CosSin
+	var i, segmentCount int32
+	var lengthSquared, radius, s, scale, t1, targetSpeed, x1, x2, xw, xx, xy, xz, y1, y2, yw, yy, yz, zw, zz, v100, v101, v11, v16, v22, v33, v44, v67, v71, v75, v79, v82, v86, v89, v93, v95, v96, v97, v98 float32
+	var matrixB, v51 Matrix3
+	var origin, p1, p2, tip, v110, v112, v121, v123 Pos
+	var planarVelocityError, targetVelocity, v81, v84, v85, v88, v91, v92 Vec2
+	var q1, v24, v26, v4, v5, v50 Quat
+	var v1, v53 bool
+	var v3 Transform
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, axisX, axisZ, bodyA, bodyB, c, color, cs, d, dir, force, frameB, i, joint, lengthSquared, matrixB, origin, p1, p2, planarVelocityError, q1, r, radius, rx, rz, s, scale, segmentCount, stateA, stateB, t1, t11, t12, t2, t21, t3, t31, targetSpeed, targetVelocity, tip, u, vA, vB, velocityError, x1, x2, xw, xx, xy, xz, y1, y2, yw, yy, yz, zw, zz, v1, v10, v100, v101, v11, v110, v112, v12, v121, v123, v13, v15, v16, v17, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v5, v50, v51, v53, v55, v56, v57, v58, v59, v6, v61, v62, v63, v65, v66, v67, v69, v7, v70, v71, v73, v74, v75, v77, v78, v79, v8, v81, v82, v84, v85, v86, v88, v89, v91, v92, v93, v95, v96, v97, v98
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_moverJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23713, __ccgo_ts+23637, int32FromInt32(228))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	_ = uint64FromInt64(4)
+	joint = base + 184
+	v2 = transformB
+	v3 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB
+	v4 = v2.Q
+	v5 = v3.Q
+	v6 = v4.V
+	v7 = v5.V
+	c.X = float32(v6.Y*v7.Z) - float32(v6.Z*v7.Y)
+	c.Y = float32(v6.Z*v7.X) - float32(v6.X*v7.Z)
+	c.Z = float32(v6.X*v7.Y) - float32(v6.Y*v7.X)
+	v8 = c
+	goto _9
+_9:
+	t12 = v8
+	v10 = t12
+	v11 = v4.S
+	v12 = v5.V
+	v13 = Vec3{
+		X: v10.X + float32(v11*v12.X),
+		Y: v10.Y + float32(v11*v12.Y),
+		Z: v10.Z + float32(v11*v12.Z),
+	}
+	goto _14
+_14:
+	t21 = v13
+	v15 = t21
+	v16 = v5.S
+	v17 = v4.V
+	v18 = Vec3{
+		X: v15.X + float32(v16*v17.X),
+		Y: v15.Y + float32(v16*v17.Y),
+		Z: v15.Z + float32(v16*v17.Z),
+	}
+	goto _19
+_19:
+	t31 = v18
+	v20 = v4.V
+	v21 = v5.V
+	v22 = float32(v20.X*v21.X) + float32(v20.Y*v21.Y) + float32(v20.Z*v21.Z)
+	goto _23
+_23:
+	q1 = Quat{
+		V: t31,
+		S: float32(v4.S*v5.S) - v22,
+	}
+	v24 = q1
+	goto _25
+_25:
+	C.Q = v24
+	v26 = v2.Q
+	v27 = v3.P
+	v28 = v26.V
+	v29 = v27
+	c.X = float32(v28.Y*v29.Z) - float32(v28.Z*v29.Y)
+	c.Y = float32(v28.Z*v29.X) - float32(v28.X*v29.Z)
+	c.Z = float32(v28.X*v29.Y) - float32(v28.Y*v29.X)
+	v30 = c
+	goto _31
+_31:
+	t11 = v30
+	v32 = t11
+	v33 = v26.S
+	v34 = v27
+	v35 = Vec3{
+		X: v32.X + float32(v33*v34.X),
+		Y: v32.Y + float32(v33*v34.Y),
+		Z: v32.Z + float32(v33*v34.Z),
+	}
+	goto _36
+_36:
+	t2 = v35
+	v37 = v26.V
+	v38 = t2
+	c.X = float32(v37.Y*v38.Z) - float32(v37.Z*v38.Y)
+	c.Y = float32(v37.Z*v38.X) - float32(v37.X*v38.Z)
+	c.Z = float32(v37.X*v38.Y) - float32(v37.Y*v38.X)
+	v39 = c
+	goto _40
+_40:
+	t3 = v39
+	v43 = v27
+	v44 = float32FromFloat32(2)
+	v45 = t3
+	v46 = Vec3{
+		X: v43.X + float32(v44*v45.X),
+		Y: v43.Y + float32(v44*v45.Y),
+		Z: v43.Z + float32(v44*v45.Z),
+	}
+	goto _47
+_47:
+	v41 = v46
+	goto _42
+_42:
+	r = v41
+	C.P = Pos{
+		X: v2.P.X + r.X,
+		Y: v2.P.Y + r.Y,
+		Z: v2.P.Z + r.Z,
+	}
+	v48 = C
+	goto _49
+_49:
+	frameB = v48
+	v50 = frameB.Q
+	xx = float32(v50.V.X * v50.V.X)
+	yy = float32(v50.V.Y * v50.V.Y)
+	zz = float32(v50.V.Z * v50.V.Z)
+	xy = float32(v50.V.X * v50.V.Y)
+	xz = float32(v50.V.X * v50.V.Z)
+	xw = float32(v50.V.X * v50.S)
+	yz = float32(v50.V.Y * v50.V.Z)
+	yw = float32(v50.V.Y * v50.S)
+	zw = float32(v50.V.Z * v50.S)
+	v51 = Matrix3{
+		Cx: Vec3{
+			X: float32FromFloat32(1) - float32(float32FromFloat32(2)*(yy+zz)),
+			Y: float32(float32FromFloat32(2) * (xy + zw)),
+			Z: float32(float32FromFloat32(2) * (xz - yw)),
+		},
+		Cy: Vec3{
+			X: float32(float32FromFloat32(2) * (xy - zw)),
+			Y: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+zz)),
+			Z: float32(float32FromFloat32(2) * (yz + xw)),
+		},
+		Cz: Vec3{
+			X: float32(float32FromFloat32(2) * (xz + yw)),
+			Y: float32(float32FromFloat32(2) * (yz - xw)),
+			Z: float32FromFloat32(1) - float32(float32FromFloat32(2)*(xx+yy)),
+		},
+	}
+	goto _52
+_52:
+	matrixB = v51
+	axisX = matrixB.Cx
+	axisZ = matrixB.Cz
+	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+23637, int32FromInt32(238))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
+	if v53 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v53 {
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+23637, int32FromInt32(239))
+	}
+	_ = v53 || bool(int32FromInt32(0) != 0)
+	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
+	stateA = b3GetBodyState(tls, world, bodyA)
+	stateB = b3GetBodyState(tls, world, bodyB)
+	if stateA != uintptrFromInt32(0) {
+		v55 = (*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity
+	} else {
+		v55 = b3Vec3_zero
+	}
+	vA = v55
+	if stateB != uintptrFromInt32(0) {
+		v56 = (*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity
+	} else {
+		v56 = b3Vec3_zero
+	}
+	vB = v56
+	v57 = vB
+	v58 = vA
+	v59 = Vec3{
+		X: v57.X - v58.X,
+		Y: v57.Y - v58.Y,
+		Z: v57.Z - v58.Z,
+	}
+	goto _60
+_60:
+	v61 = v59
+	v62 = (*b3MoverJoint)(unsafe.Pointer(joint)).LinearVelocity
+	v63 = Vec3{
+		X: v61.X - v62.X,
+		Y: v61.Y - v62.Y,
+		Z: v61.Z - v62.Z,
+	}
+	goto _64
+_64:
+	velocityError = v63
+	v65 = velocityError
+	v66 = axisX
+	v67 = float32(v65.X*v66.X) + float32(v65.Y*v66.Y) + float32(v65.Z*v66.Z)
+	goto _68
+_68:
+	v69 = velocityError
+	v70 = axisZ
+	v71 = float32(v69.X*v70.X) + float32(v69.Y*v70.Y) + float32(v69.Z*v70.Z)
+	goto _72
+_72:
+	planarVelocityError = Vec2{
+		X: v67,
+		Y: v71,
+	}
+	v73 = (*b3MoverJoint)(unsafe.Pointer(joint)).LinearVelocity
+	v74 = axisX
+	v75 = float32(v73.X*v74.X) + float32(v73.Y*v74.Y) + float32(v73.Z*v74.Z)
+	goto _76
+_76:
+	v77 = (*b3MoverJoint)(unsafe.Pointer(joint)).LinearVelocity
+	v78 = axisZ
+	v79 = float32(v77.X*v78.X) + float32(v77.Y*v78.Y) + float32(v77.Z*v78.Z)
+	goto _80
+_80:
+	targetVelocity = Vec2{
+		X: v75,
+		Y: v79,
+	}
+	// Colorize ring by ratio of velocity error magnitude to target speed.
+	color = int32(b3_colorWhite)
+	v81 = targetVelocity
+	v84 = v81
+	v85 = v81
+	v86 = float32(v84.X*v85.X) + float32(v84.Y*v85.Y)
+	goto _87
+_87:
+	v82 = sqrtf(tls, v86)
+	goto _83
+_83:
+	targetSpeed = v82
+	if targetSpeed > float32FromFloat32(0) {
+		v88 = planarVelocityError
+		v91 = v88
+		v92 = v88
+		v93 = float32(v91.X*v92.X) + float32(v91.Y*v92.Y)
+		goto _94
+	_94:
+		v89 = sqrtf(tls, v93)
+		goto _90
+	_90:
+		v95 = v89 / targetSpeed
+		v96 = float32FromFloat32(0)
+		v97 = float32FromFloat32(1)
+		if v95 < v96 {
+			v100 = v96
+		} else {
+			if v97 < v95 {
+				v101 = v97
+			} else {
+				v101 = v95
+			}
+			v100 = v101
+		}
+		v98 = v100
+		goto _99
+	_99:
+		t1 = v98
+		color = b3LerpColor(tls, int32(b3_colorWhite), int32(b3_colorBlue), t1)
+	}
+	radius = (*b3DebugDraw)(unsafe.Pointer(draw)).JointScale
+	v11 = radius
+	v6 = axisX
+	v7 = Vec3{
+		X: float32(v11 * v6.X),
+		Y: float32(v11 * v6.Y),
+		Z: float32(v11 * v6.Z),
+	}
+	goto _105
+_105:
+	rx = v7
+	v16 = radius
+	v8 = axisZ
+	v10 = Vec3{
+		X: float32(v16 * v8.X),
+		Y: float32(v16 * v8.Y),
+		Z: float32(v16 * v8.Z),
+	}
+	goto _109
+_109:
+	rz = v10
+	segmentCount = int32(32)
+	cs = b3ComputeCosSin(tls, float32(float32FromFloat32(2)*float32FromFloat32(3.14159265359))/float32(segmentCount))
+	x1 = float32FromFloat32(1)
+	y1 = float32FromFloat32(0)
+	v110 = frameB.P
+	v12 = rx
+	v112 = Pos{
+		X: v110.X + v12.X,
+		Y: v110.Y + v12.Y,
+		Z: v110.Z + v12.Z,
+	}
+	goto _113
+_113:
+	p1 = v112
+	i = 0
+	for {
+		if !(i < segmentCount) {
+			break
+		}
+		x2 = float32(cs.Cosine*x1) - float32(cs.Sine*y1)
+		y2 = float32(cs.Sine*x1) + float32(cs.Cosine*y1)
+		v22 = x2
+		v13 = rx
+		v33 = y2
+		v15 = rz
+		d = Vec3{
+			X: float32(v22*v13.X) + float32(v33*v15.X),
+			Y: float32(v22*v13.Y) + float32(v33*v15.Y),
+			Z: float32(v22*v13.Z) + float32(v33*v15.Z),
+		}
+		v17 = d
+		goto _120
+	_120:
+		v121 = frameB.P
+		v18 = v17
+		v123 = Pos{
+			X: v121.X + v18.X,
+			Y: v121.Y + v18.Y,
+			Z: v121.Z + v18.Z,
+		}
+		goto _124
+	_124:
+		p2 = v123
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p1, p2, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		x1 = x2
+		y1 = y2
+		p1 = p2
+		goto _114
+	_114:
+		;
+		i = i + 1
+	}
+	if (*b3MoverJoint)(unsafe.Pointer(joint)).MaxForce > float32FromFloat32(0) {
+		v11 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.X
+		v6 = rx
+		v16 = (*b3MoverJoint)(unsafe.Pointer(joint)).Impulse.Y
+		v7 = rz
+		d = Vec3{
+			X: float32(v11*v6.X) + float32(v16*v7.X),
+			Y: float32(v11*v6.Y) + float32(v16*v7.Y),
+			Z: float32(v11*v6.Z) + float32(v16*v7.Z),
+		}
+		v8 = d
+		goto _130
+	_130:
+		force = v8
+		v10 = force
+		lengthSquared = float32(v10.X*v10.X) + float32(v10.Y*v10.Y) + float32(v10.Z*v10.Z)
+		if lengthSquared > float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)) {
+			s = float32FromFloat32(1) / sqrtf(tls, lengthSquared)
+			u = Vec3{
+				X: float32(s * v10.X),
+				Y: float32(s * v10.Y),
+				Z: float32(s * v10.Z),
+			}
+			v12 = u
+			goto _133
+		}
+		v12 = Vec3{}
+		goto _133
+	_133:
+		dir = v12
+		v22 = -radius
+		v13 = dir
+		v15 = Vec3{
+			X: float32(v22 * v13.X),
+			Y: float32(v22 * v13.Y),
+			Z: float32(v22 * v13.Z),
+		}
+		goto _137
+	_137:
+		v110 = frameB.P
+		v17 = v15
+		v112 = Pos{
+			X: v110.X + v17.X,
+			Y: v110.Y + v17.Y,
+			Z: v110.Z + v17.Z,
+		}
+		goto _141
+	_141:
+		origin = v112
+		scale = (*b3World)(unsafe.Pointer(world)).Inv_h / (*b3MoverJoint)(unsafe.Pointer(joint)).MaxForce
+		v33 = scale
+		v18 = force
+		v20 = Vec3{
+			X: float32(v33 * v18.X),
+			Y: float32(v33 * v18.Y),
+			Z: float32(v33 * v18.Z),
+		}
+		goto _145
+	_145:
+		v121 = origin
+		v21 = v20
+		v123 = Pos{
+			X: v121.X + v21.X,
+			Y: v121.Y + v21.Y,
+			Z: v121.Z + v21.Z,
+		}
+		goto _149
+	_149:
+		tip = v123
+		b3DrawArrow(tls, draw, origin, tip, matrixB.Cy, float32(float32FromFloat32(0.1)*(*b3DebugDraw)(unsafe.Pointer(draw)).JointScale), int32(b3_colorWhite))
+	}
+}
+
+/**@}*/ // contact
+
 func b3ParallelJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32) {
 	bp := tls.Alloc(16)
 	defer tls.Free(16)
@@ -8774,7 +9876,7 @@ func b3ParallelJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32)
 	var _ /* recArgs at bp+0 */ b3RecArgs_ParallelJointSetSpringHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+23466, int32FromInt32(18))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+24129, int32FromInt32(18))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -8804,7 +9906,7 @@ func b3ParallelJoint_SetSpringDampingRatio(tls *_Stack, jointId JointId, damping
 	var _ /* recArgs at bp+0 */ b3RecArgs_ParallelJointSetSpringDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+23466, int32FromInt32(33))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+24129, int32FromInt32(33))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -8834,7 +9936,7 @@ func b3ParallelJoint_SetMaxTorque(tls *_Stack, jointId JointId, maxForce float32
 	var _ /* recArgs at bp+0 */ b3RecArgs_ParallelJointSetMaxTorque
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, maxForce) != 0 && maxForce >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23498, __ccgo_ts+23466, int32FromInt32(48))
+		b3InternalAssert(tls, __ccgo_ts+23666, __ccgo_ts+24129, int32FromInt32(48))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -9106,43 +10208,43 @@ func b3PrepareParallelJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v170 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, bodyA, bodyB, bodySimA, bodySimB, c, invInertiaSum, joint, localIndexA, localIndexB, omega, q1, q2, relQ, setA, setB, t1, t11, t12, t2, t21, t22, t3, t31, t32, world, v1, v10, v11, v13, v14, v16, v17, v170, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v50, v51, v52, v54, v55, v56, v57, v59, v60, v61, v62, v64, v65, v72, v73, v74, v76, v78, v79, v81, v83, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_parallelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23545, __ccgo_ts+23466, int32FromInt32(76))
+		b3InternalAssert(tls, __ccgo_ts+24161, __ccgo_ts+24129, int32FromInt32(76))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+23466, int32FromInt32(80))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+24129, int32FromInt32(80))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+23466, int32FromInt32(81))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+24129, int32FromInt32(81))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+23466, int32FromInt32(83))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+24129, int32FromInt32(83))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+23466, int32FromInt32(84))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+24129, int32FromInt32(84))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+23466, int32FromInt32(85))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+24129, int32FromInt32(85))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+23466, int32FromInt32(90))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+24129, int32FromInt32(90))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+23466, int32FromInt32(91))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+24129, int32FromInt32(91))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -9537,7 +10639,7 @@ func b3WarmStartParallelJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, b3, d, iA, iB, joint, stateA, stateB, wA, wB, v1, v10, v11, v12, v14, v15, v16, v2, v3, v4, v5, v6, v7, v8
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_parallelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23545, __ccgo_ts+23466, int32FromInt32(127))
+		b3InternalAssert(tls, __ccgo_ts+24161, __ccgo_ts+24129, int32FromInt32(127))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	iA = (*b3JointSim)(unsafe.Pointer(base)).InvIA
@@ -10583,10 +11685,2019 @@ func b3Joint_IsValid(tls *_Stack, id JointId) (r uint8) {
 		return boolUint8(false1 != 0)
 	}
 	if v1 = !!((*b3Joint)(unsafe.Pointer(joint)).JointId == jointId); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+25362, __ccgo_ts+23730, int32FromInt32(1942))
+		b3InternalAssert(tls, __ccgo_ts+25838, __ccgo_ts+24206, int32FromInt32(1944))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	return boolUint8(int32FromUint16(id.Generation) == int32FromUint16((*b3Joint)(unsafe.Pointer(joint)).Generation))
+}
+
+/**@}*/ // contact
+
+func b3PogoJoint_SetRestLength(tls *_Stack, jointId JointId, length float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetRestLength
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, length) != 0 && length >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+26917, __ccgo_ts+26960, int32FromInt32(20))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	if (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).RestLength == length {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetRestLength)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetRestLength{
+			Joint:  jointId,
+			Length: length,
+		}
+		b3RecWrite_PogoJointSetRestLength(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).RestLength = length
+}
+
+func b3PogoJoint_GetRestLength(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).RestLength
+}
+
+func b3PogoJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetSpringHertz
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+26960, int32FromInt32(40))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	if (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Hertz == hertz {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetSpringHertz{
+			Joint: jointId,
+			Hertz: hertz,
+		}
+		b3RecWrite_PogoJointSetSpringHertz(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Hertz = hertz
+}
+
+func b3PogoJoint_GetSpringHertz(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Hertz
+}
+
+func b3PogoJoint_SetSpringDampingRatio(tls *_Stack, jointId JointId, dampingRatio float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetSpringDampingRatio
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+26960, int32FromInt32(60))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	if (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).DampingRatio == dampingRatio {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetSpringDampingRatio{
+			Joint:        jointId,
+			DampingRatio: dampingRatio,
+		}
+		b3RecWrite_PogoJointSetSpringDampingRatio(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).DampingRatio = dampingRatio
+}
+
+func b3PogoJoint_GetSpringDampingRatio(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).DampingRatio
+}
+
+func b3PogoJoint_SetMaxTensionForce(tls *_Stack, jointId JointId, force float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetMaxTensionForce
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, force) != 0 && force >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+26988, __ccgo_ts+26960, int32FromInt32(80))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	if (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxTensionForce == force {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetMaxTensionForce{
+			Joint: jointId,
+			Force: force,
+		}
+		b3RecWrite_PogoJointSetMaxTensionForce(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxTensionForce = force
+}
+
+func b3PogoJoint_GetMaxTensionForce(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxTensionForce
+}
+
+func b3PogoJoint_SetMaxCompressionForce(tls *_Stack, jointId JointId, force float32) {
+	bp := tls.Alloc(16)
+	defer tls.Free(16)
+	var joint, world uintptr
+	var v1 bool
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetMaxCompressionForce
+	_, _, _ = joint, world, v1
+	if v1 = !!(b3IsValidFloat(tls, force) != 0 && force >= float32FromFloat32(0)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+26988, __ccgo_ts+26960, int32FromInt32(100))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	if (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxCompressionForce == force {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetMaxCompressionForce{
+			Joint: jointId,
+			Force: force,
+		}
+		b3RecWrite_PogoJointSetMaxCompressionForce(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxCompressionForce = force
+}
+
+func b3PogoJoint_GetMaxCompressionForce(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).MaxCompressionForce
+}
+
+func b3PogoJoint_SetNormal(tls *_Stack, jointId JointId, normal Vec3) {
+	bp := tls.Alloc(32)
+	defer tls.Free(32)
+	var aa, v11, v4, v8, v9 float32
+	var current, v1, v2, v3 Vec3
+	var joint, world uintptr
+	var v12, v13 bool
+	var v6 uint8
+	var _ /* recArgs at bp+0 */ b3RecArgs_PogoJointSetNormal
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _ = aa, current, joint, world, v1, v11, v12, v13, v2, v3, v4, v6, v8, v9
+	if v12 = b3IsValidVec3(tls, normal) != 0; v12 {
+		v1 = normal
+		v2 = v1
+		v3 = v1
+		v4 = float32(v2.X*v3.X) + float32(v2.Y*v3.Y) + float32(v2.Z*v3.Z)
+		goto _5
+	_5:
+		aa = v4
+		v8 = float32FromFloat32(1) - aa
+		if v8 < float32FromInt32(0) {
+			v11 = -v8
+		} else {
+			v11 = v8
+		}
+		v9 = v11
+		goto _10
+	_10:
+		v6 = boolUint8(v9 < float32(float32FromFloat32(100)*float32FromFloat32(1.1920928955078125e-07)))
+		goto _7
+	_7:
+	}
+	if v13 = !!(v12 && v6 != 0); !v13 {
+		b3InternalAssert(tls, __ccgo_ts+27029, __ccgo_ts+26960, int32FromInt32(120))
+	}
+	_ = v13 || bool(int32FromInt32(0) != 0)
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	current = (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Normal
+	if current.X == normal.X && current.Y == normal.Y && current.Z == normal.Z {
+		return
+	}
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	if (*b3World)(unsafe.Pointer(world)).Recording != uintptrFromInt32(0) {
+		*(*b3RecArgs_PogoJointSetNormal)(unsafe.Add(nil, bp)) = b3RecArgs_PogoJointSetNormal{
+			Joint:  jointId,
+			Normal: normal,
+		}
+		b3RecWrite_PogoJointSetNormal(tls, (*b3World)(unsafe.Pointer(world)).Recording, bp)
+	}
+	(*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Normal = normal
+}
+
+func b3PogoJoint_GetNormal(tls *_Stack, jointId JointId) (r Vec3) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Normal
+}
+
+func b3PogoJoint_GetCurrentLength(tls *_Stack, jointId JointId) (r1 float32) {
+	var axis, c, pA, pB, rv, t11, t12, t2, t21, t3, t31, v100, v102, v103, v105, v107, v108, v109, v11, v111, v112, v113, v115, v116, v12, v13, v15, v17, v18, v20, v22, v23, v25, v26, v32, v33, v34, v35, v37, v39, v40, v42, v43, v44, v46, v48, v50, v51, v55, v56, v57, v58, v60, v62, v63, v65, v66, v67, v69, v71, v73, v74, v76, v78, v79, v80, v84, v85, v86, v87, v89, v91, v92, v94, v95, v96, v98 Vec3
+	var base1, world uintptr
+	var q1, v10, v29, v31, v54, v83, v9 Quat
+	var r, transformA, transformB, v3, v53, v7, v82 Transform
+	var worldTransformA, v1, v5 WorldTransform
+	var v101, v117, v16, v21, v27, v38, v49, v61, v72, v90 float32
+	var v2, v6 Pos
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = axis, base1, c, pA, pB, q1, r, rv, t11, t12, t2, t21, t3, t31, transformA, transformB, world, worldTransformA, v1, v10, v100, v101, v102, v103, v105, v107, v108, v109, v11, v111, v112, v113, v115, v116, v117, v12, v13, v15, v16, v17, v18, v2, v20, v21, v22, v23, v25, v26, v27, v29, v3, v31, v32, v33, v34, v35, v37, v38, v39, v40, v42, v43, v44, v46, v48, v49, v5, v50, v51, v53, v54, v55, v56, v57, v58, v6, v60, v61, v62, v63, v65, v66, v67, v69, v7, v71, v72, v73, v74, v76, v78, v79, v80, v82, v83, v84, v85, v86, v87, v89, v9, v90, v91, v92, v94, v95, v96, v98
+	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
+	base1 = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	worldTransformA = b3GetBodyTransform(tls, world, (*b3JointSim)(unsafe.Pointer(base1)).BodyIdA)
+	v1 = worldTransformA
+	v2 = worldTransformA.P
+	r.Q = v1.Q
+	r.P = Vec3{
+		X: v1.P.X - v2.X,
+		Y: v1.P.Y - v2.Y,
+		Z: v1.P.Z - v2.Z,
+	}
+	v3 = r
+	goto _4
+_4:
+	transformA = v3
+	v5 = b3GetBodyTransform(tls, world, (*b3JointSim)(unsafe.Pointer(base1)).BodyIdB)
+	v6 = worldTransformA.P
+	r.Q = v5.Q
+	r.P = Vec3{
+		X: v5.P.X - v6.X,
+		Y: v5.P.Y - v6.Y,
+		Z: v5.P.Z - v6.Z,
+	}
+	v7 = r
+	goto _8
+_8:
+	transformB = v7
+	v9 = transformB.Q
+	v10 = (*b3JointSim)(unsafe.Pointer(base1)).LocalFrameB.Q
+	v11 = v9.V
+	v12 = v10.V
+	c.X = float32(v11.Y*v12.Z) - float32(v11.Z*v12.Y)
+	c.Y = float32(v11.Z*v12.X) - float32(v11.X*v12.Z)
+	c.Z = float32(v11.X*v12.Y) - float32(v11.Y*v12.X)
+	v13 = c
+	goto _14
+_14:
+	t12 = v13
+	v15 = t12
+	v16 = v9.S
+	v17 = v10.V
+	v18 = Vec3{
+		X: v15.X + float32(v16*v17.X),
+		Y: v15.Y + float32(v16*v17.Y),
+		Z: v15.Z + float32(v16*v17.Z),
+	}
+	goto _19
+_19:
+	t21 = v18
+	v20 = t21
+	v21 = v10.S
+	v22 = v9.V
+	v23 = Vec3{
+		X: v20.X + float32(v21*v22.X),
+		Y: v20.Y + float32(v21*v22.Y),
+		Z: v20.Z + float32(v21*v22.Z),
+	}
+	goto _24
+_24:
+	t31 = v23
+	v25 = v9.V
+	v26 = v10.V
+	v27 = float32(v25.X*v26.X) + float32(v25.Y*v26.Y) + float32(v25.Z*v26.Z)
+	goto _28
+_28:
+	q1 = Quat{
+		V: t31,
+		S: float32(v9.S*v10.S) - v27,
+	}
+	v29 = q1
+	goto _30
+_30:
+	v31 = v29
+	v32 = b3Vec3_axisY
+	v33 = v31.V
+	v34 = v32
+	c.X = float32(v33.Y*v34.Z) - float32(v33.Z*v34.Y)
+	c.Y = float32(v33.Z*v34.X) - float32(v33.X*v34.Z)
+	c.Z = float32(v33.X*v34.Y) - float32(v33.Y*v34.X)
+	v35 = c
+	goto _36
+_36:
+	t11 = v35
+	v37 = t11
+	v38 = v31.S
+	v39 = v32
+	v40 = Vec3{
+		X: v37.X + float32(v38*v39.X),
+		Y: v37.Y + float32(v38*v39.Y),
+		Z: v37.Z + float32(v38*v39.Z),
+	}
+	goto _41
+_41:
+	t2 = v40
+	v42 = v31.V
+	v43 = t2
+	c.X = float32(v42.Y*v43.Z) - float32(v42.Z*v43.Y)
+	c.Y = float32(v42.Z*v43.X) - float32(v42.X*v43.Z)
+	c.Z = float32(v42.X*v43.Y) - float32(v42.Y*v43.X)
+	v44 = c
+	goto _45
+_45:
+	t3 = v44
+	v48 = v32
+	v49 = float32FromFloat32(2)
+	v50 = t3
+	v51 = Vec3{
+		X: v48.X + float32(v49*v50.X),
+		Y: v48.Y + float32(v49*v50.Y),
+		Z: v48.Z + float32(v49*v50.Z),
+	}
+	goto _52
+_52:
+	v46 = v51
+	goto _47
+_47:
+	axis = v46
+	v53 = transformA
+	v54 = v53.Q
+	v55 = (*b3JointSim)(unsafe.Pointer(base1)).LocalFrameA.P
+	v56 = v54.V
+	v57 = v55
+	c.X = float32(v56.Y*v57.Z) - float32(v56.Z*v57.Y)
+	c.Y = float32(v56.Z*v57.X) - float32(v56.X*v57.Z)
+	c.Z = float32(v56.X*v57.Y) - float32(v56.Y*v57.X)
+	v58 = c
+	goto _59
+_59:
+	t11 = v58
+	v60 = t11
+	v61 = v54.S
+	v62 = v55
+	v63 = Vec3{
+		X: v60.X + float32(v61*v62.X),
+		Y: v60.Y + float32(v61*v62.Y),
+		Z: v60.Z + float32(v61*v62.Z),
+	}
+	goto _64
+_64:
+	t2 = v63
+	v65 = v54.V
+	v66 = t2
+	c.X = float32(v65.Y*v66.Z) - float32(v65.Z*v66.Y)
+	c.Y = float32(v65.Z*v66.X) - float32(v65.X*v66.Z)
+	c.Z = float32(v65.X*v66.Y) - float32(v65.Y*v66.X)
+	v67 = c
+	goto _68
+_68:
+	t3 = v67
+	v71 = v55
+	v72 = float32FromFloat32(2)
+	v73 = t3
+	v74 = Vec3{
+		X: v71.X + float32(v72*v73.X),
+		Y: v71.Y + float32(v72*v73.Y),
+		Z: v71.Z + float32(v72*v73.Z),
+	}
+	goto _75
+_75:
+	v69 = v74
+	goto _70
+_70:
+	rv = v69
+	v78 = rv
+	v79 = v53.P
+	v80 = Vec3{
+		X: v78.X + v79.X,
+		Y: v78.Y + v79.Y,
+		Z: v78.Z + v79.Z,
+	}
+	goto _81
+_81:
+	v76 = v80
+	goto _77
+_77:
+	pA = v76
+	v82 = transformB
+	v83 = v82.Q
+	v84 = (*b3JointSim)(unsafe.Pointer(base1)).LocalFrameB.P
+	v85 = v83.V
+	v86 = v84
+	c.X = float32(v85.Y*v86.Z) - float32(v85.Z*v86.Y)
+	c.Y = float32(v85.Z*v86.X) - float32(v85.X*v86.Z)
+	c.Z = float32(v85.X*v86.Y) - float32(v85.Y*v86.X)
+	v87 = c
+	goto _88
+_88:
+	t11 = v87
+	v89 = t11
+	v90 = v83.S
+	v91 = v84
+	v92 = Vec3{
+		X: v89.X + float32(v90*v91.X),
+		Y: v89.Y + float32(v90*v91.Y),
+		Z: v89.Z + float32(v90*v91.Z),
+	}
+	goto _93
+_93:
+	t2 = v92
+	v94 = v83.V
+	v95 = t2
+	c.X = float32(v94.Y*v95.Z) - float32(v94.Z*v95.Y)
+	c.Y = float32(v94.Z*v95.X) - float32(v94.X*v95.Z)
+	c.Z = float32(v94.X*v95.Y) - float32(v94.Y*v95.X)
+	v96 = c
+	goto _97
+_97:
+	t3 = v96
+	v100 = v84
+	v101 = float32FromFloat32(2)
+	v102 = t3
+	v103 = Vec3{
+		X: v100.X + float32(v101*v102.X),
+		Y: v100.Y + float32(v101*v102.Y),
+		Z: v100.Z + float32(v101*v102.Z),
+	}
+	goto _104
+_104:
+	v98 = v103
+	goto _99
+_99:
+	rv = v98
+	v107 = rv
+	v108 = v82.P
+	v109 = Vec3{
+		X: v107.X + v108.X,
+		Y: v107.Y + v108.Y,
+		Z: v107.Z + v108.Z,
+	}
+	goto _110
+_110:
+	v105 = v109
+	goto _106
+_106:
+	pB = v105
+	v111 = pB
+	v112 = pA
+	v113 = Vec3{
+		X: v111.X - v112.X,
+		Y: v111.Y - v112.Y,
+		Z: v111.Z - v112.Z,
+	}
+	goto _114
+_114:
+	v115 = v113
+	v116 = axis
+	v117 = float32(v115.X*v116.X) + float32(v115.Y*v116.Y) + float32(v115.Z*v116.Z)
+	goto _118
+_118:
+	return v117
+}
+
+func b3PogoJoint_GetImpulse(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Impulse
+}
+
+func b3PogoJoint_GetCurrentSpeed(tls *_Stack, jointId JointId) (r float32) {
+	var joint uintptr
+	_ = joint
+	joint = b3GetJointSimCheckType(tls, jointId, int32(b3_pogoJoint))
+	return (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(joint), 184))).Velocity
+}
+
+func b3GetPogoJointForce(tls *_Stack, world uintptr, base uintptr) (r Vec3) {
+	var v1 float32
+	var v2, v3 Vec3
+	_, _, _ = v1, v2, v3
+	v1 = float32((*b3World)(unsafe.Pointer(world)).Inv_h * (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(base), 184))).Impulse)
+	v2 = (*(*b3PogoJoint)(unsafe.Add(unsafe.Pointer(base), 184))).Normal
+	v3 = Vec3{
+		X: float32(v1 * v2.X),
+		Y: float32(v1 * v2.Y),
+		Z: float32(v1 * v2.Z),
+	}
+	goto _4
+_4:
+	return v3
+}
+
+func b3PreparePogoJoint(tls *_Stack, base uintptr, context uintptr) {
+	var b5, c, rnA, rnB, t1, t11, t2, t21, t3, t31, v13, v14, v15, v17, v19, v20, v22, v24, v25, v27, v28, v33, v34, v35, v38, v39, v40 Vec3
+	var bodyA, bodyB, bodySimA, bodySimB, joint, setA, setB, world uintptr
+	var iA, iB, v119, v127 Matrix3
+	var idA, idB, localIndexA, localIndexB, v9 int32
+	var k, mA, mB, v18, v23, v29 float32
+	var q1, v11, v12, v31 Quat
+	var v1, v2, v3, v4 bool
+	var v107, v108 Pos
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b5, bodyA, bodyB, bodySimA, bodySimB, c, iA, iB, idA, idB, joint, k, localIndexA, localIndexB, mA, mB, q1, rnA, rnB, setA, setB, t1, t11, t2, t21, t3, t31, world, v1, v107, v108, v11, v119, v12, v127, v13, v14, v15, v17, v18, v19, v2, v20, v22, v23, v24, v25, v27, v28, v29, v3, v31, v33, v34, v35, v38, v39, v4, v40, v9
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_pogoJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+27081, __ccgo_ts+26960, int32FromInt32(174))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	world = (*b3StepContext)(unsafe.Pointer(context)).World
+	// chase body id to the solver set where the body lives
+	idA = (*b3JointSim)(unsafe.Pointer(base)).BodyIdA
+	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
+	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+26960, int32FromInt32(182))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
+	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+26960, int32FromInt32(183))
+	}
+	_ = v2 || bool(int32FromInt32(0) != 0)
+	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
+	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+26960, int32FromInt32(185))
+	}
+	_ = v3 || bool(int32FromInt32(0) != 0)
+	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+26960, int32FromInt32(187))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
+	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+26960, int32FromInt32(188))
+	}
+	_ = v2 || bool(int32FromInt32(0) != 0)
+	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
+	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
+	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
+	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+26960, int32FromInt32(193))
+	}
+	_ = v3 || bool(int32FromInt32(0) != 0)
+	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
+	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+26960, int32FromInt32(194))
+	}
+	_ = v4 || bool(int32FromInt32(0) != 0)
+	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
+	mA = (*b3BodySim)(unsafe.Pointer(bodySimA)).InvMass
+	mB = (*b3BodySim)(unsafe.Pointer(bodySimB)).InvMass
+	iA = (*b3BodySim)(unsafe.Pointer(bodySimA)).InvInertiaWorld
+	iB = (*b3BodySim)(unsafe.Pointer(bodySimB)).InvInertiaWorld
+	(*b3JointSim)(unsafe.Pointer(base)).InvMassA = mA
+	(*b3JointSim)(unsafe.Pointer(base)).InvMassB = mB
+	(*b3JointSim)(unsafe.Pointer(base)).InvIA = iA
+	(*b3JointSim)(unsafe.Pointer(base)).InvIB = iB
+	joint = base + 184
+	if (*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) {
+		v9 = localIndexA
+	} else {
+		v9 = -int32(1)
+	}
+	(*b3PogoJoint)(unsafe.Pointer(joint)).IndexA = v9
+	if (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet) {
+		v9 = localIndexB
+	} else {
+		v9 = -int32(1)
+	}
+	(*b3PogoJoint)(unsafe.Pointer(joint)).IndexB = v9
+	// Compute joint anchor frames with world space rotation, relative to center of mass
+	v11 = (*b3BodySim)(unsafe.Pointer(bodySimA)).Transform.Q
+	v12 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameA.Q
+	v13 = v11.V
+	v14 = v12.V
+	c.X = float32(v13.Y*v14.Z) - float32(v13.Z*v14.Y)
+	c.Y = float32(v13.Z*v14.X) - float32(v13.X*v14.Z)
+	c.Z = float32(v13.X*v14.Y) - float32(v13.Y*v14.X)
+	v15 = c
+	goto _16
+_16:
+	t11 = v15
+	v17 = t11
+	v18 = v11.S
+	v19 = v12.V
+	v20 = Vec3{
+		X: v17.X + float32(v18*v19.X),
+		Y: v17.Y + float32(v18*v19.Y),
+		Z: v17.Z + float32(v18*v19.Z),
+	}
+	goto _21
+_21:
+	t21 = v20
+	v22 = t21
+	v23 = v12.S
+	v24 = v11.V
+	v25 = Vec3{
+		X: v22.X + float32(v23*v24.X),
+		Y: v22.Y + float32(v23*v24.Y),
+		Z: v22.Z + float32(v23*v24.Z),
+	}
+	goto _26
+_26:
+	t31 = v25
+	v27 = v11.V
+	v28 = v12.V
+	v29 = float32(v27.X*v28.X) + float32(v27.Y*v28.Y) + float32(v27.Z*v28.Z)
+	goto _30
+_30:
+	q1 = Quat{
+		V: t31,
+		S: float32(v11.S*v12.S) - v29,
+	}
+	v31 = q1
+	goto _32
+_32:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).FrameA.Q = v31
+	v13 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameA.P
+	v14 = (*b3BodySim)(unsafe.Pointer(bodySimA)).LocalCenter
+	v15 = Vec3{
+		X: v13.X - v14.X,
+		Y: v13.Y - v14.Y,
+		Z: v13.Z - v14.Z,
+	}
+	goto _36
+_36:
+	v11 = (*b3BodySim)(unsafe.Pointer(bodySimA)).Transform.Q
+	v17 = v15
+	v19 = v11.V
+	v20 = v17
+	c.X = float32(v19.Y*v20.Z) - float32(v19.Z*v20.Y)
+	c.Y = float32(v19.Z*v20.X) - float32(v19.X*v20.Z)
+	c.Z = float32(v19.X*v20.Y) - float32(v19.Y*v20.X)
+	v22 = c
+	goto _42
+_42:
+	t1 = v22
+	v24 = t1
+	v18 = v11.S
+	v25 = v17
+	v27 = Vec3{
+		X: v24.X + float32(v18*v25.X),
+		Y: v24.Y + float32(v18*v25.Y),
+		Z: v24.Z + float32(v18*v25.Z),
+	}
+	goto _47
+_47:
+	t2 = v27
+	v28 = v11.V
+	v33 = t2
+	c.X = float32(v28.Y*v33.Z) - float32(v28.Z*v33.Y)
+	c.Y = float32(v28.Z*v33.X) - float32(v28.X*v33.Z)
+	c.Z = float32(v28.X*v33.Y) - float32(v28.Y*v33.X)
+	v34 = c
+	goto _51
+_51:
+	t3 = v34
+	v38 = v17
+	v23 = float32FromFloat32(2)
+	v39 = t3
+	v40 = Vec3{
+		X: v38.X + float32(v23*v39.X),
+		Y: v38.Y + float32(v23*v39.Y),
+		Z: v38.Z + float32(v23*v39.Z),
+	}
+	goto _58
+_58:
+	v35 = v40
+	goto _53
+_53:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).FrameA.P = v35
+	v11 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Transform.Q
+	v12 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB.Q
+	v13 = v11.V
+	v14 = v12.V
+	c.X = float32(v13.Y*v14.Z) - float32(v13.Z*v14.Y)
+	c.Y = float32(v13.Z*v14.X) - float32(v13.X*v14.Z)
+	c.Z = float32(v13.X*v14.Y) - float32(v13.Y*v14.X)
+	v15 = c
+	goto _64
+_64:
+	t11 = v15
+	v17 = t11
+	v18 = v11.S
+	v19 = v12.V
+	v20 = Vec3{
+		X: v17.X + float32(v18*v19.X),
+		Y: v17.Y + float32(v18*v19.Y),
+		Z: v17.Z + float32(v18*v19.Z),
+	}
+	goto _69
+_69:
+	t21 = v20
+	v22 = t21
+	v23 = v12.S
+	v24 = v11.V
+	v25 = Vec3{
+		X: v22.X + float32(v23*v24.X),
+		Y: v22.Y + float32(v23*v24.Y),
+		Z: v22.Z + float32(v23*v24.Z),
+	}
+	goto _74
+_74:
+	t31 = v25
+	v27 = v11.V
+	v28 = v12.V
+	v29 = float32(v27.X*v28.X) + float32(v27.Y*v28.Y) + float32(v27.Z*v28.Z)
+	goto _78
+_78:
+	q1 = Quat{
+		V: t31,
+		S: float32(v11.S*v12.S) - v29,
+	}
+	v31 = q1
+	goto _80
+_80:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.Q = v31
+	v13 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB.P
+	v14 = (*b3BodySim)(unsafe.Pointer(bodySimB)).LocalCenter
+	v15 = Vec3{
+		X: v13.X - v14.X,
+		Y: v13.Y - v14.Y,
+		Z: v13.Z - v14.Z,
+	}
+	goto _84
+_84:
+	v11 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Transform.Q
+	v17 = v15
+	v19 = v11.V
+	v20 = v17
+	c.X = float32(v19.Y*v20.Z) - float32(v19.Z*v20.Y)
+	c.Y = float32(v19.Z*v20.X) - float32(v19.X*v20.Z)
+	c.Z = float32(v19.X*v20.Y) - float32(v19.Y*v20.X)
+	v22 = c
+	goto _90
+_90:
+	t1 = v22
+	v24 = t1
+	v18 = v11.S
+	v25 = v17
+	v27 = Vec3{
+		X: v24.X + float32(v18*v25.X),
+		Y: v24.Y + float32(v18*v25.Y),
+		Z: v24.Z + float32(v18*v25.Z),
+	}
+	goto _95
+_95:
+	t2 = v27
+	v28 = v11.V
+	v33 = t2
+	c.X = float32(v28.Y*v33.Z) - float32(v28.Z*v33.Y)
+	c.Y = float32(v28.Z*v33.X) - float32(v28.X*v33.Z)
+	c.Z = float32(v28.X*v33.Y) - float32(v28.Y*v33.X)
+	v34 = c
+	goto _99
+_99:
+	t3 = v34
+	v38 = v17
+	v23 = float32FromFloat32(2)
+	v39 = t3
+	v40 = Vec3{
+		X: v38.X + float32(v23*v39.X),
+		Y: v38.Y + float32(v23*v39.Y),
+		Z: v38.Z + float32(v23*v39.Z),
+	}
+	goto _106
+_106:
+	v35 = v40
+	goto _101
+_101:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.P = v35
+	// Compute the initial center delta. Incremental position updates are relative to this.
+	v107 = (*b3BodySim)(unsafe.Pointer(bodySimB)).Center
+	v108 = (*b3BodySim)(unsafe.Pointer(bodySimA)).Center
+	v13 = Vec3{
+		X: v107.X - v108.X,
+		Y: v107.Y - v108.Y,
+		Z: v107.Z - v108.Z,
+	}
+	goto _110
+_110:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).DeltaCenter = v13
+	v13 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameA.P
+	v14 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	c.X = float32(v13.Y*v14.Z) - float32(v13.Z*v14.Y)
+	c.Y = float32(v13.Z*v14.X) - float32(v13.X*v14.Z)
+	c.Z = float32(v13.X*v14.Y) - float32(v13.Y*v14.X)
+	v15 = c
+	goto _114
+_114:
+	rnA = v15
+	v17 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.P
+	v19 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	c.X = float32(v17.Y*v19.Z) - float32(v17.Z*v19.Y)
+	c.Y = float32(v17.Z*v19.X) - float32(v17.X*v19.Z)
+	c.Z = float32(v17.X*v19.Y) - float32(v17.Y*v19.X)
+	v20 = c
+	goto _118
+_118:
+	rnB = v20
+	v119 = iA
+	v22 = rnA
+	b5 = Vec3{
+		X: float32(v119.Cx.X*v22.X) + float32(v119.Cy.X*v22.Y) + float32(v119.Cz.X*v22.Z),
+		Y: float32(v119.Cx.Y*v22.X) + float32(v119.Cy.Y*v22.Y) + float32(v119.Cz.Y*v22.Z),
+		Z: float32(v119.Cx.Z*v22.X) + float32(v119.Cy.Z*v22.Y) + float32(v119.Cz.Z*v22.Z),
+	}
+	v24 = b5
+	goto _122
+_122:
+	v25 = rnA
+	v27 = v24
+	v18 = float32(v25.X*v27.X) + float32(v25.Y*v27.Y) + float32(v25.Z*v27.Z)
+	goto _126
+_126:
+	v127 = iB
+	v28 = rnB
+	b5 = Vec3{
+		X: float32(v127.Cx.X*v28.X) + float32(v127.Cy.X*v28.Y) + float32(v127.Cz.X*v28.Z),
+		Y: float32(v127.Cx.Y*v28.X) + float32(v127.Cy.Y*v28.Y) + float32(v127.Cz.Y*v28.Z),
+		Z: float32(v127.Cx.Z*v28.X) + float32(v127.Cy.Z*v28.Y) + float32(v127.Cz.Z*v28.Z),
+	}
+	v33 = b5
+	goto _130
+_130:
+	v34 = rnB
+	v35 = v33
+	v23 = float32(v34.X*v35.X) + float32(v34.Y*v35.Y) + float32(v34.Z*v35.Z)
+	goto _134
+_134:
+	k = mA + mB + v18 + v23
+	if k > float32FromFloat32(0) {
+		v29 = float32FromFloat32(1) / k
+	} else {
+		v29 = float32FromFloat32(0)
+	}
+	(*b3PogoJoint)(unsafe.Pointer(joint)).LinearMass = v29
+	if int32FromUint8((*b3StepContext)(unsafe.Pointer(context)).EnableWarmStarting) == false1 {
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Velocity = float32FromFloat32(0)
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Impulse = float32FromFloat32(0)
+	}
+}
+
+func b3WarmStartPogoJoint(tls *_Stack, base uintptr, context uintptr) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var b5, c, linearImpulse, rA, rB, t1, t2, t3, v10, v12, v13, v15, v16, v17, v19, v21, v23, v24, v27, v28, v29, v30, v32, v34, v35, v37, v38, v39, v41, v43, v45, v46, v49, v5, v50, v52, v54, v55, v6, v7, v8 Vec3
+	var iA, iB, v61 Matrix3
+	var joint, stateA, stateB, v2, v3 uintptr
+	var mA, mB, v11, v22, v33, v44, v48, v53 float32
+	var v1 bool
+	var v26, v4 Quat
+	var _ /* dummyState at bp+0 */ b3BodyState
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b5, c, iA, iB, joint, linearImpulse, mA, mB, rA, rB, stateA, stateB, t1, t2, t3, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v55, v6, v61, v7, v8
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_pogoJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+27081, __ccgo_ts+26960, int32FromInt32(235))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
+	mB = (*b3JointSim)(unsafe.Pointer(base)).InvMassB
+	iA = (*b3JointSim)(unsafe.Pointer(base)).InvIA
+	iB = (*b3JointSim)(unsafe.Pointer(base)).InvIB
+	joint = base + 184
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).Hertz == float32FromFloat32(0) {
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Impulse = float32FromFloat32(0)
+		return
+	}
+	// dummy state for static bodies
+	*(*b3BodyState)(unsafe.Add(nil, bp)) = b3_identityBodyState
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).IndexA == -int32(1) {
+		v2 = bp
+	} else {
+		v2 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3PogoJoint)(unsafe.Pointer(joint)).IndexA)*64
+	}
+	stateA = v2
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).IndexB == -int32(1) {
+		v3 = bp
+	} else {
+		v3 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3PogoJoint)(unsafe.Pointer(joint)).IndexB)*64
+	}
+	stateB = v3
+	v4 = (*b3BodyState)(unsafe.Pointer(stateA)).DeltaRotation
+	v5 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameA.P
+	v6 = v4.V
+	v7 = v5
+	c.X = float32(v6.Y*v7.Z) - float32(v6.Z*v7.Y)
+	c.Y = float32(v6.Z*v7.X) - float32(v6.X*v7.Z)
+	c.Z = float32(v6.X*v7.Y) - float32(v6.Y*v7.X)
+	v8 = c
+	goto _9
+_9:
+	t1 = v8
+	v10 = t1
+	v11 = v4.S
+	v12 = v5
+	v13 = Vec3{
+		X: v10.X + float32(v11*v12.X),
+		Y: v10.Y + float32(v11*v12.Y),
+		Z: v10.Z + float32(v11*v12.Z),
+	}
+	goto _14
+_14:
+	t2 = v13
+	v15 = v4.V
+	v16 = t2
+	c.X = float32(v15.Y*v16.Z) - float32(v15.Z*v16.Y)
+	c.Y = float32(v15.Z*v16.X) - float32(v15.X*v16.Z)
+	c.Z = float32(v15.X*v16.Y) - float32(v15.Y*v16.X)
+	v17 = c
+	goto _18
+_18:
+	t3 = v17
+	v21 = v5
+	v22 = float32FromFloat32(2)
+	v23 = t3
+	v24 = Vec3{
+		X: v21.X + float32(v22*v23.X),
+		Y: v21.Y + float32(v22*v23.Y),
+		Z: v21.Z + float32(v22*v23.Z),
+	}
+	goto _25
+_25:
+	v19 = v24
+	goto _20
+_20:
+	rA = v19
+	v26 = (*b3BodyState)(unsafe.Pointer(stateB)).DeltaRotation
+	v27 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.P
+	v28 = v26.V
+	v29 = v27
+	c.X = float32(v28.Y*v29.Z) - float32(v28.Z*v29.Y)
+	c.Y = float32(v28.Z*v29.X) - float32(v28.X*v29.Z)
+	c.Z = float32(v28.X*v29.Y) - float32(v28.Y*v29.X)
+	v30 = c
+	goto _31
+_31:
+	t1 = v30
+	v32 = t1
+	v33 = v26.S
+	v34 = v27
+	v35 = Vec3{
+		X: v32.X + float32(v33*v34.X),
+		Y: v32.Y + float32(v33*v34.Y),
+		Z: v32.Z + float32(v33*v34.Z),
+	}
+	goto _36
+_36:
+	t2 = v35
+	v37 = v26.V
+	v38 = t2
+	c.X = float32(v37.Y*v38.Z) - float32(v37.Z*v38.Y)
+	c.Y = float32(v37.Z*v38.X) - float32(v37.X*v38.Z)
+	c.Z = float32(v37.X*v38.Y) - float32(v37.Y*v38.X)
+	v39 = c
+	goto _40
+_40:
+	t3 = v39
+	v43 = v27
+	v44 = float32FromFloat32(2)
+	v45 = t3
+	v46 = Vec3{
+		X: v43.X + float32(v44*v45.X),
+		Y: v43.Y + float32(v44*v45.Y),
+		Z: v43.Z + float32(v44*v45.Z),
+	}
+	goto _47
+_47:
+	v41 = v46
+	goto _42
+_42:
+	rB = v41
+	v48 = (*b3PogoJoint)(unsafe.Pointer(joint)).Impulse
+	v49 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	v50 = Vec3{
+		X: float32(v48 * v49.X),
+		Y: float32(v48 * v49.Y),
+		Z: float32(v48 * v49.Z),
+	}
+	goto _51
+_51:
+	linearImpulse = v50
+	if (*b3BodyState)(unsafe.Pointer(stateA)).Flags&uint32(b3_dynamicFlag) != 0 {
+		v52 = (*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity
+		v53 = mA
+		v54 = linearImpulse
+		v55 = Vec3{
+			X: v52.X - float32(v53*v54.X),
+			Y: v52.Y - float32(v53*v54.Y),
+			Z: v52.Z - float32(v53*v54.Z),
+		}
+		goto _56
+	_56:
+		(*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity = v55
+		v5 = rA
+		v6 = linearImpulse
+		c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+		c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+		c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+		v7 = c
+		goto _60
+	_60:
+		v61 = iA
+		v8 = v7
+		b5 = Vec3{
+			X: float32(v61.Cx.X*v8.X) + float32(v61.Cy.X*v8.Y) + float32(v61.Cz.X*v8.Z),
+			Y: float32(v61.Cx.Y*v8.X) + float32(v61.Cy.Y*v8.Y) + float32(v61.Cz.Y*v8.Z),
+			Z: float32(v61.Cx.Z*v8.X) + float32(v61.Cy.Z*v8.Y) + float32(v61.Cz.Z*v8.Z),
+		}
+		v10 = b5
+		goto _64
+	_64:
+		v12 = (*b3BodyState)(unsafe.Pointer(stateA)).AngularVelocity
+		v13 = v10
+		v15 = Vec3{
+			X: v12.X - v13.X,
+			Y: v12.Y - v13.Y,
+			Z: v12.Z - v13.Z,
+		}
+		goto _68
+	_68:
+		(*b3BodyState)(unsafe.Pointer(stateA)).AngularVelocity = v15
+	}
+	if (*b3BodyState)(unsafe.Pointer(stateB)).Flags&uint32(b3_dynamicFlag) != 0 {
+		v5 = (*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity
+		v11 = mB
+		v6 = linearImpulse
+		v7 = Vec3{
+			X: v5.X + float32(v11*v6.X),
+			Y: v5.Y + float32(v11*v6.Y),
+			Z: v5.Z + float32(v11*v6.Z),
+		}
+		goto _73
+	_73:
+		(*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity = v7
+		v5 = rB
+		v6 = linearImpulse
+		c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+		c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+		c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+		v7 = c
+		goto _77
+	_77:
+		v61 = iB
+		v8 = v7
+		b5 = Vec3{
+			X: float32(v61.Cx.X*v8.X) + float32(v61.Cy.X*v8.Y) + float32(v61.Cz.X*v8.Z),
+			Y: float32(v61.Cx.Y*v8.X) + float32(v61.Cy.Y*v8.Y) + float32(v61.Cz.Y*v8.Z),
+			Z: float32(v61.Cx.Z*v8.X) + float32(v61.Cy.Z*v8.Y) + float32(v61.Cz.Z*v8.Z),
+		}
+		v10 = b5
+		goto _81
+	_81:
+		v12 = (*b3BodyState)(unsafe.Pointer(stateB)).AngularVelocity
+		v13 = v10
+		v15 = Vec3{
+			X: v12.X + v13.X,
+			Y: v12.Y + v13.Y,
+			Z: v12.Z + v13.Z,
+		}
+		goto _85
+	_85:
+		(*b3BodyState)(unsafe.Pointer(stateB)).AngularVelocity = v15
+	}
+}
+
+func b3SolvePogoJoint(tls *_Stack, base uintptr, context uintptr, useBias uint8) {
+	bp := tls.Alloc(64)
+	defer tls.Free(64)
+	var P, b6, c, d, dcA, dcB, pogoAxis, rA, rB, t1, t2, t3, vA, vB, vr, wA, wB, v10, v12, v13, v15, v16, v17, v19, v21, v23, v24, v27, v28, v29, v30, v32, v34, v35, v37, v38, v39, v41, v43, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v65, v66, v67, v68, v7, v70, v72, v73, v75, v76, v77, v79, v8, v81, v83, v84, v86, v87 Vec3
+	var bias, c1, cdot, impulse, mA, mB, maxCompressionImpulse, maxTensionImpulse, oldImpulse, omega, omegaH, v11, v22, v33, v44, v71, v82, v88, v90 float32
+	var iA, iB, v136 Matrix3
+	var joint, stateA, stateB, v2, v3 uintptr
+	var v1 bool
+	var v26, v4, v64 Quat
+	var _ /* dummyState at bp+0 */ b3BodyState
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = P, b6, bias, c, c1, cdot, d, dcA, dcB, iA, iB, impulse, joint, mA, mB, maxCompressionImpulse, maxTensionImpulse, oldImpulse, omega, omegaH, pogoAxis, rA, rB, stateA, stateB, t1, t2, t3, vA, vB, vr, wA, wB, v1, v10, v11, v12, v13, v136, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v64, v65, v66, v67, v68, v7, v70, v71, v72, v73, v75, v76, v77, v79, v8, v81, v82, v83, v84, v86, v87, v88, v90
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_pogoJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+27081, __ccgo_ts+26960, int32FromInt32(280))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
+	mB = (*b3JointSim)(unsafe.Pointer(base)).InvMassB
+	iA = (*b3JointSim)(unsafe.Pointer(base)).InvIA
+	iB = (*b3JointSim)(unsafe.Pointer(base)).InvIB
+	// dummy state for static bodies
+	*(*b3BodyState)(unsafe.Add(nil, bp)) = b3_identityBodyState
+	joint = base + 184
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).Hertz == float32FromFloat32(0) {
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Impulse = float32FromFloat32(0)
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Velocity = float32FromFloat32(0)
+		return
+	}
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).IndexA == -int32(1) {
+		v2 = bp
+	} else {
+		v2 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3PogoJoint)(unsafe.Pointer(joint)).IndexA)*64
+	}
+	stateA = v2
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).IndexB == -int32(1) {
+		v3 = bp
+	} else {
+		v3 = (*b3StepContext)(unsafe.Pointer(context)).States + uintptr((*b3PogoJoint)(unsafe.Pointer(joint)).IndexB)*64
+	}
+	stateB = v3
+	vA = (*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity
+	wA = (*b3BodyState)(unsafe.Pointer(stateA)).AngularVelocity
+	vB = (*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity
+	wB = (*b3BodyState)(unsafe.Pointer(stateB)).AngularVelocity
+	v4 = (*b3BodyState)(unsafe.Pointer(stateA)).DeltaRotation
+	v5 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameA.P
+	v6 = v4.V
+	v7 = v5
+	c.X = float32(v6.Y*v7.Z) - float32(v6.Z*v7.Y)
+	c.Y = float32(v6.Z*v7.X) - float32(v6.X*v7.Z)
+	c.Z = float32(v6.X*v7.Y) - float32(v6.Y*v7.X)
+	v8 = c
+	goto _9
+_9:
+	t1 = v8
+	v10 = t1
+	v11 = v4.S
+	v12 = v5
+	v13 = Vec3{
+		X: v10.X + float32(v11*v12.X),
+		Y: v10.Y + float32(v11*v12.Y),
+		Z: v10.Z + float32(v11*v12.Z),
+	}
+	goto _14
+_14:
+	t2 = v13
+	v15 = v4.V
+	v16 = t2
+	c.X = float32(v15.Y*v16.Z) - float32(v15.Z*v16.Y)
+	c.Y = float32(v15.Z*v16.X) - float32(v15.X*v16.Z)
+	c.Z = float32(v15.X*v16.Y) - float32(v15.Y*v16.X)
+	v17 = c
+	goto _18
+_18:
+	t3 = v17
+	v21 = v5
+	v22 = float32FromFloat32(2)
+	v23 = t3
+	v24 = Vec3{
+		X: v21.X + float32(v22*v23.X),
+		Y: v21.Y + float32(v22*v23.Y),
+		Z: v21.Z + float32(v22*v23.Z),
+	}
+	goto _25
+_25:
+	v19 = v24
+	goto _20
+_20:
+	rA = v19
+	v26 = (*b3BodyState)(unsafe.Pointer(stateB)).DeltaRotation
+	v27 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.P
+	v28 = v26.V
+	v29 = v27
+	c.X = float32(v28.Y*v29.Z) - float32(v28.Z*v29.Y)
+	c.Y = float32(v28.Z*v29.X) - float32(v28.X*v29.Z)
+	c.Z = float32(v28.X*v29.Y) - float32(v28.Y*v29.X)
+	v30 = c
+	goto _31
+_31:
+	t1 = v30
+	v32 = t1
+	v33 = v26.S
+	v34 = v27
+	v35 = Vec3{
+		X: v32.X + float32(v33*v34.X),
+		Y: v32.Y + float32(v33*v34.Y),
+		Z: v32.Z + float32(v33*v34.Z),
+	}
+	goto _36
+_36:
+	t2 = v35
+	v37 = v26.V
+	v38 = t2
+	c.X = float32(v37.Y*v38.Z) - float32(v37.Z*v38.Y)
+	c.Y = float32(v37.Z*v38.X) - float32(v37.X*v38.Z)
+	c.Z = float32(v37.X*v38.Y) - float32(v37.Y*v38.X)
+	v39 = c
+	goto _40
+_40:
+	t3 = v39
+	v43 = v27
+	v44 = float32FromFloat32(2)
+	v45 = t3
+	v46 = Vec3{
+		X: v43.X + float32(v44*v45.X),
+		Y: v43.Y + float32(v44*v45.Y),
+		Z: v43.Z + float32(v44*v45.Z),
+	}
+	goto _47
+_47:
+	v41 = v46
+	goto _42
+_42:
+	rB = v41
+	bias = float32FromFloat32(0)
+	if useBias != 0 {
+		// This is a custom pogo position correction designed to avoid feeding velocity into
+		// the mover body. Otherwise the mover can make huge jumps going up stairs. This still
+		// works with continuous collision.
+		dcA = (*b3BodyState)(unsafe.Pointer(stateA)).DeltaPosition
+		dcB = (*b3BodyState)(unsafe.Pointer(stateB)).DeltaPosition
+		v48 = dcB
+		v49 = dcA
+		v50 = Vec3{
+			X: v48.X - v49.X,
+			Y: v48.Y - v49.Y,
+			Z: v48.Z - v49.Z,
+		}
+		goto _51
+	_51:
+		v52 = rB
+		v53 = rA
+		v54 = Vec3{
+			X: v52.X - v53.X,
+			Y: v52.Y - v53.Y,
+			Z: v52.Z - v53.Z,
+		}
+		goto _55
+	_55:
+		v56 = v50
+		v57 = v54
+		v58 = Vec3{
+			X: v56.X + v57.X,
+			Y: v56.Y + v57.Y,
+			Z: v56.Z + v57.Z,
+		}
+		goto _59
+	_59:
+		v60 = v58
+		v61 = (*b3PogoJoint)(unsafe.Pointer(joint)).DeltaCenter
+		v62 = Vec3{
+			X: v60.X + v61.X,
+			Y: v60.Y + v61.Y,
+			Z: v60.Z + v61.Z,
+		}
+		goto _63
+	_63:
+		d = v62
+		v64 = (*b3PogoJoint)(unsafe.Pointer(joint)).FrameB.Q
+		v65 = b3Vec3_axisY
+		v66 = v64.V
+		v67 = v65
+		c.X = float32(v66.Y*v67.Z) - float32(v66.Z*v67.Y)
+		c.Y = float32(v66.Z*v67.X) - float32(v66.X*v67.Z)
+		c.Z = float32(v66.X*v67.Y) - float32(v66.Y*v67.X)
+		v68 = c
+		goto _69
+	_69:
+		t1 = v68
+		v70 = t1
+		v71 = v64.S
+		v72 = v65
+		v73 = Vec3{
+			X: v70.X + float32(v71*v72.X),
+			Y: v70.Y + float32(v71*v72.Y),
+			Z: v70.Z + float32(v71*v72.Z),
+		}
+		goto _74
+	_74:
+		t2 = v73
+		v75 = v64.V
+		v76 = t2
+		c.X = float32(v75.Y*v76.Z) - float32(v75.Z*v76.Y)
+		c.Y = float32(v75.Z*v76.X) - float32(v75.X*v76.Z)
+		c.Z = float32(v75.X*v76.Y) - float32(v75.Y*v76.X)
+		v77 = c
+		goto _78
+	_78:
+		t3 = v77
+		v81 = v65
+		v82 = float32FromFloat32(2)
+		v83 = t3
+		v84 = Vec3{
+			X: v81.X + float32(v82*v83.X),
+			Y: v81.Y + float32(v82*v83.Y),
+			Z: v81.Z + float32(v82*v83.Z),
+		}
+		goto _85
+	_85:
+		v79 = v84
+		goto _80
+	_80:
+		// The pogo axis is usually fixed as the world y-axis. Different than the ground normal.
+		pogoAxis = v79
+		v86 = pogoAxis
+		v87 = d
+		v88 = float32(v86.X*v87.X) + float32(v86.Y*v87.Y) + float32(v86.Z*v87.Z)
+		goto _89
+	_89:
+		c1 = v88 - (*b3PogoJoint)(unsafe.Pointer(joint)).RestLength
+		// This could be divided by dot(joint->normal, pogoAxis) to account for the constraint
+		// direction, but I'd rather diminish the pogo recovery rate than risk making it huge.
+		omega = float32(float32(float32FromFloat32(2)*float32FromFloat32(3.14159265359)) * (*b3PogoJoint)(unsafe.Pointer(joint)).Hertz)
+		omegaH = float32(omega * (*b3StepContext)(unsafe.Pointer(context)).H)
+		v90 = ((*b3PogoJoint)(unsafe.Pointer(joint)).Velocity - float32(float32(omega*omegaH)*c1)) / (float32FromFloat32(1) + float32(float32(float32FromFloat32(2)*(*b3PogoJoint)(unsafe.Pointer(joint)).DampingRatio)*omegaH) + float32(omegaH*omegaH))
+		goto _91
+	_91:
+		(*b3PogoJoint)(unsafe.Pointer(joint)).Velocity = v90
+		bias = -(*b3PogoJoint)(unsafe.Pointer(joint)).Velocity
+	}
+	v5 = wB
+	v6 = rB
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _95
+_95:
+	v8 = vB
+	v10 = v7
+	v12 = Vec3{
+		X: v8.X + v10.X,
+		Y: v8.Y + v10.Y,
+		Z: v8.Z + v10.Z,
+	}
+	goto _99
+_99:
+	v13 = wA
+	v15 = rA
+	c.X = float32(v13.Y*v15.Z) - float32(v13.Z*v15.Y)
+	c.Y = float32(v13.Z*v15.X) - float32(v13.X*v15.Z)
+	c.Z = float32(v13.X*v15.Y) - float32(v13.Y*v15.X)
+	v16 = c
+	goto _103
+_103:
+	v17 = vA
+	v19 = v16
+	v21 = Vec3{
+		X: v17.X + v19.X,
+		Y: v17.Y + v19.Y,
+		Z: v17.Z + v19.Z,
+	}
+	goto _107
+_107:
+	v23 = v12
+	v24 = v21
+	v27 = Vec3{
+		X: v23.X - v24.X,
+		Y: v23.Y - v24.Y,
+		Z: v23.Z - v24.Z,
+	}
+	goto _111
+_111:
+	vr = v27
+	v28 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	v29 = vr
+	v11 = float32(v28.X*v29.X) + float32(v28.Y*v29.Y) + float32(v28.Z*v29.Z)
+	goto _115
+_115:
+	cdot = v11
+	maxTensionImpulse = float32((*b3StepContext)(unsafe.Pointer(context)).H * (*b3PogoJoint)(unsafe.Pointer(joint)).MaxTensionForce)
+	maxCompressionImpulse = float32((*b3StepContext)(unsafe.Pointer(context)).H * (*b3PogoJoint)(unsafe.Pointer(joint)).MaxCompressionForce)
+	oldImpulse = (*b3PogoJoint)(unsafe.Pointer(joint)).Impulse
+	impulse = float32(-(*b3PogoJoint)(unsafe.Pointer(joint)).LinearMass * (cdot + bias))
+	v22 = (*b3PogoJoint)(unsafe.Pointer(joint)).Impulse + impulse
+	v33 = -maxTensionImpulse
+	v44 = maxCompressionImpulse
+	if v22 < v33 {
+		v82 = v33
+	} else {
+		if v44 < v22 {
+			v88 = v44
+		} else {
+			v88 = v22
+		}
+		v82 = v88
+	}
+	v71 = v82
+	goto _120
+_120:
+	(*b3PogoJoint)(unsafe.Pointer(joint)).Impulse = v71
+	impulse = (*b3PogoJoint)(unsafe.Pointer(joint)).Impulse - oldImpulse
+	v11 = impulse
+	v5 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	v6 = Vec3{
+		X: float32(v11 * v5.X),
+		Y: float32(v11 * v5.Y),
+		Z: float32(v11 * v5.Z),
+	}
+	goto _126
+_126:
+	P = v6
+	v7 = vA
+	v22 = mA
+	v8 = P
+	v10 = Vec3{
+		X: v7.X - float32(v22*v8.X),
+		Y: v7.Y - float32(v22*v8.Y),
+		Z: v7.Z - float32(v22*v8.Z),
+	}
+	goto _131
+_131:
+	vA = v10
+	v5 = rA
+	v6 = P
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _135
+_135:
+	v136 = iA
+	v8 = v7
+	b6 = Vec3{
+		X: float32(v136.Cx.X*v8.X) + float32(v136.Cy.X*v8.Y) + float32(v136.Cz.X*v8.Z),
+		Y: float32(v136.Cx.Y*v8.X) + float32(v136.Cy.Y*v8.Y) + float32(v136.Cz.Y*v8.Z),
+		Z: float32(v136.Cx.Z*v8.X) + float32(v136.Cy.Z*v8.Y) + float32(v136.Cz.Z*v8.Z),
+	}
+	v10 = b6
+	goto _139
+_139:
+	v12 = wA
+	v13 = v10
+	v15 = Vec3{
+		X: v12.X - v13.X,
+		Y: v12.Y - v13.Y,
+		Z: v12.Z - v13.Z,
+	}
+	goto _143
+_143:
+	wA = v15
+	v5 = vB
+	v11 = mB
+	v6 = P
+	v7 = Vec3{
+		X: v5.X + float32(v11*v6.X),
+		Y: v5.Y + float32(v11*v6.Y),
+		Z: v5.Z + float32(v11*v6.Z),
+	}
+	goto _148
+_148:
+	vB = v7
+	v5 = rB
+	v6 = P
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _152
+_152:
+	v136 = iB
+	v8 = v7
+	b6 = Vec3{
+		X: float32(v136.Cx.X*v8.X) + float32(v136.Cy.X*v8.Y) + float32(v136.Cz.X*v8.Z),
+		Y: float32(v136.Cx.Y*v8.X) + float32(v136.Cy.Y*v8.Y) + float32(v136.Cz.Y*v8.Z),
+		Z: float32(v136.Cx.Z*v8.X) + float32(v136.Cy.Z*v8.Y) + float32(v136.Cz.Z*v8.Z),
+	}
+	v10 = b6
+	goto _156
+_156:
+	v12 = wB
+	v13 = v10
+	v15 = Vec3{
+		X: v12.X + v13.X,
+		Y: v12.Y + v13.Y,
+		Z: v12.Z + v13.Z,
+	}
+	goto _160
+_160:
+	wB = v15
+	if (*b3BodyState)(unsafe.Pointer(stateA)).Flags&uint32(b3_dynamicFlag) != 0 {
+		(*b3BodyState)(unsafe.Pointer(stateA)).LinearVelocity = vA
+		(*b3BodyState)(unsafe.Pointer(stateA)).AngularVelocity = wA
+	}
+	if (*b3BodyState)(unsafe.Pointer(stateB)).Flags&uint32(b3_dynamicFlag) != 0 {
+		(*b3BodyState)(unsafe.Pointer(stateB)).LinearVelocity = vB
+		(*b3BodyState)(unsafe.Pointer(stateB)).AngularVelocity = wB
+	}
+}
+
+func b3DrawPogoJoint(tls *_Stack, draw uintptr, world uintptr, base uintptr, transformA WorldTransform, transformB WorldTransform, scale float32) {
+	bp := tls.Alloc(144)
+	defer tls.Free(144)
+	var axis, c, p, perp1, perp2, r, t11, t12, t2, t21, t3, t31, u, v100, v102, v103, v104, v108, v11, v110, v111, v115, v116, v119, v12, v14, v15, v16, v18, v20, v22, v23, v29, v30, v31, v32, v34, v36, v37, v39, v4, v40, v41, v43, v45, v47, v48, v5, v54, v55, v56, v58, v6, v60, v61, v63, v65, v66, v68, v69, v7, v75, v76, v77, v78, v80, v82, v83, v85, v86, v87, v89, v9, v91, v93, v94, v96, v97, v99 Vec3
+	var color b3HexColor1
+	var foot, p11, p21, pA, pB, rest, v106, v107, v118, v120, v25, v50 Pos
+	var force, length, lengthSquared, s, saturation, side, t1, tick, width, v10, v112, v114, v21, v35, v46, v59, v64, v70, v81, v92 float32
+	var i, segmentCount int32
+	var joint uintptr
+	var q1, v28, v3, v52, v53, v72, v74 Quat
+	var v1 bool
+	var v2, v27 WorldTransform
+	var _ /* buffer at bp+0 */ [96]uint8
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = axis, c, color, foot, force, i, joint, length, lengthSquared, p, p11, p21, pA, pB, perp1, perp2, q1, r, rest, s, saturation, segmentCount, side, t1, t11, t12, t2, t21, t3, t31, tick, u, width, v1, v10, v100, v102, v103, v104, v106, v107, v108, v11, v110, v111, v112, v114, v115, v116, v118, v119, v12, v120, v14, v15, v16, v18, v2, v20, v21, v22, v23, v25, v27, v28, v29, v3, v30, v31, v32, v34, v35, v36, v37, v39, v4, v40, v41, v43, v45, v46, v47, v48, v5, v50, v52, v53, v54, v55, v56, v58, v59, v6, v60, v61, v63, v64, v65, v66, v68, v69, v7, v70, v72, v74, v75, v76, v77, v78, v80, v81, v82, v83, v85, v86, v87, v89, v9, v91, v92, v93, v94, v96, v97, v99
+	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_pogoJoint)); !v1 {
+		b3InternalAssert(tls, __ccgo_ts+27081, __ccgo_ts+26960, int32FromInt32(366))
+	}
+	_ = v1 || bool(int32FromInt32(0) != 0)
+	joint = base + 184
+	v2 = transformA
+	v3 = v2.Q
+	v4 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameA.P
+	v5 = v3.V
+	v6 = v4
+	c.X = float32(v5.Y*v6.Z) - float32(v5.Z*v6.Y)
+	c.Y = float32(v5.Z*v6.X) - float32(v5.X*v6.Z)
+	c.Z = float32(v5.X*v6.Y) - float32(v5.Y*v6.X)
+	v7 = c
+	goto _8
+_8:
+	t11 = v7
+	v9 = t11
+	v10 = v3.S
+	v11 = v4
+	v12 = Vec3{
+		X: v9.X + float32(v10*v11.X),
+		Y: v9.Y + float32(v10*v11.Y),
+		Z: v9.Z + float32(v10*v11.Z),
+	}
+	goto _13
+_13:
+	t2 = v12
+	v14 = v3.V
+	v15 = t2
+	c.X = float32(v14.Y*v15.Z) - float32(v14.Z*v15.Y)
+	c.Y = float32(v14.Z*v15.X) - float32(v14.X*v15.Z)
+	c.Z = float32(v14.X*v15.Y) - float32(v14.Y*v15.X)
+	v16 = c
+	goto _17
+_17:
+	t3 = v16
+	v20 = v4
+	v21 = float32FromFloat32(2)
+	v22 = t3
+	v23 = Vec3{
+		X: v20.X + float32(v21*v22.X),
+		Y: v20.Y + float32(v21*v22.Y),
+		Z: v20.Z + float32(v21*v22.Z),
+	}
+	goto _24
+_24:
+	v18 = v23
+	goto _19
+_19:
+	r = v18
+	v25 = Pos{
+		X: v2.P.X + r.X,
+		Y: v2.P.Y + r.Y,
+		Z: v2.P.Z + r.Z,
+	}
+	goto _26
+_26:
+	pA = v25
+	v27 = transformB
+	v28 = v27.Q
+	v29 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB.P
+	v30 = v28.V
+	v31 = v29
+	c.X = float32(v30.Y*v31.Z) - float32(v30.Z*v31.Y)
+	c.Y = float32(v30.Z*v31.X) - float32(v30.X*v31.Z)
+	c.Z = float32(v30.X*v31.Y) - float32(v30.Y*v31.X)
+	v32 = c
+	goto _33
+_33:
+	t11 = v32
+	v34 = t11
+	v35 = v28.S
+	v36 = v29
+	v37 = Vec3{
+		X: v34.X + float32(v35*v36.X),
+		Y: v34.Y + float32(v35*v36.Y),
+		Z: v34.Z + float32(v35*v36.Z),
+	}
+	goto _38
+_38:
+	t2 = v37
+	v39 = v28.V
+	v40 = t2
+	c.X = float32(v39.Y*v40.Z) - float32(v39.Z*v40.Y)
+	c.Y = float32(v39.Z*v40.X) - float32(v39.X*v40.Z)
+	c.Z = float32(v39.X*v40.Y) - float32(v39.Y*v40.X)
+	v41 = c
+	goto _42
+_42:
+	t3 = v41
+	v45 = v29
+	v46 = float32FromFloat32(2)
+	v47 = t3
+	v48 = Vec3{
+		X: v45.X + float32(v46*v47.X),
+		Y: v45.Y + float32(v46*v47.Y),
+		Z: v45.Z + float32(v46*v47.Z),
+	}
+	goto _49
+_49:
+	v43 = v48
+	goto _44
+_44:
+	r = v43
+	v50 = Pos{
+		X: v27.P.X + r.X,
+		Y: v27.P.Y + r.Y,
+		Z: v27.P.Z + r.Z,
+	}
+	goto _51
+_51:
+	pB = v50
+	v52 = transformB.Q
+	v53 = (*b3JointSim)(unsafe.Pointer(base)).LocalFrameB.Q
+	v54 = v52.V
+	v55 = v53.V
+	c.X = float32(v54.Y*v55.Z) - float32(v54.Z*v55.Y)
+	c.Y = float32(v54.Z*v55.X) - float32(v54.X*v55.Z)
+	c.Z = float32(v54.X*v55.Y) - float32(v54.Y*v55.X)
+	v56 = c
+	goto _57
+_57:
+	t12 = v56
+	v58 = t12
+	v59 = v52.S
+	v60 = v53.V
+	v61 = Vec3{
+		X: v58.X + float32(v59*v60.X),
+		Y: v58.Y + float32(v59*v60.Y),
+		Z: v58.Z + float32(v59*v60.Z),
+	}
+	goto _62
+_62:
+	t21 = v61
+	v63 = t21
+	v64 = v53.S
+	v65 = v52.V
+	v66 = Vec3{
+		X: v63.X + float32(v64*v65.X),
+		Y: v63.Y + float32(v64*v65.Y),
+		Z: v63.Z + float32(v64*v65.Z),
+	}
+	goto _67
+_67:
+	t31 = v66
+	v68 = v52.V
+	v69 = v53.V
+	v70 = float32(v68.X*v69.X) + float32(v68.Y*v69.Y) + float32(v68.Z*v69.Z)
+	goto _71
+_71:
+	q1 = Quat{
+		V: t31,
+		S: float32(v52.S*v53.S) - v70,
+	}
+	v72 = q1
+	goto _73
+_73:
+	v74 = v72
+	v75 = b3Vec3_axisY
+	v76 = v74.V
+	v77 = v75
+	c.X = float32(v76.Y*v77.Z) - float32(v76.Z*v77.Y)
+	c.Y = float32(v76.Z*v77.X) - float32(v76.X*v77.Z)
+	c.Z = float32(v76.X*v77.Y) - float32(v76.Y*v77.X)
+	v78 = c
+	goto _79
+_79:
+	t11 = v78
+	v80 = t11
+	v81 = v74.S
+	v82 = v75
+	v83 = Vec3{
+		X: v80.X + float32(v81*v82.X),
+		Y: v80.Y + float32(v81*v82.Y),
+		Z: v80.Z + float32(v81*v82.Z),
+	}
+	goto _84
+_84:
+	t2 = v83
+	v85 = v74.V
+	v86 = t2
+	c.X = float32(v85.Y*v86.Z) - float32(v85.Z*v86.Y)
+	c.Y = float32(v85.Z*v86.X) - float32(v85.X*v86.Z)
+	c.Z = float32(v85.X*v86.Y) - float32(v85.Y*v86.X)
+	v87 = c
+	goto _88
+_88:
+	t3 = v87
+	v91 = v75
+	v92 = float32FromFloat32(2)
+	v93 = t3
+	v94 = Vec3{
+		X: v91.X + float32(v92*v93.X),
+		Y: v91.Y + float32(v92*v93.Y),
+		Z: v91.Z + float32(v92*v93.Z),
+	}
+	goto _95
+_95:
+	v89 = v94
+	goto _90
+_90:
+	axis = v89
+	v96 = axis
+	if v96.X < -float32FromFloat32(0.5) || float32FromFloat32(0.5) < v96.X {
+		p = Vec3{
+			X: v96.Y,
+			Y: -v96.X,
+		}
+	} else {
+		p = Vec3{
+			Y: v96.Z,
+			Z: -v96.Y,
+		}
+	}
+	v99 = p
+	lengthSquared = float32(v99.X*v99.X) + float32(v99.Y*v99.Y) + float32(v99.Z*v99.Z)
+	if lengthSquared > float32(float32FromFloat32(1000)*float32FromFloat32(1.1754943508222875e-38)) {
+		s = float32FromFloat32(1) / sqrtf(tls, lengthSquared)
+		u = Vec3{
+			X: float32(s * v99.X),
+			Y: float32(s * v99.Y),
+			Z: float32(s * v99.Z),
+		}
+		v100 = u
+		goto _101
+	}
+	v100 = Vec3{}
+	goto _101
+_101:
+	v97 = v100
+	goto _98
+_98:
+	perp1 = v97
+	v102 = axis
+	v103 = perp1
+	c.X = float32(v102.Y*v103.Z) - float32(v102.Z*v103.Y)
+	c.Y = float32(v102.Z*v103.X) - float32(v102.X*v103.Z)
+	c.Z = float32(v102.X*v103.Y) - float32(v102.Y*v103.X)
+	v104 = c
+	goto _105
+_105:
+	perp2 = v104
+	v106 = pB
+	v107 = pA
+	v108 = Vec3{
+		X: v106.X - v107.X,
+		Y: v106.Y - v107.Y,
+		Z: v106.Z - v107.Z,
+	}
+	goto _109
+_109:
+	v110 = v108
+	v111 = axis
+	v112 = float32(v110.X*v111.X) + float32(v110.Y*v111.Y) + float32(v110.Z*v111.Z)
+	goto _113
+_113:
+	length = v112
+	v114 = -length
+	v115 = axis
+	v116 = Vec3{
+		X: float32(v114 * v115.X),
+		Y: float32(v114 * v115.Y),
+		Z: float32(v114 * v115.Z),
+	}
+	goto _117
+_117:
+	v118 = pB
+	v119 = v116
+	v120 = Pos{
+		X: v118.X + v119.X,
+		Y: v118.Y + v119.Y,
+		Z: v118.Z + v119.Z,
+	}
+	goto _121
+_121:
+	foot = v120
+	force = float32((*b3World)(unsafe.Pointer(world)).Inv_h * (*b3PogoJoint)(unsafe.Pointer(joint)).Impulse)
+	// Tolerance for reaching max force.
+	saturation = float32FromFloat32(0.99)
+	if (*b3PogoJoint)(unsafe.Pointer(joint)).Hertz == float32FromFloat32(0) {
+		color = int32(b3_colorGray)
+	} else {
+		if force > float32FromFloat32(0) && force >= float32(saturation*(*b3PogoJoint)(unsafe.Pointer(joint)).MaxCompressionForce) {
+			color = int32(b3_colorRed)
+		} else {
+			if force < float32FromFloat32(0) && -force >= float32(saturation*(*b3PogoJoint)(unsafe.Pointer(joint)).MaxTensionForce) {
+				color = int32(b3_colorRed)
+			} else {
+				if force > float32FromFloat32(0) {
+					color = int32(b3_colorLimeGreen)
+				} else {
+					if force < float32FromFloat32(0) {
+						color = int32(b3_colorDeepSkyBlue)
+					} else {
+						color = int32(b3_colorLightGray)
+					}
+				}
+			}
+		}
+	}
+	// Spring
+	segmentCount = int32(12)
+	width = float32(float32FromFloat32(0.1) * scale)
+	p11 = pB
+	i = int32(1)
+	for {
+		if !(i <= segmentCount) {
+			break
+		}
+		if i == segmentCount {
+			v10 = float32FromFloat32(0)
+		} else {
+			if i&int32(1) != 0 {
+				v21 = width
+			} else {
+				v21 = -width
+			}
+			v10 = v21
+		}
+		side = v10
+		t1 = float32(i) / float32(segmentCount)
+		v35 = float32(-t1 * length)
+		v4 = axis
+		v5 = Vec3{
+			X: float32(v35 * v4.X),
+			Y: float32(v35 * v4.Y),
+			Z: float32(v35 * v4.Z),
+		}
+		goto _128
+	_128:
+		v6 = v5
+		v46 = side
+		v7 = perp2
+		v9 = Vec3{
+			X: v6.X + float32(v46*v7.X),
+			Y: v6.Y + float32(v46*v7.Y),
+			Z: v6.Z + float32(v46*v7.Z),
+		}
+		goto _133
+	_133:
+		v25 = pB
+		v11 = v9
+		v50 = Pos{
+			X: v25.X + v11.X,
+			Y: v25.Y + v11.Y,
+			Z: v25.Z + v11.Z,
+		}
+		goto _137
+	_137:
+		p21 = v50
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, p11, p21, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+		p11 = p21
+		goto _122
+	_122:
+		;
+		i = i + 1
+	}
+	v10 = -(*b3PogoJoint)(unsafe.Pointer(joint)).RestLength
+	v4 = axis
+	v5 = Vec3{
+		X: float32(v10 * v4.X),
+		Y: float32(v10 * v4.Y),
+		Z: float32(v10 * v4.Z),
+	}
+	goto _141
+_141:
+	v25 = pB
+	v6 = v5
+	v50 = Pos{
+		X: v25.X + v6.X,
+		Y: v25.Y + v6.Y,
+		Z: v25.Z + v6.Z,
+	}
+	goto _145
+_145:
+	// Ground plane
+	rest = v50
+	tick = float32(float32FromFloat32(1.5) * width)
+	v21 = -tick
+	v7 = perp1
+	v9 = Vec3{
+		X: float32(v21 * v7.X),
+		Y: float32(v21 * v7.Y),
+		Z: float32(v21 * v7.Z),
+	}
+	goto _149
+_149:
+	v106 = rest
+	v11 = v9
+	v107 = Pos{
+		X: v106.X + v11.X,
+		Y: v106.Y + v11.Y,
+		Z: v106.Z + v11.Z,
+	}
+	goto _153
+_153:
+	v35 = tick
+	v12 = perp1
+	v14 = Vec3{
+		X: float32(v35 * v12.X),
+		Y: float32(v35 * v12.Y),
+		Z: float32(v35 * v12.Z),
+	}
+	goto _157
+_157:
+	v118 = rest
+	v15 = v14
+	v120 = Pos{
+		X: v118.X + v15.X,
+		Y: v118.Y + v15.Y,
+		Z: v118.Z + v15.Z,
+	}
+	goto _161
+_161:
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v107, v120, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	v10 = -tick
+	v4 = perp2
+	v5 = Vec3{
+		X: float32(v10 * v4.X),
+		Y: float32(v10 * v4.Y),
+		Z: float32(v10 * v4.Z),
+	}
+	goto _165
+_165:
+	v25 = rest
+	v6 = v5
+	v50 = Pos{
+		X: v25.X + v6.X,
+		Y: v25.Y + v6.Y,
+		Z: v25.Z + v6.Z,
+	}
+	goto _169
+_169:
+	v21 = tick
+	v7 = perp2
+	v9 = Vec3{
+		X: float32(v21 * v7.X),
+		Y: float32(v21 * v7.Y),
+		Z: float32(v21 * v7.Z),
+	}
+	goto _173
+_173:
+	v106 = rest
+	v11 = v9
+	v107 = Pos{
+		X: v106.X + v11.X,
+		Y: v106.Y + v11.Y,
+		Z: v106.Z + v11.Z,
+	}
+	goto _177
+_177:
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v50, v107, int32(b3_colorWhite), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	v25 = pA
+	v50 = foot
+	v4 = Vec3{
+		X: v25.X - v50.X,
+		Y: v25.Y - v50.Y,
+		Z: v25.Z - v50.Z,
+	}
+	goto _181
+_181:
+	v5 = v4
+	v6 = v5
+	v7 = v5
+	v21 = float32(v6.X*v7.X) + float32(v6.Y*v7.Y) + float32(v6.Z*v7.Z)
+	goto _188
+_188:
+	v10 = sqrtf(tls, v21)
+	goto _184
+_184:
+	if v10 > float32(float32FromFloat32(0.005)*b3GetLengthUnitsPerMeter(tls)) {
+		(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, foot, pA, int32(b3_colorDimGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	}
+	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, pA, float32FromFloat32(6), color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	v10 = float32(float32FromFloat32(0.5) * scale)
+	v4 = (*b3PogoJoint)(unsafe.Pointer(joint)).Normal
+	v5 = Vec3{
+		X: float32(v10 * v4.X),
+		Y: float32(v10 * v4.Y),
+		Z: float32(v10 * v4.Z),
+	}
+	goto _192
+_192:
+	v25 = pA
+	v6 = v5
+	v50 = Pos{
+		X: v25.X + v6.X,
+		Y: v25.Y + v6.Y,
+		Z: v25.Z + v6.Z,
+	}
+	goto _196
+_196:
+	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, pA, v50, int32(b3_colorOrange), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	if (*b3DebugDraw)(unsafe.Pointer(draw)).DrawJointExtras != 0 {
+		__builtin_snprintf(tls, bp, uint64(96), __ccgo_ts+27108, vaList(bp+104, float64(length), float64((*b3PogoJoint)(unsafe.Pointer(joint)).RestLength), float64(force), float64((*b3PogoJoint)(unsafe.Pointer(joint)).Velocity)))
+		(*(*func(*_Stack, Pos, uintptr, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawStringFcn)))(tls, pB, bp, color, (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
+	}
 }
 
 /**@}*/ // contact
@@ -10681,7 +13792,7 @@ func b3PrismaticJoint_SetLimits(tls *_Stack, jointId JointId, lower float32, upp
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetLimits
 	_, _, _, _, _, _, _, _, _, _, _, _, _ = base, lowerAngle, upperAngle, world, v1, v11, v2, v3, v4, v6, v7, v8, v9
 	if v1 = !!(b3IsValidFloat(tls, lower) != 0 && b3IsValidFloat(tls, upper) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26441, __ccgo_ts+26492, int32FromInt32(87))
+		b3InternalAssert(tls, __ccgo_ts+27155, __ccgo_ts+27206, int32FromInt32(87))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -10985,7 +14096,7 @@ func b3PrismaticJoint_SetTargetTranslation(tls *_Stack, jointId JointId, targetT
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetTargetTranslation
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, targetTranslation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26525, __ccgo_ts+26492, int32FromInt32(135))
+		b3InternalAssert(tls, __ccgo_ts+27239, __ccgo_ts+27206, int32FromInt32(135))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -11015,7 +14126,7 @@ func b3PrismaticJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetSpringHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+26492, int32FromInt32(150))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+27206, int32FromInt32(150))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -11045,7 +14156,7 @@ func b3PrismaticJoint_SetSpringDampingRatio(tls *_Stack, jointId JointId, dampin
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetSpringDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+26492, int32FromInt32(165))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+27206, int32FromInt32(165))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -11103,7 +14214,7 @@ func b3PrismaticJoint_SetMotorSpeed(tls *_Stack, jointId JointId, motorSpeed flo
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetMotorSpeed
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, motorSpeed) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26561, __ccgo_ts+26492, int32FromInt32(198))
+		b3InternalAssert(tls, __ccgo_ts+27275, __ccgo_ts+27206, int32FromInt32(198))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -11133,7 +14244,7 @@ func b3PrismaticJoint_SetMaxMotorForce(tls *_Stack, jointId JointId, maxForce fl
 	var _ /* recArgs at bp+0 */ b3RecArgs_PrismaticJointSetMaxMotorForce
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, maxForce) != 0 && maxForce >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23498, __ccgo_ts+26492, int32FromInt32(213))
+		b3InternalAssert(tls, __ccgo_ts+23666, __ccgo_ts+27206, int32FromInt32(213))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -11174,12 +14285,12 @@ func b3PrismaticJoint_GetSpeed(tls *_Stack, jointId JointId) (r float32) {
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
 	base = b3GetJointSimCheckType(tls, jointId, int32(b3_prismaticJoint))
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+26492, int32FromInt32(238))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+27206, int32FromInt32(238))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+26492, int32FromInt32(239))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+27206, int32FromInt32(239))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
@@ -11751,43 +14862,43 @@ func b3PreparePrismaticJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v176 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, bodyA, bodyB, bodySimA, bodySimB, c, det, invDet, invInertiaSum, joint, localIndexA, localIndexB, matrixA, omega, out, out1, q1, setA, setB, t1, t11, t2, t21, t3, t31, world, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v11, v122, v123, v126, v13, v14, v16, v17, v176, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v50, v53, v59, v70, v81, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_prismaticJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26590, __ccgo_ts+26492, int32FromInt32(303))
+		b3InternalAssert(tls, __ccgo_ts+27304, __ccgo_ts+27206, int32FromInt32(303))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+26492, int32FromInt32(307))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+27206, int32FromInt32(307))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+26492, int32FromInt32(308))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+27206, int32FromInt32(308))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+26492, int32FromInt32(310))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+27206, int32FromInt32(310))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+26492, int32FromInt32(311))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+27206, int32FromInt32(311))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+26492, int32FromInt32(312))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+27206, int32FromInt32(312))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+26492, int32FromInt32(317))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+27206, int32FromInt32(317))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+26492, int32FromInt32(318))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+27206, int32FromInt32(318))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -12244,7 +15355,7 @@ func b3WarmStartPrismaticJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = LA, LB, P, axialImpulse, b5, c, d, d1, iA, iB, joint, jointAxis, mA, mB, perpImpulse, perpY, perpZ, rA, rB, sAx, sAy, sAz, sBx, sBy, sBz, stateA, stateB, t1, t2, t3, vA, vB, wA, wB, v1, v10, v100, v101, v102, v104, v105, v106, v107, v109, v11, v110, v111, v113, v115, v116, v117, v118, v12, v120, v121, v122, v123, v124, v126, v127, v128, v129, v13, v131, v132, v133, v135, v137, v138, v139, v140, v142, v143, v144, v146, v147, v148, v15, v150, v151, v152, v154, v155, v156, v158, v159, v16, v160, v162, v163, v164, v166, v167, v168, v169, v17, v170, v171, v172, v174, v175, v176, v177, v178, v179, v180, v182, v183, v184, v186, v187, v188, v189, v19, v190, v191, v192, v194, v195, v196, v198, v199, v2, v200, v201, v203, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v64, v65, v66, v67, v68, v7, v70, v71, v72, v73, v75, v76, v77, v79, v8, v81, v82, v83, v84, v86, v87, v88, v90, v91, v92, v94, v95, v96, v98, v99
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_prismaticJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26590, __ccgo_ts+26492, int32FromInt32(362))
+		b3InternalAssert(tls, __ccgo_ts+27304, __ccgo_ts+27206, int32FromInt32(362))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -14683,19 +17794,19 @@ _808:
 _812:
 	wB = v14
 	if v813 = !!(b3IsValidVec3(tls, vA) != 0); !v813 {
-		b3InternalAssert(tls, __ccgo_ts+26622, __ccgo_ts+26492, int32FromInt32(676))
+		b3InternalAssert(tls, __ccgo_ts+27336, __ccgo_ts+27206, int32FromInt32(676))
 	}
 	_ = v813 || bool(int32FromInt32(0) != 0)
 	if v813 = !!(b3IsValidVec3(tls, wA) != 0); !v813 {
-		b3InternalAssert(tls, __ccgo_ts+26642, __ccgo_ts+26492, int32FromInt32(677))
+		b3InternalAssert(tls, __ccgo_ts+27356, __ccgo_ts+27206, int32FromInt32(677))
 	}
 	_ = v813 || bool(int32FromInt32(0) != 0)
 	if v813 = !!(b3IsValidVec3(tls, vB) != 0); !v813 {
-		b3InternalAssert(tls, __ccgo_ts+26662, __ccgo_ts+26492, int32FromInt32(678))
+		b3InternalAssert(tls, __ccgo_ts+27376, __ccgo_ts+27206, int32FromInt32(678))
 	}
 	_ = v813 || bool(int32FromInt32(0) != 0)
 	if v813 = !!(b3IsValidVec3(tls, wB) != 0); !v813 {
-		b3InternalAssert(tls, __ccgo_ts+26682, __ccgo_ts+26492, int32FromInt32(679))
+		b3InternalAssert(tls, __ccgo_ts+27396, __ccgo_ts+27206, int32FromInt32(679))
 	}
 	_ = v813 || bool(int32FromInt32(0) != 0)
 	if (*b3BodyState)(unsafe.Pointer(stateA)).Flags&uint32(b3_dynamicFlag) != 0 {
@@ -15091,7 +18202,7 @@ func b3RecMakeJointId(tls *_Stack, rdr uintptr, recorded JointId) (r JointId) {
 }
 
 func b3RecCheckJointId(tls *_Stack, rdr uintptr, got JointId, rec JointId) {
-	b3RecCheckId(tls, rdr, __ccgo_ts+26914, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
+	b3RecCheckId(tls, rdr, __ccgo_ts+27628, got.Index1, uint32(got.Generation), rec.Index1, uint32(rec.Generation))
 }
 
 /**@}*/ // contact
@@ -15176,7 +18287,7 @@ func b3RevoluteJoint_SetLimits(tls *_Stack, jointId JointId, lowerLimitRadians f
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetLimits
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = base, lowerAngle, upperAngle, world, v1, v11, v12, v13, v14, v15, v17, v18, v2, v3, v4, v6, v7, v8, v9
 	if v1 = !!(b3IsValidFloat(tls, lowerLimitRadians) != 0 && b3IsValidFloat(tls, upperLimitRadians) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28035, __ccgo_ts+28110, int32FromInt32(76))
+		b3InternalAssert(tls, __ccgo_ts+28749, __ccgo_ts+28824, int32FromInt32(76))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -15426,7 +18537,7 @@ _73:
 	twist = v30
 	twist = float32(twist * float32FromFloat32(2))
 	if v76 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v76 {
-		b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+		b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 	}
 	_ = v76 || bool(int32FromInt32(0) != 0)
 	v35 = twist
@@ -15471,7 +18582,7 @@ func b3RevoluteJoint_SetTargetAngle(tls *_Stack, jointId JointId, targetRadians 
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetTargetAngle
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, targetRadians) != 0 && -float32FromFloat32(3.14159265359) <= targetRadians && targetRadians <= float32FromFloat32(3.14159265359)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28142, __ccgo_ts+28110, int32FromInt32(129))
+		b3InternalAssert(tls, __ccgo_ts+28856, __ccgo_ts+28824, int32FromInt32(129))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -15501,7 +18612,7 @@ func b3RevoluteJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32)
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetSpringHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+28110, int32FromInt32(144))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+28824, int32FromInt32(144))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -15531,7 +18642,7 @@ func b3RevoluteJoint_SetSpringDampingRatio(tls *_Stack, jointId JointId, damping
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetSpringDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+28110, int32FromInt32(159))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+28824, int32FromInt32(159))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -15589,7 +18700,7 @@ func b3RevoluteJoint_SetMotorSpeed(tls *_Stack, jointId JointId, motorSpeed floa
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetMotorSpeed
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, motorSpeed) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26561, __ccgo_ts+28110, int32FromInt32(192))
+		b3InternalAssert(tls, __ccgo_ts+27275, __ccgo_ts+28824, int32FromInt32(192))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -15619,7 +18730,7 @@ func b3RevoluteJoint_SetMaxMotorTorque(tls *_Stack, jointId JointId, maxForce fl
 	var _ /* recArgs at bp+0 */ b3RecArgs_RevoluteJointSetMaxMotorTorque
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, maxForce) != 0 && maxForce >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23498, __ccgo_ts+28110, int32FromInt32(207))
+		b3InternalAssert(tls, __ccgo_ts+23666, __ccgo_ts+28824, int32FromInt32(207))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -16049,43 +19160,43 @@ func b3PrepareRevoluteJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v257 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, b7, bodyA, bodyB, bodySimA, bodySimB, c, invInertiaSum, joint, k, localIndexA, localIndexB, omega, q1, q2, relQ, rotationAxisZ, setA, setB, t1, t11, t12, t2, t21, t22, t3, t31, t32, world, v1, v10, v11, v122, v123, v13, v14, v16, v17, v18, v2, v20, v21, v22, v24, v257, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v50, v52, v53, v54, v55, v56, v58, v59, v60, v61, v63, v64, v65, v67, v69, v70, v71, v72, v76, v77, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_revoluteJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28227, __ccgo_ts+28110, int32FromInt32(262))
+		b3InternalAssert(tls, __ccgo_ts+28941, __ccgo_ts+28824, int32FromInt32(262))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+28110, int32FromInt32(266))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+28824, int32FromInt32(266))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+28110, int32FromInt32(267))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+28824, int32FromInt32(267))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+28110, int32FromInt32(269))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+28824, int32FromInt32(269))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+28110, int32FromInt32(270))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+28824, int32FromInt32(270))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+28110, int32FromInt32(271))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+28824, int32FromInt32(271))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+28110, int32FromInt32(276))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+28824, int32FromInt32(276))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+28110, int32FromInt32(277))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+28824, int32FromInt32(277))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -16677,7 +19788,7 @@ func b3WarmStartRevoluteJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, axialImpulse, b5, c, iA, iB, joint, mA, mB, rA, rB, stateA, stateB, t1, t2, t3, vA, vB, wA, wB, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v63, v7, v78, v8
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_revoluteJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28227, __ccgo_ts+28110, int32FromInt32(336))
+		b3InternalAssert(tls, __ccgo_ts+28941, __ccgo_ts+28824, int32FromInt32(336))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -17203,7 +20314,7 @@ _75:
 			twist = v43
 			twist = float32(twist * float32FromFloat32(2))
 			if v102 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v102 {
-				b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 			}
 			_ = v102 || bool(int32FromInt32(0) != 0)
 			v49 = twist
@@ -17254,7 +20365,7 @@ _75:
 			twist = v10
 			twist = float32(twist * float32FromFloat32(2))
 			if v102 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v102 {
-				b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 			}
 			_ = v102 || bool(int32FromInt32(0) != 0)
 			v15 = twist
@@ -19002,7 +22113,7 @@ _186:
 		twist = v10
 		twist = float32(twist * float32FromFloat32(2))
 		if v327 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v327 {
-			b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+			b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 		}
 		_ = v327 || bool(int32FromInt32(0) != 0)
 		v15 = twist
@@ -19112,7 +22223,7 @@ func b3PrepareJointsTask(tls *_Stack, block b3SolverBlock, context uintptr) {
 				break
 			}
 			if v7 = !!(0 <= index-colorStart && index-colorStart < (*(*b3JointPrepareSpan)(unsafe.Add(nil, spans+uintptr(colorIndex)*16))).Count); !v7 {
-				b3InternalAssert(tls, __ccgo_ts+31019, __ccgo_ts+31091, int32FromInt32(259))
+				b3InternalAssert(tls, __ccgo_ts+31733, __ccgo_ts+31805, int32FromInt32(259))
 			}
 			_ = v7 || bool(int32FromInt32(0) != 0)
 			joint = joints + uintptr(index-colorStart)*444
@@ -19161,7 +22272,7 @@ func b3SolveJointsTask(tls *_Stack, block b3SolverBlock, context uintptr, useBia
 	color = (*b3StepContext)(unsafe.Pointer(context)).Graph + uintptr(block.ColorIndex)*120
 	joints = (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Data
 	if v1 = !!(0 <= block.StartIndex && block.StartIndex+int32FromUint16(block.Count) <= (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31115, __ccgo_ts+31091, int32FromInt32(294))
+		b3InternalAssert(tls, __ccgo_ts+31829, __ccgo_ts+31805, int32FromInt32(294))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	jointStateBitSet = (*b3World)(unsafe.Pointer((*b3StepContext)(unsafe.Pointer(context)).World)).TaskContexts.Data + uintptr(workerIndex)*3848 + 72
@@ -19218,22 +22329,22 @@ func b3TransferJoint(tls *_Stack, world uintptr, targetSet uintptr, sourceSet ui
 	colorIndex = (*b3Joint)(unsafe.Pointer(joint)).ColorIndex
 	if (*b3SolverSet)(unsafe.Pointer(sourceSet)).SetIndex == int32(b3_awakeSet) {
 		if v1 = !!(0 <= colorIndex && colorIndex < int32(_B3_GRAPH_COLOR_COUNT)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+33755, int32FromInt32(629))
+			b3InternalAssert(tls, __ccgo_ts+6773, __ccgo_ts+34469, int32FromInt32(629))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		color = world + 1160 + uintptr(colorIndex)*120
 		if v1 = !!(0 <= localIndex && localIndex < (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35145, __ccgo_ts+33755, int32FromInt32(632))
+			b3InternalAssert(tls, __ccgo_ts+35859, __ccgo_ts+34469, int32FromInt32(632))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		sourceSim = (*b3GraphColor)(unsafe.Pointer(color)).JointSims.Data + uintptr(localIndex)*444
 	} else {
 		if v1 = !!(colorIndex == -int32FromInt32(1)); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35774, __ccgo_ts+33755, int32FromInt32(636))
+			b3InternalAssert(tls, __ccgo_ts+36488, __ccgo_ts+34469, int32FromInt32(636))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!(0 <= localIndex && localIndex < (*b3SolverSet)(unsafe.Pointer(sourceSet)).JointSims.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35802, __ccgo_ts+33755, int32FromInt32(637))
+			b3InternalAssert(tls, __ccgo_ts+36516, __ccgo_ts+34469, int32FromInt32(637))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		sourceSim = (*b3SolverSet)(unsafe.Pointer(sourceSet)).JointSims.Data + uintptr(localIndex)*444
@@ -19299,7 +22410,7 @@ func b3TransferJoint(tls *_Stack, world uintptr, targetSet uintptr, sourceSet ui
 			movedJointSim = (*b3SolverSet)(unsafe.Pointer(sourceSet)).JointSims.Data + uintptr(localIndex)*444
 			movedId = (*b3JointSim)(unsafe.Pointer(movedJointSim)).JointId
 			if v2 = !!(0 <= movedId && movedId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+33755, int32FromInt32(669))
+				b3InternalAssert(tls, __ccgo_ts+7065, __ccgo_ts+34469, int32FromInt32(669))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			movedJoint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr(movedId)*72
@@ -19353,7 +22464,7 @@ func b3SphericalJoint_SetConeLimit(tls *_Stack, jointId JointId, angleRadians fl
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetConeLimit
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, angleRadians) != 0 && float32FromInt32(0) <= angleRadians && angleRadians <= float32(float32FromFloat32(0.5)*float32FromFloat32(3.14159265359))); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35946, __ccgo_ts+36030, int32FromInt32(42))
+		b3InternalAssert(tls, __ccgo_ts+36660, __ccgo_ts+36744, int32FromInt32(42))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -19543,7 +22654,7 @@ _73:
 	y = sqrtf(tls, float32(v23.V.X*v23.V.X)+float32(v23.V.Y*v23.V.Y))
 	swing = float32(float32FromFloat32(2) * b3Atan2(tls, y, x))
 	if v75 = !!(float32FromFloat32(0) <= swing && swing <= float32FromFloat32(3.14159265359)); !v75 {
-		b3InternalAssert(tls, __ccgo_ts+20740, __ccgo_ts+6355, int32FromInt32(572))
+		b3InternalAssert(tls, __ccgo_ts+21133, __ccgo_ts+6355, int32FromInt32(572))
 	}
 	_ = v75 || bool(int32FromInt32(0) != 0)
 	v30 = swing
@@ -19604,7 +22715,7 @@ func b3SphericalJoint_SetTwistLimits(tls *_Stack, jointId JointId, lowerLimitRad
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetTwistLimits
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = base, lowerAngle, upperAngle, world, v1, v11, v12, v13, v14, v15, v17, v18, v2, v3, v4, v6, v7, v8, v9
 	if v1 = !!(b3IsValidFloat(tls, lowerLimitRadians) != 0 && b3IsValidFloat(tls, upperLimitRadians) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+28035, __ccgo_ts+36030, int32FromInt32(103))
+		b3InternalAssert(tls, __ccgo_ts+28749, __ccgo_ts+36744, int32FromInt32(103))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -19854,7 +22965,7 @@ _73:
 	twist = v30
 	twist = float32(twist * float32FromFloat32(2))
 	if v76 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v76 {
-		b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+		b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 	}
 	_ = v76 || bool(int32FromInt32(0) != 0)
 	v35 = twist
@@ -19899,7 +23010,7 @@ func b3SphericalJoint_SetTargetRotation(tls *_Stack, jointId JointId, targetRota
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetTargetRotation
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidQuat(tls, targetRotation) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36063, __ccgo_ts+36030, int32FromInt32(156))
+		b3InternalAssert(tls, __ccgo_ts+36777, __ccgo_ts+36744, int32FromInt32(156))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -19929,7 +23040,7 @@ func b3SphericalJoint_SetSpringHertz(tls *_Stack, jointId JointId, hertz float32
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetSpringHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+36030, int32FromInt32(171))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+36744, int32FromInt32(171))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -19959,7 +23070,7 @@ func b3SphericalJoint_SetSpringDampingRatio(tls *_Stack, jointId JointId, dampin
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetSpringDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+36030, int32FromInt32(186))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+36744, int32FromInt32(186))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -20017,7 +23128,7 @@ func b3SphericalJoint_SetMotorVelocity(tls *_Stack, jointId JointId, motorVeloci
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetMotorVelocity
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidVec3(tls, motorVelocity) != 0); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36095, __ccgo_ts+36030, int32FromInt32(219))
+		b3InternalAssert(tls, __ccgo_ts+36809, __ccgo_ts+36744, int32FromInt32(219))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -20047,7 +23158,7 @@ func b3SphericalJoint_SetMaxMotorTorque(tls *_Stack, jointId JointId, maxForce f
 	var _ /* recArgs at bp+0 */ b3RecArgs_SphericalJointSetMaxMotorTorque
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, maxForce) != 0 && maxForce >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23498, __ccgo_ts+36030, int32FromInt32(234))
+		b3InternalAssert(tls, __ccgo_ts+23666, __ccgo_ts+36744, int32FromInt32(234))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -20393,43 +23504,43 @@ func b3PrepareSphericalJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v280 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, b6, bodyA, bodyB, bodySimA, bodySimB, c, coneAxis, det, invDet, invInertiaSum, joint, k, k1, lengthSquared, localIndexA, localIndexB, omega, out, out1, perpAxis, q1, q2, relQ, s, setA, setB, swingAxis, swingAxis1, t1, t11, t12, t2, t21, t22, t3, t31, t32, tanThetaOver2, twistAxis, twistJacobian, u, world, v1, v10, v11, v122, v123, v13, v14, v16, v17, v177, v18, v2, v20, v21, v22, v24, v26, v27, v28, v280, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v50, v53, v54, v55, v56, v58, v59, v60, v61, v63, v64, v65, v67, v69, v70, v71, v72, v76, v77, v78, v80, v81, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_sphericalJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36126, __ccgo_ts+36030, int32FromInt32(296))
+		b3InternalAssert(tls, __ccgo_ts+36840, __ccgo_ts+36744, int32FromInt32(296))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+36030, int32FromInt32(300))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+36744, int32FromInt32(300))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+36030, int32FromInt32(301))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+36744, int32FromInt32(301))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+36030, int32FromInt32(303))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+36744, int32FromInt32(303))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36030, int32FromInt32(304))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36744, int32FromInt32(304))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36030, int32FromInt32(305))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36744, int32FromInt32(305))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36030, int32FromInt32(310))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36744, int32FromInt32(310))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36030, int32FromInt32(311))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36744, int32FromInt32(311))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -21114,7 +24225,7 @@ func b3WarmStartSphericalJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, b5, c, iA, iB, joint, mA, mB, rA, rB, stateA, stateB, t1, t2, t3, vA, vB, wA, wB, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v55, v6, v7, v75, v8
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_sphericalJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36126, __ccgo_ts+36030, int32FromInt32(386))
+		b3InternalAssert(tls, __ccgo_ts+36840, __ccgo_ts+36744, int32FromInt32(386))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -21944,7 +25055,7 @@ _68:
 			twist = v10
 			twist = float32(twist * float32FromFloat32(2))
 			if v227 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v227 {
-				b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+				b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 			}
 			_ = v227 || bool(int32FromInt32(0) != 0)
 			v15 = twist
@@ -22085,7 +25196,7 @@ _68:
 			y = sqrtf(tls, float32(v3.V.X*v3.V.X)+float32(v3.V.Y*v3.V.Y))
 			swing = float32(float32FromFloat32(2) * b3Atan2(tls, y, x))
 			if v227 = !!(float32FromFloat32(0) <= swing && swing <= float32FromFloat32(3.14159265359)); !v227 {
-				b3InternalAssert(tls, __ccgo_ts+20740, __ccgo_ts+6355, int32FromInt32(572))
+				b3InternalAssert(tls, __ccgo_ts+21133, __ccgo_ts+6355, int32FromInt32(572))
 			}
 			_ = v227 || bool(int32FromInt32(0) != 0)
 			v10 = swing
@@ -23471,7 +26582,7 @@ _216:
 		twist = v10
 		twist = float32(twist * float32FromFloat32(2))
 		if v357 = !!(-float32FromFloat32(3.14159265359) <= twist && twist <= float32FromFloat32(3.14159265359)); !v357 {
-			b3InternalAssert(tls, __ccgo_ts+20706, __ccgo_ts+6355, int32FromInt32(561))
+			b3InternalAssert(tls, __ccgo_ts+21099, __ccgo_ts+6355, int32FromInt32(561))
 		}
 		_ = v357 || bool(int32FromInt32(0) != 0)
 		v15 = twist
@@ -23770,7 +26881,7 @@ func b3WeldJoint_SetLinearHertz(tls *_Stack, jointId JointId, hertz float32) {
 	var _ /* recArgs at bp+0 */ b3RecArgs_WeldJointSetLinearHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+36784, int32FromInt32(16))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+37498, int32FromInt32(16))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -23800,7 +26911,7 @@ func b3WeldJoint_SetLinearDampingRatio(tls *_Stack, jointId JointId, dampingRati
 	var _ /* recArgs at bp+0 */ b3RecArgs_WeldJointSetLinearDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+36784, int32FromInt32(31))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+37498, int32FromInt32(31))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -23830,7 +26941,7 @@ func b3WeldJoint_SetAngularHertz(tls *_Stack, jointId JointId, hertz float32) {
 	var _ /* recArgs at bp+0 */ b3RecArgs_WeldJointSetAngularHertz
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, hertz) != 0 && hertz >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+36784, int32FromInt32(46))
+		b3InternalAssert(tls, __ccgo_ts+19502, __ccgo_ts+37498, int32FromInt32(46))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -23860,7 +26971,7 @@ func b3WeldJoint_SetAngularDampingRatio(tls *_Stack, jointId JointId, dampingRat
 	var _ /* recArgs at bp+0 */ b3RecArgs_WeldJointSetAngularDampingRatio
 	_, _, _ = base, world, v1
 	if v1 = !!(b3IsValidFloat(tls, dampingRatio) != 0 && dampingRatio >= float32FromFloat32(0)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+36784, int32FromInt32(61))
+		b3InternalAssert(tls, __ccgo_ts+19543, __ccgo_ts+37498, int32FromInt32(61))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -23927,43 +27038,43 @@ func b3PrepareWeldJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v173 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, bodyA, bodyB, bodySimA, bodySimB, c, det, invDet, invInertiaSum, joint, localIndexA, localIndexB, omega, out, out1, q1, setA, setB, t1, t11, t2, t21, t3, t31, world, v1, v10, v11, v122, v123, v126, v13, v14, v16, v17, v173, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v49, v50, v53, v59, v70, v81, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_weldJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36812, __ccgo_ts+36784, int32FromInt32(87))
+		b3InternalAssert(tls, __ccgo_ts+37526, __ccgo_ts+37498, int32FromInt32(87))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdA && (*b3JointSim)(unsafe.Pointer(base)).BodyIdA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+23576, __ccgo_ts+36784, int32FromInt32(91))
+		b3InternalAssert(tls, __ccgo_ts+23741, __ccgo_ts+37498, int32FromInt32(91))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdA)*96
 	if v2 = !!(0 <= (*b3JointSim)(unsafe.Pointer(base)).BodyIdB && (*b3JointSim)(unsafe.Pointer(base)).BodyIdB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+23646, __ccgo_ts+36784, int32FromInt32(92))
+		b3InternalAssert(tls, __ccgo_ts+23811, __ccgo_ts+37498, int32FromInt32(92))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3JointSim)(unsafe.Pointer(base)).BodyIdB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+36784, int32FromInt32(94))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+37498, int32FromInt32(94))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36784, int32FromInt32(95))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+37498, int32FromInt32(95))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36784, int32FromInt32(96))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+37498, int32FromInt32(96))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36784, int32FromInt32(101))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+37498, int32FromInt32(101))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36784, int32FromInt32(102))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+37498, int32FromInt32(102))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -24407,7 +27518,7 @@ func b3WarmStartWeldJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = b5, c, iA, iB, joint, mA, mB, rA, rB, stateA, stateB, t1, t2, t3, vA, vB, wA, wB, v1, v10, v11, v12, v13, v15, v16, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v51, v6, v61, v7, v8
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_weldJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36812, __ccgo_ts+36784, int32FromInt32(152))
+		b3InternalAssert(tls, __ccgo_ts+37526, __ccgo_ts+37498, int32FromInt32(152))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -25927,7 +29038,7 @@ func b3WheelJoint_SetSuspensionLimits(tls *_Stack, jointId JointId, lower float3
 	var _ /* recArgs at bp+0 */ b3RecArgs_WheelJointSetSuspensionLimits
 	_, _, _ = joint, world, v1
 	if v1 = !!(lower <= upper); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36839, __ccgo_ts+36854, int32FromInt32(96))
+		b3InternalAssert(tls, __ccgo_ts+37553, __ccgo_ts+37568, int32FromInt32(96))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -26180,7 +29291,7 @@ func b3WheelJoint_SetSteeringLimits(tls *_Stack, jointId JointId, lowerRadians f
 	var _ /* recArgs at bp+0 */ b3RecArgs_WheelJointSetSteeringLimits
 	_, _, _ = joint, world, v1
 	if v1 = !!(lowerRadians <= upperRadians); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36883, __ccgo_ts+36854, int32FromInt32(248))
+		b3InternalAssert(tls, __ccgo_ts+37597, __ccgo_ts+37568, int32FromInt32(248))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	world = b3GetWorld(tls, int32FromUint16(jointId.World0))
@@ -26235,23 +29346,23 @@ func b3WheelJoint_GetSpinSpeed(tls *_Stack, jointId JointId) (r float32) {
 	idA = (*b3JointSim)(unsafe.Pointer(base)).BodyIdA
 	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+36854, int32FromInt32(278))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+37568, int32FromInt32(278))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+36854, int32FromInt32(279))
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+37568, int32FromInt32(279))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
 	if v3 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36854, int32FromInt32(281))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+37568, int32FromInt32(281))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36854, int32FromInt32(283))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+37568, int32FromInt32(283))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -26396,34 +29507,34 @@ func b3WheelJoint_GetSteeringAngle(tls *_Stack, jointId JointId) (r float32) {
 	idA = (*b3JointSim)(unsafe.Pointer(base)).BodyIdA
 	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+36854, int32FromInt32(321))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+37568, int32FromInt32(321))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+36854, int32FromInt32(322))
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+37568, int32FromInt32(322))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
 	if v3 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36854, int32FromInt32(324))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+37568, int32FromInt32(324))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v4 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36854, int32FromInt32(325))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+37568, int32FromInt32(325))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v5 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v5 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36854, int32FromInt32(330))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+37568, int32FromInt32(330))
 	}
 	_ = v5 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v6 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v6 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36854, int32FromInt32(331))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+37568, int32FromInt32(331))
 	}
 	_ = v6 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -26734,19 +29845,19 @@ func b3GetWheelJointTorque(tls *_Stack, world uintptr, base uintptr) (r Vec3) {
 	var v1, v2, v3 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodyA, bodySimA, c, idA, localIndexA, matrixA, q, qA, setA, t1, t2, t3, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v11, v12, v13, v14, v16, v17, v18, v19, v2, v21, v22, v23, v25, v27, v28, v3, v30, v31, v32, v5, v6, v7, v8, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_wheelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36912, __ccgo_ts+36854, int32FromInt32(378))
+		b3InternalAssert(tls, __ccgo_ts+37626, __ccgo_ts+37568, int32FromInt32(378))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// chase body id to the solver set where the body lives
 	idA = (*b3JointSim)(unsafe.Pointer(base)).BodyIdA
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+36854, int32FromInt32(384))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+37568, int32FromInt32(384))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// int idB = base->bodyIdB;
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36854, int32FromInt32(387))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+37568, int32FromInt32(387))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	// b3Body* bodyB = b3Array_Get( world->bodies, idB  );
@@ -26754,7 +29865,7 @@ func b3GetWheelJointTorque(tls *_Stack, world uintptr, base uintptr) (r Vec3) {
 	// b3SolverSet* setB = b3Array_Get( world->solverSets, bodyB->setIndex  );
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36854, int32FromInt32(393))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+37568, int32FromInt32(393))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	// int localIndexB = bodyB->localIndex;
@@ -26862,7 +29973,7 @@ func b3PrepareWheelJoint(tls *_Stack, base uintptr, context uintptr) {
 	var v159 b3Softness
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = a11, a21, a31, b5, bodyA, bodyB, bodySimA, bodySimB, c, cs, den, idA, idB, invInertiaSum, joint, k, k1, k2, localIndexA, localIndexB, matrixA, matrixB, omega, q1, rA, rAn, rB, rBn, setA, setB, spinAxis, ss, steeringAxis, suspensionAxis, t1, t11, t2, t21, t3, t31, world, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v11, v122, v123, v13, v14, v159, v16, v17, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v40, v42, v43, v44, v46, v48, v9
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_wheelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36912, __ccgo_ts+36854, int32FromInt32(407))
+		b3InternalAssert(tls, __ccgo_ts+37626, __ccgo_ts+37568, int32FromInt32(407))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// chase body id to the solver set where the body lives
@@ -26870,38 +29981,38 @@ func b3PrepareWheelJoint(tls *_Stack, base uintptr, context uintptr) {
 	idB = (*b3JointSim)(unsafe.Pointer(base)).BodyIdB
 	world = (*b3StepContext)(unsafe.Pointer(context)).World
 	if v1 = !!(0 <= idA && idA < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+36854, int32FromInt32(415))
+		b3InternalAssert(tls, __ccgo_ts+11570, __ccgo_ts+37568, int32FromInt32(415))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idA)*96
 	if v2 = !!(0 <= idB && idB < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+36854, int32FromInt32(416))
+		b3InternalAssert(tls, __ccgo_ts+11620, __ccgo_ts+37568, int32FromInt32(416))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr(idB)*96
 	if v3 = !!((*b3Body)(unsafe.Pointer(bodyA)).SetIndex == int32(b3_awakeSet) || (*b3Body)(unsafe.Pointer(bodyB)).SetIndex == int32(b3_awakeSet)); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+36854, int32FromInt32(418))
+		b3InternalAssert(tls, __ccgo_ts+11670, __ccgo_ts+37568, int32FromInt32(418))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyA)).SetIndex && (*b3Body)(unsafe.Pointer(bodyA)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+36854, int32FromInt32(419))
+		b3InternalAssert(tls, __ccgo_ts+11735, __ccgo_ts+37568, int32FromInt32(419))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	setA = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyA)).SetIndex)*88
 	if v2 = !!(0 <= (*b3Body)(unsafe.Pointer(bodyB)).SetIndex && (*b3Body)(unsafe.Pointer(bodyB)).SetIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+36854, int32FromInt32(420))
+		b3InternalAssert(tls, __ccgo_ts+11813, __ccgo_ts+37568, int32FromInt32(420))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	setB = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr((*b3Body)(unsafe.Pointer(bodyB)).SetIndex)*88
 	localIndexA = (*b3Body)(unsafe.Pointer(bodyA)).LocalIndex
 	localIndexB = (*b3Body)(unsafe.Pointer(bodyB)).LocalIndex
 	if v3 = !!(0 <= localIndexA && localIndexA < (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+36854, int32FromInt32(425))
+		b3InternalAssert(tls, __ccgo_ts+11891, __ccgo_ts+37568, int32FromInt32(425))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	bodySimA = (*b3SolverSet)(unsafe.Pointer(setA)).BodySims.Data + uintptr(localIndexA)*252
 	if v4 = !!(0 <= localIndexB && localIndexB < (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Count); !v4 {
-		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+36854, int32FromInt32(426))
+		b3InternalAssert(tls, __ccgo_ts+11958, __ccgo_ts+37568, int32FromInt32(426))
 	}
 	_ = v4 || bool(int32FromInt32(0) != 0)
 	bodySimB = (*b3SolverSet)(unsafe.Pointer(setB)).BodySims.Data + uintptr(localIndexB)*252
@@ -27465,7 +30576,7 @@ func b3WarmStartWheelJoint(tls *_Stack, base uintptr, context uintptr) {
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, angularImpulseA, angularImpulseB, angularImpulseX, angularImpulseY, b7, c, cs, d, d1, den, iA, iB, joint, linearImpulse, linearImpulseY, linearImpulseZ, mA, mB, matrixA, matrixB, perpAxis, perpAxisX, perpAxisY, q1, q2, quatA, quatB, rA, rB, relQ, sAx, sAy, sAz, sBx, sBy, sBz, spinAxis, ss, stateA, stateB, steeringAxis, steeringImpulse, suspensionImpulse, t1, t11, t12, t2, t21, t22, t3, t31, t32, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v100, v102, v103, v104, v106, v108, v109, v11, v110, v112, v113, v116, v119, v12, v121, v122, v123, v125, v13, v15, v157, v159, v16, v161, v17, v19, v2, v21, v22, v23, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v52, v53, v54, v56, v57, v58, v6, v60, v61, v62, v64, v65, v66, v67, v68, v7, v70, v71, v72, v73, v75, v76, v77, v78, v8, v80, v81, v82, v84, v86, v87, v88, v89, v90, v92, v93, v94, v95, v97, v98, v99
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_wheelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36912, __ccgo_ts+36854, int32FromInt32(507))
+		b3InternalAssert(tls, __ccgo_ts+37626, __ccgo_ts+37568, int32FromInt32(507))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -28352,7 +31463,7 @@ func b3SolveWheelJoint(tls *_Stack, base uintptr, context uintptr, useBias uint8
 	var _ /* dummyState at bp+0 */ b3BodyState
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = angularImpulse, angularImpulseA, angularImpulseA1, angularImpulseA2, angularImpulseB, angularImpulseB1, angularImpulseB2, b9, bias, bias1, bias2, bias3, bias4, bias5, bias6, bias7, bias8, c, c1, c2, c3, c4, c5, c6, c7, c8, c9, cdot, cdot1, cdot2, cdot3, cdot4, cdot5, cdot6, cdot7, cdot8, cdot9, cdotPlusBias, cdotPlusBias1, cs, d, d1, deltaImpulse, deltaImpulse1, deltaImpulse2, den, det, fixedRotation, iA, iB, impulse, impulse1, impulse2, impulse3, impulse4, impulse5, impulse6, impulseScale, impulseScale1, impulseScale2, impulseScale3, impulseScale4, impulseScale5, impulseScale6, impulseScale7, impulseScale8, invDet, invInertiaSum, invInertiaSum1, joint, k, k1, k2, kxx, kxy, kyy, kyy1, kyz, kzz, linearImpulse, linearImpulse1, linearImpulse2, linearImpulse3, mA, mB, massScale, massScale1, massScale2, massScale3, massScale4, massScale5, massScale6, massScale7, massScale8, matrixA, matrixB, maxImpulse, maxImpulse1, oldImpulse, oldImpulse1, oldImpulse2, oldImpulse3, oldImpulse4, oldImpulse5, oldImpulse6, oldImpulse7, perpAxisX, perpAxisY, perpMass, perpY, perpZ, q1, q2, quatA, quatB, rA, rB, relQ, sAx, sAy, sAz, sBx, sBy, sBz, sol, sol1, spinAxis, ss, stateA, stateB, steeringAngle, steeringAxis, t1, t11, t12, t2, t21, t22, t3, t31, t32, translation, u, vA, vB, vRel, wA, wB, wRel, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v101, v102, v103, v105, v106, v107, v108, v11, v110, v111, v112, v113, v115, v116, v117, v12, v122, v125, v127, v128, v129, v13, v131, v132, v133, v15, v16, v17, v19, v2, v21, v22, v23, v231, v24, v243, v26, v27, v28, v284, v29, v297, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v49, v5, v50, v51, v52, v54, v55, v56, v57, v59, v6, v60, v61, v62, v64, v65, v66, v68, v699, v7, v70, v700, v701, v704, v71, v72, v73, v74, v76, v77, v78, v79, v8, v81, v82, v83, v84, v86, v87, v88, v90, v92, v93, v94, v96, v97
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_wheelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36912, __ccgo_ts+36854, int32FromInt32(600))
+		b3InternalAssert(tls, __ccgo_ts+37626, __ccgo_ts+37568, int32FromInt32(600))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	mA = (*b3JointSim)(unsafe.Pointer(base)).InvMassA
@@ -30557,18 +33668,18 @@ _866:
 func b3DrawWheelJoint(tls *_Stack, draw uintptr, base uintptr, transformA WorldTransform, transformB WorldTransform, scale float32) {
 	var C, frame, frameA, frameB, v2, v48, v50, v96 WorldTransform
 	var c, perp, r, r1, t1, t11, t2, t21, t3, t31, v10, v12, v13, v15, v17, v18, v20, v21, v27, v28, v29, v30, v32, v34, v35, v37, v38, v39, v41, v43, v45, v46, v54, v55, v56, v58, v6, v60, v61, v63, v65, v66, v68, v69, v7, v75, v76, v77, v78, v8, v80, v82, v83, v85, v86, v87, v89, v91, v93, v94 Vec3
-	var cs CosSin
+	var cosine, lower1, radius, sine, upper1, xw, xx, xy, xz, yw, yy, yz, zw, zz, v11, v16, v22, v33, v44, v59, v64, v70, v81, v92 float32
+	var cs, delta CosSin
 	var index, sliceCount int32
 	var joint uintptr
 	var lower, upper, vertex1, vertex2, v108, v110, v116, v118 Pos
-	var lower1, phi, radius, t22, upper1, xw, xx, xy, xz, yw, yy, yz, zw, zz, v11, v16, v22, v33, v44, v59, v64, v70, v81, v92 float32
 	var matrixA, matrixB, v102, v99 Matrix3
 	var q1, v101, v24, v26, v4, v5, v52, v53, v72, v74, v98 Quat
 	var v1 bool
 	var v3, v51 Transform
-	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, c, cs, frame, frameA, frameB, index, joint, lower, lower1, matrixA, matrixB, perp, phi, q1, r, r1, radius, sliceCount, t1, t11, t2, t21, t22, t3, t31, upper, upper1, vertex1, vertex2, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v101, v102, v108, v11, v110, v116, v118, v12, v13, v15, v16, v17, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v5, v50, v51, v52, v53, v54, v55, v56, v58, v59, v6, v60, v61, v63, v64, v65, v66, v68, v69, v7, v70, v72, v74, v75, v76, v77, v78, v8, v80, v81, v82, v83, v85, v86, v87, v89, v91, v92, v93, v94, v96, v98, v99
+	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = C, c, cosine, cs, delta, frame, frameA, frameB, index, joint, lower, lower1, matrixA, matrixB, perp, q1, r, r1, radius, sine, sliceCount, t1, t11, t2, t21, t3, t31, upper, upper1, vertex1, vertex2, xw, xx, xy, xz, yw, yy, yz, zw, zz, v1, v10, v101, v102, v108, v11, v110, v116, v118, v12, v13, v15, v16, v17, v18, v2, v20, v21, v22, v24, v26, v27, v28, v29, v3, v30, v32, v33, v34, v35, v37, v38, v39, v4, v41, v43, v44, v45, v46, v48, v5, v50, v51, v52, v53, v54, v55, v56, v58, v59, v6, v60, v61, v63, v64, v65, v66, v68, v69, v7, v70, v72, v74, v75, v76, v77, v78, v8, v80, v81, v82, v83, v85, v86, v87, v89, v91, v92, v93, v94, v96, v98, v99
 	if v1 = !!((*b3JointSim)(unsafe.Pointer(base)).Type1 == int32(b3_wheelJoint)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+36912, __ccgo_ts+36854, int32FromInt32(1022))
+		b3InternalAssert(tls, __ccgo_ts+37626, __ccgo_ts+37568, int32FromInt32(1022))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	joint = base + 184
@@ -31009,6 +34120,7 @@ _103:
 		lower1 = (*b3WheelJoint)(unsafe.Pointer(joint)).LowerSteeringLimit
 		upper1 = (*b3WheelJoint)(unsafe.Pointer(joint)).UpperSteeringLimit
 		cs = b3ComputeCosSin(tls, lower1)
+		delta = b3ComputeCosSin(tls, (upper1-lower1)/float32(sliceCount))
 		v2 = frame
 		v4 = v2.Q
 		v6 = Vec3{
@@ -31071,13 +34183,10 @@ _103:
 			if !(index < sliceCount) {
 				break
 			}
-			t22 = (float32(index) + float32FromFloat32(1)) / float32(sliceCount)
-			v22 = t22
-			v33 = float32((float32FromFloat32(1)-v22)*lower1) + float32(v22*upper1)
-			goto _196
-		_196:
-			phi = v33
-			cs = b3ComputeCosSin(tls, phi)
+			cosine = float32(delta.Cosine*cs.Cosine) - float32(delta.Sine*cs.Sine)
+			sine = float32(delta.Sine*cs.Cosine) + float32(delta.Cosine*cs.Sine)
+			cs.Cosine = cosine
+			cs.Sine = sine
 			v2 = frame
 			v4 = v2.Q
 			v6 = Vec3{
@@ -31090,8 +34199,8 @@ _103:
 			c.Y = float32(v7.Z*v8.X) - float32(v7.X*v8.Z)
 			c.Z = float32(v7.X*v8.Y) - float32(v7.Y*v8.X)
 			v10 = c
-			goto _203
-		_203:
+			goto _200
+		_200:
 			t1 = v10
 			v12 = t1
 			v11 = v4.S
@@ -31101,8 +34210,8 @@ _103:
 				Y: v12.Y + float32(v11*v13.Y),
 				Z: v12.Z + float32(v11*v13.Z),
 			}
-			goto _208
-		_208:
+			goto _205
+		_205:
 			t2 = v15
 			v17 = v4.V
 			v18 = t2
@@ -31110,8 +34219,8 @@ _103:
 			c.Y = float32(v17.Z*v18.X) - float32(v17.X*v18.Z)
 			c.Z = float32(v17.X*v18.Y) - float32(v17.Y*v18.X)
 			v20 = c
-			goto _212
-		_212:
+			goto _209
+		_209:
 			t3 = v20
 			v27 = v6
 			v16 = float32FromFloat32(2)
@@ -31121,19 +34230,19 @@ _103:
 				Y: v27.Y + float32(v16*v28.Y),
 				Z: v27.Z + float32(v16*v28.Z),
 			}
-			goto _219
-		_219:
+			goto _216
+		_216:
 			v21 = v29
-			goto _214
-		_214:
+			goto _211
+		_211:
 			r = v21
 			v108 = Pos{
 				X: v2.P.X + r.X,
 				Y: v2.P.Y + r.Y,
 				Z: v2.P.Z + r.Z,
 			}
-			goto _221
-		_221:
+			goto _218
+		_218:
 			vertex2 = v108
 			if index == 0 {
 				(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, frame.P, vertex1, int32(b3_colorCyan), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
@@ -31156,8 +34265,8 @@ _103:
 		Y: float32(v11 * v6.Y),
 		Z: float32(v11 * v6.Z),
 	}
-	goto _225
-_225:
+	goto _222
+_222:
 	v108 = frameB.P
 	v8 = v7
 	v110 = Pos{
@@ -31165,8 +34274,8 @@ _225:
 		Y: v108.Y + v8.Y,
 		Z: v108.Z + v8.Z,
 	}
-	goto _229
-_229:
+	goto _226
+_226:
 	v16 = float32(float32FromFloat32(0.5) * scale)
 	v10 = matrixB.Cz
 	v12 = Vec3{
@@ -31174,8 +34283,8 @@ _229:
 		Y: float32(v16 * v10.Y),
 		Z: float32(v16 * v10.Z),
 	}
-	goto _233
-_233:
+	goto _230
+_230:
 	v116 = frameB.P
 	v13 = v12
 	v118 = Pos{
@@ -31183,8 +34292,8 @@ _233:
 		Y: v116.Y + v13.Y,
 		Z: v116.Z + v13.Z,
 	}
-	goto _237
-_237:
+	goto _234
+_234:
 	(*(*func(*_Stack, Pos, Pos, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawSegmentFcn)))(tls, v110, v118, int32(b3_colorMagenta), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, frameA.P, float32FromFloat32(5), int32(b3_colorGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)
 	(*(*func(*_Stack, Pos, float32, HexColor, uintptr))(funcPtr((*b3DebugDraw)(unsafe.Pointer(draw)).DrawPointFcn)))(tls, frameB.P, float32FromFloat32(5), int32(b3_colorDimGray), (*b3DebugDraw)(unsafe.Pointer(draw)).Context)

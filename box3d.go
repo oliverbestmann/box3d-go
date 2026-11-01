@@ -805,3 +805,11 @@ func (b Joint) AsWeldJoint() WeldJoint {
 func (b Joint) AsWheelJoint() WheelJoint {
 	return asJoint[WheelJoint](b, JointTypeWheel)
 }
+
+func (b Joint) AsMoverJoint() MoverJoint {
+	return asJoint[MoverJoint](b, JointTypeMover)
+}
+
+func (b Joint) AsPogoJoint() PogoJoint {
+	return asJoint[PogoJoint](b, JointTypePogo)
+}

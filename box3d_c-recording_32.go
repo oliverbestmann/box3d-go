@@ -674,6 +674,30 @@ func b3RecW_WHEELJOINTDEF(tls *_Stack, buf uintptr, _v WheelJointDef) {
 	b3RecW_F32(tls, buf, (*(*WheelJointDef)(unsafe.Add(nil, bp))).UpperSteeringLimit)
 }
 
+func b3RecW_MOVERJOINTDEF(tls *_Stack, buf uintptr, _v MoverJointDef) {
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	*(*MoverJointDef)(unsafe.Pointer(bp)) = _v
+	b3RecW_JointBase(tls, buf, bp)
+	b3RecW_VEC3(tls, buf, (*(*MoverJointDef)(unsafe.Add(nil, bp))).LinearVelocity)
+	b3RecW_F32(tls, buf, (*(*MoverJointDef)(unsafe.Add(nil, bp))).MaxForce)
+}
+
+func b3RecW_POGOJOINTDEF(tls *_Stack, buf uintptr, _v PogoJointDef) {
+	bp := tls.Alloc(160)
+	defer tls.Free(160)
+	*(*PogoJointDef)(unsafe.Pointer(bp)) = _v
+	b3RecW_JointBase(tls, buf, bp)
+	b3RecW_VEC3(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Normal)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Hertz)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).DampingRatio)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).RestLength)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).MaxTensionForce)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).MaxCompressionForce)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Impulse)
+	b3RecW_F32(tls, buf, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Velocity)
+}
+
 // Query recording. A query collects a variable number of hits through a user callback, so the count
 // is not known until the callback stops firing. The record is built in a local buffer with a
 // reserved hit-count slot, then committed whole under the lock so concurrent query threads never
@@ -696,7 +720,7 @@ func b3RecPatchU32(tls *_Stack, buf uintptr, offset int32, v uint32) {
 	var v1 bool
 	_, _ = p, v1
 	if v1 = !!(offset >= 0 && offset+int32(4) <= (*b3RecBuffer)(unsafe.Pointer(buf)).Size); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26702, __ccgo_ts+26741, int32FromInt32(566))
+		b3InternalAssert(tls, __ccgo_ts+27416, __ccgo_ts+27455, int32FromInt32(590))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	p = (*b3RecBuffer)(unsafe.Pointer(buf)).Data + uintptr(offset)
@@ -716,7 +740,7 @@ func b3RecCommitRecordLocked(tls *_Stack, rec uintptr, opcode uint8, payload uin
 	var _ /* sz at bp+0 */ [3]uint8_t
 	_ = v1
 	if v1 = !!(payloadSize >= 0 && payloadSize < int32FromInt32(1)<<int32FromInt32(24)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26768, __ccgo_ts+26741, int32FromInt32(577))
+		b3InternalAssert(tls, __ccgo_ts+27482, __ccgo_ts+27455, int32FromInt32(601))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	b3RecW_U8(tls, rec, opcode)
@@ -857,7 +881,7 @@ func b3RecEndRecord(tls *_Stack, rec uintptr) {
 	_, _, _ = p, payloadSize, v1
 	payloadSize = (*b3Recording)(unsafe.Pointer(rec)).Buffer.Size - (*b3Recording)(unsafe.Pointer(rec)).RecordStart - int32(3)
 	if v1 = !!(payloadSize >= 0 && payloadSize < int32FromInt32(1)<<int32FromInt32(24)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+26768, __ccgo_ts+26741, int32FromInt32(683))
+		b3InternalAssert(tls, __ccgo_ts+27482, __ccgo_ts+27455, int32FromInt32(707))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	p = (*b3Recording)(unsafe.Pointer(rec)).Buffer.Data + uintptr((*b3Recording)(unsafe.Pointer(rec)).RecordStart)
@@ -884,6 +908,7 @@ func b3RecEndRecord(tls *_Stack, rec uintptr) {
 //   0x40-0x4F  shape create/destroy
 //   0x50-0x6F  shape mutators
 //   0x80       step
+//   0x81-0x8F  mover and pogo joints
 //   0x90-0xE7  joints (create, generic, per-type)
 //   0xE8-0xEF  spatial queries
 //   0xF0-0xFF  markers
@@ -1759,6 +1784,62 @@ func b3RecWriteArgs_WheelJointSetTargetSteeringAngle(tls *_Stack, rec uintptr, a
 
 // C documentation
 //
+//	// Mover joint
+func b3RecWriteArgs_CreateMoverJoint(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_WORLDID(tls, rec, (*b3RecArgs_CreateMoverJoint)(unsafe.Pointer(a)).World)
+	b3RecW_MOVERJOINTDEF(tls, rec, (*b3RecArgs_CreateMoverJoint)(unsafe.Pointer(a)).Def)
+}
+
+func b3RecWriteArgs_MoverJointSetLinearVelocity(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Pointer(a)).Joint)
+	b3RecW_VEC3(tls, rec, (*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Pointer(a)).Velocity)
+}
+
+func b3RecWriteArgs_MoverJointSetMaxVelocityForce(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Pointer(a)).MaxForce)
+}
+
+// C documentation
+//
+//	// Pogo joint
+func b3RecWriteArgs_CreatePogoJoint(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_WORLDID(tls, rec, (*b3RecArgs_CreatePogoJoint)(unsafe.Pointer(a)).World)
+	b3RecW_POGOJOINTDEF(tls, rec, (*b3RecArgs_CreatePogoJoint)(unsafe.Pointer(a)).Def)
+}
+
+func b3RecWriteArgs_PogoJointSetRestLength(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetRestLength)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_PogoJointSetRestLength)(unsafe.Pointer(a)).Length)
+}
+
+func b3RecWriteArgs_PogoJointSetSpringHertz(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Pointer(a)).Hertz)
+}
+
+func b3RecWriteArgs_PogoJointSetSpringDampingRatio(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Pointer(a)).DampingRatio)
+}
+
+func b3RecWriteArgs_PogoJointSetMaxTensionForce(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Pointer(a)).Force)
+}
+
+func b3RecWriteArgs_PogoJointSetMaxCompressionForce(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Pointer(a)).Joint)
+	b3RecW_F32(tls, rec, (*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Pointer(a)).Force)
+}
+
+func b3RecWriteArgs_PogoJointSetNormal(tls *_Stack, rec uintptr, a uintptr) {
+	b3RecW_JOINTID(tls, rec, (*b3RecArgs_PogoJointSetNormal)(unsafe.Pointer(a)).Joint)
+	b3RecW_VEC3(tls, rec, (*b3RecArgs_PogoJointSetNormal)(unsafe.Pointer(a)).Normal)
+}
+
+// C documentation
+//
 //	// Spatial queries. Inputs flow through the manifest (reader side). The hit tail and result are
 //	// hand-written in recording.c / recording_replay.c since they are variable length.
 func b3RecWriteArgs_QueryOverlapAABB(tls *_Stack, rec uintptr, a uintptr) {
@@ -1852,6 +1933,7 @@ func b3RecWriteArgs_RecordingBounds(tls *_Stack, rec uintptr, a uintptr) {
 //   0x40-0x4F  shape create/destroy
 //   0x50-0x6F  shape mutators
 //   0x80       step
+//   0x81-0x8F  mover and pogo joints
 //   0x90-0xE7  joints (create, generic, per-type)
 //   0xE8-0xEF  spatial queries
 //   0xF0-0xFF  markers
@@ -3171,6 +3253,92 @@ func b3RecWrite_WheelJointSetTargetSteeringAngle(tls *_Stack, rec uintptr, a uin
 
 // C documentation
 //
+//	// Mover joint
+func b3RecWrite_CreateMoverJoint(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x81)))
+	b3RecWriteArgs_CreateMoverJoint(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_MoverJointSetLinearVelocity(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x82)))
+	b3RecWriteArgs_MoverJointSetLinearVelocity(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_MoverJointSetMaxVelocityForce(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x83)))
+	b3RecWriteArgs_MoverJointSetMaxVelocityForce(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+// C documentation
+//
+//	// Pogo joint
+func b3RecWrite_CreatePogoJoint(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x84)))
+	b3RecWriteArgs_CreatePogoJoint(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetRestLength(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x85)))
+	b3RecWriteArgs_PogoJointSetRestLength(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetSpringHertz(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x86)))
+	b3RecWriteArgs_PogoJointSetSpringHertz(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetSpringDampingRatio(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x87)))
+	b3RecWriteArgs_PogoJointSetSpringDampingRatio(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetMaxTensionForce(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x88)))
+	b3RecWriteArgs_PogoJointSetMaxTensionForce(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetMaxCompressionForce(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x89)))
+	b3RecWriteArgs_PogoJointSetMaxCompressionForce(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+func b3RecWrite_PogoJointSetNormal(tls *_Stack, rec uintptr, a uintptr) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x8A)))
+	b3RecWriteArgs_PogoJointSetNormal(tls, rec, a)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+// C documentation
+//
 //	// Spatial queries. Inputs flow through the manifest (reader side). The hit tail and result are
 //	// hand-written in recording.c / recording_replay.c since they are variable length.
 func b3RecWrite_QueryOverlapAABB(tls *_Stack, rec uintptr, a uintptr) {
@@ -3279,6 +3447,7 @@ func b3RecWrite_RecordingBounds(tls *_Stack, rec uintptr, a uintptr) {
 //   0x40-0x4F  shape create/destroy
 //   0x50-0x6F  shape mutators
 //   0x80       step
+//   0x81-0x8F  mover and pogo joints
 //   0x90-0xE7  joints (create, generic, per-type)
 //   0xE8-0xEF  spatial queries
 //   0xF0-0xFF  markers
@@ -3438,6 +3607,50 @@ func b3RecWriteRet_CreateWheelJoint(tls *_Stack, rec uintptr, a uintptr, id Join
 	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
 	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x98)))
 	b3RecWriteArgs_CreateWheelJoint(tls, rec, a)
+	b3RecW_JOINTID(tls, rec, id)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+// Generic joint mutators
+
+// Parallel joint
+
+// Distance joint
+
+// Motor joint
+
+// Prismatic joint
+
+// Revolute joint
+
+// Spherical joint
+
+// Weld joint
+
+// Wheel joint
+
+// Wheel joint continued, overflow past the 0xDF range.
+
+// C documentation
+//
+//	// Mover joint
+func b3RecWriteRet_CreateMoverJoint(tls *_Stack, rec uintptr, a uintptr, id JointId) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x81)))
+	b3RecWriteArgs_CreateMoverJoint(tls, rec, a)
+	b3RecW_JOINTID(tls, rec, id)
+	b3RecEndRecord(tls, rec)
+	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+}
+
+// C documentation
+//
+//	// Pogo joint
+func b3RecWriteRet_CreatePogoJoint(tls *_Stack, rec uintptr, a uintptr, id JointId) {
+	__builtin_b3LockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
+	b3RecBeginRecord(tls, rec, uint8FromInt32(int32FromInt32(0x84)))
+	b3RecWriteArgs_CreatePogoJoint(tls, rec, a)
 	b3RecW_JOINTID(tls, rec, id)
 	b3RecEndRecord(tls, rec)
 	__builtin_b3UnlockMutex(tls, (*b3Recording)(unsafe.Pointer(rec)).Lock)
@@ -4987,6 +5200,34 @@ func b3RecR_WHEELJOINTDEF(tls *_Stack, rdr uintptr) (r WheelJointDef) {
 	return *(*WheelJointDef)(unsafe.Add(nil, bp))
 }
 
+func b3RecR_MOVERJOINTDEF(tls *_Stack, rdr uintptr) (r MoverJointDef) {
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	var _ /* def at bp+0 */ MoverJointDef
+	*(*MoverJointDef)(unsafe.Add(nil, bp)) = b3DefaultMoverJointDef(tls)
+	b3RecR_JointBase(tls, rdr, bp)
+	(*(*MoverJointDef)(unsafe.Add(nil, bp))).LinearVelocity = b3RecR_VEC3(tls, rdr)
+	(*(*MoverJointDef)(unsafe.Add(nil, bp))).MaxForce = b3RecR_F32(tls, rdr)
+	return *(*MoverJointDef)(unsafe.Add(nil, bp))
+}
+
+func b3RecR_POGOJOINTDEF(tls *_Stack, rdr uintptr) (r PogoJointDef) {
+	bp := tls.Alloc(160)
+	defer tls.Free(160)
+	var _ /* def at bp+0 */ PogoJointDef
+	*(*PogoJointDef)(unsafe.Add(nil, bp)) = b3DefaultPogoJointDef(tls)
+	b3RecR_JointBase(tls, rdr, bp)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Normal = b3RecR_VEC3(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Hertz = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).DampingRatio = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).RestLength = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).MaxTensionForce = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).MaxCompressionForce = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Impulse = b3RecR_F32(tls, rdr)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Velocity = b3RecR_F32(tls, rdr)
+	return *(*PogoJointDef)(unsafe.Add(nil, bp))
+}
+
 // C documentation
 //
 //	// A create op appends the returned id after args. index1 and generation must match;
@@ -4995,7 +5236,7 @@ func b3RecCheckId(tls *_Stack, rdr uintptr, kind uintptr, gotIndex int32, gotGen
 	bp := tls.Alloc(48)
 	defer tls.Free(48)
 	if gotIndex != recIndex || gotGen != recGen {
-		printf(tls, __ccgo_ts+26828, vaList(bp+8, kind, recIndex, recGen, gotIndex, gotGen))
+		printf(tls, __ccgo_ts+27542, vaList(bp+8, kind, recIndex, recGen, gotIndex, gotGen))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 	}
 }
@@ -5249,7 +5490,7 @@ func b3RecDispatch_CreateHullShape(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_CreateHullShape)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryHull))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+26920, vaList(bp+8, id))
+		printf(tls, __ccgo_ts+27634, vaList(bp+8, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5274,7 +5515,7 @@ func b3RecDispatch_CreateMeshShape(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_CreateMeshShape)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryMesh))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+26965, vaList(bp+8, id))
+		printf(tls, __ccgo_ts+27679, vaList(bp+8, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5299,7 +5540,7 @@ func b3RecDispatch_CreateHeightFieldShape(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_CreateHeightFieldShape)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryHeightField))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+27010, vaList(bp+8, id))
+		printf(tls, __ccgo_ts+27724, vaList(bp+8, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5325,7 +5566,7 @@ func b3RecDispatch_CreateCompoundShape(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_CreateCompoundShape)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryCompound))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+27062, vaList(bp+120, id))
+		printf(tls, __ccgo_ts+27776, vaList(bp+120, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5403,7 +5644,7 @@ func b3RecDispatch_ShapeSetHull(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_ShapeSetHull)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryHull))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+26920, vaList(bp+8, id))
+		printf(tls, __ccgo_ts+27634, vaList(bp+8, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5421,7 +5662,7 @@ func b3RecDispatch_ShapeSetMesh(tls *_Stack, a uintptr, rdr uintptr) {
 	id = (*b3RecArgs_ShapeSetMesh)(unsafe.Pointer(a)).GeometryId
 	slot = b3RecGetSlot(tls, rdr, id, int32(b3_geometryMesh))
 	if slot == uintptrFromInt32(0) {
-		printf(tls, __ccgo_ts+26965, vaList(bp+8, id))
+		printf(tls, __ccgo_ts+27679, vaList(bp+8, id))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
 		return
 	}
@@ -5551,6 +5792,32 @@ func b3RecDispatch_CreateWheelJoint(tls *_Stack, a uintptr, rdr uintptr) {
 	(*(*WheelJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA = b3RecMakeBodyId(tls, rdr, (*(*WheelJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA)
 	(*(*WheelJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB = b3RecMakeBodyId(tls, rdr, (*(*WheelJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB)
 	b3RecCheckJointId(tls, rdr, b3CreateWheelJoint(tls, (*b3RecReader)(unsafe.Pointer(rdr)).ReplayWorldId, bp), recId)
+}
+
+func b3RecDispatch_CreateMoverJoint(tls *_Stack, a uintptr, rdr uintptr) {
+	bp := tls.Alloc(128)
+	defer tls.Free(128)
+	var recId JointId
+	var _ /* def at bp+0 */ MoverJointDef
+	_ = recId
+	recId = b3RecR_JOINTID(tls, rdr)
+	*(*MoverJointDef)(unsafe.Add(nil, bp)) = (*b3RecArgs_CreateMoverJoint)(unsafe.Pointer(a)).Def
+	(*(*MoverJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA = b3RecMakeBodyId(tls, rdr, (*(*MoverJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA)
+	(*(*MoverJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB = b3RecMakeBodyId(tls, rdr, (*(*MoverJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB)
+	b3RecCheckJointId(tls, rdr, b3CreateMoverJoint(tls, (*b3RecReader)(unsafe.Pointer(rdr)).ReplayWorldId, bp), recId)
+}
+
+func b3RecDispatch_CreatePogoJoint(tls *_Stack, a uintptr, rdr uintptr) {
+	bp := tls.Alloc(160)
+	defer tls.Free(160)
+	var recId JointId
+	var _ /* def at bp+0 */ PogoJointDef
+	_ = recId
+	recId = b3RecR_JOINTID(tls, rdr)
+	*(*PogoJointDef)(unsafe.Add(nil, bp)) = (*b3RecArgs_CreatePogoJoint)(unsafe.Pointer(a)).Def
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA = b3RecMakeBodyId(tls, rdr, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Base.BodyIdA)
+	(*(*PogoJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB = b3RecMakeBodyId(tls, rdr, (*(*PogoJointDef)(unsafe.Add(nil, bp))).Base.BodyIdB)
+	b3RecCheckJointId(tls, rdr, b3CreatePogoJoint(tls, (*b3RecReader)(unsafe.Pointer(rdr)).ReplayWorldId, bp), recId)
 }
 
 func b3RecDispatch_DestroyJoint(tls *_Stack, a uintptr, rdr uintptr) {
@@ -5869,6 +6136,38 @@ func b3RecDispatch_WheelJointSetTargetSteeringAngle(tls *_Stack, a uintptr, rdr 
 	b3WheelJoint_SetTargetSteeringAngle(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_WheelJointSetTargetSteeringAngle)(unsafe.Pointer(a)).Joint), (*b3RecArgs_WheelJointSetTargetSteeringAngle)(unsafe.Pointer(a)).Radians)
 }
 
+func b3RecDispatch_MoverJointSetLinearVelocity(tls *_Stack, a uintptr, rdr uintptr) {
+	b3MoverJoint_SetLinearVelocity(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Pointer(a)).Joint), (*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Pointer(a)).Velocity)
+}
+
+func b3RecDispatch_MoverJointSetMaxVelocityForce(tls *_Stack, a uintptr, rdr uintptr) {
+	b3MoverJoint_SetMaxVelocityForce(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Pointer(a)).Joint), (*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Pointer(a)).MaxForce)
+}
+
+func b3RecDispatch_PogoJointSetRestLength(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetRestLength(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetRestLength)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetRestLength)(unsafe.Pointer(a)).Length)
+}
+
+func b3RecDispatch_PogoJointSetSpringHertz(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetSpringHertz(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Pointer(a)).Hertz)
+}
+
+func b3RecDispatch_PogoJointSetSpringDampingRatio(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetSpringDampingRatio(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Pointer(a)).DampingRatio)
+}
+
+func b3RecDispatch_PogoJointSetMaxTensionForce(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetMaxTensionForce(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Pointer(a)).Force)
+}
+
+func b3RecDispatch_PogoJointSetMaxCompressionForce(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetMaxCompressionForce(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Pointer(a)).Force)
+}
+
+func b3RecDispatch_PogoJointSetNormal(tls *_Stack, a uintptr, rdr uintptr) {
+	b3PogoJoint_SetNormal(tls, b3RecMakeJointId(tls, rdr, (*b3RecArgs_PogoJointSetNormal)(unsafe.Pointer(a)).Joint), (*b3RecArgs_PogoJointSetNormal)(unsafe.Pointer(a)).Normal)
+}
+
 func b3RecDispatch_StateHash(tls *_Stack, a uintptr, rdr uintptr) {
 	bp := tls.Alloc(32)
 	defer tls.Free(32)
@@ -5878,7 +6177,7 @@ func b3RecDispatch_StateHash(tls *_Stack, a uintptr, rdr uintptr) {
 	world = b3GetWorldFromId(tls, (*b3RecReader)(unsafe.Pointer(rdr)).ReplayWorldId)
 	computed = b3HashWorldState(tls, world)
 	if computed != (*b3RecArgs_StateHash)(unsafe.Pointer(a)).Hash {
-		printf(tls, __ccgo_ts+27111, vaList(bp+8, (*b3RecArgs_StateHash)(unsafe.Pointer(a)).Hash, computed))
+		printf(tls, __ccgo_ts+27825, vaList(bp+8, (*b3RecArgs_StateHash)(unsafe.Pointer(a)).Hash, computed))
 		(*b3RecReader)(unsafe.Pointer(rdr)).Diverged = boolUint8(true1 != 0)
 	}
 }
@@ -6443,8 +6742,8 @@ func b3RecDispatch_QueryTag(tls *_Stack, a uintptr, rdr uintptr) {
 // Returns the opcode dispatched, or -1 when the stream is exhausted or broken.
 
 func b3RecDispatchOne(tls *_Stack, rdr uintptr) (r int32) {
-	bp := tls.Alloc(5136)
-	defer tls.Free(5136)
+	bp := tls.Alloc(5552)
+	defer tls.Free(5552)
 	var opcode uint8_t
 	var payloadSize uint32_t
 	var payloadStart int32
@@ -6581,20 +6880,30 @@ func b3RecDispatchOne(tls *_Stack, rdr uintptr) (r int32) {
 	var _ /* a at bp+4524 */ b3RecArgs_WheelJointEnableSteeringLimit
 	var _ /* a at bp+4536 */ b3RecArgs_WheelJointSetSteeringLimits
 	var _ /* a at bp+4552 */ b3RecArgs_WheelJointSetTargetSteeringAngle
-	var _ /* a at bp+4568 */ b3RecArgs_QueryOverlapAABB
-	var _ /* a at bp+4632 */ b3RecArgs_QueryOverlapShape
-	var _ /* a at bp+4696 */ b3RecArgs_QueryCastRay
-	var _ /* a at bp+4760 */ b3RecArgs_QueryCastShape
+	var _ /* a at bp+4568 */ b3RecArgs_CreateMoverJoint
+	var _ /* a at bp+4704 */ b3RecArgs_MoverJointSetLinearVelocity
+	var _ /* a at bp+4724 */ b3RecArgs_MoverJointSetMaxVelocityForce
+	var _ /* a at bp+4736 */ b3RecArgs_CreatePogoJoint
 	var _ /* a at bp+48 */ b3RecArgs_WorldSetGravity
-	var _ /* a at bp+4832 */ b3RecArgs_QueryCastRayClosest
 	var _ /* a at bp+484 */ b3RecArgs_BodyApplyForceToCenter
-	var _ /* a at bp+4896 */ b3RecArgs_QueryCastMover
-	var _ /* a at bp+4984 */ b3RecArgs_QueryCollideMover
-	var _ /* a at bp+5064 */ b3RecArgs_QueryTag
-	var _ /* a at bp+5072 */ b3RecArgs_StateHash
+	var _ /* a at bp+4896 */ b3RecArgs_PogoJointSetRestLength
+	var _ /* a at bp+4908 */ b3RecArgs_PogoJointSetSpringHertz
+	var _ /* a at bp+4920 */ b3RecArgs_PogoJointSetSpringDampingRatio
+	var _ /* a at bp+4932 */ b3RecArgs_PogoJointSetMaxTensionForce
+	var _ /* a at bp+4944 */ b3RecArgs_PogoJointSetMaxCompressionForce
+	var _ /* a at bp+4956 */ b3RecArgs_PogoJointSetNormal
+	var _ /* a at bp+4976 */ b3RecArgs_QueryOverlapAABB
+	var _ /* a at bp+5040 */ b3RecArgs_QueryOverlapShape
 	var _ /* a at bp+508 */ b3RecArgs_BodyApplyTorque
-	var _ /* a at bp+5088 */ b3RecArgs_RecordingBounds
+	var _ /* a at bp+5104 */ b3RecArgs_QueryCastRay
+	var _ /* a at bp+5168 */ b3RecArgs_QueryCastShape
+	var _ /* a at bp+5240 */ b3RecArgs_QueryCastRayClosest
+	var _ /* a at bp+5304 */ b3RecArgs_QueryCastMover
 	var _ /* a at bp+532 */ b3RecArgs_BodyApplyLinearImpulse
+	var _ /* a at bp+5392 */ b3RecArgs_QueryCollideMover
+	var _ /* a at bp+5472 */ b3RecArgs_QueryTag
+	var _ /* a at bp+5480 */ b3RecArgs_StateHash
+	var _ /* a at bp+5496 */ b3RecArgs_RecordingBounds
 	var _ /* a at bp+568 */ b3RecArgs_BodyApplyLinearImpulseToCenter
 	var _ /* a at bp+592 */ b3RecArgs_BodyApplyAngularImpulse
 	var _ /* a at bp+616 */ b3RecArgs_BodySetMassData
@@ -6643,6 +6952,7 @@ func b3RecDispatchOne(tls *_Stack, rdr uintptr) (r int32) {
 	//   0x40-0x4F  shape create/destroy
 	//   0x50-0x6F  shape mutators
 	//   0x80       step
+	//   0x81-0x8F  mover and pogo joints
 	//   0x90-0xE7  joints (create, generic, per-type)
 	//   0xE8-0xEF  spatial queries
 	//   0xF0-0xFF  markers
@@ -7800,93 +8110,165 @@ func b3RecDispatchOne(tls *_Stack, rdr uintptr) (r int32) {
 			b3RecDispatch_WheelJointSetTargetSteeringAngle(tls, bp+4552, rdr)
 		}
 		break
-	case int32(0xE8):
-		memset(tls, bp+4568, 0, uint32(64))
-		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4568))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4568))).Aabb = b3RecR_AABB(tls, rdr)
-		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4568))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+	case int32(0x81):
+		memset(tls, bp+4568, 0, uint32(136))
+		(*(*b3RecArgs_CreateMoverJoint)(unsafe.Add(nil, bp+4568))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_CreateMoverJoint)(unsafe.Add(nil, bp+4568))).Def = b3RecR_MOVERJOINTDEF(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryOverlapAABB(tls, bp+4568, rdr)
+			b3RecDispatch_CreateMoverJoint(tls, bp+4568, rdr)
+		}
+	case int32(0x82):
+		memset(tls, bp+4704, 0, uint32(20))
+		(*(*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Add(nil, bp+4704))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_MoverJointSetLinearVelocity)(unsafe.Add(nil, bp+4704))).Velocity = b3RecR_VEC3(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_MoverJointSetLinearVelocity(tls, bp+4704, rdr)
+		}
+	case int32(0x83):
+		memset(tls, bp+4724, 0, uint32(12))
+		(*(*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Add(nil, bp+4724))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_MoverJointSetMaxVelocityForce)(unsafe.Add(nil, bp+4724))).MaxForce = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_MoverJointSetMaxVelocityForce(tls, bp+4724, rdr)
+		}
+		break
+	case int32(0x84):
+		memset(tls, bp+4736, 0, uint32(160))
+		(*(*b3RecArgs_CreatePogoJoint)(unsafe.Add(nil, bp+4736))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_CreatePogoJoint)(unsafe.Add(nil, bp+4736))).Def = b3RecR_POGOJOINTDEF(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_CreatePogoJoint(tls, bp+4736, rdr)
+		}
+	case int32(0x85):
+		memset(tls, bp+4896, 0, uint32(12))
+		(*(*b3RecArgs_PogoJointSetRestLength)(unsafe.Add(nil, bp+4896))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetRestLength)(unsafe.Add(nil, bp+4896))).Length = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetRestLength(tls, bp+4896, rdr)
+		}
+	case int32(0x86):
+		memset(tls, bp+4908, 0, uint32(12))
+		(*(*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Add(nil, bp+4908))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetSpringHertz)(unsafe.Add(nil, bp+4908))).Hertz = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetSpringHertz(tls, bp+4908, rdr)
+		}
+	case int32(0x87):
+		memset(tls, bp+4920, 0, uint32(12))
+		(*(*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Add(nil, bp+4920))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetSpringDampingRatio)(unsafe.Add(nil, bp+4920))).DampingRatio = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetSpringDampingRatio(tls, bp+4920, rdr)
+		}
+	case int32(0x88):
+		memset(tls, bp+4932, 0, uint32(12))
+		(*(*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Add(nil, bp+4932))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetMaxTensionForce)(unsafe.Add(nil, bp+4932))).Force = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetMaxTensionForce(tls, bp+4932, rdr)
+		}
+	case int32(0x89):
+		memset(tls, bp+4944, 0, uint32(12))
+		(*(*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Add(nil, bp+4944))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetMaxCompressionForce)(unsafe.Add(nil, bp+4944))).Force = b3RecR_F32(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetMaxCompressionForce(tls, bp+4944, rdr)
+		}
+	case int32(0x8A):
+		memset(tls, bp+4956, 0, uint32(20))
+		(*(*b3RecArgs_PogoJointSetNormal)(unsafe.Add(nil, bp+4956))).Joint = b3RecR_JOINTID(tls, rdr)
+		(*(*b3RecArgs_PogoJointSetNormal)(unsafe.Add(nil, bp+4956))).Normal = b3RecR_VEC3(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_PogoJointSetNormal(tls, bp+4956, rdr)
+		}
+		break
+	case int32(0xE8):
+		memset(tls, bp+4976, 0, uint32(64))
+		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4976))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4976))).Aabb = b3RecR_AABB(tls, rdr)
+		(*(*b3RecArgs_QueryOverlapAABB)(unsafe.Add(nil, bp+4976))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
+			b3RecDispatch_QueryOverlapAABB(tls, bp+4976, rdr)
 		}
 	case int32(0xE9):
-		memset(tls, bp+4632, 0, uint32(64))
-		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+4632))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+4632))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+4632))).Proxy = b3RecR_SHAPEPROXY(tls, rdr)
-		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+4632))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5040, 0, uint32(64))
+		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+5040))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+5040))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+5040))).Proxy = b3RecR_SHAPEPROXY(tls, rdr)
+		(*(*b3RecArgs_QueryOverlapShape)(unsafe.Add(nil, bp+5040))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryOverlapShape(tls, bp+4632, rdr)
+			b3RecDispatch_QueryOverlapShape(tls, bp+5040, rdr)
 		}
 	case int32(0xEA):
-		memset(tls, bp+4696, 0, uint32(64))
-		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+4696))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+4696))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+4696))).Translation = b3RecR_VEC3(tls, rdr)
-		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+4696))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5104, 0, uint32(64))
+		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+5104))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+5104))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+5104))).Translation = b3RecR_VEC3(tls, rdr)
+		(*(*b3RecArgs_QueryCastRay)(unsafe.Add(nil, bp+5104))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryCastRay(tls, bp+4696, rdr)
+			b3RecDispatch_QueryCastRay(tls, bp+5104, rdr)
 		}
 	case int32(0xEB):
-		memset(tls, bp+4760, 0, uint32(72))
-		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+4760))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+4760))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+4760))).Proxy = b3RecR_SHAPEPROXY(tls, rdr)
-		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+4760))).Translation = b3RecR_VEC3(tls, rdr)
-		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+4760))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5168, 0, uint32(72))
+		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+5168))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+5168))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+5168))).Proxy = b3RecR_SHAPEPROXY(tls, rdr)
+		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+5168))).Translation = b3RecR_VEC3(tls, rdr)
+		(*(*b3RecArgs_QueryCastShape)(unsafe.Add(nil, bp+5168))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryCastShape(tls, bp+4760, rdr)
+			b3RecDispatch_QueryCastShape(tls, bp+5168, rdr)
 		}
 	case int32(0xEC):
-		memset(tls, bp+4832, 0, uint32(64))
-		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+4832))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+4832))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+4832))).Translation = b3RecR_VEC3(tls, rdr)
-		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+4832))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5240, 0, uint32(64))
+		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+5240))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+5240))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+5240))).Translation = b3RecR_VEC3(tls, rdr)
+		(*(*b3RecArgs_QueryCastRayClosest)(unsafe.Add(nil, bp+5240))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryCastRayClosest(tls, bp+4832, rdr)
+			b3RecDispatch_QueryCastRayClosest(tls, bp+5240, rdr)
 		}
 	case int32(0xED):
-		memset(tls, bp+4896, 0, uint32(88))
-		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+4896))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+4896))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+4896))).Mover = b3RecR_CAPSULE(tls, rdr)
-		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+4896))).Translation = b3RecR_VEC3(tls, rdr)
-		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+4896))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5304, 0, uint32(88))
+		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+5304))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+5304))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+5304))).Mover = b3RecR_CAPSULE(tls, rdr)
+		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+5304))).Translation = b3RecR_VEC3(tls, rdr)
+		(*(*b3RecArgs_QueryCastMover)(unsafe.Add(nil, bp+5304))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryCastMover(tls, bp+4896, rdr)
+			b3RecDispatch_QueryCastMover(tls, bp+5304, rdr)
 		}
 	case int32(0xEE):
-		memset(tls, bp+4984, 0, uint32(80))
-		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+4984))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+4984))).Origin = b3RecR_POSITION(tls, rdr)
-		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+4984))).Mover = b3RecR_CAPSULE(tls, rdr)
-		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+4984))).Filter = b3RecR_QUERYFILTER(tls, rdr)
+		memset(tls, bp+5392, 0, uint32(80))
+		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+5392))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+5392))).Origin = b3RecR_POSITION(tls, rdr)
+		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+5392))).Mover = b3RecR_CAPSULE(tls, rdr)
+		(*(*b3RecArgs_QueryCollideMover)(unsafe.Add(nil, bp+5392))).Filter = b3RecR_QUERYFILTER(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryCollideMover(tls, bp+4984, rdr)
+			b3RecDispatch_QueryCollideMover(tls, bp+5392, rdr)
 		}
 		break
 	case int32(0xEF):
-		memset(tls, bp+5064, 0, uint32(8))
-		(*(*b3RecArgs_QueryTag)(unsafe.Add(nil, bp+5064))).Key = b3RecR_U64(tls, rdr)
+		memset(tls, bp+5472, 0, uint32(8))
+		(*(*b3RecArgs_QueryTag)(unsafe.Add(nil, bp+5472))).Key = b3RecR_U64(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_QueryTag(tls, bp+5064, rdr)
+			b3RecDispatch_QueryTag(tls, bp+5472, rdr)
 		}
 	case int32(0xF1):
-		memset(tls, bp+5072, 0, uint32(16))
-		(*(*b3RecArgs_StateHash)(unsafe.Add(nil, bp+5072))).World = b3RecR_WORLDID(tls, rdr)
-		(*(*b3RecArgs_StateHash)(unsafe.Add(nil, bp+5072))).Hash = b3RecR_U64(tls, rdr)
+		memset(tls, bp+5480, 0, uint32(16))
+		(*(*b3RecArgs_StateHash)(unsafe.Add(nil, bp+5480))).World = b3RecR_WORLDID(tls, rdr)
+		(*(*b3RecArgs_StateHash)(unsafe.Add(nil, bp+5480))).Hash = b3RecR_U64(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_StateHash(tls, bp+5072, rdr)
+			b3RecDispatch_StateHash(tls, bp+5480, rdr)
 		}
 		break
 	case int32(0xF2):
-		memset(tls, bp+5088, 0, uint32(24))
-		(*(*b3RecArgs_RecordingBounds)(unsafe.Add(nil, bp+5088))).Bounds = b3RecR_AABB(tls, rdr)
+		memset(tls, bp+5496, 0, uint32(24))
+		(*(*b3RecArgs_RecordingBounds)(unsafe.Add(nil, bp+5496))).Bounds = b3RecR_AABB(tls, rdr)
 		if (*b3RecReader)(unsafe.Pointer(rdr)).Ok != 0 {
-			b3RecDispatch_RecordingBounds(tls, bp+5088, rdr)
+			b3RecDispatch_RecordingBounds(tls, bp+5496, rdr)
 		}
 	default:
-		printf(tls, __ccgo_ts+27180, vaList(bp+5120, int32FromUint8(opcode), payloadSize))
+		printf(tls, __ccgo_ts+27894, vaList(bp+5528, int32FromUint8(opcode), payloadSize))
 		// payloadStart is in bounds, so size - payloadStart is the bytes left to skip over
 		if payloadSize > uint32FromInt32((*b3RecReader)(unsafe.Pointer(rdr)).Size-payloadStart) {
 			(*b3RecReader)(unsafe.Pointer(rdr)).Ok = boolUint8(false1 != 0)
@@ -8656,11 +9038,11 @@ func b3RecLoadSlots(tls *_Stack, rdr uintptr, data uintptr, size int32, registry
 	regStart = int32FromUint64(registryOffset)
 	regEnd = regStart + int32FromUint64(registryByteCount)
 	if regEnd > size {
-		printf(tls, __ccgo_ts+27236, 0)
+		printf(tls, __ccgo_ts+27950, 0)
 		return boolUint8(false1 != 0)
 	}
 	if regStart+int32(4) > size {
-		printf(tls, __ccgo_ts+27280, 0)
+		printf(tls, __ccgo_ts+27994, 0)
 		return boolUint8(false1 != 0)
 	}
 	dataEnd = data + uintptr(regEnd)
@@ -8676,7 +9058,7 @@ func b3RecLoadSlots(tls *_Stack, rdr uintptr, data uintptr, size int32, registry
 	// Each entry is at least 5 bytes (kind + 4-byte length). A count that cannot fit the remaining
 	// registry bytes is a corrupt header, so reject it before allocating.
 	if rp > dataEnd || count > uint32FromInt32(int32(dataEnd)-int32(rp))/uint32(5) {
-		printf(tls, __ccgo_ts+27314, 0)
+		printf(tls, __ccgo_ts+28028, 0)
 		return boolUint8(false1 != 0)
 	}
 	slots = b3Alloc(tls, count*uint32(12))
@@ -8687,7 +9069,7 @@ func b3RecLoadSlots(tls *_Stack, rdr uintptr, data uintptr, size int32, registry
 			break
 		}
 		if rp+uintptr(5) > dataEnd {
-			printf(tls, __ccgo_ts+27357, vaList(bp+8, i))
+			printf(tls, __ccgo_ts+28071, vaList(bp+8, i))
 			b3RecFreeSlots(tls, slots, int32FromUint32(count))
 			return boolUint8(false1 != 0)
 		}
@@ -8696,10 +9078,10 @@ func b3RecLoadSlots(tls *_Stack, rdr uintptr, data uintptr, size int32, registry
 		rp = rp + uintptr(5)
 		error1 = uintptrFromInt32(0)
 		if byteCount == uint32(0) || byteCount > uint32FromInt32(int32FromInt32(_INT32_MAX1)) {
-			error1 = __ccgo_ts + 27403
+			error1 = __ccgo_ts + 28117
 		} else {
 			if byteCount > uint32FromInt32(int32(dataEnd)-int32(rp)) {
-				error1 = __ccgo_ts + 27429
+				error1 = __ccgo_ts + 28143
 			} else {
 				bytes = b3Alloc(tls, byteCount)
 				memcpy(tls, bytes, rp, byteCount)
@@ -8709,12 +9091,12 @@ func b3RecLoadSlots(tls *_Stack, rdr uintptr, data uintptr, size int32, registry
 				// Validate the compound.
 				// todo validate other types?
 				if int32FromUint8(kind) == int32(b3_geometryCompound) && b3ValidateCompound(tls, bytes, int32FromUint32(byteCount)) == uintptrFromInt32(0) {
-					error1 = __ccgo_ts + 27449
+					error1 = __ccgo_ts + 28163
 				}
 			}
 		}
 		if error1 != uintptrFromInt32(0) {
-			printf(tls, __ccgo_ts+27473, vaList(bp+8, i, error1))
+			printf(tls, __ccgo_ts+28187, vaList(bp+8, i, error1))
 			b3RecFreeSlots(tls, slots, int32FromUint32(count))
 			return boolUint8(false1 != 0)
 		}
@@ -8799,7 +9181,7 @@ func b3RecSeedKeyframeRegistry(tls *_Stack, player uintptr) {
 		id = b3AppendGeometry(tls, reg, (*b3RegistrySlot)(unsafe.Pointer(slot)).Kind, h, (*b3RegistrySlot)(unsafe.Pointer(slot)).Bytes, (*b3RegistrySlot)(unsafe.Pointer(slot)).ByteCount)
 		// Seeding in order without dedup keeps id == slot index.
 		if v2 = !!(id == uint32FromInt32(i)); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+27509, __ccgo_ts+27527, int32FromInt32(2584))
+			b3InternalAssert(tls, __ccgo_ts+28223, __ccgo_ts+28241, int32FromInt32(2673))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		_ = id
@@ -8831,7 +9213,7 @@ func b3RecCaptureKeyframe(tls *_Stack, player uintptr) {
 	b3SerializeWorld(tls, world, bp, (*b3RecPlayer)(unsafe.Pointer(player)).KeyframeRec)
 	// Registry must not grow: all geometry was pre-seeded and the registry dedups exactly.
 	if v1 = !!((*b3Recording)(unsafe.Pointer((*b3RecPlayer)(unsafe.Pointer(player)).KeyframeRec)).Registry.Entries.Count == regCountBefore); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+27551, __ccgo_ts+27527, int32FromInt32(2601))
+		b3InternalAssert(tls, __ccgo_ts+28265, __ccgo_ts+28241, int32FromInt32(2690))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	bodyBytes = uint32(uint32FromInt32((*b3RecPlayer)(unsafe.Pointer(player)).BodyIdCount)) * uint32(8)
@@ -9030,7 +9412,7 @@ func b3RecPlayer_SubStepFrame(tls *_Stack, player uintptr) {
 		}
 		if op == int32(b3_recOpCreateBody) {
 			if v2 = !!(int32FromUint8((*b3RecPlayer)(unsafe.Pointer(player)).AtPreStep) == int32FromInt32(false1)); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+27987, __ccgo_ts+27527, int32FromInt32(3072))
+				b3InternalAssert(tls, __ccgo_ts+28701, __ccgo_ts+28241, int32FromInt32(3161))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			haveCreateBodyOp = boolUint8(true1 != 0)
@@ -9834,12 +10216,12 @@ func b3RecPlayer_DrawFrameQueries(tls *_Stack, player uintptr, draw uintptr, que
 				}
 			}
 			if name != uintptrFromInt32(0) && int32FromUint8(*(*uint8)(unsafe.Add(nil, name))) != int32('\000') && id != uint64(0) {
-				__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28014, vaList(bp+72, name, id))
+				__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28728, vaList(bp+72, name, id))
 			} else {
 				if name != uintptrFromInt32(0) && int32FromUint8(*(*uint8)(unsafe.Add(nil, name))) != int32('\000') {
-					__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28027, vaList(bp+72, name))
+					__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28741, vaList(bp+72, name))
 				} else {
-					__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28033, vaList(bp+72, id))
+					__builtin_snprintf(tls, bp, uint32(64), __ccgo_ts+28747, vaList(bp+72, id))
 				}
 			}
 			labelPos = (*b3RecDrawQuery)(unsafe.Pointer(q)).Origin

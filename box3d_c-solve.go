@@ -1477,12 +1477,12 @@ func b3SolveContinuous(tls *_Stack, world uintptr, bodySimIndex int32, taskConte
 	var _ /* context at bp+0 */ b3ContinuousContext
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = aabb1, awakeSet, base1, box1, box2, c, c1, c2, center, dv, dynamicTree, event, fastBody, fastBodySim, fastBodyState, fastShape, i, isBullet, isShapeFast, kinematicTree, lengthSq, newCapacity, newSize, oldSize, origin1, out, out1, out2, proxyId, proxyType, q1, q3, q4, qn, radius, rotationChord, rv, s3, s4, safetyFactor, shape, shape1, shapeFatAABB, shapeFatAABB1, shapeId, speculativeScalar, staticTree, sweep, sweptBox, t1, t11, t2, t21, t3, t31, timeLoss, transform, v3, xf1, xf2, v1, v10, v106, v11, v117, v128, v13, v135, v146, v15, v156, v158, v16, v160, v162, v164, v166, v168, v17, v170, v172, v173, v178, v179, v18, v180, v182, v183, v19, v2, v21, v214, v215, v217, v22, v23, v24, v26, v27, v28, v292, v31, v30, v306, v32, v324, v326, v327, v33, v34, v35, v37, v38, v39, v4, v41, v42, v43, v44, v45, v47, v48, v49, v5, v59, v6, v68, v69, v7, v75, v80, v86, v88, v9, v91, v95, v98, v99
 	if v1 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+31091, int32FromInt32(501))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+31805, int32FromInt32(501))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
 	if v2 = !!(0 <= bodySimIndex && bodySimIndex < (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+31387, __ccgo_ts+31091, int32FromInt32(502))
+		b3InternalAssert(tls, __ccgo_ts+32101, __ccgo_ts+31805, int32FromInt32(502))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	fastBodySim = (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Data + uintptr(bodySimIndex)*252
@@ -1631,7 +1631,7 @@ _66:
 	kinematicTree = world + 800 + uintptr(b3_kinematicBody)*112
 	dynamicTree = world + 800 + uintptr(b3_dynamicBody)*112
 	if v1 = !!(0 <= (*b3BodySim)(unsafe.Pointer(fastBodySim)).BodyId && (*b3BodySim)(unsafe.Pointer(fastBodySim)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+31305, __ccgo_ts+31091, int32FromInt32(521))
+		b3InternalAssert(tls, __ccgo_ts+32019, __ccgo_ts+31805, int32FromInt32(521))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	fastBody = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3BodySim)(unsafe.Pointer(fastBodySim)).BodyId)*96
@@ -1701,7 +1701,7 @@ _92:
 	shapeId = (*b3Body)(unsafe.Pointer(fastBody)).HeadShapeId
 	for shapeId != -int32(1) {
 		if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31091, int32FromInt32(537))
+			b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31805, int32FromInt32(537))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		fastShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -2131,7 +2131,7 @@ _92:
 		(*b3BodySim)(unsafe.Pointer(fastBodySim)).Center0 = center
 		*(*uint32_t)(unsafe.Add(nil, fastBodySim+40)) |= uint32(b3_hadTimeOfImpact)
 		if v1 = !!(0 <= bodySimIndex && bodySimIndex < (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodyStates.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31460, __ccgo_ts+31091, int32FromInt32(602))
+			b3InternalAssert(tls, __ccgo_ts+32174, __ccgo_ts+31805, int32FromInt32(602))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// Timeloss means there is a lost gravity contribution. Other forces and torques are ignored for now.
@@ -2177,7 +2177,7 @@ _92:
 	_287:
 		(*b3BodyState)(unsafe.Pointer(fastBodyState)).LinearVelocity = v16
 		if v1 = !!(0 <= bodySimIndex && bodySimIndex < (*b3World)(unsafe.Pointer(world)).BodyMoveEvents.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+31535, __ccgo_ts+31091, int32FromInt32(612))
+			b3InternalAssert(tls, __ccgo_ts+32249, __ccgo_ts+31805, int32FromInt32(612))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		// The move event was written before CCD, so correct it with the impact pose
@@ -2188,7 +2188,7 @@ _92:
 		shapeId = (*b3Body)(unsafe.Pointer(fastBody)).HeadShapeId
 		for shapeId != -int32(1) {
 			if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31091, int32FromInt32(621))
+				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31805, int32FromInt32(621))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			shape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -2267,7 +2267,7 @@ _92:
 		shapeId = (*b3Body)(unsafe.Pointer(fastBody)).HeadShapeId
 		for shapeId != -int32(1) {
 			if v1 = !!(0 <= shapeId && shapeId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31091, int32FromInt32(659))
+				b3InternalAssert(tls, __ccgo_ts+1997, __ccgo_ts+31805, int32FromInt32(659))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			shape1 = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(shapeId)*208
@@ -2459,7 +2459,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		jointSyncIndex = uint32(1)
 		syncBits = jointSyncIndex<<int32FromInt32(16) | uint32FromInt32(stageIndex)
 		if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(stageIndex)*24))).Type1 == int32(b3_stagePrepareJoints)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+31924, __ccgo_ts+31091, int32FromInt32(1229))
+			b3InternalAssert(tls, __ccgo_ts+32638, __ccgo_ts+31805, int32FromInt32(1229))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		b3ExecuteMainStage(tls, stages+uintptr(stageIndex)*24, context, syncBits)
@@ -2469,7 +2469,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		convexSyncIndex = uint32(1)
 		syncBits = convexSyncIndex<<int32FromInt32(16) | uint32FromInt32(stageIndex)
 		if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(stageIndex)*24))).Type1 == int32(b3_stagePrepareWideContacts)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+31973, __ccgo_ts+31091, int32FromInt32(1237))
+			b3InternalAssert(tls, __ccgo_ts+32687, __ccgo_ts+31805, int32FromInt32(1237))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		b3ExecuteMainStage(tls, stages+uintptr(stageIndex)*24, context, syncBits)
@@ -2479,7 +2479,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		meshSyncIndex = uint32(1)
 		syncBits = meshSyncIndex<<int32FromInt32(16) | uint32FromInt32(stageIndex)
 		if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(stageIndex)*24))).Type1 == int32(b3_stagePrepareContacts)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+32028, __ccgo_ts+31091, int32FromInt32(1245))
+			b3InternalAssert(tls, __ccgo_ts+32742, __ccgo_ts+31805, int32FromInt32(1245))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		b3ExecuteMainStage(tls, stages+uintptr(stageIndex)*24, context, syncBits)
@@ -2502,7 +2502,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 			// Integrate velocities
 			syncBits = uint32FromInt32(bodySyncIndex<<int32(16) | iterationStageIndex)
 			if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex)*24))).Type1 == int32(b3_stageIntegrateVelocities)); !v4 {
-				b3InternalAssert(tls, __ccgo_ts+32079, __ccgo_ts+31091, int32FromInt32(1266))
+				b3InternalAssert(tls, __ccgo_ts+32793, __ccgo_ts+31805, int32FromInt32(1266))
 			}
 			_ = v4 || bool(int32FromInt32(0) != 0)
 			b3ExecuteMainStage(tls, stages+uintptr(iterationStageIndex)*24, context, syncBits)
@@ -2519,7 +2519,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 				}
 				syncBits = uint32FromInt32(graphSyncIndex<<int32(16) | iterationStageIndex)
 				if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex)*24))).Type1 == int32(b3_stageWarmStart)); !v4 {
-					b3InternalAssert(tls, __ccgo_ts+32143, __ccgo_ts+31091, int32FromInt32(1280))
+					b3InternalAssert(tls, __ccgo_ts+32857, __ccgo_ts+31805, int32FromInt32(1280))
 				}
 				_ = v4 || bool(int32FromInt32(0) != 0)
 				b3ExecuteMainStage(tls, stages+uintptr(iterationStageIndex)*24, context, syncBits)
@@ -2548,7 +2548,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 					}
 					syncBits = uint32FromInt32(graphSyncIndex<<int32(16) | iterationStageIndex)
 					if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex)*24))).Type1 == int32(b3_stageSolve)); !v4 {
-						b3InternalAssert(tls, __ccgo_ts+32197, __ccgo_ts+31091, int32FromInt32(1299))
+						b3InternalAssert(tls, __ccgo_ts+32911, __ccgo_ts+31805, int32FromInt32(1299))
 					}
 					_ = v4 || bool(int32FromInt32(0) != 0)
 					b3ExecuteMainStage(tls, stages+uintptr(iterationStageIndex)*24, context, syncBits)
@@ -2567,7 +2567,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 			*(*float32)(unsafe.Add(nil, profile+36)) += b3GetMillisecondsAndReset(tls, bp+8)
 			// Integrate positions
 			if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex)*24))).Type1 == int32(b3_stageIntegratePositions)); !v4 {
-				b3InternalAssert(tls, __ccgo_ts+32247, __ccgo_ts+31091, int32FromInt32(1309))
+				b3InternalAssert(tls, __ccgo_ts+32961, __ccgo_ts+31805, int32FromInt32(1309))
 			}
 			_ = v4 || bool(int32FromInt32(0) != 0)
 			syncBits = uint32FromInt32(bodySyncIndex<<int32(16) | iterationStageIndex)
@@ -2591,7 +2591,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 					}
 					syncBits = uint32FromInt32(graphSyncIndex<<int32(16) | iterationStageIndex)
 					if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex)*24))).Type1 == int32(b3_stageRelax)); !v4 {
-						b3InternalAssert(tls, __ccgo_ts+32310, __ccgo_ts+31091, int32FromInt32(1327))
+						b3InternalAssert(tls, __ccgo_ts+33024, __ccgo_ts+31805, int32FromInt32(1327))
 					}
 					_ = v4 || bool(int32FromInt32(0) != 0)
 					b3ExecuteMainStage(tls, stages+uintptr(iterationStageIndex)*24, context, syncBits)
@@ -2637,7 +2637,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 					}
 					syncBits = uint32FromInt32(graphSyncIndex<<int32(16) | iterationStageIndex1)
 					if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(iterationStageIndex1)*24))).Type1 == int32(b3_stageRestitution)); !v4 {
-						b3InternalAssert(tls, __ccgo_ts+32360, __ccgo_ts+31091, int32FromInt32(1352))
+						b3InternalAssert(tls, __ccgo_ts+33074, __ccgo_ts+31805, int32FromInt32(1352))
 					}
 					_ = v4 || bool(int32FromInt32(0) != 0)
 					b3ExecuteMainStage(tls, stages+uintptr(iterationStageIndex1)*24, context, syncBits)
@@ -2660,14 +2660,14 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		b3StoreImpulses_Overflow(tls, context)
 		syncBits = convexSyncIndex<<int32FromInt32(16) | uint32FromInt32(stageIndex)
 		if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(stageIndex)*24))).Type1 == int32(b3_stageStoreWideImpulses)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+32416, __ccgo_ts+31091, int32FromInt32(1368))
+			b3InternalAssert(tls, __ccgo_ts+33130, __ccgo_ts+31805, int32FromInt32(1368))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		b3ExecuteMainStage(tls, stages+uintptr(stageIndex)*24, context, syncBits)
 		stageIndex = stageIndex + int32(1)
 		syncBits = meshSyncIndex<<int32FromInt32(16) | uint32FromInt32(stageIndex)
 		if v4 = !!((*(*b3SolverStage)(unsafe.Add(nil, stages+uintptr(stageIndex)*24))).Type1 == int32(b3_stageStoreImpulses)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+32469, __ccgo_ts+31091, int32FromInt32(1373))
+			b3InternalAssert(tls, __ccgo_ts+33183, __ccgo_ts+31805, int32FromInt32(1373))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		b3ExecuteMainStage(tls, stages+uintptr(stageIndex)*24, context, syncBits)
@@ -2676,7 +2676,7 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		// Signal workers to finish
 		atomicStoreNUint32(context+272, uint32(0xffffffff), int32FromInt32(__ATOMIC_SEQ_CST))
 		if v4 = !!(stageIndex == (*b3StepContext)(unsafe.Pointer(context)).StageCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+32518, __ccgo_ts+31091, int32FromInt32(1382))
+			b3InternalAssert(tls, __ccgo_ts+33232, __ccgo_ts+31805, int32FromInt32(1382))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		return
@@ -2719,12 +2719,12 @@ func b3SolverTask(tls *_Stack, taskContext uintptr) {
 		}
 		stageIndex1 = int32FromUint32(syncBits1 & uint32(0xFFFF))
 		if v4 = !!(stageIndex1 < (*b3StepContext)(unsafe.Pointer(context)).StageCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+32552, __ccgo_ts+31091, int32FromInt32(1427))
+			b3InternalAssert(tls, __ccgo_ts+33266, __ccgo_ts+31805, int32FromInt32(1427))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		syncIndex = int32FromUint32(syncBits1 >> int32FromInt32(16) & uint32(0xFFFF))
 		if v4 = !!(syncIndex > int32FromInt32(0)); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+31910, __ccgo_ts+31091, int32FromInt32(1430))
+			b3InternalAssert(tls, __ccgo_ts+32624, __ccgo_ts+31805, int32FromInt32(1430))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		previousSyncIndex = syncIndex - int32(1)
@@ -2781,7 +2781,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	// Only count steps that advance the simulation
 	*(*uint64_t)(unsafe.Add(nil, world+4648)) += uint64(1)
 	if v2 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+31091, int32FromInt32(1467))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+31805, int32FromInt32(1467))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
@@ -2793,7 +2793,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	*(*uint64_t)(unsafe.Add(nil, bp)) = b3GetTicks(tls)
 	// Prepare buffers for continuous collision (fast bodies)
 	atomicStoreNInt32(stepContext+104, 0, int32FromInt32(__ATOMIC_SEQ_CST))
-	(*b3StepContext)(unsafe.Pointer(stepContext)).BulletBodies = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(awakeBodyCount)*uint64(4)), __ccgo_ts+32693)
+	(*b3StepContext)(unsafe.Pointer(stepContext)).BulletBodies = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(awakeBodyCount)*uint64(4)), __ccgo_ts+33407)
 	graph = world + 1160
 	colors = graph
 	(*b3StepContext)(unsafe.Pointer(stepContext)).Sims = (*b3SolverSet)(unsafe.Pointer(awakeSet)).BodySims.Data
@@ -2895,9 +2895,9 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	meshPrepareDim = b3ComputeBlockCount(tls, meshGroupCount, minContactsPerBlock, maxBlockCount)
 	jointPrepareDim = b3ComputeBlockCount(tls, jointCount, minJointsPerBlock, maxBlockCount)
 	wideContactByteCount = b3GetWideContactConstraintByteCount(tls, (*b3World)(unsafe.Pointer(world)).SimdWidth)
-	wideConstraints = b3StackAlloc(tls, world, wideContactCount*wideContactByteCount, __ccgo_ts+32707)
-	meshLaneOrder = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshContactCount)*uint64(4)), __ccgo_ts+32721)
-	meshManifoldStarts = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshGroupCount+int32FromInt32(1))*uint64(4)), __ccgo_ts+32737)
+	wideConstraints = b3StackAlloc(tls, world, wideContactCount*wideContactByteCount, __ccgo_ts+33421)
+	meshLaneOrder = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshContactCount)*uint64(4)), __ccgo_ts+33435)
+	meshManifoldStarts = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshGroupCount+int32FromInt32(1))*uint64(4)), __ccgo_ts+33451)
 	// Sort mesh contacts by manifold count so that contacts with more manifolds are solved
 	// together keeping the SIMD lanes fuller and less ragged.
 	meshSlotCount = 0
@@ -2936,7 +2936,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 		;
 		i2 = i2 + 1
 	}
-	bucketStarts = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(maxManifoldCount+int32FromInt32(1))*uint64(4)), __ccgo_ts+32758)
+	bucketStarts = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(maxManifoldCount+int32FromInt32(1))*uint64(4)), __ccgo_ts+33472)
 	orderBase = 0
 	groupBase = 0
 	i3 = 0
@@ -3023,18 +3023,18 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 		i3 = i3 + 1
 	}
 	if v2 = !!(orderBase == meshContactCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32771, __ccgo_ts+31091, int32FromInt32(1651))
+		b3InternalAssert(tls, __ccgo_ts+33485, __ccgo_ts+31805, int32FromInt32(1651))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	if v2 = !!(groupBase == meshGroupCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32801, __ccgo_ts+31091, int32FromInt32(1652))
+		b3InternalAssert(tls, __ccgo_ts+33515, __ccgo_ts+31805, int32FromInt32(1652))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	*(*int32)(unsafe.Add(nil, meshManifoldStarts+uintptr(meshGroupCount)*4)) = meshSlotCount
 	b3StackFree(tls, world, bucketStarts)
 	wideMeshConstraintByteCount = b3GetWideMeshConstraintByteCount(tls, (*b3World)(unsafe.Pointer(world)).SimdWidth)
 	wideMeshManifoldByteCount = b3GetWideMeshManifoldByteCount(tls, (*b3World)(unsafe.Pointer(world)).SimdWidth)
-	wideMeshConstraints = b3StackAlloc(tls, world, meshGroupCount*wideMeshConstraintByteCount+meshSlotCount*wideMeshManifoldByteCount, __ccgo_ts+32829)
+	wideMeshConstraints = b3StackAlloc(tls, world, meshGroupCount*wideMeshConstraintByteCount+meshSlotCount*wideMeshManifoldByteCount, __ccgo_ts+33543)
 	overflow = colors + uintptr(int32FromInt32(_B3_GRAPH_COLOR_COUNT)-int32FromInt32(1))*120
 	overflowCount = (*b3GraphColor)(unsafe.Pointer(overflow)).Contacts.Count
 	overflowManifoldCount = 0
@@ -3050,8 +3050,8 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 		;
 		i4 = i4 + 1
 	}
-	(*b3GraphColor)(unsafe.Pointer(overflow)).ContactConstraints = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(overflowCount)*uint64(168)), __ccgo_ts+32851)
-	(*b3GraphColor)(unsafe.Pointer(overflow)).ManifoldConstraints = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(overflowManifoldCount)*uint64(324)), __ccgo_ts+32869)
+	(*b3GraphColor)(unsafe.Pointer(overflow)).ContactConstraints = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(overflowCount)*uint64(168)), __ccgo_ts+33565)
+	(*b3GraphColor)(unsafe.Pointer(overflow)).ManifoldConstraints = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(overflowManifoldCount)*uint64(324)), __ccgo_ts+33583)
 	// Distribute transient constraints to each graph color and prepare spans
 	wideBase = 0
 	contactBase = 0
@@ -3108,7 +3108,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	(*(*[25]b3WidePrepareSpan)(unsafe.Add(nil, bp+104)))[activeColorCount].Count = 0
 	(*(*[25]b3WidePrepareSpan)(unsafe.Add(nil, bp+104)))[activeColorCount].Contacts = uintptrFromInt32(0)
 	if v2 = !!(wideBase == wideContactCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32888, __ccgo_ts+31091, int32FromInt32(1748))
+		b3InternalAssert(tls, __ccgo_ts+33602, __ccgo_ts+31805, int32FromInt32(1748))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	(*(*[25]b3MeshPrepareSpan)(unsafe.Add(nil, bp+504)))[activeColorCount].Start = meshGroupCount
@@ -3116,18 +3116,18 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	(*(*[25]b3MeshPrepareSpan)(unsafe.Add(nil, bp+504)))[activeColorCount].Contacts = uintptrFromInt32(0)
 	(*(*[25]b3MeshPrepareSpan)(unsafe.Add(nil, bp+504)))[activeColorCount].Order = uintptrFromInt32(0)
 	if v2 = !!(contactBase == meshContactCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32917, __ccgo_ts+31091, int32FromInt32(1754))
+		b3InternalAssert(tls, __ccgo_ts+33631, __ccgo_ts+31805, int32FromInt32(1754))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	if v2 = !!(meshGroupBase == meshGroupCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32949, __ccgo_ts+31091, int32FromInt32(1755))
+		b3InternalAssert(tls, __ccgo_ts+33663, __ccgo_ts+31805, int32FromInt32(1755))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	(*(*[25]b3JointPrepareSpan)(unsafe.Add(nil, bp+1104)))[activeColorCount].Start = jointCount
 	(*(*[25]b3JointPrepareSpan)(unsafe.Add(nil, bp+1104)))[activeColorCount].Count = 0
 	(*(*[25]b3JointPrepareSpan)(unsafe.Add(nil, bp+1104)))[activeColorCount].Joints = uintptrFromInt32(0)
 	if v2 = !!(jointBase == jointCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+32981, __ccgo_ts+31091, int32FromInt32(1760))
+		b3InternalAssert(tls, __ccgo_ts+33695, __ccgo_ts+31805, int32FromInt32(1760))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	//// Special span for overflow to allow for function re-use
@@ -3161,12 +3161,12 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	stageCount = stageCount + int32(1)
 	// b3_stageStoreImpulses
 	stageCount = stageCount + int32(1)
-	stages = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(stageCount)*uint64(24)), __ccgo_ts+33005)
-	bodyBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(bodyDim.Count)*uint64(12)), __ccgo_ts+33012)
-	convexBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(convexPrepareDim.Count)*uint64(12)), __ccgo_ts+33024)
-	meshBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshPrepareDim.Count)*uint64(12)), __ccgo_ts+33038)
-	jointBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(jointPrepareDim.Count)*uint64(12)), __ccgo_ts+33050)
-	graphBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(graphBlockCount)*uint64(12)), __ccgo_ts+33063)
+	stages = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(stageCount)*uint64(24)), __ccgo_ts+33719)
+	bodyBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(bodyDim.Count)*uint64(12)), __ccgo_ts+33726)
+	convexBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(convexPrepareDim.Count)*uint64(12)), __ccgo_ts+33738)
+	meshBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(meshPrepareDim.Count)*uint64(12)), __ccgo_ts+33752)
+	jointBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(jointPrepareDim.Count)*uint64(12)), __ccgo_ts+33764)
+	graphBlocks = b3StackAlloc(tls, world, int32FromUint64(uint64FromInt32(graphBlockCount)*uint64(12)), __ccgo_ts+33777)
 	// Split an awake island. This modifies:
 	// - stack allocator
 	// - world island array and solver set
@@ -3176,7 +3176,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	splitIslandTask = uintptrFromInt32(0)
 	if (*b3World)(unsafe.Pointer(world)).SplitIslandId != -int32(1) {
 		if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
-			splitIslandTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3SplitIslandTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+33076)
+			splitIslandTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3SplitIslandTask), world, (*b3World)(unsafe.Pointer(world)).UserTaskContext, __ccgo_ts+33790)
 			*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 			if splitIslandTask == uintptrFromInt32(0) {
 				v1 = 0
@@ -3219,7 +3219,7 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 		i6 = i6 + 1
 	}
 	if v2 = !!((int64(baseGraphBlock)-int64(graphBlocks))/12 == int64(graphBlockCount)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+33082, __ccgo_ts+31091, int32FromInt32(1857))
+		b3InternalAssert(tls, __ccgo_ts+33796, __ccgo_ts+31805, int32FromInt32(1857))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	stage = stages
@@ -3235,11 +3235,11 @@ func b3Solve(tls *_Stack, world uintptr, stepContext uintptr) {
 	stage = b3InitStage(tls, stage, int32(b3_stageStoreWideImpulses), convexBlocks, convexPrepareDim.Count, uint8FromInt32(int32FromInt32(_UINT8_MAX7)))
 	stage = b3InitStage(tls, stage, int32(b3_stageStoreImpulses), meshBlocks, meshPrepareDim.Count, uint8FromInt32(int32FromInt32(_UINT8_MAX7)))
 	if v2 = !!(int32((int64(stage)-int64(stages))/24) == stageCount); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+33145, __ccgo_ts+31091, int32FromInt32(1876))
+		b3InternalAssert(tls, __ccgo_ts+33859, __ccgo_ts+31805, int32FromInt32(1876))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	if v2 = !!(workerCount <= int32FromInt32(_B3_MAX_WORKERS)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+33183, __ccgo_ts+31091, int32FromInt32(1878))
+		b3InternalAssert(tls, __ccgo_ts+33897, __ccgo_ts+31805, int32FromInt32(1878))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	(*b3StepContext)(unsafe.Pointer(stepContext)).Graph = graph
@@ -3273,7 +3273,7 @@ _39:
 			break
 		}
 		if v2 = !!(0 <= i7 && i7 < (*b3World)(unsafe.Pointer(world)).TaskContexts.Count); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+33213, __ccgo_ts+31091, int32FromInt32(1907))
+			b3InternalAssert(tls, __ccgo_ts+33927, __ccgo_ts+31805, int32FromInt32(1907))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		taskContext = (*b3World)(unsafe.Pointer(world)).TaskContexts.Data + uintptr(i7)*3848
@@ -3283,7 +3283,7 @@ _39:
 		(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].Context = stepContext
 		(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].WorkerIndex = i7
 		if (*b3World)(unsafe.Pointer(world)).TaskCount < int32(_B3_MAX_TASKS) {
-			__builtin_snprintf(tls, bp+2600, uint64(16), __ccgo_ts+33265, vaList(bp+2648, i7))
+			__builtin_snprintf(tls, bp+2600, uint64(16), __ccgo_ts+33979, vaList(bp+2648, i7))
 			(*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].UserTask = (*(*func(*_Stack, uintptr, uintptr, uintptr, uintptr) uintptr)(funcPtr((*b3World)(unsafe.Pointer(world)).EnqueueTaskFcn)))(tls, __ccgo_fp(b3SolverTask), bp+1824+uintptr(i7)*24, (*b3World)(unsafe.Pointer(world)).UserTaskContext, bp+2600)
 			*(*int32)(unsafe.Add(nil, world+4996)) += int32(1)
 			if (*(*[32]b3WorkerContext)(unsafe.Add(nil, bp+1824)))[i7].UserTask == uintptrFromInt32(0) {
@@ -3360,7 +3360,7 @@ _39:
 	}
 	b3ValidateNoMoved(tls, world+800)
 	// Finalize bodies. Must happen after the constraint solver and after island splitting.
-	b3ParallelFor(tls, world, __ccgo_fp(b3FinalizeBodiesTask), awakeBodyCount, int32(8), stepContext, __ccgo_ts+33275)
+	b3ParallelFor(tls, world, __ccgo_fp(b3FinalizeBodiesTask), awakeBodyCount, int32(8), stepContext, __ccgo_ts+33989)
 	// Free in reverse order
 	b3StackFree(tls, world, graphBlocks)
 	b3StackFree(tls, world, jointBlocks)
@@ -3407,12 +3407,12 @@ _39:
 			ctz = v47
 			jointId = int32FromUint32(uint32FromInt32(64)*k2 + ctz)
 			if v2 = !!(jointId < (*b3World)(unsafe.Pointer(world)).Joints.Capacity); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+33279, __ccgo_ts+31091, int32FromInt32(2034))
+				b3InternalAssert(tls, __ccgo_ts+33993, __ccgo_ts+31805, int32FromInt32(2034))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			joint = jointArray + uintptr(jointId)*72
 			if v2 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex == int32(b3_awakeSet)); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+33312, __ccgo_ts+31091, int32FromInt32(2038))
+				b3InternalAssert(tls, __ccgo_ts+34026, __ccgo_ts+31805, int32FromInt32(2038))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			event = JointEvent{
@@ -3451,7 +3451,7 @@ _39:
 	// Report hit events
 	hitTicks = b3GetTicks(tls)
 	if v2 = !!((*b3World)(unsafe.Pointer(world)).ContactHitEvents.Count == int32FromInt32(0)); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+33343, __ccgo_ts+31091, int32FromInt32(2067))
+		b3InternalAssert(tls, __ccgo_ts+34057, __ccgo_ts+31805, int32FromInt32(2067))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	// Fast path: if no worker flagged any hit-event candidates during b2StoreImpulsesTask, skip entirely.
@@ -3505,26 +3505,26 @@ _39:
 				contactId = int32FromUint32(uint32FromInt32(64)*k3 + ctz1)
 				contact = contactArray + uintptr(contactId)*216
 				if v2 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet) && (*b3Contact)(unsafe.Pointer(contact)).ColorIndex != -int32(1)); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+33378, __ccgo_ts+31091, int32FromInt32(2107))
+					b3InternalAssert(tls, __ccgo_ts+34092, __ccgo_ts+31805, int32FromInt32(2107))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				if v2 = !!(0 <= (*b3Contact)(unsafe.Pointer(contact)).ShapeIdA && (*b3Contact)(unsafe.Pointer(contact)).ShapeIdA < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+2313, __ccgo_ts+31091, int32FromInt32(2109))
+					b3InternalAssert(tls, __ccgo_ts+2313, __ccgo_ts+31805, int32FromInt32(2109))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				shapeA = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Contact)(unsafe.Pointer(contact)).ShapeIdA)*208
 				if v23 = !!(0 <= (*b3Contact)(unsafe.Pointer(contact)).ShapeIdB && (*b3Contact)(unsafe.Pointer(contact)).ShapeIdB < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v23 {
-					b3InternalAssert(tls, __ccgo_ts+2391, __ccgo_ts+31091, int32FromInt32(2110))
+					b3InternalAssert(tls, __ccgo_ts+2391, __ccgo_ts+31805, int32FromInt32(2110))
 				}
 				_ = v23 || bool(int32FromInt32(0) != 0)
 				shapeB = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr((*b3Contact)(unsafe.Pointer(contact)).ShapeIdB)*208
 				if v24 = !!(0 <= (*b3Shape)(unsafe.Pointer(shapeA)).BodyId && (*b3Shape)(unsafe.Pointer(shapeA)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v24 {
-					b3InternalAssert(tls, __ccgo_ts+7540, __ccgo_ts+31091, int32FromInt32(2111))
+					b3InternalAssert(tls, __ccgo_ts+7540, __ccgo_ts+31805, int32FromInt32(2111))
 				}
 				_ = v24 || bool(int32FromInt32(0) != 0)
 				bodyA = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shapeA)).BodyId)*96
 				if v27 = !!(0 <= (*b3Shape)(unsafe.Pointer(shapeB)).BodyId && (*b3Shape)(unsafe.Pointer(shapeB)).BodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v27 {
-					b3InternalAssert(tls, __ccgo_ts+7612, __ccgo_ts+31091, int32FromInt32(2112))
+					b3InternalAssert(tls, __ccgo_ts+7612, __ccgo_ts+31805, int32FromInt32(2112))
 				}
 				_ = v27 || bool(int32FromInt32(0) != 0)
 				bodyB = (*b3World)(unsafe.Pointer(world)).Bodies.Data + uintptr((*b3Shape)(unsafe.Pointer(shapeB)).BodyId)*96
@@ -3663,7 +3663,7 @@ _86:
 		// Fast bullet bodies
 		// Note: a bullet body may be moving slow
 		minRange = int32(8)
-		b3ParallelFor(tls, world, __ccgo_fp(b3BulletBodyTask), bulletBodyCount, minRange, stepContext, __ccgo_ts+33451)
+		b3ParallelFor(tls, world, __ccgo_fp(b3BulletBodyTask), bulletBodyCount, minRange, stepContext, __ccgo_ts+34165)
 		// Serially enlarge broad-phase proxies for bullet shapes
 		broadPhase = world + 800
 		dynamicTree = broadPhase + uintptr(b3_dynamicBody)*112
@@ -3687,7 +3687,7 @@ _86:
 			*(*uint32_t)(unsafe.Add(nil, bulletBodySim+40)) &= uint32FromInt32(^int32(b3_enlargeBulletBounds))
 			bodyId = (*b3BodySim)(unsafe.Pointer(bulletBodySim)).BodyId
 			if v2 = !!(0 <= bodyId && bodyId < (*b3World)(unsafe.Pointer(world)).Bodies.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+33459, __ccgo_ts+31091, int32FromInt32(2223))
+				b3InternalAssert(tls, __ccgo_ts+34173, __ccgo_ts+31805, int32FromInt32(2223))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			bulletBody = bodyArray + uintptr(bodyId)*96
@@ -3738,7 +3738,7 @@ _86:
 	sensorHitTicks = b3GetTicks(tls)
 	workerCount1 = (*b3World)(unsafe.Pointer(world)).WorkerCount
 	if v2 = !!(workerCount1 == (*b3World)(unsafe.Pointer(world)).TaskContexts.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+33503, __ccgo_ts+31091, int32FromInt32(2261))
+		b3InternalAssert(tls, __ccgo_ts+34217, __ccgo_ts+31805, int32FromInt32(2261))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	i15 = 0
@@ -3756,17 +3756,17 @@ _86:
 			}
 			hit = *(*b3SensorHit)(unsafe.Add(nil, hits+uintptr(j4)*8))
 			if v2 = !!(0 <= hit.SensorId && hit.SensorId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v2 {
-				b3InternalAssert(tls, __ccgo_ts+33544, __ccgo_ts+31091, int32FromInt32(2272))
+				b3InternalAssert(tls, __ccgo_ts+34258, __ccgo_ts+31805, int32FromInt32(2272))
 			}
 			_ = v2 || bool(int32FromInt32(0) != 0)
 			sensorShape = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(hit.SensorId)*208
 			if v23 = !!(0 <= hit.VisitorId && hit.VisitorId < (*b3World)(unsafe.Pointer(world)).Shapes.Count); !v23 {
-				b3InternalAssert(tls, __ccgo_ts+33612, __ccgo_ts+31091, int32FromInt32(2273))
+				b3InternalAssert(tls, __ccgo_ts+34326, __ccgo_ts+31805, int32FromInt32(2273))
 			}
 			_ = v23 || bool(int32FromInt32(0) != 0)
 			visitor = (*b3World)(unsafe.Pointer(world)).Shapes.Data + uintptr(hit.VisitorId)*208
 			if v24 = !!(0 <= (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex && (*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex < (*b3World)(unsafe.Pointer(world)).Sensors.Count); !v24 {
-				b3InternalAssert(tls, __ccgo_ts+28656, __ccgo_ts+31091, int32FromInt32(2275))
+				b3InternalAssert(tls, __ccgo_ts+29370, __ccgo_ts+31805, int32FromInt32(2275))
 			}
 			_ = v24 || bool(int32FromInt32(0) != 0)
 			sensor = (*b3World)(unsafe.Pointer(world)).Sensors.Data + uintptr((*b3Shape)(unsafe.Pointer(sensorShape)).SensorIndex)*56
@@ -3808,7 +3808,7 @@ _86:
 		sleepTicks = b3GetTicks(tls)
 		// Collect split island candidate for the next time step. No need to split if sleeping is disabled.
 		if v2 = !!((*b3World)(unsafe.Pointer(world)).SplitIslandId == -int32FromInt32(1)); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+33682, __ccgo_ts+31091, int32FromInt32(2297))
+			b3InternalAssert(tls, __ccgo_ts+34396, __ccgo_ts+31805, int32FromInt32(2297))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		splitSleepTimer = float32FromFloat32(0)
@@ -3820,7 +3820,7 @@ _86:
 			taskContext3 = (*b3World)(unsafe.Pointer(world)).TaskContexts.Data + uintptr(i16)*3848
 			if (*b3TaskContext)(unsafe.Pointer(taskContext3)).SplitIslandId != -int32(1) && (*b3TaskContext)(unsafe.Pointer(taskContext3)).SplitSleepTime >= splitSleepTimer {
 				if v2 = !!((*b3TaskContext)(unsafe.Pointer(taskContext3)).SplitSleepTime > float32FromFloat32(0)); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+33720, __ccgo_ts+31091, int32FromInt32(2304))
+					b3InternalAssert(tls, __ccgo_ts+34434, __ccgo_ts+31805, int32FromInt32(2304))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				// Tie breaking for determinism. Largest island id wins. Needed due to work stealing.
@@ -3887,7 +3887,7 @@ func b3DestroySolverSet(tls *_Stack, world uintptr, setIndex int32) {
 	var v1 bool
 	_, _ = set, v1
 	if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+33755, int32FromInt32(17))
+		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+34469, int32FromInt32(17))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
@@ -3930,21 +3930,21 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 	var v1, v2, v3, v4 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = awakeSet, bodies, body, bodyCount, contact, contact1, contactCount, contactId, contactIndex, contactKey, disabledSet, edgeIndex, encodedBodySimIndex, i, i1, i2, i3, island, islandCount, islandDst, islandSrc, joint, jointCount, jointSim, localIndex, movedContact, movedContactIndex, movedLocalIndex, newCapacity, newCapacity1, newSize, newSize1, oldCapacity, oldSize, oldSize1, set, simDst, simSrc, state, v1, v10, v11, v12, v14, v15, v2, v3, v4, v7, v8, v9
 	if v1 = !!(setIndex >= int32(b3_firstSleepingSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+33783, __ccgo_ts+33755, int32FromInt32(38))
+		b3InternalAssert(tls, __ccgo_ts+34497, __ccgo_ts+34469, int32FromInt32(38))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= setIndex && setIndex < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+33755, int32FromInt32(39))
+		b3InternalAssert(tls, __ccgo_ts+7822, __ccgo_ts+34469, int32FromInt32(39))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setIndex)*88
 	if v2 = !!(bool(0 <= int32(b3_awakeSet)) && int32(b3_awakeSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+33755, int32FromInt32(40))
+		b3InternalAssert(tls, __ccgo_ts+802, __ccgo_ts+34469, int32FromInt32(40))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	awakeSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_awakeSet))*88
 	if v3 = !!(bool(0 <= int32(b3_disabledSet)) && int32(b3_disabledSet) < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+33755, int32FromInt32(41))
+		b3InternalAssert(tls, __ccgo_ts+4158, __ccgo_ts+34469, int32FromInt32(41))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	disabledSet = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(int32(b3_disabledSet))*88
@@ -3958,7 +3958,7 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 		simSrc = (*b3SolverSet)(unsafe.Pointer(set)).BodySims.Data + uintptr(i)*252
 		body = bodies + uintptr((*b3BodySim)(unsafe.Pointer(simSrc)).BodyId)*96
 		if v4 = !!((*b3Body)(unsafe.Pointer(body)).SetIndex == setIndex); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+33815, __ccgo_ts+33755, int32FromInt32(51))
+			b3InternalAssert(tls, __ccgo_ts+34529, __ccgo_ts+34469, int32FromInt32(51))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		(*b3Body)(unsafe.Pointer(body)).SetIndex = int32(b3_awakeSet)
@@ -4023,20 +4023,20 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 			edgeIndex = contactKey & int32(1)
 			contactId = contactKey >> int32(1)
 			if v1 = !!(0 <= contactId && contactId < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+33755, int32FromInt32(73))
+				b3InternalAssert(tls, __ccgo_ts+950, __ccgo_ts+34469, int32FromInt32(73))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactId)*216
 			contactKey = (*(*b3ContactEdge)(unsafe.Add(nil, contact+12+uintptr(edgeIndex)*12))).NextKey
 			if (*b3Contact)(unsafe.Pointer(contact)).SetIndex != int32(b3_disabledSet) {
 				if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet) || (*b3Contact)(unsafe.Pointer(contact)).SetIndex == setIndex); !v1 {
-					b3InternalAssert(tls, __ccgo_ts+33842, __ccgo_ts+33755, int32FromInt32(78))
+					b3InternalAssert(tls, __ccgo_ts+34556, __ccgo_ts+34469, int32FromInt32(78))
 				}
 				_ = v1 || bool(int32FromInt32(0) != 0)
 				// If this contact is awake but not touching I need to fixup the body sim index here.
 				if (*b3Contact)(unsafe.Pointer(contact)).SetIndex == int32(b3_awakeSet) {
 					if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).ColorIndex == -int32FromInt32(1)); !v1 {
-						b3InternalAssert(tls, __ccgo_ts+24755, __ccgo_ts+33755, int32FromInt32(83))
+						b3InternalAssert(tls, __ccgo_ts+25231, __ccgo_ts+34469, int32FromInt32(83))
 					}
 					_ = v1 || bool(int32FromInt32(0) != 0)
 					if edgeIndex == 0 {
@@ -4049,15 +4049,15 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 			}
 			localIndex = (*b3Contact)(unsafe.Pointer(contact)).LocalIndex
 			if v1 = !!(0 <= localIndex && localIndex < (*b3SolverSet)(unsafe.Pointer(disabledSet)).ContactIndices.Count); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+33908, __ccgo_ts+33755, int32FromInt32(99))
+				b3InternalAssert(tls, __ccgo_ts+34622, __ccgo_ts+34469, int32FromInt32(99))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(*(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(disabledSet)).ContactIndices.Data+uintptr(localIndex)*4)) == contactId); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+33974, __ccgo_ts+33755, int32FromInt32(100))
+				b3InternalAssert(tls, __ccgo_ts+34688, __ccgo_ts+34469, int32FromInt32(100))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!((*b3Contact)(unsafe.Pointer(contact)).Flags&uint32(b3_contactTouchingFlag) == uint32(0) && (*b3Contact)(unsafe.Pointer(contact)).ManifoldCount == 0); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+34032, __ccgo_ts+33755, int32FromInt32(102))
+				b3InternalAssert(tls, __ccgo_ts+34746, __ccgo_ts+34469, int32FromInt32(102))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			(*b3Contact)(unsafe.Pointer(contact)).SetIndex = int32(b3_awakeSet)
@@ -4105,12 +4105,12 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 				// fix moved element
 				movedContactIndex = *(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(disabledSet)).ContactIndices.Data+uintptr(localIndex)*4))
 				if v2 = !!(0 <= movedContactIndex && movedContactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v2 {
-					b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+33755, int32FromInt32(122))
+					b3InternalAssert(tls, __ccgo_ts+8778, __ccgo_ts+34469, int32FromInt32(122))
 				}
 				_ = v2 || bool(int32FromInt32(0) != 0)
 				movedContact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(movedContactIndex)*216
 				if v3 = !!((*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex == movedLocalIndex); !v3 {
-					b3InternalAssert(tls, __ccgo_ts+34112, __ccgo_ts+33755, int32FromInt32(123))
+					b3InternalAssert(tls, __ccgo_ts+34826, __ccgo_ts+34469, int32FromInt32(123))
 				}
 				_ = v3 || bool(int32FromInt32(0) != 0)
 				(*b3Contact)(unsafe.Pointer(movedContact)).LocalIndex = localIndex
@@ -4130,20 +4130,20 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 		}
 		contactIndex = *(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(set)).ContactIndices.Data+uintptr(i1)*4))
 		if v1 = !!(0 <= contactIndex && contactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34156, __ccgo_ts+33755, int32FromInt32(135))
+			b3InternalAssert(tls, __ccgo_ts+34870, __ccgo_ts+34469, int32FromInt32(135))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact1 = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactIndex)*216
 		if v2 = !!((*b3Contact)(unsafe.Pointer(contact1)).Flags&uint32(b3_contactTouchingFlag) != 0); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+6646, __ccgo_ts+33755, int32FromInt32(136))
+			b3InternalAssert(tls, __ccgo_ts+6646, __ccgo_ts+34469, int32FromInt32(136))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(contact1)).Flags&uint32(b3_simTouchingFlag) != 0); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34226, __ccgo_ts+33755, int32FromInt32(137))
+			b3InternalAssert(tls, __ccgo_ts+34940, __ccgo_ts+34469, int32FromInt32(137))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		if v1 = !!((*b3Contact)(unsafe.Pointer(contact1)).SetIndex == setIndex); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34262, __ccgo_ts+33755, int32FromInt32(138))
+			b3InternalAssert(tls, __ccgo_ts+34976, __ccgo_ts+34469, int32FromInt32(138))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		b3AddContactToGraph(tls, world, contact1)
@@ -4162,12 +4162,12 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 		}
 		jointSim = (*b3SolverSet)(unsafe.Pointer(set)).JointSims.Data + uintptr(i2)*444
 		if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(jointSim)).JointId && (*b3JointSim)(unsafe.Pointer(jointSim)).JointId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34292, __ccgo_ts+33755, int32FromInt32(150))
+			b3InternalAssert(tls, __ccgo_ts+35006, __ccgo_ts+34469, int32FromInt32(150))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointSim)(unsafe.Pointer(jointSim)).JointId)*72
 		if v2 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex == setIndex); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+19247, __ccgo_ts+33755, int32FromInt32(151))
+			b3InternalAssert(tls, __ccgo_ts+19247, __ccgo_ts+34469, int32FromInt32(151))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		b3AddJointToGraph(tls, world, jointSim, joint)
@@ -4189,7 +4189,7 @@ func b3WakeSolverSet(tls *_Stack, world uintptr, setIndex int32) {
 		}
 		islandSrc = (*b3SolverSet)(unsafe.Pointer(set)).IslandSims.Data + uintptr(i3)*4
 		if v1 = !!(0 <= (*b3IslandSim)(unsafe.Pointer(islandSrc)).IslandId && (*b3IslandSim)(unsafe.Pointer(islandSrc)).IslandId < (*b3World)(unsafe.Pointer(world)).Islands.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34370, __ccgo_ts+33755, int32FromInt32(166))
+			b3InternalAssert(tls, __ccgo_ts+35084, __ccgo_ts+34469, int32FromInt32(166))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		island = (*b3World)(unsafe.Pointer(world)).Islands.Data + uintptr((*b3IslandSim)(unsafe.Pointer(islandSrc)).IslandId)*64
@@ -4240,20 +4240,20 @@ func b3MergeSolverSets(tls *_Stack, world uintptr, setId1 int32, setId2 int32) {
 	var v1, v2 bool
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = bodies, body, bodyCount, contact, contactCount, contactIndex, i, i1, i2, i3, island, islandCount, islandDst, islandId, islandSrc, joint, jointCount, jointDst, jointSrc, newCapacity, newCapacity1, newSize, newSize1, oldCapacity, oldSize, oldSize1, set1, set2, simDst, simSrc, tempId, tempSet, v1, v10, v11, v12, v14, v15, v2, v7, v8, v9
 	if v1 = !!(setId1 >= int32(b3_firstSleepingSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35327, __ccgo_ts+33755, int32FromInt32(477))
+		b3InternalAssert(tls, __ccgo_ts+36041, __ccgo_ts+34469, int32FromInt32(477))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(setId2 >= int32(b3_firstSleepingSet)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35357, __ccgo_ts+33755, int32FromInt32(478))
+		b3InternalAssert(tls, __ccgo_ts+36071, __ccgo_ts+34469, int32FromInt32(478))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	if v1 = !!(0 <= setId1 && setId1 < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+35387, __ccgo_ts+33755, int32FromInt32(479))
+		b3InternalAssert(tls, __ccgo_ts+36101, __ccgo_ts+34469, int32FromInt32(479))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	set1 = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setId1)*88
 	if v2 = !!(0 <= setId2 && setId2 < (*b3World)(unsafe.Pointer(world)).SolverSets.Count); !v2 {
-		b3InternalAssert(tls, __ccgo_ts+35447, __ccgo_ts+33755, int32FromInt32(480))
+		b3InternalAssert(tls, __ccgo_ts+36161, __ccgo_ts+34469, int32FromInt32(480))
 	}
 	_ = v2 || bool(int32FromInt32(0) != 0)
 	set2 = (*b3World)(unsafe.Pointer(world)).SolverSets.Data + uintptr(setId2)*88
@@ -4277,7 +4277,7 @@ func b3MergeSolverSets(tls *_Stack, world uintptr, setId1 int32, setId2 int32) {
 		simSrc = (*b3SolverSet)(unsafe.Pointer(set2)).BodySims.Data + uintptr(i)*252
 		body = bodies + uintptr((*b3BodySim)(unsafe.Pointer(simSrc)).BodyId)*96
 		if v1 = !!((*b3Body)(unsafe.Pointer(body)).SetIndex == setId2); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35507, __ccgo_ts+33755, int32FromInt32(503))
+			b3InternalAssert(tls, __ccgo_ts+36221, __ccgo_ts+34469, int32FromInt32(503))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		(*b3Body)(unsafe.Pointer(body)).SetIndex = setId1
@@ -4321,12 +4321,12 @@ func b3MergeSolverSets(tls *_Stack, world uintptr, setId1 int32, setId2 int32) {
 		}
 		contactIndex = *(*int32)(unsafe.Add(nil, (*b3SolverSet)(unsafe.Pointer(set2)).ContactIndices.Data+uintptr(i1)*4))
 		if v1 = !!(0 <= contactIndex && contactIndex < (*b3World)(unsafe.Pointer(world)).Contacts.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+34156, __ccgo_ts+33755, int32FromInt32(518))
+			b3InternalAssert(tls, __ccgo_ts+34870, __ccgo_ts+34469, int32FromInt32(518))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		contact = (*b3World)(unsafe.Pointer(world)).Contacts.Data + uintptr(contactIndex)*216
 		if v2 = !!((*b3Contact)(unsafe.Pointer(contact)).SetIndex == setId2); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+35532, __ccgo_ts+33755, int32FromInt32(519))
+			b3InternalAssert(tls, __ccgo_ts+36246, __ccgo_ts+34469, int32FromInt32(519))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		(*b3Contact)(unsafe.Pointer(contact)).SetIndex = setId1
@@ -4361,12 +4361,12 @@ func b3MergeSolverSets(tls *_Stack, world uintptr, setId1 int32, setId2 int32) {
 		}
 		jointSrc = (*b3SolverSet)(unsafe.Pointer(set2)).JointSims.Data + uintptr(i2)*444
 		if v1 = !!(0 <= (*b3JointSim)(unsafe.Pointer(jointSrc)).JointId && (*b3JointSim)(unsafe.Pointer(jointSrc)).JointId < (*b3World)(unsafe.Pointer(world)).Joints.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+35560, __ccgo_ts+33755, int32FromInt32(533))
+			b3InternalAssert(tls, __ccgo_ts+36274, __ccgo_ts+34469, int32FromInt32(533))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		joint = (*b3World)(unsafe.Pointer(world)).Joints.Data + uintptr((*b3JointSim)(unsafe.Pointer(jointSrc)).JointId)*72
 		if v2 = !!((*b3Joint)(unsafe.Pointer(joint)).SetIndex == setId2); !v2 {
-			b3InternalAssert(tls, __ccgo_ts+35638, __ccgo_ts+33755, int32FromInt32(534))
+			b3InternalAssert(tls, __ccgo_ts+36352, __ccgo_ts+34469, int32FromInt32(534))
 		}
 		_ = v2 || bool(int32FromInt32(0) != 0)
 		(*b3Joint)(unsafe.Pointer(joint)).SetIndex = setId1
@@ -4411,7 +4411,7 @@ func b3MergeSolverSets(tls *_Stack, world uintptr, setId1 int32, setId2 int32) {
 		islandSrc = (*b3SolverSet)(unsafe.Pointer(set2)).IslandSims.Data + uintptr(i3)*4
 		islandId = (*b3IslandSim)(unsafe.Pointer(islandSrc)).IslandId
 		if v1 = !!(0 <= islandId && islandId < (*b3World)(unsafe.Pointer(world)).Islands.Count); !v1 {
-			b3InternalAssert(tls, __ccgo_ts+1108, __ccgo_ts+33755, int32FromInt32(551))
+			b3InternalAssert(tls, __ccgo_ts+1108, __ccgo_ts+34469, int32FromInt32(551))
 		}
 		_ = v1 || bool(int32FromInt32(0) != 0)
 		island = (*b3World)(unsafe.Pointer(world)).Islands.Data + uintptr(islandId)*64

@@ -91,11 +91,6 @@ func b3MaxW4(tls *_Stack, a, b b3FloatW4) b3FloatW4 {
 	return a.Max(b)
 }
 
-// clamp a to [-b, b]
-func b3SymClampW4(tls *_Stack, a, b b3FloatW4) b3FloatW4 {
-	return b.Neg().Max(a).Min(b)
-}
-
 func b3AndW4(tls *_Stack, a, b b3FloatW4) b3FloatW4 {
 	return a.ToBits().And(b.ToBits()).BitsToFloat32()
 }

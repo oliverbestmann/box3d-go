@@ -470,15 +470,15 @@ func b3SortMeshTriangles(tls *_Stack, mesh uintptr) (r uint8) {
 		}
 	}
 	if v14 = !!(offset == (*(*b3DynamicArray_b3MeshTriangle)(unsafe.Add(nil, bp))).Count); !v14 {
-		b3InternalAssert(tls, __ccgo_ts+21557, __ccgo_ts+21165, int32FromInt32(1010))
+		b3InternalAssert(tls, __ccgo_ts+21950, __ccgo_ts+21558, int32FromInt32(1010))
 	}
 	_ = v14 || bool(int32FromInt32(0) != 0)
 	if v14 = !!((*(*b3DynamicArray_b3MeshTriangle)(unsafe.Add(nil, bp))).Count == (*MeshData)(unsafe.Pointer(mesh)).TriangleCount); !v14 {
-		b3InternalAssert(tls, __ccgo_ts+21587, __ccgo_ts+21165, int32FromInt32(1011))
+		b3InternalAssert(tls, __ccgo_ts+21980, __ccgo_ts+21558, int32FromInt32(1011))
 	}
 	_ = v14 || bool(int32FromInt32(0) != 0)
 	if v14 = !!((*(*b3DynamicArray_uint8_t)(unsafe.Add(nil, bp+12))).Count == (*MeshData)(unsafe.Pointer(mesh)).TriangleCount); !v14 {
-		b3InternalAssert(tls, __ccgo_ts+21630, __ccgo_ts+21165, int32FromInt32(1012))
+		b3InternalAssert(tls, __ccgo_ts+22023, __ccgo_ts+21558, int32FromInt32(1012))
 	}
 	_ = v14 || bool(int32FromInt32(0) != 0)
 	// Copy sorted triangle array back to tree
@@ -508,7 +508,7 @@ func b3CreateGridMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 	var _ /* def at bp+0 */ MeshDef
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = index, index1, index2, index3, index4, indices, ix, ix1, iz, iz1, materialIndex, materialIndices, meshData, newSize, newSize1, newSize2, oldSize, oldSize1, oldSize2, triangleCount, vertexCount, vertices, x, xWidth, z, zWidth, v1, v12
 	if v1 = !!(0 <= materialCount && materialCount <= int32(_UINT8_MAX5)); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21752, __ccgo_ts+21165, int32FromInt32(1229))
+		b3InternalAssert(tls, __ccgo_ts+22145, __ccgo_ts+21558, int32FromInt32(1229))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Create vertices
@@ -554,7 +554,7 @@ func b3CreateGridMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 		ix = ix + 1
 	}
 	if v1 = !!(index == vertexCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21801, __ccgo_ts+21165, int32FromInt32(1253))
+		b3InternalAssert(tls, __ccgo_ts+22194, __ccgo_ts+21558, int32FromInt32(1253))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	// Triangles
@@ -592,19 +592,19 @@ func b3CreateGridMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 			index3 = index2 + (zCount + int32(1))
 			index4 = index3 - int32(1)
 			if v1 = !!(index1 < vertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+21822, __ccgo_ts+21165, int32FromInt32(1275))
+				b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+21558, int32FromInt32(1275))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(index2 < vertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+21843, __ccgo_ts+21165, int32FromInt32(1276))
+				b3InternalAssert(tls, __ccgo_ts+22236, __ccgo_ts+21558, int32FromInt32(1276))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(index3 < vertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+21864, __ccgo_ts+21165, int32FromInt32(1277))
+				b3InternalAssert(tls, __ccgo_ts+22257, __ccgo_ts+21558, int32FromInt32(1277))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			if v1 = !!(index4 < vertexCount); !v1 {
-				b3InternalAssert(tls, __ccgo_ts+21885, __ccgo_ts+21165, int32FromInt32(1278))
+				b3InternalAssert(tls, __ccgo_ts+22278, __ccgo_ts+21558, int32FromInt32(1278))
 			}
 			_ = v1 || bool(int32FromInt32(0) != 0)
 			*(*int32)(unsafe.Add(nil, indices.Data+uintptr(index+0)*4)) = index1
@@ -630,7 +630,7 @@ func b3CreateGridMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 		ix1 = ix1 + 1
 	}
 	if v1 = !!(index == int32FromInt32(3)*triangleCount); !v1 {
-		b3InternalAssert(tls, __ccgo_ts+21906, __ccgo_ts+21165, int32FromInt32(1298))
+		b3InternalAssert(tls, __ccgo_ts+22299, __ccgo_ts+21558, int32FromInt32(1298))
 	}
 	_ = v1 || bool(int32FromInt32(0) != 0)
 	*(*MeshDef)(unsafe.Add(nil, bp)) = MeshDef{}
@@ -726,7 +726,7 @@ func b3CreateWaveMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 		ix = ix + 1
 	}
 	if v3 = !!(index == vertexCount); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+21801, __ccgo_ts+21165, int32FromInt32(1354))
+		b3InternalAssert(tls, __ccgo_ts+22194, __ccgo_ts+21558, int32FromInt32(1354))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	// Triangles
@@ -755,19 +755,19 @@ func b3CreateWaveMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 			index3 = index2 + (zCount + int32(1))
 			index4 = index3 - int32(1)
 			if v3 = !!(index1 < vertexCount); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+21822, __ccgo_ts+21165, int32FromInt32(1372))
+				b3InternalAssert(tls, __ccgo_ts+22215, __ccgo_ts+21558, int32FromInt32(1372))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			if v3 = !!(index2 < vertexCount); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+21843, __ccgo_ts+21165, int32FromInt32(1373))
+				b3InternalAssert(tls, __ccgo_ts+22236, __ccgo_ts+21558, int32FromInt32(1373))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			if v3 = !!(index3 < vertexCount); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+21864, __ccgo_ts+21165, int32FromInt32(1374))
+				b3InternalAssert(tls, __ccgo_ts+22257, __ccgo_ts+21558, int32FromInt32(1374))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			if v3 = !!(index4 < vertexCount); !v3 {
-				b3InternalAssert(tls, __ccgo_ts+21885, __ccgo_ts+21165, int32FromInt32(1375))
+				b3InternalAssert(tls, __ccgo_ts+22278, __ccgo_ts+21558, int32FromInt32(1375))
 			}
 			_ = v3 || bool(int32FromInt32(0) != 0)
 			*(*int32)(unsafe.Add(nil, indices.Data+uintptr(index+0)*4)) = index1
@@ -788,7 +788,7 @@ func b3CreateWaveMesh(tls *_Stack, xCount int32, zCount int32, cellWidth float32
 		ix1 = ix1 + 1
 	}
 	if v3 = !!(index == int32FromInt32(3)*triangleCount); !v3 {
-		b3InternalAssert(tls, __ccgo_ts+21906, __ccgo_ts+21165, int32FromInt32(1388))
+		b3InternalAssert(tls, __ccgo_ts+22299, __ccgo_ts+21558, int32FromInt32(1388))
 	}
 	_ = v3 || bool(int32FromInt32(0) != 0)
 	*(*MeshDef)(unsafe.Add(nil, bp)) = MeshDef{}
@@ -1483,7 +1483,7 @@ func b3CreateMesh(tls *_Stack, def uintptr, degenerateTriangleIndices uintptr, d
 		vertices.Count = b3WeldVertices(tls, bp, (*MeshDef)(unsafe.Pointer(def)).WeldTolerance)
 		vertexCount = vertices.Count
 		if v4 = !!(vertexCount <= (*MeshDef)(unsafe.Pointer(def)).vertexCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+21933, __ccgo_ts+21165, int32FromInt32(1638))
+			b3InternalAssert(tls, __ccgo_ts+22326, __ccgo_ts+21558, int32FromInt32(1638))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 	} else {
@@ -1528,15 +1528,15 @@ func b3CreateMesh(tls *_Stack, def uintptr, degenerateTriangleIndices uintptr, d
 		index2 = *(*int32)(unsafe.Add(nil, indices.Data+uintptr(int32(3)*index+int32(1))*4))
 		index3 = *(*int32)(unsafe.Add(nil, indices.Data+uintptr(int32(3)*index+int32(2))*4))
 		if v4 = !!(0 <= index11 && index11 < vertexCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+21965, __ccgo_ts+21165, int32FromInt32(1661))
+			b3InternalAssert(tls, __ccgo_ts+22358, __ccgo_ts+21558, int32FromInt32(1661))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		if v4 = !!(0 <= index2 && index2 < vertexCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+22001, __ccgo_ts+21165, int32FromInt32(1662))
+			b3InternalAssert(tls, __ccgo_ts+22394, __ccgo_ts+21558, int32FromInt32(1662))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		if v4 = !!(0 <= index3 && index3 < vertexCount); !v4 {
-			b3InternalAssert(tls, __ccgo_ts+22037, __ccgo_ts+21165, int32FromInt32(1663))
+			b3InternalAssert(tls, __ccgo_ts+22430, __ccgo_ts+21558, int32FromInt32(1663))
 		}
 		_ = v4 || bool(int32FromInt32(0) != 0)
 		vertex1 = *(*Vec3)(unsafe.Add(nil, vertices.Data+uintptr(index11)*12))
@@ -2085,7 +2085,7 @@ func b3OverlapMesh(tls *_Stack, shape uintptr, shapeTransform Transform, proxy u
 	var _ /* vertex3 at bp+1680 */ Vec3
 	_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = count, index, invScale, invScaledBoundsCenter, invScaledBoundsExtent, invScaledBoundsMax, invScaledBoundsMin, node, nodeMax, nodeMin, output, scale, separation, stack, temp1, temp2, tolerance, triangle, triangleCount, triangleIndex, triangleOffset, triangles, v1, v2, v3, vertices, v11, v10, v100, v101, v102, v105, v12, v13, v14, v16, v17, v19, v21, v20, v211, v23, v24, v25, v27, v28, v29, v31, v30, v311, v32, v34, v35, v36, v37, v38, v39, v41, v42, v43, v45, v46, v47, v49, v5, v50, v52, v53, v55, v58, v6, v7, v76, v80, v9, v92, v93, v94, v96, v97, v98
 	if v11 = !!((*cShapeProxy)(unsafe.Pointer(proxy)).Count > int32FromInt32(0)); !v11 {
-		b3InternalAssert(tls, __ccgo_ts+22073, __ccgo_ts+21165, int32FromInt32(1839))
+		b3InternalAssert(tls, __ccgo_ts+22466, __ccgo_ts+21558, int32FromInt32(1839))
 	}
 	_ = v11 || bool(int32FromInt32(0) != 0)
 	*(*SimplexCache)(unsafe.Add(nil, bp)) = SimplexCache{}
@@ -2419,7 +2419,7 @@ _54:
 			} else {
 				// Recurse
 				if v11 = !!(count <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v11 {
-					b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(1919))
+					b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(1919))
 				}
 				_ = v11 || bool(int32FromInt32(0) != 0)
 				v105 = count
@@ -2922,7 +2922,7 @@ _55:
 					v3 = v8
 					alpha = b3IntersectRayTriangle(tls, rayStart1, rayDelta1, v1, v2, v3)
 					if v132 = !!(float32FromInt32(0) <= alpha && alpha <= float32FromFloat32(1)); !v132 {
-						b3InternalAssert(tls, __ccgo_ts+13509, __ccgo_ts+21165, int32FromInt32(2018))
+						b3InternalAssert(tls, __ccgo_ts+13509, __ccgo_ts+21558, int32FromInt32(2018))
 					}
 					_ = v132 || bool(int32FromInt32(0) != 0)
 					if alpha < bestOutput.Fraction {
@@ -3087,7 +3087,7 @@ _55:
 			_213:
 				if v11 > float32FromFloat32(0) {
 					if v132 = !!(count <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v132 {
-						b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2045))
+						b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2045))
 					}
 					_ = v132 || bool(int32FromInt32(0) != 0)
 					v215 = count
@@ -3096,7 +3096,7 @@ _55:
 					node = b3GetLeftChild(tls, node)
 				} else {
 					if v132 = !!(count <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v132 {
-						b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2051))
+						b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2051))
 					}
 					_ = v132 || bool(int32FromInt32(0) != 0)
 					v215 = count
@@ -3613,7 +3613,7 @@ _76:
 			if overlapLeft != 0 {
 				if overlapRight != 0 {
 					if v165 = !!(count <= int32FromInt32(_B3_MESH_STACK_SIZE)-int32FromInt32(1)); !v165 {
-						b3InternalAssert(tls, __ccgo_ts+22090, __ccgo_ts+21165, int32FromInt32(2460))
+						b3InternalAssert(tls, __ccgo_ts+22483, __ccgo_ts+21558, int32FromInt32(2460))
 					}
 					_ = v165 || bool(int32FromInt32(0) != 0)
 					v166 = count
